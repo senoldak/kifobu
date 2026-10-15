@@ -1560,3 +1560,158 @@ h3 {
 
 
 
+
+/* ---------- Konu, platform, kampanya, bülten günü ve rehber sayfaları ---------- */
+.dizin-giris {
+  margin-bottom: 8px;
+}
+
+.dizin-not {
+  margin: 14px 0 0;
+  max-width: 68ch;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--murekkep-2);
+}
+
+.bolum-ilk {
+  margin-top: 24px;
+}
+
+.kampanya-kunyesi-ust {
+  margin: 0 0 32px;
+}
+
+/* Kampanya sayfasında tutarlar tam yazılır (₺50.000.000); hücreler geniş, rakamlar bir boy küçük. */
+.kampanya-kunyesi-ust dl {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
+}
+
+.kampanya-kunyesi-ust dd {
+  font-size: 1.45rem;
+  overflow-wrap: anywhere;
+}
+
+.kampanya-kunyesi .kk-platform a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--tebesir-cizgi);
+  text-underline-offset: 4px;
+}
+
+.kampanya-kunyesi .kk-platform a:hover {
+  text-decoration-color: var(--sari);
+}
+
+/* Veri tabloları: dar ekranda tablo kendi içinde kayar, sayfa kaymaz. */
+.tablo-kap {
+  overflow-x: auto;
+  margin: 0 0 20px;
+}
+
+.veri-tablo {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-family: var(--yazi-baslik);
+  font-size: 1.02rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.veri-tablo thead th {
+  text-align: left;
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  border-bottom: 2px solid var(--cizgi-koyu);
+  white-space: nowrap;
+}
+
+.veri-tablo td,
+.veri-tablo tbody th {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--cizgi);
+  text-align: left;
+  vertical-align: baseline;
+}
+
+.veri-tablo tbody th {
+  font-weight: 800;
+}
+
+.veri-tablo .sayi {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.veri-tablo a,
+.dizin-liste a {
+  color: var(--bag);
+  text-decoration: underline;
+  text-decoration-color: var(--bag-alt);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.dizin-liste {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: 0 clamp(24px, 3vw, 44px);
+  font-family: var(--yazi-baslik);
+  font-size: 1.1rem;
+}
+
+.dizin-liste li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--cizgi);
+}
+
+.dizin-liste a {
+  font-weight: 800;
+}
+
+.dizin-liste span {
+  color: var(--murekkep-2);
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Haber sayfasının altındaki konu bağlantıları */
+.etiketler {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 10px;
+  margin: 28px 0 0;
+  font-family: var(--yazi-baslik);
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.etiketler span {
+  margin-right: 4px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: var(--murekkep-2);
+}
+
+.etiketler a {
+  padding: 4px 10px;
+  border: 1px solid var(--cizgi-koyu);
+}
+
+.etiketler a:hover {
+  background: var(--tahta);
+  border-color: var(--tahta);
+  color: var(--tebesir);
+}

@@ -1,0 +1,48 @@
+---
+// Bülten günleri dizini: her günün kalıcı bülten sayfası (/gunluk-bulten/YYYY-AA-GG/), en yeni önce.
+import Base from '../../layouts/Base.astro';
+import Yol from '../../components/Yol.astro';
+import { dizinVerisi } from '../../lib/dizin';
+import { gunUrl } from '../../lib/gunler';
+import { sayfaLd } from '../../lib/ld';
+import { formatDate, formatNumber } from '../../lib/site';
+
+const { gunler } = await dizinVerisi();
+const gun = (t: string) => formatDate(new Date(`${t}T12:00:00+03:00`));
+const aciklama = 'kifobu günlük kitle fonlama bülteninin günlere göre arşivi: her günün kampanya kaydı, bülten yazıları ve haberleri.';
+const adimlar = [{ ad: 'Anasayfa', url: '/' }, { ad: 'Günlük Bülten', url: '/gunluk-bulten/' }, { ad: 'Bülten günleri', url: '/gunluk-bulten/gunler/' }];
+const jsonLd = sayfaLd({ site: Astro.site!, yol: '/gunluk-bulten/gunler/', ad: 'Bülten günleri', aciklama, ogeler: gunler.map((g) => gunUrl(g.tarih)), adimlar });
+---
+
+<Base title="Bülten günleri" description={aciklama}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <div slot="tahta" class="kategori-bas">
+    <h1 class="kategori-isim">Bülten günleri</h1>
+    <p class="kategori-sayi">{gunler.length} gün</p>
+  </div>
+
+  <Yol adimlar={adimlar} />
+
+  <div class="metin dizin-giris">
+    <p>
+      kifobu’nun günlük kitle fonlama bülteni 2022’den bu yana sosyal medyada yayımlanıyor (1. bülten: 10 Ağustos 2022).
+      Bu sitede yayımlanan her günün bülteni kendi kalıcı sayfasında durur: o günün 18:00 kampanya kaydı, bülten yazıları
+      ve haberleri.
+    </p>
+  </div>
+
+  <ul class="dizin-liste dizin-gunler">
+    {
+      gunler.map((g) => (
+        <li>
+          <a href={gunUrl(g.tarih)}>{gun(g.tarih)}</a>
+          <span>
+            Bülten {formatNumber(g.sayi)}
+            {g.kayit && ` · ${g.kayit.girisimler.length} kampanya`}
+            {g.haberler.length > 0 && ` · ${g.haberler.length} haber`}
+          </span>
+        </li>
+      ))
+    }
+  </ul>
+</Base>

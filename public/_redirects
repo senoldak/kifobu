@@ -99,8 +99,8 @@
 # Joker (*) içeren kurallar sonda durur: Cloudflare, jokerli bir kuralın ardından gelen her kuralı dinamik sayar ve dinamik kural sınırı 100'dür.
 /kategori/* /:splat 301
 # Eski WordPress bülten adresleri (/YYYY/AA/GG/...) arşiv taşınmadığı için bülten sayfasına
-/2022/* /gunluk-bulten 301
-/2023/* /gunluk-bulten 301
-/2024/* /gunluk-bulten 301
-/2025/* /gunluk-bulten 301
-/2026/* /gunluk-bulten 301
+/2022/* /gunluk-bulten/ 301
+/2023/* /gunluk-bulten/ 301
+/2024/* /gunluk-bulten/ 301
+/2025/* /gunluk-bulten/ 301
+/2026/* /gunluk-bulten/ 301

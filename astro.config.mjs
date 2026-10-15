@@ -1,8 +1,9 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
-import { readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { CATEGORIES } from './src/lib/site.ts';
 import { bolumIndekslenir, indekslenir } from './src/lib/indeks.ts';
 
@@ -46,6 +47,15 @@ const indeksliBolumler = new Set(
 );
 const bolumSluglari = new Set(CATEGORIES.map((c) => c.slug));
 
+// Son güvenlik ağı: derlenen sayfası "noindex" taşıyan hiçbir adres haritaya girmez. Konu, platform, bülten günü ve
+// rapor sayfalarının indeks kuralı sayfanın kendisinde (src/lib/konular.ts, gunler.ts, rapor.ts) hesaplanır; harita
+// aynı kararı derlenmiş HTML'den okur, kural iki yerde tutulmaz. Site haritası derleme bittikten sonra yazılır.
+const DIST = path.join(path.dirname(fileURLToPath(import.meta.url)), 'dist');
+const noindexSayfa = (/** @type {string} */ p) => {
+  const dosya = path.join(DIST, p, 'index.html');
+  return existsSync(dosya) && /<meta\s+name="robots"\s+content="noindex/.test(readFileSync(dosya, 'utf8'));
+};
+
 // https://astro.build/config
 export default defineConfig({
   site: SITE_URL,
@@ -60,7 +70,7 @@ export default defineConfig({
         if (m && !haberBilgi.get(m[1])?.indeks) return false;
         const b = p.match(/^\/([^/]+)\/(?:\d+\/?)?$/)?.[1];
         if (b && bolumSluglari.has(b) && !indeksliBolumler.has(b)) return false;
-        return true;
+        return !noindexSayfa(p);
       },
       serialize: (item) => {
         const m = new URL(item.url).pathname.match(/^\/haber\/([^/]+)\/?$/);

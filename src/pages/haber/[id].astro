@@ -12,24 +12,34 @@ import { SITE, DURUMLAR, RISK_NOTU, categoryName, formatDate, formatMoney, forma
 import { getNews, isFunding, type Haber } from '../../lib/news';
 import { indekslenir } from '../../lib/indeks';
 import { ilgiliHaberler } from '../../lib/ilgili';
+import { dizinVerisi, haberBaglantilari } from '../../lib/dizin';
+import { gunUrl, istanbulGunu } from '../../lib/gunler';
 import { matchEntities } from '../../lib/entities';
 import { kapakAlt, kapakUrl, KAPAK_G, KAPAK_Y, LOGO_G, LOGO_Y } from '../../kapak/ciz';
 
 export async function getStaticPaths() {
   const news = await getNews();
-  return news.map((haber) => ({
-    params: { id: haber.id },
-    // İlgili haberler: ortak girişim/platform/yatırımcı, yoksa aynı bölüm; bülten ve noindex haberler hariç (src/lib/ilgili.ts).
-    props: { haber, related: ilgiliHaberler(haber, news, 3) },
-  }));
+  const veri = await dizinVerisi();
+  const gunler = new Set(veri.gunler.map((g) => g.tarih));
+  return news.map((haber) => {
+    const gun = istanbulGunu(haber.data.date);
+    return {
+      params: { id: haber.id },
+      // İlgili haberler: ortak girişim/platform/yatırımcı, yoksa aynı bölüm; bülten ve noindex haberler hariç (src/lib/ilgili.ts).
+      // Konular: sayfası üretilmiş kampanya, platform ve konu bağlantıları (src/lib/dizin.ts); günün bülten sayfası.
+      props: { haber, related: ilgiliHaberler(haber, news, 3), konular: haberBaglantilari(haber, veri), bultenGunu: gunler.has(gun) ? gun : undefined },
+    };
+  });
 }
 
 interface Props {
   haber: Haber;
   related: Haber[];
+  konular: { ad: string; url: string }[];
+  bultenGunu?: string;
 }
 
-const { haber, related } = Astro.props;
+const { haber, related, konular, bultenGunu } = Astro.props;
 const d = haber.data;
 const { title, description, date, category, cover, coverAlt, author } = d;
 const { Content } = await render(haber);
@@ -223,6 +233,18 @@ const jsonLd = {
             {d.kaynakAd ?? new URL(d.kaynakUrl).hostname}
           </a>
         </p>
+      )
+    }
+
+    {
+      (konular.length > 0 || bultenGunu) && (
+        <nav class="etiketler" aria-label="Konular">
+          <span>Konular</span>
+          {konular.map((k) => (
+            <a href={k.url}>{k.ad}</a>
+          ))}
+          {bultenGunu && <a href={gunUrl(bultenGunu)}>{formatDate(new Date(`${bultenGunu}T12:00:00+03:00`))} bülteni</a>}
+        </nav>
       )
     }
 

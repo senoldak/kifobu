@@ -1,0 +1,57 @@
+---
+// Konu dizini: sayfası üretilmiş konular (en az 3 haber) ve kitle fonlama platformları.
+import Base from '../../layouts/Base.astro';
+import Yol from '../../components/Yol.astro';
+import { dizinVerisi } from '../../lib/dizin';
+import { sayfaLd } from '../../lib/ld';
+import { formatNumber } from '../../lib/site';
+
+const { konular, platformlar } = await dizinVerisi();
+const aciklama = 'kifobu konuları: kitle fonlaması, tohum ve Seri A yatırımları, melek yatırım, girişim sermayesi ve daha fazlası; her konudaki bütün haberler.';
+const adimlar = [{ ad: 'Anasayfa', url: '/' }, { ad: 'Konular', url: '/konu/' }];
+const jsonLd = sayfaLd({ site: Astro.site!, yol: '/konu/', ad: 'Konular', aciklama, ogeler: konular.map((k) => `/konu/${k.konu.slug}/`), adimlar });
+---
+
+<Base title="Konular" description={aciklama}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <div slot="tahta" class="kategori-bas">
+    <h1 class="kategori-isim">Konular</h1>
+    <p class="kategori-sayi">{konular.length} konu</p>
+  </div>
+
+  <Yol adimlar={adimlar} />
+
+  <div class="satir-izgara">
+    {
+      konular.map(({ konu, haberler }) => (
+        <article class="satir">
+          <h3>
+            <a href={`/konu/${konu.slug}/`}>{konu.ad}</a>
+          </h3>
+          <p>{konu.aciklama}</p>
+          <div class="kunye">
+            <span>{formatNumber(haberler.length)} haber</span>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+
+  {
+    platformlar.length > 0 && (
+      <section class="bolum" aria-labelledby="konu-platformlar">
+        <div class="bolum-bas">
+          <h2 class="bolum-baslik" id="konu-platformlar">Kitle fonlama platformları</h2>
+          <a href="/platform/">Platform dizini</a>
+        </div>
+        <ul class="dizin-liste">
+          {platformlar.map((p) => (
+            <li>
+              <a href={`/platform/${p.platform.slug}/`}>{p.platform.ad}</a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+</Base>
