@@ -164,9 +164,33 @@ export function uzunlukKontrol(govde) {
     : [];
 }
 
+// ── Başlık ─────────────────────────────────────────────────────────────
+// Arama kuralı (2026-10-15): başlık okurun arayacağı kelimeyle (girişim, platform, kurum adı ya da konu) başlar.
+// "SPK: ..." / "Kurum: ..." gibi iki noktalı başlangıç ve belirsiz başlık ("Bu girişim ...", "Neden ...?") yayımlanmaz.
+// Yalnız yeni yazılan haberlere uygulanır; yayımlanmış başlıklar ve adresler değiştirilmez.
+const BELIRSIZ_BAS = /^(?:bu|şu|o|işte|neden|nasıl|hangi|kim|ne|bir|birkaç|bazı)(?![\p{L}\p{N}])/iu;
+export const EN_AZ_BASLIK_KELIMESI = 4;
+export function baslikKontrol(baslik = '') {
+  const b = String(baslik).trim();
+  const sorunlar = [];
+  // Saat (10:30) ya da oran (1:2) değil, "Önek: başlık" kalıbı: ilk 40 karakterde iki nokta ve ardından boşluk.
+  if (/^[^:]{1,40}:\s/u.test(b)) {
+    sorunlar.push(`Başlık "${b.split(':')[0]}:" gibi iki noktalı bir önekle başlıyor; öneki kaldır, başlığı aranan kelimeyle (girişim, platform ya da kurum adı) başlayan düz bir cümle olarak kur`);
+  }
+  // "İ" büyük harfinin küçüğü Unicode'da tek harf değil; karşılaştırma için sadeleştirilir.
+  if (BELIRSIZ_BAS.test(b.replace(/^İ/, 'i'))) {
+    sorunlar.push(`Başlık belirsiz bir kelimeyle başlıyor ("${b.split(/\s+/)[0]}"); başlığı girişimin, platformun ya da kurumun adıyla başlat`);
+  }
+  if (/[?!]$/.test(b)) sorunlar.push('Başlık soru ya da ünlemle bitiyor; olguyu düz cümleyle söyle');
+  if ((b.match(/[\p{L}\d]+/gu) ?? []).length < EN_AZ_BASLIK_KELIMESI) {
+    sorunlar.push(`Başlık çok kısa ve belirsiz (en az ${EN_AZ_BASLIK_KELIMESI} kelime): kim, ne yaptı, ne kadar`);
+  }
+  return sorunlar;
+}
+
 export function kesinKontroller(h, kaynak) {
   const m = tamMetin(h);
-  return [...uzunlukKontrol(h.body), ...rakamKontrol(m, kaynak), ...kunyeKontrol(h.kunye ?? {}, kaynak), ...alintiKontrol(m, kaynak), ...adKontrol(m, kaynak), ...kopyaKontrol(h.body, kaynak), ...zamanKontrol(m), ...medyaKontrol(m)];
+  return [...baslikKontrol(h.title), ...uzunlukKontrol(h.body), ...rakamKontrol(m, kaynak), ...kunyeKontrol(h.kunye ?? {}, kaynak), ...alintiKontrol(m, kaynak), ...adKontrol(m, kaynak), ...kopyaKontrol(h.body, kaynak), ...zamanKontrol(m), ...medyaKontrol(m)];
 }
 
 const tamMetinKisa = (h) => `BAŞLIK: ${h.title}\nSPOT: ${h.description}\nMETİN:\n${h.body}`;
@@ -246,7 +270,7 @@ Düzelt:
 - Yazım ve noktalama: TDK Yazım Kılavuzu. Bağlaç "de/da" ve "ki" ayrı, ekler bitişik; kesme işareti özel adlarda ("Apple'ın", "Türkiye'de"); "yapay zekâ", "mi" soru eki ayrı.
 - Çeviri kokan ifadeler ve gereksiz yabancı kelimeler: "-den dolayı olarak", "bir şekilde", "konumlandırıyor", "ilgili olarak", "gerçekleştirdi" (yerine "yaptı"), "sağlamakta" (yerine "sağlıyor"); doğal Türkçe karşılıkları kullan. Marka, ürün ve şirket adları değişmez.
 - Haber dili: kısa ve net cümleler (tercihen 25 kelimenin altında), etken çatı, bir cümlede bir bilgi. "olduğu ifade ediliyor", "kaydediliyor", "belirtiliyor" gibi kalıpları üst üste kullanma.
-- Başlık: sadece ilk kelime ve özel adlar büyük harfle başlar; tık tuzağı ("İşte nedeni", "Şok", "Herkes bunu konuşuyor") ve ünlem yok; sonda nokta yok.
+- Başlık: sadece ilk kelime ve özel adlar büyük harfle başlar; tık tuzağı ("İşte nedeni", "Şok", "Herkes bunu konuşuyor") ve ünlem yok; sonda nokta yok. Başlık aranan kelimeyle (girişimin, platformun ya da kurumun adı) başlar; "SPK: ..." gibi iki noktalı önek eklenmez, varsa düz cümleye çevrilir.
 - Tekrarlar: Spot ile ilk cümle aynı olmasın; aynı ifade art arda tekrar etmesin.
 - Klişe ve süslü ifadeler: "bayrağı devraldı", "koltuğa oturdu", "yeni bir sayfa açtı", "göz kamaştırdı" yerine düz anlatım.
 - Rakam yazımı: ondalık virgül (1,1), binlik nokta (2.500), yüzde işareti önde (%40), tarih "10 Ekim 2026".

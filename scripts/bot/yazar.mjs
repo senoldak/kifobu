@@ -9,7 +9,7 @@ export const TASLAK_SEMASI = {
     ayniOlay: { type: 'boolean', description: 'Kaynakların hepsi aynı olayı mı anlatıyor?' },
     uygun: { type: 'boolean', description: 'Haber kifobu için uygun mu?' },
     neden: { type: 'string', description: 'Uygun değilse ya da aynı olay değilse kısa gerekçe' },
-    title: { type: 'string', description: 'En fazla 90 karakter başlık' },
+    title: { type: 'string', description: 'En fazla 90 karakter başlık; girişim, platform ya da kurum adıyla başlar, iki noktalı önek yok' },
     description: { type: 'string', description: '1-2 cümlelik spot' },
     body: { type: 'string', description: 'Markdown haber metni, 250-400 kelime, 4-6 paragraf; ilk paragrafta rakamlar' },
     category: { type: 'string', enum: KATEGORILER },
@@ -47,6 +47,7 @@ export const YAZIM_KURALLARI = `Yazım kuralları:
 - "bugün", "dün", "yarın", "bu hafta" gibi göreli zaman ifadeleri kullanma; gerekiyorsa tarihi yaz.
 - Tarafsız ve sade ol: övgü, abartı ("dev", "çığır açan", "şok"), tık tuzağı, reklam dili ve yatırım tavsiyesi yok.
 - Başlık olguyu söylesin, merak tuzağı kurmasın. Yatırım haberinde: kim, hangi turda, ne kadar aldı. Sonunda nokta yok.
+- Başlık okurun arayacağı kelimeyle başlasın: girişimin, platformun ya da kurumun adı ya da konunun kendisi (ör. "Örnek Girişim, Seri A turunda 5 milyon dolar yatırım aldı"; "SPK, kitle fonlama platformlarına yeni yükümlülük getirdi"). "SPK: ...", "Kurum: ...", "Son dakika: ..." gibi iki noktalı önekle başlama. "Bu girişim", "Bir şirket", "Neden ...", "İşte ..." gibi belirsiz başlangıç ve soru başlık kullanma.
 - Uzunluk: gövde 250-400 kelime, 4-6 paragraf. Bu uzunluğu yalnızca kaynaklardaki olgularla doldur; kaynakta olmayan arka plan, yorum ya da tahmin ekleme.
 - Sıra: önce rakamlar. İlk paragraf haberin özü: kim, ne kadar (tutar), hedef, hangi platform ya da hangi tur, hangi tarih. Sonraki paragraflarda kaynaklardaki bağlam: girişimin ne yaptığı, yatırımcılar, paranın nereye harcanacağı, önceki turlar, kampanyanın ya da kararın ayrıntıları. Başlık (#) ekleme.
 - Dil: doğal, akıcı Türkçe; çeviri kokan ifadeler yok.`;
