@@ -1,0 +1,107 @@
+---
+// Rehber yazılarının ortak kalıbı: içerik yolu, başlık, gözden geçirme tarihi, metin, resmî bağlantılar ve
+// Article + BreadcrumbList JSON-LD. Rehberlerde yalnız genel ve doğrulanabilir bilgi yer alır; değişebilen rakamlar
+// (yatırım sınırları gibi) yazılmaz, okur SPK'ya yönlendirilir.
+import Base from '../layouts/Base.astro';
+import Yol from './Yol.astro';
+import Paylas from './Paylas.astro';
+import { REHBERLER } from '../lib/rehber';
+import { SITE, formatDate } from '../lib/site';
+
+interface Props {
+  slug: string;
+}
+
+const { slug } = Astro.props;
+const r = REHBERLER.find((x) => x.slug === slug)!;
+const yol = `/rehber/${r.slug}/`;
+const siteUrl = new URL('/', Astro.site).href;
+const pageUrl = new URL(yol, Astro.site).href;
+const gozden = new Date(`${r.gozdenGecirme}T12:00:00+03:00`);
+const adimlar = [{ ad: 'Anasayfa', url: '/' }, { ad: 'Rehber', url: '/rehber/' }, { ad: r.baslik, url: yol }];
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      '@id': `${pageUrl}#article`,
+      headline: r.baslik,
+      description: r.aciklama,
+      datePublished: r.yayin,
+      dateModified: r.gozdenGecirme,
+      author: { '@id': `${siteUrl}#organization` },
+      publisher: { '@id': `${siteUrl}#organization` },
+      mainEntityOfPage: { '@type': 'WebPage', '@id': pageUrl },
+      url: pageUrl,
+      inLanguage: 'tr-TR',
+      isAccessibleForFree: true,
+      isPartOf: { '@id': `${siteUrl}#website` },
+      about: { '@type': 'Thing', name: 'Kitle Fonlaması', sameAs: 'https://www.wikidata.org/wiki/Q17017784' },
+      image: new URL('/og-default.png', Astro.site).href,
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: adimlar.map((a, i) => ({ '@type': 'ListItem', position: i + 1, name: a.ad, item: new URL(a.url, Astro.site).href })),
+    },
+  ],
+};
+const digerleri = REHBERLER.filter((x) => x.slug !== slug);
+---
+
+<Base title={r.baslik} description={r.aciklama} type="article">
+  <Fragment slot="head">
+    <meta property="article:modified_time" content={r.gozdenGecirme} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </Fragment>
+  <article class="makale">
+    <Yol adimlar={adimlar} />
+    <header class="makale-bas">
+      <h1>{r.baslik}</h1>
+      <p class="makale-spot">{r.aciklama}</p>
+      <p class="makale-imza">
+        <a href="/rehber/">Rehber</a>
+        <span>{SITE.name}</span>
+        <span>Son gözden geçirme: <time datetime={r.gozdenGecirme}>{formatDate(gozden)}</time></span>
+      </p>
+    </header>
+
+    <div class="metin">
+      <slot />
+      <h2>Resmî kaynaklar</h2>
+      <p>
+        Mevzuat değişebilir. Bu sayfadaki bilgilerin güncelliğini ve tebliğin yürürlükteki metnini resmî kaynaklardan
+        doğrulayın:
+      </p>
+      <ul>
+        <li><a href="https://spk.gov.tr/" rel="noopener">Sermaye Piyasası Kurulu (spk.gov.tr)</a>: mevzuat, duyurular ve kitle fonlama platformları</li>
+        <li><a href="https://www.mevzuat.gov.tr/" rel="noopener">Mevzuat Bilgi Sistemi (mevzuat.gov.tr)</a>: kanun ve tebliğlerin güncel metinleri</li>
+        <li><a href="https://www.resmigazete.gov.tr/" rel="noopener">Resmî Gazete (resmigazete.gov.tr)</a></li>
+        <li><a href="https://www.mkk.com.tr/" rel="noopener">Merkezi Kayıt Kuruluşu (mkk.com.tr)</a></li>
+      </ul>
+      <p>Bu sayfa genel bilgi verir; yatırım tavsiyesi ya da hukuki görüş değildir.</p>
+    </div>
+
+    <footer class="makale-son">
+      <Paylas url={pageUrl} baslik={r.baslik} />
+    </footer>
+  </article>
+
+  <section class="bolum" aria-labelledby="rehber-diger">
+    <div class="bolum-bas">
+      <h2 class="bolum-baslik" id="rehber-diger">Rehberin diğer yazıları</h2>
+      <a href="/rehber/">Rehber</a>
+    </div>
+    <div class="satir-izgara">
+      {
+        digerleri.map((x) => (
+          <article class="satir">
+            <h3>
+              <a href={`/rehber/${x.slug}/`}>{x.baslik}</a>
+            </h3>
+            <p>{x.aciklama}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</Base>
