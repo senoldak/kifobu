@@ -6,6 +6,7 @@ import Kampanyalar from '../../components/arsiv/Kampanyalar.astro';
 import Takvim from '../../components/arsiv/Takvim.astro';
 import { arsivKayitlari } from '../../lib/arsiv/yukle.ts';
 import { tarihTr } from '../../lib/arsiv/bicim.ts';
+import { SITE } from '../../lib/site';
 
 const kayitlar = arsivKayitlari();
 const bos = kayitlar.length === 0;
@@ -13,6 +14,41 @@ const bugun = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Istanbul' }).
 const ilk = bos ? '' : tarihTr(kayitlar[0].tarih);
 const sonTarih = bos ? '' : kayitlar[kayitlar.length - 1].tarih;
 const son = tarihTr(sonTarih);
+
+
+// Dataset işaretlemesi: arşiv, kifobu'nun her gün 18:00 kapanışında kaydettiği kampanya tablosudur ve CSV olarak
+// indirilebilir. Lisans belirtilmedi (site sahibinin kararı gerekir).
+const siteUrl = new URL('/', Astro.site).href;
+const aciklama =
+  "Türkiye'deki paya dayalı kitle fonlama kampanyalarının kifobu tarafından her gün 18:00 kapanışında kaydedilen arşivi: " +
+  'kampanya başına platform, günlük giriş, toplanan tutar, hedef, gerçekleşme yüzdesi ve durum. Veriler kampanyaların ' +
+  'platformlarda yayımlanan rakamlarından derlenir; bilgi amaçlıdır, yatırım tavsiyesi değildir.';
+const datasetLd = bos
+  ? undefined
+  : {
+      '@context': 'https://schema.org',
+      '@type': 'Dataset',
+      '@id': `${new URL('/arsiv/', Astro.site).href}#dataset`,
+      name: 'kifobu Kitle Fonlama Arşivi',
+      description: aciklama,
+      url: new URL('/arsiv/', Astro.site).href,
+      inLanguage: 'tr-TR',
+      isAccessibleForFree: true,
+      keywords: ['kitle fonlama', 'paya dayalı kitle fonlaması', 'girişim', 'Türkiye', 'kampanya verisi'],
+      creator: { '@type': 'NewsMediaOrganization', '@id': `${siteUrl}#organization`, name: SITE.name, url: siteUrl },
+      publisher: { '@id': `${siteUrl}#organization` },
+      spatialCoverage: { '@type': 'Place', name: 'Türkiye' },
+      temporalCoverage: `${kayitlar[0].tarih}/${sonTarih}`,
+      dateModified: sonTarih,
+      variableMeasured: ['günlük giriş', 'toplanan tutar', 'hedef', 'gerçekleşme yüzdesi', 'kampanya durumu'],
+      distribution: [
+        {
+          '@type': 'DataDownload',
+          encodingFormat: 'text/csv',
+          contentUrl: new URL('/arsiv/kifobu-kitle-fonlama-arsivi.csv', Astro.site).href,
+        },
+      ],
+    };
 
 const donemler = [
   { anahtar: 'gun', ad: 'Günlük' },
@@ -30,6 +66,7 @@ const sekmeler = [
   title="Kitle Fonlama Arşivi"
   description="Türkiye'deki paya dayalı kitle fonlama kampanyalarının günlük kapanışlardan derlenen arşivi."
 >
+  {datasetLd && <script slot="head" type="application/ld+json" set:html={JSON.stringify(datasetLd)} />}
   <section id="arsiv" class="arsiv" data-gorunum="akis" data-donem="gun" data-son-tarih={sonTarih}>
     <header class="kunye">
       <p class="kunye-etiket">kifobu · Veri</p>

@@ -77,6 +77,7 @@ collections:
           - { label: Donanım (eski), value: donanim }
           - { label: Dünya (eski), value: dunya }
       - { name: date, label: Yayın tarihi, widget: datetime, default: '{{now}}', input_timezone: Europe/Istanbul }
+      - { name: updated, label: Güncelleme tarihi, widget: datetime, required: false, input_timezone: Europe/Istanbul, hint: 'Haberde içerik düzeltmesi ya da ekleme yapıldıysa doldurun; arama motorlarına değişiklik tarihi olarak bildirilir.' }
       - { name: cover, label: Kapak resmi, widget: image, required: false }
       - { name: coverAlt, label: Resim açıklaması, widget: string, required: false }
       - { name: author, label: Yazar, widget: string, default: kifobu }

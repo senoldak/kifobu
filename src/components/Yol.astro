@@ -1,0 +1,19 @@
+---
+// Görünür içerik yolu (breadcrumb). JSON-LD BreadcrumbList'i sayfa kendisi yazar; buradaki adımlarla aynı tutulur.
+interface Props {
+  adimlar: { ad: string; url?: string }[];
+}
+const { adimlar } = Astro.props;
+---
+
+<nav class="yol" aria-label="İçerik yolu">
+  <ol>
+    {
+      adimlar.map((a, i) => (
+        <li>
+          {a.url && i < adimlar.length - 1 ? <a href={a.url}>{a.ad}</a> : <span aria-current="page">{a.ad}</span>}
+        </li>
+      ))
+    }
+  </ol>
+</nav>

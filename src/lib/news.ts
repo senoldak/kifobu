@@ -32,9 +32,9 @@ export function boardRows(news: Haber[], limit = 7) {
   return rows;
 }
 
-// Haber görselleri yalnızca haber yeniyken önemli (ana sayfa ve Telegram paylaşımı).
-// Daha eski haberler için derlemede kapak, paylaşım görseli ve çizilen kapak üretilmez;
-// Cloudflare'in dağıtım başına dosya sınırı (20.000) böylece korunur.
-export const GORSEL_GUN = 14;
-export const gorselVar = (tarih: Date | string | number, simdi = new Date()) =>
-  simdi.getTime() - new Date(tarih).getTime() <= GORSEL_GUN * 86_400_000;
+// Dosya bütçesi: Cloudflare Workers statik varlıklarında bir sürüm en fazla 20.000 dosya olabilir.
+// Her haber derlemede yaklaşık 2 dosya üretir (sayfa + /kapak/<id>.png); yüklenmiş kapak resmi olan haberde
+// buna 2 dosya (1200px JPEG paylaşım görseli + sayfadaki WebP) eklenir. Sabit sayfalar, bölüm sayfaları ve
+// _astro dosyaları birkaç yüz tutar. Yani sınıra ~9.000 haberde yaklaşılır; Yayınla iş akışı 15.000 dosyada uyarır.
+// Kapaklar künyeden belirlenimci çizildiği için (src/kapak/ciz.ts) eski haberlerin kapağı her derlemede aynı çıkar;
+// 2026-10-15'e kadar 14 günden eski haberlerin kapağı üretilmiyordu, bu kaldırıldı (her haberin ≥1200px görseli olsun).

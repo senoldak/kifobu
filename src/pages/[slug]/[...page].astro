@@ -1,0 +1,152 @@
+---
+import type { GetStaticPaths, Page } from 'astro';
+import Base from '../../layouts/Base.astro';
+import Tahta from '../../components/Tahta.astro';
+import Bulten from '../../components/Bulten.astro';
+import HaberSatiri from '../../components/HaberSatiri.astro';
+import Yol from '../../components/Yol.astro';
+import { CATEGORIES, SITE } from '../../lib/site';
+import { getNews, boardRows, newsUrl, type Haber } from '../../lib/news';
+import { bolumIndekslenir, indekslenir } from '../../lib/indeks';
+
+// Bölüm sayfaları sayfalanır: /<bölüm>/ ilk sayfa, /<bölüm>/2/ ve sonrası. Her sayfa kendi canonical'ını taşır ve
+// (bölüm indekslenebilirse) site haritasına girer.
+export const SAYFA_BOYU = 20;
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const news = await getNews();
+  return CATEGORIES.flatMap((c) => {
+    const items = news.filter((h) => h.data.category === c.slug);
+    const indeksli = items.filter((h) => indekslenir({ draft: h.data.draft, noindex: h.data.noindex, govde: h.body })).length;
+    return paginate(items, {
+      pageSize: SAYFA_BOYU,
+      params: { slug: c.slug },
+      props: { slug: c.slug, name: c.name, toplam: items.length, indeksli, rows: boardRows(items, 12) },
+    });
+  });
+}) satisfies GetStaticPaths;
+
+interface Props {
+  page: Page<Haber>;
+  slug: string;
+  name: string;
+  toplam: number;
+  indeksli: number;
+  rows: Haber[];
+}
+
+const { page, slug, name, toplam, indeksli } = Astro.props;
+const items = page.data;
+const ilkSayfa = page.currentPage === 1;
+// Tahta (bölümün kampanya/yatırım özeti) yalnız ilk sayfada.
+const rows = ilkSayfa ? Astro.props.rows : [];
+// İndekslenebilir haberi olmayan (boş ya da yalnız kısa/kapsam dışı haberli) bölüm arama motorlarına kapalıdır.
+const noindex = !bolumIndekslenir(slug, indeksli);
+
+// Her bölüm için ayrı açıklama (arama sonuçlarında aynı metin tekrarlanmasın).
+const ACIKLAMA: Record<string, string> = {
+  'gunluk-bulten': "Günlük Kitle Fonlama Bülteni: Türkiye'de günün kampanyaları, platform dağılımı, ön talepler ve MKK verileri.",
+  gundem: "Türkiye girişim ve kitle fonlama ekosisteminde günün gündemi: öne çıkan gelişmeler ve kısa haberler.",
+  'yapay-zeka': 'Yapay zekâ girişimleri, yatırımları ve ürünleri: Türkiye ve dünyadan yapay zekâ ekosistemi haberleri.',
+  girisimler: "Türk ve yabancı girişimlerden haberler: yeni ürünler, büyüme, ortaklıklar ve kuruluş hikâyeleri.",
+  yatirimlar: 'Girişim yatırımları: tohum, Seri A ve sonraki turlar; hangi girişim kimden ne kadar yatırım aldı.',
+  donanim: 'Donanım girişimleri ve yatırımları: çip, cihaz, robotik ve elektronik alanındaki gelişmeler.',
+  dunya: "Dünyadan girişim ve yatırım haberleri: küresel fonlama turları, birleşmeler ve satın almalar.",
+  kampanyalar: "Türkiye'de paya dayalı kitle fonlama kampanyaları: hedef, toplanan tutar, yatırımcı sayısı ve sonuç.",
+  platformlar: 'Kitle fonlama platformları: lisanslı platformların kampanyaları, duyuruları ve performansı.',
+  mevzuat: 'Kitle fonlama ve girişim mevzuatı: SPK düzenlemeleri, tebliğler ve resmî duyurular.',
+  analiz: 'Kitle fonlama ve girişim ekosistemi analizleri: veriler, eğilimler ve dönemsel değerlendirmeler.',
+};
+const anaAciklama = ACIKLAMA[slug] ?? `${SITE.name} ${name}: Türkiye'de kitle fonlama ve girişim haberleri.`;
+const description = ilkSayfa ? anaAciklama : `${anaAciklama} Sayfa ${page.currentPage}/${page.lastPage}.`;
+const sectionUrl = new URL(`/${slug}/`, Astro.site).href;
+const pageUrl = new URL(page.url.current.endsWith('/') ? page.url.current : `${page.url.current}/`, Astro.site).href;
+const baslik = ilkSayfa ? name : `${name} (Sayfa ${page.currentPage})`;
+const bu = (u?: string) => (u ? (u.endsWith('/') ? u : `${u}/`) : undefined);
+const onceki = bu(page.url.prev);
+const sonraki = bu(page.url.next);
+const siteUrl = new URL('/', Astro.site).href;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      '@id': `${pageUrl}#page`,
+      name: `${baslik} | ${SITE.name}`,
+      description,
+      url: pageUrl,
+      inLanguage: 'tr-TR',
+      isPartOf: { '@id': `${siteUrl}#website` },
+      publisher: { '@id': `${siteUrl}#organization` },
+      ...(items.length > 0
+        ? {
+            mainEntity: {
+              '@type': 'ItemList',
+              itemListElement: items.map((h, i) => ({
+                '@type': 'ListItem',
+                position: page.start + i + 1,
+                url: new URL(newsUrl(h), Astro.site).href,
+              })),
+            },
+          }
+        : {}),
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Anasayfa', item: siteUrl },
+        { '@type': 'ListItem', position: 2, name, item: sectionUrl },
+        ...(ilkSayfa ? [] : [{ '@type': 'ListItem', position: 3, name: `Sayfa ${page.currentPage}`, item: pageUrl }]),
+      ],
+    },
+  ],
+};
+---
+
+<Base title={baslik} description={description} noindex={noindex}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    {onceki && <link rel="prev" href={new URL(onceki, Astro.site).href} />}
+    {sonraki && <link rel="next" href={new URL(sonraki, Astro.site).href} />}
+  </Fragment>
+  {
+    slug === 'gunluk-bulten' && ilkSayfa ? (
+      <>
+        <h1 slot="tahta" class="sr-only">{name}</h1>
+        <Bulten slot="tahta" />
+      </>
+    ) : (
+      <>
+        <div slot="tahta" class="kategori-bas">
+          <h1 class="kategori-isim">{name}{!ilkSayfa && <span class="sr-only"> (sayfa {page.currentPage})</span>}</h1>
+          <p class="kategori-sayi">{toplam} haber{!ilkSayfa && ` · Sayfa ${page.currentPage}/${page.lastPage}`}</p>
+        </div>
+        {rows.length > 0 && <Tahta slot="tahta" rows={rows} title={`${name} tahtası`} showTotal={false} kompakt={slug === 'yatirimlar'} />}
+      </>
+    )
+  }
+
+  <Yol adimlar={[{ ad: 'Anasayfa', url: '/' }, { ad: name, url: `/${slug}/` }, ...(ilkSayfa ? [] : [{ ad: `Sayfa ${page.currentPage}` }])]} />
+
+  {
+    items.length > 0 ? (
+      <div class="satir-izgara">
+        {items.map((h) => (
+          <HaberSatiri haber={h} showCategory={false} />
+        ))}
+      </div>
+    ) : slug !== 'gunluk-bulten' ? (
+      <p class="bos">Bu bölümde henüz haber yok.</p>
+    ) : null
+  }
+
+  {
+    page.lastPage > 1 && (
+      <nav class="sayfalama" aria-label={`${name} sayfaları`}>
+        {onceki ? <a href={onceki} rel="prev">← Daha yeni</a> : <span />}
+        <span class="sayfalama-bilgi">Sayfa {page.currentPage} / {page.lastPage}</span>
+        {sonraki ? <a href={sonraki} rel="next">Daha eski →</a> : <span />}
+      </nav>
+    )
+  }
+</Base>

@@ -5,7 +5,7 @@ import BugunTahta from '../components/BugunTahta.astro';
 import Kunye from '../components/Kunye.astro';
 import HaberSatiri from '../components/HaberSatiri.astro';
 import { ACIK_KATEGORILER } from '../lib/site';
-import { getNews, gorselVar, newsUrl } from '../lib/news';
+import { getNews, newsUrl } from '../lib/news';
 import { kapakUrl, KAPAK_G, KAPAK_Y } from '../kapak/ciz';
 
 const news = await getNews();
@@ -34,7 +34,7 @@ const sections = ACIK_KATEGORILER.map((c) => ({
         <div class="on-sol">
           <article class="manset">
             <a href={newsUrl(hero)} class="manset-gorsel" tabindex="-1" aria-hidden="true">
-              {!gorselVar(hero.data.date) ? null : hero.data.cover ? (
+              {hero.data.cover ? (
                 <Image src={hero.data.cover} alt="" width={1200} loading="eager" fetchpriority="high" decoding="async" />
               ) : (
                 <img src={kapakUrl(hero)} alt="" width={KAPAK_G} height={KAPAK_Y} loading="eager" fetchpriority="high" decoding="async" />

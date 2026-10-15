@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import Kunye from './Kunye.astro';
-import { gorselVar, newsUrl, type Haber } from '../lib/news';
+import { newsUrl, type Haber } from '../lib/news';
 
 interface Props {
   haber: Haber;
@@ -13,9 +13,7 @@ interface Props {
 
 // Listelerde kapak varsayılan olarak gösterilmez (yalnızca manşet ve haber sayfası).
 const { haber, showCategory = true, showSummary = true, showImage = false, withTime = false } = Astro.props;
-const { title, description, coverAlt } = haber.data;
-// Eski haberlerde kapak gösterilmez (bkz. gorselVar).
-const cover = gorselVar(haber.data.date) ? haber.data.cover : undefined;
+const { title, description, coverAlt, cover } = haber.data;
 ---
 
 <article class:list={['satir', { 'satir-gorselli': showImage && cover }]}>
