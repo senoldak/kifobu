@@ -13,6 +13,15 @@ Kifobu'da yer alan haber, veri ve analizler yatırım tavsiyesi niteliğinde de�
 - Platformlar: https://kifobu.com/platformlar/
 - Mevzuat: https://kifobu.com/mevzuat/
 - Arşiv: https://kifobu.com/arsiv/
+- Kampanya veritabanı: https://kifobu.com/kampanya/
+- Bülten günleri: https://kifobu.com/gunluk-bulten/gunler/
+- Konular: https://kifobu.com/konu/
+- Platform dizini: https://kifobu.com/platform/
+
+## Rehber
+- Kitle fonlaması nedir?: https://kifobu.com/rehber/kitle-fonlamasi-nedir/
+- Kitle fonlamasına nasıl yatırım yapılır?: https://kifobu.com/rehber/kitle-fonlamasina-nasil-yatirim-yapilir/
+- SPK kitle fonlaması mevzuatı kılavuzu: https://kifobu.com/rehber/spk-kitle-fonlamasi-mevzuati/
 
 ## Veri Kapsamı
 - SPK lisanslı kitle fonlama platformları (Fonbulucu, fonangels, Basefunder, Efonla vb.)

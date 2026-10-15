@@ -161,6 +161,7 @@ const social = [
             ))
           }
           <a href="/arsiv/" aria-current={current.startsWith('/arsiv') ? 'page' : undefined}>Arşiv</a>
+          <a href="/rehber/" aria-current={current.startsWith('/rehber') ? 'page' : undefined}>Rehber</a>
         </nav>
         <slot name="tahta" />
       </div>
@@ -196,6 +197,11 @@ const social = [
         </div>
         <nav class="alt-menu" aria-label="Alt menü">
           {ACIK_KATEGORILER.map((c) => <a href={`/${c.slug}/`}>{c.name}</a>)}
+          <a href="/kampanya/">Kampanya veritabanı</a>
+          <a href="/platform/">Platform dizini</a>
+          <a href="/konu/">Konular</a>
+          <a href="/gunluk-bulten/gunler/">Bülten günleri</a>
+          <a href="/rehber/">Rehber</a>
           <a href="/hakkimizda/">Hakkımızda</a>
           <a href="/yayin-ilkeleri/">Yayın İlkeleri</a>
           <a href="/rss.xml">RSS</a>

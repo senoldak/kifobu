@@ -7,6 +7,7 @@ import HaberSatiri from '../components/HaberSatiri.astro';
 import { ACIK_KATEGORILER } from '../lib/site';
 import { getNews, newsUrl } from '../lib/news';
 import { kapakUrl, KAPAK_G, KAPAK_Y } from '../kapak/ciz';
+import { REHBERLER } from '../lib/rehber';
 
 const news = await getNews();
 const breaking = news.filter((h) => h.data.breaking).slice(0, 3);
@@ -88,4 +89,20 @@ const sections = ACIK_KATEGORILER.map((c) => ({
       </section>
     ))
   }
+
+  <section class="bolum" aria-labelledby="b-veri">
+    <div class="bolum-bas">
+      <h2 class="bolum-baslik" id="b-veri">Veri ve rehber</h2>
+      <a href="/rehber/">Rehber</a>
+    </div>
+    <ul class="dizin-liste">
+      <li><a href="/kampanya/">Kampanya veritabanı</a><span>Toplanan, hedef, günlük seyir</span></li>
+      <li><a href="/gunluk-bulten/gunler/">Bülten günleri</a><span>Her günün kaydı</span></li>
+      <li><a href="/platform/">Platform dizini</a><span>Kitle fonlama platformları</span></li>
+      <li><a href="/konu/">Konular</a><span>Tohum, Seri A, melek yatırım…</span></li>
+      {REHBERLER.map((r) => (
+        <li><a href={`/rehber/${r.slug}/`}>{r.baslik}</a></li>
+      ))}
+    </ul>
+  </section>
 </Base>
