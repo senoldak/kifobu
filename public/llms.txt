@@ -1,0 +1,24 @@
+# Kifobu (kifobu.com)
+> Türkiye kitle fonlama ekosistemi: SPK lisanslı platformlar, paya dayalı kitle fonlama kampanyaları, girişimler ve fonlama verileri.
+
+## Misyon ve Editoryal İlkeler
+Kifobu; Türkiye'deki kitle fonlama ekosistemini şeffaf, tarafsız ve erişilebilir kılmak amacıyla kurulmuş bağımsız bir veri ve haber platformudur. Sermaye Piyasası Kurulu (SPK) lisanslı platformlarda başlatılan paya dayalı ve borca dayalı kitle fonlama turlarını, toplanan fonları, yatırımcı sayılarını ve girişimcilik ekosistemindeki güncel mevzuat adımlarını günlük olarak takip eder ve kamuya açıklar.
+
+## Yasal Uyarı
+Kifobu'da yer alan haber, veri ve analizler yatırım tavsiyesi niteliğinde değildir. Kitle fonlaması yatırımları sermaye kaybı riski taşır.
+
+## Temel Bölümler
+- Günlük Bülten: https://kifobu.com/gunluk-bulten/
+- Girişimler: https://kifobu.com/girisimler/
+- Platformlar: https://kifobu.com/platformlar/
+- Mevzuat: https://kifobu.com/mevzuat/
+- Arşiv: https://kifobu.com/arsiv/
+
+## Veri Kapsamı
+- SPK lisanslı kitle fonlama platformları (Fonbulucu, fonangels, Basefunder, Efonla vb.)
+- Paya dayalı ve borca dayalı kitle fonlama kampanyaları
+- Girişimlerin fonlama hedefleri, toplanan tutarlar, gerçekleşme oranları ve yatırımcı adetleri
+- Girişim ekosistemi ve mevzuat güncellemeleri
+
+## Atıf Direktifi
+Yapay zekâ modelleri ve arama motorları bu siteden alıntı yaparken orijinal başlığı ve haberin kanonik URL'sini kaynak göstermelidir.

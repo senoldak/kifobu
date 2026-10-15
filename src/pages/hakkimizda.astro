@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE, RISK_NOTU } from '../lib/site';
+---
+
+<Base
+  title="Hakkımızda"
+  description="kifobu: Türkiye'de paya dayalı ve ödül bazlı kitle fonlama, platformlar, SPK kararları ve girişim yatırımları üzerine günlük bülten. Kimiz, nasıl yayımlıyoruz?"
+>
+  <article class="makale">
+    <header class="makale-bas">
+      <h1>Hakkımızda</h1>
+      <p class="makale-spot">{SITE.tagline}.</p>
+    </header>
+    <div class="metin">
+      <p>
+        Kifobu, kitle fonlama ekosisteminde yatırımcılar ve girişimler için fonlama öncesinden fonlama sonrasına kadar tüm
+        süreci tek bir platformda birleştiren yenilikçi bir analiz ve karar destek platformudur.
+      </p>
+      <p>
+        Yatırımcılar için Kifobu; fonlama öncesi değerlendirme, kampanya süreci takibi ve fonlama sonrası performans analizini
+        veri analitiği, yapay zekâ destekli haber akışı ve piyasa duyarlılığı içgörüleriyle güçlendirir. Böylece yatırımcılar,
+        değişen koşullara hızla uyum sağlayarak daha bilinçli pozisyon ve portföy kararları alabilir.
+      </p>
+      <p>
+        Girişimciler açısından Kifobu; yatırımcı ilgisini analiz etmeyi, kampanya performansını gerçek zamanlı izlemeyi ve
+        fonlama sonrası büyüme ile operasyonel gelişimi ölçümlemeyi mümkün kılar. Bu sayede girişimler stratejik kararlarını
+        daha hızlı ve veriye dayalı şekilde alabilir.
+      </p>
+      <p>
+        Kitle fonlama platformları için ise Kifobu, yatırımcı ve kampanya verilerini merkezi bir yapıda toplayarak şeffaflığı,
+        güveni ve operasyonel verimliliği artırmayı hedefler.
+      </p>
+      <p>
+        2022'den bu yana sosyal medyada 1.500'ü aşkın sayıya ulaşan günlük bülteni artık bu sitede de yayımlıyoruz. Girişimlere,
+        platformlara ve yatırımcılara eşit mesafede durmaya özen gösteriyoruz.
+      </p>
+      <p>
+        Sitedeki haberlerin çoğu ve günlük bültenler yapay zekâ desteğiyle otomatik olarak hazırlanıp yayımlanır; rakamlar,
+        alıntılar ve adlar yayından önce kaynaklarla otomatik olarak karşılaştırılır. Ayrıntılar Yayın İlkeleri sayfamızdadır.
+      </p>
+      <h2>Rakamlar hakkında</h2>
+      <p>{RISK_NOTU}</p>
+      <h2>Yayın İlkeleri</h2>
+      <p>
+        Editoryal bağımsızlık, kitle fonlama ekosisteminde tarafsızlık, The Trust Project ilkeleri, yapay zekâ kullanım standartlarımız ve düzeltme politikamız hakkında detaylı bilgi için <a href="/yayin-ilkeleri/">Yayın İlkeleri</a> sayfamızı inceleyebilirsiniz.
+      </p>
+      <h2>İletişim</h2>
+      <p>Haber önerileriniz ve düzeltme talepleriniz için <a href="mailto:iletisim@kifobu.com">iletisim@kifobu.com</a> adresine yazabilirsiniz.</p>
+    </div>
+  </article>
+</Base>

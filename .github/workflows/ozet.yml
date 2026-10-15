@@ -1,0 +1,64 @@
+# Günün bültenleri: son bültenden bu yana çıkan haberleri "Günlük Bülten" kategorisinde tek yazıda toplar.
+# Zamanlama Cloudflare'deki mecmua-saat Worker'ındadır (Türkiye saatiyle 09:00 sabah, 13:00 öğle, 23:00 gece; 18:00'de tablolu kapanış).
+# Telegram'a Worker'ın kuyruğu gönderir (bülten kapağı + bağlantılı başlık listesi, @kifobu ve @fundov:24358 ayrı takip).
+# Masa görseli yalnız 18:00 kapanışta gider (bulten-otomasyon.yml).
+name: Bülten (sabah/öğle/akşam/gece)
+
+on:
+  workflow_dispatch:
+    inputs:
+      donem:
+        description: 'Dönem (boş bırakılırsa saate göre)'
+        required: false
+        default: ''
+        type: choice
+        options: ['', sabah, ogle, aksam, gece]
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: haber-botu
+  cancel-in-progress: false
+
+jobs:
+  bulten:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+        with:
+          node-version-file: .node-version
+
+      - name: Bülteni yaz
+        id: bulten
+        env:
+          DONEM: ${{ inputs.donem }}
+        run: |
+          case "$DONEM" in sabah|ogle|aksam|gece|"") ;; *) DONEM="" ;; esac
+          node scripts/bot/ozet-bulten.mjs $DONEM
+
+      - name: Commit
+        if: steps.bulten.outputs.yazildi == '1'
+        run: |
+          git config user.name "kifobu-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/content/haberler
+          git commit -m "Bot: bülten"
+          for i in 1 2 3 4 5; do
+            git pull --rebase -X theirs && git push && exit 0
+            git rebase --abort 2>/dev/null || true
+            sleep $((i * 5))
+          done
+          exit 1
+
+      - name: Siteyi yayınla
+        if: steps.bulten.outputs.yazildi == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run yayinla.yml --ref "${{ github.ref_name }}"

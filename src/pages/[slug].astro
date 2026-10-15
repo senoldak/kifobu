@@ -1,0 +1,106 @@
+---
+import Base from '../layouts/Base.astro';
+import Tahta from '../components/Tahta.astro';
+import Bulten from '../components/Bulten.astro';
+import HaberSatiri from '../components/HaberSatiri.astro';
+import { CATEGORIES, SITE } from '../lib/site';
+import { getNews, boardRows, newsUrl } from '../lib/news';
+import { bolumIndekslenir, indekslenir } from '../lib/indeks';
+
+export async function getStaticPaths() {
+  const news = await getNews();
+  return CATEGORIES.map((c) => ({
+    params: { slug: c.slug },
+    props: { slug: c.slug, name: c.name, items: news.filter((h) => h.data.category === c.slug) },
+  }));
+}
+
+const { slug, name, items } = Astro.props;
+const rows = boardRows(items, 12);
+// İndekslenebilir haberi olmayan (boş ya da yalnız kısa/kapsam dışı haberli) bölüm arama motorlarına kapalıdır.
+const noindex = !bolumIndekslenir(slug, items.filter((h) => indekslenir({ draft: h.data.draft, noindex: h.data.noindex, govde: h.body })).length);
+
+// Her bölüm için ayrı açıklama (arama sonuçlarında aynı metin tekrarlanmasın).
+const ACIKLAMA: Record<string, string> = {
+  'gunluk-bulten': "Günlük Kitle Fonlama Bülteni: Türkiye'de günün kampanyaları, platform dağılımı, ön talepler ve MKK verileri.",
+  gundem: "Türkiye girişim ve kitle fonlama ekosisteminde günün gündemi: öne çıkan gelişmeler ve kısa haberler.",
+  'yapay-zeka': 'Yapay zekâ girişimleri, yatırımları ve ürünleri: Türkiye ve dünyadan yapay zekâ ekosistemi haberleri.',
+  girisimler: "Türk ve yabancı girişimlerden haberler: yeni ürünler, büyüme, ortaklıklar ve kuruluş hikâyeleri.",
+  yatirimlar: 'Girişim yatırımları: tohum, Seri A ve sonraki turlar; hangi girişim kimden ne kadar yatırım aldı.',
+  donanim: 'Donanım girişimleri ve yatırımları: çip, cihaz, robotik ve elektronik alanındaki gelişmeler.',
+  dunya: "Dünyadan girişim ve yatırım haberleri: küresel fonlama turları, birleşmeler ve satın almalar.",
+  kampanyalar: "Türkiye'de paya dayalı kitle fonlama kampanyaları: hedef, toplanan tutar, yatırımcı sayısı ve sonuç.",
+  platformlar: 'Kitle fonlama platformları: lisanslı platformların kampanyaları, duyuruları ve performansı.',
+  mevzuat: 'Kitle fonlama ve girişim mevzuatı: SPK düzenlemeleri, tebliğler ve resmî duyurular.',
+  analiz: 'Kitle fonlama ve girişim ekosistemi analizleri: veriler, eğilimler ve dönemsel değerlendirmeler.',
+};
+const description = ACIKLAMA[slug] ?? `${SITE.name} ${name}: Türkiye'de kitle fonlama ve girişim haberleri.`;
+const pageUrl = new URL(`/${slug}/`, Astro.site).href;
+const siteUrl = new URL('/', Astro.site).href;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      '@id': `${pageUrl}#page`,
+      name: `${name} | ${SITE.name}`,
+      description,
+      url: pageUrl,
+      inLanguage: 'tr-TR',
+      isPartOf: { '@id': `${siteUrl}#website` },
+      publisher: { '@id': `${siteUrl}#organization` },
+      ...(items.length > 0
+        ? {
+            mainEntity: {
+              '@type': 'ItemList',
+              itemListElement: items.slice(0, 20).map((h, i) => ({
+                '@type': 'ListItem',
+                position: i + 1,
+                url: new URL(newsUrl(h), Astro.site).href,
+              })),
+            },
+          }
+        : {}),
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Anasayfa', item: siteUrl },
+        { '@type': 'ListItem', position: 2, name, item: pageUrl },
+      ],
+    },
+  ],
+};
+---
+
+<Base title={name} description={description} noindex={noindex}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  {
+    slug === 'gunluk-bulten' ? (
+      <>
+        <h1 slot="tahta" class="sr-only">{name}</h1>
+        <Bulten slot="tahta" />
+      </>
+    ) : (
+      <>
+        <div slot="tahta" class="kategori-bas">
+          <h1 class="kategori-isim">{name}</h1>
+          <p class="kategori-sayi">{items.length} haber</p>
+        </div>
+        {rows.length > 0 && <Tahta slot="tahta" rows={rows} title={`${name} tahtası`} showTotal={false} kompakt={slug === 'yatirimlar'} />}
+      </>
+    )
+  }
+
+  {
+    items.length > 0 ? (
+      <div class="satir-izgara">
+        {items.map((h) => (
+          <HaberSatiri haber={h} showCategory={false} />
+        ))}
+      </div>
+    ) : slug !== 'gunluk-bulten' ? (
+      <p class="bos">Bu bölümde henüz haber yok.</p>
+    ) : null
+  }
+</Base>

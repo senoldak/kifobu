@@ -1,0 +1,57 @@
+# Product
+
+<!-- impeccable:product-schema 1 -->
+
+## Platform
+
+web
+
+## Users
+
+The whole Turkish equity/reward crowdfunding ecosystem, weighted equally: individual investors following campaigns, founders who run or plan campaigns and study comparable ones, the crowdfunding platforms themselves, and people who track the sector and its regulation (SPK). They want to know, every day, which startup raised how much, on which platform, and what changed in the sector. They read on phones and desktops, often arriving on a single story from social media.
+
+## Product Purpose
+
+kifobu brings Turkish crowdfunding startups, platforms and investors together through a daily bulletin: which campaign opened, how much it raised against its target, on which platform, and what the sector news is. Success means the ecosystem treats kifobu as the daily record of Turkish crowdfunding.
+
+## Positioning
+
+A sector-specific daily bulletin, not a general news site. kifobu has existed for about 1500 days on social media before this website; the site is its new home. The core unit is a funding fact (startup, amount, target, platform, date), not an opinion piece.
+
+## Operating Context
+
+- Content lives as Markdown folders in `src/content/haberler/<slug>/index.md` with an optional cover image, edited through Sveltia CMS at `/admin` and stored on GitHub.
+- Production: a news bot (`scripts/bot/`, GitHub Actions, triggered by the `saat` Cloudflare Worker at Oslo 08:20, 10:20 … 02:20) reads Turkish crowdfunding and startup-investment RSS feeds plus a few global venture feeds (the list lives encrypted in `scripts/bot/gizli-kaynaklar.sifreli`, key in the `KAYNAK_ANAHTARI` secret / local `.env`, see `scripts/bot/gizli.mjs`; the repo is public, so real source names, domains and feed URLs are never written into tracked files, logs or the bot's state). General tech/gadget sites were removed. Scope narrowed on 2026-10-15 to Turkish crowdfunding (equity and reward), platforms, SPK decisions, Turkish startup rounds and only major global crowdfunding/venture items. A single source is enough (`TEYIT=1`); stories about the same event are grouped into one, and events already published in the last 72 hours are skipped (`scripts/bot/tekrar.mjs`). One Gemini call pre-filters headlines against kifobu's scope (foreign-only events need the top score); Gemini then writes each story (250–400 words, numbers first) in kifobu's own words; under 200 words is rejected, and the bot checks numbers, quotes, names and copying against the sources, with up to three extra rewrite rounds. Stories that still fail are not published and no draft is created (owner does not want to review drafts). Up to 12 stories per run. By the owner's decision (2026-10-11), source sites are not named or linked. An editor also adds stories by hand.
+- Flags: `featured` (manşet), `breaking` (son dakika), draft.
+- Pages: front page, category pages, article, Hakkımızda, 404, RSS.
+
+## Capabilities and Constraints
+
+- Astro static site on Cloudflare Workers static assets. Security headers live in `public/_headers` (CSP allows only `'self'` for fonts, styles, scripts), so fonts must be self-hosted.
+- Categories are being changed from generic news (Gündem, Spor, Yaşam…) to sector-specific ones (e.g. Günlük Bülten, Kampanyalar, Platformlar, Mevzuat/SPK, Analiz). Categories must stay in sync between `src/lib/site.ts` and `public/admin/config.yml`.
+- Stories will carry structured funding fields (startup name, amount raised, target, platform, campaign status) so the design can surface the numbers. Exact field set: to be finalised with the content schema.
+- Editor-facing comments in code are Turkish; all reader-facing copy is Turkish (`tr-TR`, Europe/Istanbul time).
+- Deploy gotcha: `npm install` on Windows can drop `@emnapi/*` from package-lock and break the Linux build on Cloudflare.
+- Sister sites `tidsrost` and `finfolis` share the code skeleton but kifobu must have a **fully separate identity**, with no shared family look.
+
+## Brand Commitments
+
+- Name: **kifobu**, lowercase. Do not expand it as "Kitle Fonlama Bülteni" anywhere on the site. Slogan: "Ulaşılabilir ve anlaşılır veri".
+- No AI or source note under bot stories (owner decision, 2026-10-11).
+- Brand mark: the owner's sunflower (🌻) on a cream ground, file `brand/kifobu-isaret.png` (640px raster, supplied 2026-10-10; no vector source). Favicons and the header tile come from it.
+- Social accounts are all `kifobu`: X, Instagram, LinkedIn (company), YouTube (@kifobu), Telegram (t.me/kifobu), Facebook.
+- Voice: plain, factual Turkish; numbers first, no hype about returns.
+
+## Evidence on Hand
+
+- Daily bulletin on social media: the 1,523rd bulletin was published on 2026-10-10 (bulletin 1 = 2022-08-10). Public counts seen on 2026-10-10: Telegram 1,006 subscribers, LinkedIn 706 followers. LinkedIn describes kifobu as an analytics and decision-support platform for crowdfunding ("accessible and understandable data").
+- Only placeholder articles in `src/content/haberler/`.
+- Not on hand: real campaign data, audience numbers, testimonials, partner platforms, editor/publisher identity. Do not fabricate any of these, and do not invent campaign figures beyond clearly marked samples.
+
+## Product Principles
+
+1. The number is the news: amount, target, platform and date are the first things a reader sees.
+2. A neutral meeting ground: startups, platforms and investors get even-handed treatment; no platform is favoured.
+3. Daily rhythm: each day's bulletin is a recognisable, countable issue.
+4. Not investment advice: figures are reported, never recommended; risk wording stays visible.
+5. Complete without images: text-and-number stories are the default case.

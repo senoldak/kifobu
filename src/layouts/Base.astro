@@ -1,0 +1,211 @@
+---
+import { SITE, ACIK_KATEGORILER, dayNumber, formatNumber } from '../lib/site';
+import '../styles/fonts.css';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  imageWidth?: number;
+  imageHeight?: number;
+  imageAlt?: string;
+  noindex?: boolean;
+}
+
+const { title, description: rawDescription, image, type = 'website', imageWidth, imageHeight, imageAlt, noindex = false } = Astro.props;
+const fullTitle = title ? `${title} | ${SITE.name}` : `${SITE.name} | ${SITE.tagline}`;
+// Açıklama boşsa site açıklaması; 160 karakteri aşarsa kelime sınırında kısaltılır.
+const kisalt = (s: string, n = 160) => {
+  if (s.length <= n) return s;
+  const kes = s.slice(0, n - 1);
+  const bosluk = kes.lastIndexOf(' ');
+  return `${(bosluk > n * 0.6 ? kes.slice(0, bosluk) : kes).replace(/[\s,;:.\-–]+$/, '')}…`;
+};
+const description = kisalt((rawDescription ?? '').trim() || SITE.description);
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(image || '/og-default.png', Astro.site).href;
+const ogWidth = imageWidth ?? 1200;
+const ogHeight = imageHeight ?? 630;
+const ogAlt = imageAlt ?? title ?? SITE.name;
+const robots = noindex
+  ? 'noindex, follow'
+  : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+const siteUrl = new URL('/', Astro.site).href;
+const orgId = `${siteUrl}#organization`;
+const siteLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'NewsMediaOrganization',
+      '@id': orgId,
+      name: SITE.name,
+      url: siteUrl,
+      description: SITE.description,
+      logo: {
+        '@type': 'ImageObject',
+        '@id': `${siteUrl}#logo`,
+        url: new URL('/favicon-512.png', Astro.site).href,
+        width: 512,
+        height: 512,
+      },
+      sameAs: Object.values(SITE.social).filter(Boolean),
+      publishingPrinciples: new URL('/yayin-ilkeleri/', Astro.site).href,
+      correctionsPolicy: new URL('/yayin-ilkeleri/#duzeltmeler', Astro.site).href,
+      knowsAbout: ['Kitle Fonlama', 'Girişimcilik', 'Yatırım', 'Girişim Sermayesi', 'SPK'],
+      inLanguage: 'tr-TR',
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}#website`,
+      name: SITE.name,
+      url: siteUrl,
+      description: SITE.description,
+      inLanguage: 'tr-TR',
+      publisher: { '@id': orgId },
+    },
+  ],
+};
+const xHandle = SITE.social.x?.match(/x\.com\/([^/?#]+)/)?.[1];
+const current = Astro.url.pathname;
+const today = new Date().toLocaleDateString(SITE.locale, {
+  weekday: 'long',
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'Europe/Istanbul',
+});
+const gun = dayNumber();
+const social = [
+  { name: 'X', href: SITE.social.x },
+  { name: 'Instagram', href: SITE.social.instagram },
+  { name: 'LinkedIn', href: SITE.social.linkedin },
+  { name: 'YouTube', href: SITE.social.youtube },
+  { name: 'Telegram', href: SITE.social.telegram },
+  { name: 'Facebook', href: SITE.social.facebook },
+].filter((s) => s.href);
+---
+
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#1d2723" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
+    {!noindex && <link rel="canonical" href={canonical} />}
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="preload" href="/fonts/sofia-sans-condensed-normal-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/sofia-sans-condensed-normal-latin-ext.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/sofia-sans-normal-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="alternate" type="application/rss+xml" title={SITE.name} href="/rss.xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={title ?? SITE.name} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content={String(ogWidth)} />
+    <meta property="og:image:height" content={String(ogHeight)} />
+    <meta property="og:image:alt" content={ogAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    {xHandle && <meta name="twitter:site" content={`@${xHandle}`} />}
+    <meta name="twitter:title" content={title ?? SITE.name} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogAlt} />
+    <script type="application/ld+json" set:html={JSON.stringify(siteLd)} />
+    <!-- Cloudflare Web Analytics -->
+    <script
+      type="module"
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "33a9175112374fe087c51b0e2e1d3932"}'></script>
+    <!-- End Cloudflare Web Analytics -->
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="atla" href="#icerik">İçeriğe geç</a>
+
+    <header class="tahta-zemin site-bas">
+      <div class="kap">
+        <div class="ust-satir">
+          <a href="/" class="logo" aria-label={`${SITE.name}, anasayfa`}>
+            <span class="logo-isim">{SITE.name}</span>
+          </a>
+          <p class="gun">
+            {gun ? (
+              <span class="gun-sayac">Bülten {formatNumber(gun)}</span>
+            ) : (
+              import.meta.env.DEV && <span class="gun-sayac gun-eksik">Bülten sayacı: site.ts → kurulus</span>
+            )}
+            <span class="gun-tarih">{today}</span>
+          </p>
+        </div>
+        <nav class="menu" aria-label="Kategoriler">
+          <a href="/" aria-current={current === '/' ? 'page' : undefined}>Bugün</a>
+          {
+            ACIK_KATEGORILER.map((c) => (
+              <a href={`/${c.slug}/`} aria-current={current.startsWith(`/${c.slug}`) ? 'page' : undefined}>
+                {c.name}
+              </a>
+            ))
+          }
+          <a href="/arsiv/" aria-current={current.startsWith('/arsiv') ? 'page' : undefined}>Arşiv</a>
+        </nav>
+        <slot name="tahta" />
+      </div>
+    </header>
+
+    <main id="icerik" class="kap sayfa">
+      <slot />
+    </main>
+
+    <footer class="tahta-zemin site-alt">
+      <div class="kap alt-izgara">
+        <div>
+          <a href="/" class="logo">
+            <span class="logo-yazi">
+              <span class="logo-isim">{SITE.name}</span>
+              <span class="logo-ayrac" aria-hidden="true">|</span>
+              <span class="logo-alt">{SITE.tagline}</span>
+            </span>
+          </a>
+          {
+            social.length > 0 && (
+              <ul class="alt-sosyal" aria-label="Sosyal medya">
+                {social.map((s) => (
+                  <li>
+                    <a href={s.href} rel="noopener noreferrer" target="_blank" aria-label={`${s.name} (yeni sekmede açılır)`}>
+                      {s.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )
+          }
+        </div>
+        <nav class="alt-menu" aria-label="Alt menü">
+          {ACIK_KATEGORILER.map((c) => <a href={`/${c.slug}/`}>{c.name}</a>)}
+          <a href="/hakkimizda/">Hakkımızda</a>
+          <a href="/yayin-ilkeleri/">Yayın İlkeleri</a>
+          <a href="/rss.xml">RSS</a>
+        </nav>
+      </div>
+      <div class="kap">
+        <div class="alt-not">
+          <p>© {new Date().getFullYear()} {SITE.name}</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

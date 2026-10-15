@@ -1,0 +1,254 @@
+---
+import type { ArsivKaydi, Donem } from '../../lib/arsiv/tipler.ts';
+import { kampanyaTablosu, kampanyaSerileri } from '../../lib/arsiv/hesap.ts';
+import { yuzdeBicim } from '../../lib/arsiv/bicim.ts';
+import Tablo from './Tablo.astro';
+
+interface Props {
+  kayitlar: ArsivKaydi[];
+}
+
+const { kayitlar } = Astro.props;
+const donemler: Donem[] = ['gun', 'hafta', 'ay'];
+
+const TAHTA = '#1d2723';
+const TEBESIR = '#ecefe9';
+const TEBESIR_SOLUK = 'rgba(236,239,233,0.62)';
+const CIZGI = 'rgba(236,239,233,0.14)';
+const YAZI = 'Sofia Sans, sans-serif';
+const AYIRICI = ['#f2d45c', '#f19bb0', '#8fc7e0'];
+
+const sonKayit = kayitlar[kayitlar.length - 1];
+const platformlar: Record<string, { ad: string; renk: string }> = {};
+for (const k of kayitlar) for (const p of k.platformlar) platformlar[p.anahtar] = { ad: p.ad, renk: p.renk };
+const seriler = kampanyaSerileri(kayitlar);
+const sonTarih = sonKayit?.tarih ?? '';
+
+// Arşivdeki kayıtlı günler (sıralı); x ekseni bu günlerin sırasıdır.
+const gunler = [...new Set(kayitlar.map((k) => k.tarih))].sort();
+const gunIndeks = new Map(gunler.map((t, i) => [t, i]));
+
+interface Nokta {
+  i: number;
+  v: number;
+  eksik: boolean;
+}
+
+// Renk: platformun ilk kampanyası platform rengini alır; sonrakiler sırayla sarı/pembe/mavi.
+const platSayac: Record<string, number> = {};
+const renkli = seriler.map((s) => {
+  const sira = platSayac[s.platform] ?? 0;
+  platSayac[s.platform] = sira + 1;
+  const renk = sira === 0 ? (platformlar[s.platform]?.renk ?? s.renk) : AYIRICI[(sira - 1) % AYIRICI.length];
+  const yuzde = (alinan: number) => (s.hedef > 0 ? (alinan / s.hedef) * 100 : 0);
+  // Listeden çıkıp dönen kampanya: kayıtlı gün atlanırsa çizgi bölünür (köprü kurulmaz).
+  const parcalar: Nokta[][] = [];
+  let onceki = -2;
+  for (const n of s.noktalar) {
+    const i = gunIndeks.get(n.tarih) ?? 0;
+    if (i !== onceki + 1) parcalar.push([]);
+    parcalar[parcalar.length - 1].push({ i, v: yuzde(n.alinan), eksik: n.veriAlinamadi });
+    onceki = i;
+  }
+  const sonParca = parcalar[parcalar.length - 1];
+  const son = sonParca ? sonParca[sonParca.length - 1] : undefined;
+  return { s, renk, parcalar, son };
+});
+
+const enYuksek = Math.max(100, ...renkli.flatMap((r) => r.parcalar.flat().map((p) => p.v)));
+const tavan = enYuksek <= 100 ? 100 : Math.ceil(enYuksek / 50) * 50;
+
+const kisalt = (ad: string, n: number) => (ad.length > n ? `${ad.slice(0, n - 1).trimEnd()}…` : ad);
+const trTarih = (t: string) => `${t.slice(8, 10)}.${t.slice(5, 7)}`;
+
+function ciz(W: number, H: number, SOL: number, SAG: number, yaziBoy: number, maxAd: number, maxEtiket: number) {
+  const UST = 14;
+  const ALT = 32;
+  const alanW = W - SOL - SAG;
+  const alanH = H - UST - ALT;
+  const n = gunler.length;
+  const x = (i: number) => SOL + (n > 1 ? (i / (n - 1)) * alanW : alanW / 2);
+  const y = (v: number) => UST + alanH - (v / tavan) * alanH;
+  const cizgiler = renkli.map((r) => ({
+    renk: r.renk,
+    ad: r.s.ad,
+    parcalar: r.parcalar.map((p) => ({
+      noktalar: p.map((q) => ({ x: x(q.i), y: y(q.v), eksik: q.eksik })),
+      yol: p.map((q, k) => `${k === 0 ? 'M' : 'L'}${x(q.i).toFixed(1)} ${y(q.v).toFixed(1)}`).join(' '),
+    })),
+    sonY: r.son ? y(r.son.v) : null,
+    etiketY: 0,
+    metin: r.son ? `${kisalt(r.s.ad, maxAd)} ${yuzdeBicim(r.son.v)}` : '',
+  }));
+  // Uç etiketleri: dikey sırala, en az aralık bırakıp çakışmayı kaydırarak çöz, kutu içinde tut.
+  const aralik = yaziBoy + 3;
+  const alt = UST + yaziBoy / 2;
+  const ust = UST + alanH;
+  const etiketli = cizgiler.filter((c) => c.sonY !== null).sort((a, b) => (a.sonY as number) - (b.sonY as number));
+  const yerler = etiketli.map((c) => Math.min(Math.max(c.sonY as number, alt), ust));
+  for (let i = 1; i < yerler.length; i++) yerler[i] = Math.max(yerler[i], yerler[i - 1] + aralik);
+  for (let i = yerler.length - 1; i >= 0; i--) {
+    if (yerler[i] > ust) yerler[i] = ust;
+    if (i < yerler.length - 1) yerler[i] = Math.min(yerler[i], yerler[i + 1] - aralik);
+  }
+  etiketli.forEach((c, i) => {
+    c.etiketY = yerler[i];
+  });
+  const adim = Math.max(1, Math.ceil(n / maxEtiket));
+  const tarihler = gunler.map((t, i) => ({ t, x: x(i), goster: i % adim === (n - 1) % adim }));
+  const kilavuz = [0, 50, tavan].filter((v, i, a) => a.indexOf(v) === i && v !== 100);
+  return { W, H, SOL, SAG, UST, alanW, alanH, yaziBoy, y, cizgiler, tarihler, kilavuz };
+}
+
+const varyantlar = [
+  // Masaüstü: 720 genişlik. Mobil: 300 genişlik; ~285px kapta yazılar ~%95 ölçekte kalır.
+  { sinif: 'masa', png: true, g: ciz(720, 320, 44, 178, 12, 15, 8) },
+  { sinif: 'mobil', png: false, g: ciz(300, 300, 36, 98, 11, 8, 4) },
+];
+const platAnahtar = Object.keys(platformlar).filter((a) => seriler.some((s) => s.platform === a));
+---
+
+<div class="kamp-kutu">
+  <ul class="aciklama" aria-label="Platformlar">
+    {
+      platAnahtar.map((a) => (
+        <li>
+          <span class="nokta" style={`background:${platformlar[a].renk}`} aria-hidden="true" />
+          {platformlar[a].ad}
+        </li>
+      ))
+    }
+  </ul>
+  {
+    varyantlar.map((v) => (
+      <svg
+        class={`grafik grafik-${v.sinif}`}
+        viewBox={`0 0 ${v.g.W} ${v.g.H}`}
+        width="100%"
+        role="img"
+        aria-label="Kampanyaların hedefe göre yüzdesi, zaman içinde çizgi grafik"
+        {...(v.png ? { 'data-png-grafik': '' } : {})}
+        data-png-baslik="Kampanyalar"
+        font-family={YAZI}
+      >
+        <rect x="0" y="0" width={v.g.W} height={v.g.H} fill={TAHTA} />
+        {v.g.kilavuz.map((t) => (
+          <g>
+            <line x1={v.g.SOL} x2={v.g.SOL + v.g.alanW} y1={v.g.y(t)} y2={v.g.y(t)} stroke={CIZGI} stroke-width="1" />
+            <text x={v.g.SOL - 6} y={v.g.y(t) + 4} text-anchor="end" font-size={v.g.yaziBoy} fill={TEBESIR_SOLUK} font-family={YAZI}>
+              {`%${t}`}
+            </text>
+          </g>
+        ))}
+        <line x1={v.g.SOL} x2={v.g.SOL + v.g.alanW} y1={v.g.y(100)} y2={v.g.y(100)} stroke={TEBESIR_SOLUK} stroke-width="1" stroke-dasharray="4 4" />
+        <text x={v.g.SOL - 6} y={v.g.y(100) + 4} text-anchor="end" font-size={v.g.yaziBoy} fill={TEBESIR} font-family={YAZI}>
+          %100
+        </text>
+        <line x1={v.g.SOL} x2={v.g.SOL + v.g.alanW} y1={v.g.UST + v.g.alanH} y2={v.g.UST + v.g.alanH} stroke="rgba(236,239,233,0.32)" stroke-width="1" />
+        {v.g.tarihler
+          .filter((d) => d.goster)
+          .map((d) => (
+            <text x={d.x} y={v.g.H - 12} text-anchor="middle" font-size={v.g.yaziBoy} fill={TEBESIR_SOLUK} font-family={YAZI}>
+              {trTarih(d.t)}
+            </text>
+          ))}
+        {v.g.cizgiler.map((c) => (
+          <g>
+            <title>{c.ad}</title>
+            {c.parcalar.map((p) => (
+              <>
+                {p.noktalar.length > 1 && (
+                  <path d={p.yol} fill="none" stroke={c.renk} stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+                )}
+                {p.noktalar.map((q) =>
+                  q.eksik ? (
+                    <circle cx={q.x} cy={q.y} r="3.5" fill={TAHTA} stroke={c.renk} stroke-width="1.5" />
+                  ) : (
+                    p.noktalar.length === 1 && <circle cx={q.x} cy={q.y} r="2.5" fill={c.renk} />
+                  ),
+                )}
+              </>
+            ))}
+            {c.sonY !== null && (
+              <text
+                x={v.g.SOL + v.g.alanW + 6}
+                y={c.etiketY + v.g.yaziBoy * 0.35}
+                font-size={v.g.yaziBoy}
+                font-weight="700"
+                fill={c.renk}
+                font-family={YAZI}
+              >
+                {c.metin}
+              </text>
+            )}
+          </g>
+        ))}
+      </svg>
+    ))
+  }
+  <p class="not"><span>Boş daire: veri alınamadı</span><span>Kesikli çizgi: hedef (%100)</span></p>
+</div>
+
+{
+  donemler.map((donem) => (
+    <Tablo
+      donem={donem}
+      satirlar={kampanyaTablosu(kayitlar, donem)}
+      platformlar={platformlar}
+      seriler={seriler}
+      tarih={sonTarih}
+    />
+  ))
+}
+
+<style>
+  .kamp-kutu {
+    margin-bottom: 14px;
+    padding: 12px 14px;
+    background: var(--tahta-koyu, #151d1a);
+    border: 1px solid var(--tebesir-ince, rgb(236 239 233 / 0.14));
+    border-radius: 4px;
+    min-width: 0;
+  }
+  .aciklama {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    margin: 0 0 8px;
+    padding: 0;
+    list-style: none;
+    font: 600 0.84rem var(--yazi-baslik, sans-serif);
+    color: var(--tebesir-2, rgb(236 239 233 / 0.74));
+  }
+  .nokta {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 6px;
+    border-radius: 50%;
+  }
+  .grafik-mobil {
+    display: none;
+  }
+  @media (max-width: 560px) {
+    .grafik-masa {
+      display: none;
+    }
+    .grafik-mobil {
+      display: block;
+    }
+  }
+  svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  .not {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    margin: 8px 0 0;
+    font: 600 0.8rem var(--yazi-baslik, sans-serif);
+    color: var(--tebesir-3, rgb(236 239 233 / 0.62));
+  }
+</style>

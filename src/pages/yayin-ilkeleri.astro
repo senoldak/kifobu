@@ -1,0 +1,186 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE, RISK_NOTU } from '../lib/site';
+---
+
+<Base
+  title="Yayın İlkeleri"
+  description="kifobu editoryal bağımsızlık, IFJ etik şartı, The Trust Project ilkeleri, RSF Paris Yapay Zekâ Şartı, kitle fonlamasında tarafsızlık ve düzeltme politikası."
+>
+  <article class="makale">
+    <header class="makale-bas">
+      <h1>Yayın İlkeleri</h1>
+      <p class="makale-spot">
+        {SITE.name}, kitle fonlama ekosisteminde tarafsız veri, editoryal dürüstlük ve kamusal güven standartlarına bağlıdır.
+      </p>
+    </header>
+    <div class="metin">
+      <p>
+        {SITE.name}, Türkiye'de kitle fonlama ve girişimcilik ekosistemindeki kampanya, yatırım ve büyüme verilerini
+        şeffaf, erişilebilir ve anlaşılır kılmayı amaçlayan bağımsız bir analiz ve bülten platformudur. Yayınlarımızda
+        doğru veriye dayalı, tarafsız, çıkar çatışmalarından arındırılmış ve kamu yararını gözeten bir yayıncılık
+        anlayışını benimsiyoruz. Editoryal süreçlerimizde Uluslararası Gazeteciler Federasyonu’nun (IFJ - International
+        Federation of Journalists) <em>Küresel Gazetecilik Etiği Şartı (Global Charter of Ethics for Journalists)</em>
+        prensiplerini temel mesleki kılavuz kabul ediyoruz.
+      </p>
+
+      <h2>1. Kurumsal ve Editoryal Bağımsızlık</h2>
+      <p>
+        {SITE.name}; ticari kitle fonlama platformlarından, portföy yönetim şirketlerinden, girişim sermayesi fonlarından,
+        halka arz veya fonlama arayan şirketlerden ve siyasi menfaat gruplarından tamamen bağımsız bir editoryal çizgiye sahiptir.
+        IFJ Küresel Gazetecilik Etiği Şartı doğrultusunda gerçeğe sadakat, kamuoyunun doğru bilgilendirilme hakkı ve mesleki
+        dürüstlük tavizsiz ilkelerimizdir.
+      </p>
+      <p>
+        Günlük bültende, seans tahtasında veya analizlerde hangi kampanyanın ya da yatırımın yer alacağı yalnızca
+        yayımlanmış kapsam ve haber değeri ölçütlerine göre belirlenir; bot haberlerinde bu seçimi aynı ölçütlerle otomatik
+        sistem yapar.
+        Hiçbir platform, girişim ya da sponsor yayın akışımıza, veri sıralamamıza veya analizlerimize müdahale edemez.
+        Sponsorlu içerik ya da iş birliği bulunması durumunda, bu durum okuyucuyu yanıltmayacak şekilde açıkça etiketlenir
+        ve editoryal içerikten kesin çizgilerle ayrıştırılır.
+      </p>
+
+      <h2>2. Kitle Fonlaması Ekosisteminde Tarafsızlık İlkesi</h2>
+      <p>
+        Kitle fonlama pazarında bilgi asimetrisini azaltmak ve sağlıklı bir yatırım kültürü oluşmasına katkı sağlamak amacıyla
+        ekosistemdeki tüm paydaşlara eşit mesafede dururuz:
+      </p>
+      <ul>
+        <li>
+          <strong>Eşit Mesafe:</strong> SPK lisanslı tüm kitle fonlama platformlarına (paya dayalı, borca dayalı),
+          fon arayan girişimlere ve küçük/büyük tüm yatırımcılara karşı mutlak tarafsızlık gözetilir.
+        </li>
+        <li>
+          <strong>Yönlendirme ve Spekülasyon Yasağı:</strong> Bir kampanyanın fonlanmasını teşvik edici (hype yaratan)
+          veya aksine kampanyayı karalayıcı, spekülatif içerik üretilmez. Kampanyaların toplanan tutarı, hedef oranı ve
+          yatırımcı sayıları resmi platform kayıtlarına sadık kalınarak aktarılır.
+        </li>
+        <li>
+          <strong>Sponsorlu Manipülasyon Yasağı:</strong> Herhangi bir girişimden, kurucudan veya platformdan maddi bedel,
+          hisse payı, kampanya başarı primi veya komisyon karşılığında bültende öne çıkarma, sıralama değiştirme ya da
+          övgü içeren içerik yayımlanması kesinlikle yasaktır.
+        </li>
+      </ul>
+
+      <h2>3. The Trust Project: 8 Güven Göstergesi</h2>
+      <p>
+        Uluslararası <em>The Trust Project</em> konsorsiyumu tarafından belirlenen gazetecilikte güven standartlarına
+        bağlı kalarak aşağıdaki 8 göstergeyi tüm bülten ve veri süreçlerimizde titizlikle uygularız:
+      </p>
+      <ul>
+        <li>
+          <strong>En İyi Uygulamalar (Best Practices):</strong> Doğrulama standartları, editoryal misyon, etik ilkeler
+          ve sahiplik yapımız kamuya açıktır.
+        </li>
+        <li>
+          <strong>Yazar ve Üretim Bilgisi (Author Expertise):</strong> Haberlerin imzası {SITE.name}'dur; içeriklerin büyük
+          kısmının otomatik ve yapay zekâ desteğiyle üretildiği bu sayfada açıkça belirtilir.
+        </li>
+        <li>
+          <strong>İçerik Türü Etiketlemesi (Type of Work):</strong> Günlük veri bülteni, kampanya incelemesi, mevzuat analizi,
+          sektör röportajı veya metodolojik rehber türleri birbirinden açıkça ayrıştırılır; veri ile şahsi yorum birbirine karıştırılmaz.
+        </li>
+        <li>
+          <strong>Kaynaklar ve Atıflar (Citations &amp; References):</strong> Haberlerde başka haber sitelerinin adı ve bağlantısı
+          verilmez; bilgi doğrudan aktarılır. Şirket açıklaması, SPK kararı, MKK verisi gibi asıl kaynaklar gerektiğinde
+          metinde anılır.
+        </li>
+        <li>
+          <strong>Yöntem ve Metodoloji (Methods):</strong> Günlük seans tahtasındaki toplam tutar hesaplamaları, kampanya
+          durumları (yeni, sürüyor, başarılı, hedefe ulaşamadan kapandı), toplanan/hedef yüzdesi ve döviz çevrim yöntemleri
+          okura şeffafça izah edilir.
+        </li>
+        <li>
+          <strong>Yerel Odak (Locally Sourced):</strong> Önceliğimiz Türkiye kitle fonlama pazarı, SPK düzenlemeleri ve Türk
+          girişimlerinin yatırım turlarıdır; dünyadan yalnızca bu alanı doğrudan ilgilendiren önemli gelişmelere yer verilir.
+        </li>
+        <li>
+          <strong>Çeşitli Bakış Açıları (Diverse Voices):</strong> Yalnızca belirli popüler sektörler veya mega-turlar değil;
+          teknolojiden tarıma, imalattan sağlığa her sektörden girişim ve tohum aşamasındaki erken dönem ekipler ses bulur.
+        </li>
+        <li>
+          <strong>Eyleme Dönüştürülebilir Geri Bildirim (Actionable Feedback):</strong> Yatırımcılar, girişimciler ve okurların
+          veri itirazları ile geri bildirimleri için doğrudan erişilebilir iletişim kanalı işletilir.
+        </li>
+      </ul>
+
+      <h2>4. RSF Paris Yapay Zekâ ve Gazetecilik Şartı (2023)</h2>
+      <p>
+        Sınır Tanımayan Gazeteciler (RSF) öncülüğünde ilan edilen <em>Paris Charter on AI and Journalism (2023)</em>
+        prensipleri çerçevesinde, veri toplama ve otomasyon teknolojilerinin kullanımında şu esasları taahhüt ederiz:
+      </p>
+      <ul>
+        <li>
+          <strong>Otomatik Yayın, Açıkça:</strong> {SITE.name}'daki haberlerin çoğu ve günlük bültenler yapay zekâ desteğiyle,
+          otomatik olarak yayımlanır. Haber botu girişim ve yatırım haberlerinin yayımlandığı kaynakları izler, kapsamımıza
+          giren olayları seçer ve olguları {SITE.name}'nun kendi cümleleriyle yeniden yazar. Bu haberler yayımlanmadan önce
+          bir insan editör tarafından tek tek okunmaz ve onaylanmaz.
+        </li>
+        <li>
+          <strong>Otomatik Denetimler:</strong> Her bot haberi yayından önce kaynak metinlerle otomatik olarak karşılaştırılır:
+          rakamlar, doğrudan alıntılar, kişi ve kurum adları ile künye bilgileri (girişim, tutar, hedef) kaynakta geçmeli; kaynak
+          cümlelerin kopyalanması, göreli zaman ifadeleri ve yayın kuruluşu adları yakalanır. İkinci bir yapay zekâ denetimi
+          olguların çarpıtılıp çarpıtılmadığına bakar. Sorun bulunursa metin yeniden yazdırılır; birkaç turdan sonra da sorun
+          sürerse haber yayımlanmaz. Son 72 saatte yayımlanmış bir olay ikinci kez yazılmaz.
+        </li>
+        <li>
+          <strong>Sınırlar ve Sorumluluk:</strong> Otomatik denetimler hatayı azaltır ama tamamen ortadan kaldırmaz; kaynakta
+          yanlış olan bir bilgi haberimize de geçebilir. Yayımlanan her içerikten {SITE.name} sorumludur. Okurlarımızın
+          bildirdiği hatalar aşağıdaki düzeltme ilkelerine göre insan tarafından incelenir ve düzeltilir. Elle yazılan
+          haberler editörün imzasıyla yayımlanır.
+        </li>
+        <li>
+          <strong>Sentetik Manipülasyon Yasağı:</strong> Gerçekliği tahrif eden yapay zekâ üretimleri, sahte kampanya
+          görselleri, uydurulmuş grafikler veya manipülatif sentetik içerikler kesinlikle üretilmez ve kullanılmaz.
+          Tahtadaki rakamlar ve tablolar haberlerde yer alan ya da kayıtlı verilere dayanır.
+        </li>
+      </ul>
+
+      <h2>5. Sermaye Piyasası Mevzuatı ve Fonlama Riski Şeffaflığı</h2>
+      <p>
+        Kitle fonlaması ekosisteminde finansal bilincin ve sermaye güvenliğinin korunması adına 6362 sayılı Sermaye Piyasası
+        Kanunu ve SPK Kitle Fonlaması Tebliği (III-35/A.2) esaslarına tam uyum sağlıyoruz:
+      </p>
+      <ul>
+        <li>
+          <strong>Risk Notu ve Yatırım Tavsiyesi Kapsamı Dışılığı:</strong> {RISK_NOTU} {SITE.name} üzerinde yer alan hiçbir
+          içerik, tablo veya bülten maddesi yatırım tavsiyesi, portföy yöneticiliği veya yatırım danışmanlığı kapsamında
+          değerlendirilemez.
+        </li>
+        <li>
+          <strong>Sermaye Kaybı Riski:</strong> Erken aşama girişimlere ve kitle fonlama kampanyalarına yapılan yatırımlar;
+          yüksek risk, likidite kısıtı ve kısmi/tam sermaye kaybı riski barındırır. Okurlarımızın yatırım kararlarını
+          yalnızca platformlarda yayımlanan resmi Bilgi Formu ve MKK tescil kayıtlarını inceleyerek, kendi risk tercihlerine
+          göre vermeleri esastır.
+        </li>
+        <li>
+          <strong>Çıkar Çatışması Yasağı ve Etik Kurallar:</strong> {SITE.name} editörleri, bülten çalışanları ve analiz ekibi,
+          bültende yer verilen aktif kampanyalarda içeriden öğrenenlerin ticareti (insider trading) veya önceden pozisyon alma
+          (front-running) niteliğinde işlem yapamaz; kampanyalardan şahsi komisyon ya da çıkar sağlayamaz.
+        </li>
+      </ul>
+
+      <h2 id="duzeltmeler">6. Düzeltme ve Veri İtiraz Masası</h2>
+      <p>
+        Gerçek zamanlı ilerleyen kitle fonlama kampanyalarında (ek fonlama hakkı kullanımı, hedef revizyonu, kampanya iptali vb.)
+        oluşabilecek veri uyumsuzluklarına veya maddi hatalara karşı "şeffaf ve hızlı düzeltme" kuralını uygularız:
+      </p>
+      <ul>
+        <li>
+          <strong>Açık ve Kalıcı Düzeltme Notu:</strong> Hatalar sessizce silinmez. Düzeltilen verinin önceki hali, düzeltme
+          gerekçesi ve düzeltilme zamanı ilgili bülten veya haber kaydında açıkça belirtilir.
+        </li>
+        <li>
+          <strong>24 Saat İçinde Değerlendirme:</strong> Girişimcilerden, kitle fonlama platformlarından veya okurlardan
+          gelen maddi hata ve veri itirazı başvuruları editoryal ekibimizce en geç 24 saat içinde incelenir ve teyit edilen
+          düzeltmeler ivedilikle yayına yansıtılır.
+        </li>
+        <li>
+          <strong>İtiraz ve İletişim Kanalı:</strong> Her türlü veri denetimi, olgu kontrolü (fact-check) ve düzeltme bildirimi
+          için doğrudan <a href="mailto:iletisim@kifobu.com">iletisim@kifobu.com</a> adresimiz üzerinden Düzeltme ve Veri İtiraz
+          Masamıza ulaşabilirsiniz.
+        </li>
+      </ul>
+    </div>
+  </article>
+</Base>

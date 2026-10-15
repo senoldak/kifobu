@@ -1,0 +1,287 @@
+---
+import Base from '../../layouts/Base.astro';
+import Ozet from '../../components/arsiv/Ozet.astro';
+import Akis from '../../components/arsiv/Akis.astro';
+import Kampanyalar from '../../components/arsiv/Kampanyalar.astro';
+import Takvim from '../../components/arsiv/Takvim.astro';
+import { arsivKayitlari } from '../../lib/arsiv/yukle.ts';
+import { tarihTr } from '../../lib/arsiv/bicim.ts';
+
+const kayitlar = arsivKayitlari();
+const bos = kayitlar.length === 0;
+const bugun = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Istanbul' }).format(new Date());
+const ilk = bos ? '' : tarihTr(kayitlar[0].tarih);
+const sonTarih = bos ? '' : kayitlar[kayitlar.length - 1].tarih;
+const son = tarihTr(sonTarih);
+
+const donemler = [
+  { anahtar: 'gun', ad: 'Günlük' },
+  { anahtar: 'hafta', ad: 'Haftalık' },
+  { anahtar: 'ay', ad: 'Aylık' },
+];
+const sekmeler = [
+  { anahtar: 'akis', ad: 'Akış' },
+  { anahtar: 'kampanyalar', ad: 'Kampanyalar' },
+  { anahtar: 'takvim', ad: 'Takvim' },
+];
+---
+
+<Base
+  title="Kitle Fonlama Arşivi"
+  description="Türkiye'deki paya dayalı kitle fonlama kampanyalarının günlük kapanışlardan derlenen arşivi."
+>
+  <section id="arsiv" class="arsiv" data-gorunum="akis" data-donem="gun" data-son-tarih={sonTarih}>
+    <header class="kunye">
+      <p class="kunye-etiket">kifobu · Veri</p>
+      <h1>Kitle Fonlama Arşivi</h1>
+      {
+        !bos && (
+          <p class="kunye-satir">
+            Türkiye paya dayalı kitle fonlama kampanyaları · Günlük kapanış 18:00 · Son güncelleme {son} 18:00 · Seri
+            başlangıcı {ilk}
+          </p>
+        )
+      }
+    </header>
+
+    {
+      bos ? (
+        <p class="bos-durum">Seri ilk günlük kapanışla (18:00) başlayacak.</p>
+      ) : (
+        <>
+          <div class="donem-secici" role="group" aria-label="Dönem">
+            {donemler.map((d) => (
+              <button type="button" data-donem-sec={d.anahtar} aria-pressed={d.anahtar === 'gun' ? 'true' : 'false'}>
+                {d.ad}
+              </button>
+            ))}
+          </div>
+
+          <Ozet kayitlar={kayitlar} />
+
+          <div class="sekmeler" role="tablist" aria-label="Görünüm">
+            {sekmeler.map((s) => (
+              <button
+                type="button"
+                role="tab"
+                id={`sekme-${s.anahtar}`}
+                data-gorunum-sec={s.anahtar}
+                aria-controls={`panel-${s.anahtar}`}
+                aria-selected={s.anahtar === 'akis' ? 'true' : 'false'}
+                tabindex={s.anahtar === 'akis' ? 0 : -1}
+              >
+                {s.ad}
+              </button>
+            ))}
+          </div>
+
+          {sekmeler.map((s) => (
+            <div
+              role="tabpanel"
+              id={`panel-${s.anahtar}`}
+              aria-labelledby={`sekme-${s.anahtar}`}
+              data-gorunum-panel={s.anahtar}
+              hidden={s.anahtar !== 'akis'}
+            >
+              {s.anahtar === 'akis' && <Akis kayitlar={kayitlar} />}
+              {s.anahtar === 'kampanyalar' && <Kampanyalar kayitlar={kayitlar} />}
+              {s.anahtar === 'takvim' && <Takvim kayitlar={kayitlar} bugun={bugun} />}
+            </div>
+          ))}
+        </>
+      )
+    }
+
+    <footer class="arsiv-alt">
+      <span>Kaynak: platformların kampanya sayfaları</span>
+      <span aria-hidden="true">·</span>
+      <a href="#metodoloji" data-metodoloji-ac>Metodoloji</a>
+      <span aria-hidden="true">·</span>
+      <a href="/arsiv/kifobu-kitle-fonlama-arsivi.csv" download>CSV indir ↓</a>
+      {
+        !bos && (
+          <>
+            <span aria-hidden="true">·</span>
+            <button type="button" class="baglanti" data-png-indir>
+              PNG indir ↓
+            </button>
+          </>
+        )
+      }
+    </footer>
+
+    <details id="metodoloji" class="metodoloji">
+      <summary>Metodoloji</summary>
+      <ul>
+        <li>Veri her gün 18:00 kapanışında platformların kampanya sayfalarından alınır.</li>
+        <li>Günlük giriş, toplamın bir önceki kapanışa göre farkıdır.</li>
+        <li>
+          Bir kampanya taranamadığında o gün "Veri alınamadı" olarak işaretlenir ve son bilinen toplam gösterilir;
+          ertesi günün girişi önceki günle birlikte gösterilir (*).
+        </li>
+        <li>Serinin ilk günü başlangıç günüdür ve günlük girişi hesaplanmaz.</li>
+        {!bos && <li>Seri başlangıcı {ilk}.</li>}
+      </ul>
+    </details>
+  </section>
+
+  <script>
+    import '../../scripts/arsiv-etkilesim.ts';
+  </script>
+</Base>
+
+<style>
+  .arsiv {
+    margin-block: 24px 40px;
+    padding: clamp(14px, 3vw, 28px);
+    background: var(--tahta, #1d2723);
+    color: var(--tebesir, #ecefe9);
+    border-bottom: 6px solid var(--tahta-koyu, #151d1a);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    min-width: 0;
+  }
+  .kunye p,
+  .kunye h1 {
+    margin: 0;
+  }
+  .kunye-etiket {
+    font: 800 0.8rem var(--yazi-baslik, sans-serif);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sari, #f2d45c);
+  }
+  .kunye h1 {
+    margin-top: 4px;
+    font: 800 clamp(2.1rem, 5vw, 3.4rem) / 1.02 var(--yazi-baslik, sans-serif);
+    letter-spacing: -0.01em;
+  }
+  .kunye-satir {
+    margin-top: 8px;
+    font: 500 0.92rem / 1.45 var(--yazi-govde, sans-serif);
+    color: var(--tebesir-2, rgb(236 239 233 / 0.74));
+  }
+  .bos-durum {
+    margin: 0;
+    padding: 28px 0;
+    font: 600 1.15rem var(--yazi-baslik, sans-serif);
+    color: var(--tebesir-2, rgb(236 239 233 / 0.74));
+  }
+  .donem-secici {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .donem-secici button {
+    min-height: 44px;
+    padding: 0 18px;
+    font: 700 0.9rem var(--yazi-baslik, sans-serif);
+    letter-spacing: 0.06em;
+    color: var(--tebesir, #ecefe9);
+    background: transparent;
+    border: 1px solid var(--tebesir-cizgi, rgb(236 239 233 / 0.32));
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .donem-secici button:hover {
+    border-color: var(--sari, #f2d45c);
+  }
+  .donem-secici button[aria-pressed='true'] {
+    background: var(--sari, #f2d45c);
+    border-color: var(--sari, #f2d45c);
+    color: var(--tahta, #1d2723);
+  }
+  .sekmeler {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    border-bottom: 1px solid var(--tebesir-ince, rgb(236 239 233 / 0.14));
+  }
+  .sekmeler button {
+    flex: none;
+    min-height: 44px;
+    padding: 0 16px;
+    font: 800 0.9rem var(--yazi-baslik, sans-serif);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--tebesir-3, rgb(236 239 233 / 0.62));
+    background: transparent;
+    border: 0;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+  }
+  .sekmeler button:hover {
+    color: var(--tebesir, #ecefe9);
+  }
+  .sekmeler button[aria-selected='true'] {
+    color: var(--tebesir, #ecefe9);
+    border-bottom-color: var(--sari, #f2d45c);
+  }
+  [role='tabpanel'] {
+    min-width: 0;
+  }
+  [role='tabpanel'][hidden] {
+    display: none;
+  }
+  .arsiv-alt {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 10px;
+    padding-top: 12px;
+    border-top: 1px solid var(--tebesir-ince, rgb(236 239 233 / 0.14));
+    font: 600 0.86rem var(--yazi-baslik, sans-serif);
+    color: var(--tebesir-3, rgb(236 239 233 / 0.62));
+  }
+  .arsiv-alt a,
+  .arsiv-alt .baglanti {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0;
+    font: inherit;
+    color: var(--tebesir, #ecefe9);
+    background: none;
+    border: 0;
+    text-decoration: underline;
+    text-decoration-color: var(--tebesir-cizgi, rgb(236 239 233 / 0.32));
+    text-underline-offset: 3px;
+    cursor: pointer;
+  }
+  .arsiv-alt a:hover,
+  .arsiv-alt .baglanti:hover {
+    text-decoration-color: var(--sari, #f2d45c);
+  }
+  .arsiv-alt .baglanti[aria-disabled='true'] {
+    color: var(--tebesir-3, rgb(236 239 233 / 0.62));
+    text-decoration: none;
+    cursor: not-allowed;
+  }
+  .metodoloji {
+    font: 500 0.92rem / 1.5 var(--yazi-govde, sans-serif);
+    color: var(--tebesir-2, rgb(236 239 233 / 0.74));
+  }
+  .metodoloji summary {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    font: 800 0.86rem var(--yazi-baslik, sans-serif);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--tebesir, #ecefe9);
+    cursor: pointer;
+  }
+  .metodoloji ul {
+    margin: 0;
+    padding-left: 1.2em;
+    display: grid;
+    gap: 6px;
+  }
+  summary:focus-visible,
+  .arsiv-alt a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--sari, #f2d45c);
+    outline-offset: 2px;
+  }
+</style>

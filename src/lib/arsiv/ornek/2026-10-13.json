@@ -1,0 +1,86 @@
+{
+  "tarih": "2026-10-13",
+  "sayi": 4,
+  "baslangic": true,
+  "girisimler": [
+    {
+      "ad": "ATHLETICLABS",
+      "platform": "fonangels",
+      "url": "https://fonangels.com/kampanyalar/projehakkinda/athleticlabs?pid=1689",
+      "bugun": null,
+      "alinan": 7602500,
+      "kalan": null,
+      "hedef": 7500000,
+      "degerleme": 75000000,
+      "yuzde": 101.37,
+      "durum": "SONA ERDİ",
+      "veriAlinamadi": false,
+      "birikmis": false
+    },
+    {
+      "ad": "OYLİO",
+      "platform": "fonangels",
+      "url": "https://fonangels.com/kampanyalar/projehakkinda/oylio?pid=1778",
+      "bugun": null,
+      "alinan": 2532200,
+      "kalan": 2467800,
+      "hedef": 5000000,
+      "degerleme": 50000000,
+      "yuzde": 50.64,
+      "durum": "son 28 gün",
+      "veriAlinamadi": false,
+      "birikmis": false
+    },
+    {
+      "ad": "PUPAQ",
+      "platform": "trinkfon",
+      "url": "https://kfs.trinkfon.com/projeler/pupaq/kampanya/",
+      "bugun": null,
+      "alinan": 24282,
+      "kalan": 975750,
+      "hedef": 1000032,
+      "degerleme": 25000800,
+      "yuzde": 2.43,
+      "durum": "son 3 gün",
+      "veriAlinamadi": false,
+      "birikmis": false
+    },
+    {
+      "ad": "LOOPYON",
+      "platform": "ecofolio",
+      "url": "https://ecofolio.com.tr/kampanyalar/loopyon",
+      "bugun": null,
+      "alinan": 354200,
+      "kalan": 34645800,
+      "hedef": 35000000,
+      "degerleme": 385038504,
+      "yuzde": 1.01,
+      "durum": "son 34 gün",
+      "veriAlinamadi": false,
+      "birikmis": false
+    }
+  ],
+  "platformlar": [
+    {
+      "anahtar": "fonangels",
+      "ad": "fonangels",
+      "renk": "#f47b3d",
+      "bugun": 0,
+      "toplam": 10134700
+    },
+    {
+      "anahtar": "trinkfon",
+      "ad": "trinkfon",
+      "renk": "#7c3aed",
+      "bugun": 0,
+      "toplam": 24282
+    },
+    {
+      "anahtar": "ecofolio",
+      "ad": "ecofolio",
+      "renk": "#009bae",
+      "bugun": 0,
+      "toplam": 354200
+    }
+  ]
+}

@@ -1,0 +1,423 @@
+---
+import type { ArsivKaydi, Donem } from '../../lib/arsiv/tipler.ts';
+import { takvimAyi, dilimle } from '../../lib/arsiv/hesap.ts';
+import type { TakvimGunu } from '../../lib/arsiv/hesap.ts';
+import { paraKisa, paraTam, yuzdeBicim } from '../../lib/arsiv/bicim.ts';
+
+interface Props {
+  kayitlar: ArsivKaydi[];
+  /** Build tarihi, Europe/Istanbul (YYYY-MM-DD) */
+  bugun: string;
+}
+
+const { kayitlar, bugun } = Astro.props;
+
+const AY_UZUN = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+const GUN_KISA = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
+const SARI = '#f2d45c';
+
+const tarihler = kayitlar.map((k) => k.tarih).sort();
+const haritasi = new Map(kayitlar.map((k) => [k.tarih, k]));
+const platformAd: Record<string, string> = {};
+for (const k of kayitlar) for (const p of k.platformlar) platformAd[p.anahtar] = p.ad;
+
+// Arşivin kapsadığı aylar (ilk kayıt ayından son kayıt ayına, aralıksız).
+const aylar: string[] = [];
+if (tarihler.length) {
+  let y = Number(tarihler[0].slice(0, 4));
+  let a = Number(tarihler[0].slice(5, 7));
+  const son = tarihler[tarihler.length - 1].slice(0, 7);
+  for (;;) {
+    const ay = `${y}-${String(a).padStart(2, '0')}`;
+    aylar.push(ay);
+    if (ay >= son) break;
+    a += 1;
+    if (a > 12) {
+      a = 1;
+      y += 1;
+    }
+  }
+}
+
+// Dönem başına varsayılan ay: o dönemin son dilimindeki son kayıt gününün ayı.
+const donemler: Donem[] = ['gun', 'hafta', 'ay'];
+const varsayilan: Record<string, string> = {};
+for (const d of donemler) {
+  const son = dilimle(kayitlar, d).at(-1);
+  varsayilan[d] = son ? son.son.slice(0, 7) : (aylar.at(-1) ?? '');
+}
+
+const gunAdi = (t: string) => `${Number(t.slice(8, 10))} ${AY_UZUN[Number(t.slice(5, 7)) - 1]} ${t.slice(0, 4)}`;
+
+function etiket(g: TakvimGunu): string {
+  const t = gunAdi(g.tarih);
+  switch (g.tur) {
+    case 'veri':
+      return `${t}: ${g.toplam === null ? 'giriş bilinmiyor' : paraKisa(g.toplam)}`;
+    case 'eksik':
+      return `${t}: ${g.toplam === null ? '' : `${paraKisa(g.toplam)}, `}veri alınamadı`;
+    case 'baslangic':
+      return `${t}: başlangıç günü`;
+    case 'seri-oncesi':
+      return `${t}: seri öncesi`;
+    case 'gelecek':
+      return `${t}: henüz gelmedi`;
+    default:
+      return `${t}: kapanış yok`;
+  }
+}
+
+const bloklar = aylar.map((ay) => {
+  const yil = Number(ay.slice(0, 4));
+  const no = Number(ay.slice(5, 7));
+  const gunler = takvimAyi(kayitlar, yil, no, bugun);
+  const enBuyuk = Math.max(0, ...gunler.map((g) => g.toplam ?? 0));
+  const ilkGun = (new Date(Date.UTC(yil, no - 1, 1)).getUTCDay() + 6) % 7;
+  const hucreler = gunler.map((g) => {
+    const opaklik = g.toplam !== null && enBuyuk > 0 ? 0.15 + 0.85 * (g.toplam / enBuyuk) : g.tur === 'veri' ? 0.15 : 0;
+    return { g, opaklik, etiket: etiket(g), kayit: haritasi.get(g.tarih) };
+  });
+  return { ay, yil, no, ilkGun, hucreler, ad: `${AY_UZUN[no - 1]} ${yil}` };
+});
+
+function neden(kayit: ArsivKaydi, g: ArsivKaydi['girisimler'][number]): string {
+  if (g.veriAlinamadi) return 'Veri alınamadı';
+  if (kayit.baslangic) return 'Başlangıç günü';
+  return 'İlk görülme';
+}
+const varBirikmis = (k: ArsivKaydi) => k.girisimler.some((g) => g.birikmis);
+---
+
+<div class="takvim" data-takvim data-varsayilan={JSON.stringify(varsayilan)} data-aylar={JSON.stringify(aylar)}>
+  <div class="ay-bas">
+    <button type="button" data-takvim-onceki aria-label="Önceki ay">‹</button>
+    <h2 class="ay-ad" aria-live="polite" data-takvim-baslik></h2>
+    <button type="button" data-takvim-sonraki aria-label="Sonraki ay">›</button>
+  </div>
+
+  {
+    bloklar.map((b) => (
+      <section class="ay" data-takvim-ay={b.ay} data-ay-adi={b.ad} hidden aria-label={b.ad}>
+        <div class="izgara gun-adlari" aria-hidden="true">
+          {GUN_KISA.map((g, i) => (
+            <span class:list={['gun-adi', { hs: i >= 5 }]}>{g}</span>
+          ))}
+        </div>
+        <div class="izgara">
+          {Array.from({ length: b.ilkGun }).map(() => (
+            <span class="hucre bos" aria-hidden="true" />
+          ))}
+          {b.hucreler.map(({ g, opaklik, etiket: e, kayit }) => {
+            const no = Number(g.tarih.slice(8, 10));
+            const ic = (
+              <>
+                <span class="no">{no}</span>
+                {g.tur === 'baslangic' && <span class="isaret">B</span>}
+                {g.tur === 'eksik' && <span class="isaret">!</span>}
+              </>
+            );
+            const stil = g.tur === 'veri' || g.tur === 'eksik' ? `--yogunluk:${opaklik.toFixed(3)};color:${opaklik > 0.55 ? '#1d2723' : '#ecefe9'}` : undefined;
+            return kayit ? (
+              <button
+                type="button"
+                class={`hucre tur-${g.tur}`}
+                style={stil}
+                data-takvim-gun={g.tarih}
+                aria-label={e}
+                aria-expanded="false"
+                aria-controls={`gun-detay-${g.tarih}`}
+              >
+                {ic}
+              </button>
+            ) : (
+              <span class={`hucre tur-${g.tur}`} role="img" aria-label={e}>
+                {ic}
+              </span>
+            );
+          })}
+        </div>
+
+        {b.hucreler
+          .filter((h) => h.kayit)
+          .map(({ g, kayit }) => (
+            <div class="detay" id={`gun-detay-${g.tarih}`} data-gun-detay={g.tarih} hidden>
+              <p class="detay-baslik">{gunAdi(g.tarih)}</p>
+              <div class="tablo-kap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th scope="col" class="sol">Kampanya</th>
+                      <th scope="col" class="sol">Platform</th>
+                      <th scope="col" class="sag">Günlük giriş</th>
+                      <th scope="col" class="sag">Toplam</th>
+                      <th scope="col" class="sag">Hedef %</th>
+                      <th scope="col" class="sol">Durum</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {kayit!.girisimler.map((gi) => (
+                      <tr>
+                        <th scope="row" class="sol ad">{gi.ad}</th>
+                        <td class="sol">{platformAd[gi.platform] ?? gi.platform}</td>
+                        <td class="sag sayi">
+                          {gi.bugun === null ? (
+                            <span class="soluk">— <small>{neden(kayit!, gi)}</small></span>
+                          ) : (
+                            <>
+                              {paraTam(gi.bugun)}
+                              {gi.birikmis && <span class="yildiz" title="önceki günle birlikte">*</span>}
+                            </>
+                          )}
+                        </td>
+                        <td class="sag sayi">{paraTam(gi.alinan)}</td>
+                        <td class="sag sayi">{yuzdeBicim(gi.yuzde)}</td>
+                        <td class="sol">{gi.durum}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              {varBirikmis(kayit!) && <p class="dipnot">* önceki günle birlikte</p>}
+            </div>
+          ))}
+      </section>
+    ))
+  }
+
+  <ul class="aciklama" aria-label="Gösterim">
+    <li><span class="ornek renk" style={`background:${SARI}`} aria-hidden="true"></span>Giriş (koyu: yüksek)</li>
+    <li><span class="ornek baslangic" aria-hidden="true">B</span>Başlangıç günü</li>
+    <li><span class="ornek eksik" aria-hidden="true"></span>Veri alınamadı</li>
+    <li><span class="ornek yok" aria-hidden="true"></span>Kapanış yok</li>
+    <li><span class="ornek oncesi" aria-hidden="true"></span>Seri öncesi</li>
+  </ul>
+</div>
+
+<style>
+  .takvim {
+    min-width: 0;
+  }
+  .ay-bas {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .ay-bas button {
+    flex: none;
+    width: 44px;
+    height: 44px;
+    font: 800 1.4rem var(--yazi-baslik, sans-serif);
+    color: var(--tebesir, #ecefe9);
+    background: transparent;
+    border: 1px solid var(--tebesir-cizgi, rgb(236 239 233 / 0.32));
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .ay-bas button:hover:not(:disabled) {
+    border-color: var(--sari, #f2d45c);
+  }
+  .ay-bas button:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+  .ay-ad {
+    margin: 0;
+    font: 800 1.2rem var(--yazi-baslik, sans-serif);
+    letter-spacing: 0.04em;
+    text-align: center;
+  }
+  .ay {
+    min-width: 0;
+  }
+  .ay[hidden],
+  .detay[hidden] {
+    display: none;
+  }
+  .izgara {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 4px;
+    min-width: 0;
+  }
+  .gun-adlari {
+    margin-bottom: 4px;
+  }
+  .gun-adi {
+    text-align: center;
+    font: 700 0.72rem var(--yazi-baslik, sans-serif);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--tebesir-3, rgb(236 239 233 / 0.62));
+  }
+  .hucre {
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-width: 0;
+    min-height: 44px;
+    aspect-ratio: 1 / 1;
+    padding: 4px 5px;
+    font: 700 0.85rem var(--yazi-baslik, sans-serif);
+    font-variant-numeric: tabular-nums;
+    color: var(--tebesir, #ecefe9);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 3px;
+  }
+  .hucre.bos {
+    border: 0;
+  }
+  .tur-kapanis-yok {
+    background: var(--tebesir-ince, rgb(236 239 233 / 0.14));
+    border-color: var(--tebesir-ince, rgb(236 239 233 / 0.14));
+    color: var(--tebesir-2, rgb(236 239 233 / 0.74));
+  }
+  .tur-gelecek {
+    border-color: var(--tebesir-ince, rgb(236 239 233 / 0.14));
+    color: var(--tebesir-3, rgb(236 239 233 / 0.62));
+    opacity: 0.55;
+  }
+  .tur-seri-oncesi {
+    background: transparent;
+    border: 1px dotted rgb(236 239 233 / 0.14);
+    color: rgb(236 239 233 / 0.32);
+  }
+  .tur-veri,
+  .tur-eksik {
+    background: rgb(242 212 92 / var(--yogunluk, 0.15));
+    border-color: rgb(242 212 92 / 0.5);
+  }
+  .tur-eksik {
+    border: 1px dashed var(--tebesir, #ecefe9);
+  }
+  .tur-baslangic {
+    background: repeating-linear-gradient(135deg, rgb(236 239 233 / 0.22) 0 4px, transparent 4px 8px);
+    border-color: var(--tebesir-cizgi, rgb(236 239 233 / 0.32));
+  }
+  button.hucre {
+    cursor: pointer;
+  }
+  button.hucre:hover,
+  button.hucre[aria-expanded='true'] {
+    outline: 2px solid var(--tebesir, #ecefe9);
+    outline-offset: -2px;
+  }
+  .no {
+    line-height: 1;
+  }
+  .isaret {
+    position: absolute;
+    right: 5px;
+    bottom: 3px;
+    font: 800 0.72rem var(--yazi-baslik, sans-serif);
+    line-height: 1;
+  }
+  .detay {
+    margin-top: 12px;
+    padding: 12px 14px;
+    background: var(--tahta-koyu, #151d1a);
+    border: 1px solid var(--tebesir-ince, rgb(236 239 233 / 0.14));
+    border-radius: 4px;
+    min-width: 0;
+  }
+  .detay-baslik {
+    margin: 0 0 8px;
+    font: 800 1rem var(--yazi-baslik, sans-serif);
+  }
+  .tablo-kap {
+    position: relative;
+    overflow-x: auto;
+    max-width: 100%;
+  }
+  table {
+    width: 100%;
+    min-width: 560px;
+    border-collapse: collapse;
+    font: 500 0.9rem / 1.35 var(--yazi-govde, sans-serif);
+    color: var(--tebesir, #ecefe9);
+  }
+  th,
+  td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--tebesir-ince, rgb(236 239 233 / 0.14));
+    vertical-align: middle;
+  }
+  thead th {
+    font: 700 0.72rem var(--yazi-baslik, sans-serif);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--tebesir-3, rgb(236 239 233 / 0.62));
+    border-bottom-color: var(--tebesir-cizgi, rgb(236 239 233 / 0.32));
+    white-space: nowrap;
+  }
+  .sol {
+    text-align: left;
+  }
+  .sag {
+    text-align: right;
+  }
+  .sayi {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  tbody th.ad {
+    font-weight: 700;
+    min-width: 12ch;
+  }
+  .soluk {
+    color: var(--tebesir-3, rgb(236 239 233 / 0.62));
+  }
+  .yildiz {
+    margin-left: 2px;
+    color: var(--sari, #f2d45c);
+  }
+  .dipnot {
+    margin: 8px 0 0;
+    font: 600 0.8rem var(--yazi-baslik, sans-serif);
+    color: var(--tebesir-3, rgb(236 239 233 / 0.62));
+  }
+  .aciklama {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    margin: 14px 0 0;
+    padding: 0;
+    list-style: none;
+    font: 600 0.8rem var(--yazi-baslik, sans-serif);
+    color: var(--tebesir-3, rgb(236 239 233 / 0.62));
+  }
+  .aciklama li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .ornek {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 2px;
+    font-size: 0.65rem;
+    font-weight: 800;
+  }
+  .ornek.baslangic {
+    background: repeating-linear-gradient(135deg, rgb(236 239 233 / 0.22) 0 3px, transparent 3px 6px);
+    border: 1px solid var(--tebesir-cizgi, rgb(236 239 233 / 0.32));
+  }
+  .ornek.eksik {
+    background: rgb(242 212 92 / 0.5);
+    border: 1px dashed var(--tebesir, #ecefe9);
+  }
+  .ornek.yok {
+    background: var(--tebesir-ince, rgb(236 239 233 / 0.14));
+  }
+  .ornek.oncesi {
+    border: 1px dotted rgb(236 239 233 / 0.32);
+  }
+</style>

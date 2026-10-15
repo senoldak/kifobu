@@ -1,0 +1,107 @@
+{
+  "tarih": "2026-11-04",
+  "sayi": 5,
+  "baslangic": false,
+  "girisimler": [
+    {
+      "ad": "ATHLETICLABS",
+      "platform": "fonangels",
+      "url": "https://fonangels.com/kampanyalar/projehakkinda/athleticlabs?pid=1689",
+      "bugun": 0,
+      "alinan": 7602500,
+      "kalan": null,
+      "hedef": 7500000,
+      "degerleme": 75000000,
+      "yuzde": 101.37,
+      "durum": "SONA ERDİ",
+      "veriAlinamadi": false,
+      "birikmis": false
+    },
+    {
+      "ad": "OYLİO",
+      "platform": "fonangels",
+      "url": "https://fonangels.com/kampanyalar/projehakkinda/oylio?pid=1778",
+      "bugun": 76000,
+      "alinan": 3795200,
+      "kalan": 1204800,
+      "hedef": 5000000,
+      "degerleme": 50000000,
+      "yuzde": 75.9,
+      "durum": "son 6 gün",
+      "veriAlinamadi": false,
+      "birikmis": false
+    },
+    {
+      "ad": "PUPAQ",
+      "platform": "trinkfon",
+      "url": "https://kfs.trinkfon.com/projeler/pupaq/kampanya/",
+      "bugun": 0,
+      "alinan": 27882,
+      "kalan": 972150,
+      "hedef": 1000032,
+      "degerleme": 25000800,
+      "yuzde": 2.79,
+      "durum": "SONA ERDİ",
+      "veriAlinamadi": false,
+      "birikmis": false
+    },
+    {
+      "ad": "LOOPYON",
+      "platform": "ecofolio",
+      "url": "https://ecofolio.com.tr/kampanyalar/loopyon",
+      "bugun": 23000,
+      "alinan": 790200,
+      "kalan": 34209800,
+      "hedef": 35000000,
+      "degerleme": 385038504,
+      "yuzde": 2.26,
+      "durum": "son 12 gün",
+      "veriAlinamadi": false,
+      "birikmis": false
+    },
+    {
+      "ad": "NARPOS",
+      "platform": "ardventure",
+      "url": "https://ardventure.com",
+      "bugun": 42000,
+      "alinan": 650000,
+      "kalan": 1350000,
+      "hedef": 2000000,
+      "degerleme": 30000000,
+      "yuzde": 32.5,
+      "durum": "Aktif",
+      "veriAlinamadi": false,
+      "birikmis": false
+    }
+  ],
+  "platformlar": [
+    {
+      "anahtar": "fonangels",
+      "ad": "fonangels",
+      "renk": "#f47b3d",
+      "bugun": 76000,
+      "toplam": 11397700
+    },
+    {
+      "anahtar": "trinkfon",
+      "ad": "trinkfon",
+      "renk": "#7c3aed",
+      "bugun": 0,
+      "toplam": 27882
+    },
+    {
+      "anahtar": "ecofolio",
+      "ad": "ecofolio",
+      "renk": "#009bae",
+      "bugun": 23000,
+      "toplam": 790200
+    },
+    {
+      "anahtar": "ardventure",
+      "ad": "ardventure",
+      "renk": "#e07a5f",
+      "bugun": 42000,
+      "toplam": 650000
+    }
+  ]
+}

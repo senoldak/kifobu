@@ -1,0 +1,97 @@
+---
+import type { ArsivKaydi, Donem } from '../../lib/arsiv/tipler.ts';
+import { ozetHesapla } from '../../lib/arsiv/hesap.ts';
+import { paraKisa, yuzdeBicim, degisimBicim } from '../../lib/arsiv/bicim.ts';
+
+interface Props {
+  kayitlar: ArsivKaydi[];
+}
+
+const { kayitlar } = Astro.props;
+const donemler: Donem[] = ['gun', 'hafta', 'ay'];
+const bloklar = donemler.map((d) => ({ donem: d, ozet: ozetHesapla(kayitlar, d) }));
+const para = (n: number | null) => paraKisa(n);
+---
+
+{
+  bloklar.map(({ donem, ozet }) => (
+    <div class="ozet" data-donem-blok={donem} hidden={donem !== 'gun'}>
+      <div class="kutu">
+        <p class="kutu-etiket">Dönem toplamı</p>
+        <p class="kutu-deger">{para(ozet.donemToplami)}</p>
+        <p class:list={['kutu-alt', ozet.degisimYuzde !== null && (ozet.degisimYuzde < 0 ? 'asagi' : 'yukari')]}>
+          {degisimBicim(ozet.degisimYuzde)}
+          {ozet.degisimYuzde !== null && ozet.donemSuruyor && ' · dönem sürüyor'}
+        </p>
+      </div>
+      <div class="kutu">
+        <p class="kutu-etiket">Günlük ort.</p>
+        <p class="kutu-deger">{para(ozet.gunlukOrtalama)}</p>
+      </div>
+      <div class="kutu">
+        <p class="kutu-etiket">Aktif kampanya</p>
+        <p class="kutu-deger">{ozet.aktifKampanya}</p>
+        <p class="kutu-alt">{ozet.sonaEren} sona erdi</p>
+      </div>
+      <div class="kutu">
+        <p class="kutu-etiket">Platform</p>
+        <p class="kutu-deger">{ozet.platformPaylari.length}</p>
+        <p class="kutu-alt">
+          {ozet.platformPaylari.length > 0
+            ? ozet.platformPaylari.map((p) => `${p.ad} ${yuzdeBicim(p.pay * 100)}`).join(' · ')
+            : '—'}
+        </p>
+      </div>
+    </div>
+  ))
+}
+
+<style>
+  .ozet {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .ozet[hidden] {
+    display: none;
+  }
+  .kutu {
+    min-width: 0;
+    padding: 12px 14px;
+    background: var(--tahta-koyu, #151d1a);
+    border: 1px solid var(--tebesir-ince, rgb(236 239 233 / 0.14));
+    border-radius: 4px;
+  }
+  .kutu p {
+    margin: 0;
+  }
+  .kutu-etiket {
+    font: 700 0.74rem var(--yazi-baslik, sans-serif);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--tebesir-3, rgb(236 239 233 / 0.62));
+  }
+  .kutu-deger {
+    margin-top: 4px;
+    font: 700 clamp(1.5rem, 3vw, 2.1rem) / 1.1 var(--yazi-tahta, sans-serif);
+    font-variant-numeric: tabular-nums;
+    color: var(--tebesir, #ecefe9);
+  }
+  .kutu-alt {
+    margin-top: 4px;
+    font: 600 0.84rem var(--yazi-baslik, sans-serif);
+    color: var(--tebesir-2, rgb(236 239 233 / 0.74));
+    overflow-wrap: anywhere;
+  }
+  .kutu-alt.yukari {
+    color: var(--sari, #f2d45c);
+  }
+  .kutu-alt.asagi {
+    color: var(--pembe, #f19bb0);
+  }
+  @media (max-width: 720px) {
+    .ozet {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

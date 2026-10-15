@@ -1,0 +1,31 @@
+---
+// Künye bandı: her haberin dibindeki çizgili satır (kategori · platform · tarih · tutar).
+import Isaret from './Isaret.astro';
+import { categoryName, formatDate, formatTime, formatMoneyShort, percentOf } from '../lib/site';
+import type { Haber } from '../lib/news';
+
+interface Props {
+  haber: Haber;
+  showCategory?: boolean;
+  withTime?: boolean;
+}
+
+const { haber, showCategory = true, withTime = false } = Astro.props;
+const d = haber.data;
+const pct = percentOf(d.toplanan, d.hedef);
+---
+
+<div class="kunye">
+  {showCategory && <a class="kunye-kategori" href={`/${d.category}/`}>{categoryName(d.category)}</a>}
+  {(d.platform ?? d.tur) && <span>{d.platform ?? d.tur}</span>}
+  <time datetime={d.date.toISOString()}>{withTime ? formatTime(d.date) : formatDate(d.date)}</time>
+  {
+    d.toplanan !== undefined && (
+      <span class="kunye-tutar">
+        <Isaret durum={d.durum} size={16} />
+        <b>{formatMoneyShort(d.toplanan, d.paraBirimi)}</b>
+        {pct !== undefined && <span class="kunye-yuzde">%{pct}</span>}
+      </span>
+    )
+  }
+</div>

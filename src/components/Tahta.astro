@@ -1,0 +1,185 @@
+---
+// Seans tahtası: kampanya künyesi olan haberleri tebeşirle yazılmış satırlar olarak gösterir.
+import Isaret from './Isaret.astro';
+import { formatMoney, formatMoneyShort, formatNumber, formatTime, ilkYatirimci, paraSimgesi, percentOf } from '../lib/site';
+import { newsUrl, type Haber } from '../lib/news';
+
+interface Props {
+  rows: Haber[];
+  /** Tahtanın başlığı (ekran okuyucu ve görünür etiket) */
+  title?: string;
+  /** Toplamı anıtsal rakam olarak yaz */
+  showTotal?: boolean;
+  breaking?: Haber[];
+  /** Hedef ve yüzde sütunları olmadan, masaüstünde yan yana 3 tablo; mobilde ilk 3 satır, gerisi açılır */
+  kompakt?: boolean;
+}
+
+const { rows, title = 'Bugün', showTotal = true, breaking = [], kompakt = false } = Astro.props;
+// Hedefine ulaşamadan kapanan kampanyaların parası iade edilir; toplama katılmaz.
+const counted = rows.filter((h) => h.data.durum !== 'basarisiz');
+// Farklı para birimleri toplanamaz: anıtsal rakam en çok satırı olan birimin toplamı, diğerleri altta yazılır.
+const birimler = new Map<string, { adet: number; toplam: number }>();
+for (const h of counted) {
+  const b = birimler.get(h.data.paraBirimi) ?? { adet: 0, toplam: 0 };
+  b.adet++;
+  b.toplam += h.data.toplanan ?? 0;
+  birimler.set(h.data.paraBirimi, b);
+}
+const sirali = [...birimler.entries()].sort((a, b) => b[1].adet - a[1].adet || b[1].toplam - a[1].toplam);
+const [anaBirim = 'TRY', ana = { adet: 0, toplam: 0 }] = sirali[0] ?? [];
+const digerleri = sirali.slice(1);
+const total = ana.toplam;
+// Platform sütunu: kampanyada platform, yatırım turunda yatırımcılar.
+const ikinci = (h: Haber) => h.data.platform ?? ilkYatirimci(h.data.yatirimcilar);
+const platforms = new Set(counted.map((h) => h.data.platform).filter(Boolean));
+const yatirim = counted.some((h) => !h.data.platform);
+// Tahta birkaç güne yayılabilir; toplamın hangi tarihleri kapsadığını açıkça yaz.
+const latest = rows[0]?.data.date;
+const oldest = rows[rows.length - 1]?.data.date;
+const day = (d: Date) => d.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', timeZone: 'Europe/Istanbul' });
+const span = latest && oldest ? (day(latest) === day(oldest) ? day(latest) : `${day(oldest)} – ${day(latest)}`) : '';
+// Taslak satırlar yalnızca yerelde görünür; tahtada örnek veri olduğunu açıkça yaz.
+const hasSample = rows.some((h) => h.data.draft);
+// Kompakt tahtada satırlar 3 tabloya sırayla bölünür (soldan sağa, yukarıdan aşağı okunur).
+const parcaBoyu = Math.ceil(rows.length / 3);
+const parcalar = [0, 1, 2].map((n) => rows.slice(n * parcaBoyu, (n + 1) * parcaBoyu)).filter((p) => p.length);
+const id = `tahta-${title.toLocaleLowerCase('tr-TR').replace(/[^a-z0-9ğüşıöç]+/g, '-')}`;
+---
+
+<section class="tahta" aria-labelledby={id}>
+  {
+    showTotal && rows.length > 0 && (
+      <div class="tahta-bas">
+        <div class="tahta-toplam-blok">
+          <h2 class="sr-only" id={id}>
+            {title}
+          </h2>
+          <p class="tahta-toplam" style={`--i:${rows.length}`}>
+            <span class="tl">{paraSimgesi(anaBirim)}</span>
+            {formatNumber(total)}
+          </p>
+          <p class="tahta-alt">
+            {span}: tahtadaki {ana.adet} {yatirim ? 'haberde' : 'kampanyada'} toplanan
+            {digerleri.map(([pb, b]) => <> · ayrıca {formatMoneyShort(b.toplam, pb)}</>)}
+            {platforms.size > 0 && <> · {platforms.size} platform</>}
+            {counted.length < rows.length && <> · iade edilen kampanyalar hariç</>}
+            {latest && <> · son yazım {formatTime(latest)}</>}
+            {hasSample && <span class="ornek-veri">Örnek veri</span>}
+          </p>
+        </div>
+        <ul class="tahta-lejant" aria-label="İşaretler">
+          <li><Isaret durum="yeni" size={18} /> Yeni açıldı</li>
+          <li><Isaret durum="suruyor" size={18} /> Sürüyor</li>
+          <li><Isaret durum="basarili" size={18} /> Hedefe ulaştı</li>
+          <li><Isaret durum="basarisiz" size={18} /> Hedefsiz kapandı</li>
+        </ul>
+      </div>
+    )
+  }
+  {
+    !showTotal && (
+      <h2 class="sr-only" id={id}>
+        {title}
+      </h2>
+    )
+  }
+  {!showTotal && hasSample && <p class="tahta-alt tahta-alt-ust"><span class="ornek-veri">Örnek veri</span></p>}
+
+  {
+    rows.length > 0 && kompakt ? (
+      <div class="tahta-uclu" data-uclu>
+        {parcalar.map((parca, n) => (
+          <table class="tahta-tablo tahta-kompakt">
+            <thead>
+              <tr>
+                <th scope="col">Girişim</th>
+                <th scope="col" class="sag">Toplanan</th>
+              </tr>
+            </thead>
+            <tbody>
+              {parca.map((h, i) => {
+                const d = h.data;
+                return (
+                  <tr class={`durum-${d.durum ?? 'yok'}`} style={`--i:${n * parcaBoyu + i}`}>
+                    <th scope="row" class="k-girisim">
+                      <a href={newsUrl(h)}>{d.girisim}</a>
+                      {ikinci(h) && <span class="platform-m">{ikinci(h)}</span>}
+                    </th>
+                    <td class="sag rakam">{formatMoney(d.toplanan!, d.paraBirimi)}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        ))}
+        {rows.length > 3 && (
+          <button type="button" class="tahta-ac" aria-expanded="false" data-uclu-ac>
+            Tümünü göster ({rows.length})
+          </button>
+        )}
+      </div>
+    ) : rows.length > 0 ? (
+      <table class="tahta-tablo">
+        <thead>
+          <tr>
+            <th scope="col"><span class="sr-only">Durum</span></th>
+            <th scope="col">Girişim</th>
+            <th scope="col" class="k-platform">{yatirim ? 'Platform / yatırımcı' : 'Platform'}</th>
+            <th scope="col" class="sag">Toplanan</th>
+            <th scope="col" class="sag k-hedef">Hedef</th>
+            <th scope="col" class="sag">%</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((h, i) => {
+            const d = h.data;
+            const pct = percentOf(d.toplanan, d.hedef);
+            return (
+              <tr class={`durum-${d.durum ?? 'yok'}`} style={`--i:${i}`}>
+                <td class="k-isaret">
+                  <Isaret durum={d.durum} />
+                </td>
+                <th scope="row" class="k-girisim">
+                  <a href={newsUrl(h)}>{d.girisim}</a>
+                  {ikinci(h) && <span class="platform-m">{ikinci(h)}</span>}
+                </th>
+                <td class="k-platform">{ikinci(h)}</td>
+                <td class="sag rakam">{formatMoney(d.toplanan!, d.paraBirimi)}</td>
+                <td class="sag rakam k-hedef">{d.hedef ? formatMoney(d.hedef, d.paraBirimi) : '—'}</td>
+                <td class="sag rakam k-yuzde">{pct ?? '—'}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    ) : (
+      <p class="tahta-bos">Tahta bugün boş. İlk kampanya kaydı girildiğinde burada tebeşirle yazılacak.</p>
+    )
+  }
+
+  {
+    breaking.length > 0 && (
+      <div class="tahta-son-dakika" role="region" aria-label="Son dakika">
+        <span class="son-dakika-etiket">Son dakika</span>
+        <ul>
+          {breaking.map((h) => (
+            <li>
+              <a href={newsUrl(h)}>{h.data.title}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
+</section>
+
+<script>
+  // Mobilde kompakt tahtanın ilk 3 satırından sonrası düğmeyle açılır.
+  for (const btn of document.querySelectorAll<HTMLButtonElement>('[data-uclu-ac]')) {
+    btn.addEventListener('click', () => {
+      btn.closest('[data-uclu]')?.classList.add('acik');
+      btn.setAttribute('aria-expanded', 'true');
+    });
+  }
+</script>

@@ -1,0 +1,250 @@
+---
+import { Image, getImage } from 'astro:assets';
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import HaberSatiri from '../../components/HaberSatiri.astro';
+import Kunye from '../../components/Kunye.astro';
+import Isaret from '../../components/Isaret.astro';
+import SentezBlok from '../../components/SentezBlok.astro';
+import { SITE, DURUMLAR, RISK_NOTU, categoryName, formatDate, formatMoney, formatNumber, percentOf, type Durum } from '../../lib/site';
+import { getNews, gorselVar, isFunding, type Haber } from '../../lib/news';
+import { indekslenir } from '../../lib/indeks';
+import { matchEntities } from '../../lib/entities';
+import { kapakAlt, kapakUrl, KAPAK_G, KAPAK_Y } from '../../kapak/ciz';
+
+export async function getStaticPaths() {
+  const news = await getNews();
+  return news.map((haber) => ({
+    params: { id: haber.id },
+    props: { haber, related: news.filter((h) => h !== haber && h.data.category === haber.data.category).slice(0, 3) },
+  }));
+}
+
+interface Props {
+  haber: Haber;
+  related: Haber[];
+}
+
+const { haber, related } = Astro.props;
+const d = haber.data;
+const { title, description, date, category, cover, coverAlt, author } = d;
+const { Content } = await render(haber);
+const funding = isFunding(haber);
+// Kapsam dışı ya da 120 kelimeden kısa haber: sayfa kalır, arama motorlarına kapalıdır (noindex, follow).
+const noindex = !indekslenir({ draft: d.draft, noindex: d.noindex, govde: haber.body });
+const pct = percentOf(d.toplanan, d.hedef);
+
+// Kapak resmi yoksa haberin künyesinden çizilen kapak kullanılır (paylaşım görseli dahil).
+// Eski haberlerde görsel üretilmez (bkz. gorselVar).
+const gorsel = gorselVar(date);
+const coverImg = gorsel && cover ? await getImage({ src: cover, width: 1200, format: 'jpeg' }) : undefined;
+const ogImage = !gorsel ? '/og-default.png' : coverImg ? coverImg.src : kapakUrl(haber);
+const ogW = coverImg ? Number(coverImg.attributes.width) || 1200 : gorsel ? KAPAK_G : 1200;
+const ogH = coverImg ? Number(coverImg.attributes.height) || 630 : gorsel ? KAPAK_Y : 630;
+const ogAlt = cover ? (coverAlt ?? title) : kapakAlt(haber);
+const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
+const share = encodeURIComponent(pageUrl);
+const shareText = encodeURIComponent(title);
+
+const siteUrl = new URL('/', Astro.site).href;
+const orgRef = { '@id': `${siteUrl}#organization` };
+const categoryUrl = new URL(`/${category}/`, Astro.site).href;
+const headline = title.length > 110 ? `${title.slice(0, 109).trimEnd()}…` : title;
+const isoDate = date.toISOString();
+
+const entities = matchEntities(`${title} ${description} ${haber.body ?? ''}`);
+
+const articleSchema: Record<string, any> = {
+  '@type': 'NewsArticle',
+  '@id': `${pageUrl}#article`,
+  headline,
+  description,
+  datePublished: isoDate,
+  dateModified: isoDate,
+  // Varsayılan imza (kifobu) yayın kuruluşunun kendisidir; kişi uydurulmaz.
+  author: author === SITE.name ? orgRef : { '@type': 'Person', name: author },
+  publisher: {
+    '@type': 'NewsMediaOrganization',
+    '@id': `${siteUrl}#organization`,
+    name: SITE.name,
+    url: siteUrl,
+    publishingPrinciples: new URL('/yayin-ilkeleri/', Astro.site).href,
+    correctionsPolicy: new URL('/yayin-ilkeleri/#duzeltmeler', Astro.site).href,
+    knowsAbout: ['Kitle Fonlama', 'Girişimcilik', 'Yatırım', 'Girişim Sermayesi', 'SPK'],
+  },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': pageUrl },
+  url: pageUrl,
+  articleSection: categoryName(category),
+  inLanguage: 'tr-TR',
+  isAccessibleForFree: true,
+  isPartOf: { '@id': `${siteUrl}#website` },
+  image: [
+    {
+      '@type': 'ImageObject',
+      url: new URL(ogImage, Astro.site).href,
+      width: ogW,
+      height: ogH,
+    },
+  ],
+};
+
+if (entities.length > 0) {
+  articleSchema.about = entities;
+}
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    articleSchema,
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Anasayfa', item: siteUrl },
+        { '@type': 'ListItem', position: 2, name: categoryName(category), item: categoryUrl },
+        { '@type': 'ListItem', position: 3, name: headline, item: pageUrl },
+      ],
+    },
+  ],
+};
+---
+
+<Base title={title} description={description} image={ogImage} imageWidth={ogW} imageHeight={ogH} imageAlt={ogAlt} type="article" noindex={noindex}>
+  <Fragment slot="head">
+    <meta property="article:published_time" content={isoDate} />
+    <meta property="article:modified_time" content={isoDate} />
+    <meta property="article:section" content={categoryName(category)} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </Fragment>
+
+  <article class="makale">
+    <header class="makale-bas">
+      <h1>{title}</h1>
+      <p class="makale-spot">{description}</p>
+      <p class="makale-imza">
+        <a href={`/${category}/`}>{categoryName(category)}</a>
+        <span>{author}</span>
+        <time datetime={date.toISOString()}>{formatDate(date, true)}</time>
+      </p>
+    </header>
+
+    <SentezBlok whyMatters={d.why_matters} keyPoints={d.key_points} />
+
+    {
+      gorsel && (
+        <figure class="makale-gorsel">
+          {cover ? (
+            <Image src={cover} alt={coverAlt ?? title} width={1200} loading="eager" fetchpriority="high" decoding="async" />
+          ) : (
+            <img src={kapakUrl(haber)} alt={kapakAlt(haber)} width={KAPAK_G} height={KAPAK_Y} loading="eager" fetchpriority="high" decoding="async" />
+          )}
+          {cover && coverAlt && <figcaption>{coverAlt}</figcaption>}
+        </figure>
+      )
+    }
+
+    <div class="metin">
+      <Content />
+    </div>
+
+    {
+      funding && (
+        <section class="kampanya-kunyesi tahta-zemin" aria-label="Kampanya künyesi">
+          <dl>
+            <div class="kk-girisim">
+              <dt>Girişim</dt>
+              <dd>{d.girisim}</dd>
+            </div>
+            {d.platform && (
+              <div>
+                <dt>Platform</dt>
+                <dd class="kk-platform">{d.platform}</dd>
+              </div>
+            )}
+            <div class="kk-toplanan">
+              <dt>Toplanan</dt>
+              <dd class="tk-toplanan">{formatMoney(d.toplanan!, d.paraBirimi)}</dd>
+            </div>
+            {d.tur && (
+              <div>
+                <dt>Tur</dt>
+                <dd>{d.tur}</dd>
+              </div>
+            )}
+            {d.yatirimcilar && (
+              <div class="kk-genis">
+                <dt>Yatırımcılar</dt>
+                <dd class="kk-yatirimcilar">{d.yatirimcilar}</dd>
+              </div>
+            )}
+            {d.hedef && (
+              <div>
+                <dt>Hedef</dt>
+                <dd>{formatMoney(d.hedef, d.paraBirimi)}</dd>
+              </div>
+            )}
+            {pct !== undefined && (
+              <div>
+                <dt>Gerçekleşme</dt>
+                <dd>%{pct}</dd>
+              </div>
+            )}
+            {d.yatirimci !== undefined && (
+              <div>
+                <dt>Yatırımcı</dt>
+                <dd>{formatNumber(d.yatirimci)}</dd>
+              </div>
+            )}
+            {d.durum && (
+              <div class="kk-durum">
+                <dt>Durum</dt>
+                <dd>
+                  <Isaret durum={d.durum} size={20} /> {DURUMLAR[d.durum as Durum]}
+                </dd>
+              </div>
+            )}
+          </dl>
+          <p class="kk-risk">{RISK_NOTU}</p>
+        </section>
+      )
+    }
+
+    {
+      d.kaynakUrl && (
+        <p class="kaynak-notu">
+          Kaynak:{' '}
+          <a href={d.kaynakUrl} rel="noopener noreferrer" target="_blank">
+            {d.kaynakAd ?? new URL(d.kaynakUrl).hostname}
+          </a>
+        </p>
+      )
+    }
+
+    <footer class="makale-son">
+      <Kunye haber={haber} withTime />
+      <p class="paylas">
+        <span>Paylaş</span>
+        <a href={`https://x.com/intent/post?url=${share}&text=${shareText}`} target="_blank" rel="noopener noreferrer">X</a>
+        <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${share}`} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href={`https://wa.me/?text=${shareText}%20${share}`} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </p>
+    </footer>
+  </article>
+
+  {
+    related.length > 0 && (
+      <section class="bolum" aria-labelledby="ilgili">
+        <div class="bolum-bas">
+          <h2 class="bolum-baslik" id="ilgili">
+            {categoryName(category)} bölümünden
+          </h2>
+          <a href={`/${category}/`}>Tümü</a>
+        </div>
+        <div class="satir-izgara">
+          {related.map((h) => (
+            <HaberSatiri haber={h} showCategory={false} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+</Base>
