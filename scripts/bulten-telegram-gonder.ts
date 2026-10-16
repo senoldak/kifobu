@@ -53,6 +53,13 @@ if (fs.existsSync(metinPath)) {
   caption = `🌻 Kitle Fonlama Ekosisteminde Bugün \n\n🗓 ${BULTEN.tarih} / ${BULTEN.sayi}\n\nBugünkü bültende:\n• Yatırım turlarından öne çıkan detaylar\n• Girişimlerden güncel gelişmeler\n• Kitle fonlama ekosisteminden istatistikler ve analizler\n\n🔗 https://kifobu.com/gunluk-bulten/\n\n#kitlefonlama #crowdfunding #girişim #startup #yatırım`;
 }
 
+// Bağlantı: o günün sayfası canlıysa ona, değilse genel bülten sayfasına; kanala özgü UTM ile.
+const { istanbulGunu } = await import("../src/lib/gunler.ts");
+const { bultenBaglantisi, metinBaglantisiniDegistir } = await import("../src/lib/paylasim.ts");
+const baglanti = await bultenBaglantisi("telegram", istanbulGunu(new Date()));
+console.log(`[TELEGRAM] Bağlantı: ${baglanti.gunSayfasi ? "günün bülten sayfası" : "genel bülten sayfası (günün sayfası canlıda yok)"}`);
+caption = metinBaglantisiniDegistir(caption, baglanti.url);
+
 function scrubSecrets(msg: string): string {
   if (!botToken) return msg;
   return msg.replaceAll(botToken, '[REDACTED_BOT_TOKEN]');
