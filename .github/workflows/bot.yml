@@ -36,6 +36,7 @@ jobs:
         id: bot
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_KULLANIM_DOSYASI: ${{ runner.temp }}/gemini-kullanim.json
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
           EN_FAZLA: ${{ vars.EN_FAZLA }}
           KAPSAM: ${{ vars.KAPSAM }}
@@ -80,3 +81,13 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run yayinla.yml --ref "${{ github.ref_name }}"
+
+      # Katman 0 (Gemini kota planı): bu işin Gemini kullanımını model ve amaç başına mecmua-saat'e bildirir. İşi düşürmez.
+      - name: Gemini kullanımını saate bildir
+        if: always()
+        continue-on-error: true
+        env:
+          GEMINI_KULLANIM_DOSYASI: ${{ runner.temp }}/gemini-kullanim.json
+          MOTOR_URL: ${{ vars.MOTOR_URL }}
+          MOTOR_ANAHTARI: ${{ secrets.MOTOR_ANAHTARI }}
+        run: node scripts/bot/gemini-rapor.mjs kifobu

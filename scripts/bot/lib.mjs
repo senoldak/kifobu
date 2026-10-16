@@ -2,7 +2,7 @@
 // tidsrost'un botundan uyarlandı (scripts/nyheter/lib.mjs); paket gerektirmez, sadece Node 22.
 import { mkdir, readFile, readdir, writeFile, access } from 'node:fs/promises';
 import path from 'node:path';
-import { kullanimEkle } from './kullanim.mjs';
+import { kullanimEkle, hataEkle, amacBul } from './kullanim.mjs';
 
 export const USER_AGENT = 'kifobu-bot/1.0 (+https://kifobu.com; iletisim@kifobu.com)';
 
@@ -169,6 +169,7 @@ export async function gemini({ prompt, schema, dusunme: seviye = 'low' }) {
   const modeller = [process.env.GEMINI_MODEL || 'gemini-flash-lite-latest', process.env.GEMINI_YEDEK_MODEL || 'gemini-flash-latest'];
   const carpan = Number(process.env.GEMINI_BEKLE_CARPAN ?? 1);
   const enFazla = geminiKesik ? 2 : GEMINI_BEKLEMELER_SN.length + 1;
+  const amac = amacBul(); // Katman 0: çağıran dosya/fonksiyon
 
   // Düşünme seviyesini düşük tutmak cevabı çok hızlandırıyor; desteklemeyen modelde kapatılır.
   let dusunme = { thinkingLevel: seviye };
@@ -195,6 +196,7 @@ export async function gemini({ prompt, schema, dusunme: seviye = 'low' }) {
       continue;
     }
     if (res.status === 429 || res.status >= 500) {
+      hataEkle(model, amac, res.status);
       console.warn(`  Gemini ${res.status} (${model}), ${deneme}. deneme; bekleniyor...`);
       if (deneme < enFazla) await sleep(GEMINI_BEKLEMELER_SN[deneme - 1] * 1000 * carpan);
       continue;
@@ -212,7 +214,7 @@ export async function gemini({ prompt, schema, dusunme: seviye = 'low' }) {
     }
     geminiKesik = false;
     const data = await res.json();
-    kullanimEkle(data.usageMetadata);
+    kullanimEkle(data.usageMetadata, { model, amac });
     const metin = data.candidates?.[0]?.content?.parts?.map((p) => p.text).join('') ?? '';
     return JSON.parse(metin);
   }
