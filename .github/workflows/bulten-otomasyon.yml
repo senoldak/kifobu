@@ -42,6 +42,7 @@ jobs:
       # Kapanış yalnızca mod=kapanis ile (saat Worker'ı Türkiye 18:00'de gönderir; elle de seçilebilir). UTC saatine bakılmaz:
       # kış saatinde Oslo 16:00 canlı güncellemesi de UTC 15'e düşüp ikinci bir kapanış üretirdi.
       - name: Bülten Botunu Çalıştır
+        id: bot
         env:
           MOD: ${{ github.event.inputs.mod }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -73,15 +74,8 @@ jobs:
             # Güncel görselleri public klasörüne de kopyala (siteden ve sosyal medya botundan doğrudan erişilebilir olsun)
             cp dist-bulten/bulten-post.png public/bulten-post.png
             cp dist-bulten/bulten-story.png public/bulten-story.png
-            if [ -n "$TELEGRAM_BOT_TOKEN" ] && [ -n "$TELEGRAM_CHAT_ID" ]; then
-              echo "Telegram kanalına bülten post görseli gönderiliyor..."
-              npm run bulten:telegram
-            fi
-            if [ -n "$LINKEDIN_ACCESS_TOKEN" ] && [ -n "$LINKEDIN_PERSON_URN" ]; then
-              echo "LinkedIn'e bülten post görseli gönderiliyor..."
-              # LinkedIn hatası bülteni durdurmasın; yoksa commit adımı atlanır ve site bülteni güncellenmez.
-              npm run bulten:linkedin || echo "::warning::LinkedIn paylaşımı başarısız"
-            fi
+            # Paylaşım, günün kalıcı sayfası yayına girdikten sonra ayrı adımda yapılır (aşağıda "Sosyal medyada paylaş").
+            echo "paylas=1" >> "$GITHUB_OUTPUT"
           elif [ "$GECERLI_MOD" = "linkedin-test" ]; then
             echo "LinkedIn Bülten Gönderim Testi çalıştırılıyor..."
             npm run bulten:gorsel
@@ -128,3 +122,31 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run yayinla.yml --ref "${{ github.ref_name }}"
+
+      # Telegram/LinkedIn bağlantısı o günün kalıcı sayfasına (/gunluk-bulten/YYYY-AA-GG/) gider. Sayfa yayına girene kadar
+      # en fazla 15 dakika beklenir; girmezse betikler genel bülten sayfasına düşer.
+      - name: Sosyal medyada paylaş
+        if: steps.bot.outputs.paylas == '1'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          LINKEDIN_PERSON_URN: ${{ secrets.LINKEDIN_PERSON_URN }}
+          LINKEDIN_ORGANIZATION_URN: ${{ secrets.LINKEDIN_ORGANIZATION_URN }}
+        run: |
+          GUN=$(TZ=Europe/Istanbul date +%F)
+          for i in $(seq 1 30); do
+            if [ "$(curl -s -o /dev/null -w '%{http_code}' -I "https://kifobu.com/gunluk-bulten/$GUN/")" = "200" ]; then
+              echo "Gün sayfası yayında."
+              break
+            fi
+            sleep 30
+          done
+          if [ -n "$TELEGRAM_BOT_TOKEN" ] && [ -n "$TELEGRAM_CHAT_ID" ]; then
+            echo "Telegram kanalına bülten post görseli gönderiliyor..."
+            npm run bulten:telegram || echo "::warning::Telegram paylaşımı başarısız"
+          fi
+          if [ -n "$LINKEDIN_ACCESS_TOKEN" ] && [ -n "$LINKEDIN_PERSON_URN" ]; then
+            echo "LinkedIn'e bülten post görseli gönderiliyor..."
+            npm run bulten:linkedin || echo "::warning::LinkedIn paylaşımı başarısız"
+          fi
