@@ -79,6 +79,43 @@ ${metinler}`;
   return gemini({ prompt, schema: TASLAK_SEMASI });
 }
 
+// Tema derlemesi (havuz.mjs): aynı kategoriden, tek başına uzunluk denetimini geçemeyen kısa haberler tek yazıda toplanır.
+// kaynak: havuz.mjs → derlemeKaynagi (her haber kendi bölümünde). Derlemede künye yoktur (tek bir yatırımı anlatmaz).
+const DERLEME_SEMASI = {
+  type: 'object',
+  properties: {
+    title: TASLAK_SEMASI.properties.title,
+    description: TASLAK_SEMASI.properties.description,
+    body: { type: 'string', description: 'Markdown, 250-400 kelime; her haber için ### ara başlıklı kısa bir bölüm' },
+    why_matters: TASLAK_SEMASI.properties.why_matters,
+    key_points: TASLAK_SEMASI.properties.key_points,
+  },
+  required: ['title', 'description', 'body'],
+};
+
+export function derlemeIstemi(grup, kaynak) {
+  const kategori = grup[0]?.kategori ?? 'yatirimlar';
+  return `Sen kifobu'nun muhabirisin. Aşağıda "${kategori}" kategorisinden ${grup.length} kısa haber var; her biri tek başına tam bir haber taşıyacak kadar kaynak içermiyor.
+Bunları tek bir Türkçe derleme haberinde topla (category="${kategori}"):
+- title: haberlerin ortak temasını anlatan başlık; okurun arayacağı kelimeyle (konu, platform, kurum) başlar, iki noktalı önek yok, tek bir haberi öne çıkarmaz.
+- description: derlemenin ana noktası, 1-2 cümle.
+- body: 250-400 kelime. Her haber için "### " ile başlayan kısa bir ara başlık ve 1-2 paragraf; ara başlık o haberin öznesiyle (girişim, platform, kurum) başlar ve önce rakamları verir.
+  Her bölüm YALNIZCA o haberin bölümündeki kaynak olgularla yazılır; haberler arasında bilgi taşıma. Kaynağında yeterli bilgi olmayan haberi yazma; uydurma ve dolgu cümlesi ekleme.
+- why_matters: bu gelişmelerin birlikte ekosistem için ne anlattığı, 1-2 cümle.
+
+${YAZIM_KURALLARI}
+
+HABERLER:
+${kaynak}`;
+}
+
+// Döner: derleme taslağı ({ title, description, body, category, why_matters?, key_points? }) ya da null.
+export async function derlemeYaz(grup, kaynak) {
+  const t = await gemini({ prompt: derlemeIstemi(grup, kaynak), schema: DERLEME_SEMASI });
+  if (!t?.title || !t?.body) return null;
+  return { ...t, category: grup[0].kategori };
+}
+
 // Ön eleme ve haber değeri tek çağrıda: 0 = kifobu'ya uygun değil, 1–5 = haber değeri.
 // Türkiye kaynaklı olaylar MIN_DEGER'le, yalnız yabancı kaynaklı olaylar MIN_DEGER_KURESEL'le geçer
 // (dünyadan yalnız önemli kitle fonlama ve girişim yatırımı haberleri). 5 iken site bir gün boyunca hiç yazı

@@ -15,13 +15,14 @@ import { writeFile, appendFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { KAYNAKLAR, anahtarlar, baslikTemiz, benzer, tamMetin } from './kaynaklar.mjs';
-import { MIN_DEGER, MIN_DEGER_KURESEL, onbellekliPuanla, taslakYaz } from './yazar.mjs';
+import { MIN_DEGER, MIN_DEGER_KURESEL, onbellekliPuanla, taslakYaz, derlemeYaz } from './yazar.mjs';
 import { HAFIZA_SAAT, hafizaKur, kayitKur, tekrarBul } from './tekrar.mjs';
 import { ciftleriKur, onbellekliEsle, ozelAdlar, uygula } from './esleme.mjs';
 import { denetle } from './denetci.mjs';
 import { adNorm, haberYaz, hentTekst, istanbulIso, jsonOku, rssOku, sonHaberler } from './lib.mjs';
 import { adresiSil, anahtarVar, gizliId, kaynakIzi } from './gizli.mjs';
 import { medyaGizle } from './yerel.mjs';
+import { havuzOlayi, havuzAc, havuzKapat, havuzuIsle } from './havuz.mjs';
 
 const ROT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const DURUM_DOSYASI = path.join(ROT, 'scripts/bot/gorulen.json');
@@ -85,6 +86,8 @@ const grupAnahtar = (g) => grupKimligi(g.uyeler.map((u) => u.id));
 const yazilmis = await sonHaberler(ROT, 10);
 // Mükerrer kalkanı (tekrar.mjs): son HAFIZA_SAAT saatte yayımlanmış haberlerin başlık ve özel adları.
 const hafiza = hafizaKur(yazilmis, simdi.valueOf());
+// Uzunluk yüzünden yayımlanmayan, eş bekleyen kısa haberler (havuz.mjs); kayıt başına şifreli.
+let havuz = havuzAc(durum.havuz ?? []);
 const tekrarMi = (baslik, nerede) => {
   const t = tekrarBul(baslik, hafiza);
   if (t) console.log(`zaten yazıldı (${nerede}, son ${HAFIZA_SAAT} saat: ${t.baslik}): ${baslik}`);
@@ -316,6 +319,12 @@ for (const g of sira) {
       // Bütün düzeltme turlarından sonra hâlâ sorunlu: yayımlanmaz, taslak da açılmaz.
       console.log(`  YAYIMLANMADI (denetim): ${medyaGizle(sorunlar.join(' | '))}`);
       ozet.elenen.push(`${haber.title} — ${medyaGizle(sorunlar.join('; '))}`);
+      // Yalnız uzunluk yüzünden duran olay havuza girer: aynı kategoriden eşi gelince derleme olur.
+      if (sorunlar.every((s) => s.startsWith('Metin çok kısa'))) {
+        const kullanilan = secilen.slice(0, 3).map((u) => ({ ad: u.kaynak.ad, url: u.link }));
+        havuz.push(havuzOlayi({ id: hataId, taslak: { ...haber, category: t.category }, basliklar: g.uyeler.map((u) => u.baslik), kaynaklar, kullanilan, iso: simdi.toISOString() }));
+        console.log('  havuza alındı: eş bekleyecek');
+      }
       continue;
     }
     const slug = await haberYaz(ROT, { ...haber, category: t.category, date: istanbulIso(simdi), draft: false, kaynakIzi: kaynakIzi(secilen.slice(0, 3).map((u) => ({ ad: u.kaynak.ad, url: u.link }))), why_matters: haber.why_matters ?? t.why_matters, key_points: haber.key_points ?? t.key_points });
@@ -350,6 +359,45 @@ for (const kayit of [durum.gorulen, durum.ayrik, durum.ayni]) for (const [id, t]
 for (const [k, v] of Object.entries(durum.puan)) if (simdi - new Date(v.zaman) > (YAS_GUN + 1) * 86_400_000) delete durum.puan[k];
 // Kimlikler anahtarlı özet (gizliId); eski anahtarsız hash'lerden taşıma yapıldığının işareti.
 durum.kimlik = 'hmac-v1';
+// Kısa haber havuzu: aynı kategoriden biriken kısa haberler tek bir derleme yazısı olur (havuz.mjs).
+if (process.env.GEMINI_API_KEY) {
+  try {
+    const h = await havuzuIsle(havuz, {
+      simdi,
+      // Bu arada (bu turda ya da son 72 saatte) tam haber olarak yazılan olay düşer.
+      mukerrer: (o) => {
+        const t = o.basliklar.map((b) => tekrarBul(b, hafiza)).find(Boolean);
+        return t ? `son ${HAFIZA_SAAT} saatte yazıldı` : null;
+      },
+      yaz: derlemeYaz,
+      denetle,
+      kaydet: async (haber, t, grup) => {
+        const slug = await haberYaz(ROT, {
+          ...haber,
+          category: t.category,
+          date: istanbulIso(simdi),
+          draft: false,
+          kaynakIzi: kaynakIzi(grup.flatMap((o) => o.kullanilan ?? [])),
+          why_matters: haber.why_matters ?? t.why_matters,
+          key_points: haber.key_points ?? t.key_points,
+        });
+        hafiza.push(kayitKur({ title: haber.title, description: haber.description, slug }));
+        yazilanSayi++;
+        ozet.yazilan.push(`${haber.title} (derleme)`);
+        return slug;
+      },
+      surVar: () => Date.now() - BASLANGIC <= SURE_MS,
+      log: (m) => console.log(medyaGizle(m)),
+    });
+    havuz = h.havuz;
+    if (h.ayarHatasi) ozet.hata.push(`derleme: ${adresiSil(h.ayarHatasi.message)}`);
+  } catch (e) {
+    console.warn(`havuz hatası: ${adresiSil(e.message)}`);
+    ozet.hata.push(`havuz: ${adresiSil(e.message)}`);
+  }
+}
+durum.havuz = havuzKapat(havuz);
+
 await writeFile(DURUM_DOSYASI, `${JSON.stringify(durum, null, 2)}\n`, 'utf8');
 
 const sayi = ozet.yazilan.length;
