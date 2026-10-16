@@ -1,12 +1,29 @@
 {
-  // Cloudflare ayarı: site statik dosyalar olarak yayınlanır (ücretsiz).
+  // Cloudflare ayarı: site statik dosyalar olarak yayınlanır. Haftalık e-posta bülteni için küçük bir Worker
+  // (worker/index.ts) aynı adreste çalışır; statik sunum değişmez, yalnız /api/* Worker'a gider.
   "name": "kifobu",
+  "main": "worker/index.ts",
   "compatibility_date": "2026-10-01",
   "routes": [
     { "pattern": "kifobu.com", "custom_domain": true }
   ],
   "assets": {
     "directory": "./dist",
-    "not_found_handling": "404-page"
-  }
+    "not_found_handling": "404-page",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+  // Abone listesi (D1, AB yargı bölgesi). Şema: migrations/0001_bulten.sql.
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "kifobu-bulten",
+      "database_id": "f9340062-ff0d-4460-b2a0-b843425024e4",
+      "migrations_dir": "migrations"
+    }
+  ],
+  // Pazartesi 06:00 UTC (09:00 Türkiye). Gönderim worker/bulten.ts içindeki haftalikGonderim.
+  "triggers": { "crons": ["0 6 * * 1"] },
+  "vars": { "BULTEN_GONDEREN": "kifobu <bulten@kifobu.com>" }
+  // RESEND_API_KEY bir Worker secret'ıdır: wrangler secret put RESEND_API_KEY (dosyaya yazılmaz).
 }
