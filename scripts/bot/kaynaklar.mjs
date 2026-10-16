@@ -1,8 +1,8 @@
 // Haber kaynakları: Türkiye'deki girişim yatırımı ve kitle fonlama haberlerinin akışları, yanında az sayıda küresel
 // girişim yatırımı akışı. Bot bu haberleri kopyalamaz; olguları alıp kendi diliyle yeniden yazar.
 // Kapsam daraltıldı (2026-10-15): genel akışlar yerine sitelerin yatırım kategorisi ve kitle fonlama etiketi okunur;
-// genel teknoloji ve donanım siteleri çıkarıldı. Küresel kaynaklardan yalnız çok önemli haberler geçer
-// (yazar.mjs → MIN_DEGER_KURESEL).
+// genel teknoloji ve donanım siteleri çıkarıldı. Küresel kaynaklar da yerlilerle aynı eşikten geçer
+// (yazar.mjs → MIN_DEGER).
 //
 // Repo herkese açık: gerçek kaynakların adı, alan adı ve akış adresi repoya yazılmaz. Liste şifreli olarak
 // scripts/bot/gizli-kaynaklar.sifreli dosyasındadır; anahtar KAYNAK_ANAHTARI (GitHub Secret, yerelde .env).

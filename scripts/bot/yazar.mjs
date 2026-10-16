@@ -117,11 +117,9 @@ export async function derlemeYaz(grup, kaynak) {
 }
 
 // Ön eleme ve haber değeri tek çağrıda: 0 = kifobu'ya uygun değil, 1–5 = haber değeri.
-// Türkiye kaynaklı olaylar MIN_DEGER'le, yalnız yabancı kaynaklı olaylar MIN_DEGER_KURESEL'le geçer
-// (dünyadan yalnız önemli kitle fonlama ve girişim yatırımı haberleri). 5 iken site bir gün boyunca hiç yazı
-// çıkaramadı; 2026-10-16 site sahibinin kararıyla 4.
+// Yerli de yabancı da MIN_DEGER'le geçer. Yabancı kaynaklı olaylar önce 5, sonra 4 istiyordu; 5'te site bir gün
+// boyunca hiç yazı çıkaramadı. 2026-10-17 site sahibinin kararıyla ayrım kalktı, eşik herkes için 3.
 export const MIN_DEGER = 3;
-export const MIN_DEGER_KURESEL = 4;
 const ELEME_SEMASI = {
   type: 'object',
   properties: {

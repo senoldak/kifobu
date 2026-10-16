@@ -15,7 +15,7 @@ import { writeFile, appendFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { KAYNAKLAR, anahtarlar, baslikTemiz, benzer, tamMetin } from './kaynaklar.mjs';
-import { MIN_DEGER, MIN_DEGER_KURESEL, onbellekliPuanla, taslakYaz, derlemeYaz } from './yazar.mjs';
+import { MIN_DEGER, onbellekliPuanla, taslakYaz, derlemeYaz } from './yazar.mjs';
 import { HAFIZA_SAAT, hafizaKur, kayitKur, tekrarBul } from './tekrar.mjs';
 import { ciftleriKur, onbellekliEsle, ozelAdlar, uygula } from './esleme.mjs';
 import { denetle } from './denetci.mjs';
@@ -221,15 +221,13 @@ if (process.env.GEMINI_API_KEY && sira.length) {
   const eleme = sonuc !== null;
   if (eleme) sonuc.forEach((p, n) => puan.set(sira[n], p));
   if (eleme) {
-    // Yalnız yabancı kaynaklı olaylar daha yüksek eşikten geçer: dünyadan sadece çok önemli haberler.
-    const esik = (g) => (g.yerli ? MIN_DEGER : MIN_DEGER_KURESEL);
-    const disari = sira.filter((g) => puan.get(g) < esik(g));
+    const disari = sira.filter((g) => puan.get(g) < MIN_DEGER);
     for (const g of disari) {
-      console.log(`${puan.get(g) === 0 ? 'kapsam dışı' : `düşük haber değeri (${puan.get(g)}, eşik ${esik(g)})`}: ${g.uyeler[0].baslik}`);
+      console.log(`${puan.get(g) === 0 ? 'kapsam dışı' : `düşük haber değeri (${puan.get(g)}, eşik ${MIN_DEGER})`}: ${g.uyeler[0].baslik}`);
       grupBitti(g);
     }
     console.log(`Ön eleme: ${sira.length} olaydan ${sira.length - disari.length} tanesi yazılacak; ${disari.length} tanesi ayıklandı.`);
-    sira = sira.filter((g) => puan.get(g) >= esik(g));
+    sira = sira.filter((g) => puan.get(g) >= MIN_DEGER);
   } else {
     puan.clear();
     console.warn('Ön eleme yapılamadı; bütün olaylar yazara gidecek.');
