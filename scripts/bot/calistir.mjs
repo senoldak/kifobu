@@ -20,6 +20,7 @@ import { HAFIZA_SAAT, hafizaKur, kayitKur, tekrarBul } from './tekrar.mjs';
 import { ciftleriKur, onbellekliEsle, ozelAdlar, uygula } from './esleme.mjs';
 import { denetle } from './denetci.mjs';
 import { adNorm, haberYaz, hentTekst, istanbulIso, jsonOku, rssOku, sonHaberler } from './lib.mjs';
+import { butceYukle, geminiPayiBitti } from './butce.mjs';
 import { adresiSil, anahtarVar, gizliId, kaynakIzi } from './gizli.mjs';
 import { medyaGizle } from './yerel.mjs';
 import { havuzOlayi, havuzAc, havuzKapat, havuzuIsle } from './havuz.mjs';
@@ -37,6 +38,9 @@ const EN_FAZLA = sayiAyar('EN_FAZLA', 12);
 const TEYIT = sayiAyar('TEYIT', 1);
 const SURE_MS = sayiAyar('SURE_DK', 18) * 60_000;
 const BASLANGIC = Date.now();
+
+// Katman 3 (Gemini kota planı): bu turun Gemini payı; yeni habere başlamadan önce geminiPayiBitti() sorulur.
+if (!KURU) console.log(await butceYukle({ url: process.env.MOTOR_URL, anahtar: process.env.MOTOR_ANAHTARI, site: 'kifobu' }));
 const YAS_GUN = sayiAyar('YAS_GUN', 3);
 const EN_FAZLA_HATA = 3;
 // Kaynak metinlerinin toplamı bundan kısaysa olay yazılmaz (en az 200 kelimelik haber çıkmaz).
@@ -241,8 +245,8 @@ let yazilanSayi = 0;
 // sira döngü içinde büyüyebilir: "aynı olay değil" denen grup tek tek haberlere bölünüp sona eklenir.
 for (const g of sira) {
   if (yazilanSayi >= EN_FAZLA || !process.env.GEMINI_API_KEY) break;
-  if (Date.now() - BASLANGIC > SURE_MS) {
-    console.log('\nSüre bütçesi doldu; kalan olaylar sonraki çalışmaya kaldı.');
+  if (Date.now() - BASLANGIC > SURE_MS || geminiPayiBitti()) {
+    console.log(`\n${Date.now() - BASLANGIC > SURE_MS ? 'Süre bütçesi' : 'Gemini tur payı'} doldu; kalan olaylar sonraki çalışmaya kaldı.`);
     break;
   }
   const ad = g.uyeler[0].baslik;
@@ -384,7 +388,7 @@ if (process.env.GEMINI_API_KEY) {
         ozet.yazilan.push(`${haber.title} (derleme)`);
         return slug;
       },
-      surVar: () => Date.now() - BASLANGIC <= SURE_MS,
+      surVar: () => Date.now() - BASLANGIC <= SURE_MS && !geminiPayiBitti(),
       log: (m) => console.log(medyaGizle(m)),
     });
     havuz = h.havuz;
