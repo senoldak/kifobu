@@ -297,7 +297,7 @@ export async function sonHaberler(rot, gun = 10, simdi = Date.now()) {
     const al = (k) => fm.match(new RegExp(`^${k}:\\s*(.*)$`, 'm'))?.[1]?.replace(/^"(.*)"$/, '$1').trim();
     const tarih = Date.parse(al('date') ?? '');
     if (!(tarih >= sinir)) continue;
-    out.push({ slug: klasor, tarih, category: al('category'), title: al('title') ?? '', description: al('description') ?? '', girisim: al('girisim'), toplanan: Number(al('toplanan')) || undefined, kaynakUrl: al('kaynakUrl') });
+    out.push({ slug: klasor, tarih, category: al('category'), title: al('title') ?? '', description: al('description') ?? '', girisim: al('girisim'), toplanan: Number(al('toplanan')) || undefined });
   }
   return out;
 }

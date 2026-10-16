@@ -227,17 +227,6 @@ const jsonLd = {
     }
 
     {
-      d.kaynakUrl && (
-        <p class="kaynak-notu">
-          Kaynak:{' '}
-          <a href={d.kaynakUrl} rel="noopener noreferrer" target="_blank">
-            {d.kaynakAd ?? new URL(d.kaynakUrl).hostname}
-          </a>
-        </p>
-      )
-    }
-
-    {
       (konular.length > 0 || bultenGunu) && (
         <nav class="etiketler" aria-label="Konular">
           <span>Konular</span>

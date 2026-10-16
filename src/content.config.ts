@@ -38,15 +38,6 @@ const haberler = defineCollection({
       // Sentez ve Bilgi Kazanımı (Information Gain)
       why_matters: z.string().optional(),
       key_points: z.array(z.string()).optional(),
-      // Botun yazdığı haberler: kaynak haber ve üretim şekli sayfada gösterilir.
-      kaynakAd: z.string().optional(),
-      kaynakUrl: z
-        .string()
-        .url()
-        .refine((val) => /^https?:\/\//i.test(val), {
-          message: 'Sadece HTTP ve HTTPS bağlantıları kabul edilir.',
-        })
-        .optional(),
       // Botun kullandığı kaynakların şifreli kaydı; sitede gösterilmez (bkz. scripts/bot/gizli.mjs).
       kaynakIzi: z.string().optional(),
       uretim: z.enum(['editor', 'yapay-zeka']).default('editor'),

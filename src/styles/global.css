@@ -1005,25 +1005,6 @@ h3 {
   line-height: 1.25;
 }
 
-.kaynak-notu {
-  margin: 32px 0 0;
-  padding-top: 12px;
-  border-top: 1px solid var(--cizgi);
-  font-size: 0.95rem;
-  line-height: 1.55;
-  color: var(--murekkep-2);
-  max-width: 68ch;
-}
-
-.kaynak-notu a {
-  color: var(--bag);
-  font-weight: 700;
-  text-decoration: underline;
-  text-decoration-color: var(--bag-alt);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
-}
-
 .kk-risk {
   margin: 18px 0 0;
   padding-top: 12px;
