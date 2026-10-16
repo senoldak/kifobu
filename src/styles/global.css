@@ -1715,3 +1715,33 @@ h3 {
   border-color: var(--tahta);
   color: var(--tebesir);
 }
+
+/* Haftalık e-posta bülteni: abonelik formu (altbilgi, haber sayfası, /bulten/) ve durum kutuları. Kare köşe, ince çizgi. */
+.bulten-form { margin: 0 0 8px; max-width: 40rem; }
+.bulten-satir { display: flex; flex-wrap: wrap; gap: 8px; align-items: stretch; }
+.bulten-etiket { flex-basis: 100%; font-family: var(--yazi-baslik); font-weight: 600; font-size: 0.95rem; }
+.bulten-girdi {
+  flex: 1 1 14rem; min-width: 0; font: inherit; font-size: 1rem; padding: 8px 10px;
+  border: 2px solid var(--murekkep); background: var(--zemin); color: var(--murekkep); border-radius: 0;
+}
+.bulten-dugme {
+  font-family: var(--yazi-baslik); font-weight: 700; font-size: 1rem; padding: 6px 14px; cursor: pointer;
+  border: 2px solid var(--murekkep); background: transparent; color: var(--murekkep); border-radius: 0;
+}
+.bulten-dugme:hover, .bulten-dugme:focus-visible { background: var(--tahta); color: var(--tebesir); }
+.bulten-girdi:focus-visible, .bulten-dugme:focus-visible { outline: 2px solid var(--odak); outline-offset: 3px; }
+.bulten-not { font-size: 0.88rem; margin: 8px 0 0; color: var(--murekkep); }
+.bulten-tuzak { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.bulten-kutu { border-left: 4px solid var(--bag); padding: 12px 16px; margin: 0 0 20px; }
+.alt-bulten { margin-top: 24px; max-width: 26rem; }
+.alt-bulten-baslik {
+  font-family: var(--yazi-baslik); font-weight: 800; font-size: 0.92rem; text-transform: uppercase;
+  letter-spacing: 0.08em; margin: 0 0 10px; color: var(--tebesir);
+}
+.alt-bulten .bulten-etiket { color: var(--tebesir); }
+.alt-bulten .bulten-girdi { background: transparent; color: var(--tebesir); border-color: var(--tebesir-cizgi); }
+.alt-bulten .bulten-dugme { color: var(--tebesir); border-color: var(--tebesir); }
+.alt-bulten .bulten-dugme:hover, .alt-bulten .bulten-dugme:focus-visible { background: var(--tebesir); color: var(--tahta); }
+.alt-bulten .bulten-not { color: var(--tebesir-cizgi); }
+.alt-bulten .bulten-not a { color: var(--tebesir); }
+.alt-bulten .bulten-girdi:focus-visible, .alt-bulten .bulten-dugme:focus-visible { outline-color: var(--sari); }

@@ -6,6 +6,7 @@ import HaberSatiri from '../../components/HaberSatiri.astro';
 import Kunye from '../../components/Kunye.astro';
 import Isaret from '../../components/Isaret.astro';
 import SentezBlok from '../../components/SentezBlok.astro';
+import BultenFormu from '../../components/BultenFormu.astro';
 import Yol from '../../components/Yol.astro';
 import Paylas from '../../components/Paylas.astro';
 import { SITE, DURUMLAR, RISK_NOTU, categoryName, formatDate, formatMoney, formatNumber, percentOf, type Durum } from '../../lib/site';
@@ -271,4 +272,10 @@ const jsonLd = {
       </section>
     )
   }
+  <section class="bolum" aria-labelledby="bulten-abone">
+    <div class="bolum-bas">
+      <h2 class="bolum-baslik" id="bulten-abone">Haftalık e-posta bülteni</h2>
+    </div>
+    <BultenFormu kimlik="haber" />
+  </section>
 </Base>
