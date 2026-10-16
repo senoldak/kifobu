@@ -214,6 +214,7 @@ const METIN_SEMASI = {
 export async function degerlendir(h, kaynak) {
   const sorunlar = kesinKontroller(h, kaynak);
   const r = await gemini({
+    denetim: true,
     schema: DEGERLENDIRME_SEMASI,
     prompt: `Sen kifobu'nun yazı işleri müdürüsün. Yapay zekânın yazdığı bir haber taslağını yayından önce kaynaklarla karşılaştırıyorsun (Basın Meslek İlkeleri). Sıkı ol: şüphe varsa onaylama.
 

@@ -85,3 +85,10 @@ test('onbellekliPuanla: kayıtlı puan yeniden sorulmaz', async () => {
   assert.ok(sorulan.includes('0. Yeni olay QQ2') && !sorulan.includes('QQ1'));
   assert.deepEqual(kayit.y, { puan: 1, zaman: 't1' });
 });
+
+// Katman 4: aynı olay eşlemesi evet/hayır denetimidir; ana model düşerse yedek Gemma olur.
+test('ayniOlayMi denetim çağrısı olarak gider', async () => {
+  let p;
+  await ayniOlayMi([{ a: 'Başlık A', b: 'Headline B' }], { kall: async (x) => { p = x; return { ayni: [] }; } });
+  assert.equal(p.denetim, true);
+});

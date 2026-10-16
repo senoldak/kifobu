@@ -55,6 +55,7 @@ const SEMA = {
 export async function ayniOlayMi(ciftler, { kall = gemini } = {}) {
   if (!ciftler.length) return new Set();
   const r = await kall({
+    denetim: true,
     schema: SEMA,
     // Evet/hayır sınıflandırması: en düşük düşünme yeterli, çıkış tokenı azalır.
     dusunme: 'minimal',
