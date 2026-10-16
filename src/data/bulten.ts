@@ -1,7 +1,7 @@
 /**
  * Günlük kitle fonlama bülteni verisi ("Bugün" tablosu).
  * Otomatik Bot tarafından oluşturulmuştur.
- * Son güncelleme: 2026-10-15T15:01:47.947Z
+ * Son güncelleme: 2026-10-16T07:01:25.899Z
  */
 export interface Girisim {
   ad: string;
@@ -32,8 +32,8 @@ export interface Yakinda {
 }
 
 export const BULTEN = {
-  tarih: '15 Ekim 2026',
-  sayi: 1528,
+  tarih: '16 Ekim 2026',
+  sayi: 1529,
   girisimler: [
     {
         "ad": "ATHLETICLABS",
@@ -54,24 +54,24 @@ export const BULTEN = {
         "kalan": 2418700,
         "degerleme": 50000000,
         "yuzde": 51.63,
-        "durum": "son 21 gün",
+        "durum": "son 20 gün",
         "url": "https://fonangels.com/kampanyalar/projehakkinda/oylio?pid=1778"
     },
     {
         "ad": "PUPAQ",
         "platform": "trinkfon",
-        "bugun": 100000,
+        "bugun": 0,
         "alinan": 124282,
         "kalan": 875750,
         "degerleme": 25000800,
         "yuzde": 12.43,
-        "durum": "son 1 gün",
+        "durum": "Aktif",
         "url": "https://kfs.trinkfon.com/projeler/pupaq/kampanya/"
     },
     {
         "ad": "LOOPYON",
         "platform": "ecofolio",
-        "bugun": 2800,
+        "bugun": 0,
         "alinan": 413000,
         "kalan": 34587000,
         "degerleme": 385038504,
@@ -81,7 +81,7 @@ export const BULTEN = {
     }
 ] as Girisim[],
   platformlar: {
-    bugun: 102800,
+    bugun: 0,
     toplam: 10721082,
     liste: [
     {
