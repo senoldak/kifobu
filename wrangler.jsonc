@@ -3,6 +3,9 @@
   // (worker/index.ts) aynı adreste çalışır; statik sunum değişmez, yalnız /api/* Worker'a gider.
   "name": "kifobu",
   "main": "worker/index.ts",
+  // Günlük bülten görevini mecmua-saat Worker'ı tetikler (POST /api/bulten/gorev, GOREV_ANAHTARI); bu Worker'ın cron'u yok
+  // çünkü Cloudflare ücretsiz planında hesap başına 5 cron sınırı var. Boş liste, eski cron'u Cloudflare'den siler.
+  "triggers": { "crons": [] },
   "compatibility_date": "2026-10-01",
   "routes": [
     { "pattern": "kifobu.com", "custom_domain": true }
@@ -22,9 +25,6 @@
       "migrations_dir": "migrations"
     }
   ],
-  // Her gün 06:00 UTC (09:00 Türkiye): süresi dolan onaysız kayıtlar silinir; haftalık bülten haftanın ilk çalışmasında (pazartesi) bir kez gider.
-  // Tek cron: ücretsiz planda hesap başına 5 cron sınırı var.
-  "triggers": { "crons": ["0 6 * * *"] },
   "vars": { "BULTEN_GONDEREN": "kifobu <bulten@kifobu.com>" }
   // RESEND_API_KEY bir Worker secret'ıdır: wrangler secret put RESEND_API_KEY (dosyaya yazılmaz).
 }
