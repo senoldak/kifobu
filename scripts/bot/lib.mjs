@@ -152,6 +152,11 @@ export function istanbulIso(date = new Date()) {
 
 // Ücretsiz katmanın dakikalık sınırını aşmamak için istekler arasında en az bu kadar beklenir.
 const GEMINI_ARALIK_MS = Number(process.env.GEMINI_ARALIK_MS || 4500);
+// Google "meşgul" (5xx) ya da istek sınırı (429) dönerse ana ve yedek model sırayla, giderek uzayan aralıklarla
+// denenir (iki model ayrı kapasite ve ayrı ücretsiz kotadır). Bir çağrı tümüyle düşerse aynı çalışmadaki sonraki
+// çağrılar yalnız iki kez dener: Google uzun süre kapalıysa iş zaman aşımına düşmesin. İlk başarı bunu sıfırlar.
+const GEMINI_BEKLEMELER_SN = [15, 30, 60, 90, 120];
+let geminiKesik = false;
 let sonGemini = 0;
 
 // Gemini'ye istek atar, JSON şemasına uygun yanıt döner. Anahtar yoksa null.
@@ -161,12 +166,15 @@ export async function gemini({ prompt, schema, dusunme: seviye = 'low' }) {
   const bekle = sonGemini + GEMINI_ARALIK_MS - Date.now();
   if (bekle > 0) await sleep(bekle);
   sonGemini = Date.now();
-  const model = process.env.GEMINI_MODEL || 'gemini-flash-lite-latest';
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
+  const modeller = [process.env.GEMINI_MODEL || 'gemini-flash-lite-latest', process.env.GEMINI_YEDEK_MODEL || 'gemini-flash-latest'];
+  const carpan = Number(process.env.GEMINI_BEKLE_CARPAN ?? 1);
+  const enFazla = geminiKesik ? 2 : GEMINI_BEKLEMELER_SN.length + 1;
 
   // Düşünme seviyesini düşük tutmak cevabı çok hızlandırıyor; desteklemeyen modelde kapatılır.
   let dusunme = { thinkingLevel: seviye };
-  for (let deneme = 1; deneme <= 3; deneme++) {
+  for (let deneme = 1; deneme <= enFazla; deneme++) {
+    const model = modeller[(deneme - 1) % modeller.length];
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
     const res = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
@@ -187,8 +195,8 @@ export async function gemini({ prompt, schema, dusunme: seviye = 'low' }) {
       continue;
     }
     if (res.status === 429 || res.status >= 500) {
-      console.warn(`  Gemini ${res.status}, ${deneme}. deneme; bekleniyor...`);
-      await sleep(20_000 * deneme);
+      console.warn(`  Gemini ${res.status} (${model}), ${deneme}. deneme; bekleniyor...`);
+      if (deneme < enFazla) await sleep(GEMINI_BEKLEMELER_SN[deneme - 1] * 1000 * carpan);
       continue;
     }
     if (!res.ok) {
@@ -202,11 +210,13 @@ export async function gemini({ prompt, schema, dusunme: seviye = 'low' }) {
       hata.ayar = [400, 401, 403, 404].includes(res.status);
       throw hata;
     }
+    geminiKesik = false;
     const data = await res.json();
     kullanimEkle(data.usageMetadata);
     const metin = data.candidates?.[0]?.content?.parts?.map((p) => p.text).join('') ?? '';
     return JSON.parse(metin);
   }
+  geminiKesik = true;
   throw new Error('Gemini: çok fazla deneme');
 }
 
