@@ -28,15 +28,18 @@ export const TASLAK_SEMASI = {
 };
 
 // kifobu'nun haber kapsamı: yazar da ön eleme de aynı tanımı kullanır.
-// Kapsam daraltıldı (2026-10-15, site sahibinin kararı): kifobu genel teknoloji sitesi değil, Türkiye'nin kitle fonlama
-// ve girişim yatırımı bültenidir. Büyük teknoloji şirketlerinin ürün, model, işten çıkarma ve donanım haberleri yazılmaz.
-export const KAPSAM = `kifobu'nun konusu dardır. Uygun haberler:
+// Kapsam (2026-10-15 daraltıldı, 2026-10-17 site sahibinin kararıyla dünya girişim ekosistemine açıldı): kifobu genel
+// teknoloji sitesi değil, Türkiye ağırlıklı girişim, girişim yatırımı ve kitle fonlama bültenidir. Dünyadan dikkat çeken
+// girişim haberleri (YC, büyük fonlar, büyük turlar) de yazılır. Büyük teknoloji şirketlerinin ürün, model, işten
+// çıkarma ve donanım haberleri yazılmaz.
+export const KAPSAM = `kifobu girişim, girişim yatırımı ve kitle fonlama haberleri yayımlar; Türkiye önceliklidir. Uygun haberler:
 1. Türkiye'de paya dayalı ya da ödül bazlı kitle fonlama kampanyaları: açılan, süren, hedefe ulaşan ya da ulaşamayan kampanyalar; toplanan tutar, hedef, yatırımcı sayısı, platform.
 2. Türkiye'deki kitle fonlama platformları: yeni lisanslar, platform verileri, platform duyuruları, birleşme ve kapanışlar.
 3. SPK'nın ve diğer kamu kurumlarının kitle fonlamasını, girişim sermayesini ve melek yatırımı ilgilendiren kararları, tebliğleri, bültenleri; vergi teşvikleri.
 4. Türk girişimlerinin (Türkiye'de kurulmuş ya da Türk kurucuların) yatırım turları, satın alınmaları, halka arzları; Türkiye'deki girişim sermayesi fonları, melek ağları, hızlandırıcılar ve bunların yatırımları; Türkiye girişim ekosistemi raporları.
-5. Dünyadan yalnızca çok önemli kitle fonlama ve girişim yatırımı haberleri: büyük kitle fonlama platformlarının (ör. Republic, Wefunder, Crowdcube, Seedrs, Kickstarter) önemli gelişmeleri, kitle fonlama mevzuatı (ör. AB ECSP), ekosistemde çok konuşulacak dev yatırım turları ya da girişim satın almaları.
-Uygun olmayanlar: büyük teknoloji şirketlerinin (Apple, Google, Microsoft, Amazon, Meta, OpenAI, Anthropic, Nvidia, SpaceX, Netflix vb.) ürün, model, özellik, güncelleme, fiyat, üretim, işten çıkarma, yönetici ve güvenlik haberleri; donanım, telefon, otomobil ve geri çağırma haberleri; yatırım içermeyen genel yapay zekâ ve teknoloji haberleri; yabancı girişimlerin sıradan yatırım turları ve ürün tanıtımları; borsa, kripto para ve banka haberleri; ürün incelemesi, indirim, "nasıl yapılır" rehberi, etkinlik tanıtımı, haftalık toplu özet, oyun/film/magazin, sponsorlu tanıtım, köşe yazısı ve dedikodu.`;
+5. Dünya kitle fonlaması: büyük kitle fonlama platformlarının (ör. Republic, Wefunder, Crowdcube, Seedrs, Kickstarter) önemli gelişmeleri, kitle fonlama mevzuatı (ör. AB ECSP).
+6. Dünya girişim ekosistemi: Y Combinator, Techstars gibi hızlandırıcıların dönemleri, demo günleri ve öne çıkan girişimleri; a16z, Sequoia gibi büyük girişim sermayesi fonlarının yeni fonları ve stratejileri; dikkat çeken yatırım turları (yaklaşık 50 milyon dolar ve üstü ya da çok konuşulan bir girişimin turu), yeni unicorn'lar, girişim satın almaları ve halka arzları; girişim yatırımı eğilimleri ve raporları.
+Uygun olmayanlar: büyük teknoloji şirketlerinin (Apple, Google, Microsoft, Amazon, Meta, OpenAI, Anthropic, Nvidia, SpaceX, Netflix vb.) ürün, model, özellik, güncelleme, fiyat, üretim, işten çıkarma, yönetici ve güvenlik haberleri; donanım, telefon, otomobil ve geri çağırma haberleri; yatırım içermeyen genel yapay zekâ ve teknoloji haberleri; girişimlerin ürün tanıtımları; özel sermaye (private equity) satın almaları, borç finansmanı ve yerleşik şirketlerin birleşmeleri; borsa, kripto para ve banka haberleri; ürün incelemesi, indirim, "nasıl yapılır" rehberi, etkinlik tanıtımı, haftalık toplu özet, oyun/film/magazin, sponsorlu tanıtım, köşe yazısı ve dedikodu.`;
 
 export const YAZIM_KURALLARI = `Yazım kuralları:
 - Kendi cümlelerinle yaz. Kaynakların cümlelerini, paragraf yapısını ve sıralamasını kopyalama; olguları al, metni yeniden kur. Hiçbir kaynaktan art arda 7 kelimeden uzun bir parça geçmesin (özel adlar hariç).
@@ -56,7 +59,7 @@ export async function taslakYaz(kaynaklar) {
   const metinler = kaynaklar
     .map((k, i) => `### Kaynak ${i + 1} (${k.tarih})\nBaşlık: ${k.baslik}\n"""\n${k.metin.slice(0, 7000)}\n"""`)
     .join('\n\n');
-  const prompt = `Sen kifobu'nun muhabirisin. kifobu, Türkiye'nin kitle fonlama ve girişim yatırımı ekosistemini izleyen; yatırımları, fonlamaları ve girişimleri tarafsız, sade ve rakam öncelikli bir dille haberleştiren bir bülten.
+  const prompt = `Sen kifobu'nun muhabirisin. kifobu, Türkiye ağırlıklı olarak girişim, girişim yatırımı ve kitle fonlama ekosistemini izleyen; yatırımları, fonlamaları ve girişimleri tarafsız, sade ve rakam öncelikli bir dille haberleştiren bir bülten.
 
 ${KAPSAM}
 Kaynaklar İngilizce olsa dahi haber akıcı, doğal ve tam Türkçe yazılmalıdır. Uygun değilse uygun=false ver, nedeni yaz, diğer alanları boş bırak.
@@ -141,18 +144,18 @@ export async function onEle(basliklar, { kall = gemini } = {}) {
   const r = await kall({
     schema: ELEME_SEMASI,
     dusunme: 'minimal',
-    prompt: `Sen kifobu'nun haber editörüsün. kifobu, Türkiye'nin kitle fonlama ve girişim yatırımı ekosistemini izleyen bir bülten. Aşağıdaki her başlığa 0–100 arası bir puan ver. Başlığın önündeki [TR] Türkiye kaynaklı, [Dünya] yabancı kaynaklı haber demektir.
+    prompt: `Sen kifobu'nun haber editörüsün. kifobu, Türkiye ağırlıklı olarak girişim, girişim yatırımı ve kitle fonlama ekosistemini izleyen bir bülten. Aşağıdaki her başlığa 0–100 arası bir puan ver. Başlığın önündeki [TR] Türkiye kaynaklı, [Dünya] yabancı kaynaklı haber demektir.
 
 ${KAPSAM}
 
 Puanlar:
-0 = kifobu'nun kapsamı dışında (yukarıdaki "uygun olmayanlar"; Türkiye ve kitle fonlamasıyla ilgisi olmayan her şey).
-90–100 = Türkiye'de kitle fonlama kampanyası, platformu ya da SPK kararı; Türk girişiminin büyük turu, satın alınması ya da halka arzı; dünyada kitle fonlamasını ya da girişim yatırımını doğrudan etkileyen çok önemli gelişme (ör. yaklaşık 500 milyon dolar üstü tur, büyük kitle fonlama platformunun satın alınması, kitle fonlama mevzuatı).
-70–89 = Türk girişiminin her yatırım turu; Türkiye'deki girişim sermayesi fonları, melek ağları ve ekosistem raporları.
-50–69 = Türkiye ekosisteminde kapsamda ama sıradan haber (program başvuruları, yönetici değişiklikleri).
+0 = kifobu'nun kapsamı dışında (yukarıdaki "uygun olmayanlar"; girişimler, girişim yatırımı ve kitle fonlamasıyla ilgisi olmayan her şey).
+90–100 = Türkiye'de kitle fonlama kampanyası, platformu ya da SPK kararı; Türk girişiminin büyük turu, satın alınması ya da halka arzı; dünyada kitle fonlamasını ya da girişim yatırımını doğrudan etkileyen çok önemli gelişme (ör. yaklaşık 500 milyon dolar üstü tur, büyük kitle fonlama platformunun satın alınması, kitle fonlama mevzuatı, Y Combinator'ın büyük bir değişikliği).
+70–89 = Türk girişiminin her yatırım turu; Türkiye'deki girişim sermayesi fonları, melek ağları ve ekosistem raporları; dünyada dikkat çeken girişim haberi (yaklaşık 50 milyon dolar ve üstü tur, yeni unicorn, tanınmış girişimin satın alınması ya da halka arzı, Y Combinator demo günü ya da dönemi, büyük girişim sermayesi fonunun yeni fonu).
+50–69 = kapsamda ama sıradan haber (Türkiye'de program başvuruları, yönetici değişiklikleri; dünyada 50 milyon doların altındaki sıradan turlar).
 30–49 = kapsamda ama zayıf: rutin duyuru, içeriği belirsiz ortaklık, tanıtım kokan haber.
 1–29 = kapsamda ama okura neredeyse hiçbir şey söylemiyor.
-Yabancı girişimlerin sıradan turları en fazla 45 alır. Aralığın içinde ince ayar yap; 70 ve üstü yayımlanır, emin değilsen 70 verme. Kararsızsan düşük puan ver: kifobu az ama konusunda haber yayımlar.
+Aralığın içinde ince ayar yap; 70 ve üstü yayımlanır, emin değilsen 70 verme. Kararsızsan düşük puan ver: kifobu az ama konusunda haber yayımlar. Aynı önemdeki haberlerde Türkiye ile ilgili olana daha yüksek puan ver.
 
 Başlıklar:
 ${basliklar.map((b, i) => `${i}. ${b}`).join('\n')}`,
