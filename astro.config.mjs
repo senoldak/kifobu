@@ -65,6 +65,8 @@ export default defineConfig({
       // Bölümlerin 2. ve sonraki sayfaları (/<bölüm>/2/) kendi canonical'ıyla haritaya girer.
       filter: (page) => {
         const p = new URL(page).pathname;
+        // Arama sayfası noindex (sonuçlar tarayıcıda üretilir); arama dizini (JSON) sayfa değildir.
+        if (p.startsWith('/arama') || p.endsWith('.json')) return false;
         if (p.startsWith('/kategori/') || p.startsWith('/admin') || p.startsWith('/404')) return false;
         const m = p.match(/^\/haber\/([^/]+)\/?$/);
         if (m && !haberBilgi.get(m[1])?.indeks) return false;

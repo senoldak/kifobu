@@ -1726,3 +1726,10 @@ h3 {
 .alt-bulten .bulten-not { color: var(--tebesir-cizgi); }
 .alt-bulten .bulten-not a { color: var(--tebesir); }
 .alt-bulten .bulten-girdi:focus-visible, .alt-bulten .bulten-dugme:focus-visible { outline-color: var(--sari); }
+
+/* Menünün sonundaki arama bağlantısı */
+.menu .menu-ara {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
