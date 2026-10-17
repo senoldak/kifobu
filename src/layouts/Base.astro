@@ -1,6 +1,6 @@
 ---
 import { jsonLdMetni } from '../lib/json-ld.mjs';
-import { SITE, ACIK_KATEGORILER, dayNumber, formatNumber } from '../lib/site';
+import { SITE, ACIK_KATEGORILER, menuAdresi, dayNumber, formatNumber } from '../lib/site';
 import BultenFormu from '../components/BultenFormu.astro';
 import '../styles/fonts.css';
 import '../styles/global.css';
@@ -160,7 +160,7 @@ const social = [
           <a href="/" aria-current={current === '/' ? 'page' : undefined}>Bugün</a>
           {
             ACIK_KATEGORILER.map((c) => (
-              <a href={`/${c.slug}/`} aria-current={current.startsWith(`/${c.slug}`) ? 'page' : undefined}>
+              <a href={menuAdresi(c)} aria-current={current.startsWith(menuAdresi(c).slice(0, -1)) ? 'page' : undefined}>
                 {c.name}
               </a>
             ))
@@ -209,7 +209,7 @@ const social = [
           </div>
         </div>
         <nav class="alt-menu" aria-label="Alt menü">
-          {ACIK_KATEGORILER.map((c) => <a href={`/${c.slug}/`}>{c.name}</a>)}
+          {ACIK_KATEGORILER.map((c) => <a href={menuAdresi(c)}>{c.name}</a>)}
           <a href="/kampanya/">Kampanya veritabanı</a>
           <a href="/platform/">Platform dizini</a>
           <a href="/konu/">Konular</a>

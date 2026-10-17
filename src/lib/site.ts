@@ -21,8 +21,8 @@ export const SITE = {
 // anasayfada görünmezler; eski haberlerin adresleri bozulmasın diye sayfaları ve şemadaki değerleri durur.
 export const CATEGORIES = [
   { slug: 'gunluk-bulten', name: 'Günlük Bülten' },
-  { slug: 'kampanyalar', name: 'Kampanyalar' },
-  { slug: 'platformlar', name: 'Platformlar' },
+  { slug: 'kampanyalar', name: 'Kampanyalar', veri: '/kampanya/' },
+  { slug: 'platformlar', name: 'Platformlar', veri: '/platform/' },
   { slug: 'yatirimlar', name: 'Yatırımlar' },
   { slug: 'girisimler', name: 'Girişimler' },
   { slug: 'mevzuat', name: 'Mevzuat' },
@@ -35,6 +35,10 @@ export const CATEGORIES = [
 
 /** Menüde ve anasayfada gösterilen (emekli olmayan) bölümler. */
 export const ACIK_KATEGORILER = CATEGORIES.filter((c) => !('emekli' in c && c.emekli));
+
+/** Menüdeki adres: veri sayfası olan bölümler (kampanya ve platform dizinleri) oraya gider; haberleri dizinden ve
+ * bölüm sayfasından okunur. */
+export const menuAdresi = (c: (typeof CATEGORIES)[number]) => ('veri' in c ? c.veri : `/${c.slug}/`);
 
 export type CategorySlug = (typeof CATEGORIES)[number]['slug'];
 

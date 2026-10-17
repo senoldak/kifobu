@@ -24,7 +24,7 @@ export const getStaticPaths = (async ({ paginate }) => {
     return paginate(items, {
       pageSize: SAYFA_BOYU,
       params: { slug: c.slug },
-      props: { slug: c.slug, name: c.name, toplam: items.length, indeksli, rows: boardRows(items, 12) },
+      props: { slug: c.slug, name: c.name, veri: 'veri' in c ? c.veri : undefined, toplam: items.length, indeksli, rows: boardRows(items, 12) },
     });
   });
 }) satisfies GetStaticPaths;
@@ -33,12 +33,13 @@ interface Props {
   page: Page<Haber>;
   slug: string;
   name: string;
+  veri?: string;
   toplam: number;
   indeksli: number;
   rows: Haber[];
 }
 
-const { page, slug, name, toplam, indeksli } = Astro.props;
+const { page, slug, name, veri, toplam, indeksli } = Astro.props;
 const items = page.data;
 const ilkSayfa = page.currentPage === 1;
 // Tahta (bölümün kampanya/yatırım özeti) yalnız ilk sayfada.
@@ -181,7 +182,10 @@ const jsonLd = {
         ))}
       </div>
     ) : slug !== 'gunluk-bulten' ? (
-      <p class="bos">Bu bölümde henüz haber yok.</p>
+      <p class="bos">
+        Bu bölümde henüz haber yok.
+        {veri && <> Bütün kayıtlar: <a href={veri}>{name.toLocaleLowerCase('tr')} dizini</a>.</>}
+      </p>
     ) : null
   }
 
