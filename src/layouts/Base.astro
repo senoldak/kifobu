@@ -16,7 +16,9 @@ interface Props {
 }
 
 const { title, description: rawDescription, image, type = 'website', imageWidth, imageHeight, imageAlt, noindex = false } = Astro.props;
-const fullTitle = title ? `${title} | ${SITE.name}` : `${SITE.name} | ${SITE.tagline}`;
+// Uzun başlıklarda site adı eklenmez (Google ~60 karakterden sonrasını keser); ana sayfa konusunu söyleyen başlık alır.
+const fullTitle = title ? (title.length > 55 ? title : `${title} | ${SITE.name}`) : `${SITE.name}: kitle fonlama ve girişim yatırımı haberleri`;
+const ogTitle = title ?? fullTitle;
 // Açıklama boşsa site açıklaması; 160 karakteri aşarsa kelime sınırında kısaltılır.
 const kisalt = (s: string, n = 160) => {
   if (s.length <= n) return s;
@@ -107,11 +109,12 @@ const social = [
     <link rel="preload" href="/fonts/sofia-sans-condensed-normal-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/sofia-sans-condensed-normal-latin-ext.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/sofia-sans-normal-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/sofia-sans-normal-latin-ext.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="alternate" type="application/rss+xml" title={SITE.name} href="/rss.xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:type" content={type} />
-    <meta property="og:title" content={title ?? SITE.name} />
+    <meta property="og:title" content={ogTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content="tr_TR" />
@@ -121,7 +124,7 @@ const social = [
     <meta property="og:image:alt" content={ogAlt} />
     <meta name="twitter:card" content="summary_large_image" />
     {xHandle && <meta name="twitter:site" content={`@${xHandle}`} />}
-    <meta name="twitter:title" content={title ?? SITE.name} />
+    <meta name="twitter:title" content={ogTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content={ogAlt} />

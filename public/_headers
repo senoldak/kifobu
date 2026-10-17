@@ -24,5 +24,9 @@
 /fonts/*
   Cache-Control: public, max-age=2592000
 
+# Kapak görselleri derlemede çizilir; adı habere bağlı, nadiren değişir: 1 gün, arka planda tazelenir.
+/kapak/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
 /site.webmanifest
   Content-Type: application/manifest+json

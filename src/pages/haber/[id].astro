@@ -77,22 +77,9 @@ const articleSchema: Record<string, any> = {
   dateModified: isoModified,
   // Varsayılan imza (kifobu) yayın kuruluşunun kendisidir; kişi uydurulmaz.
   author: author === SITE.name ? orgRef : { '@type': 'Person', name: author },
-  publisher: {
-    '@type': 'NewsMediaOrganization',
-    '@id': `${siteUrl}#organization`,
-    name: SITE.name,
-    url: siteUrl,
-    publishingPrinciples: new URL('/yayin-ilkeleri/', Astro.site).href,
-    correctionsPolicy: new URL('/yayin-ilkeleri/#duzeltmeler', Astro.site).href,
-    knowsAbout: ['Kitle Fonlama', 'Girişimcilik', 'Yatırım', 'Girişim Sermayesi', 'SPK'],
-    // Dikdörtgen yayıncı logosu (600×60), üst banttaki yazı logosundan çizilir (src/pages/logo-yayinci.png.ts).
-    logo: {
-      '@type': 'ImageObject',
-      url: new URL('/logo-yayinci.png', Astro.site).href,
-      width: LOGO_G,
-      height: LOGO_Y,
-    },
-  },
+  // Yayıncının tek tanımı Base.astro'daki Organization düğümünde; aynı @id ile çelişen ikinci logo yazılmaz.
+  publisher: orgRef,
+
   mainEntityOfPage: { '@type': 'WebPage', '@id': pageUrl },
   url: pageUrl,
   articleSection: categoryName(category),
