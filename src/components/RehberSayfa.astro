@@ -2,6 +2,7 @@
 // Rehber yazılarının ortak kalıbı: içerik yolu, başlık, gözden geçirme tarihi, metin, resmî bağlantılar ve
 // Article + BreadcrumbList JSON-LD. Rehberlerde yalnız genel ve doğrulanabilir bilgi yer alır; değişebilen rakamlar
 // (yatırım sınırları gibi) yazılmaz, okur SPK'ya yönlendirilir.
+import { jsonLdMetni } from '../lib/json-ld.mjs';
 import Base from '../layouts/Base.astro';
 import Yol from './Yol.astro';
 import Paylas from './Paylas.astro';
@@ -51,7 +52,7 @@ const digerleri = REHBERLER.filter((x) => x.slug !== slug);
 <Base title={r.baslik} description={r.aciklama} type="article">
   <Fragment slot="head">
     <meta property="article:modified_time" content={r.gozdenGecirme} />
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script type="application/ld+json" set:html={jsonLdMetni(jsonLd)} />
   </Fragment>
   <article class="makale">
     <Yol adimlar={adimlar} />

@@ -1,5 +1,6 @@
 ---
 // Bülten günleri dizini: her günün kalıcı bülten sayfası (/gunluk-bulten/YYYY-AA-GG/), en yeni önce.
+import { jsonLdMetni } from '../../lib/json-ld.mjs';
 import Base from '../../layouts/Base.astro';
 import Yol from '../../components/Yol.astro';
 import { dizinVerisi } from '../../lib/dizin';
@@ -15,7 +16,7 @@ const jsonLd = sayfaLd({ site: Astro.site!, yol: '/gunluk-bulten/gunler/', ad: '
 ---
 
 <Base title="Bülten günleri" description={aciklama}>
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <script slot="head" type="application/ld+json" set:html={jsonLdMetni(jsonLd)} />
   <div slot="tahta" class="kategori-bas">
     <h1 class="kategori-isim">Bülten günleri</h1>
     <p class="kategori-sayi">{gunler.length} gün</p>

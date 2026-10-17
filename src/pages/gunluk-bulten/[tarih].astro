@@ -2,6 +2,7 @@
 // Günlük bültenin kalıcı tarihli sayfası (/gunluk-bulten/YYYY-AA-GG/): o günün 18:00 kampanya kaydı, o gün
 // yayımlanan bülten yazıları ve haberler (src/lib/gunler.ts). Kampanya kaydı ya da en az 3 haberi olmayan gün
 // "noindex, follow" kalır. /gunluk-bulten/2/ gibi bölüm sayfalarıyla çakışmaz: buradaki parametre yalnız tarihtir.
+import { jsonLdMetni } from '../../lib/json-ld.mjs';
 import Base from '../../layouts/Base.astro';
 import HaberSatiri from '../../components/HaberSatiri.astro';
 import Yol from '../../components/Yol.astro';
@@ -55,7 +56,7 @@ const jsonLd = sayfaLd({
 
 <Base title={baslik} description={aciklama} noindex={!g.indeks}>
   <Fragment slot="head">
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script type="application/ld+json" set:html={jsonLdMetni(jsonLd)} />
   </Fragment>
   <div slot="tahta" class="kategori-bas">
     <h1 class="kategori-isim">{tarihAd}</h1>

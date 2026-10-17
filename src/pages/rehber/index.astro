@@ -1,5 +1,6 @@
 ---
 // Rehber dizini: kitle fonlamasına giriş, yatırım süreci ve SPK mevzuatı kılavuzu.
+import { jsonLdMetni } from '../../lib/json-ld.mjs';
 import Base from '../../layouts/Base.astro';
 import Yol from '../../components/Yol.astro';
 import { REHBERLER } from '../../lib/rehber';
@@ -11,7 +12,7 @@ const jsonLd = sayfaLd({ site: Astro.site!, yol: '/rehber/', ad: 'Rehber', acikl
 ---
 
 <Base title="Kitle fonlaması rehberi" description={aciklama}>
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <script slot="head" type="application/ld+json" set:html={jsonLdMetni(jsonLd)} />
   <div slot="tahta" class="kategori-bas">
     <h1 class="kategori-isim">Rehber</h1>
     <p class="kategori-sayi">{REHBERLER.length} yazı</p>

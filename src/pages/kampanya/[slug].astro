@@ -1,6 +1,7 @@
 ---
 // Kampanya sayfası: günlük bültenin 18:00 kayıtlarından kampanyanın künyesi ve günlük seyri (src/lib/kampanya.ts).
 // Yalnız kayıttaki rakamlar gösterilir; tahmin yok.
+import { jsonLdMetni } from '../../lib/json-ld.mjs';
 import Base from '../../layouts/Base.astro';
 import HaberSatiri from '../../components/HaberSatiri.astro';
 import Yol from '../../components/Yol.astro';
@@ -43,7 +44,7 @@ const jsonLd = sayfaLd({
 ---
 
 <Base title={`${k.ad} kampanyası: ${k.platform}`} description={aciklama}>
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <script slot="head" type="application/ld+json" set:html={jsonLdMetni(jsonLd)} />
   <div slot="tahta" class="kategori-bas">
     <h1 class="kategori-isim">{k.ad}</h1>
     <p class="kategori-sayi">Kitle fonlama kampanyası</p>

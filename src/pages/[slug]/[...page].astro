@@ -1,4 +1,5 @@
 ---
+import { jsonLdMetni } from '../../lib/json-ld.mjs';
 import type { GetStaticPaths, Page } from 'astro';
 import Base from '../../layouts/Base.astro';
 import Tahta from '../../components/Tahta.astro';
@@ -119,7 +120,7 @@ const jsonLd = {
 
 <Base title={baslik} description={description} noindex={noindex}>
   <Fragment slot="head">
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script type="application/ld+json" set:html={jsonLdMetni(jsonLd)} />
     {onceki && <link rel="prev" href={new URL(onceki, Astro.site).href} />}
     {sonraki && <link rel="next" href={new URL(sonraki, Astro.site).href} />}
   </Fragment>

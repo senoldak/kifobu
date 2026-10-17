@@ -1,6 +1,7 @@
 ---
 // Çeyrek sektör raporu (/rapor/YYYY-cN/) ve rapor dizini (/rapor/). Rakamlar yalnız kifobu kayıtlarından sayılır
 // (src/lib/rapor.ts). Bitmemiş ya da verisi yetersiz çeyreğin sayfası üretilmez; hiç rapor yoksa dizin de üretilmez.
+import { jsonLdMetni } from '../../lib/json-ld.mjs';
 import Base from '../../layouts/Base.astro';
 import Yol from '../../components/Yol.astro';
 import { dizinVerisi, platformUrl } from '../../lib/dizin';
@@ -49,7 +50,7 @@ const jsonLd = sayfaLd({
 ---
 
 <Base title={ad} description={aciklama}>
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <script slot="head" type="application/ld+json" set:html={jsonLdMetni(jsonLd)} />
   <div slot="tahta" class="kategori-bas">
     <h1 class="kategori-isim">{o ? o.ceyrek.ad : 'Raporlar'}</h1>
     <p class="kategori-sayi">{o ? 'Çeyrek raporu' : `${raporlar.length} rapor`}</p>

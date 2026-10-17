@@ -1,6 +1,7 @@
 ---
 // Konu sayfası: kısa tarafsız giriş ve konudaki bütün haberler. Yalnız en az 3 listelenen haberi olan konular
 // üretilir (src/lib/konular.ts).
+import { jsonLdMetni } from '../../lib/json-ld.mjs';
 import Base from '../../layouts/Base.astro';
 import HaberSatiri from '../../components/HaberSatiri.astro';
 import Yol from '../../components/Yol.astro';
@@ -26,7 +27,7 @@ const jsonLd = sayfaLd({ site: Astro.site!, yol, ad: konu.ad, aciklama: konu.aci
 ---
 
 <Base title={konu.ad} description={konu.aciklama}>
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <script slot="head" type="application/ld+json" set:html={jsonLdMetni(jsonLd)} />
   <div slot="tahta" class="kategori-bas">
     <h1 class="kategori-isim">{konu.ad}</h1>
     <p class="kategori-sayi">{haberler.length} haber</p>

@@ -1,5 +1,6 @@
 ---
 // Konu dizini: sayfası üretilmiş konular (en az 3 haber) ve kitle fonlama platformları.
+import { jsonLdMetni } from '../../lib/json-ld.mjs';
 import Base from '../../layouts/Base.astro';
 import Yol from '../../components/Yol.astro';
 import { dizinVerisi } from '../../lib/dizin';
@@ -13,7 +14,7 @@ const jsonLd = sayfaLd({ site: Astro.site!, yol: '/konu/', ad: 'Konular', acikla
 ---
 
 <Base title="Konular" description={aciklama}>
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <script slot="head" type="application/ld+json" set:html={jsonLdMetni(jsonLd)} />
   <div slot="tahta" class="kategori-bas">
     <h1 class="kategori-isim">Konular</h1>
     <p class="kategori-sayi">{konular.length} konu</p>

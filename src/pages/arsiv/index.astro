@@ -1,4 +1,5 @@
 ---
+import { jsonLdMetni } from '../../lib/json-ld.mjs';
 import Base from '../../layouts/Base.astro';
 import Ozet from '../../components/arsiv/Ozet.astro';
 import Akis from '../../components/arsiv/Akis.astro';
@@ -66,7 +67,7 @@ const sekmeler = [
   title="Kitle Fonlama Arşivi"
   description="Türkiye'deki paya dayalı kitle fonlama kampanyalarının günlük kapanışlardan derlenen arşivi."
 >
-  {datasetLd && <script slot="head" type="application/ld+json" set:html={JSON.stringify(datasetLd)} />}
+  {datasetLd && <script slot="head" type="application/ld+json" set:html={jsonLdMetni(datasetLd)} />}
   <section id="arsiv" class="arsiv" data-gorunum="akis" data-donem="gun" data-son-tarih={sonTarih}>
     <header class="kunye">
       <p class="kunye-etiket">kifobu · Veri</p>

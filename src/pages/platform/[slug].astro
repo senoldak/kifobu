@@ -2,6 +2,7 @@
 // Platform sayfası: kifobu'nun kampanya kayıtları ve platformla ilgili haberler. Lisans/yetki durumu gibi bilgiler
 // repoda doğrulanabilir veri olmadığı için yazılmaz; okur SPK'ya yönlendirilir. En az 3 haberi olmayan platform
 // sayfası "noindex, follow" kalır (src/lib/konular.ts → platformSayfasi).
+import { jsonLdMetni } from '../../lib/json-ld.mjs';
 import Base from '../../layouts/Base.astro';
 import HaberSatiri from '../../components/HaberSatiri.astro';
 import KampanyaTablosu from '../../components/KampanyaTablosu.astro';
@@ -40,7 +41,7 @@ const jsonLd = sayfaLd({
 ---
 
 <Base title={`${platform.ad}: kampanyalar ve haberler`} description={aciklama} noindex={!indeks}>
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <script slot="head" type="application/ld+json" set:html={jsonLdMetni(jsonLd)} />
   <div slot="tahta" class="kategori-bas">
     <h1 class="kategori-isim">{platform.ad}</h1>
     <p class="kategori-sayi">

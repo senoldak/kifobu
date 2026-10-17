@@ -1,5 +1,6 @@
 ---
 // Kampanya veritabanı: günlük bültenin 18:00 kayıtlarındaki bütün kampanyalar (src/lib/kampanya.ts).
+import { jsonLdMetni } from '../../lib/json-ld.mjs';
 import Base from '../../layouts/Base.astro';
 import KampanyaTablosu from '../../components/KampanyaTablosu.astro';
 import Yol from '../../components/Yol.astro';
@@ -19,7 +20,7 @@ const jsonLd = sayfaLd({ site: Astro.site!, yol: '/kampanya/', ad: 'Kitle fonlam
 ---
 
 <Base title="Kitle fonlama kampanyaları" description={aciklama} noindex={kampanyalar.length === 0}>
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <script slot="head" type="application/ld+json" set:html={jsonLdMetni(jsonLd)} />
   <div slot="tahta" class="kategori-bas">
     <h1 class="kategori-isim">Kampanyalar</h1>
     <p class="kategori-sayi">{kampanyalar.length} kampanya · {kampanyalar.filter(hedefeUlasti).length} hedefe ulaştı</p>
