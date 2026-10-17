@@ -442,18 +442,47 @@
     "92ff8be913f9193d": "2026-10-17T15:36:52.493Z",
     "41618da9276a00ec": "2026-10-17T15:36:52.493Z",
     "be9d1a58b562f40d": "2026-10-17T15:36:52.493Z",
-    "9d7f8e18cdea9078": "2026-10-17T15:36:52.493Z"
+    "9d7f8e18cdea9078": "2026-10-17T15:36:52.493Z",
+    "aab88b9f473d035a": "2026-10-17T17:20:55.575Z",
+    "2ad9ed2e03161a15": "2026-10-17T17:20:55.575Z",
+    "7d2576ef592b0444": "2026-10-17T17:20:55.575Z",
+    "64fa87da0d813d89": "2026-10-17T17:20:55.575Z",
+    "f70171cc2ef14ea6": "2026-10-17T17:20:55.575Z",
+    "6d918dac688e7971": "2026-10-17T17:20:55.575Z",
+    "22b380344a05c9da": "2026-10-17T17:20:55.575Z",
+    "5e2548570c8aa947": "2026-10-17T17:20:55.575Z",
+    "db0eef53b719549e": "2026-10-17T17:20:55.575Z",
+    "e71121af253de713": "2026-10-17T17:20:55.575Z",
+    "19527563c08df22b": "2026-10-17T17:20:55.575Z",
+    "8778817c22af522e": "2026-10-17T17:20:55.575Z",
+    "4fd1ec17309a0d98": "2026-10-17T17:20:55.575Z",
+    "95d7f2d9c0e52d41": "2026-10-17T17:20:55.575Z",
+    "f1e003849a7542f1": "2026-10-17T17:20:55.575Z",
+    "307d13f9147937e7": "2026-10-17T17:20:55.575Z",
+    "003d534a0e3e5321": "2026-10-17T17:20:55.575Z",
+    "7115ac4d5fc9bfec": "2026-10-17T17:20:55.575Z",
+    "7f1f2bb4cfd98abf": "2026-10-17T17:20:55.575Z",
+    "943200c1f15d6598": "2026-10-17T17:20:55.575Z",
+    "c873af549b805083": "2026-10-17T17:20:55.575Z",
+    "922e90ef1583c9a4": "2026-10-17T17:20:55.575Z",
+    "23096ebddd640f25": "2026-10-17T17:20:55.575Z",
+    "685ff48bbb8ce497": "2026-10-17T17:20:55.575Z",
+    "1ea352cda4b2cef7": "2026-10-17T17:20:55.575Z",
+    "0d712e482bafe563": "2026-10-17T17:20:55.575Z",
+    "4e4c9ef53a3219a2": "2026-10-17T17:20:55.575Z",
+    "51bfd2ba7f74aaab": "2026-10-17T17:20:55.575Z",
+    "73c86afc93687087": "2026-10-17T17:20:55.575Z",
+    "2a8ac5b51feba26f": "2026-10-17T17:20:55.575Z",
+    "26da3cd3a2ea17a9": "2026-10-17T17:20:55.575Z",
+    "40b9746b44836668": "2026-10-17T17:20:55.575Z",
+    "9eb38d5b2c81c83c": "2026-10-17T17:20:55.575Z",
+    "af5ec6be4d1d48e2": "2026-10-17T17:20:55.575Z"
   },
   "hatalar": {
     "4456634fade3e52e": {
       "sayi": 1,
       "mesaj": "Gemini: çok fazla deneme",
       "zaman": "2026-10-13T12:23:42.485Z"
-    },
-    "003d534a0e3e5321": {
-      "sayi": 1,
-      "mesaj": "Gemini: çok fazla deneme",
-      "zaman": "2026-10-16T16:01:47.508Z"
     }
   },
   "kaynaklar": {},
@@ -812,7 +841,16 @@
     "13a6488664d2d131|74015c2f60e16f22": "2026-10-17T15:36:52.493Z",
     "74015c2f60e16f22|be9d1a58b562f40d": "2026-10-17T15:36:52.493Z",
     "4e4c9ef53a3219a2|74015c2f60e16f22": "2026-10-17T15:36:52.493Z",
-    "307d13f9147937e7|f1e003849a7542f1": "2026-10-17T15:36:52.493Z"
+    "307d13f9147937e7|f1e003849a7542f1": "2026-10-17T15:36:52.493Z",
+    "64fa87da0d813d89|94023c87d28620ee": "2026-10-17T17:20:55.575Z",
+    "64fa87da0d813d89|a79334c7da05a39d": "2026-10-17T17:20:55.575Z",
+    "64fa87da0d813d89|e7b5452387698aac": "2026-10-17T17:20:55.575Z",
+    "4e13ded01b59b37b|5e2548570c8aa947": "2026-10-17T17:20:55.575Z",
+    "4fd1ec17309a0d98|9eb38d5b2c81c83c": "2026-10-17T17:20:55.575Z",
+    "95d7f2d9c0e52d41|9eb38d5b2c81c83c": "2026-10-17T17:20:55.575Z",
+    "4df8a195d4b9bb7f|685ff48bbb8ce497": "2026-10-17T17:20:55.575Z",
+    "0d712e482bafe563|f1e003849a7542f1": "2026-10-17T17:20:55.575Z",
+    "4df8a195d4b9bb7f|6ff6cb29965a693a": "2026-10-17T17:20:55.575Z"
   },
   "ayni": {
     "b5e4276c4d883ede|fbf5ab2ae2339c84": "2026-10-15T10:20:53.602Z",
@@ -842,7 +880,11 @@
     "56002e864b0ebfc2|c7d72890c4829748": "2026-10-17T15:36:52.493Z",
     "9eb8562338d8ece2|cf9643e30fa39bc5": "2026-10-17T15:36:52.493Z",
     "534093af20716c13|bf91d4b33e18c86b": "2026-10-17T15:36:52.493Z",
-    "bf91d4b33e18c86b|fd4adcfcc72e9d78": "2026-10-17T15:36:52.493Z"
+    "bf91d4b33e18c86b|fd4adcfcc72e9d78": "2026-10-17T15:36:52.493Z",
+    "64fa87da0d813d89|f70171cc2ef14ea6": "2026-10-17T17:20:55.575Z",
+    "19527563c08df22b|e71121af253de713": "2026-10-17T17:20:55.575Z",
+    "22b380344a05c9da|6d918dac688e7971": "2026-10-17T17:20:55.575Z",
+    "4fd1ec17309a0d98|95d7f2d9c0e52d41": "2026-10-17T17:20:55.575Z"
   },
   "puan": {
     "af8d3c9a57374d24": {
@@ -2134,15 +2176,1395 @@
       "puan": 0,
       "olcek": 100,
       "zaman": "2026-10-17T15:36:52.493Z"
+    },
+    "aab88b9f473d035a": {
+      "puan": 0,
+      "olcek": 100,
+      "zaman": "2026-10-17T17:20:55.575Z"
+    },
+    "2ad9ed2e03161a15": {
+      "puan": 0,
+      "olcek": 100,
+      "zaman": "2026-10-17T17:20:55.575Z"
+    },
+    "7d2576ef592b0444": {
+      "puan": 0,
+      "olcek": 100,
+      "zaman": "2026-10-17T17:20:55.575Z"
+    },
+    "64fa87da0d813d89+f70171cc2ef14ea6": {
+      "puan": 0,
+      "olcek": 100,
+      "zaman": "2026-10-17T17:20:55.575Z"
+    },
+    "22b380344a05c9da+6d918dac688e7971": {
+      "puan": 0,
+      "olcek": 100,
+      "zaman": "2026-10-17T17:20:55.575Z"
+    },
+    "5e2548570c8aa947": {
+      "puan": 0,
+      "olcek": 100,
+      "zaman": "2026-10-17T17:20:55.575Z"
+    },
+    "db0eef53b719549e": {
+      "puan": 0,
+      "olcek": 100,
+      "zaman": "2026-10-17T17:20:55.575Z"
+    },
+    "19527563c08df22b+e71121af253de713": {
+      "puan": 65,
+      "olcek": 100,
+      "zaman": "2026-10-17T17:20:55.575Z"
+    },
+    "8778817c22af522e": {
+      "puan": 0,
+      "olcek": 100,
+      "zaman": "2026-10-17T17:20:55.575Z"
+    },
+    "4fd1ec17309a0d98+95d7f2d9c0e52d41": {
+      "puan": 45,
+      "olcek": 100,
+      "zaman": "2026-10-17T17:20:55.575Z"
+    },
+    "f1e003849a7542f1": {
+      "puan": 0,
+      "olcek": 100,
+      "zaman": "2026-10-17T17:20:55.575Z"
+    },
+    "307d13f9147937e7": {
+      "puan": 0,
+      "olcek": 100,
+      "zaman": "2026-10-17T17:20:55.575Z"
     }
   },
   "kimlik": "hmac-v1",
-  "havuz": [
-    {
-      "id": "003d534a0e3e5321",
-      "kategori": "mevzuat",
-      "havuzaGirdi": "2026-10-16T16:20:54.974Z",
-      "sifreli": "v1.dKHKIQ2vE7qm4KOB.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"
+  "havuz": [],
+  "taranan": {
+    "808df978e88f07b5": {
+      "zaman": "2026-10-16T14:30:00.000Z",
+      "kod": "k96a33d",
+      "yerli": true
+    },
+    "da9f0f33bca6f1c7": {
+      "zaman": "2026-10-16T14:00:00.000Z",
+      "kod": "k96a33d",
+      "yerli": true
+    },
+    "8718af52fa9c62c6": {
+      "zaman": "2026-10-16T13:50:00.000Z",
+      "kod": "k96a33d",
+      "yerli": true
+    },
+    "cf9643e30fa39bc5": {
+      "zaman": "2026-10-16T13:00:00.000Z",
+      "kod": "k96a33d",
+      "yerli": true
+    },
+    "3b65bb84c233ed3f": {
+      "zaman": "2026-10-16T12:00:00.000Z",
+      "kod": "k96a33d",
+      "yerli": true
+    },
+    "86fc8aa01fbc72b6": {
+      "zaman": "2026-10-16T11:00:00.000Z",
+      "kod": "k96a33d",
+      "yerli": true
+    },
+    "7457ac4e75197490": {
+      "zaman": "2026-10-16T10:00:00.000Z",
+      "kod": "k96a33d",
+      "yerli": true
+    },
+    "02ae5b51499a7ef9": {
+      "zaman": "2026-10-16T09:00:00.000Z",
+      "kod": "k96a33d",
+      "yerli": true
+    },
+    "812ecd9c8cd583fa": {
+      "zaman": "2026-10-16T08:03:07.000Z",
+      "kod": "k96a33d",
+      "yerli": true
+    },
+    "5a0000cc328bee44": {
+      "zaman": "2026-10-16T07:05:24.000Z",
+      "kod": "k96a33d",
+      "yerli": true
+    },
+    "c7d72890c4829748": {
+      "zaman": "2026-10-16T07:00:00.000Z",
+      "kod": "k96a33d",
+      "yerli": true
+    },
+    "bac56af367104e9c": {
+      "zaman": "2026-10-15T14:30:00.000Z",
+      "kod": "k96a33d",
+      "yerli": true
+    },
+    "4f9fc48e846a0f0a": {
+      "zaman": "2026-10-15T14:00:00.000Z",
+      "kod": "k96a33d",
+      "yerli": true
+    },
+    "284599edaac640fa": {
+      "zaman": "2026-10-15T13:00:00.000Z",
+      "kod": "k96a33d",
+      "yerli": true
+    },
+    "d132a3c1ad566e82": {
+      "zaman": "2026-10-15T12:00:00.000Z",
+      "kod": "k96a33d",
+      "yerli": true
+    },
+    "f75045fd9d7d8c09": {
+      "zaman": "2026-10-15T11:00:00.000Z",
+      "kod": "k96a33d",
+      "yerli": true
+    },
+    "a8dde7c8ae067428": {
+      "zaman": "2026-10-15T10:00:00.000Z",
+      "kod": "k96a33d",
+      "yerli": true
+    },
+    "455e6409ed2c250a": {
+      "zaman": "2026-10-15T09:00:00.000Z",
+      "kod": "k96a33d",
+      "yerli": true
+    },
+    "ac72510aafa38a68": {
+      "zaman": "2026-10-15T08:00:00.000Z",
+      "kod": "k96a33d",
+      "yerli": true
+    },
+    "a2d2acb34e88e903": {
+      "zaman": "2026-10-15T07:00:00.000Z",
+      "kod": "k96a33d",
+      "yerli": true
+    },
+    "e9b05a61115e5b7b": {
+      "zaman": "2026-10-16T07:46:57.000Z",
+      "kod": "k8c50d0",
+      "yerli": true
+    },
+    "7bb852c0720589cc": {
+      "zaman": "2026-10-16T07:00:02.000Z",
+      "kod": "k8c50d0",
+      "yerli": true
+    },
+    "9eb8abbbbc349d1f": {
+      "zaman": "2026-10-15T09:50:00.000Z",
+      "kod": "ke3a262",
+      "yerli": true
+    },
+    "45ee78e78e19dbdd": {
+      "zaman": "2026-10-15T09:04:00.000Z",
+      "kod": "ke3a262",
+      "yerli": true
+    },
+    "e1bfc179d169ff4e": {
+      "zaman": "2026-10-15T07:44:00.000Z",
+      "kod": "ke3a262",
+      "yerli": true
+    },
+    "26da3cd3a2ea17a9": {
+      "zaman": "2026-10-16T17:57:38.000Z",
+      "kod": "k74a015"
+    },
+    "0d712e482bafe563": {
+      "zaman": "2026-10-16T11:00:42.000Z",
+      "kod": "k74a015"
+    },
+    "24a69dd47a70adb7": {
+      "zaman": "2026-10-15T16:20:30.000Z",
+      "kod": "k74a015"
+    },
+    "9b3395b8ecafe88e": {
+      "zaman": "2026-10-15T11:00:54.000Z",
+      "kod": "k74a015"
+    },
+    "aa914cff5a28f23a": {
+      "zaman": "2026-10-15T11:00:48.000Z",
+      "kod": "k74a015"
+    },
+    "41e198fa9bb50437": {
+      "zaman": "2026-10-15T11:00:31.000Z",
+      "kod": "k74a015"
+    },
+    "70da84e579f813d9": {
+      "zaman": "2026-10-16T15:10:45.000Z",
+      "kod": "kb3d359"
+    },
+    "8dc6e56d098a776d": {
+      "zaman": "2026-10-16T13:59:14.000Z",
+      "kod": "kb3d359"
+    },
+    "61d940ab624e828f": {
+      "zaman": "2026-10-16T13:18:16.000Z",
+      "kod": "kb3d359"
+    },
+    "1ea352cda4b2cef7": {
+      "zaman": "2026-10-16T11:12:28.000Z",
+      "kod": "kb3d359"
+    },
+    "95d7f2d9c0e52d41": {
+      "zaman": "2026-10-16T10:52:18.000Z",
+      "kod": "kb3d359"
+    },
+    "4751de8509473c0f": {
+      "zaman": "2026-10-16T09:57:16.000Z",
+      "kod": "kb3d359"
+    },
+    "6ff6cb29965a693a": {
+      "zaman": "2026-10-16T08:52:14.000Z",
+      "kod": "kb3d359"
+    },
+    "7115ac4d5fc9bfec": {
+      "zaman": "2026-10-16T07:11:17.000Z",
+      "kod": "kb3d359"
+    },
+    "91d048f3ca2920a3": {
+      "zaman": "2026-10-16T06:28:13.000Z",
+      "kod": "kb3d359"
+    },
+    "2124eb36ae4e2cf6": {
+      "zaman": "2026-10-15T15:18:50.000Z",
+      "kod": "kb3d359"
+    },
+    "f2735bc08b2f6f59": {
+      "zaman": "2026-10-16T14:26:02.000Z",
+      "kod": "kd8ec39"
+    },
+    "40b9746b44836668": {
+      "zaman": "2026-10-16T14:23:30.000Z",
+      "kod": "kd8ec39"
+    },
+    "8fabb7d86409d134": {
+      "zaman": "2026-10-16T11:56:00.000Z",
+      "kod": "kd8ec39"
+    },
+    "3b505149bd534ca8": {
+      "zaman": "2026-10-16T10:18:00.000Z",
+      "kod": "kd8ec39"
+    },
+    "003d534a0e3e5321": {
+      "zaman": "2026-10-16T09:17:26.000Z",
+      "kod": "kd8ec39"
+    },
+    "e3095a747ee0e1f1": {
+      "zaman": "2026-10-15T13:17:03.000Z",
+      "kod": "kd8ec39"
+    },
+    "ebe3d9168a18c8bd": {
+      "zaman": "2026-10-15T13:00:00.000Z",
+      "kod": "kd8ec39"
+    },
+    "73c86afc93687087": {
+      "zaman": "2026-10-15T12:10:00.000Z",
+      "kod": "kd8ec39"
+    },
+    "c01a0becf33edb08": {
+      "zaman": "2026-10-15T12:00:00.000Z",
+      "kod": "kd8ec39"
+    },
+    "3ef1dafb82c410b2": {
+      "zaman": "2026-10-15T10:46:00.000Z",
+      "kod": "kd8ec39"
+    },
+    "a3d7861ea9b1292e": {
+      "zaman": "2026-10-15T09:58:50.000Z",
+      "kod": "kd8ec39"
+    },
+    "2bd27595515cbf45": {
+      "zaman": "2026-10-15T08:54:00.000Z",
+      "kod": "kd8ec39"
+    },
+    "6e59f2ffaf5a3c2d": {
+      "zaman": "2026-10-15T08:00:00.000Z",
+      "kod": "kd8ec39"
+    },
+    "aa08904c58fc22f3": {
+      "zaman": "2026-10-15T07:55:51.000Z",
+      "kod": "kd8ec39"
+    },
+    "f44c1a4e0e3d8d76": {
+      "zaman": "2026-10-15T07:40:00.000Z",
+      "kod": "kd8ec39"
+    },
+    "11ca05947a678c93": {
+      "zaman": "2026-10-15T07:24:00.000Z",
+      "kod": "kd8ec39"
+    },
+    "3c0d0f7344da871e": {
+      "zaman": "2026-10-15T06:15:00.000Z",
+      "kod": "kd8ec39"
+    },
+    "c3d8606796bad6dc": {
+      "zaman": "2026-10-16T16:30:00.000Z",
+      "kod": "k581f30"
+    },
+    "76cfdca16ae776f4": {
+      "zaman": "2026-10-16T05:16:46.000Z",
+      "kod": "k581f30"
+    },
+    "84b4d7b6f31f3489": {
+      "zaman": "2026-10-15T18:00:00.000Z",
+      "kod": "k581f30"
+    },
+    "6abf4c3f60bc6a01": {
+      "zaman": "2026-10-15T14:00:00.000Z",
+      "kod": "k581f30"
+    },
+    "e35caf796eefc10a": {
+      "zaman": "2026-10-17T08:00:00.000Z",
+      "kod": "kf4b20d"
+    },
+    "c1ccad83f44879dd": {
+      "zaman": "2026-10-16T17:07:03.000Z",
+      "kod": "kf4b20d"
+    },
+    "6b477e5dca54031d": {
+      "zaman": "2026-10-16T16:50:00.000Z",
+      "kod": "kf4b20d"
+    },
+    "8c3626e302f16dd8": {
+      "zaman": "2026-10-16T16:40:00.000Z",
+      "kod": "kf4b20d"
+    },
+    "c581b265406efc57": {
+      "zaman": "2026-10-16T16:30:55.000Z",
+      "kod": "kf4b20d"
+    },
+    "902bed005ce8a4f9": {
+      "zaman": "2026-10-16T16:20:00.000Z",
+      "kod": "kf4b20d"
+    },
+    "93d2a43c3606e350": {
+      "zaman": "2026-10-16T12:15:22.000Z",
+      "kod": "kf4b20d"
+    },
+    "56002e864b0ebfc2": {
+      "zaman": "2026-10-16T09:54:54.000Z",
+      "kod": "kf4b20d"
+    },
+    "464600b6051483e3": {
+      "zaman": "2026-10-16T07:00:00.000Z",
+      "kod": "kf4b20d"
+    },
+    "de741afb5aed0d93": {
+      "zaman": "2026-10-16T06:00:00.000Z",
+      "kod": "kf4b20d"
+    },
+    "f9f4224d866cdc14": {
+      "zaman": "2026-10-16T16:30:00.000Z",
+      "kod": "k66d84a"
+    },
+    "42a95e445857c91d": {
+      "zaman": "2026-10-16T16:01:37.000Z",
+      "kod": "k66d84a"
+    },
+    "56a81f8efe436275": {
+      "zaman": "2026-10-16T16:00:00.000Z",
+      "kod": "k66d84a"
+    },
+    "a614cc2876410719": {
+      "zaman": "2026-10-16T14:00:00.000Z",
+      "kod": "k66d84a"
+    },
+    "6224eb950ad35aca": {
+      "zaman": "2026-10-15T23:44:56.000Z",
+      "kod": "k66d84a"
+    },
+    "c9963141c94dd812": {
+      "zaman": "2026-10-15T23:33:45.000Z",
+      "kod": "k66d84a"
+    },
+    "8a3fdda9350ccf2f": {
+      "zaman": "2026-10-15T18:00:00.000Z",
+      "kod": "k66d84a"
+    },
+    "92ff8be913f9193d": {
+      "zaman": "2026-10-15T14:47:09.000Z",
+      "kod": "k66d84a"
+    },
+    "228bae09f4d86961": {
+      "zaman": "2026-10-15T14:00:00.000Z",
+      "kod": "k66d84a"
+    },
+    "c65804bd4072db72": {
+      "zaman": "2026-10-15T01:01:32.000Z",
+      "kod": "k66d84a"
+    },
+    "a8a7f77956d4fc51": {
+      "zaman": "2026-10-15T00:30:00.000Z",
+      "kod": "k66d84a"
+    },
+    "8b3bd9a38a0e02e3": {
+      "zaman": "2026-10-15T00:00:00.000Z",
+      "kod": "k66d84a"
+    },
+    "02e91b221325f9e1": {
+      "zaman": "2026-10-14T23:00:00.000Z",
+      "kod": "k66d84a"
+    },
+    "87f6210dfa2a0de4": {
+      "zaman": "2026-10-14T22:00:00.000Z",
+      "kod": "k66d84a"
+    },
+    "e1c5df6cc19b1c41": {
+      "zaman": "2026-10-14T21:00:00.000Z",
+      "kod": "k66d84a"
+    },
+    "a23b77525cd71a5b": {
+      "zaman": "2026-10-14T20:00:00.000Z",
+      "kod": "k66d84a"
+    },
+    "b599f3d3cbb2d3dc": {
+      "zaman": "2026-10-14T19:00:00.000Z",
+      "kod": "k66d84a"
+    },
+    "1a4d59094c084e81": {
+      "zaman": "2026-10-14T18:00:00.000Z",
+      "kod": "k66d84a"
+    },
+    "aab88b9f473d035a": {
+      "zaman": "2026-10-17T17:18:00.000Z",
+      "kod": "kb25ed9",
+      "yerli": true
+    },
+    "2ad9ed2e03161a15": {
+      "zaman": "2026-10-17T17:02:00.000Z",
+      "kod": "kb25ed9",
+      "yerli": true
+    },
+    "7d2576ef592b0444": {
+      "zaman": "2026-10-17T17:00:00.000Z",
+      "kod": "kb25ed9",
+      "yerli": true
+    },
+    "5e2548570c8aa947": {
+      "zaman": "2026-10-17T16:24:00.000Z",
+      "kod": "kb25ed9",
+      "yerli": true
+    },
+    "db0eef53b719549e": {
+      "zaman": "2026-10-17T15:48:00.000Z",
+      "kod": "kb25ed9",
+      "yerli": true
+    },
+    "af8d3c9a57374d24": {
+      "zaman": "2026-10-17T15:30:00.000Z",
+      "kod": "kb25ed9",
+      "yerli": true
+    },
+    "7edda94859ec3cbe": {
+      "zaman": "2026-10-17T14:55:00.000Z",
+      "kod": "kb25ed9",
+      "yerli": true
+    },
+    "ea8f3d8472b2c148": {
+      "zaman": "2026-10-17T14:43:00.000Z",
+      "kod": "kb25ed9",
+      "yerli": true
+    },
+    "fd46734b6813364f": {
+      "zaman": "2026-10-17T14:30:00.000Z",
+      "kod": "kb25ed9",
+      "yerli": true
+    },
+    "cb5ebaae11bc0793": {
+      "zaman": "2026-10-17T14:15:00.000Z",
+      "kod": "kb25ed9",
+      "yerli": true
+    },
+    "eab635de2f7cc706": {
+      "zaman": "2026-10-17T14:12:00.000Z",
+      "kod": "kb25ed9",
+      "yerli": true
+    },
+    "f5178d233bfd0e8c": {
+      "zaman": "2026-10-17T13:34:00.000Z",
+      "kod": "kb25ed9",
+      "yerli": true
+    },
+    "db79405d372d4ca2": {
+      "zaman": "2026-10-17T12:52:00.000Z",
+      "kod": "kb25ed9",
+      "yerli": true
+    },
+    "f8199cbd58ea8a47": {
+      "zaman": "2026-10-17T12:49:00.000Z",
+      "kod": "kb25ed9",
+      "yerli": true
+    },
+    "eff95c16f9cb371c": {
+      "zaman": "2026-10-17T12:35:00.000Z",
+      "kod": "kb25ed9",
+      "yerli": true
+    },
+    "486061670c589ef0": {
+      "zaman": "2026-10-17T12:19:00.000Z",
+      "kod": "kb25ed9",
+      "yerli": true
+    },
+    "dd46227c494b5ab3": {
+      "zaman": "2026-10-17T12:06:00.000Z",
+      "kod": "kb25ed9",
+      "yerli": true
+    },
+    "51069de2a088a2c1": {
+      "zaman": "2026-10-17T12:01:00.000Z",
+      "kod": "kb25ed9",
+      "yerli": true
+    },
+    "9fca120a2efc91a4": {
+      "zaman": "2026-10-17T11:39:00.000Z",
+      "kod": "kb25ed9",
+      "yerli": true
+    },
+    "94699b4a20a70d48": {
+      "zaman": "2026-10-17T11:37:00.000Z",
+      "kod": "kb25ed9",
+      "yerli": true
+    },
+    "f44b48a7fb290883": {
+      "zaman": "2026-10-17T11:00:00.000Z",
+      "kod": "kb25ed9",
+      "yerli": true
+    },
+    "8785efae262ce330": {
+      "zaman": "2026-10-17T10:38:00.000Z",
+      "kod": "kb25ed9",
+      "yerli": true
+    },
+    "2f691dde9c2b9895": {
+      "zaman": "2026-10-17T10:36:00.000Z",
+      "kod": "kb25ed9",
+      "yerli": true
+    },
+    "9af8de514db916e2": {
+      "zaman": "2026-10-17T10:17:00.000Z",
+      "kod": "kb25ed9",
+      "yerli": true
+    },
+    "cc50b62d5806ce6f": {
+      "zaman": "2026-10-17T10:07:00.000Z",
+      "kod": "kb25ed9",
+      "yerli": true
+    },
+    "e120060e6bd3f869": {
+      "zaman": "2026-10-16T08:22:01.000Z",
+      "kod": "kc299f7",
+      "yerli": true
+    },
+    "21b332528decd268": {
+      "zaman": "2026-10-16T07:43:42.000Z",
+      "kod": "kc299f7",
+      "yerli": true
+    },
+    "180d895a86a3ecd8": {
+      "zaman": "2026-10-16T06:42:48.000Z",
+      "kod": "kc299f7",
+      "yerli": true
+    },
+    "1d895356c92c42a3": {
+      "zaman": "2026-10-15T15:24:34.000Z",
+      "kod": "kc299f7",
+      "yerli": true
+    },
+    "83f8c80b3b251ff5": {
+      "zaman": "2026-10-15T06:38:22.000Z",
+      "kod": "kc299f7",
+      "yerli": true
+    },
+    "9bd4ae7bc05e996f": {
+      "zaman": "2026-10-16T13:31:41.000Z",
+      "kod": "ke3ffac",
+      "yerli": true
+    },
+    "6285e88075540f71": {
+      "zaman": "2026-10-16T07:48:15.000Z",
+      "kod": "ke3ffac",
+      "yerli": true
+    },
+    "885b6d3bb83d6309": {
+      "zaman": "2026-10-15T13:34:15.000Z",
+      "kod": "ke3ffac",
+      "yerli": true
+    },
+    "1da687e4f626e924": {
+      "zaman": "2026-10-15T12:45:21.000Z",
+      "kod": "ke3ffac",
+      "yerli": true
+    },
+    "587b197578363ec9": {
+      "zaman": "2026-10-15T10:09:57.000Z",
+      "kod": "ke3ffac",
+      "yerli": true
+    },
+    "f8bb13e351e632d8": {
+      "zaman": "2026-10-15T09:09:01.000Z",
+      "kod": "ke3ffac",
+      "yerli": true
+    },
+    "faa12354410de933": {
+      "zaman": "2026-10-15T07:31:25.000Z",
+      "kod": "ke3ffac",
+      "yerli": true
+    },
+    "b182145d408a5abd": {
+      "zaman": "2026-10-14T21:00:54.000Z",
+      "kod": "ke3ffac",
+      "yerli": true
+    },
+    "ca93e364e6b31da4": {
+      "zaman": "2026-10-14T21:00:08.000Z",
+      "kod": "ke3ffac",
+      "yerli": true
+    },
+    "bdbbff84497e6d1d": {
+      "zaman": "2026-10-14T19:19:43.000Z",
+      "kod": "ke3ffac",
+      "yerli": true
+    },
+    "97d55e8cc06b280f": {
+      "zaman": "2026-10-16T12:46:00.000Z",
+      "kod": "k2659ba",
+      "yerli": true
+    },
+    "5b0e955f6ca57fe6": {
+      "zaman": "2026-10-16T11:04:39.000Z",
+      "kod": "k2659ba",
+      "yerli": true
+    },
+    "1d93085d85ade254": {
+      "zaman": "2026-10-16T11:01:44.000Z",
+      "kod": "k2659ba",
+      "yerli": true
+    },
+    "8bec3265e17a1554": {
+      "zaman": "2026-10-16T10:28:17.000Z",
+      "kod": "k2659ba",
+      "yerli": true
+    },
+    "233e8b343807823f": {
+      "zaman": "2026-10-16T08:20:37.000Z",
+      "kod": "k2659ba",
+      "yerli": true
+    },
+    "c2e36f10ba3f1201": {
+      "zaman": "2026-10-16T07:10:06.000Z",
+      "kod": "k2659ba",
+      "yerli": true
+    },
+    "81d642d9b80bca3c": {
+      "zaman": "2026-10-15T15:08:52.000Z",
+      "kod": "k2659ba",
+      "yerli": true
+    },
+    "46f4db069a4d715c": {
+      "zaman": "2026-10-15T14:53:37.000Z",
+      "kod": "k2659ba",
+      "yerli": true
+    },
+    "304bce43d38e1eb5": {
+      "zaman": "2026-10-15T09:05:58.000Z",
+      "kod": "k2659ba",
+      "yerli": true
+    },
+    "baa0d321d978a5ef": {
+      "zaman": "2026-10-15T08:46:13.000Z",
+      "kod": "k2659ba",
+      "yerli": true
+    },
+    "9f6c62b76a9b86a5": {
+      "zaman": "2026-10-16T11:33:00.000Z",
+      "kod": "ke7678c",
+      "yerli": true
+    },
+    "7feed4844e7780d7": {
+      "zaman": "2026-10-16T11:22:00.000Z",
+      "kod": "ke7678c",
+      "yerli": true
+    },
+    "3f493a45da728923": {
+      "zaman": "2026-10-17T06:00:00.000Z",
+      "kod": "ke7678c",
+      "yerli": true
+    },
+    "7421aa615b6d347e": {
+      "zaman": "2026-10-16T10:11:00.000Z",
+      "kod": "ke7678c",
+      "yerli": true
+    },
+    "1f97831a5abe8284": {
+      "zaman": "2026-10-16T09:51:00.000Z",
+      "kod": "ke7678c",
+      "yerli": true
+    },
+    "ecf423a74f4a509c": {
+      "zaman": "2026-10-16T08:40:00.000Z",
+      "kod": "ke7678c",
+      "yerli": true
+    },
+    "01cfdb1a615d7da8": {
+      "zaman": "2026-10-16T07:21:00.000Z",
+      "kod": "ke7678c",
+      "yerli": true
+    },
+    "daf9eb23d98966df": {
+      "zaman": "2026-10-17T11:00:00.000Z",
+      "kod": "ke7678c",
+      "yerli": true
+    },
+    "7d24fce0b654ee7c": {
+      "zaman": "2026-10-17T09:00:00.000Z",
+      "kod": "ke7678c",
+      "yerli": true
+    },
+    "d97c978564146387": {
+      "zaman": "2026-10-17T08:00:00.000Z",
+      "kod": "ke7678c",
+      "yerli": true
+    },
+    "03a685d018ab1cd9": {
+      "zaman": "2026-10-16T11:57:26.000Z",
+      "kod": "k971f88"
+    },
+    "9d7f8e18cdea9078": {
+      "zaman": "2026-10-16T10:28:56.000Z",
+      "kod": "k971f88"
+    },
+    "2205c42fdbb2dc35": {
+      "zaman": "2026-10-15T10:23:57.000Z",
+      "kod": "k971f88"
+    },
+    "9002e9f60776f1fd": {
+      "zaman": "2026-10-15T09:03:27.000Z",
+      "kod": "k971f88"
+    },
+    "9eb38d5b2c81c83c": {
+      "zaman": "2026-10-16T13:16:38.000Z",
+      "kod": "k7c607e"
+    },
+    "4fd1ec17309a0d98": {
+      "zaman": "2026-10-16T12:51:33.000Z",
+      "kod": "k7c607e"
+    },
+    "9b354f61f66a341c": {
+      "zaman": "2026-10-16T08:04:47.000Z",
+      "kod": "k7c607e"
+    },
+    "0fbf64815cc6eb19": {
+      "zaman": "2026-10-15T13:47:43.000Z",
+      "kod": "k7c607e"
+    },
+    "112173a3da177a43": {
+      "zaman": "2026-10-15T12:55:07.000Z",
+      "kod": "k7c607e"
+    },
+    "869ded8df2656b5a": {
+      "zaman": "2026-10-15T10:37:16.000Z",
+      "kod": "k7c607e"
+    },
+    "8a541e2d2ba26f5e": {
+      "zaman": "2026-10-17T12:11:02.000Z",
+      "kod": "k2ac254"
+    },
+    "1775fde4e44c7fd8": {
+      "zaman": "2026-10-17T12:05:12.000Z",
+      "kod": "k2ac254"
+    },
+    "1a55d512a8daa9fd": {
+      "zaman": "2026-10-17T12:00:23.000Z",
+      "kod": "k2ac254"
+    },
+    "76b093ff26641a1e": {
+      "zaman": "2026-10-16T17:02:07.000Z",
+      "kod": "k2ac254"
+    },
+    "6ecce2daf145b7a6": {
+      "zaman": "2026-10-16T15:45:00.000Z",
+      "kod": "k2ac254"
+    },
+    "495b877828ffd11e": {
+      "zaman": "2026-10-16T13:45:55.000Z",
+      "kod": "k2ac254"
+    },
+    "5e0b35999913efd0": {
+      "zaman": "2026-10-16T13:04:10.000Z",
+      "kod": "k2ac254"
+    },
+    "5af8f38d6765154c": {
+      "zaman": "2026-10-16T11:33:05.000Z",
+      "kod": "k2ac254"
+    },
+    "539f9490fdd3c400": {
+      "zaman": "2026-10-16T10:35:27.000Z",
+      "kod": "k2ac254"
+    },
+    "3c2c4c15ed574617": {
+      "zaman": "2026-10-16T09:18:54.000Z",
+      "kod": "k2ac254"
+    },
+    "c36f792a7b3fc106": {
+      "zaman": "2026-10-16T09:00:34.000Z",
+      "kod": "k48861b"
+    },
+    "bf890b5c9ea0af20": {
+      "zaman": "2026-10-16T08:00:16.000Z",
+      "kod": "k48861b"
+    },
+    "b280d91666c02745": {
+      "zaman": "2026-10-16T06:00:52.000Z",
+      "kod": "k48861b"
+    },
+    "ea0874a948dfa173": {
+      "zaman": "2026-10-16T05:41:57.000Z",
+      "kod": "k48861b"
+    },
+    "56422b12253e8ace": {
+      "zaman": "2026-10-15T09:00:11.000Z",
+      "kod": "k48861b"
+    },
+    "dbe25940761e6684": {
+      "zaman": "2026-10-15T07:00:26.000Z",
+      "kod": "k48861b"
+    },
+    "febb9f766410af3c": {
+      "zaman": "2026-10-15T06:00:00.000Z",
+      "kod": "k48861b"
+    },
+    "e71121af253de713": {
+      "zaman": "2026-10-17T15:42:22.000Z",
+      "kod": "kce4975"
+    },
+    "2615230807a81e75": {
+      "zaman": "2026-10-17T13:52:12.000Z",
+      "kod": "kce4975"
+    },
+    "b654a3312797774a": {
+      "zaman": "2026-10-17T13:00:38.000Z",
+      "kod": "kce4975"
+    },
+    "026cf9f76e091afd": {
+      "zaman": "2026-10-17T12:36:32.000Z",
+      "kod": "kce4975"
+    },
+    "364b4d98b8097469": {
+      "zaman": "2026-10-17T11:23:41.000Z",
+      "kod": "kce4975"
+    },
+    "c6f61c1490dac95d": {
+      "zaman": "2026-10-17T10:04:58.000Z",
+      "kod": "kce4975"
+    },
+    "cd55a6a62f0a0cc7": {
+      "zaman": "2026-10-17T09:45:59.000Z",
+      "kod": "kce4975"
+    },
+    "72bf5a879e5913ff": {
+      "zaman": "2026-10-17T07:11:21.000Z",
+      "kod": "kce4975"
+    },
+    "2a8ac5b51feba26f": {
+      "zaman": "2026-10-17T06:52:42.000Z",
+      "kod": "kce4975"
+    },
+    "c873af549b805083": {
+      "zaman": "2026-10-17T03:30:52.000Z",
+      "kod": "kce4975"
+    },
+    "9541c4bc9bc7d32f": {
+      "zaman": "2026-10-16T16:40:40.000Z",
+      "kod": "kce4975"
+    },
+    "4b9be9bd4857035c": {
+      "zaman": "2026-10-16T16:38:43.000Z",
+      "kod": "kce4975"
+    },
+    "41618da9276a00ec": {
+      "zaman": "2026-10-16T14:21:30.000Z",
+      "kod": "kce4975"
+    },
+    "79578edeea971bab": {
+      "zaman": "2026-10-16T14:09:54.000Z",
+      "kod": "kce4975"
+    },
+    "ca072989b7abcf60": {
+      "zaman": "2026-10-16T13:00:27.000Z",
+      "kod": "kce4975"
+    },
+    "685ff48bbb8ce497": {
+      "zaman": "2026-10-16T12:54:45.000Z",
+      "kod": "kce4975"
+    },
+    "b24526e03668627a": {
+      "zaman": "2026-10-16T12:36:10.000Z",
+      "kod": "kce4975"
+    },
+    "19527563c08df22b": {
+      "zaman": "2026-10-16T11:57:51.000Z",
+      "kod": "kce4975"
+    },
+    "0d030379bb587379": {
+      "zaman": "2026-10-16T11:50:19.000Z",
+      "kod": "kce4975"
+    },
+    "8d4f8fca8a93a042": {
+      "zaman": "2026-10-16T11:30:02.000Z",
+      "kod": "kce4975"
+    },
+    "2c1c014942c6fcc6": {
+      "zaman": "2026-10-16T11:22:06.000Z",
+      "kod": "kce4975"
+    },
+    "4e4c9ef53a3219a2": {
+      "zaman": "2026-10-16T10:27:02.000Z",
+      "kod": "kce4975"
+    },
+    "83977224e35de08f": {
+      "zaman": "2026-10-16T08:46:33.000Z",
+      "kod": "kce4975"
+    },
+    "51bfd2ba7f74aaab": {
+      "zaman": "2026-10-16T08:09:54.000Z",
+      "kod": "kce4975"
+    },
+    "40237e4d3bd2d0bc": {
+      "zaman": "2026-10-16T19:59:43.000Z",
+      "kod": "k1e5e50"
+    },
+    "4f09640c2dbbd405": {
+      "zaman": "2026-10-16T17:32:24.000Z",
+      "kod": "k1e5e50"
+    },
+    "be9d1a58b562f40d": {
+      "zaman": "2026-10-16T13:57:36.000Z",
+      "kod": "k1e5e50"
+    },
+    "b5553a6eee4aa2a4": {
+      "zaman": "2026-10-16T11:00:00.000Z",
+      "kod": "k1e5e50"
+    },
+    "a34bfcb9e3289096": {
+      "zaman": "2026-10-16T10:00:00.000Z",
+      "kod": "k1e5e50"
+    },
+    "af5ec6be4d1d48e2": {
+      "zaman": "2026-10-16T10:00:00.000Z",
+      "kod": "k1e5e50"
+    },
+    "d00744e776ae2525": {
+      "zaman": "2026-10-15T20:18:02.000Z",
+      "kod": "k1e5e50"
+    },
+    "4817b52fabe0c88c": {
+      "zaman": "2026-10-15T19:34:39.000Z",
+      "kod": "k1e5e50"
+    },
+    "fb51d2819a747116": {
+      "zaman": "2026-10-15T17:22:02.000Z",
+      "kod": "k1e5e50"
+    },
+    "e5e326b8c33e3443": {
+      "zaman": "2026-10-15T16:47:19.000Z",
+      "kod": "k1e5e50"
+    },
+    "051cdf68886c7008": {
+      "zaman": "2026-10-15T16:00:00.000Z",
+      "kod": "k1e5e50"
+    },
+    "9e8eab9b1d9307bd": {
+      "zaman": "2026-10-15T15:56:15.000Z",
+      "kod": "k1e5e50"
+    },
+    "c979f154e8b25e72": {
+      "zaman": "2026-10-15T15:15:10.000Z",
+      "kod": "k1e5e50"
+    },
+    "7df54a0bd370996a": {
+      "zaman": "2026-10-15T14:06:59.000Z",
+      "kod": "k1e5e50"
+    },
+    "54d198b305f401f1": {
+      "zaman": "2026-10-15T07:00:00.000Z",
+      "kod": "k1e5e50"
+    },
+    "f417845e1bc31b2f": {
+      "zaman": "2026-10-14T21:00:00.000Z",
+      "kod": "k1e5e50"
+    },
+    "f18502b96e0d66cb": {
+      "zaman": "2026-10-14T19:04:37.000Z",
+      "kod": "k1e5e50"
+    },
+    "23096ebddd640f25": {
+      "zaman": "2026-10-16T13:27:02.000Z",
+      "kod": "k780628"
+    },
+    "9bad742f9ce7699b": {
+      "zaman": "2026-10-15T17:27:34.000Z",
+      "kod": "k780628"
+    },
+    "6bb9d6175937c49b": {
+      "zaman": "2026-10-15T13:27:50.000Z",
+      "kod": "k780628"
+    },
+    "4df8a195d4b9bb7f": {
+      "zaman": "2026-10-15T03:27:38.000Z",
+      "kod": "k780628"
+    },
+    "2fab5226b057a5eb": {
+      "zaman": "2026-10-14T17:27:47.000Z",
+      "kod": "k780628"
+    },
+    "8778817c22af522e": {
+      "zaman": "2026-10-17T15:27:02.000Z",
+      "kod": "ka602e0"
+    },
+    "939d193f1c20ef74": {
+      "zaman": "2026-10-16T23:02:37.000Z",
+      "kod": "ka602e0"
+    },
+    "d3ce9fe50c6fbd76": {
+      "zaman": "2026-10-16T20:01:35.000Z",
+      "kod": "ka602e0"
+    },
+    "af1285a7edde188e": {
+      "zaman": "2026-10-16T19:58:23.000Z",
+      "kod": "ka602e0"
+    },
+    "5f5a4dafea38aad9": {
+      "zaman": "2026-10-16T14:06:00.000Z",
+      "kod": "ka602e0"
+    },
+    "d54f4fbd0104809d": {
+      "zaman": "2026-10-15T23:27:26.000Z",
+      "kod": "ka602e0"
+    },
+    "b0c8ec72f0c311bf": {
+      "zaman": "2026-10-15T21:51:34.000Z",
+      "kod": "ka602e0"
+    },
+    "60b4f888af56a9f0": {
+      "zaman": "2026-10-15T21:19:49.000Z",
+      "kod": "ka602e0"
+    },
+    "11ee09e7e02c1d6c": {
+      "zaman": "2026-10-15T17:36:39.000Z",
+      "kod": "ka602e0"
+    },
+    "14b144e68b7a229c": {
+      "zaman": "2026-10-15T16:57:31.000Z",
+      "kod": "ka602e0"
+    },
+    "d88da2af73296ce4": {
+      "zaman": "2026-10-15T16:25:09.000Z",
+      "kod": "ka602e0"
+    },
+    "6f372e07e7ee1f0b": {
+      "zaman": "2026-10-15T15:43:33.000Z",
+      "kod": "ka602e0"
+    },
+    "c6e22bb2a39a245b": {
+      "zaman": "2026-10-15T14:14:21.000Z",
+      "kod": "ka602e0"
+    },
+    "041fb91f4f06a5b9": {
+      "zaman": "2026-10-15T12:39:32.000Z",
+      "kod": "ka602e0"
+    },
+    "a9ef148055064025": {
+      "zaman": "2026-10-14T22:32:04.000Z",
+      "kod": "ka602e0"
+    },
+    "b7ed2535cf9fa45e": {
+      "zaman": "2026-10-14T21:42:51.000Z",
+      "kod": "ka602e0"
+    },
+    "d2d8dccee15f76ce": {
+      "zaman": "2026-10-14T20:45:55.000Z",
+      "kod": "ka602e0"
+    },
+    "208a47a78c0e3fec": {
+      "zaman": "2026-10-14T18:15:09.000Z",
+      "kod": "ka602e0"
+    },
+    "64fa87da0d813d89": {
+      "zaman": "2026-10-17T16:44:46.000Z",
+      "kod": "k40d079"
+    },
+    "f70171cc2ef14ea6": {
+      "zaman": "2026-10-17T16:44:44.000Z",
+      "kod": "k40d079"
+    },
+    "6d918dac688e7971": {
+      "zaman": "2026-10-17T16:44:43.000Z",
+      "kod": "k40d079"
+    },
+    "22b380344a05c9da": {
+      "zaman": "2026-10-17T16:44:40.000Z",
+      "kod": "k40d079"
+    },
+    "7d5b19873274aec3": {
+      "zaman": "2026-10-16T11:07:29.000Z",
+      "kod": "k40d079"
+    },
+    "651b46b99593a5ec": {
+      "zaman": "2026-10-16T11:07:27.000Z",
+      "kod": "k40d079"
+    },
+    "d1104b28f30fca8f": {
+      "zaman": "2026-10-16T09:44:16.000Z",
+      "kod": "k40d079"
+    },
+    "dd7a6409198eecc5": {
+      "zaman": "2026-10-16T09:44:14.000Z",
+      "kod": "k40d079"
+    },
+    "15928a5593115247": {
+      "zaman": "2026-10-16T09:33:55.000Z",
+      "kod": "k40d079"
+    },
+    "77f9568cca6dd031": {
+      "zaman": "2026-10-16T09:33:54.000Z",
+      "kod": "k40d079"
+    },
+    "1e844c3df05f40a9": {
+      "zaman": "2026-10-16T09:18:47.000Z",
+      "kod": "k40d079"
+    },
+    "bf468e34dab35533": {
+      "zaman": "2026-10-16T08:32:00.000Z",
+      "kod": "k40d079"
+    },
+    "faa1ded20cc2d2a4": {
+      "zaman": "2026-10-16T08:17:17.000Z",
+      "kod": "k40d079"
+    },
+    "bdc70dff3c396dc5": {
+      "zaman": "2026-10-16T08:17:16.000Z",
+      "kod": "k40d079"
+    },
+    "f1e003849a7542f1": {
+      "zaman": "2026-10-16T08:17:14.000Z",
+      "kod": "k40d079"
+    },
+    "307d13f9147937e7": {
+      "zaman": "2026-10-16T08:17:11.000Z",
+      "kod": "k40d079"
+    },
+    "73f789bf948a3122": {
+      "zaman": "2026-10-16T07:00:00.000Z",
+      "kod": "k40d079"
+    },
+    "3775666796da28a6": {
+      "zaman": "2026-10-16T07:00:00.000Z",
+      "kod": "k40d079"
+    },
+    "b02ed504d4fd9c6e": {
+      "zaman": "2026-10-16T06:11:45.000Z",
+      "kod": "k40d079"
+    },
+    "534093af20716c13": {
+      "zaman": "2026-10-16T06:11:43.000Z",
+      "kod": "k40d079"
+    },
+    "d09bd54e4ad30ad0": {
+      "zaman": "2026-10-16T06:00:00.000Z",
+      "kod": "k40d079"
+    },
+    "b9010b50c9d9d0d4": {
+      "zaman": "2026-10-16T05:57:23.000Z",
+      "kod": "k40d079"
+    },
+    "561a1edd14a0190e": {
+      "zaman": "2026-10-16T05:57:21.000Z",
+      "kod": "k40d079"
+    },
+    "bf91d4b33e18c86b": {
+      "zaman": "2026-10-16T05:20:13.000Z",
+      "kod": "k40d079"
+    },
+    "fd4adcfcc72e9d78": {
+      "zaman": "2026-10-16T05:20:11.000Z",
+      "kod": "k40d079"
+    },
+    "72cb3e1aac56a417": {
+      "zaman": "2026-10-15T18:18:20.000Z",
+      "kod": "k40d079"
+    },
+    "9eb8562338d8ece2": {
+      "zaman": "2026-10-15T18:18:19.000Z",
+      "kod": "k40d079"
+    },
+    "f16a66abf8efa219": {
+      "zaman": "2026-10-15T18:02:33.000Z",
+      "kod": "k40d079"
+    },
+    "98d775722da89fef": {
+      "zaman": "2026-10-15T18:02:31.000Z",
+      "kod": "k40d079"
+    },
+    "81d731ed56a8d976": {
+      "zaman": "2026-10-15T15:41:38.000Z",
+      "kod": "k40d079"
+    },
+    "28aa884694e4fde6": {
+      "zaman": "2026-10-16T18:20:54.000Z",
+      "kod": "k4d9e21"
+    },
+    "1ce170194548ac40": {
+      "zaman": "2026-10-16T15:58:00.000Z",
+      "kod": "k4d9e21"
+    },
+    "584051a898879a1b": {
+      "zaman": "2026-10-16T15:08:28.000Z",
+      "kod": "k4d9e21"
+    },
+    "474bc563ad3ec49f": {
+      "zaman": "2026-10-16T14:55:26.000Z",
+      "kod": "k4d9e21"
+    },
+    "15fb76ae96ed8a3a": {
+      "zaman": "2026-10-16T14:47:13.000Z",
+      "kod": "k4d9e21"
+    },
+    "c852c2f8c4b22085": {
+      "zaman": "2026-10-16T14:37:35.000Z",
+      "kod": "k4d9e21"
+    },
+    "dfdae01988f9cb3b": {
+      "zaman": "2026-10-16T14:30:23.000Z",
+      "kod": "k4d9e21"
+    },
+    "922e90ef1583c9a4": {
+      "zaman": "2026-10-16T14:23:10.000Z",
+      "kod": "k4d9e21"
+    },
+    "60c341fc98eb0e6f": {
+      "zaman": "2026-10-16T14:01:51.000Z",
+      "kod": "k4d9e21"
+    },
+    "b086d8f235a2beaa": {
+      "zaman": "2026-10-16T13:53:21.000Z",
+      "kod": "k4d9e21"
+    },
+    "702b545f2372025d": {
+      "zaman": "2026-10-16T04:08:31.000Z",
+      "kod": "k4fd80e"
+    },
+    "27d18c5750fd1ed3": {
+      "zaman": "2026-10-16T03:44:28.000Z",
+      "kod": "k4fd80e"
+    },
+    "6d8c69f96ea953a2": {
+      "zaman": "2026-10-15T23:01:00.000Z",
+      "kod": "k4fd80e"
+    },
+    "f78e550b31fcc5e1": {
+      "zaman": "2026-10-15T07:24:00.000Z",
+      "kod": "k4fd80e"
+    },
+    "6e041cd521bd5ab6": {
+      "zaman": "2026-10-15T05:51:00.000Z",
+      "kod": "k4fd80e"
+    },
+    "4db71ebe628c7d98": {
+      "zaman": "2026-10-15T04:01:23.000Z",
+      "kod": "k4fd80e"
+    },
+    "784d03d642a38264": {
+      "zaman": "2026-10-15T00:04:56.000Z",
+      "kod": "k4fd80e"
+    },
+    "cf7c1a8f4a3acbdf": {
+      "zaman": "2026-10-14T22:37:00.000Z",
+      "kod": "k4fd80e"
+    },
+    "64378bfec4e21f99": {
+      "zaman": "2026-10-14T22:01:00.000Z",
+      "kod": "k4fd80e"
+    },
+    "94064a8520a0c95b": {
+      "zaman": "2026-10-17T12:45:23.000Z",
+      "kod": "k30b7cb"
+    },
+    "ab60d0a662ef994f": {
+      "zaman": "2026-10-17T12:44:42.000Z",
+      "kod": "k30b7cb"
+    },
+    "3f31757400faf33e": {
+      "zaman": "2026-10-17T12:44:15.000Z",
+      "kod": "k30b7cb"
+    },
+    "d6be8de6b67d1030": {
+      "zaman": "2026-10-17T12:40:52.000Z",
+      "kod": "k30b7cb"
+    },
+    "fc7fd8c0cea5e863": {
+      "zaman": "2026-10-17T12:39:57.000Z",
+      "kod": "k30b7cb"
+    },
+    "ecbb73891463f467": {
+      "zaman": "2026-10-17T12:38:41.000Z",
+      "kod": "k30b7cb"
+    },
+    "7f1f2bb4cfd98abf": {
+      "zaman": "2026-10-17T12:37:24.000Z",
+      "kod": "k30b7cb"
+    },
+    "943200c1f15d6598": {
+      "zaman": "2026-10-17T12:36:07.000Z",
+      "kod": "k30b7cb"
+    },
+    "5a5c0583cd1f3739": {
+      "zaman": "2026-10-17T12:32:51.000Z",
+      "kod": "k30b7cb"
+    },
+    "a5d7e125e1211c1f": {
+      "zaman": "2026-10-17T12:31:05.000Z",
+      "kod": "k30b7cb"
+    },
+    "1ff370ed009d92fb": {
+      "zaman": "2026-10-16T19:46:03.000Z",
+      "kod": "k30b7cb"
+    },
+    "74015c2f60e16f22": {
+      "zaman": "2026-10-16T19:44:20.000Z",
+      "kod": "k30b7cb"
+    },
+    "8f95c567126b2b3e": {
+      "zaman": "2026-10-16T19:42:50.000Z",
+      "kod": "k30b7cb"
+    },
+    "807a6ce6225c00e5": {
+      "zaman": "2026-10-16T19:40:46.000Z",
+      "kod": "k30b7cb"
+    },
+    "60c34abbdaf910cc": {
+      "zaman": "2026-10-16T19:40:10.000Z",
+      "kod": "k30b7cb"
+    },
+    "fdfe40a320473669": {
+      "zaman": "2026-10-16T19:34:36.000Z",
+      "kod": "k30b7cb"
+    },
+    "5087ad010125eb82": {
+      "zaman": "2026-10-16T19:32:55.000Z",
+      "kod": "k30b7cb"
+    },
+    "4e9e9362fe7de45c": {
+      "zaman": "2026-10-16T19:26:51.000Z",
+      "kod": "k30b7cb"
+    },
+    "62e28215fd7369b8": {
+      "zaman": "2026-10-16T19:17:40.000Z",
+      "kod": "k30b7cb"
+    },
+    "13a6488664d2d131": {
+      "zaman": "2026-10-16T19:12:10.000Z",
+      "kod": "k30b7cb"
     }
-  ]
+  }
 }
