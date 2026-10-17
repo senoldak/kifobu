@@ -67,7 +67,7 @@ export default defineConfig({
         const p = new URL(page).pathname;
         // Arama sayfası noindex (sonuçlar tarayıcıda üretilir); arama dizini (JSON) sayfa değildir.
         if (p.startsWith('/arama') || p.endsWith('.json')) return false;
-        if (p.startsWith('/kategori/') || p.startsWith('/admin') || p.startsWith('/404')) return false;
+        if (p.startsWith('/kategori/') || p.startsWith('/404')) return false;
         const m = p.match(/^\/haber\/([^/]+)\/?$/);
         if (m && !haberBilgi.get(m[1])?.indeks) return false;
         const b = p.match(/^\/([^/]+)\/(?:\d+\/?)?$/)?.[1];

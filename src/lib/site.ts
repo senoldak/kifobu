@@ -17,7 +17,6 @@ export const SITE = {
   },
 };
 
-// Kategori listesi panel ayarlarıyla (public/admin/config.yml) aynı tutulmalı.
 // emekli: kifobu'nun konusu dışında kalan eski genel haber bölümleri (2026-10-15). Bot bunlara yazmaz, menüde ve
 // anasayfada görünmezler; eski haberlerin adresleri bozulmasın diye sayfaları ve şemadaki değerleri durur.
 export const CATEGORIES = [

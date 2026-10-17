@@ -6,7 +6,7 @@ import { kullanimEkle, hataEkle, amacBul, gunlukDolu } from './kullanim.mjs';
 
 export const USER_AGENT = 'kifobu-bot/1.0 (+https://kifobu.com; iletisim@kifobu.com)';
 
-// Botun yazabileceği kategoriler. Sitedeki tam liste src/lib/site.ts ve public/admin/config.yml'dadır;
+// Botun yazabileceği kategoriler. Sitedeki tam liste src/lib/site.ts'dedir;
 // buradakiler o listenin alt kümesi olmalı. gundem, yapay-zeka, donanim ve dunya kifobu'nun konusu olmadığı için
 // bot çıktısından çıkarıldı (2026-10-15); eski haberler sitede kalır. gunluk-bulten'i ozet-bulten.mjs yazar.
 export const KATEGORILER = ['yatirimlar', 'kampanyalar', 'platformlar', 'mevzuat', 'girisimler', 'analiz'];
@@ -118,7 +118,7 @@ export function rssOku(xml) {
   });
 }
 
-// Sveltia CMS ile aynı mantıkta ASCII slug (Türkçe harfler sadeleştirilir); kısaltılmamış hâli.
+// ASCII slug (Türkçe harfler sadeleştirilir); kısaltılmamış hâli.
 export function slugTam(s) {
   return s
     .replace(/İ/g, 'i').replace(/I/g, 'i')
