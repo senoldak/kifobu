@@ -8,20 +8,20 @@ Kifobu; Türkiye'deki kitle fonlama ekosistemini şeffaf, tarafsız ve erişileb
 Kifobu'da yer alan haber, veri ve analizler yatırım tavsiyesi niteliğinde değildir. Kitle fonlaması yatırımları sermaye kaybı riski taşır.
 
 ## Temel Bölümler
-- Günlük Bülten: https://kifobu.com/gunluk-bulten/
-- Girişimler: https://kifobu.com/girisimler/
-- Platformlar: https://kifobu.com/platformlar/
-- Mevzuat: https://kifobu.com/mevzuat/
-- Arşiv: https://kifobu.com/arsiv/
-- Kampanya veritabanı: https://kifobu.com/kampanya/
-- Bülten günleri: https://kifobu.com/gunluk-bulten/gunler/
-- Konular: https://kifobu.com/konu/
-- Platform dizini: https://kifobu.com/platform/
+- [Günlük Bülten](https://kifobu.com/gunluk-bulten/)
+- [Girişimler](https://kifobu.com/girisimler/)
+- [Platformlar](https://kifobu.com/platformlar/)
+- [Mevzuat](https://kifobu.com/mevzuat/)
+- [Arşiv](https://kifobu.com/arsiv/)
+- [Kampanya veritabanı](https://kifobu.com/kampanya/)
+- [Bülten günleri](https://kifobu.com/gunluk-bulten/gunler/)
+- [Konular](https://kifobu.com/konu/)
+- [Platform dizini](https://kifobu.com/platform/)
 
 ## Rehber
-- Kitle fonlaması nedir?: https://kifobu.com/rehber/kitle-fonlamasi-nedir/
-- Kitle fonlamasına nasıl yatırım yapılır?: https://kifobu.com/rehber/kitle-fonlamasina-nasil-yatirim-yapilir/
-- SPK kitle fonlaması mevzuatı kılavuzu: https://kifobu.com/rehber/spk-kitle-fonlamasi-mevzuati/
+- [Kitle fonlaması nedir?](https://kifobu.com/rehber/kitle-fonlamasi-nedir/)
+- [Kitle fonlamasına nasıl yatırım yapılır?](https://kifobu.com/rehber/kitle-fonlamasina-nasil-yatirim-yapilir/)
+- [SPK kitle fonlaması mevzuatı kılavuzu](https://kifobu.com/rehber/spk-kitle-fonlamasi-mevzuati/)
 
 ## Veri Kapsamı
 - SPK lisanslı kitle fonlama platformları (Fonbulucu, fonangels, Basefunder, Efonla vb.)
