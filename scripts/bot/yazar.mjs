@@ -116,10 +116,11 @@ export async function derlemeYaz(grup, kaynak) {
   return { ...t, category: grup[0].kategori };
 }
 
-// Ön eleme ve haber değeri tek çağrıda: 0 = kifobu'ya uygun değil, 1–5 = haber değeri.
-// Yerli de yabancı da MIN_DEGER'le geçer. Yabancı kaynaklı olaylar önce 5, sonra 4 istiyordu; 5'te site bir gün
-// boyunca hiç yazı çıkaramadı. 2026-10-17 site sahibinin kararıyla ayrım kalktı, eşik herkes için 3.
-export const MIN_DEGER = 3;
+// Ön eleme ve haber değeri tek çağrıda: 0 = kifobu'ya uygun değil, 1–100 = haber değeri.
+// Yerli de yabancı da MIN_DEGER'le geçer. 2026-10-17 site sahibinin kararıyla ölçek 0–5'ten 0–100'e geçti ve eşik
+// 3/5'ten 3,5/5'e, yani 70/100'e çıktı (tam sayılı 0–5'te 3,5 pratikte 4 olurdu).
+export const MIN_DEGER = 70;
+export const OLCEK = 100;
 const ELEME_SEMASI = {
   type: 'object',
   properties: {
@@ -132,7 +133,7 @@ const ELEME_SEMASI = {
 };
 
 /**
- * Başlık listesinin her birine puan verir (0 kapsam dışı, 1–5 haber değeri). Döner: indeksle hizalı puan dizisi;
+ * Başlık listesinin her birine puan verir (0 kapsam dışı, 1–100 haber değeri). Döner: indeksle hizalı puan dizisi;
  * modelin atladığı başlık MIN_DEGER alır (kararsızsa dahil). Gemini yoksa ya da cevap gelmezse null.
  */
 export async function onEle(basliklar, { kall = gemini } = {}) {
@@ -140,34 +141,35 @@ export async function onEle(basliklar, { kall = gemini } = {}) {
   const r = await kall({
     schema: ELEME_SEMASI,
     dusunme: 'minimal',
-    prompt: `Sen kifobu'nun haber editörüsün. kifobu, Türkiye'nin kitle fonlama ve girişim yatırımı ekosistemini izleyen bir bülten. Aşağıdaki her başlığa bir puan ver. Başlığın önündeki [TR] Türkiye kaynaklı, [Dünya] yabancı kaynaklı haber demektir.
+    prompt: `Sen kifobu'nun haber editörüsün. kifobu, Türkiye'nin kitle fonlama ve girişim yatırımı ekosistemini izleyen bir bülten. Aşağıdaki her başlığa 0–100 arası bir puan ver. Başlığın önündeki [TR] Türkiye kaynaklı, [Dünya] yabancı kaynaklı haber demektir.
 
 ${KAPSAM}
 
 Puanlar:
 0 = kifobu'nun kapsamı dışında (yukarıdaki "uygun olmayanlar"; Türkiye ve kitle fonlamasıyla ilgisi olmayan her şey).
-5 = Türkiye'de kitle fonlama kampanyası, platformu ya da SPK kararı; Türk girişiminin büyük turu, satın alınması ya da halka arzı; dünyada kitle fonlamasını ya da girişim yatırımını doğrudan etkileyen çok önemli gelişme (ör. yaklaşık 500 milyon dolar üstü tur, büyük kitle fonlama platformunun satın alınması, kitle fonlama mevzuatı).
-4 = Türk girişiminin her yatırım turu; Türkiye'deki girişim sermayesi fonları, melek ağları ve ekosistem raporları.
-3 = Türkiye ekosisteminde kapsamda ama sıradan haber (program başvuruları, yönetici değişiklikleri).
-2 = kapsamda ama zayıf: rutin duyuru, içeriği belirsiz ortaklık, tanıtım kokan haber.
-1 = kapsamda ama okura neredeyse hiçbir şey söylemiyor.
-Yabancı girişimlerin sıradan turları en fazla 2 alır. Kararsızsan düşük puan ver: kifobu az ama konusunda haber yayımlar.
+90–100 = Türkiye'de kitle fonlama kampanyası, platformu ya da SPK kararı; Türk girişiminin büyük turu, satın alınması ya da halka arzı; dünyada kitle fonlamasını ya da girişim yatırımını doğrudan etkileyen çok önemli gelişme (ör. yaklaşık 500 milyon dolar üstü tur, büyük kitle fonlama platformunun satın alınması, kitle fonlama mevzuatı).
+70–89 = Türk girişiminin her yatırım turu; Türkiye'deki girişim sermayesi fonları, melek ağları ve ekosistem raporları.
+50–69 = Türkiye ekosisteminde kapsamda ama sıradan haber (program başvuruları, yönetici değişiklikleri).
+30–49 = kapsamda ama zayıf: rutin duyuru, içeriği belirsiz ortaklık, tanıtım kokan haber.
+1–29 = kapsamda ama okura neredeyse hiçbir şey söylemiyor.
+Yabancı girişimlerin sıradan turları en fazla 45 alır. Aralığın içinde ince ayar yap; 70 ve üstü yayımlanır, emin değilsen 70 verme. Kararsızsan düşük puan ver: kifobu az ama konusunda haber yayımlar.
 
 Başlıklar:
 ${basliklar.map((b, i) => `${i}. ${b}`).join('\n')}`,
   });
   if (!r?.puanlar) return null;
   const puan = basliklar.map(() => MIN_DEGER);
-  for (const { nr, puan: p } of r.puanlar) if (Number.isInteger(nr) && nr >= 0 && nr < basliklar.length && Number.isInteger(p)) puan[nr] = Math.min(5, Math.max(0, p));
+  for (const { nr, puan: p } of r.puanlar) if (Number.isInteger(nr) && nr >= 0 && nr < basliklar.length && Number.isInteger(p)) puan[nr] = Math.min(100, Math.max(0, p));
   return puan;
 }
 
 /**
- * Önbellekli puanlama: önceki turlarda puanlanmış olay (kayit[anahtar] = { puan, zaman }) yeniden sorulmaz.
+ * Önbellekli puanlama: önceki turlarda puanlanmış olay (kayit[anahtar] = { puan, olcek: 100, zaman }) yeniden sorulmaz.
+ * Eski 0–5 ölçekli kayıtlar (olcek yok) yok sayılır, yeniden puanlanır.
  * Döner: basliklar ile hizalı puan dizisi; yeni puanlar kayda yazılır. Bir parça cevapsız kalırsa null.
  */
 export async function onbellekliPuanla(basliklar, anahtarlar, kayit, { kall = gemini, parca = 60, zaman = new Date().toISOString() } = {}) {
-  const puan = anahtarlar.map((k) => kayit[k]?.puan);
+  const puan = anahtarlar.map((k) => (kayit[k]?.olcek === OLCEK ? kayit[k].puan : undefined));
   const sor = puan.map((p, i) => (p === undefined ? i : -1)).filter((i) => i >= 0);
   for (let i = 0; i < sor.length; i += parca) {
     const dilim = sor.slice(i, i + parca);
@@ -175,7 +177,7 @@ export async function onbellekliPuanla(basliklar, anahtarlar, kayit, { kall = ge
     if (sonuc === null) return null;
     sonuc.forEach((p, j) => {
       puan[dilim[j]] = p;
-      kayit[anahtarlar[dilim[j]]] = { puan: p, zaman };
+      kayit[anahtarlar[dilim[j]]] = { puan: p, olcek: OLCEK, zaman };
     });
   }
   return puan;

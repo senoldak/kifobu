@@ -56,9 +56,9 @@ test('ayniOlayMi: geçersiz numaralar atılır, cevap yoksa null', async () => {
   assert.equal(await ayniOlayMi(c, { kall: async () => null }), null);
 });
 
-test('onEle: puanlar sınırlanır, atlanan başlık 3 alır', async () => {
-  const p = await onEle(['a', 'b', 'c'], { kall: async () => ({ puanlar: [{ nr: 0, puan: 9 }, { nr: 2, puan: 0 }] }) });
-  assert.deepEqual(p, [5, 3, 0]);
+test('onEle: puanlar 0–100 sınırlanır, atlanan başlık eşik puanını (70) alır', async () => {
+  const p = await onEle(['a', 'b', 'c'], { kall: async () => ({ puanlar: [{ nr: 0, puan: 140 }, { nr: 2, puan: 0 }] }) });
+  assert.deepEqual(p, [100, 70, 0]);
 });
 
 test('onbellekliEsle: bilinen "aynı" çift tekrar sorulmaz, yeni evet kaydedilir', async () => {
@@ -75,15 +75,22 @@ test('onbellekliEsle: bilinen "aynı" çift tekrar sorulmaz, yeni evet kaydedili
 });
 
 test('onbellekliPuanla: kayıtlı puan yeniden sorulmaz', async () => {
-  const kayit = { x: { puan: 5, zaman: 't0' } };
+  const kayit = { x: { puan: 95, olcek: 100, zaman: 't0' } };
   let sorulan;
   const p = await onbellekliPuanla(['Eski olay QQ1', 'Yeni olay QQ2'], ['x', 'y'], kayit, {
     zaman: 't1',
-    kall: async ({ prompt }) => ((sorulan = prompt), { puanlar: [{ nr: 0, puan: 1 }] }),
+    kall: async ({ prompt }) => ((sorulan = prompt), { puanlar: [{ nr: 0, puan: 20 }] }),
   });
-  assert.deepEqual(p, [5, 1]);
+  assert.deepEqual(p, [95, 20]);
   assert.ok(sorulan.includes('0. Yeni olay QQ2') && !sorulan.includes('QQ1'));
-  assert.deepEqual(kayit.y, { puan: 1, zaman: 't1' });
+  assert.deepEqual(kayit.y, { puan: 20, olcek: 100, zaman: 't1' });
+});
+
+test('onbellekliPuanla: eski 0–5 ölçekli kayıt yok sayılır, yeniden puanlanır', async () => {
+  const kayit = { x: { puan: 4, zaman: 't0' } };
+  const p = await onbellekliPuanla(['Eski ölçekli olay'], ['x'], kayit, { zaman: 't1', kall: async () => ({ puanlar: [{ nr: 0, puan: 75 }] }) });
+  assert.deepEqual(p, [75]);
+  assert.deepEqual(kayit.x, { puan: 75, olcek: 100, zaman: 't1' });
 });
 
 // Katman 4: aynı olay eşlemesi evet/hayır denetimidir; ana model düşerse yedek Gemma olur.

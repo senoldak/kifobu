@@ -208,7 +208,7 @@ if (process.env.GEMINI_API_KEY && sira.length) {
   }
 }
 
-// c) Kapsam ve haber değeri: her olaya 0–5 puan (0 kapsam dışı). MIN_DEGER altı yazılmaz.
+// c) Kapsam ve haber değeri: her olaya 0–100 puan (0 kapsam dışı). MIN_DEGER altı yazılmaz.
 //    Sıralama: puan, sonra yerli kaynak, sonra yeniden eskiye. Puan yoksa eski usul (yerli önce, yeni önce).
 const puan = new Map();
 if (process.env.GEMINI_API_KEY && sira.length) {
