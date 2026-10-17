@@ -79,6 +79,9 @@ durum.hatalar = Object.fromEntries(
 if (durum.kimlik !== 'hmac-v1' && Object.keys(durum.gorulen).length) {
   console.warn('UYARI: durum dosyası taşınmamış (kimlik: hmac-v1 yok); eski anahtarsız kimlikler eşleşmez, görülen haberler yeniden aday olabilir.');
 }
+// Şeffaflık sayfası için taranan her aday (gorulen yalnız karar verilenleri tutar), 30 gün: kimlik → { zaman, kod, yerli }.
+// kod kaynağın kısa kodudur (kaynakKodu); kaynak adı ve adresi yazılmaz.
+durum.taranan ??= {};
 const simdi = new Date();
 const gorulduIsaretle = (id) => (durum.gorulen[id] = simdi.toISOString());
 // Yazarın "aynı olay değil" dediği haber çiftleri; bir daha aynı gruba konmaz (Gemini'ye tekrar tekrar sorulmasın).
@@ -114,7 +117,11 @@ for (const k of KAYNAKLAR) {
     .map((o) => ({ ...o, id: gizliId(`${k.kisa}:${o.guid || o.link}`), tarih: new Date(o.pubDate), baslik: baslikTemiz(o.title), kaynak: k }))
     .filter((o) => o.link.startsWith('https://') && !Number.isNaN(o.tarih.valueOf()))
     .filter((o) => simdi - o.tarih <= YAS_GUN * 86_400_000)
-    .filter((o) => !durum.gorulen[o.id])
+    .filter((o) => {
+      // Zaman olarak yayın tarihi (gelecekteyse şimdi): ilk turda akışta günlerdir duran adaylar bugüne yığılmasın.
+      durum.taranan[o.id] ??= { zaman: new Date(Math.min(o.tarih, simdi)).toISOString(), kod: k.kod, ...(k.yerli && { yerli: true }) };
+      return !durum.gorulen[o.id];
+    })
     .filter((o) => {
       if (!tekrarMi(o.baslik, 'mükerrer kalkanı')) return true;
       if (!KURU) gorulduIsaretle(o.id);
@@ -357,6 +364,7 @@ for (const g of sira) {
 // ── 5. Durum ve özet ───────────────────────────────────────────────────
 // 30 günden eski kayıtlar silinir (yaş sınırı yüzünden o kadar eski haber zaten aday olmaz).
 for (const kayit of [durum.gorulen, durum.ayrik, durum.ayni]) for (const [id, t] of Object.entries(kayit)) if (simdi - new Date(t) > 30 * 86_400_000) delete kayit[id];
+for (const [id, v] of Object.entries(durum.taranan)) if (simdi - new Date(v.zaman) > 30 * 86_400_000) delete durum.taranan[id];
 // Puanlar yalnızca aday yaşı boyunca gerekir.
 for (const [k, v] of Object.entries(durum.puan)) if (simdi - new Date(v.zaman) > (YAS_GUN + 1) * 86_400_000) delete durum.puan[k];
 // Kimlikler anahtarlı özet (gizliId); eski anahtarsız hash'lerden taşıma yapıldığının işareti.
