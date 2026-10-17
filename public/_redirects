@@ -96,6 +96,10 @@
 /haber/yapay-zeka-tabanli-dijital-banka-girisimi-matters-tohum-oncesi-turda-5-milyon-do /haber/yapay-zeka-tabanli-dijital-banka-girisimi-matters-tohum-oncesi-turda-5-milyon/ 301
 /kapak/yapay-zeka-tabanli-dijital-banka-girisimi-matters-tohum-oncesi-turda-5-milyon-do.png /kapak/yapay-zeka-tabanli-dijital-banka-girisimi-matters-tohum-oncesi-turda-5-milyon.png 301
 
+# Haftalık e-posta bülteni kaldırıldı (2026-10-17): abonelik/durum sayfası (/bulten/?durum=...) günlük bültene
+/bulten/ /gunluk-bulten/ 301
+/bulten /gunluk-bulten/ 301
+
 # Joker (*) içeren kurallar sonda durur: Cloudflare, jokerli bir kuralın ardından gelen her kuralı dinamik sayar ve dinamik kural sınırı 100'dür.
 /kategori/* /:splat 301
 # Eski WordPress bülten adresleri (/YYYY/AA/GG/...) arşiv taşınmadığı için bülten sayfasına
@@ -104,3 +108,5 @@
 /2024/* /gunluk-bulten/ 301
 /2025/* /gunluk-bulten/ 301
 /2026/* /gunluk-bulten/ 301
+# Eski e-postalardaki onay/ayrılma bağlantıları (Worker kaldırıldı)
+/api/bulten/* /gunluk-bulten/ 301

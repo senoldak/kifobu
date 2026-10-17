@@ -15,7 +15,7 @@
     "bulten:gorsel": "node --experimental-strip-types scripts/bulten-gorsel-uret.ts",
     "bulten:telegram": "node --experimental-strip-types scripts/bulten-telegram-gonder.ts",
     "bulten:linkedin": "node --experimental-strip-types scripts/bulten-linkedin-gonder.ts",
-    "test": "node --experimental-strip-types --test \"src/lib/**/*.test.ts\" \"worker/**/*.test.ts\" \"scripts/bot/*.test.mjs\""
+    "test": "node --experimental-strip-types --test \"src/lib/**/*.test.ts\" \"scripts/bot/*.test.mjs\""
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.19",

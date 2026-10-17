@@ -1,7 +1,6 @@
 ---
 import { jsonLdMetni } from '../lib/json-ld.mjs';
 import { SITE, ACIK_KATEGORILER, menuAdresi, dayNumber, formatNumber } from '../lib/site';
-import BultenFormu from '../components/BultenFormu.astro';
 import '../styles/fonts.css';
 import '../styles/global.css';
 
@@ -203,10 +202,6 @@ const social = [
               </ul>
             )
           }
-          <div class="alt-bulten">
-            <h2 class="alt-bulten-baslik">Haftalık e-posta bülteni</h2>
-            <BultenFormu kimlik="alt" />
-          </div>
         </div>
         <nav class="alt-menu" aria-label="Alt menü">
           {ACIK_KATEGORILER.map((c) => <a href={menuAdresi(c)}>{c.name}</a>)}
@@ -216,7 +211,6 @@ const social = [
           <a href="/gunluk-bulten/gunler/">Bülten günleri</a>
           <a href="/rehber/">Rehber</a>
           <a href="/hakkimizda/">Hakkımızda</a>
-          <a href="/bulten/">E-posta bülteni</a>
           <a href="/gizlilik/">Gizlilik</a>
           <a href="/yayin-ilkeleri/">Yayın İlkeleri</a>
           <a href="/seffaflik/">Şeffaflık</a>

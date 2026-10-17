@@ -5,55 +5,42 @@ import { SITE } from '../lib/site';
 
 <Base
   title="Gizlilik"
-  description="kifobu haftalık e-posta bülteni kapsamında hangi kişisel veriyi, nerede, ne kadar süreyle tuttuğumuz ve nasıl silindiği."
+  description="kifobu'yu okurken hangi verinin işlendiği: üyelik ya da form yok, çerez yok; yalnız toplu ziyaret ölçümü."
 >
   <article class="makale">
     <header class="makale-bas">
       <h1>Gizlilik</h1>
-      <p class="makale-spot">Bülten aboneliğinde hangi veriyi tutuyoruz?</p>
+      <p class="makale-spot">Siteyi okurken hangi veri işleniyor?</p>
     </header>
     <div class="metin">
-      <p>Bu sayfa, haftalık e-posta bülteni aboneliğiniz kapsamında kişisel veriyi nasıl işlediğimizi anlatır.</p>
+      <p>Bu sayfa, {SITE.name} sitesini okurken kişisel verinin nasıl işlendiğini anlatır.</p>
 
-      <h2>Hangi veriyi tutuyoruz</h2>
-      <ul>
-        <li>E-posta adresiniz, yalnız bülteni göndermek için.</li>
-        <li>Aboneliğin durumu: onay bekliyor ya da onaylı.</li>
-        <li>Abonelik ve onay zamanları.</li>
-        <li>Onay ve ayrılma bağlantılarında kullanılan rastgele bir kod.</li>
-      </ul>
-      <p>IP adresi, tarayıcı bilgisi ya da çerez bülten aboneliğiyle birlikte tutulmaz.</p>
-
-      <h2>Nerede saklanıyoruz</h2>
-      <p>Abone listesi Cloudflare D1 veritabanında, AB yargı bölgesinde tutulur. Bülten e-postaları Resend aracılığıyla gönderilir; bu hizmet e-posta adresinizi ve e-postanın içeriğini gönderim için işler.</p>
-
-      <h2>Ne zaman siliniyoruz</h2>
-      <ul>
-        <li>Onay e-postasındaki bağlantıya tıklamadıysanız adresiniz 7 gün sonra silinir.</li>
-        <li>Aboneliğinizi bitirdiğinizde adresiniz ve diğer bilgileriniz hemen silinir.</li>
-      </ul>
-
-      <h2>Aboneliği nasıl bitirirsiniz</h2>
+      <h2>Sizden veri toplamıyoruz</h2>
       <p>
-        Her bülten e-postasının altındaki “Aboneliği bitir” bağlantısıyla tek tıkta ayrılabilirsiniz. Ayrıca
-        <a href="/bulten/">bülten sayfasından</a> da adresinizi girerek aboneliğinizi bitirebilirsiniz.
+        Sitede üyelik, yorum ya da e-posta formu yoktur; adınızı, e-posta adresinizi ya da başka bir kişisel bilginizi
+        istemiyor ve saklamıyoruz. Site çerez kullanmaz. Arama, tarayıcınızda çalışır; yazdığınız sözcükler bize gönderilmez.
       </p>
 
-      <h2>Bağlantılar ve ölçüm</h2>
+      <h2>Barındırma ve ölçüm</h2>
       <p>
-        Bülten içindeki bağlantılar, hangi kanaldan geldiğini gösteren izleme parametreleri taşır (utm_source=bulten). Bu
-        parametreler kişiyi tanımlamaz; kampanyanın toplu olarak nasıl okunduğunu ölçmek için kullanılır.
+        Site Cloudflare üzerinde yayınlanır. Sayfaları sunmak ve kötüye kullanımı önlemek için Cloudflare, her bağlantıda
+        olduğu gibi IP adresi ve tarayıcı bilgisini teknik olarak işler. Ziyaretleri toplu olarak saymak için çerez
+        kullanmayan Cloudflare Web Analytics kullanılır; bu ölçüm kişiyi tanımlamaz ve sizi başka sitelerde izlemez.
       </p>
 
-      <h2>Üçüncü kişilerle paylaşım</h2>
-      <p>Adresinizi satmıyor ve reklam amacıyla paylaşmıyoruz. Yalnızca gönderimi yapan hizmet sağlayıcıyla paylaşılır.</p>
+      <h2>Bağlantılar</h2>
+      <p>
+        Telegram, LinkedIn ya da başka sitelere giden bağlantılar, hangi kanaldan geldiğini gösteren izleme parametreleri
+        (utm_source gibi) taşıyabilir. Bu parametreler kişiyi tanımlamaz. Başka bir siteye geçtiğinizde o sitenin gizlilik
+        kuralları geçerlidir.
+      </p>
 
       <h2>Haklarınız ve iletişim</h2>
       <p>
-        6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamındaki haklarınızı kullanmak, verinizin silinmesini istemek ya da
-        sorunuz olursa <a href="mailto:contact@kifobu.com">contact@kifobu.com</a> adresine yazabilirsiniz.
+        6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamındaki haklarınızı kullanmak ya da sorunuz olursa
+        <a href="mailto:contact@kifobu.com">contact@kifobu.com</a> adresine yazabilirsiniz.
       </p>
-      <p>Son güncelleme: 16 Ekim 2026. Bu sayfa, sitemizin {SITE.name} bülten uygulamasında gerçekte ne yapıldığını anlatır.</p>
+      <p>Son güncelleme: 17 Ekim 2026.</p>
     </div>
   </article>
 </Base>
