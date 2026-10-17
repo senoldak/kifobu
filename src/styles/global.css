@@ -932,7 +932,7 @@ h3 {
 
 /* Kampanya künyesi: haberin içindeki küçük tahta */
 .kampanya-kunyesi {
-  margin: 40px 0 0;
+  margin: 0 0 28px;
   padding: 22px 24px 18px;
   border-bottom: 6px solid var(--tahta-koyu);
 }

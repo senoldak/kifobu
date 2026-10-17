@@ -151,19 +151,7 @@ const jsonLd = {
 
     <SentezBlok whyMatters={d.why_matters} keyPoints={d.key_points} />
 
-    <figure class="makale-gorsel">
-      {cover ? (
-        <Image src={cover} alt={coverAlt ?? title} width={1200} loading="eager" fetchpriority="high" decoding="async" />
-      ) : (
-        <img src={kapakUrl(haber)} alt={kapakAlt(haber)} width={KAPAK_G} height={KAPAK_Y} loading="eager" fetchpriority="high" decoding="async" />
-      )}
-      {cover && coverAlt && <figcaption>{coverAlt}</figcaption>}
-    </figure>
-
-    <div class="metin">
-      <Content />
-    </div>
-
+    {/* Künye haberin başında (sentezin altında, görselin üstünde): okur önce rakamları görür. */}
     {
       funding && (
         <section class="kampanya-kunyesi tahta-zemin" aria-label="Kampanya künyesi">
@@ -225,6 +213,19 @@ const jsonLd = {
         </section>
       )
     }
+
+    <figure class="makale-gorsel">
+      {cover ? (
+        <Image src={cover} alt={coverAlt ?? title} width={1200} loading="eager" fetchpriority="high" decoding="async" />
+      ) : (
+        <img src={kapakUrl(haber)} alt={kapakAlt(haber)} width={KAPAK_G} height={KAPAK_Y} loading="eager" fetchpriority="high" decoding="async" />
+      )}
+      {cover && coverAlt && <figcaption>{coverAlt}</figcaption>}
+    </figure>
+
+    <div class="metin">
+      <Content />
+    </div>
 
     {
       (konular.length > 0 || bultenGunu) && (
