@@ -4,7 +4,7 @@ import { mkdir, readFile, readdir, writeFile, access } from 'node:fs/promises';
 import path from 'node:path';
 import { kullanimEkle, hataEkle, amacBul, gunlukDolu } from './kullanim.mjs';
 
-export const USER_AGENT = 'kifobu-bot/1.0 (+https://kifobu.com; iletisim@kifobu.com)';
+export const USER_AGENT = 'kifobu-bot/1.0 (+https://kifobu.com; contact@kifobu.com)';
 
 // Botun yazabileceği kategoriler. Sitedeki tam liste src/lib/site.ts'dedir;
 // buradakiler o listenin alt kümesi olmalı. gundem, yapay-zeka, donanim ve dunya kifobu'nun konusu olmadığı için
