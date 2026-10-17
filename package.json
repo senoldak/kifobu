@@ -15,6 +15,7 @@
     "bulten:gorsel": "node --experimental-strip-types scripts/bulten-gorsel-uret.ts",
     "bulten:telegram": "node --experimental-strip-types scripts/bulten-telegram-gonder.ts",
     "bulten:linkedin": "node --experimental-strip-types scripts/bulten-linkedin-gonder.ts",
+    "bulten:meta": "node --experimental-strip-types scripts/bulten-meta-gonder.ts",
     "test": "node --experimental-strip-types --test \"src/lib/**/*.test.ts\" \"scripts/bot/*.test.mjs\""
   },
   "dependencies": {

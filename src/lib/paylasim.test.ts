@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { GENEL_BULTEN_URL, bultenBaglantisi, gunSayfasiCanliMi, metinBaglantisiniDegistir, utmEkle } from './paylasim.ts';
+import { GENEL_BULTEN_URL, bultenBaglantisi, gorselAdresi, gunSayfasiCanliMi, metinBaglantisiniCikar, metinBaglantisiniDegistir, utmEkle } from './paylasim.ts';
 
 const sahte = (durum: number | 'hata') => (async () => {
   if (durum === 'hata') throw new Error('ağ');
@@ -36,4 +36,14 @@ test('gün sayfası canlıysa o gün, değilse genel sayfa UTM\'li döner', asyn
   const yok = await bultenBaglantisi('linkedin', '2026-10-15', sahte(404));
   assert.equal(yok.gunSayfasi, false);
   assert.equal(yok.url, 'https://kifobu.com/gunluk-bulten/?utm_source=linkedin&utm_medium=social&utm_campaign=gunluk-bulten');
+});
+
+test('Meta metninde bülten bağlantısının satırı çıkar, boş satır üst üste binmez', () => {
+  const metin = '🌻 Bugün\n\n• Madde\n\n🔗 https://kifobu.com/gunluk-bulten/\n\n#kitlefonlama #yatırım';
+  assert.equal(metinBaglantisiniCikar(metin), '🌻 Bugün\n\n• Madde\n\n#kitlefonlama #yatırım');
+  assert.equal(metinBaglantisiniCikar('bağlantısız metin'), 'bağlantısız metin');
+});
+
+test('görsel adresi güne göre önbellek kırıcı alır', () => {
+  assert.equal(gorselAdresi('bulten-story.png', '2026-10-17'), 'https://kifobu.com/bulten-story.png?v=2026-10-17');
 });

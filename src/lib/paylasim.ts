@@ -23,6 +23,21 @@ export function metinBaglantisiniDegistir(metin: string, url: string): string {
   return metin.replace(BAGLANTI_DESENI, () => url);
 }
 
+/** Facebook/Instagram metni bağlantısız gider: bülten bağlantısının bulunduğu satır çıkarılır. */
+export function metinBaglantisiniCikar(metin: string): string {
+  return metin
+    .split('\n')
+    .filter((satir) => !BAGLANTI_DESENI.test(satir))
+    .join('\n')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+}
+
+/** public/'teki günlük görselin adresi. Dosya adı her gün aynı olduğu için Meta eski kopyayı çekmesin diye gün eklenir. */
+export function gorselAdresi(dosya: string, tarih: string = istanbulGunu(new Date())): string {
+  return `${SITE_ORIGIN}/${dosya}?v=${tarih}`;
+}
+
 /** O günün kalıcı sayfası canlıda mı (HEAD, 200 ise evet). Ağ hatasında hayır. */
 export async function gunSayfasiCanliMi(tarih: string, istek: typeof fetch = fetch): Promise<boolean> {
   try {

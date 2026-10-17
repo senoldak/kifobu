@@ -16,6 +16,7 @@ on:
           - kapanis
           - linkedin-test
           - telegram
+          - meta-kontrol
 
 jobs:
   bulten-guncelle:
@@ -41,8 +42,18 @@ jobs:
 
       # Kapanış yalnızca mod=kapanis ile (saat Worker'ı Türkiye 18:00'de gönderir; elle de seçilebilir). UTC saatine bakılmaz:
       # kış saatinde Oslo 16:00 canlı güncellemesi de UTC 15'e düşüp ikinci bir kapanış üretirdi.
+      # Hiçbir şey yayımlamadan META_TOKEN'ın Kifobu Sayfasına ve @kifobu Instagram'ına erişimini sınar.
+      - name: Facebook/Instagram erişim kontrolü
+        if: github.event.inputs.mod == 'meta-kontrol'
+        env:
+          META_PAGE_ID: '1362769116928478'
+          INSTAGRAM_USER_ID: '17841456470366778'
+          META_TOKEN: ${{ secrets.META_TOKEN }}
+        run: npm run bulten:meta -- --kontrol
+
       - name: Bülten Botunu Çalıştır
         id: bot
+        if: github.event.inputs.mod != 'meta-kontrol'
         env:
           MOD: ${{ github.event.inputs.mod }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -98,6 +109,7 @@ jobs:
 
       - name: Değişiklikleri Commit ve Push Et
         id: commit
+        if: github.event.inputs.mod != 'meta-kontrol'
         run: |
           git config --global user.name "Kifobu Bülten Botu"
           git config --global user.email "bot@kifobu.com"
@@ -133,6 +145,10 @@ jobs:
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
           LINKEDIN_PERSON_URN: ${{ secrets.LINKEDIN_PERSON_URN }}
           LINKEDIN_ORGANIZATION_URN: ${{ secrets.LINKEDIN_ORGANIZATION_URN }}
+          # Kifobu Facebook Sayfası ve @kifobu Instagram kimlikleri (gizli değil); token kifobu-paylasim sistem kullanıcısının.
+          META_PAGE_ID: '1362769116928478'
+          INSTAGRAM_USER_ID: '17841456470366778'
+          META_TOKEN: ${{ secrets.META_TOKEN }}
         run: |
           GUN=$(TZ=Europe/Istanbul date +%F)
           for i in $(seq 1 30); do
@@ -149,4 +165,8 @@ jobs:
           if [ -n "$LINKEDIN_ACCESS_TOKEN" ] && [ -n "$LINKEDIN_PERSON_URN" ]; then
             echo "LinkedIn'e bülten post görseli gönderiliyor..."
             npm run bulten:linkedin || echo "::warning::LinkedIn paylaşımı başarısız"
+          fi
+          if [ -n "$META_TOKEN" ]; then
+            echo "Facebook/Instagram'a bülten post + story gönderiliyor..."
+            npm run bulten:meta || echo "::warning::Facebook/Instagram paylaşımı başarısız"
           fi

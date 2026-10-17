@@ -13,7 +13,7 @@ export const SITE = {
     linkedin: 'https://www.linkedin.com/company/kifobu',
     youtube: 'https://www.youtube.com/@kifobu',
     telegram: 'https://t.me/kifobu',
-    facebook: 'https://www.facebook.com/kifobu',
+    facebook: 'https://www.facebook.com/kifobucom',
   },
 };
 
