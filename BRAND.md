@@ -162,8 +162,8 @@ Ortak çerçeve: kâğıt zemin, üstte sarı bant (1200×675'te 18 px).
 | **Yatırım haberi kapağı** | Tur türü çerçeveli etikette (TOHUM TURU, A SERİSİ, SATIN ALMA…), girişim adı, "sektör · ülke", büyük tutar; alt kısım haber kapağıyla aynı. TL karşılığı, yatırımcı ve tarih yok |
 | **Hikâye (1080×1920)** | Aynı düzenlerin dikey hâli |
 | **Haber listesi** | Üst satırda "KATEGORİ · TUR TÜRÜ", başlık, sağda tutar ve saat |
-| **Profil fotoğrafı** | Kâğıt zemin, küçük boy işaret |
-| **Kapak görseli (1500×500)** | Sarı bant; solda logo, altında slogan; sağda çok açık gri büyük işaret kenardan taşar. Başka satır yok |
+| **Profil fotoğrafı** | Kâğıt zemin, küçük boy işaret (55 tohum) |
+| **Kapak görseli** (X 1500×500, Facebook 1640×624, LinkedIn 1128×191; `brand/sosyal/`) | Sarı bant; logo ve altında slogan **ortada** (profil fotoğrafından ve mobil kırpmadan uzak); sağda çok açık gri büyük işaret kenardan taşar. Başka satır yok |
 | **18:00 bülteni** | Yapısı, bölümleri, kartları, platform renkleri, yüzde rozetleri ve "17 Ekim 2026 / 1530" yazımı **aynen kalır**. Değişen yalnız: ayçiçeği resmi yerine işaret + "kifobu", yazı Schibsted Grotesk, MKK kutusuyla alt bant arasında bir satır boşluk |
 | **Site** | Mevcut sayfalar kimliğe **uydurulur, yeni blok eklenmez**: aynı bölümler, sütunlar, metinler ve sıra. Ana sayfa panosu ve günlük bülten sayfaları bu kurala göre yeniden giydirilir |
 
