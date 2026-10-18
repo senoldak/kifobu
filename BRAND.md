@@ -2,7 +2,7 @@
 
 > Sürüm 2 · 18 Ekim 2026. Sahibiyle adım adım, soru-cevapla kuruldu. Bu belge kimliğin tek kaynağıdır;
 > `DESIGN.md` (bugünkü Seans Tahtası teması) yeni kimlik uygulanınca bu belgeye göre yeniden yazılacak.
-> "Benim kararım" diye işaretli maddeler sahibin onayına açıktır.
+> "Benim kararım" diye işaretlenen maddelerin hepsini sahibi 19 Ekim 2026'da onayladı (karar bana bırakıldı); artık "Onaylandı" olarak işaretli.
 
 ## 1. Neden varız
 
@@ -99,7 +99,7 @@ Küçük boylarda tohum azalır, noktalar irileşir: 33–63 piksel 55 tohum, 32
 Kırmızı ve yeşil karşıtlığı kurulmaz; FONLANAMADI siyahla gösterilir. Sarı hiçbir zaman veri rengi olarak kullanılmaz.
 18:00 bülteni kendi iç veri renklerini (yüzde rozetleri, kalan gün vurgusu) aynen korur.
 
-*Benim kararım:* sarı, kâğıt ve yeşil tonları mockup'larda birden fazla değerle denendi; burada tek değere indirildi
+*Onaylandı (19 Ekim):* sarı, kâğıt ve yeşil tonları mockup'larda birden fazla değerle denendi; burada tek değere indirildi
 (sarı ve yeşil 18:00 bülteninin kendi tonlarından alındı).
 
 ## 8. Yazı
