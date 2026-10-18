@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { KIMLIK, cubukOlcegi, durumEtiketi, tohumIsaretiSvg, yuzdeKesik } from './kimlik.ts';
+import { KIMLIK, cubukOlcegi, durumEtiketi, platformRengi, tohumIsaretiSvg, yuzdeKesik } from './kimlik.ts';
 
 test('marka ve veri renkleri BRAND.md ile aynı', () => {
   assert.deepEqual(KIMLIK, {
@@ -43,4 +43,11 @@ test('tohum işareti: 233 / 89 tohum, kol sarı, metin yok', () => {
   assert.match(b, /width="200" height="200"/);
   assert.equal((tohumIsaretiSvg({ boyut: 32, kucuk: true }).match(/<circle/g) ?? []).length, 89);
   assert.match(tohumIsaretiSvg({ boyut: 200, zemin: 'koyu' }), /fill="#f7f5ef"/);
+});
+
+test('platform rengi bülten verisinden; büyük-küçük harf fark etmez; bilinmeyen gri', () => {
+  const liste = [{ ad: 'fonangels', renk: '#f47b3d' }, { ad: 'ecofolio', renk: '#009bae' }];
+  assert.equal(platformRengi('fonangels', liste), '#f47b3d');
+  assert.equal(platformRengi('EcoFolio', liste), '#009bae');
+  assert.equal(platformRengi('yok', liste), KIMLIK.gri);
 });

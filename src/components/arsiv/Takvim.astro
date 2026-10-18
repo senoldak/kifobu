@@ -14,7 +14,7 @@ const { kayitlar, bugun } = Astro.props;
 
 const AY_UZUN = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
 const GUN_KISA = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
-const SARI = '#f2d45c';
+const SARI = '#141a17';
 
 const tarihler = kayitlar.map((k) => k.tarih).sort();
 const haritasi = new Map(kayitlar.map((k) => [k.tarih, k]));
@@ -211,7 +211,7 @@ const varBirikmis = (k: ArsivKaydi) => k.girisimler.some((g) => g.birikmis);
     font: 800 1.4rem var(--yazi-baslik, sans-serif);
     color: var(--tebesir, #ecefe9);
     background: transparent;
-    border: 1px solid var(--tebesir-cizgi, rgb(236 239 233 / 0.32));
+    border: 1px solid var(--tebesir-cizgi, #dcd9cf);
     border-radius: 999px;
     cursor: pointer;
   }
@@ -272,31 +272,31 @@ const varBirikmis = (k: ArsivKaydi) => k.girisimler.some((g) => g.birikmis);
     border: 0;
   }
   .tur-kapanis-yok {
-    background: var(--tebesir-ince, rgb(236 239 233 / 0.14));
-    border-color: var(--tebesir-ince, rgb(236 239 233 / 0.14));
+    background: var(--tebesir-ince, rgb(20 26 23 / 0.08));
+    border-color: var(--tebesir-ince, rgb(20 26 23 / 0.08));
     color: var(--tebesir-2, rgb(236 239 233 / 0.74));
   }
   .tur-gelecek {
-    border-color: var(--tebesir-ince, rgb(236 239 233 / 0.14));
+    border-color: var(--tebesir-ince, rgb(20 26 23 / 0.08));
     color: var(--tebesir-3, rgb(236 239 233 / 0.62));
     opacity: 0.55;
   }
   .tur-seri-oncesi {
     background: transparent;
-    border: 1px dotted rgb(236 239 233 / 0.14);
-    color: rgb(236 239 233 / 0.32);
+    border: 1px dotted rgb(20 26 23 / 0.08);
+    color: #dcd9cf;
   }
   .tur-veri,
   .tur-eksik {
-    background: rgb(242 212 92 / var(--yogunluk, 0.15));
-    border-color: rgb(242 212 92 / 0.5);
+    background: rgb(20 26 23 / var(--yogunluk, 0.15));
+    border-color: rgb(20 26 23 / 0.5);
   }
   .tur-eksik {
     border: 1px dashed var(--tebesir, #ecefe9);
   }
   .tur-baslangic {
-    background: repeating-linear-gradient(135deg, rgb(236 239 233 / 0.22) 0 4px, transparent 4px 8px);
-    border-color: var(--tebesir-cizgi, rgb(236 239 233 / 0.32));
+    background: repeating-linear-gradient(135deg, rgb(20 26 23 / 0.12) 0 4px, transparent 4px 8px);
+    border-color: var(--tebesir-cizgi, #dcd9cf);
   }
   button.hucre {
     cursor: pointer;
@@ -320,7 +320,7 @@ const varBirikmis = (k: ArsivKaydi) => k.girisimler.some((g) => g.birikmis);
     margin-top: 12px;
     padding: 12px 14px;
     background: var(--tahta-koyu, #151d1a);
-    border: 1px solid var(--tebesir-ince, rgb(236 239 233 / 0.14));
+    border: 1px solid var(--tebesir-ince, rgb(20 26 23 / 0.08));
     border-radius: 4px;
     min-width: 0;
   }
@@ -343,7 +343,7 @@ const varBirikmis = (k: ArsivKaydi) => k.girisimler.some((g) => g.birikmis);
   th,
   td {
     padding: 8px 10px;
-    border-bottom: 1px solid var(--tebesir-ince, rgb(236 239 233 / 0.14));
+    border-bottom: 1px solid var(--tebesir-ince, rgb(20 26 23 / 0.08));
     vertical-align: middle;
   }
   thead th {
@@ -351,7 +351,7 @@ const varBirikmis = (k: ArsivKaydi) => k.girisimler.some((g) => g.birikmis);
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--tebesir-3, rgb(236 239 233 / 0.62));
-    border-bottom-color: var(--tebesir-cizgi, rgb(236 239 233 / 0.32));
+    border-bottom-color: var(--tebesir-cizgi, #dcd9cf);
     white-space: nowrap;
   }
   .sol {
@@ -407,17 +407,17 @@ const varBirikmis = (k: ArsivKaydi) => k.girisimler.some((g) => g.birikmis);
     font-weight: 800;
   }
   .ornek.baslangic {
-    background: repeating-linear-gradient(135deg, rgb(236 239 233 / 0.22) 0 3px, transparent 3px 6px);
-    border: 1px solid var(--tebesir-cizgi, rgb(236 239 233 / 0.32));
+    background: repeating-linear-gradient(135deg, rgb(20 26 23 / 0.12) 0 3px, transparent 3px 6px);
+    border: 1px solid var(--tebesir-cizgi, #dcd9cf);
   }
   .ornek.eksik {
-    background: rgb(242 212 92 / 0.5);
+    background: rgb(20 26 23 / 0.5);
     border: 1px dashed var(--tebesir, #ecefe9);
   }
   .ornek.yok {
-    background: var(--tebesir-ince, rgb(236 239 233 / 0.14));
+    background: var(--tebesir-ince, rgb(20 26 23 / 0.08));
   }
   .ornek.oncesi {
-    border: 1px dotted rgb(236 239 233 / 0.32);
+    border: 1px dotted #dcd9cf;
   }
 </style>

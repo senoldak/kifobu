@@ -3,11 +3,13 @@
  * Bugün Tahtası - Anasayfa İçin Zarif Girişimler Tahtası
  * - Bulten.ts verisinden beslenir (BULTEN.girisimler).
  * - Sadece girişimleri gösterir (Platformlar, Ön Talep ve MKK verileri "Günlük Bülten" sayfasına taşındı).
- * - Eski İMKB tebeşir tahtası estetiğinde, kompakt ve zarif tablo.
- * - Renkli ilerleme yüzdeleri ve mini barlar ile zenginleştirildi.
+ * - Kimlik v2 (BRAND.md): kâğıt zemin, çerçeveli durum etiketleri, platform veri rengi, hedef çubuğu.
  */
 import { BULTEN } from '../data/bulten';
 import { newsUrl, type Haber } from '../lib/news';
+import { yuzdeKesik } from '../lib/kimlik';
+import HedefCubugu from './HedefCubugu.astro';
+import PlatformAdi from './PlatformAdi.astro';
 
 interface Props {
   breaking?: Haber[];
@@ -17,14 +19,8 @@ const { breaking = [] } = Astro.props;
 const b = BULTEN;
 
 const tl = (n: number) => '₺' + n.toLocaleString('tr-TR');
-const yuzde = (n: number) =>
-  n.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '%';
-
-const cubukSinifi = (y: number) => {
-  if (y >= 100) return 'renk-yesil';
-  if (y >= 50) return 'renk-mavi';
-  return 'renk-indigo';
-};
+/** SONA ERDİ geçmişte kalan kampanyadır: gri çerçeve. */
+const gecmis = (durum: string) => durum.toLocaleUpperCase('tr-TR') === 'SONA ERDİ';
 
 const slug = (str: string) =>
   str.toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -64,13 +60,13 @@ const slug = (str: string) =>
           b.girisimler.map((g) => (
             <tr class={`satir-${slug(g.ad)}`}>
               <td class="kol-durum">
-                <span class={`durum-rozet rozet-${slug(g.durum)}`}>{g.durum}</span>
+                <span class:list={['etiket', { 'etiket--gri': gecmis(g.durum) }]}>{g.durum.toLocaleUpperCase('tr-TR')}</span>
               </td>
               <th scope="row" class="kol-girisim">
                 {g.url ? <a href={g.url}>{g.ad}</a> : <span>{g.ad}</span>}
               </th>
               <td class="kol-platform">
-                <span class={`plat-etiket plat-${slug(g.platform)}`}>{g.platform}</span>
+                <PlatformAdi ad={g.platform} />
               </td>
               <td class="kol-rakam kol-bugun">
                 {g.bugun > 0 ? <strong class="vurgu-bugun">{tl(g.bugun)}</strong> : <span class="soluk">₺0</span>}
@@ -83,17 +79,15 @@ const slug = (str: string) =>
               </td>
               <td class="kol-rakam kol-kalan">
                 {g.kalan === null ? (
-                  <span class="fonlandi-metin">FONLANDI</span>
+                  <span class="etiket etiket--yesil">FONLANDI</span>
                 ) : (
                   <span>{tl(g.kalan)}</span>
                 )}
               </td>
               <td class="kol-yuzde">
                 <div class="yuzde-hucre">
-                  <span class={`yuzde-sayi ${cubukSinifi(g.yuzde)}`}>{yuzde(g.yuzde)}</span>
-                  <div class="mini-bar-track" aria-hidden="true">
-                    <div class={`mini-bar-fill gk-bar-${slug(g.ad)} ${cubukSinifi(g.yuzde)}`} />
-                  </div>
+                  <span class:list={['yuzde-sayi', { 'yuzde-sayi--fonlandi': g.yuzde >= 100 }]}>{yuzdeKesik(g.yuzde)}</span>
+                  <HedefCubugu yuzde={g.yuzde} class="mini-cubuk" />
                 </div>
               </td>
             </tr>
@@ -126,129 +120,98 @@ const slug = (str: string) =>
 
 <style>
   .bugun-tahta {
-    padding-block: 14px 18px;
-    color: var(--tebesir, #ecefe9);
-    font-family: var(--yazi-govde, sans-serif);
+    padding-block: 18px 22px;
+    color: var(--murekkep);
   }
 
-  /* Üst Başlık Satırı */
   .bt-baslik-satiri {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 12px;
-    padding-bottom: 6px;
-    border-bottom: 1px solid rgba(236, 239, 233, 0.15);
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 4px;
   }
 
   .bt-baslik-sol {
     display: flex;
-    align-items: baseline;
-    gap: 10px;
+    align-items: center;
+    gap: 12px;
     flex-wrap: wrap;
   }
 
-  .bt-baslik {
-    margin: 0;
-    font-family: var(--yazi-baslik, sans-serif);
-    font-size: 1.15rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    color: var(--sari, #f2d45c);
-    text-transform: uppercase;
-  }
-
-  .bt-ayrac {
-    color: rgba(236, 239, 233, 0.3);
-  }
-
   .bt-tarih {
-    font-size: 0.88rem;
+    font-size: 1.05rem;
     font-weight: 600;
-    color: var(--tebesir-2, rgba(236, 239, 233, 0.8));
   }
 
   .bt-sayac {
     font-size: 0.82rem;
-    font-weight: 500;
-    color: var(--tebesir-3, rgba(236, 239, 233, 0.55));
-    background: rgba(236, 239, 233, 0.08);
-    padding: 2px 7px;
-    border-radius: 3px;
-  }
-
-  .bt-baslik-sag {
-    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--kagit);
+    background: var(--murekkep);
+    padding: 4px 9px;
+    font-variant-numeric: tabular-nums;
   }
 
   .bt-link-bulten {
-    color: var(--tebesir-2, rgba(236, 239, 233, 0.85));
-    text-decoration: none;
-    font-family: var(--yazi-baslik, sans-serif);
-    font-weight: 700;
-    font-size: 0.84rem;
-    letter-spacing: 0.04em;
+    color: var(--murekkep);
+    font-weight: 500;
+    font-size: 0.9rem;
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    transition: color 0.15s ease;
   }
 
   .bt-link-bulten:hover {
-    color: var(--sari, #f2d45c);
+    text-decoration: underline;
+    text-decoration-color: var(--marka-sari);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
   }
 
-  /* Tablo Sarmalayıcı */
   .bt-tablo-sarma {
     width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
 
-  /* Tablo Tasarımı */
   .bt-tablo {
     width: 100%;
     border-collapse: collapse;
-    font-family: var(--yazi-tahta, sans-serif);
+    font-size: 0.98rem;
     font-variant-numeric: tabular-nums;
-    font-size: 0.95rem;
   }
 
   .bt-tablo thead th {
-    padding: 6px 12px;
-    font-family: var(--yazi-baslik, sans-serif);
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
+    padding: 10px 12px 8px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--tebesir-3, rgba(236, 239, 233, 0.6));
-    border-bottom: 2px solid rgba(236, 239, 233, 0.2);
+    color: var(--gri);
+    border-bottom: 2px solid var(--murekkep);
     text-align: left;
     white-space: nowrap;
   }
 
   .bt-tablo tbody th,
   .bt-tablo tbody td {
-    padding: 9px 12px;
-    border-bottom: 1px solid rgba(236, 239, 233, 0.08);
+    padding: 13px 12px;
+    border-bottom: 1px solid var(--cizgi);
     vertical-align: middle;
     white-space: nowrap;
   }
 
-  /* Tebeşir Sütun Çizgileri */
-  .bt-tablo th + th,
-  .bt-tablo td + td,
-  .bt-tablo th + td,
-  .bt-tablo td + th {
-    border-left: 1px solid rgba(236, 239, 233, 0.08);
-  }
-
   .bt-tablo tbody tr:hover {
-    background: rgba(236, 239, 233, 0.04);
+    background: var(--kagit-2);
   }
 
-  /* Sütun Hizalamaları */
   .kol-rakam {
+    text-align: right;
+  }
+
+  .bt-tablo thead .kol-rakam,
+  .bt-tablo thead .kol-yuzde {
     text-align: right;
   }
 
@@ -258,203 +221,75 @@ const slug = (str: string) =>
     min-width: 110px;
   }
 
-  /* Girişim Adı */
   .kol-girisim {
     text-align: left;
-    font-family: var(--yazi-baslik, sans-serif);
-    font-weight: 800;
+    font-weight: 600;
     font-size: 1.02rem;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-    color: var(--tebesir, #ecefe9);
-  }
-
-  .kol-girisim a {
-    color: inherit;
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: all 0.15s ease;
+    color: var(--murekkep);
   }
 
   .kol-girisim a:hover {
-    color: var(--sari, #f2d45c);
-    border-bottom-color: var(--sari, #f2d45c);
+    text-decoration: underline;
+    text-decoration-color: var(--marka-sari);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
   }
 
-  /* Platform Etiketleri */
-  .plat-etiket {
-    font-family: var(--yazi-baslik, sans-serif);
-    font-weight: 700;
-    font-size: 0.82rem;
-    letter-spacing: 0.04em;
-  }
-
-  .plat-etiket.plat-fonangels {
-    color: #f47b3d !important;
-  }
-  /* Koyu tahtada okunurluk (WCAG 4.5:1): mor tonlar marka renginin açık hâli. */
-  .plat-etiket.plat-fonventure {
-    color: #9d99f7 !important;
-  }
-  .plat-etiket.plat-ecofolio {
-    color: #009bae !important;
-  }
-  .plat-etiket.plat-trinkfon {
-    color: #b49af5 !important;
-  }
-
-  /* Durum Rozetleri */
-  .durum-rozet {
-    display: inline-block;
-    padding: 2px 7px;
-    font-family: var(--yazi-baslik, sans-serif);
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    border-radius: 2px;
-    background: rgba(236, 239, 233, 0.07);
-    color: var(--tebesir-2, rgba(236, 239, 233, 0.85));
-  }
-
-  .durum-rozet.rozet-sonaerdi {
-    background: rgba(34, 197, 94, 0.15);
-    color: #22c55e !important;
-    border: 1px solid rgba(34, 197, 94, 0.3);
-  }
-
-  .durum-rozet.rozet-songun {
-    background: rgba(242, 212, 92, 0.15);
-    color: #f2d45c !important;
-    border: 1px solid rgba(242, 212, 92, 0.3);
-  }
-
-  .durum-rozet.rozet-ontalep {
-    background: rgba(56, 189, 248, 0.12);
-    color: #38bdf8 !important;
-    border: 1px solid rgba(56, 189, 248, 0.25);
-  }
-
-  /* Rakam Vurguları */
   .rakam-vurgu {
-    color: var(--tebesir, #ecefe9);
-    font-weight: 700;
+    font-weight: 600;
   }
 
   .vurgu-bugun {
-    color: var(--sari, #f2d45c);
-    font-weight: 800;
+    color: var(--yesil);
+    font-weight: 600;
   }
 
   .soluk {
-    color: var(--tebesir-3, rgba(236, 239, 233, 0.4));
+    color: var(--gri);
   }
 
-  .fonlandi-metin {
-    color: #22c55e !important;
-    font-family: var(--yazi-baslik, sans-serif);
-    font-weight: 800;
-    font-size: 0.82rem;
-    letter-spacing: 0.06em;
-  }
-
-  /* Yüzde & Mini Bar */
   .yuzde-hucre {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 4px;
+    gap: 6px;
   }
 
   .yuzde-sayi {
-    font-weight: 800;
-    font-size: 0.96rem;
+    font-weight: 600;
   }
 
-  .mini-bar-track {
-    width: 65px;
-    height: 5px;
-    background: rgba(236, 239, 233, 0.12);
-    border-radius: 2px;
-    overflow: hidden;
+  .yuzde-sayi--fonlandi {
+    color: var(--yesil);
   }
 
-  .mini-bar-fill {
-    height: 100%;
-    min-width: 3px;
-    border-radius: 2px;
-  }
-
-  /* CSP Uyumlu Renk Sınıfları */
-  .renk-yesil {
-    color: #22c55e !important;
-  }
-  .mini-bar-fill.renk-yesil {
-    background-color: #22c55e !important;
-  }
-
-  .renk-mavi {
-    color: #38bdf8 !important;
-  }
-  .mini-bar-fill.renk-mavi {
-    background-color: #38bdf8 !important;
-  }
-
-  .renk-indigo {
-    color: #818cf8 !important;
-  }
-  .mini-bar-fill.renk-indigo {
-    background-color: #818cf8 !important;
-  }
-
-  /* Barların Özel Genişlikleri */
-  .mini-bar-fill.gk-bar-athleticlabs {
-    width: 100% !important;
-    background-color: #22c55e !important;
-  }
-  .mini-bar-fill.gk-bar-oylio {
-    width: 50.64% !important;
-    background-color: #38bdf8 !important;
-  }
-  .mini-bar-fill.gk-bar-pupaq {
-    width: 2.43% !important;
-    background-color: #818cf8 !important;
-  }
-  .mini-bar-fill.gk-bar-loopyon {
-    width: 1.01% !important;
-    background-color: #818cf8 !important;
-  }
-  .mini-bar-fill.gk-bar-kargomcom {
-    width: 14.26% !important;
-    background-color: #818cf8 !important;
+  .yuzde-hucre :global(.mini-cubuk) {
+    width: 110px;
   }
 
   .bt-arsiv {
-    margin: 10px 0 0;
+    margin: 12px 0 0;
     text-align: right;
   }
 
-  /* Son Dakika Bandı */
   .bt-son-dakika {
     display: flex;
     align-items: baseline;
     gap: 16px;
-    margin-top: 14px;
-    padding-top: 10px;
-    border-top: 1px solid rgba(236, 239, 233, 0.15);
-    font-family: var(--yazi-baslik, sans-serif);
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid var(--cizgi);
   }
 
   .son-dakika-etiket {
     flex: none;
-    font-weight: 800;
-    font-size: 0.74rem;
+    font-weight: 600;
+    font-size: 0.72rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--tahta, #1d2723);
-    background: var(--sari, #f2d45c);
-    padding: 2px 7px 1px;
-    border-radius: 2px;
+    color: var(--kagit);
+    background: var(--murekkep);
+    padding: 4px 8px;
   }
 
   .bt-son-dakika ul {
@@ -464,20 +299,15 @@ const slug = (str: string) =>
     display: flex;
     flex-wrap: wrap;
     gap: 4px 20px;
-    font-weight: 700;
-    font-size: 0.92rem;
-  }
-
-  .bt-son-dakika a {
-    color: inherit;
-    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
   }
 
   .bt-son-dakika a:hover {
-    color: var(--sari, #f2d45c);
+    text-decoration: underline;
+    text-decoration-color: var(--marka-sari);
   }
 
-  /* Responsive / Mobil */
   @media (max-width: 768px) {
     .kol-degerleme,
     .kol-bugun {
@@ -486,7 +316,7 @@ const slug = (str: string) =>
 
     .bt-tablo tbody th,
     .bt-tablo tbody td {
-      padding: 7px 8px;
+      padding: 10px 8px;
     }
   }
 

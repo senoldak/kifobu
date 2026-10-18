@@ -1695,3 +1695,34 @@ h3 {
   align-items: center;
   gap: 6px;
 }
+
+/* ---------- Kimlik v2: durum etiketleri (BRAND.md §9) ---------- */
+.etiket {
+  display: inline-block;
+  padding: 5px 8px 4px;
+  border: 1.5px solid var(--murekkep);
+  color: var(--murekkep);
+  font-family: var(--yazi);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.etiket--yesil {
+  background: var(--yesil);
+  border-color: var(--yesil);
+  color: var(--beyaz);
+}
+
+.etiket--murekkep {
+  background: var(--murekkep);
+  color: var(--kagit);
+}
+
+.etiket--gri {
+  border-color: #8b918c;
+  color: var(--gri);
+}

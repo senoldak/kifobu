@@ -1,3 +1,4 @@
+import { yuzdeKesik } from '../kimlik.ts';
 // Türkçe sayı/para/yüzde biçimleri. Saf; Node'a özgü API yok.
 
 function grupla(tam: string): string {
@@ -29,8 +30,7 @@ export function paraTam(n: number | null): string {
 }
 
 export function yuzdeBicim(n: number | null): string {
-  if (n === null || !Number.isFinite(n)) return '—';
-  return `%${n.toFixed(1).replace('.', ',')}`;
+  return yuzdeKesik(n);
 }
 
 export function degisimBicim(n: number | null): string {
@@ -55,12 +55,24 @@ export function dosyaParcasi(s: string): string {
     .replace(/^-|-$/g, '');
 }
 
-// Yüzde hep tek ondalıkla okunur ("yüzde elli virgül altı"); ek son rakamın okunuşuna uyar.
-const YUZDE_EKI = ["'ı", "'i", "'si", "'ü", "'ü", "'i", "'sı", "'si", "'i", "'u"];
+// İyelik eki okunan son sayıya uyar: "%51,71" yetmiş bir → 'i'; "%50,60" altmış → 'ı'; "%100,00" yüz → 'ü'.
+const BIRLER_EKI = ['', "'i", "'si", "'ü", "'ü", "'i", "'sı", "'si", "'i", "'u"];
+const ONLAR_EKI = ['', "'u", "'si", "'u", "'ı", "'si", "'ı", "'i", "'i", "'ı"];
 
-/** "hedefin %50,6'sı" biçimi için yüzde + iyelik eki. */
+function okunusEki(rakamlar: string): string {
+  const r = rakamlar.replace(/^0+/, '');
+  if (!r) return "'ı"; // sıfır
+  const son = Number(r[r.length - 1]);
+  if (son) return BIRLER_EKI[son];
+  const onlar = Number(r[r.length - 2] ?? 0);
+  if (onlar) return ONLAR_EKI[onlar];
+  return r.length >= 4 ? "'i" : "'ü"; // bin / yüz
+}
+
+/** "hedefin %50,64'ü" biçimi için yüzde + iyelik eki. */
 export function yuzdeEkli(n: number | null): string {
   const metin = yuzdeBicim(n);
   if (metin === '—') return metin;
-  return metin + YUZDE_EKI[Number(metin[metin.length - 1])];
+  const [tam, ondalik] = metin.slice(1).split(',');
+  return metin + okunusEki(ondalik !== '00' ? ondalik : tam);
 }

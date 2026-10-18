@@ -1,0 +1,30 @@
+---
+// Hedef çubuğu (BRAND.md §9): siyah hedef çizgisi her zaman %100 noktasında; hedefi aşan kısım açık yeşil.
+// CSP satır içi style'a izin vermediği için genişlikler SVG öznitelikleriyle verilir.
+import { KIMLIK, cubukOlcegi } from '../lib/kimlik';
+
+interface Props {
+  yuzde: number;
+  class?: string;
+}
+const { yuzde, class: sinif } = Astro.props;
+const { dolu, asim, hedef } = cubukOlcegi(yuzde);
+const fonlandi = yuzde >= 100;
+// Sıfıra yakın değerler de görünsün diye en az 1,5 birim.
+const g = Math.max(dolu, yuzde > 0 ? 1.5 : 0);
+---
+
+<svg class:list={['hedef-cubugu', sinif]} viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true">
+  <rect x="0" y="3" width="100" height="4" fill="#e4e1d8" />
+  <rect x="0" y="3" width={g.toFixed(2)} height="4" fill={fonlandi ? KIMLIK.yesil : KIMLIK.murekkep} />
+  {asim > 0 && <rect x={hedef.toFixed(2)} y="3" width={asim.toFixed(2)} height="4" fill={KIMLIK.asim} />}
+  <rect x={(Math.min(hedef, 99.2)).toFixed(2)} y="0" width="0.8" height="10" fill={KIMLIK.murekkep} />
+</svg>
+
+<style>
+  .hedef-cubugu {
+    display: block;
+    width: 100%;
+    height: 10px;
+  }
+</style>

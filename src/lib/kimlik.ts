@@ -59,3 +59,9 @@ export function tohumIsaretiSvg({ boyut, zemin = 'acik', kucuk = false }: { boyu
   }
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${boyut}" height="${boyut}" viewBox="0 0 200 200" aria-hidden="true">${s}</svg>`;
 }
+
+/** Platformun veri rengi (bülten verisindeki `renk`); listede yoksa gri. */
+export function platformRengi(ad: string, liste: readonly { ad: string; renk: string }[]): string {
+  const a = ad.toLocaleLowerCase('tr-TR');
+  return liste.find((p) => p.ad.toLocaleLowerCase('tr-TR') === a)?.renk ?? KIMLIK.gri;
+}

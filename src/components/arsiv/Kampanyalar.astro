@@ -11,12 +11,12 @@ interface Props {
 const { kayitlar } = Astro.props;
 const donemler: Donem[] = ['gun', 'hafta', 'ay'];
 
-const TAHTA = '#1d2723';
-const TEBESIR = '#ecefe9';
-const TEBESIR_SOLUK = 'rgba(236,239,233,0.62)';
-const CIZGI = 'rgba(236,239,233,0.14)';
+const TAHTA = '#f7f5ef';
+const TEBESIR = '#141a17';
+const TEBESIR_SOLUK = '#5d645f';
+const CIZGI = '#dcd9cf';
 const YAZI = 'Sofia Sans, sans-serif';
-const AYIRICI = ['#f2d45c', '#f19bb0', '#8fc7e0'];
+const AYIRICI = ['#141a17', '#5d645f', '#a9aea9'];
 
 const sonKayit = kayitlar[kayitlar.length - 1];
 const platformlar: Record<string, { ad: string; renk: string }> = {};
@@ -144,7 +144,7 @@ const platAnahtar = Object.keys(platformlar).filter((a) => seriler.some((s) => s
         <text x={v.g.SOL - 6} y={v.g.y(100) + 4} text-anchor="end" font-size={v.g.yaziBoy} fill={TEBESIR} font-family={YAZI}>
           %100
         </text>
-        <line x1={v.g.SOL} x2={v.g.SOL + v.g.alanW} y1={v.g.UST + v.g.alanH} y2={v.g.UST + v.g.alanH} stroke="rgba(236,239,233,0.32)" stroke-width="1" />
+        <line x1={v.g.SOL} x2={v.g.SOL + v.g.alanW} y1={v.g.UST + v.g.alanH} y2={v.g.UST + v.g.alanH} stroke="#5d645f" stroke-width="1" />
         {v.g.tarihler
           .filter((d) => d.goster)
           .map((d) => (
@@ -206,7 +206,7 @@ const platAnahtar = Object.keys(platformlar).filter((a) => seriler.some((s) => s
     margin-bottom: 14px;
     padding: 12px 14px;
     background: var(--tahta-koyu, #151d1a);
-    border: 1px solid var(--tebesir-ince, rgb(236 239 233 / 0.14));
+    border: 1px solid var(--tebesir-ince, rgb(20 26 23 / 0.08));
     border-radius: 4px;
     min-width: 0;
   }

@@ -16,10 +16,12 @@ test('paraTam binlik ayraç nokta', () => {
   assert.equal(paraTam(7_602_500), '₺7.602.500');
 });
 
-test('yüzde ve değişim', () => {
-  assert.equal(yuzdeBicim(50.64), '%50,6');
-  assert.equal(degisimBicim(4.2), '▲ %4,2');
-  assert.equal(degisimBicim(-3), '▼ %3,0');
+test('yüzde ve değişim: iki ondalık, kesilerek (BRAND.md §9)', () => {
+  assert.equal(yuzdeBicim(50.64), '%50,64');
+  assert.equal(yuzdeBicim(99.996), '%99,99');
+  assert.equal(yuzdeBicim(100), '%100,00');
+  assert.equal(degisimBicim(4.2), '▲ %4,20');
+  assert.equal(degisimBicim(-3), '▼ %3,00');
   assert.equal(degisimBicim(null), '—');
 });
 
@@ -35,13 +37,18 @@ test('dosyaParcasi Türkçe küçük harf', () => {
   assert.equal(dosyaParcasi('  A.B & C  '), 'a-b-c');
 });
 
-test('yuzdeEkli son rakamın okunuşuna uyar', () => {
-  assert.equal(yuzdeEkli(50.6), "%50,6'sı");
-  assert.equal(yuzdeEkli(100), "%100,0'ı");
-  assert.equal(yuzdeEkli(42.3), "%42,3'ü");
-  assert.equal(yuzdeEkli(12.9), "%12,9'u");
-  assert.equal(yuzdeEkli(7.2), "%7,2'si");
-  assert.equal(yuzdeEkli(8.5), "%8,5'i");
+test('yuzdeEkli okunan son sayıya uyar (iki ondalık)', () => {
+  assert.equal(yuzdeEkli(51.71), "%51,71'i"); // yetmiş bir
+  assert.equal(yuzdeEkli(50.64), "%50,64'ü"); // altmış dört
+  assert.equal(yuzdeEkli(50.6), "%50,60'ı"); // altmış
+  assert.equal(yuzdeEkli(42.3), "%42,30'u"); // otuz
+  assert.equal(yuzdeEkli(12.9), "%12,90'ı"); // doksan
+  assert.equal(yuzdeEkli(7.2), "%7,20'si"); // yirmi
+  assert.equal(yuzdeEkli(8.5), "%8,50'si"); // elli
+  assert.equal(yuzdeEkli(8.1), "%8,10'u"); // on
+  assert.equal(yuzdeEkli(30), "%30,00'u"); // yüzde otuz
+  assert.equal(yuzdeEkli(100), "%100,00'ü"); // yüzde yüz
+  assert.equal(yuzdeEkli(7), "%7,00'si"); // yüzde yedi
 });
 
 test('null ve sonlu olmayan sayılar tire', () => {
