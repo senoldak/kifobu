@@ -1,4 +1,5 @@
-// Favicon ve uygulama simgeleri: kâğıt zeminde küçük tohum işareti (BRAND.md §5).
+// Favicon ve uygulama simgeleri (BRAND.md §5). Sekme, yer imi ve arşiv simgeleri SAYDAM zeminlidir (yer iminde beyaz kare
+// görünmesin). Kâğıt zemin yalnız apple-touch-icon (iOS saydamı siyaha boyar) ve maskelenebilir simgededir (kenar kırpılır).
 // Kullanım: node --experimental-strip-types scripts/marka/favicon-uret.mjs
 import fs from 'node:fs';
 import sharp from 'sharp';
@@ -6,18 +7,28 @@ import { KIMLIK, tohumIsaretiSvg } from '../../src/lib/kimlik.ts';
 
 const KOK = 'public';
 
-/** Kare simge: kâğıt zemin, işaret kenarlardan %10 içeride. */
-function simgeSvg(boyut, { kucuk = true, yuvarlak = false } = {}) {
+/** Kare simge: işaret kenarlardan %10 içeride; zemin yalnız istenirse (kâğıt). */
+function simgeSvg(boyut, { kucuk = true, yuvarlak = false, zeminli = false } = {}) {
   const ic = Math.round(boyut * 0.8);
   const ofset = Math.round((boyut - ic) / 2);
   const isaret = tohumIsaretiSvg({ boyut: ic, kucuk }).replace('<svg ', `<svg x="${ofset}" y="${ofset}" `);
-  const zemin = yuvarlak
+  const zemin = !zeminli
+    ? ''
+    : yuvarlak
     ? `<circle cx="${boyut / 2}" cy="${boyut / 2}" r="${boyut / 2}" fill="${KIMLIK.kagit}"/>`
     : `<rect width="${boyut}" height="${boyut}" fill="${KIMLIK.kagit}"/>`;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${boyut}" height="${boyut}" viewBox="0 0 ${boyut} ${boyut}">${zemin}${isaret}</svg>`;
 }
 
 const png = (boyut, secenek) => sharp(Buffer.from(simgeSvg(boyut, secenek))).png().toBuffer();
+
+/** Android maskelenebilir simge: kâğıt zemin, işaret güvenli alanda (ortadaki %60). */
+function maskelenebilir(boyut) {
+  const ic = Math.round(boyut * 0.6);
+  const o = Math.round((boyut - ic) / 2);
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${boyut}" height="${boyut}"><rect width="${boyut}" height="${boyut}" fill="${KIMLIK.kagit}"/>${tohumIsaretiSvg({ boyut: ic }).replace('<svg ', `<svg x="${o}" y="${o}" `)}</svg>`;
+  return sharp(Buffer.from(svg)).png().toBuffer();
+}
 
 /** PNG gömülü ICO (Windows Vista+ ve bütün tarayıcılar okur). */
 function ico(pngler) {
@@ -44,6 +55,7 @@ fs.writeFileSync(`${KOK}/favicon.svg`, `${tohumIsaretiSvg({ boyut: 64, minik: tr
 fs.writeFileSync(`${KOK}/favicon-32.png`, await png(32));
 fs.writeFileSync(`${KOK}/favicon-192.png`, await png(192));
 fs.writeFileSync(`${KOK}/favicon-512.png`, await png(512, { kucuk: false }));
-fs.writeFileSync(`${KOK}/apple-touch-icon.png`, await png(180));
+fs.writeFileSync(`${KOK}/favicon-maskable-512.png`, await maskelenebilir(512));
+fs.writeFileSync(`${KOK}/apple-touch-icon.png`, await png(180, { zeminli: true }));
 fs.writeFileSync(`${KOK}/favicon.ico`, ico([[16, await png(16)], [32, await png(32)], [48, await png(48)]]));
-console.log('favicon.svg, favicon.ico, favicon-32/192/512.png, apple-touch-icon.png');
+console.log('favicon.svg, favicon.ico, favicon-32/192/512.png (saydam), favicon-maskable-512.png, apple-touch-icon.png (kâğıt)');
