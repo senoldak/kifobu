@@ -5,6 +5,7 @@
 import { jsonLdMetni } from '../../lib/json-ld.mjs';
 import Base from '../../layouts/Base.astro';
 import HaberSatiri from '../../components/HaberSatiri.astro';
+import PlatformAdi from '../../components/PlatformAdi.astro';
 import Yol from '../../components/Yol.astro';
 import { dizinVerisi, platformUrl } from '../../lib/dizin';
 import { gunUrl, type BultenGunu } from '../../lib/gunler';
@@ -93,9 +94,9 @@ const jsonLd = sayfaLd({
                   <tr>
                     <th scope="row">{slug ? <a href={`/kampanya/${slug}/`}>{x.ad}</a> : x.ad}</th>
                     <td>
-                      <a href={platformUrl(x.platform)}>{x.platform}</a>
+                      <PlatformAdi ad={x.platform} href={platformUrl(x.platform)} />
                     </td>
-                    <td class="sayi">
+                    <td class:list={['sayi', { 'sayi--artis': (x.bugun ?? 0) > 0 }]}>
                       {x.veriAlinamadi ? 'Veri alınamadı' : paraTam(x.bugun)}
                       {x.birikmis && '*'}
                     </td>
@@ -124,9 +125,9 @@ const jsonLd = sayfaLd({
                 {k.platformlar.map((p) => (
                   <tr>
                     <th scope="row">
-                      <a href={platformUrl(p.anahtar)}>{p.ad}</a>
+                      <PlatformAdi ad={p.ad} href={platformUrl(p.anahtar)} />
                     </th>
-                    <td class="sayi">{paraTam(p.bugun)}</td>
+                    <td class:list={['sayi', { 'sayi--artis': (p.bugun ?? 0) > 0 }]}>{paraTam(p.bugun)}</td>
                     <td class="sayi">{paraTam(p.toplam)}</td>
                   </tr>
                 ))}

@@ -622,10 +622,11 @@ h3 {
 
 .kategori-isim {
   margin: 0;
-  font-family: var(--yazi-tahta);
-  font-weight: 800;
-  font-size: clamp(3rem, 8vw, 6rem);
-  line-height: 0.9;
+  font-family: var(--yazi);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  letter-spacing: -0.03em;
+  line-height: 1;
 }
 
 .kategori-sayi {
@@ -1593,9 +1594,10 @@ h3 {
 
 .veri-tablo thead th {
   text-align: left;
-  font-weight: 800;
-  font-size: 0.78rem;
-  letter-spacing: 0.1em;
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--gri);
   text-transform: uppercase;
   padding: 8px 12px;
   border-bottom: 2px solid var(--cizgi-koyu);
@@ -1611,7 +1613,16 @@ h3 {
 }
 
 .veri-tablo tbody th {
-  font-weight: 800;
+  font-weight: 600;
+}
+
+.veri-tablo thead th.sayi {
+  text-align: right;
+}
+
+.veri-tablo .sayi--artis {
+  color: var(--yesil);
+  font-weight: 600;
 }
 
 .veri-tablo .sayi {
@@ -1621,9 +1632,9 @@ h3 {
 
 .veri-tablo a,
 .dizin-liste a {
-  color: var(--bag);
+  color: var(--murekkep);
   text-decoration: underline;
-  text-decoration-color: var(--bag-alt);
+  text-decoration-color: var(--cizgi);
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
 }
