@@ -40,7 +40,7 @@ function ico(pngler) {
 }
 
 // favicon.svg: zeminsiz, tarayıcı sekmesinde de net okunan küçük işaret.
-fs.writeFileSync(`${KOK}/favicon.svg`, `${tohumIsaretiSvg({ boyut: 64, kucuk: true })}\n`);
+fs.writeFileSync(`${KOK}/favicon.svg`, `${tohumIsaretiSvg({ boyut: 64, minik: true })}\n`);
 fs.writeFileSync(`${KOK}/favicon-32.png`, await png(32));
 fs.writeFileSync(`${KOK}/favicon-192.png`, await png(192));
 fs.writeFileSync(`${KOK}/favicon-512.png`, await png(512, { kucuk: false }));

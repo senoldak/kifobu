@@ -59,9 +59,17 @@ export function kapandiMi(durum: string): boolean {
 
 const ALTIN_ACI = Math.PI * (3 - Math.sqrt(5));
 
-/** Tohum işareti: 233 tohum (küçükte 89), her 21. tohum sarı ve 1,55 kat iri. viewBox 200×200. */
-export function tohumIsaretiSvg({ boyut, zemin = 'acik', kucuk = false }: { boyut: number; zemin?: 'acik' | 'koyu'; kucuk?: boolean }): string {
-  const n = kucuk ? 89 : 233;
+// Üç kademe: tam (64 px ve üstü), küçük (33–63 px), minik (32 px ve altı: favicon, alt bilgi logosu).
+// Tohum azaldıkça noktalar irileşir; kol yine sağ alta kıvrılır. kat: nokta iriliği (2026-10-18: belirgin kalın, B).
+const TOHUM = {
+  tam: { n: 233, kol: 21, kat: 1.45 },
+  kucuk: { n: 55, kol: 8, kat: 1.55 },
+  minik: { n: 34, kol: 8, kat: 1.6 },
+} as const;
+
+/** Tohum işareti: 233 tohum (küçükte 55, minikte 34), kol tohumları sarı ve 1,55 kat iri. viewBox 200×200. */
+export function tohumIsaretiSvg({ boyut, zemin = 'acik', kucuk = false, minik = false }: { boyut: number; zemin?: 'acik' | 'koyu'; kucuk?: boolean; minik?: boolean }): string {
+  const { n, kol: kolAdim, kat } = TOHUM[minik || (kucuk && boyut <= 32) ? 'minik' : kucuk ? 'kucuk' : 'tam'];
   const nokta = zemin === 'koyu' ? KIMLIK.kagit : KIMLIK.murekkep;
   const c = 92 / Math.sqrt(n);
   let s = '';
@@ -69,8 +77,8 @@ export function tohumIsaretiSvg({ boyut, zemin = 'acik', kucuk = false }: { boyu
     const r = c * Math.sqrt(i);
     const a = i * ALTIN_ACI;
     const k = Math.sqrt(i / n);
-    const kol = i % 21 === 0;
-    const rad = c * 0.36 * (0.35 + 0.75 * k) * (kol ? 1.55 : 1);
+    const kol = i % kolAdim === 0;
+    const rad = c * 0.36 * kat * (0.35 + 0.75 * k) * (kol ? 1.55 : 1);
     s += `<circle cx="${(100 + r * Math.cos(a)).toFixed(2)}" cy="${(100 + r * Math.sin(a)).toFixed(2)}" r="${rad.toFixed(2)}" fill="${kol ? KIMLIK.sari : nokta}"/>`;
   }
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${boyut}" height="${boyut}" viewBox="0 0 200 200" aria-hidden="true">${s}</svg>`;

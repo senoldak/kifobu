@@ -35,13 +35,17 @@ test('durum etiketleri', () => {
   assert.equal(durumEtiketi(undefined), null);
 });
 
-test('tohum işareti: 233 / 89 tohum, kol sarı, metin yok', () => {
+test('tohum işareti: 233 / 55 / 34 tohum, kol sarı, metin yok', () => {
   const b = tohumIsaretiSvg({ boyut: 200 });
   assert.equal((b.match(/<circle/g) ?? []).length, 233);
   assert.equal((b.match(/fill="#e8b40c"/g) ?? []).length, 11);
   assert.doesNotMatch(b, /<text/);
   assert.match(b, /width="200" height="200"/);
-  assert.equal((tohumIsaretiSvg({ boyut: 32, kucuk: true }).match(/<circle/g) ?? []).length, 89);
+  const sayi = (s: string) => (s.match(/<circle/g) ?? []).length;
+  assert.equal(sayi(tohumIsaretiSvg({ boyut: 44, kucuk: true })), 55);
+  assert.equal(sayi(tohumIsaretiSvg({ boyut: 32, kucuk: true })), 34); // 32 px ve altı kendiliğinden minik
+  assert.equal(sayi(tohumIsaretiSvg({ boyut: 64, minik: true })), 34);
+  assert.equal((tohumIsaretiSvg({ boyut: 44, kucuk: true }).match(/fill="#e8b40c"/g) ?? []).length, 6);
   assert.match(tohumIsaretiSvg({ boyut: 200, zemin: 'koyu' }), /fill="#f7f5ef"/);
 });
 

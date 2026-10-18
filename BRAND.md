@@ -50,14 +50,17 @@ Sıcak olmak zorunda değiliz; insanlar dürüstlüğümüzü seviyor. **Kırmad
 ## 5. İşaret
 
 **Tohum göbeği, güçlü kol.** Ayçiçeği tohumlarının altın açıyla (137,5°) dizilişi: 233 tohum, dışa doğru büyür.
-Her 21. tohum sarıdır ve 1,55 kat iridir; sarı tohumlar birlikte bir spiral kolu çizer.
+Her 21. tohum sarıdır ve 1,55 kat iridir; sarı tohumlar birlikte bir spiral kolu çizer. Noktalar belirgin ve kalındır (2026-10-18: iriliği 1,45 kat artırıldı).
+Küçük boylarda tohum azalır, noktalar irileşir: 33–63 piksel 55 tohum, 32 piksel ve altı (favicon) 34 tohum; ikisinde de her 8. tohum sarıdır.
 
 - **Anlamı:** dağınık noktalar = ekosistemdeki dağınık veri; sarı kol = kifobu'nun içinden çıkardığı anlaşılır bilgi.
   Kökeni sahibin takma adı "günebakan".
 - **Dosyalar** (`brand/`, üretici `scripts/marka/tohum-isaret.mjs`):
   - `kifobu-tohum.svg` — açık zemin, 233 tohum
   - `kifobu-tohum-koyu-zemin.svg` — koyu zemin: siyah tohumlar kâğıt rengine döner, sarı aynı kalır
-  - `kifobu-tohum-kucuk.svg`, `kifobu-tohum-kucuk-koyu-zemin.svg` — 64 pikselin altı için 89 iri tohumlu kardeş
+  - `kifobu-tohum-kucuk.svg`, `kifobu-tohum-kucuk-koyu-zemin.svg` — 33–63 piksel için 55 tohumlu kardeş
+  - `kifobu-tohum-minik.svg`, `kifobu-tohum-minik-koyu-zemin.svg` — 32 piksel ve altı için 34 tohumlu kardeş
+  - `logo/` — kullanıma hazır logo paketi (yatay, dikey, yalnız işaret; açık ve koyu zemin; SVG ve PNG), bkz. `logo/BENIOKU.txt`
 - **Yapılmaz:** döndürme, renk değiştirme, gölge, kontur, tohum ekleme/çıkarma, daire çerçeve içine sıkıştırma.
 - **Uyarı:** Tam daire ve noktalı yapısıyla Reuters'ın işaretine en yakın seçenektir; sahibi bilerek seçti.
   Kesinleştirmeden önce TÜRKPATENT'te benzerlik araması yapılmalı.
