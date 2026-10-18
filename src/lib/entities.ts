@@ -15,7 +15,7 @@ export const CROWDFUNDING_ENTITIES: EntityMapping[] = [
   {
     name: 'Kitle Fonlaması',
     type: 'Thing',
-    sameAs: 'https://www.wikidata.org/wiki/Q17017784',
+    sameAs: 'https://www.wikidata.org/wiki/Q348303',
     keywords: ['kitle fonlaması', 'kitle fonlama', 'crowdfunding'],
   },
   {
