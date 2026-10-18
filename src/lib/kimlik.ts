@@ -65,3 +65,16 @@ export function platformRengi(ad: string, liste: readonly { ad: string; renk: st
   const a = ad.toLocaleLowerCase('tr-TR');
   return liste.find((p) => p.ad.toLocaleLowerCase('tr-TR') === a)?.renk ?? KIMLIK.gri;
 }
+
+const SIMGE: Record<string, string> = { TRY: '₺', USD: '$', EUR: '€', GBP: '£' };
+
+/** Kapak ve başlık için kısa tutar: simge önde; milyon/milyar iki ondalık, bin tam sayı; hep aşağı (anlamı değiştirmez). */
+export function tutarKisa(n: number, paraBirimi: string = 'TRY'): string {
+  const simge = SIMGE[paraBirimi] ?? `${paraBirimi} `;
+  const asagi = (x: number, basamak: number) => Math.floor(x * 10 ** basamak + 1e-9) / 10 ** basamak;
+  const virgul = (x: number, basamak: number) => x.toFixed(basamak).replace('.', ',');
+  if (n >= 1e9) return `${simge}${virgul(asagi(n / 1e9, 2), 2)} milyar`;
+  if (n >= 1e6) return `${simge}${virgul(asagi(n / 1e6, 2), 2)} milyon`;
+  if (n >= 1e3) return `${simge}${Math.floor(n / 1e3)} bin`;
+  return `${simge}${Math.floor(n)}`;
+}

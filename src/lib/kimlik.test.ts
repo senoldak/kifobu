@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { KIMLIK, cubukOlcegi, durumEtiketi, platformRengi, tohumIsaretiSvg, yuzdeKesik } from './kimlik.ts';
+import { KIMLIK, cubukOlcegi, durumEtiketi, platformRengi, tohumIsaretiSvg, tutarKisa, yuzdeKesik } from './kimlik.ts';
 
 test('marka ve veri renkleri BRAND.md ile aynı', () => {
   assert.deepEqual(KIMLIK, {
@@ -50,4 +50,15 @@ test('platform rengi bülten verisinden; büyük-küçük harf fark etmez; bilin
   assert.equal(platformRengi('fonangels', liste), '#f47b3d');
   assert.equal(platformRengi('EcoFolio', liste), '#009bae');
   assert.equal(platformRengi('yok', liste), KIMLIK.gri);
+});
+
+test('kısa tutar: simge önde, milyon/milyar iki ondalık aşağı, bin tam sayı aşağı', () => {
+  assert.equal(tutarKisa(4_495_800), '₺4,49 milyon');
+  assert.equal(tutarKisa(4_000_000), '₺4,00 milyon');
+  assert.equal(tutarKisa(1_600_000_000), '₺1,60 milyar');
+  assert.equal(tutarKisa(999_600), '₺999 bin');
+  assert.equal(tutarKisa(850_000), '₺850 bin');
+  assert.equal(tutarKisa(950), '₺950');
+  assert.equal(tutarKisa(10_690_000, 'EUR'), '€10,69 milyon');
+  assert.equal(tutarKisa(200_000_000, 'USD'), '$200,00 milyon');
 });

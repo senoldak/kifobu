@@ -1,50 +1,36 @@
-// Haber kapakları: görsel, haberin kendi künyesinden çizilir (tidsrost'taki gibi dışarıdan fotoğraf alınmaz).
-// Her fonksiyon 1200×675 (16:9) SVG döner; /kapak/[id].png uç noktası bunu sharp ile PNG'ye çevirir.
+// Haber kapakları: görsel, haberin kendi künyesinden çizilir (dışarıdan fotoğraf alınmaz).
+// Kapak 1200×675 (16:9) SVG; /kapak/[id].png uç noktası bunu sharp ile PNG'ye çevirir.
 // Yazılar yazı tipinden doğrudan vektör yola çevrilir; böylece derleme makinesinde yazı tipi kurulu olması gerekmez.
+// Kimlik v2 (BRAND.md): tek aile Schibsted Grotesk (değişken, 400–800).
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { create, type Font } from 'fontkitten';
 import { categoryName, SITE } from '../lib/site.ts';
+import { KIMLIK, tohumIsaretiSvg } from '../lib/kimlik.ts';
 import { kartSvg } from './kart.ts';
 import type { Haber } from '../lib/news';
 
 export const KAPAK_G = 1200;
 export const KAPAK_Y = 675;
-const G = KAPAK_G;
-const Y = KAPAK_Y;
 
-// Seans tahtası paleti (global.css ile aynı).
-const R = {
-  tahta: '#1d2723',
-  koyu: '#151d1a',
-  tebesir: '#ecefe9',
-  tebesir2: 'rgb(236 239 233 / 0.74)',
-  tebesir3: 'rgb(236 239 233 / 0.62)',
-  cizgi: 'rgb(236 239 233 / 0.32)',
-  ince: 'rgb(236 239 233 / 0.14)',
-  sari: '#f2d45c',
-  pembe: '#f19bb0',
-  mavi: '#8fc7e0',
-};
+export type Yuz = 'normal' | 'orta' | 'yari' | 'kalin' | 'ekstra';
+const AGIRLIK: Record<Yuz, number> = { normal: 400, orta: 500, yari: 600, kalin: 700, ekstra: 800 };
 
-export type Yuz = 'tahta' | 'baslik' | 'baslikInce' | 'govde';
-const DOSYA: Record<Yuz, string> = {
-  tahta: 'SofiaSansExtraCondensed-ExtraBold.ttf',
-  baslik: 'SofiaSansCondensed-ExtraBold.ttf',
-  baslikInce: 'SofiaSansCondensed-Bold.ttf',
-  govde: 'SofiaSans-SemiBold.ttf',
-};
-
+let ana: Font | null = null;
 const fontlar = new Map<Yuz, Font>();
 export function font(yuz: Yuz): Font {
   let f = fontlar.get(yuz);
   if (!f) {
     // Derleme proje kökünden çalışır; paketlenmiş dosyanın yeri değiştiği için import.meta.url kullanılmaz.
-    f = create(readFileSync(path.join(process.cwd(), 'src/kapak/fontlar', DOSYA[yuz]))) as Font;
+    ana ??= create(readFileSync(path.join(process.cwd(), 'src/kapak/fontlar/SchibstedGrotesk[wght].ttf'))) as Font;
+    f = ana.getVariation({ wght: AGIRLIK[yuz] }) as Font;
     fontlar.set(yuz, f);
   }
   return f;
 }
+
+/** Büyük harf yüksekliği (em). */
+export const BUYUK_HARF = 0.7;
 
 export interface MetinAyar {
   yuz: Yuz;
@@ -70,14 +56,14 @@ export function metin(s: string, x: number, y: number, ayar: MetinAyar) {
   let yollar = '';
   for (const g of f.glyphsForString(s)) {
     const d = g.path.toSVG();
-    if (d) yollar += `<path transform="translate(${cx.toFixed(1)} ${y}) scale(${olcek} ${-olcek})" d="${d}"/>`;
+    if (d) yollar += `<path transform="translate(${cx.toFixed(1)} ${y.toFixed(1)}) scale(${olcek} ${-olcek})" d="${d}"/>`;
     cx += g.advanceWidth * olcek + aralik;
   }
   return `<g fill="${ayar.renk}">${yollar}</g>`;
 }
 
 /** Kelimeleri verilen genişliğe sığacak satırlara böler. */
-export function satirlar(s: string, maks: number, ayar: MetinAyar, maksSatir: number) {
+export function satirlar(s: string, maks: number, ayar: MetinAyar, maksSatir = Infinity) {
   const out: string[] = [];
   let satir = '';
   for (const kelime of s.split(/\s+/)) {
@@ -95,10 +81,35 @@ export function satirlar(s: string, maks: number, ayar: MetinAyar, maksSatir: nu
   return out;
 }
 
-// Haber kapağı: kart.ts ("Seans · Künye"). Kampanyalar da aynı kartı kullanır; tutar ayrıca çizilmez
-// (sahibin kararı, 2026-10-18).
+/** İşaret + "kifobu" logosu; (x, alt) logonun sol alt köşesi. Genişliği de döner. */
+export function logo(x: number, alt: number, isaretBoyu: number, renk: string = KIMLIK.murekkep) {
+  const yazi = isaretBoyu * 0.78;
+  const bosluk = isaretBoyu * 0.24;
+  const isaret = tohumIsaretiSvg({ boyut: isaretBoyu, kucuk: isaretBoyu < 64 }).replace('<svg ', `<svg x="${x.toFixed(1)}" y="${(alt - isaretBoyu).toFixed(1)}" `);
+  const ayar: MetinAyar = { yuz: 'yari', boyut: yazi, renk, aralik: -yazi * 0.03 };
+  const taban = alt - isaretBoyu / 2 + (yazi * 0.52) / 2;
+  const svg = isaret + metin(SITE.name, x + isaretBoyu + bosluk, taban, ayar);
+  return { svg, genislik: isaretBoyu + bosluk + genislik(SITE.name, ayar) };
+}
+
+// Haber kapağı: kart.ts (Kimlik v2). Kampanya haberinde künye, yatırım haberinde tur kapağı; rakam yoksa düz haber.
 export function kapakSvg(h: Haber) {
-  return kartSvg({ baslik: h.data.title, kategori: h.data.category }, 'kapak');
+  const d = h.data;
+  return kartSvg(
+    {
+      baslik: d.title,
+      kategori: d.category,
+      girisim: d.girisim,
+      platform: d.platform,
+      toplanan: d.toplanan,
+      hedef: d.hedef,
+      yatirimci: d.yatirimci,
+      durum: d.durum,
+      paraBirimi: d.paraBirimi,
+      tur: d.tur,
+    },
+    'kapak',
+  );
 }
 
 /** Çizilen kapağın ekran okuyucu metni. */
@@ -108,13 +119,11 @@ export function kapakAlt(h: Haber) {
 
 export const kapakUrl = (h: Haber) => `/kapak/${h.id}.png`;
 
-// ── Yayıncı logosu (JSON-LD publisher.logo): sitenin üst bandındaki yazı logosunun aynısı ──
-// Google haber yayıncı logosu için dikdörtgen, en az 600×60 PNG ister. Marka işareti (ayçiçeği) yalnız favicon'da
-// kullanıldığı için (DESIGN.md) logo "kifobu | Ulaşılabilir ve anlaşılır veri" yazı dizilişinden çizilir.
+// ── Yayıncı logosu (JSON-LD publisher.logo) ──
+// Google haber yayıncı logosu: dikdörtgen, en az 600×60 PNG, beyaz zemin, yalnız logo (slogan yok).
 export const LOGO_G = 600;
 export const LOGO_Y = 60;
 export function logoSvg() {
-  // Google yayıncı logosu yönergesi: beyaz zemin, yalnız logotip (slogan yok), 60 px yüksekliği dolduran yazı.
-  const isim: MetinAyar = { yuz: 'baslik', boyut: 50, renk: R.tahta };
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${LOGO_G}" height="${LOGO_Y}" viewBox="0 0 ${LOGO_G} ${LOGO_Y}"><rect width="${LOGO_G}" height="${LOGO_Y}" fill="#ffffff"/>${metin(SITE.name, 4, 45, isim)}</svg>`;
+  const { svg } = logo(4, 56, 52);
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${LOGO_G}" height="${LOGO_Y}" viewBox="0 0 ${LOGO_G} ${LOGO_Y}"><rect width="${LOGO_G}" height="${LOGO_Y}" fill="#ffffff"/>${svg}</svg>`;
 }
