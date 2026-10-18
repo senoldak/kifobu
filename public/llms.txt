@@ -24,7 +24,7 @@ Kifobu'da yer alan haber, veri ve analizler yatırım tavsiyesi niteliğinde de�
 - [SPK kitle fonlaması mevzuatı kılavuzu](https://kifobu.com/rehber/spk-kitle-fonlamasi-mevzuati/)
 
 ## Veri Kapsamı
-- SPK lisanslı kitle fonlama platformları (Fonbulucu, fonangels, Basefunder, Efonla vb.)
+- SPK listesindeki kitle fonlama platformları (güncel liste: spk.gov.tr, Listeye Alınan Platformlar)
 - Paya dayalı ve borca dayalı kitle fonlama kampanyaları
 - Girişimlerin fonlama hedefleri, toplanan tutarlar, gerçekleşme oranları ve yatırımcı adetleri
 - Girişim ekosistemi ve mevzuat güncellemeleri
