@@ -1,62 +1,53 @@
 /*
- * kifobu · Seans Tahtası
- * Koyu arduvaz tahta + tebeşir (beyaz, sarı, pembe, mavi). Palet kilitli:
- * ara tonlar yeni renkle değil, tebeşir yoğunluğuyla (opaklık) kurulur.
- * Tahtanın altı sakin, açık bir okuma zemini.
+ * kifobu · Kimlik v2 (BRAND.md)
+ * Kâğıt zemin, mürekkep yazı, tek marka rengi ayçiçeği sarısı. Yeşil ve platform renkleri veriye aittir.
+ * Eski Seans Tahtası adları (--tahta, --tebesir, --sari…) bileşenler kırılmasın diye yeni değerlere bağlıdır;
+ * bileşenler yeniden giydirildikçe yeni adlara geçer. Yalnız açık tema.
  */
 :root {
-  /* Tahta */
-  --tahta: #1d2723;
-  --tahta-koyu: #151d1a;
-  --tebesir: #ecefe9;
-  --tebesir-2: rgb(236 239 233 / 0.74);
-  --tebesir-3: rgb(236 239 233 / 0.62);
-  --tebesir-cizgi: rgb(236 239 233 / 0.32);
-  --tebesir-ince: rgb(236 239 233 / 0.14);
-  --sari: #f2d45c;
-  --pembe: #f19bb0;
-  --mavi: #8fc7e0;
-
-  /* Okuma zemini */
-  --zemin: #eef1ed;
-  --zemin-2: #e2e7e2;
+  /* Marka */
+  --kagit: #f7f5ef;
+  --kagit-2: #efece4;
+  --beyaz: #ffffff;
   --murekkep: #141a17;
-  --murekkep-2: #46534c;
-  --cizgi: #c3cbc5;
-  --cizgi-koyu: #141a17;
-  --kalin-cizgi: var(--tahta);
-  --bag: #24503f;
-  --bag-alt: #c9a21f;
-  --odak: #24503f;
-  --basarisiz-murekkep: #b8506a;
+  --murekkep-2: #3b413d;
+  --gri: #5d645f;
+  --cizgi: #dcd9cf;
+  --marka-sari: #e8b40c;
+  /* Veri */
+  --yesil: #10b981;
+  --asim: #a7e9cf;
 
-  /* Yazı */
-  --yazi-govde: 'Sofia Sans', system-ui, sans-serif;
-  --yazi-baslik: 'Sofia Sans Condensed', 'Sofia Sans', system-ui, sans-serif;
-  --yazi-tahta: 'Sofia Sans Extra Condensed', 'Sofia Sans Condensed', system-ui, sans-serif;
+  /* Eski adlar → yeni değerler */
+  --tahta: var(--kagit);
+  --tahta-koyu: var(--kagit-2);
+  --tebesir: var(--murekkep);
+  --tebesir-2: rgb(20 26 23 / 0.78);
+  --tebesir-3: rgb(20 26 23 / 0.62);
+  --tebesir-cizgi: var(--cizgi);
+  --tebesir-ince: rgb(20 26 23 / 0.08);
+  --sari: var(--murekkep);
+  --pembe: var(--gri);
+  --mavi: var(--gri);
+  --zemin: var(--kagit);
+  --zemin-2: var(--kagit-2);
+  --cizgi-koyu: var(--murekkep);
+  --kalin-cizgi: var(--murekkep);
+  --bag: var(--murekkep);
+  --bag-alt: var(--marka-sari);
+  --odak: var(--murekkep);
+  --basarisiz-murekkep: var(--murekkep);
+
+  /* Yazı: tek aile */
+  --yazi: 'Schibsted Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --yazi-govde: var(--yazi);
+  --yazi-baslik: var(--yazi);
+  --yazi-tahta: var(--yazi);
 
   --kenar: clamp(16px, 4vw, 56px);
   --gecis: cubic-bezier(0.16, 1, 0.3, 1);
 
-
   color-scheme: light;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --zemin: #111715;
-    --zemin-2: #18201d;
-    --murekkep: #e3e8e4;
-    --murekkep-2: #a3b0a9;
-    --cizgi: #2c3833;
-    --cizgi-koyu: #e3e8e4;
-    --kalin-cizgi: #3a4b44;
-    --bag: #a9d6c2;
-    --bag-alt: #c9a21f;
-    --odak: #f2d45c;
-    --basarisiz-murekkep: #f19bb0;
-    color-scheme: dark;
-  }
 }
 
 /* ---------- Temel ---------- */
@@ -151,7 +142,8 @@ h3 {
 }
 
 .site-bas {
-  border-bottom: 6px solid var(--tahta-koyu);
+  border-top: 10px solid var(--marka-sari);
+  border-bottom: 1px solid var(--cizgi);
 }
 
 .ust-satir {
@@ -276,7 +268,7 @@ h3 {
 }
 
 .menu a[aria-current='page'] {
-  color: var(--sari);
+  color: var(--murekkep);
 }
 
 .menu a[aria-current='page']::after {
@@ -284,9 +276,9 @@ h3 {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 4px;
-  height: 2px;
-  background: var(--sari);
+  bottom: 3px;
+  height: 3px;
+  background: var(--marka-sari);
 }
 
 /* ---------- Seans tahtası ---------- */
@@ -1269,7 +1261,7 @@ h3 {
 
 /* ---------- Alt bant ---------- */
 .site-alt {
-  border-top: 6px solid var(--tahta-koyu);
+  border-top: 3px solid var(--marka-sari);
   padding: 40px 0 28px;
 }
 
