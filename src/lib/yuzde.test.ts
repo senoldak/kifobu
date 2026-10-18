@@ -23,3 +23,9 @@ test('bot verisindeki yüzde iki ondalığa kesilir (99,996 → 99,99, 100 → 1
   assert.equal(hedefeOran(10_000_000, 10_000_000), 100);
   assert.equal(hedefeOran(7_602_500, 7_500_000), 101.36);
 });
+
+test('çok büyük hedefte hedefin hemen altı 100 olmaz', async () => {
+  const { hedefeOran } = await import('./kimlik.ts');
+  assert.equal(hedefeOran(1e13 - 1, 1e13), 99.99);
+  assert.equal(hedefeOran(29, 100), 29);
+});

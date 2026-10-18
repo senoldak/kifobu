@@ -14,7 +14,6 @@ const { kayitlar, bugun } = Astro.props;
 
 const AY_UZUN = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
 const GUN_KISA = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
-const SARI = '#141a17';
 
 const tarihler = kayitlar.map((k) => k.tarih).sort();
 const haritasi = new Map(kayitlar.map((k) => [k.tarih, k]));
@@ -116,12 +115,12 @@ const varBirikmis = (k: ArsivKaydi) => k.girisimler.some((g) => g.birikmis);
                 {g.tur === 'eksik' && <span class="isaret">!</span>}
               </>
             );
-            const stil = g.tur === 'veri' || g.tur === 'eksik' ? `--yogunluk:${opaklik.toFixed(3)};color:${opaklik > 0.55 ? '#1d2723' : '#ecefe9'}` : undefined;
+            // CSP satır içi style'a izin vermez: yoğunluk onda bir basamaklı sınıfa çevrilir, koyu hücrede yazı açık.
+            const yogunluk = g.tur === 'veri' || g.tur === 'eksik' ? [`y${Math.min(10, Math.max(1, Math.round(opaklik * 10)))}`, { koyu: opaklik > 0.55 }] : [];
             return kayit ? (
               <button
                 type="button"
-                class={`hucre tur-${g.tur}`}
-                style={stil}
+                class:list={['hucre', `tur-${g.tur}`, ...yogunluk]}
                 data-takvim-gun={g.tarih}
                 aria-label={e}
                 aria-expanded="false"
@@ -185,7 +184,7 @@ const varBirikmis = (k: ArsivKaydi) => k.girisimler.some((g) => g.birikmis);
   }
 
   <ul class="aciklama" aria-label="Gösterim">
-    <li><span class="ornek renk" style={`background:${SARI}`} aria-hidden="true"></span>Giriş (koyu: yüksek)</li>
+    <li><span class="ornek renk" aria-hidden="true"></span>Giriş (koyu: yüksek)</li>
     <li><span class="ornek baslangic" aria-hidden="true">B</span>Başlangıç günü</li>
     <li><span class="ornek eksik" aria-hidden="true"></span>Veri alınamadı</li>
     <li><span class="ornek yok" aria-hidden="true"></span>Kapanış yok</li>
@@ -290,6 +289,19 @@ const varBirikmis = (k: ArsivKaydi) => k.girisimler.some((g) => g.birikmis);
   .tur-eksik {
     background: rgb(20 26 23 / var(--yogunluk, 0.15));
     border-color: rgb(20 26 23 / 0.5);
+  }
+  .y1 { --yogunluk: 0.1; }
+  .y2 { --yogunluk: 0.2; }
+  .y3 { --yogunluk: 0.3; }
+  .y4 { --yogunluk: 0.4; }
+  .y5 { --yogunluk: 0.5; }
+  .y6 { --yogunluk: 0.6; }
+  .y7 { --yogunluk: 0.7; }
+  .y8 { --yogunluk: 0.8; }
+  .y9 { --yogunluk: 0.9; }
+  .y10 { --yogunluk: 1; }
+  .koyu {
+    color: #f7f5ef;
   }
   .tur-eksik {
     border: 1px dashed var(--tebesir, #ecefe9);
@@ -405,6 +417,9 @@ const varBirikmis = (k: ArsivKaydi) => k.girisimler.some((g) => g.birikmis);
     border-radius: 2px;
     font-size: 0.65rem;
     font-weight: 800;
+  }
+  .ornek.renk {
+    background: #141a17;
   }
   .ornek.baslangic {
     background: repeating-linear-gradient(135deg, rgb(20 26 23 / 0.12) 0 3px, transparent 3px 6px);

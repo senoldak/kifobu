@@ -580,6 +580,19 @@ h3 {
     animation-delay: calc(var(--i, 0) * 110ms + var(--s, 0) * 45ms);
   }
 
+  /* Satır sırası CSS'ten (CSP satır içi style'a izin vermez); 12. satırdan sonrası birlikte yazılır. */
+  .tahta-tablo tbody > tr:nth-child(2) { --i: 1; }
+  .tahta-tablo tbody > tr:nth-child(3) { --i: 2; }
+  .tahta-tablo tbody > tr:nth-child(4) { --i: 3; }
+  .tahta-tablo tbody > tr:nth-child(5) { --i: 4; }
+  .tahta-tablo tbody > tr:nth-child(6) { --i: 5; }
+  .tahta-tablo tbody > tr:nth-child(7) { --i: 6; }
+  .tahta-tablo tbody > tr:nth-child(8) { --i: 7; }
+  .tahta-tablo tbody > tr:nth-child(9) { --i: 8; }
+  .tahta-tablo tbody > tr:nth-child(10) { --i: 9; }
+  .tahta-tablo tbody > tr:nth-child(11) { --i: 10; }
+  .tahta-tablo tbody > tr:nth-child(n + 12) { --i: 11; }
+
   .tahta-tablo tbody > tr > :nth-child(2) { --s: 1; }
   .tahta-tablo tbody > tr > :nth-child(3) { --s: 2; }
   .tahta-tablo tbody > tr > :nth-child(4) { --s: 3; }
@@ -588,7 +601,7 @@ h3 {
 
   .tahta-toplam {
     animation: yaz 1.1s var(--gecis) both;
-    animation-delay: calc(var(--i, 0) * 110ms + 250ms);
+    animation-delay: calc(12 * 110ms + 250ms);
   }
 }
 

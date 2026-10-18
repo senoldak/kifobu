@@ -62,11 +62,13 @@ const ONLAR_EKI = ['', "'u", "'si", "'u", "'ı", "'si", "'ı", "'i", "'i", "'ı"
 function okunusEki(rakamlar: string): string {
   const r = rakamlar.replace(/^0+/, '');
   if (!r) return "'ı"; // sıfır
-  const son = Number(r[r.length - 1]);
-  if (son) return BIRLER_EKI[son];
-  const onlar = Number(r[r.length - 2] ?? 0);
-  if (onlar) return ONLAR_EKI[onlar];
-  return r.length >= 4 ? "'i" : "'ü"; // bin / yüz
+  // Okunan son sözcük, sondaki sıfır sayısına bağlı: yok → birler, 1 → onlar, 2 → yüz, 3+ → bin.
+  const sifir = r.length - r.replace(/0+$/, '').length;
+  const rakam = Number(r[r.length - 1 - sifir]);
+  if (sifir === 0) return BIRLER_EKI[rakam];
+  if (sifir === 1) return ONLAR_EKI[rakam];
+  if (sifir === 2) return "'ü"; // yüz, iki yüz, bin iki yüz
+  return "'i"; // bin, on bin, yüz bin
 }
 
 /** "hedefin %50,64'ü" biçimi için yüzde + iyelik eki. */

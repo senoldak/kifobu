@@ -60,3 +60,12 @@ test('null ve sonlu olmayan sayılar tire', () => {
     assert.equal(yuzdeEkli(n), '—');
   }
 });
+
+test('yuzdeEkli binin üstünde okunuşa uyar', () => {
+  assert.equal(yuzdeEkli(1200), "%1200,00'ü"); // bin iki yüz
+  assert.equal(yuzdeEkli(1000), "%1000,00'i"); // bin
+  assert.equal(yuzdeEkli(2500), "%2500,00'ü"); // iki bin beş yüz
+  assert.equal(yuzdeEkli(1230), "%1230,00'u"); // bin iki yüz otuz
+  assert.equal(yuzdeEkli(10000), "%10000,00'i"); // on bin
+  assert.equal(yuzdeEkli(200), "%200,00'ü"); // iki yüz
+});

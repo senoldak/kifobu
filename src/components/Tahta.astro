@@ -55,7 +55,7 @@ const id = `tahta-${title.toLocaleLowerCase('tr-TR').replace(/[^a-z0-9ğüşıö
           <h2 class="sr-only" id={id}>
             {title}
           </h2>
-          <p class="tahta-toplam" style={`--i:${rows.length}`}>
+          <p class="tahta-toplam">
             <span class="tl">{paraSimgesi(anaBirim)}</span>
             {formatNumber(total)}
           </p>
@@ -101,7 +101,7 @@ const id = `tahta-${title.toLocaleLowerCase('tr-TR').replace(/[^a-z0-9ğüşıö
               {parca.map((h, i) => {
                 const d = h.data;
                 return (
-                  <tr class={`durum-${d.durum ?? 'yok'}`} style={`--i:${n * parcaBoyu + i}`}>
+                  <tr class={`durum-${d.durum ?? 'yok'}`}>
                     <th scope="row" class="k-girisim">
                       <a href={newsUrl(h)}>{d.girisim}</a>
                       {ikinci(h) && <span class="platform-m">{ikinci(h)}</span>}
@@ -136,7 +136,7 @@ const id = `tahta-${title.toLocaleLowerCase('tr-TR').replace(/[^a-z0-9ğüşıö
             const d = h.data;
             const pct = percentOf(d.toplanan, d.hedef);
             return (
-              <tr class={`durum-${d.durum ?? 'yok'}`} style={`--i:${i}`}>
+              <tr class={`durum-${d.durum ?? 'yok'}`}>
                 <td class="k-isaret">
                   <Isaret durum={d.durum} />
                 </td>

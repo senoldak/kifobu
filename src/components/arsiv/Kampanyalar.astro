@@ -113,7 +113,7 @@ const platAnahtar = Object.keys(platformlar).filter((a) => seriler.some((s) => s
     {
       platAnahtar.map((a) => (
         <li>
-          <span class="nokta" style={`background:${platformlar[a].renk}`} aria-hidden="true" />
+          <svg class="nokta" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><rect width="10" height="10" fill={platformlar[a].renk} /></svg>
           {platformlar[a].ad}
         </li>
       ))
@@ -225,7 +225,7 @@ const platAnahtar = Object.keys(platformlar).filter((a) => seriler.some((s) => s
     width: 10px;
     height: 10px;
     margin-right: 6px;
-    border-radius: 50%;
+    vertical-align: -1px;
   }
   .grafik-mobil {
     display: none;

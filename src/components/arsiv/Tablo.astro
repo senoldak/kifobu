@@ -63,7 +63,7 @@ const satirVerisi = satirlar.map((s) => {
                 )}
               </th>
               <td class="sol">
-                <span class="nokta" style={`background:${p?.renk ?? '#888888'}`} aria-hidden="true" />
+                <svg class="nokta" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><rect width="10" height="10" fill={p?.renk ?? '#5d645f'} /></svg>
                 {p?.ad ?? s.platform}
               </td>
               <td class="sag sayi">
@@ -164,7 +164,7 @@ const satirVerisi = satirlar.map((s) => {
     width: 10px;
     height: 10px;
     margin-right: 8px;
-    border-radius: 50%;
+    vertical-align: -1px;
   }
   .durum {
     color: var(--tebesir-2, rgb(236 239 233 / 0.74));

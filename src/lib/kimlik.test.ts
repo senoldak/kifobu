@@ -62,3 +62,16 @@ test('kısa tutar: simge önde, milyon/milyar iki ondalık aşağı, bin tam say
   assert.equal(tutarKisa(10_690_000, 'EUR'), '€10,69 milyon');
   assert.equal(tutarKisa(200_000_000, 'USD'), '$200,00 milyon');
 });
+
+test('negatif yüzde sıfıra doğru kesilir, eksi işareti önde', () => {
+  assert.equal(yuzdeKesik(-0.001), '%0,00');
+  assert.equal(yuzdeKesik(-1.239), '-%1,23');
+  assert.equal(yuzdeKesik(-0), '%0,00');
+});
+
+test('kayan nokta artığı düzeltilir ama gerçek küsurat yukarı itilmez', () => {
+  assert.equal(yuzdeKesik(0.29 * 100), '%29,00'); // 28,999999999999996
+  assert.equal(yuzdeKesik(1.15 * 100), '%115,00'); // 114,99999999999999
+  assert.equal(yuzdeKesik(99.99999999999), '%99,99');
+  assert.equal(yuzdeKesik(((1e13 - 1) / 1e13) * 100), '%99,99');
+});
