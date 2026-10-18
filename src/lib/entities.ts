@@ -9,7 +9,7 @@ export const CROWDFUNDING_ENTITIES: EntityMapping[] = [
   {
     name: 'Sermaye Piyasası Kurulu',
     type: 'Organization',
-    sameAs: 'https://www.wikidata.org/wiki/Q7454378',
+    sameAs: 'https://www.wikidata.org/wiki/Q5035620',
     keywords: ['SPK', 'Sermaye Piyasası Kurulu'],
   },
   {
@@ -27,13 +27,13 @@ export const CROWDFUNDING_ENTITIES: EntityMapping[] = [
   {
     name: 'TÜBİTAK',
     type: 'Organization',
-    sameAs: 'https://www.wikidata.org/wiki/Q114886',
+    sameAs: 'https://www.wikidata.org/wiki/Q2096577',
     keywords: ['TÜBİTAK', 'TUBITAK'],
   },
   {
     name: 'Melek Yatırımcı',
     type: 'Thing',
-    sameAs: 'https://www.wikidata.org/wiki/Q417435',
+    sameAs: 'https://www.wikidata.org/wiki/Q778274',
     keywords: ['melek yatırımcı', 'melek yatırım', 'angel investor'],
   },
 ];
