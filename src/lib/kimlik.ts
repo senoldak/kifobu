@@ -78,3 +78,14 @@ export function tutarKisa(n: number, paraBirimi: string = 'TRY'): string {
   if (n >= 1e3) return `${simge}${Math.floor(n / 1e3)} bin`;
   return `${simge}${Math.floor(n)}`;
 }
+
+/** 18:00 bülteninin kendi yazımı (yüzde işareti sonda, "101,37%"); o da kesilerek. */
+export function yuzdeSonda(n: number): string {
+  const k = yuzdeKesik(n);
+  return k === '—' ? k : `${k.slice(1)}%`;
+}
+
+/** Bülten verisine yazılan hedefe oran: iki ondalığa kesilir; yuvarlama %99,996'yı %100 yapmasın. */
+export function hedefeOran(toplanan: number, hedef: number): number {
+  return Math.floor((toplanan / hedef) * 100 * 100 + 1e-9) / 100;
+}

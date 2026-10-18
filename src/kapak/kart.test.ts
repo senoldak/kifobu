@@ -82,3 +82,46 @@ test('büyük tutar ve yüzde kenardan taşmaz, birbirine binmez', () => {
     }
   }
 });
+
+const BICIMLER = ['kapak', 'post', 'story'] as const;
+
+test('çok uzun girişim ve platform adı kenardan taşmaz', () => {
+  const v = { ...ORNEKLER.kunye, girisim: 'Uluslararası Yenilenebilir Enerji ve Akıllı Şebeke Teknolojileri Anonim Şirketi', platform: 'çok uzun bir kitle fonlama platformu adı örneği ve devamı burada uzar gider' };
+  for (const b of BICIMLER) {
+    const s = kartSvg(v, b);
+    assert.ok(oznitelik(s, 'ad-sag') <= oznitelik(s, 'icerik-sag'), `${b} ad`);
+    assert.ok(oznitelik(s, 'platform-sag') <= oznitelik(s, 'icerik-sag'), `${b} platform`);
+  }
+});
+
+test('tek başına satırdan uzun kelime başlıkta taşmaz', () => {
+  const uzun = 'Süpercalifragilistikekspialidosyusvarimsiuzunbirkelimedahabudaha çok uzundur';
+  for (const b of BICIMLER) {
+    for (const v of [{ baslik: uzun, kategori: 'mevzuat' }, { ...ORNEKLER.yatirim, baslik: uzun }]) {
+      const s = kartSvg(v, b);
+      assert.ok(oznitelik(s, 'baslik-sag') <= oznitelik(s, 'icerik-sag'), `${b}`);
+    }
+  }
+});
+
+test('yatırım kapağında başlık tutara binmez (çok büyük tutar)', () => {
+  const v = { ...ORNEKLER.yatirim, baslik: 'Uzun bir yatırım haberi başlığı ki üç satıra kadar iner ve tutarla yarışır, kısalmalıdır gerektiğinde', toplanan: 987_654_321_000, paraBirimi: 'USD' };
+  for (const b of BICIMLER) {
+    const s = kartSvg(v, b);
+    assert.ok(oznitelik(s, 'baslik-alt') <= oznitelik(s, 'tutar-ust'), b);
+    assert.ok(oznitelik(s, 'tutar-alt') <= oznitelik(s, 'alt-ust'), `${b} tutar alt satıra biniyor`);
+    assert.ok(oznitelik(s, 'tutar-sag') <= oznitelik(s, 'icerik-sag'), b);
+  }
+});
+
+test('alt satırda logo ile kategori birbirine yaklaşmaz', async () => {
+  const { CATEGORIES } = await import('../lib/site.ts');
+  for (const b of BICIMLER) {
+    for (const c of CATEGORIES) {
+      const s = kartSvg({ baslik: 'X', kategori: c.slug }, b);
+      assert.ok(oznitelik(s, 'logo-sag') + 24 <= oznitelik(s, 'kategori-sol'), `${b} ${c.slug}`);
+    }
+    const s = kartSvg({ baslik: 'Gece Bülteni — 30 Eylül 2026', kategori: 'gunluk-bulten' }, b);
+    assert.ok(oznitelik(s, 'logo-sag') + 24 <= oznitelik(s, 'kategori-sol'), `${b} bülten`);
+  }
+});

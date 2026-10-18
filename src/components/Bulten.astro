@@ -10,7 +10,7 @@
 import { BULTEN } from '../data/bulten';
 import { formatNumber } from '../lib/site';
 import { newsUrl, type Haber } from '../lib/news';
-import { KIMLIK } from '../lib/kimlik';
+import { KIMLIK, yuzdeSonda } from '../lib/kimlik';
 import PlatformAdi from './PlatformAdi.astro';
 
 interface Props {
@@ -21,8 +21,7 @@ const { breaking = [] } = Astro.props;
 const b = BULTEN;
 
 const tl = (n: number) => '₺' + n.toLocaleString('tr-TR');
-const yuzde = (n: number) =>
-  n.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '%';
+const yuzde = (n: number) => yuzdeSonda(n);
 
 // Platform dağılımı toplamı
 const platformToplami = b.platformlar.liste.reduce((s, p) => s + p.toplam, 0) || 1;

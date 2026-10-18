@@ -24,7 +24,7 @@ const pct = percentOf(d.toplanan, d.hedef);
       <span class="kunye-tutar">
         <Isaret durum={d.durum} size={16} />
         <b>{formatMoneyShort(d.toplanan, d.paraBirimi)}</b>
-        {pct !== undefined && <span class="kunye-yuzde">%{pct}</span>}
+        {pct !== undefined && <span class="kunye-yuzde">{pct}</span>}
       </span>
     )
   }

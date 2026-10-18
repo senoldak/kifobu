@@ -3,7 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { create, type Font } from 'fontkitten';
 import { BULTEN, type Girisim, type Platform, type Yakinda } from '../src/data/bulten.ts';
-import { KIMLIK, tohumIsaretiSvg } from '../src/lib/kimlik.ts';
+import { KIMLIK, tohumIsaretiSvg, yuzdeSonda } from '../src/lib/kimlik.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -216,7 +216,7 @@ export function bultenSvgCiz(mod: GorselModu = 'post'): string {
     body += metin('alınan', pipe3X + 10, r1Y, { agirlik: 'orta', boyut: 19, renk: '#64748b' });
 
     // Sütun 4: Yüzde Rozeti (Sağa dayalı)
-    const yuzdeStr = g.yuzde.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '%';
+    const yuzdeStr = yuzdeSonda(g.yuzde);
     const yuzdeW = genislik(yuzdeStr, { agirlik: 'ekstra', boyut: fSize });
     const rozetH = mod === 'story' ? 32 : 26;
     const rozetY = currentY + (mod === 'story' ? 14 : 12);

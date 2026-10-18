@@ -1,3 +1,4 @@
+import { hedefeOran } from '../src/lib/kimlik.ts';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -308,7 +309,7 @@ async function main() {
 
     // Kalan ve Yüzde hesabı
     const kalan = k.tamamlandi || toplanan >= k.hedefFon ? null : Math.max(0, k.hedefFon - toplanan);
-    const yuzde = Number(((toplanan / k.hedefFon) * 100).toFixed(2));
+    const yuzde = hedefeOran(toplanan, k.hedefFon);
 
     girisimlerSonuc.push({
       ad: k.ad,

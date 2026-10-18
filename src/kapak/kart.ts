@@ -3,7 +3,7 @@
 // yatırım (tur etiketi, başlık, büyük tutar). Verisi olmayan bilgi çizilmez; rakam yoksa düz haber kapağı.
 // Üç biçim: site kapağı 1200×675 (yayında), post 1080×1350 ve story 1080×1920.
 // 18:00 kapanış bülteninin görselleri (scripts/bulten-gorsel-*) bu dosyayı kullanmaz.
-import { BUYUK_HARF, genislik, logo, metin, satirlar, type MetinAyar } from './ciz.ts';
+import { BUYUK_HARF, genislik, kisalt, logo, metin, satirlar, type MetinAyar } from './ciz.ts';
 import { categoryName, type Durum } from '../lib/site.ts';
 import { KIMLIK, cubukOlcegi, durumEtiketi, tutarKisa, yuzdeKesik } from '../lib/kimlik.ts';
 
@@ -104,7 +104,7 @@ function altSatir(o: Olcu, yazi: string) {
   const taban = o.alt - o.kat * 0.45;
   const w = genislik(yazi, ayar);
   const cizgi = `<rect x="${(o.g - o.pad - w).toFixed(1)}" y="${(taban + o.kat * 0.32).toFixed(1)}" width="${w.toFixed(1)}" height="${(o.kat * 0.14).toFixed(1)}" fill="${KIMLIK.sari}"/>`;
-  return { svg: l.svg + metin(yazi, o.g - o.pad, taban, ayar) + cizgi, ust: o.alt - o.isaret };
+  return { svg: l.svg + metin(yazi, o.g - o.pad, taban, ayar) + cizgi, ust: o.alt - o.isaret, logoSag: o.pad + l.genislik, kategoriSol: o.g - o.pad - w };
 }
 
 /** Başlığı yerleştirir: sığana kadar küçülür, en küçükte de sığmazsa satır sayısı kısalır ("…"). */
@@ -119,10 +119,11 @@ function baslikYerlestir(s: string, x: number, ilkUst: number, enAlt: number, ge
   const sigan = Math.max(1, Math.floor((enAlt - ilkUst - boyut * BUYUK_HARF - boyut * 0.22) / (boyut * SATIR_ADIMI)) + 1);
   if (satir.length > sigan) satir = satirlar(s, genis, { yuz, boyut, renk: KIMLIK.murekkep, aralik: -boyut * 0.025 }, sigan);
   const ilkTaban = ilkUst + boyut * BUYUK_HARF;
+  const sag = x + Math.max(...satir.map((l) => genislik(l, { yuz, boyut, renk: '', aralik: -boyut * 0.025 })));
   const svg = satir
     .map((l, i) => metin(l, x, ilkTaban + i * boyut * SATIR_ADIMI, { yuz, boyut, renk: KIMLIK.murekkep, aralik: -boyut * 0.025 }))
     .join('');
-  return { svg, alt: ilkTaban + (satir.length - 1) * boyut * SATIR_ADIMI + boyut * 0.22 };
+  return { svg, sag, alt: ilkTaban + (satir.length - 1) * boyut * SATIR_ADIMI + boyut * 0.22 };
 }
 
 function haberSvg(v: KapakVeri, o: Olcu) {
@@ -131,7 +132,7 @@ function haberSvg(v: KapakVeri, o: Olcu) {
   const alt = altSatir(o, etiketYazi);
   const enAlt = alt.ust - 30 * o.k;
   const b = baslikYerlestir(ana, o.pad - 2, o.ust + 26 * o.k, enAlt, o.g - 2 * o.pad, o.baslik, 'kalin');
-  return `${ac(o, { 'baslik-alt': b.alt.toFixed(1), 'alt-ust': alt.ust.toFixed(1), kategori: etiketYazi })}${zemin(o)}${b.svg}${alt.svg}</svg>`;
+  return `${ac(o, { 'baslik-alt': b.alt.toFixed(1), 'alt-ust': alt.ust.toFixed(1), 'baslik-sag': b.sag.toFixed(1), 'icerik-sag': o.g - o.pad, 'logo-sag': alt.logoSag.toFixed(1), 'kategori-sol': alt.kategoriSol.toFixed(1), kategori: etiketYazi })}${zemin(o)}${b.svg}${alt.svg}</svg>`;
 }
 
 function kunyeSvg(v: KapakVeri, o: Olcu) {
@@ -149,10 +150,17 @@ function kunyeSvg(v: KapakVeri, o: Olcu) {
   let ad = 58 * k;
   while (ad > 36 * k && genislik(v.girisim!, { yuz: 'yari', boyut: ad, renk: '', aralik: -ad * 0.02 }) > genis) ad -= 2 * k;
   let taban = ust + 40 * k + 28 * k + ad * BUYUK_HARF;
-  svg += metin(v.girisim!, x, taban, { yuz: 'yari', boyut: ad, renk: KIMLIK.murekkep, aralik: -ad * 0.02 });
+  const adAyar: MetinAyar = { yuz: 'yari', boyut: ad, renk: KIMLIK.murekkep, aralik: -ad * 0.02 };
+  const adYazi = kisalt(v.girisim!, genis, adAyar);
+  svg += metin(adYazi, x, taban, adAyar);
+  const adSag = x + genislik(adYazi, adAyar);
+  let platformSag = x;
   if (v.platform) {
     taban += 36 * k;
-    svg += metin(v.platform, x, taban, { yuz: 'normal', boyut: 24 * k, renk: KIMLIK.gri });
+    const pAyar: MetinAyar = { yuz: 'normal', boyut: 24 * k, renk: KIMLIK.gri };
+    const pYazi = kisalt(v.platform, genis, pAyar);
+    svg += metin(pYazi, x, taban, pAyar);
+    platformSag = x + genislik(pYazi, pAyar);
   }
 
   const yuzde = (v.toplanan! / v.hedef!) * 100;
@@ -203,7 +211,7 @@ function kunyeSvg(v: KapakVeri, o: Olcu) {
       svg += `<g data-hucre="${e}">${metin(e, hx2, etiketB, { yuz: 'orta', boyut: 19 * k, renk: KIMLIK.gri, aralik: 19 * k * 0.08, hiza })}${metin(d, hx2, deger, { yuz: 'yari', boyut: 32 * k, renk: KIMLIK.murekkep, hiza })}</g>`;
     });
   }
-  return `${ac(o, { 'baslik-alt': etiketTaban.toFixed(1), 'alt-ust': altUst.toFixed(1), 'tutar-sag': tutarSag.toFixed(1), 'icerik-sag': o.g - o.pad, kategori: kunyeEtiketi(v.kategori, null) })}${zemin(o)}${svg}</svg>`;
+  return `${ac(o, { 'baslik-alt': etiketTaban.toFixed(1), 'alt-ust': altUst.toFixed(1), 'tutar-sag': tutarSag.toFixed(1), 'icerik-sag': o.g - o.pad, 'ad-sag': adSag.toFixed(1), 'platform-sag': platformSag.toFixed(1), kategori: kunyeEtiketi(v.kategori, null) })}${zemin(o)}${svg}</svg>`;
 }
 
 function yatirimSvg(v: KapakVeri, o: Olcu) {
@@ -215,13 +223,17 @@ function yatirimSvg(v: KapakVeri, o: Olcu) {
   const tutar = tutarKisa(v.toplanan!, v.paraBirimi);
   let tutarBoyu = 112 * k;
   while (tutarBoyu > 56 * k && genislik(tutar, { yuz: 'yari', boyut: tutarBoyu, renk: '', aralik: -tutarBoyu * 0.035 }) > o.g - 2 * o.pad) tutarBoyu -= 2 * k;
+  // Başlığa en küçük puntoda en az bir satırlık yer kalsın; kalmazsa tutar küçülür.
+  const ilkUst = ust + 40 * k + 30 * k;
+  const birSatir = 48 * k * (BUYUK_HARF + 0.22);
+  while (tutarBoyu > 56 * k && alt.ust - 30 * k - (30 * k + tutarBoyu * BUYUK_HARF) - ilkUst < birSatir) tutarBoyu -= 2 * k;
   const tutarSag = o.pad - 4 + genislik(tutar, { yuz: 'yari', boyut: tutarBoyu, renk: '', aralik: -tutarBoyu * 0.035 });
   const tutarAlan = 30 * k + tutarBoyu * BUYUK_HARF;
-  const b = baslikYerlestir(v.baslik, o.pad - 2, ust + 40 * k + 30 * k, alt.ust - 30 * k - tutarAlan, o.g - 2 * o.pad, [60 * k, 54 * k, 48 * k], 'kalin');
+  const b = baslikYerlestir(v.baslik, o.pad - 2, ilkUst, alt.ust - 30 * k - tutarAlan, o.g - 2 * o.pad, [60 * k, 54 * k, 48 * k], 'kalin');
   const tutarTaban = b.alt + tutarAlan;
   svg += b.svg;
   svg += metin(tutar, o.pad - 4, tutarTaban, { yuz: 'yari', boyut: tutarBoyu, renk: KIMLIK.murekkep, aralik: -tutarBoyu * 0.035 });
-  return `${ac(o, { 'baslik-alt': tutarTaban.toFixed(1), 'alt-ust': alt.ust.toFixed(1), 'tutar-sag': tutarSag.toFixed(1), 'icerik-sag': o.g - o.pad, kategori: etiketYazi })}${zemin(o)}${svg}${alt.svg}</svg>`;
+  return `${ac(o, { 'baslik-alt': b.alt.toFixed(1), 'tutar-alt': tutarTaban.toFixed(1), 'alt-ust': alt.ust.toFixed(1), 'tutar-sag': tutarSag.toFixed(1), 'icerik-sag': o.g - o.pad, 'baslik-sag': b.sag.toFixed(1), 'tutar-ust': (tutarTaban - tutarBoyu * BUYUK_HARF).toFixed(1), 'logo-sag': alt.logoSag.toFixed(1), 'kategori-sol': alt.kategoriSol.toFixed(1), kategori: etiketYazi })}${zemin(o)}${svg}${alt.svg}</svg>`;
 }
 
 /** Haber kartı (SVG). Düzen veriden seçilir. */

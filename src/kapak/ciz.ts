@@ -62,11 +62,34 @@ export function metin(s: string, x: number, y: number, ayar: MetinAyar) {
   return `<g fill="${ayar.renk}">${yollar}</g>`;
 }
 
+/** Metni sığana kadar sondan kısaltır ve " …" ekler. */
+export function kisalt(s: string, maks: number, ayar: MetinAyar) {
+  if (genislik(s, ayar) <= maks) return s;
+  let t = s;
+  while (t.length > 1 && genislik(`${t} …`, ayar) > maks) t = t.slice(0, -1).trimEnd();
+  return `${t} …`;
+}
+
+/** Satırdan uzun tek kelimeyi satıra sığan parçalara böler. */
+function parcala(kelime: string, maks: number, ayar: MetinAyar) {
+  if (genislik(kelime, ayar) <= maks) return [kelime];
+  const out: string[] = [];
+  let parca = '';
+  for (const harf of kelime) {
+    if (parca && genislik(parca + harf, ayar) > maks) {
+      out.push(parca);
+      parca = harf;
+    } else parca += harf;
+  }
+  if (parca) out.push(parca);
+  return out;
+}
+
 /** Kelimeleri verilen genişliğe sığacak satırlara böler. */
 export function satirlar(s: string, maks: number, ayar: MetinAyar, maksSatir = Infinity) {
   const out: string[] = [];
   let satir = '';
-  for (const kelime of s.split(/\s+/)) {
+  for (const kelime of s.split(/\s+/).flatMap((k) => parcala(k, maks, ayar))) {
     const aday = satir ? `${satir} ${kelime}` : kelime;
     if (satir && genislik(aday, ayar) > maks) {
       out.push(satir);
@@ -76,7 +99,7 @@ export function satirlar(s: string, maks: number, ayar: MetinAyar, maksSatir = I
   if (satir) out.push(satir);
   if (out.length > maksSatir) {
     out.length = maksSatir;
-    out[maksSatir - 1] = out[maksSatir - 1].replace(/\s*\S*$/, '') + ' …';
+    out[maksSatir - 1] = kisalt(`${out[maksSatir - 1]} …`, maks, ayar);
   }
   return out;
 }

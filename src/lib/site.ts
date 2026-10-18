@@ -1,3 +1,4 @@
+import { yuzdeKesik } from './kimlik.ts';
 export const SITE = {
   name: 'kifobu',
   tagline: 'Ulaşılabilir ve anlaşılır veri',
@@ -106,9 +107,10 @@ export function formatMoneyShort(n: number, pb: string = 'TRY') {
 }
 
 
+/** Hedefe oran, BRAND.md §9 yazımıyla ("%71,02"; iki ondalık, kesilerek). */
 export function percentOf(toplanan?: number, hedef?: number) {
   if (!toplanan || !hedef) return undefined;
-  return Math.round((toplanan / hedef) * 100);
+  return yuzdeKesik((toplanan / hedef) * 100);
 }
 
 /** Kuruluştan bugüne kaçıncı gün (kuruluş günü 1. gün). */
