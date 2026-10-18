@@ -156,11 +156,14 @@ export function medyaKontrol(metin) {
 // Hedef 250–400 kelime; 200 kelimenin altındaki metin yayımlanmaz (düzeltme turlarında kaynaktaki olgularla uzatılır).
 export const EN_AZ_KELIME = 200;
 export const HEDEF_KELIME = '250-400';
+// Derleme alt sınırı: havuzdaki haberlerin kaynağı zaten azdır; 8 haberlik derleme bile 160 kelimeyi, tek haberin eşiğini (200) geçemez.
+// Haber sayısı arttıkça 20 kelime/haber, en çok EN_AZ_KELIME.
+export const derlemeEnAz = (n) => Math.min(EN_AZ_KELIME, Math.max(150, n * 20));
 export const kelimeSayisi = (metin = '') => (String(metin).match(/[\p{L}\d]+(?:[’'.,-][\p{L}\d]+)*/gu) ?? []).length;
-export function uzunlukKontrol(govde) {
+export function uzunlukKontrol(govde, enAz = EN_AZ_KELIME, hedef = HEDEF_KELIME) {
   const n = kelimeSayisi(govde);
-  return n < EN_AZ_KELIME
-    ? [`Metin çok kısa (${n} kelime; en az ${EN_AZ_KELIME}, hedef ${HEDEF_KELIME}): kaynaklardaki olgularla (tutar, hedef, platform, tarih, yatırımcılar, girişimin işi, paranın kullanımı) uzat; kaynakta olmayan bilgi ekleme`]
+  return n < enAz
+    ? [`Metin çok kısa (${n} kelime; en az ${enAz}, hedef ${hedef}): kaynaklardaki olgularla (tutar, hedef, platform, tarih, yatırımcılar, girişimin işi, paranın kullanımı) uzat; kaynakta olmayan bilgi ekleme`]
     : [];
 }
 
@@ -188,9 +191,9 @@ export function baslikKontrol(baslik = '') {
   return sorunlar;
 }
 
-export function kesinKontroller(h, kaynak) {
+export function kesinKontroller(h, kaynak, { enAz, hedef } = {}) {
   const m = tamMetin(h);
-  return [...baslikKontrol(h.title), ...uzunlukKontrol(h.body), ...rakamKontrol(m, kaynak), ...kunyeKontrol(h.kunye ?? {}, kaynak), ...alintiKontrol(m, kaynak), ...adKontrol(m, kaynak), ...kopyaKontrol(h.body, kaynak), ...zamanKontrol(m), ...medyaKontrol(m)];
+  return [...baslikKontrol(h.title), ...uzunlukKontrol(h.body, enAz, hedef), ...rakamKontrol(m, kaynak), ...kunyeKontrol(h.kunye ?? {}, kaynak), ...alintiKontrol(m, kaynak), ...adKontrol(m, kaynak), ...kopyaKontrol(h.body, kaynak), ...zamanKontrol(m), ...medyaKontrol(m)];
 }
 
 const tamMetinKisa = (h) => `BAŞLIK: ${h.title}\nSPOT: ${h.description}\nMETİN:\n${h.body}`;
@@ -211,8 +214,8 @@ const METIN_SEMASI = {
 };
 
 // ── 2. Yazı işleri müdürü ──────────────────────────────────────────────
-export async function degerlendir(h, kaynak) {
-  const sorunlar = kesinKontroller(h, kaynak);
+export async function degerlendir(h, kaynak, uzunluk = {}) {
+  const sorunlar = kesinKontroller(h, kaynak, uzunluk);
   const r = await gemini({
     denetim: true,
     schema: DEGERLENDIRME_SEMASI,
@@ -242,10 +245,10 @@ ${tamMetinKisa(h)}`,
 }
 
 // ── 3. Muhabire düzeltme ───────────────────────────────────────────────
-export async function duzelt(h, kaynak, sorunlar) {
+export async function duzelt(h, kaynak, sorunlar, { enAz, hedef } = {}) {
   const r = await gemini({
     schema: METIN_SEMASI,
-    prompt: `Sen kifobu'nun muhabirisin. Yazı işleri müdürü taslağında sorunlar buldu. Kaynaklara sıkı sıkıya bağlı kalarak hepsini düzelt: kaynakta olmayan bilgiyi çıkar, iddiaları sahibine atfet, alıntıları kelimesi kelimesine ver ya da dolaylı anlatıma çevir, kopyalanan cümleleri kendi cümlelerinle yeniden kur. "Kaynakta yok" denen rakam ya da ad ya çıkarılır ya da kaynaktaki hâliyle yazılır. Biçimi koru; metin ${HEDEF_KELIME} kelime olmalı (kısaysa yalnızca kaynaklardaki olgularla uzat). Kaynakta olmayan bilgi ekleme.
+    prompt: `Sen kifobu'nun muhabirisin. Yazı işleri müdürü taslağında sorunlar buldu. Kaynaklara sıkı sıkıya bağlı kalarak hepsini düzelt: kaynakta olmayan bilgiyi çıkar, iddiaları sahibine atfet, alıntıları kelimesi kelimesine ver ya da dolaylı anlatıma çevir, kopyalanan cümleleri kendi cümlelerinle yeniden kur. "Kaynakta yok" denen rakam ya da ad ya çıkarılır ya da kaynaktaki hâliyle yazılır. Biçimi koru; metin ${hedef ?? HEDEF_KELIME} kelime olmalı${enAz ? ` (en az ${enAz}; derlemede "## " ara başlıkları ve haber başına bir paragraf düzenini koru)` : ''} (kısaysa yalnızca kaynaklardaki olgularla uzat). Kaynakta olmayan bilgi ekleme.
 
 ${YAZIM_KURALLARI}
 
@@ -262,7 +265,7 @@ ${tamMetinKisa(h)}`,
 }
 
 // ── 4. Redaktör ────────────────────────────────────────────────────────
-export async function redakte(h) {
+export async function redakte(h, { derleme = false } = {}) {
   const r = await gemini({
     schema: METIN_SEMASI,
     prompt: `Sen kifobu'nun redaktörüsün (son okuma). Aşağıdaki haberin SADECE dilini düzelt, içeriğine asla dokunma.
@@ -282,7 +285,7 @@ Değiştirme:
 - Doğrudan alıntıların sözcükleri.
 - Atıflar ("şirketin açıklamasına göre").
 - Uzunluk (belirgin biçimde).
-- Paragraf yapısı: metin 4-6 paragraf kalır; paragrafları tek bir blokta birleştirme. Paragraflar arasında boş satır olur.
+- Paragraf yapısı: ${derleme ? 'derlemedeki "## " ara başlıkları ve haber başına bir paragraf düzeni kalır' : 'metin 4-6 paragraf kalır'}; paragrafları tek bir blokta birleştirme. Paragraflar arasında boş satır olur.
 
 Metin zaten doğruysa aynen geri ver.
 
@@ -292,45 +295,76 @@ ${tamMetinKisa(h)}`,
 }
 
 // ── Tüm süreç ──────────────────────────────────────────────────────────
-/** Haberi denetler; { haber, sorunlar, notlar } döner. sorunlar boş değilse haber yayımlanmamalı. */
-export async function denetle(h, kaynak) {
+/**
+ * Haberi denetler; { haber, sorunlar, notlar } döner. sorunlar boş değilse haber yayımlanmamalı.
+ * opts (yalnız dilim derlemesi): { enAz, hedef, uzat(taslak, kelime) → taslak }. enAz derlemeEnAz(n) alt sınırıdır;
+ * kısa taslak ilk değerlendirmeden önce (eşikten bağımsız) uzat ile genişletilir; düzeltme turu derlemeyi alt sınırın
+ * altına indirirse bir kez daha genişletilir (18 Ekim'de finfolis'te 8 haber 135 kelimeye inmişti).
+ */
+export async function denetle(h, kaynak, opts = {}) {
+  const { enAz, hedef, uzat } = opts;
+  const uzunluk = { enAz, hedef };
+  const kisa = (t) => enAz !== undefined && kelimeSayisi(t.body) < enAz;
+  let uzatmaOncesi = null; // son durdurma gerekçesinde uzatmanın çalışıp çalışmadığı görünsün
+  const uzatmayi = async (t, neden) => {
+    const once = kelimeSayisi(t.body);
+    uzatmaOncesi ??= once;
+    const y = await uzat(t, once);
+    console.log(`  derleme uzatma (${neden}): ${once} → ${kelimeSayisi(y.body)} kelime (en az ${enAz})`);
+    return y;
+  };
+  let yenidenUzatildi = false;
+  const duzeltIle = async (t, sorunlar) => {
+    let y = await duzelt(t, kaynak, sorunlar, uzunluk);
+    // Düzeltme sorunlu cümleleri silerek derlemeyi alt sınırın altına indirebilir: bir kez yeniden genişlet.
+    if (uzat && kisa(y) && !yenidenUzatildi) {
+      yenidenUzatildi = true;
+      y = await uzatmayi(y, 'düzeltme sonrası');
+    }
+    return y;
+  };
+
   // Basit sorunlar (göreli zaman, yayın kuruluşu atfı) yapay zekâya gitmeden yerelde düzeltilir.
   let taslak = yerelDuzelt(h);
+  if (uzat && kisa(taslak)) taslak = await uzatmayi(taslak, 'değerlendirme öncesi');
   const notlar = [];
   for (let tur = 1; tur <= 2; tur++) {
-    const d = await degerlendir(taslak, kaynak);
+    const d = await degerlendir(taslak, kaynak, uzunluk);
     if (d.onay) break;
     console.log(`  yazı işleri ${tur}: ${medyaGizle(d.sorunlar.join(' | '))}`);
     notlar.push(...d.sorunlar);
-    taslak = await duzelt(taslak, kaynak, d.sorunlar);
+    taslak = await duzeltIle(taslak, d.sorunlar);
   }
 
-  // Redaksiyon kesin kontrollerde yeni sorun yarattıysa atılır.
+  // Redaksiyon kesin kontrollerde yeni sorun yarattıysa atılır (alt sınırın altına inen metin de sorun sayılır).
   const once = taslak;
-  const temiz = await redakte(taslak);
-  if (kesinKontroller(temiz, kaynak).length > kesinKontroller(once, kaynak).length) {
+  const temiz = await redakte(taslak, { derleme: Boolean(uzat) });
+  if (kesinKontroller(temiz, kaynak, uzunluk).length > kesinKontroller(once, kaynak, uzunluk).length) {
     notlar.push('Redaksiyon olguları değiştirdi, atıldı');
   } else {
     taslak = temiz;
   }
 
   // Son kesin kontrol; sorun kalırsa SON_TUR kez daha düzeltme ve redaksiyon.
-  let sorunlar = kesinKontroller(taslak, kaynak);
+  let sorunlar = kesinKontroller(taslak, kaynak, uzunluk);
   for (let tur = 1; tur <= SON_TUR && sorunlar.length; tur++) {
     console.log(`  son kontrol ${tur}: ${medyaGizle(sorunlar.join(' | '))}`);
     // Önce yerel düzeltme; sorun kalmazsa Gemini düzeltmesine gerek yok.
     const yerel = yerelDuzelt(taslak);
-    const yerelSorun = kesinKontroller(yerel, kaynak);
+    const yerelSorun = kesinKontroller(yerel, kaynak, uzunluk);
     if (yerelSorun.length <= sorunlar.length) { taslak = yerel; sorunlar = yerelSorun; }
     if (!sorunlar.length) break;
     const ek = ['Alıntılar kaynaktan harfi harfine aynı sırayla kopyalanmalı; yapamıyorsan tırnaksız dolaylı anlatıma çevir.'];
     if (sorunlar.some((x) => x.startsWith('Metin kaynağın cümlelerini kopyalıyor'))) {
       ek.push('Metni baştan yeniden kur: bilgilerin sırasını değiştir, cümleleri böl ya da birleştir, kaynaktaki kelime dizilerini kullanma. Hiçbir yerde kaynaktan art arda 6 kelimeden uzun parça kalmasın (özel adlar ve rakamlar hariç).');
     }
-    const son = await duzelt(taslak, kaynak, [...sorunlar, ...ek]);
-    const sonTemiz = await redakte(son);
-    taslak = kesinKontroller(sonTemiz, kaynak).length <= kesinKontroller(son, kaynak).length ? sonTemiz : son;
-    sorunlar = kesinKontroller(taslak, kaynak);
+    const son = await duzeltIle(taslak, [...sorunlar, ...ek]);
+    const sonTemiz = await redakte(son, { derleme: Boolean(uzat) });
+    taslak = kesinKontroller(sonTemiz, kaynak, uzunluk).length <= kesinKontroller(son, kaynak, uzunluk).length ? sonTemiz : son;
+    sorunlar = kesinKontroller(taslak, kaynak, uzunluk);
+  }
+  if (uzatmaOncesi !== null && sorunlar.some((x) => x.startsWith('Metin çok kısa'))) {
+    sorunlar.push(`Metin çok kısa: uzatmadan önce ${uzatmaOncesi} kelime`);
   }
   return { haber: taslak, sorunlar, notlar };
 }

@@ -15,15 +15,15 @@ import { writeFile, appendFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { KAYNAKLAR, anahtarlar, baslikTemiz, benzer, tamMetin } from './kaynaklar.mjs';
-import { MIN_DEGER, onbellekliPuanla, taslakYaz, derlemeYaz } from './yazar.mjs';
+import { MIN_DEGER, onbellekliPuanla, taslakYaz, derlemeYaz, derlemeUzat, derlemeHedefi } from './yazar.mjs';
 import { HAFIZA_SAAT, hafizaKur, kayitKur, tekrarBul } from './tekrar.mjs';
 import { ciftleriKur, onbellekliEsle, ozelAdlar, uygula } from './esleme.mjs';
-import { denetle } from './denetci.mjs';
+import { denetle, derlemeEnAz } from './denetci.mjs';
 import { adNorm, haberYaz, hentTekst, istanbulIso, jsonOku, rssOku, sonHaberler } from './lib.mjs';
 import { butceYukle, geminiPayiBitti } from './butce.mjs';
 import { adresiSil, anahtarVar, gizliId, kaynakIzi } from './gizli.mjs';
 import { medyaGizle } from './yerel.mjs';
-import { havuzOlayi, havuzAc, havuzKapat, havuzuIsle } from './havuz.mjs';
+import { havuzOlayi, havuzAc, havuzKapat, havuzuIsle, dilimEki } from './havuz.mjs';
 
 const ROT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const DURUM_DOSYASI = path.join(ROT, 'scripts/bot/gorulen.json');
@@ -328,11 +328,11 @@ for (const g of sira) {
       // Bütün düzeltme turlarından sonra hâlâ sorunlu: yayımlanmaz, taslak da açılmaz.
       console.log(`  YAYIMLANMADI (denetim): ${medyaGizle(sorunlar.join(' | '))}`);
       ozet.elenen.push(`${haber.title} — ${medyaGizle(sorunlar.join('; '))}`);
-      // Yalnız uzunluk yüzünden duran olay havuza girer: aynı kategoriden eşi gelince derleme olur.
+      // Yalnız uzunluk yüzünden duran olay havuza girer: dilimi (açılış/öğle/kapanış) bitince derlemeye girer; kısa haber tek başına yayımlanmaz.
       if (sorunlar.every((s) => s.startsWith('Metin çok kısa'))) {
         const kullanilan = secilen.slice(0, 3).map((u) => ({ ad: u.kaynak.ad, url: u.link }));
         havuz.push(havuzOlayi({ id: hataId, taslak: { ...haber, category: t.category }, basliklar: g.uyeler.map((u) => u.baslik), kaynaklar, kullanilan, iso: simdi.toISOString() }));
-        console.log('  havuza alındı: eş bekleyecek');
+        console.log('  havuza alındı: dilim sonunda derlemeye girecek');
       }
       continue;
     }
@@ -369,7 +369,7 @@ for (const [id, v] of Object.entries(durum.taranan)) if (simdi - new Date(v.zama
 for (const [k, v] of Object.entries(durum.puan)) if (simdi - new Date(v.zaman) > (YAS_GUN + 1) * 86_400_000) delete durum.puan[k];
 // Kimlikler anahtarlı özet (gizliId); eski anahtarsız hash'lerden taşıma yapıldığının işareti.
 durum.kimlik = 'hmac-v1';
-// Kısa haber havuzu: aynı kategoriden biriken kısa haberler tek bir derleme yazısı olur (havuz.mjs).
+// Kısa haber havuzu: dilimi bitmiş kısa haberler kategori aranmadan tek bir derleme yazısı olur (havuz.mjs).
 if (process.env.GEMINI_API_KEY) {
   try {
     const h = await havuzuIsle(havuz, {
@@ -380,10 +380,15 @@ if (process.env.GEMINI_API_KEY) {
         return t ? `son ${HAFIZA_SAAT} saatte yazıldı` : null;
       },
       yaz: derlemeYaz,
-      denetle,
+      // Derleme alt sınırı derlemeEnAz(n); kısa kalan derleme denetimden önce ve düzeltme turundan sonra kaynaklarından uzatılır.
+      denetle: (t, kaynak, grup) => {
+        const { alt, ust } = derlemeHedefi(grup.length);
+        return denetle(t, kaynak, { enAz: derlemeEnAz(grup.length), hedef: `${alt}-${ust}`, uzat: (tas, kelime) => derlemeUzat(tas, grup, kelime) });
+      },
       kaydet: async (haber, t, grup) => {
         const slug = await haberYaz(ROT, {
           ...haber,
+          title: `${haber.title} · ${dilimEki(grup)}`,
           category: t.category,
           date: istanbulIso(simdi),
           draft: false,

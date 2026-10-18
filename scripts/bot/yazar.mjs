@@ -82,41 +82,93 @@ ${metinler}`;
   return gemini({ prompt, schema: TASLAK_SEMASI });
 }
 
-// Tema derlemesi (havuz.mjs): aynı kategoriden, tek başına uzunluk denetimini geçemeyen kısa haberler tek yazıda toplanır.
-// kaynak: havuz.mjs → derlemeKaynagi (her haber kendi bölümünde). Derlemede künye yoktur (tek bir yatırımı anlatmaz).
+// Dilim derlemesi (havuz.mjs): havuza girdiği dilim bitmiş, tek başına uzunluk denetimini geçemeyen kısa haberler
+// kategori aranmadan tek yazıda toplanır; yazıda her kategori bir ara başlık, her haber 50-80 kelimelik bir paragraftır.
+// grup: havuz olayları (kaynaklar kendi bölümünde). Derlemede künye yoktur (tek bir yatırımı anlatmaz).
+export const KATEGORI_ADLARI = { kampanyalar: 'Kampanyalar', platformlar: 'Platformlar', yatirimlar: 'Yatırımlar', girisimler: 'Girişimler', mevzuat: 'Mevzuat', analiz: 'Analiz' };
+const kategoriAdi = (k) => KATEGORI_ADLARI[k] ?? k ?? '';
+
+// En çok haberi olan kategori; eşitlikte gruptaki ilk haberinki.
+export function enSikKategori(grup) {
+  const sayi = new Map();
+  for (const o of grup) sayi.set(o.kategori, (sayi.get(o.kategori) ?? 0) + 1);
+  return grup.reduce((en, o) => (sayi.get(o.kategori) > sayi.get(en) ? o.kategori : en), grup[0].kategori);
+}
+
+// Derleme gövde hedefi: haber başına 50-80 kelimelik paragraf. Tek cümlelik özetler derlemeyi alt sınırın altında bırakıyordu.
+export const derlemeHedefi = (n) => ({ alt: Math.max(250, n * 50), ust: Math.max(400, n * 80) });
+
 const DERLEME_SEMASI = {
   type: 'object',
   properties: {
     title: TASLAK_SEMASI.properties.title,
     description: TASLAK_SEMASI.properties.description,
-    body: { type: 'string', description: 'Markdown, 250-400 kelime; her haber için ### ara başlıklı kısa bir bölüm' },
+    body: { type: 'string', description: 'Markdown; kategori başına "## " ara başlık, altında her haber için 50-80 kelimelik bir paragraf' },
     why_matters: TASLAK_SEMASI.properties.why_matters,
     key_points: TASLAK_SEMASI.properties.key_points,
   },
   required: ['title', 'description', 'body'],
 };
 
-export function derlemeIstemi(grup, kaynak) {
-  const kategori = grup[0]?.kategori ?? 'yatirimlar';
-  return `Sen kifobu'nun muhabirisin. Aşağıda "${kategori}" kategorisinden ${grup.length} kısa haber var; her biri tek başına tam bir haber taşıyacak kadar kaynak içermiyor.
-Bunları tek bir Türkçe derleme haberinde topla (category="${kategori}"):
-- title: haberlerin ortak temasını anlatan başlık; okurun arayacağı kelimeyle (konu, platform, kurum) başlar, iki noktalı önek yok, tek bir haberi öne çıkarmaz.
+// Haberler kategori ara başlıkları altında; kategoriler gruptaki ilk görünüş sırasıyla, her haberin kendi kaynağı yanında.
+function haberBlogu(grup) {
+  const kategoriler = [...new Set(grup.map((o) => o.kategori ?? ''))];
+  return kategoriler
+    .map(
+      (k) =>
+        `## ${kategoriAdi(k)}\n` +
+        grup
+          .filter((o) => (o.kategori ?? '') === k)
+          .map((o) => `### ${o.baslik}\nKAYNAK:\n${o.kaynaklar.map((x) => `${x.baslik}\n${x.metin}`).join('\n\n')}`)
+          .join('\n\n'),
+    )
+    .join('\n\n');
+}
+
+export function derlemeIstemi(grup) {
+  const { alt, ust } = derlemeHedefi(grup.length);
+  return `Sen kifobu'nun muhabirisin. Aşağıda aynı zaman diliminden ${grup.length} kısa haber var; her biri tek başına tam bir haber taşıyacak kadar kaynak içermiyor.
+Bunları tek bir Türkçe derleme haberinde topla:
+- title: dilimin öne çıkan konularını anlatan başlık; okurun arayacağı kelimeyle (konu, platform, kurum) başlar, iki noktalı önek yok, tek bir haberi öne çıkarmaz, tarih ve saat yazma.
 - description: derlemenin ana noktası, 1-2 cümle.
-- body: 250-400 kelime. Her haber için "### " ile başlayan kısa bir ara başlık ve 1-2 paragraf; ara başlık o haberin öznesiyle (girişim, platform, kurum) başlar ve önce rakamları verir.
-  Her bölüm YALNIZCA o haberin bölümündeki kaynak olgularla yazılır; haberler arasında bilgi taşıma. Kaynağında yeterli bilgi olmayan haberi yazma; uydurma ve dolgu cümlesi ekleme.
+- body: Markdown, ${alt}-${ust} kelime. Her kategori için bir ara başlık ("## Kategori adı", HABERLER'deki sırayla), altında o kategorideki her haber için bir paragraf. Her paragraf 50-80 kelime (3-4 cümle): haberin öznesiyle (girişim, platform, kurum) başlar; önce rakamları, ne olduğunu ve kimin açıkladığını anlatır. Tek cümlelik özet yazma.
+  Her paragraf YALNIZCA o haberin KAYNAK bölümündeki olgularla yazılır; bir haberin kaynağında yetmeyen bilgi için başka haberin kaynağını kullanma, uydurma, dolgu cümlesi ekleme.
 - why_matters: bu gelişmelerin birlikte ekosistem için ne anlattığı, 1-2 cümle.
 
 ${YAZIM_KURALLARI}
 
 HABERLER:
-${kaynak}`;
+${haberBlogu(grup)}`;
 }
 
 // Döner: derleme taslağı ({ title, description, body, category, why_matters?, key_points? }) ya da null.
-export async function derlemeYaz(grup, kaynak) {
-  const t = await gemini({ prompt: derlemeIstemi(grup, kaynak), schema: DERLEME_SEMASI });
+export async function derlemeYaz(grup) {
+  const t = await gemini({ prompt: derlemeIstemi(grup), schema: DERLEME_SEMASI });
   if (!t?.title || !t?.body) return null;
-  return { ...t, category: grup[0].kategori };
+  return { ...t, category: enSikKategori(grup) };
+}
+
+// Kısa kalan derlemeyi genişletir: ara başlıklar ve sıra korunur, her paragraf yalnız kendi haberinin kaynağıyla uzar.
+// Başarısızsa taslak aynen döner.
+export async function derlemeUzat(taslak, grup, kelime) {
+  const { alt, ust } = derlemeHedefi(grup.length);
+  const r = await gemini({
+    schema: DERLEME_SEMASI,
+    prompt: `Bu derleme haberinin gövdesi ${kelime} kelime; ${alt}-${ust} kelime olmalı. Her haber paragrafını 50-80 kelimeye (3-4 cümle) genişlet: ne olduğu, ana rakam, kimin açıkladığı, kaynaktaki bağlam.
+Her paragrafı yalnızca HABERLER'de o haberin kendi KAYNAK bölümündeki bilgilerle genişlet; başka haberin kaynağını kullanma. Kaynakta olmayan bilgi, rakam, tahmin ya da yorum ekleme; aynı bilgiyi tekrar etme, dolgu cümlesi yazma. Ara başlıkları ("## ..."), paragraf sırasını, başlığı ve spotu değiştirme.
+
+${YAZIM_KURALLARI}
+
+HABERLER:
+${haberBlogu(grup)}
+
+TASLAK:
+Başlık: ${taslak.title}
+Spot: ${taslak.description}
+
+${taslak.body}`,
+  });
+  return r?.title && r?.body ? { ...taslak, ...r, category: taslak.category } : taslak;
 }
 
 // Ön eleme ve haber değeri tek çağrıda: 0 = kifobu'ya uygun değil, 1–100 = haber değeri.
