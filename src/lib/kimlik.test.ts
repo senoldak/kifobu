@@ -1,0 +1,46 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { KIMLIK, cubukOlcegi, durumEtiketi, tohumIsaretiSvg, yuzdeKesik } from './kimlik.ts';
+
+test('marka ve veri renkleri BRAND.md ile aynı', () => {
+  assert.deepEqual(KIMLIK, {
+    kagit: '#f7f5ef', murekkep: '#141a17', sari: '#e8b40c', gri: '#5d645f', cizgi: '#dcd9cf', yesil: '#10b981', asim: '#a7e9cf',
+  });
+});
+
+test('yüzde iki ondalık ve kesilerek', () => {
+  assert.equal(yuzdeKesik(96.2799), '%96,27');
+  assert.equal(yuzdeKesik(99.996), '%99,99');
+  assert.equal(yuzdeKesik(100), '%100,00');
+  assert.equal(yuzdeKesik(112.4), '%112,40');
+  assert.equal(yuzdeKesik(null), '—');
+  assert.equal(yuzdeKesik(Number.NaN), '—');
+});
+
+test('çubuk: hedef çizgisi %100 noktasında, aşım ayrı', () => {
+  assert.deepEqual(cubukOlcegi(71.02), { dolu: 71.02, asim: 0, hedef: 100 });
+  assert.deepEqual(cubukOlcegi(100), { dolu: 100, asim: 0, hedef: 100 });
+  const a = cubukOlcegi(125);
+  assert.equal(a.hedef, 80);
+  assert.equal(a.dolu, 80);
+  assert.equal(a.asim, 20);
+  assert.deepEqual(cubukOlcegi(-5), { dolu: 0, asim: 0, hedef: 100 });
+});
+
+test('durum etiketleri', () => {
+  assert.deepEqual(durumEtiketi('suruyor'), { metin: 'FON TOPLUYOR', tur: 'cerceve' });
+  assert.deepEqual(durumEtiketi('yeni'), { metin: 'FON TOPLUYOR', tur: 'cerceve' });
+  assert.deepEqual(durumEtiketi('basarili'), { metin: 'FONLANDI', tur: 'yesil' });
+  assert.deepEqual(durumEtiketi('basarisiz'), { metin: 'FONLANAMADI', tur: 'murekkep' });
+  assert.equal(durumEtiketi(undefined), null);
+});
+
+test('tohum işareti: 233 / 89 tohum, kol sarı, metin yok', () => {
+  const b = tohumIsaretiSvg({ boyut: 200 });
+  assert.equal((b.match(/<circle/g) ?? []).length, 233);
+  assert.equal((b.match(/fill="#e8b40c"/g) ?? []).length, 11);
+  assert.doesNotMatch(b, /<text/);
+  assert.match(b, /width="200" height="200"/);
+  assert.equal((tohumIsaretiSvg({ boyut: 32, kucuk: true }).match(/<circle/g) ?? []).length, 89);
+  assert.match(tohumIsaretiSvg({ boyut: 200, zemin: 'koyu' }), /fill="#f7f5ef"/);
+});
