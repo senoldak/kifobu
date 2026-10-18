@@ -75,3 +75,9 @@ test('kayan nokta artığı düzeltilir ama gerçek küsurat yukarı itilmez', (
   assert.equal(yuzdeKesik(99.99999999999), '%99,99');
   assert.equal(yuzdeKesik(((1e13 - 1) / 1e13) * 100), '%99,99');
 });
+
+test('kapanmış kampanya: sona eren, iptal edilen ve geri çekilen; büyük-küçük harf fark etmez', async () => {
+  const { kapandiMi } = await import('./kimlik.ts');
+  for (const d of ['SONA ERDİ', 'İPTAL EDİLDİ', 'GERİ ÇEKİLDİ', 'sona erdi', 'iptal edildi', 'geri çekildi']) assert.equal(kapandiMi(d), true, d);
+  for (const d of ['son 18 gün', 'SON GÜN', 'ÖN TALEP', 'Aktif', '']) assert.equal(kapandiMi(d), false, d);
+});

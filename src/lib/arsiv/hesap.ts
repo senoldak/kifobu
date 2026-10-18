@@ -1,4 +1,5 @@
 import type { ArsivKaydi, Donem } from './tipler.ts';
+import { kapandiMi } from '../kimlik.ts';
 
 // Saf hesaplar: saat okunmaz, Node'a özgü API kullanılmaz.
 
@@ -114,7 +115,7 @@ export function ozetHesapla(kayitlar: ArsivKaydi[], donem: Donem): Ozet {
       ? ((son.toplam - onceki.toplam) / onceki.toplam) * 100
       : null;
 
-  const aktif = sonKayit.girisimler.filter((g) => g.durum !== 'SONA ERDİ').length;
+  const aktif = sonKayit.girisimler.filter((g) => !kapandiMi(g.durum)).length;
 
   const platformPaylari: PlatformPayi[] = [];
   if (son.toplam !== null && son.toplam > 0) {

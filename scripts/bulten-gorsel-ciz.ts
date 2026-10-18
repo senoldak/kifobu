@@ -3,7 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { create, type Font } from 'fontkitten';
 import { BULTEN, type Girisim, type Platform, type Yakinda } from '../src/data/bulten.ts';
-import { KIMLIK, tohumIsaretiSvg, yuzdeSonda } from '../src/lib/kimlik.ts';
+import { KIMLIK, kapandiMi, tohumIsaretiSvg, yuzdeSonda } from '../src/lib/kimlik.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -251,7 +251,7 @@ export function bultenSvgCiz(mod: GorselModu = 'post'): string {
     body += metin('kalan', pipe3X + 10, r2Y, { agirlik: 'orta', boyut: 19, renk: '#64748b' });
 
     // Sütun 4: Durum (Sağa dayalı)
-    const durumRenk = g.durum === 'SONA ERDİ' ? '#64748b' : (g.durum.includes('GÜN') ? '#e11d48' : '#09090b');
+    const durumRenk = kapandiMi(g.durum) ? '#64748b' : (g.durum.includes('GÜN') ? '#e11d48' : '#09090b');
     body += metin(g.durum, c4RightX, r2Y, { agirlik: 'kalin', boyut: fSize, renk: durumRenk, hiza: 'end' });
 
     currentY += cardH + (idx < nGirisim - 1 ? gapGirisim : 0);

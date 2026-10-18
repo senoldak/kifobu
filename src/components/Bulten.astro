@@ -10,7 +10,7 @@
 import { BULTEN } from '../data/bulten';
 import { formatNumber } from '../lib/site';
 import { newsUrl, type Haber } from '../lib/news';
-import { KIMLIK, yuzdeSonda } from '../lib/kimlik';
+import { KIMLIK, kapandiMi, yuzdeSonda } from '../lib/kimlik';
 import PlatformAdi from './PlatformAdi.astro';
 
 interface Props {
@@ -124,7 +124,7 @@ const slug = (str: string) =>
                 <span class="ayrac">|</span>
                 <span class="gk-etiket">kalan</span>
               </div>
-              <div class:list={['gk-durum', { 'gk-durum--gecmis': g.durum.toLocaleUpperCase('tr-TR') === 'SONA ERDİ' }]}>{g.durum.toLocaleUpperCase('tr-TR')}</div>
+              <div class:list={['gk-durum', { 'gk-durum--gecmis': kapandiMi(g.durum) }]}>{g.durum.toLocaleUpperCase('tr-TR')}</div>
             </div>
           </article>
         ))

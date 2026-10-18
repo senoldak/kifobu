@@ -7,7 +7,7 @@
  */
 import { BULTEN } from '../data/bulten';
 import { newsUrl, type Haber } from '../lib/news';
-import { yuzdeKesik } from '../lib/kimlik';
+import { kapandiMi, yuzdeKesik } from '../lib/kimlik';
 import HedefCubugu from './HedefCubugu.astro';
 import PlatformAdi from './PlatformAdi.astro';
 
@@ -19,8 +19,8 @@ const { breaking = [] } = Astro.props;
 const b = BULTEN;
 
 const tl = (n: number) => '₺' + n.toLocaleString('tr-TR');
-/** SONA ERDİ geçmişte kalan kampanyadır: gri çerçeve. */
-const gecmis = (durum: string) => durum.toLocaleUpperCase('tr-TR') === 'SONA ERDİ';
+/** Sona eren, iptal edilen ya da geri çekilen kampanya geçmişte kalır: gri çerçeve. */
+const gecmis = kapandiMi;
 
 const slug = (str: string) =>
   str.toLowerCase().replace(/[^a-z0-9]/g, '');

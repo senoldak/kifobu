@@ -50,6 +50,13 @@ export function durumEtiketi(durum: Durum | undefined): { metin: string; tur: Et
   return durum ? { ...ETIKETLER[durum] } : null;
 }
 
+/** Bülten listesinde kapanmış kampanya durumları; bunlar aktif sayılmaz ve gri yazılır. */
+export const KAPANIS_DURUMLARI = ['SONA ERDİ', 'İPTAL EDİLDİ', 'GERİ ÇEKİLDİ'] as const;
+
+export function kapandiMi(durum: string): boolean {
+  return (KAPANIS_DURUMLARI as readonly string[]).includes(durum.trim().toLocaleUpperCase('tr-TR'));
+}
+
 const ALTIN_ACI = Math.PI * (3 - Math.sqrt(5));
 
 /** Tohum işareti: 233 tohum (küçükte 89), her 21. tohum sarı ve 1,55 kat iri. viewBox 200×200. */

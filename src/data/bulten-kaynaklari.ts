@@ -11,7 +11,7 @@ export interface KampanyaKaynagi {
   hedefFon: number;
   /** Şirket değerlemesi (TL) */
   degerleme: number;
-  /** Zorunlu durum override (örn. 'SONA ERDİ' ise siteden çekilse bile durum sabitlenir) */
+  /** Zorunlu durum override (örn. 'SONA ERDİ', 'İPTAL EDİLDİ', 'GERİ ÇEKİLDİ' ise siteden çekilse bile durum sabitlenir) */
   sabitDurum?: string;
   /** Eğer fonlama bittiyse true */
   tamamlandi?: boolean;
