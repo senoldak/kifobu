@@ -114,15 +114,7 @@ export const kapakUrl = (h: Haber) => `/kapak/${h.id}.png`;
 export const LOGO_G = 600;
 export const LOGO_Y = 60;
 export function logoSvg() {
-  const kenar = 12;
-  const taban = 45;
-  const isim: MetinAyar = { yuz: 'baslik', boyut: 50, renk: R.tebesir };
-  const ayrac: MetinAyar = { yuz: 'baslikInce', boyut: 36, renk: R.tebesir3 };
-  const alt: MetinAyar = { yuz: 'baslikInce', boyut: 26, renk: R.sari };
-  const x1 = kenar + genislik(SITE.name, isim) + 12;
-  const x2 = x1 + genislik('|', ayrac) + 12;
-  // Slogan sığmazsa küçültülür.
-  const kalan = LOGO_G - kenar - x2;
-  const sAyar = { ...alt, boyut: Math.min(alt.boyut, Math.floor((alt.boyut * kalan) / genislik(SITE.tagline, alt))) };
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${LOGO_G}" height="${LOGO_Y}" viewBox="0 0 ${LOGO_G} ${LOGO_Y}"><rect width="${LOGO_G}" height="${LOGO_Y}" fill="${R.tahta}"/>${metin(SITE.name, kenar, taban, isim)}${metin('|', x1, taban - 2, ayrac)}${metin(SITE.tagline, x2, taban - 2, sAyar)}</svg>`;
+  // Google yayıncı logosu yönergesi: beyaz zemin, yalnız logotip (slogan yok), 60 px yüksekliği dolduran yazı.
+  const isim: MetinAyar = { yuz: 'baslik', boyut: 50, renk: R.tahta };
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${LOGO_G}" height="${LOGO_Y}" viewBox="0 0 ${LOGO_G} ${LOGO_Y}"><rect width="${LOGO_G}" height="${LOGO_Y}" fill="#ffffff"/>${metin(SITE.name, 4, 45, isim)}</svg>`;
 }
