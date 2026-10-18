@@ -27,15 +27,12 @@ const R = {
   mavi: '#8fc7e0',
 };
 
-export type Yuz = 'tahta' | 'baslik' | 'baslikInce' | 'govde' | 'kapak' | 'kapakDar';
+export type Yuz = 'tahta' | 'baslik' | 'baslikInce' | 'govde';
 const DOSYA: Record<Yuz, string> = {
   tahta: 'SofiaSansExtraCondensed-ExtraBold.ttf',
   baslik: 'SofiaSansCondensed-ExtraBold.ttf',
   baslikInce: 'SofiaSansCondensed-Bold.ttf',
   govde: 'SofiaSans-SemiBold.ttf',
-  // Haber kartları (kart.ts): Archivo'dan türetilmiş kesimler, OFL (fontlar/OFL-Archivo.txt).
-  kapak: 'Archivo-Kapak800.ttf', // wght 800, wdth 100: logo, etiket
-  kapakDar: 'Archivo-KapakDar900.ttf', // wght 900, wdth 78: başlık
 };
 
 const fontlar = new Map<Yuz, Font>();
@@ -98,8 +95,8 @@ export function satirlar(s: string, maks: number, ayar: MetinAyar, maksSatir: nu
   return out;
 }
 
-// Haber kapağı: kart.ts (tidsrøst iskeleti, bölüm renkleri, nokta ızgarası). Kampanyalar da aynı kartı kullanır;
-// tutar ayrıca çizilmez (sahibin kararı, 2026-10-18).
+// Haber kapağı: kart.ts ("Seans · Künye"). Kampanyalar da aynı kartı kullanır; tutar ayrıca çizilmez
+// (sahibin kararı, 2026-10-18).
 export function kapakSvg(h: Haber) {
   return kartSvg({ baslik: h.data.title, kategori: h.data.category }, 'kapak');
 }
