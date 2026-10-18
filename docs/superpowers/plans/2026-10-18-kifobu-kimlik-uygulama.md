@@ -49,7 +49,7 @@
   - `tohumIsaretiSvg(opts: { boyut: number; zemin?: 'acik' | 'koyu'; kucuk?: boolean }): string` — 233 (küçükte 89) tohum, `i % 21 === 0` sarı ve 1,55×
   - `durumEtiketi(durum: Durum | undefined): { metin: string; tur: 'cerceve' | 'yesil' | 'murekkep' | 'gri' } | null`
 
-- [ ] **Step 1: Testleri yaz** (`src/lib/kimlik.test.ts`)
+- [x] **Step 1: Testleri yaz** (`src/lib/kimlik.test.ts`)
 
 ```ts
 test('yüzde iki ondalık ve kesilerek', () => {
@@ -82,11 +82,11 @@ test('tohum işareti: 233 / 89 tohum, kol sarı, metin yok', () => {
 });
 ```
 
-- [ ] **Step 2: Çalıştır, başarısız olduğunu gör** — `node --experimental-strip-types --test src/lib/kimlik.test.ts` → FAIL (modül yok)
-- [ ] **Step 3: `src/lib/kimlik.ts`'i yaz.** `yuzdeKesik`: `Math.floor(n * 100) / 100`, `toFixed(2)`, nokta→virgül. `cubukOlcegi`: ölçek `max(100, y)`; `hedef = 100/ölçek*100`; `dolu = min(y,100)/ölçek*100`; `asim = 100 - hedef` (y>100 ise), negatif → 0. `durumEtiketi`: `DURUMLAR` anahtarlarından eşleme (yukarıdaki test). `tohumIsaretiSvg`: `scripts/marka/tohum-isaret.mjs`'teki formülün aynısı, `viewBox="0 0 200 200"`, `width/height = boyut`.
-- [ ] **Step 4: Testler geçer** — aynı komut → PASS
-- [ ] **Step 5: `scripts/marka/tohum-isaret.mjs` dosyalarını yeniden üret, `git diff --stat brand/` boş olmalı** (formül aynı kaldıysa)
-- [ ] **Step 6: Commit** — `git add src/lib/kimlik.ts src/lib/kimlik.test.ts scripts/marka/tohum-isaret.mjs && git commit -m "Kimlik v2: ortak yardımcılar (yüzde, hedef çubuğu, durum etiketi, tohum işareti)"`
+- [x] **Step 2: Çalıştır, başarısız olduğunu gör** — `node --experimental-strip-types --test src/lib/kimlik.test.ts` → FAIL (modül yok)
+- [x] **Step 3: `src/lib/kimlik.ts`'i yaz.** `yuzdeKesik`: `Math.floor(n * 100) / 100`, `toFixed(2)`, nokta→virgül. `cubukOlcegi`: ölçek `max(100, y)`; `hedef = 100/ölçek*100`; `dolu = min(y,100)/ölçek*100`; `asim = 100 - hedef` (y>100 ise), negatif → 0. `durumEtiketi`: `DURUMLAR` anahtarlarından eşleme (yukarıdaki test). `tohumIsaretiSvg`: `scripts/marka/tohum-isaret.mjs`'teki formülün aynısı, `viewBox="0 0 200 200"`, `width/height = boyut`.
+- [x] **Step 4: Testler geçer** — aynı komut → PASS
+- [x] **Step 5: `scripts/marka/tohum-isaret.mjs` dosyalarını yeniden üret, `git diff --stat brand/` boş olmalı** (formül aynı kaldıysa)
+- [x] **Step 6: Commit** — `git add src/lib/kimlik.ts src/lib/kimlik.test.ts scripts/marka/tohum-isaret.mjs && git commit -m "Kimlik v2: ortak yardımcılar (yüzde, hedef çubuğu, durum etiketi, tohum işareti)"`
 
 ### Görev 2: Site temeli — yazı, renk belirteçleri, üst ve alt kısım, marka dosyaları
 
@@ -104,13 +104,13 @@ test('tohum işareti: 233 / 89 tohum, kol sarı, metin yok', () => {
 - Consumes: `tohumIsaretiSvg`, `KIMLIK` (Görev 1)
 - Produces: `<Logo boyut={44} />`; CSS değişkenleri `--kagit --murekkep --sari --gri --cizgi --yesil --asim --yazi`; sınıflar `.etiket`, `.etiket--yesil`, `.etiket--murekkep`, `.etiket--gri` (Görev 3–4 kullanır)
 
-- [ ] **Step 1:** Schibsted Grotesk woff2 (latin, latin-ext) ve OFL metnini `public/fonts/`'a indir; `fonts.css`'i iki kurala indir; Base.astro preload'ı bu iki dosyaya çevir.
-- [ ] **Step 2:** `global.css` belirteçlerini yaz (eski adlar yeni değerlere takma ad). `body { background: var(--kagit); color: var(--murekkep); font-family: var(--yazi); }` `color-scheme: light`.
-- [ ] **Step 3:** Base.astro üst kısım: 10 px sarı bant, solda `<Logo boyut={44}/>`, menü aynı bağlantılar ve sıra, etkin bölümün altı 3 px sarı; bülten sayacı ve tarih metni aynı yerde kalır. `slot="tahta"` korunur. Alt kısım: 3 px sarı üst çizgi, `<Logo boyut={30}/>`, slogan, mevcut sosyal bağlantılar ve menü.
-- [ ] **Step 4:** `scripts/marka/favicon-uret.mjs` yaz ve çalıştır (küçük işaret 16/32/180/192/512, kâğıt zemin). `logoSvg()` güncelle.
-- [ ] **Step 5:** `npm test` → PASS; `npx astro build` → hata yok; `grep -rn "Sofia" src public/fonts` yalnız Görev 5/6'nın dosyalarında kalmalı.
-- [ ] **Step 6:** CSP-doğru önizleme (`npx wrangler@4 dev --local`, port 4340) ile ana sayfa, bir haber, `/gunluk-bulten/` ekran görüntüsü; konsolda font/CSP hatası olmamalı.
-- [ ] **Step 7: Commit** — `git commit -m "Kimlik v2: Schibsted Grotesk, kâğıt/mürekkep/sarı belirteçleri, yeni üst-alt kısım ve marka dosyaları"`
+- [x] **Step 1:** Schibsted Grotesk woff2 (latin, latin-ext) ve OFL metnini `public/fonts/`'a indir; `fonts.css`'i iki kurala indir; Base.astro preload'ı bu iki dosyaya çevir.
+- [x] **Step 2:** `global.css` belirteçlerini yaz (eski adlar yeni değerlere takma ad). `body { background: var(--kagit); color: var(--murekkep); font-family: var(--yazi); }` `color-scheme: light`.
+- [x] **Step 3:** Base.astro üst kısım: 10 px sarı bant, solda `<Logo boyut={44}/>`, menü aynı bağlantılar ve sıra, etkin bölümün altı 3 px sarı; bülten sayacı ve tarih metni aynı yerde kalır. `slot="tahta"` korunur. Alt kısım: 3 px sarı üst çizgi, `<Logo boyut={30}/>`, slogan, mevcut sosyal bağlantılar ve menü.
+- [x] **Step 4:** `scripts/marka/favicon-uret.mjs` yaz ve çalıştır (küçük işaret 16/32/180/192/512, kâğıt zemin). `logoSvg()` güncelle.
+- [x] **Step 5:** `npm test` → PASS; `npx astro build` → hata yok; `grep -rn "Sofia" src public/fonts` yalnız Görev 5/6'nın dosyalarında kalmalı.
+- [x] **Step 6:** CSP-doğru önizleme (`npx wrangler@4 dev --local`, port 4340) ile ana sayfa, bir haber, `/gunluk-bulten/` ekran görüntüsü; konsolda font/CSP hatası olmamalı.
+- [x] **Step 7: Commit** — `git commit -m "Kimlik v2: Schibsted Grotesk, kâğıt/mürekkep/sarı belirteçleri, yeni üst-alt kısım ve marka dosyaları"`
 
 ### Görev 3: Ana sayfa panosu ve bölüm panoları
 
@@ -122,12 +122,12 @@ test('tohum işareti: 233 / 89 tohum, kol sarı, metin yok', () => {
 **Interfaces:**
 - Consumes: `cubukOlcegi`, `yuzdeKesik`, `.etiket*` sınıfları, CSS değişkenleri (Görev 1–2)
 
-- [ ] **Step 1:** BugunTahta: kâğıt zemin, başlık satırı altında 2 px mürekkep çizgi, satır çizgileri `--cizgi`. Durum hücresi mevcut metniyle (SONA ERDİ / SON 18 GÜN / AKTİF) çerçeveli `.etiket`; SONA ERDİ `.etiket--gri`. KALAN'daki FONLANDI `.etiket--yesil`. "Bülten 1531" rozeti mürekkep dolgu.
-- [ ] **Step 2:** `.plat-<slug>` sabit renkleri kaldır; platform rengi `bulten.ts` verisinden satır içi `--platform` değişkeniyle 10 px kareye. Pozitif BUGÜN `--yesil`.
-- [ ] **Step 3:** % hücresi: `yuzdeKesik` + `cubukOlcegi` ile 110 px çubuk (dolu: hedefe ulaşmadıysa mürekkep, ulaştıysa yeşil; aşım `--asim`; 2 px mürekkep hedef çizgisi `left: hedef%`). `cubukSinifi` ve `.renk-yesil/mavi/indigo` kaldırılır.
-- [ ] **Step 4:** Tahta.astro ve arşiv bileşenlerinde aynı belirteçlere geçiş; yapı değişmez.
-- [ ] **Step 5:** Build + önizleme; ana sayfa panosunu artifact'taki "Ana sayfa panosu" ile karşılaştıran ekran görüntüsü; 400 px genişlikte yatay kaydırma yalnız tablo kabında.
-- [ ] **Step 6: Commit** — `git commit -m "Kimlik v2: ana sayfa ve bölüm panoları"`
+- [x] **Step 1:** BugunTahta: kâğıt zemin, başlık satırı altında 2 px mürekkep çizgi, satır çizgileri `--cizgi`. Durum hücresi mevcut metniyle (SONA ERDİ / SON 18 GÜN / AKTİF) çerçeveli `.etiket`; SONA ERDİ `.etiket--gri`. KALAN'daki FONLANDI `.etiket--yesil`. "Bülten 1531" rozeti mürekkep dolgu.
+- [x] **Step 2:** `.plat-<slug>` sabit renkleri kaldır; platform rengi `bulten.ts` verisinden satır içi `--platform` değişkeniyle 10 px kareye. Pozitif BUGÜN `--yesil`.
+- [x] **Step 3:** % hücresi: `yuzdeKesik` + `cubukOlcegi` ile 110 px çubuk (dolu: hedefe ulaşmadıysa mürekkep, ulaştıysa yeşil; aşım `--asim`; 2 px mürekkep hedef çizgisi `left: hedef%`). `cubukSinifi` ve `.renk-yesil/mavi/indigo` kaldırılır.
+- [x] **Step 4:** Tahta.astro ve arşiv bileşenlerinde aynı belirteçlere geçiş; yapı değişmez.
+- [x] **Step 5:** Build + önizleme; ana sayfa panosunu artifact'taki "Ana sayfa panosu" ile karşılaştıran ekran görüntüsü; 400 px genişlikte yatay kaydırma yalnız tablo kabında.
+- [x] **Step 6: Commit** — `git commit -m "Kimlik v2: ana sayfa ve bölüm panoları"`
 
 ### Görev 4: Günlük bülten sayfaları ve tablolar
 
@@ -139,10 +139,10 @@ test('tohum işareti: 233 / 89 tohum, kol sarı, metin yok', () => {
 **Interfaces:**
 - Consumes: Görev 1–2 çıktıları
 
-- [ ] **Step 1:** Bulten.astro: 18:00 görselinin dili (artifact bölüm 9) — beyaz kart, platform renginde 6 px sol kenar, yüzde rozetleri, yeşil FONLANDI; başlık "GÜNLÜK **KİTLE FONLAMA** BÜLTENİ" ve `tarih / sayı` aynı metin. Rozet renkleri bülten görselindekiyle aynı eşikler (≥100 yeşil, ≥50 `#0284c7`, altı `#6366f1`).
-- [ ] **Step 2:** `[tarih].astro` ve `.veri-tablo`: kalın başlık çizgisi, sağa hizalı tabular rakamlar, platform adı yanında renk karesi, pozitif günlük giriş yeşil. Metinler ve sütunlar aynı.
-- [ ] **Step 3:** Build + önizleme: `/gunluk-bulten/`, `/gunluk-bulten/2026-10-17/`, `/gunluk-bulten/gunler/` ekran görüntüleri.
-- [ ] **Step 4: Commit** — `git commit -m "Kimlik v2: günlük bülten sayfaları ve veri tabloları"`
+- [x] **Step 1:** Bulten.astro: 18:00 görselinin dili (artifact bölüm 9) — beyaz kart, platform renginde 6 px sol kenar, yüzde rozetleri, yeşil FONLANDI; başlık "GÜNLÜK **KİTLE FONLAMA** BÜLTENİ" ve `tarih / sayı` aynı metin. Rozet renkleri bülten görselindekiyle aynı eşikler (≥100 yeşil, ≥50 `#0284c7`, altı `#6366f1`).
+- [x] **Step 2:** `[tarih].astro` ve `.veri-tablo`: kalın başlık çizgisi, sağa hizalı tabular rakamlar, platform adı yanında renk karesi, pozitif günlük giriş yeşil. Metinler ve sütunlar aynı.
+- [x] **Step 3:** Build + önizleme: `/gunluk-bulten/`, `/gunluk-bulten/2026-10-17/`, `/gunluk-bulten/gunler/` ekran görüntüleri.
+- [x] **Step 4: Commit** — `git commit -m "Kimlik v2: günlük bülten sayfaları ve veri tabloları"`
 
 ### Görev 5: Kapaklar — haber, kampanya künyesi, yatırım
 
@@ -157,7 +157,7 @@ test('tohum işareti: 233 / 89 tohum, kol sarı, metin yok', () => {
 - Consumes: `tohumIsaretiSvg`, `yuzdeKesik`, `cubukOlcegi`, `durumEtiketi`, `KIMLIK` (Görev 1)
 - Produces: `kapakDuzeni(h: Haber): 'haber' | 'kunye' | 'yatirim'`; `kartSvg(veri: KapakVeri, bicim: Bicim): string`, `KapakVeri = { baslik; kategori; girisim?; platform?; toplanan?; hedef?; yatirimci?; durum?; paraBirimi?; tur? }`
 
-- [ ] **Step 1: Testleri güncelle**
+- [x] **Step 1: Testleri güncelle**
 
 ```ts
 test('düzen seçimi', () => {
@@ -175,11 +175,11 @@ test('kategori büyük harfi Türkçe', () => assert.match(kartSvg({ baslik: 'X'
 test('uzun başlık alttaki öğeye binmez', () => { /* 140 karakterlik başlıkta son satır tabanı < logo satırının üstü; kartSvg dönüşündeki data-baslik-alt ve data-alt-ust öznitelikleriyle */ });
 ```
 
-- [ ] **Step 2: Çalıştır** — `node --experimental-strip-types --test src/kapak/kart.test.ts` → FAIL
-- [ ] **Step 3:** `kartSvg` üç düzeni çizer (ölçüler artifact bölüm 8): ortak 18 px sarı bant (post/story'de ölçekli); **haber**: başlık 700, 80→68 px küçülerek, sol altta işaret + "kifobu", sağ altta kategori + 3 px sarı alt çizgi; **künye**: `durumEtiketi` çerçevesi, sağ üst logo, girişim, "platform · paya dayalı", tutar (`paraKisa` simge önde) + `yuzdeKesik`, `cubukOlcegi` çubuğu, alt satırda yalnız verisi olan hücreler (`YATIRIMCI` = `yatirimci`; `DEĞERLEME`/`BİTİŞ` alanları şemada yok → çizilmez); **yatırım**: tur etiketi (`tur.toLocaleUpperCase('tr-TR')` + " TURU" yoksa), girişim, tutar simgeyle. Test için grup elemanlarına `data-*` öznitelikleri.
-- [ ] **Step 4: Testler geçer** → PASS
-- [ ] **Step 5:** Son 14 günün (`GORSEL_GUN`) kapaklarından 6 örneği (2 haber, 2 künye, 2 yatırım) PNG olarak `dist/kapak/` altından al, sahibine göster; onaysız yayına alma.
-- [ ] **Step 6: Commit** — `git commit -m "Kimlik v2: kapaklar (haber, kampanya künyesi, yatırım)"`
+- [x] **Step 2: Çalıştır** — `node --experimental-strip-types --test src/kapak/kart.test.ts` → FAIL
+- [x] **Step 3:** `kartSvg` üç düzeni çizer (ölçüler artifact bölüm 8): ortak 18 px sarı bant (post/story'de ölçekli); **haber**: başlık 700, 80→68 px küçülerek, sol altta işaret + "kifobu", sağ altta kategori + 3 px sarı alt çizgi; **künye**: `durumEtiketi` çerçevesi, sağ üst logo, girişim, "platform · paya dayalı", tutar (`paraKisa` simge önde) + `yuzdeKesik`, `cubukOlcegi` çubuğu, alt satırda yalnız verisi olan hücreler (`YATIRIMCI` = `yatirimci`; `DEĞERLEME`/`BİTİŞ` alanları şemada yok → çizilmez); **yatırım**: tur etiketi (`tur.toLocaleUpperCase('tr-TR')` + " TURU" yoksa), girişim, tutar simgeyle. Test için grup elemanlarına `data-*` öznitelikleri.
+- [x] **Step 4: Testler geçer** → PASS
+- [x] **Step 5:** Son 14 günün (`GORSEL_GUN`) kapaklarından 6 örneği (2 haber, 2 künye, 2 yatırım) PNG olarak `dist/kapak/` altından al, sahibine göster; onaysız yayına alma.
+- [x] **Step 6: Commit** — `git commit -m "Kimlik v2: kapaklar (haber, kampanya künyesi, yatırım)"`
 
 ### Görev 6: 18:00 bülteni görseli
 
@@ -190,12 +190,12 @@ test('uzun başlık alttaki öğeye binmez', () => { /* 140 karakterlik başlık
 **Interfaces:**
 - Consumes: `tohumIsaretiSvg` (Görev 1), Schibsted TTF (Görev 5)
 
-- [ ] **Step 1: Test yaz** — `bultenSvgCiz('post')`: `<image` yok, `fill="#e8b40c"` var, `17 Ekim 2026 / 1530` biçimi (`${tarih} / ${sayi}`, binlik noktası yok), MKK kutusunun altı ile alt bant arasında ≥ 24 px (`data-mkk-alt`, `data-alt-ust` öznitelikleriyle); `story` için aynı.
-- [ ] **Step 2: Çalıştır** → FAIL
-- [ ] **Step 3: Uygula** — yalnız yukarıdaki üç değişiklik; renkler, kartlar, rozetler, metinler, sıralama dokunulmaz.
-- [ ] **Step 4: Testler geçer** → PASS
-- [ ] **Step 5:** `npm run bulten:gorsel` (ya da `scripts/bulten-gorsel-uret.ts`) ile post ve story üret, mevcut `public/bulten-post.png` ile yan yana sahibine göster. **Onay gelmeden commit atma** (bülten her gün 18:00'de canlıya gider).
-- [ ] **Step 6: Commit** — `git commit -m "Kimlik v2: 18:00 bülteni görselinde tohum işareti, Schibsted Grotesk ve MKK boşluğu"`
+- [x] **Step 1: Test yaz** — `bultenSvgCiz('post')`: `<image` yok, `fill="#e8b40c"` var, `17 Ekim 2026 / 1530` biçimi (`${tarih} / ${sayi}`, binlik noktası yok), MKK kutusunun altı ile alt bant arasında ≥ 24 px (`data-mkk-alt`, `data-alt-ust` öznitelikleriyle); `story` için aynı.
+- [x] **Step 2: Çalıştır** → FAIL
+- [x] **Step 3: Uygula** — yalnız yukarıdaki üç değişiklik; renkler, kartlar, rozetler, metinler, sıralama dokunulmaz.
+- [x] **Step 4: Testler geçer** → PASS
+- [x] **Step 5:** `npm run bulten:gorsel` (ya da `scripts/bulten-gorsel-uret.ts`) ile post ve story üret, mevcut `public/bulten-post.png` ile yan yana sahibine göster. **Onay gelmeden commit atma** (bülten her gün 18:00'de canlıya gider).
+- [x] **Step 6: Commit** — `git commit -m "Kimlik v2: 18:00 bülteni görselinde tohum işareti, Schibsted Grotesk ve MKK boşluğu"`
 
 ### Görev 7: Sosyal profil dosyaları ve DESIGN.md
 
@@ -204,10 +204,10 @@ test('uzun başlık alttaki öğeye binmez', () => { /* 140 karakterlik başlık
 - Modify: `DESIGN.md` (Seans Tahtası anlatımı yerine Kimlik v2'nin uygulanmış hâli; `BRAND.md`'ye bağlantı)
 - Modify: `PRODUCT.md` "Brand mark" satırı → tohum işareti
 
-- [ ] **Step 1:** Üreticiyi yaz ve çalıştır; PNG'leri sahibine gönder (hesaplara yüklemeyi sahibi yapar; Meta/X/LinkedIn'e yükleme bu planın dışında).
-- [ ] **Step 2:** DESIGN.md ve PRODUCT.md güncelle; eski ayçiçeği (`brand/kifobu-isaret.png`, `public/logo-saydam.png`) yalnız `src/scripts/arsiv-png.ts:58` kullanıyorsa onu da işarete çevir, sonra dosyaları sil.
-- [ ] **Step 3:** `npm test` ve `npx astro build` → PASS
-- [ ] **Step 4: Commit** — `git commit -m "Kimlik v2: sosyal profil dosyaları, DESIGN.md ve PRODUCT.md"`
+- [x] **Step 1:** Üreticiyi yaz ve çalıştır; PNG'leri sahibine gönder (hesaplara yüklemeyi sahibi yapar; Meta/X/LinkedIn'e yükleme bu planın dışında).
+- [x] **Step 2:** DESIGN.md ve PRODUCT.md güncelle; eski ayçiçeği (`brand/kifobu-isaret.png`, `public/logo-saydam.png`) yalnız `src/scripts/arsiv-png.ts:58` kullanıyorsa onu da işarete çevir, sonra dosyaları sil.
+- [x] **Step 3:** `npm test` ve `npx astro build` → PASS
+- [x] **Step 4: Commit** — `git commit -m "Kimlik v2: sosyal profil dosyaları, DESIGN.md ve PRODUCT.md"`
 
 ---
 
