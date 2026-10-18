@@ -12,27 +12,27 @@ export interface KampanyaKartVerisi {
   seri: number[] /* yüzde noktaları */;
 }
 
-const TAHTA = '#1d2723';
-const TAHTA_KOYU = '#151d1a';
-const TEBESIR = '#ecefe9';
-const TEBESIR_2 = 'rgba(236,239,233,0.74)';
-const TEBESIR_3 = 'rgba(236,239,233,0.62)';
-const CIZGI = 'rgba(236,239,233,0.32)';
-const SARI = '#f2d45c';
+// Kimlik v2 (BRAND.md): kâğıt zemin, mürekkep yazı, tek aile Schibsted Grotesk. Eski adlar korunur.
+const TAHTA = '#f7f5ef';
+const TAHTA_KOYU = '#efece4';
+const TEBESIR = '#141a17';
+const TEBESIR_2 = '#3b413d';
+const TEBESIR_3 = '#5d645f';
+const CIZGI = '#dcd9cf';
+const SARI = '#141a17';
 
-const GOVDE = '"Sofia Sans", sans-serif';
-const BASLIK = '"Sofia Sans Condensed", "Sofia Sans", sans-serif';
-const TAHTA_YAZI = '"Sofia Sans Extra Condensed", "Sofia Sans Condensed", sans-serif';
+const GOVDE = '"Schibsted Grotesk", sans-serif';
+const BASLIK = GOVDE;
+const TAHTA_YAZI = GOVDE;
 const KAYNAK_GENEL = 'Kaynak: platformların kampanya sayfaları';
 
 // Örnek metin latin-ext alt kümesini de (Türkçe harfler, ₺) yükletir.
 const ORNEK = 'AaİıŞşĞğÜüÖöÇç₺%0123456789';
 const KULLANILAN = [
-  `800 64px "Sofia Sans Extra Condensed"`,
-  `800 32px "Sofia Sans Condensed"`,
-  `700 32px "Sofia Sans Condensed"`,
-  `600 32px "Sofia Sans"`,
-  `500 32px "Sofia Sans"`,
+  `800 64px "Schibsted Grotesk"`,
+  `700 32px "Schibsted Grotesk"`,
+  `600 32px "Schibsted Grotesk"`,
+  `500 32px "Schibsted Grotesk"`,
 ];
 
 let fontlarSozu: Promise<void> | null = null;
@@ -55,7 +55,7 @@ function resimYukle(src: string): Promise<HTMLImageElement> {
 }
 
 let logoSozu: Promise<HTMLImageElement> | null = null;
-const logo = () => (logoSozu ??= resimYukle('/logo-saydam.png'));
+const logo = () => (logoSozu ??= resimYukle('/favicon-512.png'));
 
 function dataUrl(blob: Blob): Promise<string> {
   return new Promise((coz, reddet) => {
@@ -66,15 +66,15 @@ function dataUrl(blob: Blob): Promise<string> {
   });
 }
 
-// SVG, <img> içinde sayfanın web fontlarını göremez: Sofia Sans data: URL olarak gömülür.
+// SVG, <img> içinde sayfanın web fontlarını göremez: Schibsted Grotesk data: URL olarak gömülür.
 const SVG_FONTLARI = [
   {
-    dosya: '/fonts/sofia-sans-normal-latin.woff2',
+    dosya: '/fonts/schibsted-grotesk-latin.woff2',
     aralik:
       'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD',
   },
   {
-    dosya: '/fonts/sofia-sans-normal-latin-ext.woff2',
+    dosya: '/fonts/schibsted-grotesk-latin-ext.woff2',
     aralik:
       'U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF',
   },
@@ -86,7 +86,7 @@ function svgFontCss(): Promise<string> {
       const yanit = await fetch(f.dosya);
       if (!yanit.ok) throw new Error(`Yazı tipi alınamadı: ${f.dosya}`);
       const url = await dataUrl(await yanit.blob());
-      return `@font-face{font-family:'Sofia Sans';font-style:normal;font-weight:400 800;src:url(${url}) format('woff2');unicode-range:${f.aralik};}`;
+      return `@font-face{font-family:'Schibsted Grotesk';font-style:normal;font-weight:400 800;src:url(${url}) format('woff2');unicode-range:${f.aralik};}`;
     }),
   ).then((p) => p.join(''));
   svgFontCssSozu.catch(() => (svgFontCssSozu = null));
