@@ -9,7 +9,8 @@ const rootDir = path.resolve(__dirname, '..');
 // 18:00 bülteni Facebook Sayfasına ve Instagram'a post + story olarak gider (Meta Graph API, ücretsiz).
 // Görseller kifobu.com/bulten-post.png ve /bulten-story.png'den Meta tarafından çekilir; bu yüzden betik günün
 // sayfası yayına girdikten sonra çalışır (bulten-otomasyon.yml "Sosyal medyada paylaş").
-// Metinde bağlantı yoktur (ekip kararı).
+// Facebook post metnindeki bağlantı o günün kalıcı sayfasına gider (UTM'li; sayfa canlı değilse genel bülten sayfası).
+// Instagram metni bağlantısızdır: Instagram metindeki bağlantıyı tıklatmaz.
 //
 // META_TOKEN: kifobu portföyündeki "kifobu-paylasim" sistem kullanıcısının süresiz token'ı (GitHub Secret).
 // Facebook: META_PAGE_ID + META_TOKEN; Sayfa token'ı her çalışmada bu token'dan alınır. Yoksa Facebook atlanır.
@@ -32,7 +33,7 @@ if (!facebookVar && !instagramVar) {
 }
 
 const { istanbulGunu } = await import('../src/lib/gunler.ts');
-const { gorselAdresi, metinBaglantisiniCikar } = await import('../src/lib/paylasim.ts');
+const { bultenBaglantisi, gorselAdresi, metinBaglantisiniCikar, metinBaglantisiniDegistir } = await import('../src/lib/paylasim.ts');
 
 const gun = istanbulGunu(new Date());
 const postGorseli = gorselAdresi('bulten-post.png', gun);
@@ -46,7 +47,14 @@ if (!kontrol && !fs.existsSync(metinPath)) {
   console.error(`[META] HATA: Paylaşım metni bulunamadı: ${metinPath}`);
   process.exit(1);
 }
-const metin = kontrol ? '' : metinBaglantisiniCikar(fs.readFileSync(metinPath, 'utf8'));
+const hamMetin = kontrol ? '' : fs.readFileSync(metinPath, 'utf8').trim();
+const metin = metinBaglantisiniCikar(hamMetin);
+let facebookMetni = metin;
+if (!kontrol && facebookVar) {
+  const baglanti = await bultenBaglantisi('facebook', gun);
+  console.log(`[META] Facebook bağlantısı: ${baglanti.gunSayfasi ? 'günün bülten sayfası' : 'genel bülten sayfası (günün sayfası canlıda yok)'}`);
+  facebookMetni = metinBaglantisiniDegistir(hamMetin, baglanti.url);
+}
 
 function gizle(msg: string): string {
   let m = msg;
@@ -108,7 +116,7 @@ async function sayfaTokeniAl(): Promise<string> {
 }
 
 async function facebookPost(): Promise<string> {
-  const r = await graphPost(fbKok, `${sayfaId}/photos`, { url: postGorseli, message: metin, published: 'true' }, await sayfaTokeniAl());
+  const r = await graphPost(fbKok, `${sayfaId}/photos`, { url: postGorseli, message: facebookMetni, published: 'true' }, await sayfaTokeniAl());
   return r.post_id ?? r.id;
 }
 

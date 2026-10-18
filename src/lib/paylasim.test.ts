@@ -38,6 +38,11 @@ test('gün sayfası canlıysa o gün, değilse genel sayfa UTM\'li döner', asyn
   assert.equal(yok.url, 'https://kifobu.com/gunluk-bulten/?utm_source=linkedin&utm_medium=social&utm_campaign=gunluk-bulten');
 });
 
+test('Facebook bağlantısı kendi UTM kaynağıyla gün sayfasına gider', async () => {
+  const fb = await bultenBaglantisi('facebook', '2026-10-18', sahte(200));
+  assert.equal(fb.url, 'https://kifobu.com/gunluk-bulten/2026-10-18/?utm_source=facebook&utm_medium=social&utm_campaign=gunluk-bulten');
+});
+
 test('Meta metninde bülten bağlantısının satırı çıkar, boş satır üst üste binmez', () => {
   const metin = '🌻 Bugün\n\n• Madde\n\n🔗 https://kifobu.com/gunluk-bulten/\n\n#kitlefonlama #yatırım';
   assert.equal(metinBaglantisiniCikar(metin), '🌻 Bugün\n\n• Madde\n\n#kitlefonlama #yatırım');

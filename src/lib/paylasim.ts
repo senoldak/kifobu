@@ -1,10 +1,10 @@
-// Günlük bülten paylaşımları (Telegram, LinkedIn): bağlantı kanala göre UTM'li olur ve o günün kalıcı sayfası
+// Günlük bülten paylaşımları (Telegram, LinkedIn, Facebook): bağlantı kanala göre UTM'li olur ve o günün kalıcı sayfası
 // canlıdaysa oraya gider; değilse genel bülten sayfasına düşer. Saf TypeScript: ağ isteği enjekte edilebilir.
 import { gunUrl, istanbulGunu } from './gunler.ts';
 
 export const SITE_ORIGIN = 'https://kifobu.com';
 export const GENEL_BULTEN_URL = `${SITE_ORIGIN}/gunluk-bulten/`;
-export type PaylasimKanali = 'telegram' | 'linkedin';
+export type PaylasimKanali = 'telegram' | 'linkedin' | 'facebook';
 
 /** Metindeki bülten bağlantısı (bulten-gorsel-uret.ts genel adresi yazar). */
 const BAGLANTI_DESENI = /https:\/\/kifobu\.com\/gunluk-bulten\/\S*/;
@@ -23,7 +23,7 @@ export function metinBaglantisiniDegistir(metin: string, url: string): string {
   return metin.replace(BAGLANTI_DESENI, () => url);
 }
 
-/** Facebook/Instagram metni bağlantısız gider: bülten bağlantısının bulunduğu satır çıkarılır. */
+/** Instagram metni bağlantısız gider (Instagram metindeki bağlantıyı tıklatmaz): bülten bağlantısının satırı çıkarılır. */
 export function metinBaglantisiniCikar(metin: string): string {
   return metin
     .split('\n')
