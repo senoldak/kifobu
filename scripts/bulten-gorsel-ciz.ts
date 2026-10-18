@@ -3,12 +3,13 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { create, type Font } from 'fontkitten';
 import { BULTEN, type Girisim, type Platform, type Yakinda } from '../src/data/bulten.ts';
+import { KIMLIK, tohumIsaretiSvg } from '../src/lib/kimlik.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 
-// ── NUNITO YAZI TİPİ ─────────────────────────────────────────────────────────
+// ── SCHIBSTED GROTESK (Kimlik v2, BRAND.md; değişken yazı tipi) ───────────────
 type Agirlik = 'normal' | 'orta' | 'kalin' | 'ekstra';
 const AGIRLIK_DEGER: Record<Agirlik, number> = {
   normal: 400,
@@ -24,7 +25,7 @@ function font(agirlik: Agirlik = 'orta'): Font {
   let f = fontOnbellegi.get(agirlik);
   if (!f) {
     if (!anaFont) {
-      anaFont = create(fs.readFileSync(path.join(rootDir, 'src/kapak/fontlar/Nunito.ttf'))) as Font;
+      anaFont = create(fs.readFileSync(path.join(rootDir, 'src/kapak/fontlar/SchibstedGrotesk[wght].ttf'))) as Font;
     }
     f = anaFont.getVariation({ wght: AGIRLIK_DEGER[agirlik] });
     fontOnbellegi.set(agirlik, f);
@@ -92,8 +93,6 @@ export function bultenSvgCiz(mod: GorselModu = 'post'): string {
   const paddingX = 56;
   const icGenislik = w - paddingX * 2; // 968 px
 
-  // Saydam Ayçiçeği Logo Base64
-  const logoB64 = fs.readFileSync(path.join(rootDir, 'public/logo-saydam.png')).toString('base64');
   const b = {
     ...BULTEN,
     // KURAL: Eğer bir girişim aktif girişimler satırında fonlamadaysa, ön talep / yakında alanından otomatik çıkarılır
@@ -106,7 +105,8 @@ export function bultenSvgCiz(mod: GorselModu = 'post'): string {
   // ── DİNAMİK DİKEY DAĞILIM VE BOŞLUKSUZ YAYILIM KURALI ───────────────────
   const footerH = mod === 'story' ? 96 : 52;
   const footerY = h - footerH;
-  const hedefAltBosluk = mod === 'story' ? 24 : 18;
+  // MKK kutusu ile alt bant arasında en az bir satır boşluk (sahibin isteği).
+  const hedefAltBosluk = mod === 'story' ? 56 : 40;
   const hedefMkkAlt = footerY - hedefAltBosluk;
 
   // Başlıklar ve sabit yükseklikler
@@ -145,8 +145,11 @@ export function bultenSvgCiz(mod: GorselModu = 'post'): string {
   const logoY = currentY + (mod === 'story' ? 4 : 5);
   const logoX = w - paddingX - logoBoyut;
 
-  // Sağ üst kurumsal logo
-  body += `<image href="data:image/png;base64,${logoB64}" x="${logoX}" y="${logoY}" width="${logoBoyut}" height="${logoBoyut}" />`;
+  // Sağ üst: tohum işareti ve altında "kifobu" (Kimlik v2).
+  const isaretBoyu = logoBoyut - 22;
+  const isaretX = logoX + (logoBoyut - isaretBoyu) / 2;
+  body += tohumIsaretiSvg({ boyut: isaretBoyu, kucuk: true }).replace('<svg ', `<svg x="${isaretX}" y="${logoY - 6}" `);
+  body += metin('kifobu', logoX + logoBoyut / 2, logoY + isaretBoyu + 18, { agirlik: 'orta', boyut: mod === 'story' ? 24 : 21, renk: KIMLIK.murekkep, hiza: 'center', aralik: -0.6 });
 
   // Ana Başlık: Post: 40px, Story: 42px
   const baslikBoyut = mod === 'story' ? 42 : 40;
@@ -358,6 +361,7 @@ export function bultenSvgCiz(mod: GorselModu = 'post'): string {
 
   // Açık Renk Kart Tasarımı (Ön Talep gibi f8fafc zeminli ve modern)
   body += `<rect x="${paddingX}" y="${currentY}" width="${icGenislik}" height="${mkkKartH}" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.2" />`;
+  const mkkAlt = currentY + mkkKartH;
   const mkkY = currentY + (mod === 'story' ? 46 : 41);
 
   // 4 Öğeli Dengeli Eşit Boşluklu Dağılım (Çizgisiz, ferah ve tam dengeli)
@@ -393,7 +397,7 @@ export function bultenSvgCiz(mod: GorselModu = 'post'): string {
   body += metin(imzaMetni, imzaX, footerY + (mod === 'story' ? 56 : 33), { agirlik: 'kalin', boyut: fSize, renk: '#854d0e' });
 
   return `
-    <svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+    <svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" data-tarih="${tarihMetni}" data-mkk-alt="${mkkAlt}" data-alt-ust="${footerY}">
       <!-- Temiz Minimal Zemin -->
       <rect width="${w}" height="${h}" fill="#f8fafc" />
 
