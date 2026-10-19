@@ -6,6 +6,7 @@
 import path from 'node:path';
 import { readFile, writeFile, readdir, mkdir, access } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
+import { onyuzMaddesiYayinda } from '../../src/lib/yayinda.mjs';
 
 const HER = path.dirname(fileURLToPath(import.meta.url));
 const HABERLER = path.resolve(HER, '../../src/content/haberler');
@@ -89,8 +90,11 @@ export async function calistir({ simdi = new Date(), donem = donemSec(simdi), ko
     if (!k.isDirectory()) continue;
     const dosya = path.join(kok, k.name, 'index.md');
     if (!(await var_(dosya))) continue;
-    const d = onBilgi(await readFile(dosya, 'utf8'));
-    if (!d || d.draft === 'true') continue;
+    const metin = await readFile(dosya, 'utf8');
+    // Taslak ve tarihi gelmemiş (planlanmış) yazı ne bültene girer ne de "son bülten" sayılır.
+    if (!onyuzMaddesiYayinda(metin, simdi.getTime())) continue;
+    const d = onBilgi(metin);
+    if (!d) continue;
     tumu.push({ slug: k.name, title: d.title, category: d.category, tarih: new Date(d.date) });
   }
   const sonBulten = Math.max(0, ...tumu.filter((h) => h.category === KATEGORI).map((h) => h.tarih.getTime()));

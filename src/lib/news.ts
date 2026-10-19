@@ -1,10 +1,11 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { yayinda } from './yayinda.mjs';
 
 export type Haber = CollectionEntry<'haberler'>;
 
-// Taslaklar canlı sitede görünmez, yerel geliştirmede görünür.
+// Taslaklar ve tarihi gelmemiş (planlanmış) yazılar canlı sitede görünmez, yerel geliştirmede görünür.
 export async function getNews(): Promise<Haber[]> {
-  const all = await getCollection('haberler', ({ data }) => import.meta.env.DEV || !data.draft);
+  const all = await getCollection('haberler', ({ data }) => import.meta.env.DEV || yayinda(data));
   return all.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 }
 

@@ -6,6 +6,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { CATEGORIES } from './src/lib/site.ts';
 import { bolumIndekslenir, indekslenir } from './src/lib/indeks.ts';
+import { onyuzMaddesiYayinda } from './src/lib/yayinda.mjs';
 
 const categoryRedirects = Object.fromEntries(
   CATEGORIES.map((c) => [`/kategori/${c.slug}`, `/${c.slug}`])
@@ -21,6 +22,8 @@ const haberBilgi = new Map();
 for (const dosya of readdirSync(HABER_DIZIN, { recursive: true, encoding: 'utf8' })) {
   if (!dosya.endsWith('.md')) continue;
   const md = readFileSync(path.join(HABER_DIZIN, dosya), 'utf8');
+  // Tarihi gelmemiş (planlanmış) yazı vakti gelene kadar ne haritaya ne IndexNow'a girer (src/lib/yayinda.mjs).
+  if (!onyuzMaddesiYayinda(md)) continue;
   const parcalar = md.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
   const fm = parcalar?.[1] ?? '';
   const tarih = fm.match(/^date:\s*["']?([^"'\r\n]+)/m)?.[1];
