@@ -39,5 +39,10 @@ User-agent: DeepSeekBot
 User-agent: TikTokSpider
 Disallow: /
 
+# İnternet arşivleri (Wayback Machine) sayfaların kalıcı kopyasını almaz; silinen ya da düzeltilen içerik arşivde kalmaz.
+User-agent: archive.org_bot
+User-agent: ia_archiver
+Disallow: /
+
 Sitemap: https://kifobu.com/sitemap-index.xml
 Sitemap: https://kifobu.com/news-sitemap.xml
