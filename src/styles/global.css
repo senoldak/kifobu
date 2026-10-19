@@ -1477,7 +1477,6 @@ h3 {
   }
 }
 
-/* Sentez Bloğu - Information Gain */
 /* Düzeltme notu: yalnız yazıda `duzeltme` alanı doluysa görünür. */
 .duzeltme {
   display: flex;
@@ -1501,6 +1500,7 @@ h3 {
   text-underline-offset: 3px;
 }
 
+/* Sentez Bloğu - Information Gain */
 .sentez-kutu {
   margin: 1.5rem 0 2rem;
   padding: 1.25rem 1.5rem;
