@@ -1478,6 +1478,29 @@ h3 {
 }
 
 /* Sentez Bloğu - Information Gain */
+/* Düzeltme notu: yalnız yazıda `duzeltme` alanı doluysa görünür. */
+.duzeltme {
+  display: flex;
+  gap: 12px;
+  margin: 0 0 2rem;
+  padding: 12px 16px;
+  border: 1px solid var(--murekkep);
+  background: var(--kagit-2);
+  font: 500 0.9375rem/1.5 var(--yazi);
+}
+
+.duzeltme p {
+  margin: 0;
+}
+
+.duzeltme a {
+  color: var(--bag);
+  text-decoration: underline;
+  text-decoration-color: var(--bag-alt);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
 .sentez-kutu {
   margin: 1.5rem 0 2rem;
   padding: 1.25rem 1.5rem;

@@ -16,6 +16,7 @@ import { ilgiliHaberler } from '../../lib/ilgili';
 import { dizinVerisi, haberBaglantilari } from '../../lib/dizin';
 import { gunUrl, istanbulGunu } from '../../lib/gunler';
 import { matchEntities } from '../../lib/entities';
+import { duzeltmeNotu } from '../../lib/duzeltme';
 import { kapakAlt, kapakUrl, KAPAK_G, KAPAK_Y, LOGO_G, LOGO_Y } from '../../kapak/ciz';
 
 export async function getStaticPaths() {
@@ -42,6 +43,7 @@ interface Props {
 
 const { haber, related, konular, bultenGunu } = Astro.props;
 const d = haber.data;
+const duzeltme = duzeltmeNotu(d, 'tr');
 const { title, description, date, category, cover, coverAlt, author } = d;
 const { Content } = await render(haber);
 const funding = isFunding(haber);
@@ -137,6 +139,16 @@ const jsonLd = {
     </header>
 
     <SentezBlok whyMatters={d.why_matters} keyPoints={d.key_points} />
+
+    {
+      duzeltme && (
+        <aside class="duzeltme">
+          <p>
+            <strong>{duzeltme.etiket}</strong> {duzeltme.metin} <a href={duzeltme.baglanti}>Düzeltme ilkemiz</a>
+          </p>
+        </aside>
+      )
+    }
 
     {/* Künye haberin başında (sentezin altında, görselin üstünde): okur önce rakamları görür. */}
     {
