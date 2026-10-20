@@ -52,3 +52,10 @@ scripts/bot/medya.json
 
 # şifreli kaynak listesinin açık hali (bkz. scripts/bot/gizli.mjs); kaynaklar.json ve medya.json eski biçim
 scripts/bot/gizli-kaynaklar.json
+
+# strateji ve kimlik belgeleri yalnız yerelde durur (repo herkese açık)
+docs/superpowers/
+PRODUCT.md
+DESIGN.md
+BRAND.md
+AGENTS.md
