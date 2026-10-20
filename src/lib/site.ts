@@ -2,7 +2,7 @@ import { yuzdeKesik } from './kimlik.ts';
 export const SITE = {
   name: 'kifobu',
   tagline: 'Ulaşılabilir ve anlaşılır veri',
-  description: "Türkiye'de kitle fonlama: hangi girişim, hangi platformda, ne kadar topladı. Her gün bülten.",
+  description: 'Girişimler, girişim yatırımları ve kitle fonlaması: haberler ve günlük bülten.',
   locale: 'tr-TR',
   // 1. bültenin yayımlandığı gün (YYYY-AA-GG). Üst banttaki "Bülten 1.523" sayacı buradan hesaplanır
   // (10 Ekim 2026 = 1.523. bülten). Her gün bir bülten varsayılır.

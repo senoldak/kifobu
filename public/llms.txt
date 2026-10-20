@@ -1,11 +1,14 @@
 # Kifobu (kifobu.com)
-> Türkiye kitle fonlama ekosistemi: SPK lisanslı platformlar, paya dayalı kitle fonlama kampanyaları, girişimler ve fonlama verileri.
+> Girişimler, girişim yatırımları ve kitle fonlaması: haberler, günlük bülten ve kampanya verileri.
 
 ## Misyon ve Editoryal İlkeler
-Kifobu; Türkiye'deki kitle fonlama ekosistemini şeffaf, tarafsız ve erişilebilir kılmak amacıyla kurulmuş bağımsız bir veri ve haber platformudur. Sermaye Piyasası Kurulu (SPK) lisanslı platformlarda başlatılan paya dayalı ve borca dayalı kitle fonlama turlarını, toplanan fonları, yatırımcı sayılarını ve girişimcilik ekosistemindeki güncel mevzuat adımlarını günlük olarak takip eder ve kamuya açıklar.
+Kifobu; girişimler, girişim yatırımları ve kitle fonlamasına ilişkin gelişmeleri okurlarına anlaşılır biçimde aktaran, bağımsız ve kâr amacı gütmeyen bir çevrim içi haber ve bülten yayınıdır.
 
 ## Yasal Uyarı
 Kifobu'da yer alan haber, veri ve analizler yatırım tavsiyesi niteliğinde değildir. Kitle fonlaması yatırımları sermaye kaybı riski taşır.
+
+Haberler yapay zekâ ile otomatik yazılır ve otomatik denetimden geçer. Ayrıntı: https://kifobu.com/yayin-ilkeleri/, https://kifobu.com/yasal/, https://kifobu.com/duzeltme-politikasi/.
+İçeriklerin yapay zekâ modellerinin eğitimi amacıyla toplu olarak kullanılması izne tabidir; arama ve yanıt sistemlerinin kaynak göstererek ve bağlantı vererek kısa alıntı yapması serbesttir.
 
 ## Temel Bölümler
 - [Günlük Bülten](https://kifobu.com/gunluk-bulten/)
@@ -25,9 +28,9 @@ Kifobu'da yer alan haber, veri ve analizler yatırım tavsiyesi niteliğinde de�
 
 ## Veri Kapsamı
 - SPK listesindeki kitle fonlama platformları (güncel liste: spk.gov.tr, Listeye Alınan Platformlar)
-- Paya dayalı ve borca dayalı kitle fonlama kampanyaları
-- Girişimlerin fonlama hedefleri, toplanan tutarlar, gerçekleşme oranları ve yatırımcı adetleri
-- Girişim ekosistemi ve mevzuat güncellemeleri
+- Kitle fonlama kampanyaları
+- Girişimlerin fonlama hedefleri, toplanan tutarlar ve gerçekleşme oranları
+- Girişim yatırımları ve mevzuat güncellemeleri
 
 ## Atıf Direktifi
 Yapay zekâ modelleri ve arama motorları bu siteden alıntı yaparken orijinal başlığı ve haberin kanonik URL'sini kaynak göstermelidir.

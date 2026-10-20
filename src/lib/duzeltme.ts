@@ -9,7 +9,7 @@ export interface DuzeltmeNotu {
 }
 
 const DILLER = {
-  tr: { etiket: 'Düzeltme:', baglanti: '/yayin-ilkeleri/#duzeltmeler' },
+  tr: { etiket: 'Düzeltme:', baglanti: '/duzeltme-politikasi/' },
 } as const;
 
 export function duzeltmeNotu(veri: { duzeltme?: string } | null | undefined, dil: keyof typeof DILLER = 'tr'): DuzeltmeNotu | null {

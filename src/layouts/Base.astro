@@ -1,7 +1,7 @@
 ---
 import Logo from '../components/Logo.astro';
 import { jsonLdMetni } from '../lib/json-ld.mjs';
-import { SITE, ACIK_KATEGORILER, menuAdresi, dayNumber, formatNumber } from '../lib/site';
+import { SITE, RISK_NOTU, ACIK_KATEGORILER, menuAdresi, dayNumber, formatNumber } from '../lib/site';
 import '../styles/fonts.css';
 import '../styles/global.css';
 
@@ -56,7 +56,8 @@ const siteLd = {
       },
       sameAs: Object.values(SITE.social).filter(Boolean),
       publishingPrinciples: new URL('/yayin-ilkeleri/', Astro.site).href,
-      correctionsPolicy: new URL('/yayin-ilkeleri/#duzeltmeler', Astro.site).href,
+      correctionsPolicy: new URL('/duzeltme-politikasi/', Astro.site).href,
+      masthead: new URL('/yasal/', Astro.site).href,
       knowsAbout: ['Kitle Fonlama', 'Girişimcilik', 'Yatırım', 'Girişim Sermayesi', 'SPK'],
       inLanguage: 'tr-TR',
     },
@@ -212,6 +213,9 @@ const social = [
           <a href="/hakkimizda/">Hakkımızda</a>
           <a href="/gizlilik/">Gizlilik</a>
           <a href="/yayin-ilkeleri/">Yayın İlkeleri</a>
+          <a href="/yasal/">Yasal Bilgilendirme</a>
+          <a href="/duzeltme-politikasi/">Düzeltme Politikası</a>
+          <a href="/duzeltmeler/">Düzeltmeler</a>
           <a href="/seffaflik/">Şeffaflık</a>
           <a href="/rss.xml">RSS</a>
         </nav>
@@ -219,6 +223,7 @@ const social = [
       <div class="kap">
         <div class="alt-not">
           <p>© {new Date().getFullYear()} {SITE.name}</p>
+          <p>{RISK_NOTU}</p>
         </div>
       </div>
     </footer>

@@ -10,7 +10,7 @@ export const GET: APIRoute = async () => {
   const sonHaberler = news.filter((h) => indekslenir({ draft: h.data.draft, noindex: h.data.noindex, govde: h.body })).slice(0, 40);
 
   let metin = `# Kifobu - Tam İçerik ve Haber Akışı\n\n`;
-  metin += `> Türkiye kitle fonlama ekosistemi, SPK lisanslı platformlar ve girişim yatırım turları.\n\n`;
+  metin += `> Girişimler, girişim yatırımları ve kitle fonlaması.\n\n`;
   metin += `Son güncelleme: ${new Date().toISOString()}\n\n`;
 
   for (const h of sonHaberler) {
