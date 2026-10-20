@@ -1,6 +1,6 @@
 // Haber kartları, Kimlik v2 (BRAND.md §11): kâğıt zemin, üstte sarı bant, Schibsted Grotesk.
 // Üç düzen: haber (başlık + altta logo ve kategori), künye (kampanya: durum etiketi, tutar, yüzde, hedef çubuğu),
-// yatırım (tur etiketi, başlık, büyük tutar). Verisi olmayan bilgi çizilmez; rakam yoksa düz haber kapağı.
+// yatırım (tur etiketi, başlık; tutar başlıkta olduğu için ayrıca çizilmez). Verisi olmayan bilgi çizilmez; rakam yoksa düz haber kapağı.
 // Üç biçim: site kapağı 1200×675 (yayında), post 1080×1350 ve story 1080×1920.
 // 18:00 kapanış bülteninin görselleri (scripts/bulten-gorsel-*) bu dosyayı kullanmaz.
 import { BUYUK_HARF, genislik, kisalt, logo, metin, satirlar, type MetinAyar } from './ciz.ts';
@@ -221,20 +221,10 @@ function yatirimSvg(v: KapakVeri, o: Olcu) {
   const alt = altSatir(o, etiketYazi);
   const ust = Math.max(o.bant + 52 * k, o.ust);
   let svg = etiket(o.pad, ust, turEtiketi(v.tur!), 'cerceve', k).svg;
-  const tutar = tutarKisa(v.toplanan!, v.paraBirimi);
-  let tutarBoyu = 112 * k;
-  while (tutarBoyu > 56 * k && genislik(tutar, { yuz: 'yari', boyut: tutarBoyu, renk: '', aralik: -tutarBoyu * 0.035 }) > o.g - 2 * o.pad) tutarBoyu -= 2 * k;
-  // Başlığa en küçük puntoda en az bir satırlık yer kalsın; kalmazsa tutar küçülür.
-  const ilkUst = ust + 40 * k + 30 * k;
-  const birSatir = 48 * k * (BUYUK_HARF + 0.22);
-  while (tutarBoyu > 56 * k && alt.ust - 30 * k - (30 * k + tutarBoyu * BUYUK_HARF) - ilkUst < birSatir) tutarBoyu -= 2 * k;
-  const tutarSag = o.pad - 4 + genislik(tutar, { yuz: 'yari', boyut: tutarBoyu, renk: '', aralik: -tutarBoyu * 0.035 });
-  const tutarAlan = 30 * k + tutarBoyu * BUYUK_HARF;
-  const b = baslikYerlestir(v.baslik, o.pad - 2, ilkUst, alt.ust - 30 * k - tutarAlan, o.g - 2 * o.pad, [60 * k, 54 * k, 48 * k], 'kalin');
-  const tutarTaban = b.alt + tutarAlan;
+  // Tutar başlıkta zaten yazıyor; kapakta ayrıca büyük puntoyla tekrarlanmaz.
+  const b = baslikYerlestir(v.baslik, o.pad - 2, ust + 40 * k + 30 * k, alt.ust - 30 * k, o.g - 2 * o.pad, [60 * k, 54 * k, 48 * k], 'kalin');
   svg += b.svg;
-  svg += metin(tutar, o.pad - 4, tutarTaban, { yuz: 'yari', boyut: tutarBoyu, renk: KIMLIK.murekkep, aralik: -tutarBoyu * 0.035 });
-  return `${ac(o, { 'baslik-alt': b.alt.toFixed(1), 'tutar-alt': tutarTaban.toFixed(1), 'alt-ust': alt.ust.toFixed(1), 'tutar-sag': tutarSag.toFixed(1), 'icerik-sag': o.g - o.pad, 'baslik-sag': b.sag.toFixed(1), 'tutar-ust': (tutarTaban - tutarBoyu * BUYUK_HARF).toFixed(1), 'logo-sag': alt.logoSag.toFixed(1), 'kategori-sol': alt.kategoriSol.toFixed(1), kategori: etiketYazi })}${zemin(o)}${svg}${alt.svg}</svg>`;
+  return `${ac(o, { 'baslik-alt': b.alt.toFixed(1), 'alt-ust': alt.ust.toFixed(1), 'icerik-sag': o.g - o.pad, 'baslik-sag': b.sag.toFixed(1), 'logo-sag': alt.logoSag.toFixed(1), 'kategori-sol': alt.kategoriSol.toFixed(1), kategori: etiketYazi })}${zemin(o)}${svg}${alt.svg}</svg>`;
 }
 
 const BULTEN_MADDE = 3;

@@ -76,7 +76,7 @@ test('yatırım kapağında başlık da çizilir', () => {
 
 test('büyük tutar ve yüzde kenardan taşmaz, birbirine binmez', () => {
   for (const bicim of ['kapak', 'post', 'story'] as const) {
-    for (const v of [ORNEKLER.kunye, ORNEKLER.yatirim]) {
+    for (const v of [ORNEKLER.kunye]) {
       const s = kartSvg(v, bicim);
       assert.ok(oznitelik(s, 'tutar-sag') <= oznitelik(s, 'icerik-sag'), `${bicim} tutar taşıyor`);
     }
@@ -104,13 +104,12 @@ test('tek başına satırdan uzun kelime başlıkta taşmaz', () => {
   }
 });
 
-test('yatırım kapağında başlık tutara binmez (çok büyük tutar)', () => {
-  const v = { ...ORNEKLER.yatirim, baslik: 'Uzun bir yatırım haberi başlığı ki üç satıra kadar iner ve tutarla yarışır, kısalmalıdır gerektiğinde', toplanan: 987_654_321_000, paraBirimi: 'USD' };
+test('yatırım kapağında büyük tutar yok, başlık alt satıra binmez', () => {
+  const v = { ...ORNEKLER.yatirim, baslik: 'Uzun bir yatırım haberi başlığı ki üç satıra kadar iner ve alt satırla yarışır, kısalmalıdır gerektiğinde', toplanan: 987_654_321_000, paraBirimi: 'USD' };
   for (const b of BICIMLER) {
     const s = kartSvg(v, b);
-    assert.ok(oznitelik(s, 'baslik-alt') <= oznitelik(s, 'tutar-ust'), b);
-    assert.ok(oznitelik(s, 'tutar-alt') <= oznitelik(s, 'alt-ust'), `${b} tutar alt satıra biniyor`);
-    assert.ok(oznitelik(s, 'tutar-sag') <= oznitelik(s, 'icerik-sag'), b);
+    assert.doesNotMatch(s, /tutar-/, b);
+    assert.ok(oznitelik(s, 'baslik-alt') <= oznitelik(s, 'alt-ust'), b);
   }
 });
 

@@ -159,7 +159,7 @@ Ortak çerçeve: kâğıt zemin, üstte sarı bant (1200×675'te 18 px).
 |---|---|
 | **Haber kapağı** | Başlık 700 (~80 px) sol üstte; sol altta işaret + "kifobu"; sağ altta kategori, büyük harf, sarı alt çizgili |
 | **Kampanya kapağı** | Kampanya künyesi (bölüm 9) |
-| **Yatırım haberi kapağı** | Tur türü çerçeveli etikette (TOHUM TURU, A SERİSİ, SATIN ALMA…), girişim adı, "sektör · ülke", büyük tutar; alt kısım haber kapağıyla aynı. TL karşılığı, yatırımcı ve tarih yok |
+| **Yatırım haberi kapağı** | Tur türü çerçeveli etikette (TOHUM TURU, A SERİSİ, SATIN ALMA…) ve başlık; alt kısım haber kapağıyla aynı. Tutar başlıkta yazdığı için ayrıca büyük puntoyla çizilmez (20 Ekim). TL karşılığı, yatırımcı ve tarih yok |
 | **Hikâye (1080×1920)** | Aynı düzenlerin dikey hâli |
 | **Haber listesi** | Üst satırda "KATEGORİ · TUR TÜRÜ", başlık, sağda tutar ve saat |
 | **Profil fotoğrafı** | Kâğıt zemin, küçük boy işaret (55 tohum) |
