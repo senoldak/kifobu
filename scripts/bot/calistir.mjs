@@ -23,6 +23,8 @@ import { adNorm, haberYaz, hentTekst, istanbulIso, jsonOku, rssOku, sonHaberler 
 import { butceYukle, geminiPayiBitti } from './butce.mjs';
 import { adresiSil, anahtarVar, gizliId, kaynakIzi } from './gizli.mjs';
 import { medyaGizle } from './yerel.mjs';
+import { yayinDurduMu } from './standart.mjs';
+import { standartKapisi } from './standart-kapi.mjs';
 import { havuzOlayi, havuzAc, havuzKapat, havuzuIsle, dilimEki } from './havuz.mjs';
 
 const ROT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
@@ -38,6 +40,17 @@ const EN_FAZLA = sayiAyar('EN_FAZLA', 12);
 const TEYIT = sayiAyar('TEYIT', 1);
 const SURE_MS = sayiAyar('SURE_DK', 18) * 60_000;
 const BASLANGIC = Date.now();
+const MOTOR = { url: process.env.MOTOR_URL, anahtar: process.env.MOTOR_ANAHTARI };
+
+// Standartlar: acil durdurma. Gemini'ye ilk çağrıdan önce saate sorulur; açıksa tur hiçbir şey yazmadan ve commit etmeden biter.
+if (!KURU) {
+  const dur = await yayinDurduMu({ url: process.env.MOTOR_URL, anahtar: process.env.MOTOR_ANAHTARI, site: 'kifobu' });
+  if (dur.durdu) {
+    console.log(`Acil durdurma açık: ${dur.neden}`);
+    process.exit(0);
+  }
+  console.log(`Acil durdurma kontrolü: ${dur.neden}`);
+}
 
 // Katman 3 (Gemini kota planı): bu turun Gemini payı; yeni habere başlamadan önce geminiPayiBitti() sorulur.
 if (!KURU) console.log(await butceYukle({ url: process.env.MOTOR_URL, anahtar: process.env.MOTOR_ANAHTARI, site: 'kifobu' }));
@@ -225,7 +238,7 @@ if (process.env.GEMINI_API_KEY && sira.length) {
     durum.puan,
     { parca: 80, zaman: simdi.toISOString() },
   ).catch((e) => {
-    // Gemini hatası turu düşürmez: puansız devam edilir (yazar yine kapsam dışını eler).
+    // Standartlar: Gemini hatası olayları yazara göndermez (emin değilse yayımlama); olaylar görülmedi kalır, sonraki turda yeniden puanlanır.
     console.warn(`Ön eleme hatası: ${e.message}`);
     return null;
   });
@@ -238,10 +251,14 @@ if (process.env.GEMINI_API_KEY && sira.length) {
       grupBitti(g);
     }
     console.log(`Ön eleme: ${sira.length} olaydan ${sira.length - disari.length} tanesi yazılacak; ${disari.length} tanesi ayıklandı.`);
+    // Puanı gelmeyen olay (model atladı) bu tur yazılmaz, görülmedi kalır ve sonraki turda yeniden sorulur.
+    const puansiz = sira.filter((g) => puan.get(g) === undefined).length;
+    if (puansiz) console.warn(`Ön eleme: ${puansiz} olay puansız kaldı, sonraki tura bırakıldı.`);
     sira = sira.filter((g) => puan.get(g) >= MIN_DEGER);
   } else {
     puan.clear();
-    console.warn('Ön eleme yapılamadı; bütün olaylar yazara gidecek.');
+    sira = [];
+    console.warn('Ön eleme yapılamadı; bu tur hiçbir olay yazılmayacak, olaylar sonraki turda yeniden denenecek.');
   }
 }
 sira.sort((a, b) => (puan.get(b) ?? 0) - (puan.get(a) ?? 0) || (a.yerli !== b.yerli ? (a.yerli ? -1 : 1) : b.tarih - a.tarih));
@@ -322,7 +339,13 @@ for (const g of sira) {
     };
     // Denetimde bütün kaynakların başlık ve metinleri birlikte kullanılır.
     const kaynakMetni = kaynaklar.map((k) => `${k.baslik}\n${k.metin}`).join('\n\n');
-    const { haber, sorunlar } = await denetle({ title: t.title, description: t.description, body: t.body, kunye, why_matters: t.why_matters, key_points: t.key_points }, kaynakMetni);
+    const { haber, sorunlar, belirsiz } = await denetle({ title: t.title, description: t.description, body: t.body, kunye, why_matters: t.why_matters, key_points: t.key_points }, kaynakMetni);
+    // Denetim çalıştırılamadıysa (boş yanıt, kota, zaman aşımı) olay görülmedi kalır ve sonraki turda yeniden denenir.
+    if (belirsiz) {
+      console.log(`  BEKLİYOR (denetim tamamlanamadı): ${medyaGizle(sorunlar.join(' | '))}`);
+      ozet.hata.push(`${haber.title} — denetim tamamlanamadı, sonraki turda yeniden denenecek`);
+      continue;
+    }
     grupBitti(g);
     if (sorunlar.length) {
       // Bütün düzeltme turlarından sonra hâlâ sorunlu: yayımlanmaz, taslak da açılmaz.
@@ -336,8 +359,15 @@ for (const g of sira) {
       }
       continue;
     }
+    // Standartlar: kırmızı süzgeç, dosya yazılmadan hemen önce.
+    const kapi = await standartKapisi({ baslik: haber.title, ozet: haber.description, metin: haber.body, ekler: [haber.why_matters ?? t.why_matters, ...(haber.key_points ?? t.key_points ?? [])], kaynakMetni, kimlik: hataId, motor: MOTOR, log: (m) => console.log(medyaGizle(m)) });
+    if (!kapi.yayimla) {
+      ozet.elenen.push(`${haber.title} — ${kapi.std.gerekce}`);
+      continue;
+    }
     const slug = await haberYaz(ROT, { ...haber, category: t.category, date: istanbulIso(simdi), draft: false, kaynakIzi: kaynakIzi(secilen.slice(0, 3).map((u) => ({ ad: u.kaynak.ad, url: u.link }))), why_matters: haber.why_matters ?? t.why_matters, key_points: haber.key_points ?? t.key_points });
     delete durum.hatalar[hataId];
+    await kapi.yazildi(slug);
     if (girisimNorm) bilinenGirisimler.add(girisimNorm);
     hafiza.push(kayitKur({ title: haber.title, description: haber.description, girisim: kunye.girisim, slug }));
     yazilmisAnahtar.push(anahtarlar(haber.title), anahtarlar(`${haber.title} ${haber.description}`), ...g.uyeler.map((u) => u.anahtar));
@@ -370,6 +400,7 @@ for (const [k, v] of Object.entries(durum.puan)) if (simdi - new Date(v.zaman) >
 // Kimlikler anahtarlı özet (gizliId); eski anahtarsız hash'lerden taşıma yapıldığının işareti.
 durum.kimlik = 'hmac-v1';
 // Kısa haber havuzu: dilimi bitmiş kısa haberler kategori aranmadan tek bir derleme yazısı olur (havuz.mjs).
+let derlemeKapisi = null;
 if (process.env.GEMINI_API_KEY) {
   try {
     const h = await havuzuIsle(havuz, {
@@ -381,9 +412,15 @@ if (process.env.GEMINI_API_KEY) {
       },
       yaz: derlemeYaz,
       // Derleme alt sınırı derlemeEnAz(n); kısa kalan derleme denetimden önce ve düzeltme turundan sonra kaynaklarından uzatılır.
-      denetle: (t, kaynak, grup) => {
+      denetle: async (t, kaynak, grup) => {
         const { alt, ust } = derlemeHedefi(grup.length);
-        return denetle(t, kaynak, { enAz: derlemeEnAz(grup.length), hedef: `${alt}-${ust}`, uzat: (tas, kelime) => derlemeUzat(tas, grup, kelime) });
+        const sonuc = await denetle(t, kaynak, { enAz: derlemeEnAz(grup.length), hedef: `${alt}-${ust}`, uzat: (tas, kelime) => derlemeUzat(tas, grup, kelime) });
+        // Denetim tamamlanmadıysa derleme yayımlanmaz ve olaylar havuzda kalır (havuz.mjs belirsiz bayrağına bakar).
+        if (sonuc.sorunlar.length) return sonuc;
+        // Standartlar: kırmızı süzgeç derlemenin tamamında; madde madde ayıklanamadığı için kırmızıysa derleme yayımlanmaz.
+        const kapi = await standartKapisi({ baslik: sonuc.haber.title, ozet: sonuc.haber.description, metin: sonuc.haber.body, ekler: [sonuc.haber.why_matters ?? t.why_matters, ...(sonuc.haber.key_points ?? t.key_points ?? [])], kaynakMetni: kaynak, kimlik: grup[0].id, motor: MOTOR, log: (m) => console.log(medyaGizle(m)) });
+        derlemeKapisi = kapi;
+        return kapi.yayimla ? sonuc : { ...sonuc, sorunlar: [kapi.std.gerekce] };
       },
       kaydet: async (haber, t, grup) => {
         const slug = await haberYaz(ROT, {
@@ -396,6 +433,7 @@ if (process.env.GEMINI_API_KEY) {
           why_matters: haber.why_matters ?? t.why_matters,
           key_points: haber.key_points ?? t.key_points,
         });
+        await derlemeKapisi?.yazildi(slug);
         hafiza.push(kayitKur({ title: haber.title, description: haber.description, slug }));
         yazilanSayi++;
         ozet.yazilan.push(`${haber.title} (derleme)`);

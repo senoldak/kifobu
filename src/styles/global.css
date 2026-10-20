@@ -1477,6 +1477,19 @@ h3 {
   }
 }
 
+/* Yapay zekâ notu: gövdenin altında tek, sakin satır; kutu ve ikon yok. */
+.yz-notu {
+  margin: 28px 0 0;
+  font: 400 0.8125rem/1.5 var(--yazi);
+  color: var(--murekkep-2, var(--murekkep));
+}
+
+.yz-notu a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 /* Düzeltme notu: yalnız yazıda `duzeltme` alanı doluysa görünür. */
 .duzeltme {
   display: flex;

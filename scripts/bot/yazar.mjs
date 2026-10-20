@@ -190,7 +190,8 @@ const ELEME_SEMASI = {
 
 /**
  * Başlık listesinin her birine puan verir (0 kapsam dışı, 1–100 haber değeri). Döner: indeksle hizalı puan dizisi;
- * modelin atladığı başlık MIN_DEGER alır (kararsızsa dahil). Gemini yoksa ya da cevap gelmezse null.
+ * modelin atladığı başlık puansız (undefined) kalır: bu turda yazılmaz, bir sonraki turda yeniden sorulur (standartlar: emin değilse yayımlama).
+ * Gemini yoksa ya da cevap gelmezse null.
  */
 export async function onEle(basliklar, { kall = gemini } = {}) {
   if (!basliklar.length) return [];
@@ -214,7 +215,7 @@ Başlıklar:
 ${basliklar.map((b, i) => `${i}. ${b}`).join('\n')}`,
   });
   if (!r?.puanlar) return null;
-  const puan = basliklar.map(() => MIN_DEGER);
+  const puan = basliklar.map(() => undefined);
   for (const { nr, puan: p } of r.puanlar) if (Number.isInteger(nr) && nr >= 0 && nr < basliklar.length && Number.isInteger(p)) puan[nr] = Math.min(100, Math.max(0, p));
   return puan;
 }
@@ -233,7 +234,7 @@ export async function onbellekliPuanla(basliklar, anahtarlar, kayit, { kall = ge
     if (sonuc === null) return null;
     sonuc.forEach((p, j) => {
       puan[dilim[j]] = p;
-      kayit[anahtarlar[dilim[j]]] = { puan: p, olcek: OLCEK, zaman };
+      if (p !== undefined) kayit[anahtarlar[dilim[j]]] = { puan: p, olcek: OLCEK, zaman };
     });
   }
   return puan;

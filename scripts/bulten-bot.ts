@@ -31,6 +31,7 @@ import { promisify } from 'node:util';
 import { arsivKaydiOlustur } from '../src/lib/arsiv/kayit.ts';
 import type { TaramaSonucu } from '../src/lib/arsiv/kayit.ts';
 import { sonKaydiBul, kaydiYaz } from '../src/lib/arsiv/dosya.ts';
+import { yayinDurduMu } from './bot/standart.mjs';
 
 const execFileAsync = promisify(execFile);
 
@@ -266,6 +267,14 @@ function getBultenSayisi(): number {
 async function main() {
   const isKapanis = process.argv.includes('--kapanis');
   console.log(`[BÜLTEN BOTU] Başlatıldı. Mod: ${isKapanis ? 'GÜNLÜK BÜLTEN KAPANIŞI (18:00)' : 'CANLI GÜNCELLEME (Saatlik)'}`);
+
+  // Standartlar: acil durdurma açıksa hiçbir şey yazılmaz, paylaşılmaz (paylas çıktısı verilmez).
+  const dur = await yayinDurduMu({ url: process.env.MOTOR_URL, anahtar: process.env.MOTOR_ANAHTARI, site: 'kifobu' });
+  if (dur.durdu) {
+    console.log(`Acil durdurma açık: ${dur.neden}`);
+    return;
+  }
+  console.log(`Acil durdurma kontrolü: ${dur.neden}`);
 
   // Kampanyalar ve ayarlar
   const { AKTIF_KAMPANYALAR, PLATFORM_AYARLARI, YAKINDA_LISTESI } = await import('../src/data/bulten-kaynaklari.ts');

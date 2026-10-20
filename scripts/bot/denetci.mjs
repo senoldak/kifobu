@@ -13,6 +13,7 @@ import { YAZIM_KURALLARI } from './yazar.mjs';
 import { ZAMAN, MEDYA, medyaGizle, yerelDuzelt, ilgiliKisim } from './yerel.mjs';
 
 const SON_TUR = 3;
+const CALISMADI = 'Yazı işleri kontrolü çalıştırılamadı';
 const tamMetin = (h) => `${h.title}\n${h.description}\n${h.body}`;
 
 // ── Rakamlar ───────────────────────────────────────────────────────────
@@ -250,7 +251,7 @@ Onay verirsen (onay=true) "duzeltilmis" alanında aynı haberin redaksiyonunu da
 
 ${redaksiyonKurallari(redaksiyon.derleme)}` : ''}`,
   });
-  if (!r) return { onay: false, sorunlar: [...sorunlar, 'Yazı işleri kontrolü çalıştırılamadı'] };
+  if (!r) return { onay: false, sorunlar: [...sorunlar, CALISMADI] };
   sorunlar.push(...r.sorunlar);
   const onay = r.onay && sorunlar.length === 0;
   const d = r.duzeltilmis;
@@ -348,10 +349,13 @@ export async function denetle(h, kaynak, opts = {}) {
   if (uzat && kisa(taslak)) taslak = await uzatmayi(taslak, 'değerlendirme öncesi');
   const notlar = [];
   let redaksiyonlu = null;
+  // Standartlar: müdür onayı yoksa (iki turda da ret) ya da onaydan sonra metin düzeltme turuyla değiştiyse, son metin müdüre yeniden sorulur.
+  let mudurOnayli = false;
   for (let tur = 1; tur <= 2; tur++) {
     const d = await degerlendir(taslak, kaynak, uzunluk, { redaksiyon: { derleme: Boolean(uzat) } });
     if (d.onay) {
       redaksiyonlu = d.duzeltilmis;
+      mudurOnayli = true;
       break;
     }
     console.log(`  yazı işleri ${tur}: ${medyaGizle(d.sorunlar.join(' | '))}`);
@@ -381,13 +385,26 @@ export async function denetle(h, kaynak, opts = {}) {
     if (sorunlar.some((x) => x.startsWith('Metin kaynağın cümlelerini kopyalıyor'))) {
       ek.push('Metni baştan yeniden kur: bilgilerin sırasını değiştir, cümleleri böl ya da birleştir, kaynaktaki kelime dizilerini kullanma. Hiçbir yerde kaynaktan art arda 6 kelimeden uzun parça kalmasın (özel adlar ve rakamlar hariç).');
     }
+    mudurOnayli = false;
     const son = await duzeltIle(taslak, [...sorunlar, ...ek]);
     const sonTemiz = await redakte(son, { derleme: Boolean(uzat) });
     taslak = kesinKontroller(sonTemiz, kaynak, uzunluk).length <= kesinKontroller(son, kaynak, uzunluk).length ? sonTemiz : son;
     sorunlar = kesinKontroller(taslak, kaynak, uzunluk);
   }
+  // Fail-closed: müdürün onayı olmayan metin yayımlanmaz (önceden müdürün son itirazı yayını durdurmuyordu).
+  if (!sorunlar.length && !mudurOnayli) {
+    const son = await degerlendir(taslak, kaynak, uzunluk);
+    if (son.onay) mudurOnayli = true;
+    else {
+      console.log(`  yazı işleri son: ${medyaGizle(son.sorunlar.join(' | '))}`);
+      sorunlar = [`Yazı işleri onayı alınamadı: ${son.sorunlar.join('; ')}`];
+      notlar.push(...son.sorunlar);
+    }
+  }
   if (uzatmaOncesi !== null && sorunlar.some((x) => x.startsWith('Metin çok kısa'))) {
     sorunlar.push(`Metin çok kısa: uzatmadan önce ${uzatmaOncesi} kelime`);
   }
-  return { haber: taslak, sorunlar, notlar };
+  // belirsiz: yazı işleri kontrolü hiç çalışmadı (boş yanıt, kota, zaman aşımı); olay reddedilmez, sonraki turda yeniden denenir.
+  const belirsiz = sorunlar.some((x) => x.includes(CALISMADI));
+  return { haber: taslak, sorunlar, notlar, belirsiz };
 }

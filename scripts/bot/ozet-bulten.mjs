@@ -7,6 +7,7 @@ import path from 'node:path';
 import { readFile, writeFile, readdir, mkdir, access } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { onyuzMaddesiYayinda } from '../../src/lib/yayinda.mjs';
+import { standartDenetle, standartOzeti, yayinDurduMu } from './standart.mjs';
 
 const HER = path.dirname(fileURLToPath(import.meta.url));
 const HABERLER = path.resolve(HER, '../../src/content/haberler');
@@ -101,6 +102,14 @@ export async function calistir({ simdi = new Date(), donem = donemSec(simdi), ko
   const haberler = tumu
     .filter((h) => h.category !== KATEGORI && h.tarih.getTime() > sonBulten && simdi - h.tarih <= AZAMI_YAS_MS && h.tarih <= simdi)
     .sort((a, b) => b.tarih - a.tarih);
+  // Standartlar: kırmızı süzgeç madde madde; kırmızı çıkan tek haber bültenden atlanır, bülten bütünüyle düşmez.
+  const temiz = [];
+  for (const h of haberler) {
+    const std = standartDenetle({ dil: 'tr', baslik: h.title });
+    if (std.karar === 'kirmizi') console.log(`Bülten maddesi atlandı (${h.slug}): ${standartOzeti(std)}`);
+    else temiz.push(h);
+  }
+  haberler.splice(0, haberler.length, ...temiz);
   if (haberler.length < EN_AZ) {
     console.log('Bülten için yeni haber yok.');
     return null;
@@ -118,6 +127,10 @@ export async function calistir({ simdi = new Date(), donem = donemSec(simdi), ko
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  const slug = await calistir({ donem: process.argv[2] || undefined });
+  // Standartlar: acil durdurma açıksa bülten yazılmaz.
+  const dur = await yayinDurduMu({ url: process.env.MOTOR_URL, anahtar: process.env.MOTOR_ANAHTARI, site: 'kifobu' });
+  if (dur.durdu) console.log(`Acil durdurma açık: ${dur.neden}`);
+  else console.log(`Acil durdurma kontrolü: ${dur.neden}`);
+  const slug = dur.durdu ? null : await calistir({ donem: process.argv[2] || undefined });
   if (process.env.GITHUB_OUTPUT) await writeFile(process.env.GITHUB_OUTPUT, `yazildi=${slug ? 1 : 0}\n`, { flag: 'a' });
 }

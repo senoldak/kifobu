@@ -154,7 +154,13 @@ export async function havuzuIsle(havuz, { simdi, mukerrer, yaz, denetle, kaydet,
         log(`havuz: derleme (${grup.length} haber) yazılamadı`);
         continue;
       }
-      const { haber, sorunlar } = await denetle(t, kaynak, grup);
+      const { haber, sorunlar, belirsiz } = await denetle(t, kaynak, grup);
+      if (belirsiz) {
+        // Denetim tamamlanamadı: derleme yayımlanmaz, olaylar havuzda kalıp sonraki turda yeniden denenir.
+        log(`havuz: derleme (${grup.length} haber) BEKLİYOR (denetim tamamlanamadı)`);
+        kalan.push(...grup);
+        continue;
+      }
       if (sorunlar.length) {
         log(`havuz: derleme (${grup.length} haber) YAYIMLANMADI: ${sorunlar.join(' | ')}`);
         continue;

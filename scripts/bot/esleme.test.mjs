@@ -56,9 +56,9 @@ test('ayniOlayMi: geçersiz numaralar atılır, cevap yoksa null', async () => {
   assert.equal(await ayniOlayMi(c, { kall: async () => null }), null);
 });
 
-test('onEle: puanlar 0–100 sınırlanır, atlanan başlık eşik puanını (60) alır', async () => {
+test('onEle: puanlar 0–100 sınırlanır, atlanan başlık puansız kalır (yazılmaz, yeniden sorulur)', async () => {
   const p = await onEle(['a', 'b', 'c'], { kall: async () => ({ puanlar: [{ nr: 0, puan: 140 }, { nr: 2, puan: 0 }] }) });
-  assert.deepEqual(p, [100, 60, 0]);
+  assert.deepEqual(p, [100, undefined, 0]);
 });
 
 test('onbellekliEsle: bilinen "aynı" çift tekrar sorulmaz, yeni evet kaydedilir', async () => {

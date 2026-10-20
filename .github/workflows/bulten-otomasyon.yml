@@ -40,6 +40,14 @@ jobs:
       - name: Bağımlılıkları Yükle
         run: npm ci || npm install
 
+      # Standartlar: acil durdurma açıksa canlı güncelleme, kapanış ve paylaşım adımları çalışmaz.
+      - name: Acil durdurma kontrolü
+        id: dur
+        env:
+          MOTOR_URL: ${{ vars.MOTOR_URL }}
+          MOTOR_ANAHTARI: ${{ secrets.MOTOR_ANAHTARI }}
+        run: node scripts/bot/durdu.mjs
+
       # Kapanış yalnızca mod=kapanis ile (saat Worker'ı Türkiye 18:00'de gönderir; elle de seçilebilir). UTC saatine bakılmaz:
       # kış saatinde Oslo 16:00 canlı güncellemesi de UTC 15'e düşüp ikinci bir kapanış üretirdi.
       # Hiçbir şey yayımlamadan META_TOKEN'ın Kifobu Sayfasına ve @kifobu Instagram'ına erişimini sınar.
@@ -53,9 +61,11 @@ jobs:
 
       - name: Bülten Botunu Çalıştır
         id: bot
-        if: github.event.inputs.mod != 'meta-kontrol'
+        if: github.event.inputs.mod != 'meta-kontrol' && steps.dur.outputs.durdu != '1'
         env:
           MOD: ${{ github.event.inputs.mod }}
+          MOTOR_URL: ${{ vars.MOTOR_URL }}
+          MOTOR_ANAHTARI: ${{ secrets.MOTOR_ANAHTARI }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}

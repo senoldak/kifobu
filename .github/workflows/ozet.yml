@@ -39,6 +39,8 @@ jobs:
         id: bulten
         env:
           DONEM: ${{ inputs.donem }}
+          MOTOR_URL: ${{ vars.MOTOR_URL }}
+          MOTOR_ANAHTARI: ${{ secrets.MOTOR_ANAHTARI }}
         run: |
           case "$DONEM" in sabah|ogle|aksam|gece|"") ;; *) DONEM="" ;; esac
           node scripts/bot/ozet-bulten.mjs $DONEM

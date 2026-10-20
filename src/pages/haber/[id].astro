@@ -17,6 +17,7 @@ import { dizinVerisi, haberBaglantilari } from '../../lib/dizin';
 import { gunUrl, istanbulGunu } from '../../lib/gunler';
 import { matchEntities } from '../../lib/entities';
 import { duzeltmeNotu } from '../../lib/duzeltme';
+import { yapayZekaNotu } from '../../lib/yapay-zeka-notu';
 import { kapakAlt, kapakUrl, KAPAK_G, KAPAK_Y, LOGO_G, LOGO_Y } from '../../kapak/ciz';
 
 export async function getStaticPaths() {
@@ -44,6 +45,7 @@ interface Props {
 const { haber, related, konular, bultenGunu } = Astro.props;
 const d = haber.data;
 const duzeltme = duzeltmeNotu(d, 'tr');
+const yzNotu = yapayZekaNotu(d, d.title, new URL(Astro.url.pathname, Astro.site).href);
 const { title, description, date, category, cover, coverAlt, author } = d;
 const { Content } = await render(haber);
 const funding = isFunding(haber);
@@ -225,6 +227,15 @@ const jsonLd = {
     <div class="metin">
       <Content />
     </div>
+
+    {/* Standartlar: gövdeden sonra, paylaşımdan önce tek satırlık yapay zekâ notu (src/lib/yapay-zeka-notu.ts). */}
+    {
+      yzNotu && (
+        <p class="yz-notu" data-yz={yzNotu.tur}>
+          {yzNotu.metin} <a href={yzNotu.mailto}>{yzNotu.baglantiMetni}</a>
+        </p>
+      )
+    }
 
     {
       (konular.length > 0 || bultenGunu) && (

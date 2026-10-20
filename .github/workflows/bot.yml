@@ -80,9 +80,18 @@ jobs:
           exit 1
 
       # Planlı (ileri tarihli) yazılar vakti gelince bu turla yayına girer: vadesi gelip sitede 404 dönen yazı varsa yayınla.
+      # Standartlar: acil durdurma açıksa planlı yazı da yayına alınmaz.
+      - name: Acil durdurma kontrolü
+        id: dur
+        if: ${{ !cancelled() && steps.commit.outputs.yayin != '1' }}
+        env:
+          MOTOR_URL: ${{ vars.MOTOR_URL }}
+          MOTOR_ANAHTARI: ${{ secrets.MOTOR_ANAHTARI }}
+        run: node scripts/bot/durdu.mjs
+
       - name: Planlı yazılar
         id: planlagt
-        if: ${{ !cancelled() && steps.commit.outputs.yayin != '1' }}
+        if: ${{ !cancelled() && steps.commit.outputs.yayin != '1' && steps.dur.outputs.durdu != '1' }}
         run: node scripts/planlagt.mjs
 
       # Botun push'u yayın iş akışını kendiliğinden tetiklemez (GITHUB_TOKEN); elle başlatılır.
