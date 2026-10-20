@@ -1,5 +1,5 @@
 ---
-title: "LearnUpon, büyüme finansmanı turunda 44,5 milyon euro ve 50 milyon dolar yatırım aldı"
+title: "LearnUpon, 44,5 milyon euro (yaklaşık 50 milyon dolar) büyüme borç finansmanı sağladı"
 description: "Dublin merkezli kurumsal öğrenme platformu LearnUpon, yapay zekâ tabanlı öğrenme platformunu büyütmek amacıyla Claret Capital Partners'tan 44,5 milyon euro yani 50 milyon dolar büyüme finansmanı sağladı."
 date: 2026-10-17T20:20:55+03:00
 category: yatirimlar
@@ -14,6 +14,7 @@ key_points:
   - "Yatırım Londra merkezli Claret Capital Partners tarafından sağlandı."
   - "Kaynak, yapay zekâ tabanlı öğrenme platformunun geliştirilmesi için kullanılacak."
 kaynakIzi: "v1.PTiWMk2wjc+kfd7m.GYUNxHTH9wKDdhFxKJWQWIQzv/0dr3bnouVADl9Y/mxTWHtMWletnNrehE6DITQ+BBJPXvBFJHQW1xqX4KZdzMbnIYMArXfiKh7kVVJncXdPc18Y+Ot4pV4c68TmCCOwLbFMqdIaNfSN39eYNuc1N/OXCeK644pzIRcFLY9+JdByDHok5zYewr67meDBOeOngPuVYvgynkx5n16T16mP58HwnPOL0ps="
+duzeltme: "20.10.2026: Başlıkta aynı tutar iki para biriminde “ve” ile toplam gibi yazılmış ve finansman “yatırım” olarak nitelenmişti. Doğrusu 44,5 milyon euro (yaklaşık 50 milyon dolar) tutarında büyüme borç finansmanı. Başlık düzeltildi."
 uretim: yapay-zeka
 ---
 

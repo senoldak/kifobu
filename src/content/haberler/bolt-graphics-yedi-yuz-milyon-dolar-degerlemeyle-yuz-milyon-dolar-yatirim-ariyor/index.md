@@ -4,14 +4,13 @@ description: "Yapay zekâ odaklı olmayan çip geliştirme çalışmalarına oda
 date: 2026-10-17T18:36:52+03:00
 category: yatirimlar
 girisim: "Bolt Graphics"
-toplanan: 100000000
-paraBirimi: USD
 why_matters: "Yapay zekâ dışındaki alanlara odaklanan çip girişimlerinin dev şirketler karşısında sermaye bulma çabası ve donanım pazarındaki alternatif arayışları açısından önem taşıyor."
 key_points:
   - "Bolt Graphics, 700 milyon dolar değerlemeyle yaklaşık 100 milyon dolar arıyor."
   - "Girişimin Zeus grafik işlemcisi şu an altı milimetrekarelik test çipi aşamasında."
   - "Ticari çip üretiminin dördüncü çeyreğinde başlaması planlanıyor."
 kaynakIzi: "v1.9RApqV7EH3A9unKN.943EfoVbD03hQ6MrJan2CwLw5iTWUOiAKMjrNqALQB5U4Vu7yLr6Ey4tPeZV0ARjVI17oEU5uik5BZOLY6QQFxlRxngeEi6JvCy3+U7mV3lr7SSkxWnpdG8Jb9pGqSsWwdLpj2GnBdEEykzWSJ4whng+cuWwKtQNhRLu5Ic7rL9R5r8JkrPtj15AC0P6S9rd4YQvc1AKuI1thNOZSHlc1IodaZ8aj9zWH4s="
+duzeltme: "20.10.2026: Künyede 100 milyon dolar “toplanan” olarak gösterilmişti; şirket bu tutarı toplamadı, arıyor. Künye kaldırıldı."
 uretim: yapay-zeka
 ---
 

@@ -4,7 +4,7 @@ description: "Biyoteknoloji girişimi Estuary Biotherapeutics, böbrek hastalık
 date: 2026-10-17T20:20:55+03:00
 category: yatirimlar
 girisim: "Estuary Biotherapeutics"
-toplanan: 103000000
+toplanan: 93000000
 paraBirimi: USD
 tur: "Seri A"
 yatirimcilar: "RA Capital Management, Deep Track Capital, Biogen New Ventures, UPMC Enterprises, Pivotal bioVenture Partners, National Kidney Foundation Innovation Fund, 4BIO Capital, GV"
@@ -14,6 +14,7 @@ key_points:
   - "Yatırım turuna RA Capital Management liderlik etti."
   - "Kaynak, polikistik böbrek hastalığı için gen tedavisi geliştirmede kullanılacak."
 kaynakIzi: "v1.sGjLkbs5OBKpET6S.Y0LiLp26JFc2OjWAQa5T+dvWIqkfbiPmJIeCYwXMFeJTsFkVtGQsCQbQNlhx00rY8YBLrmnVUkm+MZL+eCqpD7K7tpK2i0T6ITlJ3FH/nAbLi2UZ3728RSmVtNu6CebGIx67QSLcqSfcT1n9E8C0aToogbX5UgUMxPqJw5MfnOvtepvtNZBTJRjQYKsBMH1LJwCF2cEVJMW+lPjat8Zd"
+duzeltme: "20.10.2026: Künyedeki tutar 103 milyon dolar olarak yazılmıştı. Seri A tutarı 93 milyon dolar; 103 milyon dolar, daha önceki 10 milyon dolarlık tohum finansmanıyla birlikte toplam taahhüttür. Künye 93 milyon dolara düzeltildi."
 uretim: yapay-zeka
 ---
 
