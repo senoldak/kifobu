@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { yapayZekaNotu, hataBildirMailto, BOT_NOTU, SAHIP_NOTU } from './yapay-zeka-notu.ts';
+import { yapayZekaNotu, hataBildirMailto, BOT_NOTU, SAHIP_NOTU, ZINCIR_NOTU } from './yapay-zeka-notu.ts';
 
 const URL_ = 'https://kifobu.com/haber/ornek/';
 
@@ -29,4 +29,19 @@ test('mailto: konu ve gövde kodlanır, gövde tam adres', () => {
 
 test('"Sorumlu" kelimesi notlarda yok', () => {
   assert.doesNotMatch(`${BOT_NOTU}${SAHIP_NOTU}`, /sorumlu/i);
+});
+
+test('yazı işleri zinciri (uretim yazi-isleri): yazı türü dolu ya da yazar Şenol Dak olsa da zincir notu; bağlantı aynı', () => {
+  const metin =
+    'Bu yazı yapay zekâ araçlarıyla yazıldı. Rakamlar ve alıntılar resmî kaynaklarla karşılaştırıldı; yazı yayından önce editör tarafından okunup onaylandı.';
+  assert.equal(ZINCIR_NOTU, metin);
+  for (const veri of [{ uretim: 'yazi-isleri', yaziTuru: 'aciklayici' }, { uretim: 'yazi-isleri', yaziTuru: 'referans', author: 'Şenol Dak' }]) {
+    const n = yapayZekaNotu(veri, 'Örnek & yazı', URL_);
+    assert.equal(n?.tur, 'zincir');
+    assert.equal(n?.metin, metin);
+    assert.notEqual(n?.metin, SAHIP_NOTU);
+    assert.equal(n?.baglantiMetni, 'Hata bildir →');
+    assert.equal(n?.mailto, hataBildirMailto('Örnek & yazı', URL_));
+  }
+  assert.doesNotMatch(ZINCIR_NOTU, /sorumlu/i);
 });

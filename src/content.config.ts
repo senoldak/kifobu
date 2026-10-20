@@ -46,7 +46,8 @@ const haberler = defineCollection({
       key_points: z.array(z.string()).optional(),
       // Botun kullandığı kaynakların şifreli kaydı; sitede gösterilmez (bkz. scripts/bot/gizli.mjs).
       kaynakIzi: z.string().optional(),
-      uretim: z.enum(['editor', 'yapay-zeka']).default('editor'),
+      // 'yazi-isleri': yazı işleri zincirinin yazısı (yerleştirme yazar); sayfa sonunda zincir notunu alır (src/lib/yapay-zeka-notu.ts).
+      uretim: z.enum(['editor', 'yapay-zeka', 'yazi-isleri']).default('editor'),
     }),
 });
 
