@@ -11,6 +11,7 @@
 import { gemini } from './lib.mjs';
 import { YAZIM_KURALLARI } from './yazar.mjs';
 import { ZAMAN, MEDYA, medyaGizle, yerelDuzelt, ilgiliKisim } from './yerel.mjs';
+import { olcekKontrol } from './olcek.mjs';
 
 const SON_TUR = 3;
 const CALISMADI = 'Yazı işleri kontrolü çalıştırılamadı';
@@ -192,9 +193,23 @@ export function baslikKontrol(baslik = '') {
   return sorunlar;
 }
 
+// Standartlar Faz 1 ölçek kontrolü: metindeki ve künyedeki tutar, kaynaktaki tutardan 10 kat ya da daha fazla
+// kaymışsa (crore/lakh/milyar çevirisi) sorun olur; düzelmezse haber yayımlanmaz.
+const kunyeTutarlari = (k = {}) => [k.toplanan, k.hedef].map(Number).filter((n) => n > 0);
 export function kesinKontroller(h, kaynak, { enAz, hedef } = {}) {
   const m = tamMetin(h);
-  return [...baslikKontrol(h.title), ...uzunlukKontrol(h.body, enAz, hedef), ...rakamKontrol(m, kaynak), ...kunyeKontrol(h.kunye ?? {}, kaynak), ...alintiKontrol(m, kaynak), ...adKontrol(m, kaynak), ...kopyaKontrol(h.body, kaynak), ...zamanKontrol(m), ...medyaKontrol(m)];
+  return [...baslikKontrol(h.title), ...uzunlukKontrol(h.body, enAz, hedef), ...rakamKontrol(m, kaynak), ...olcekKontrol(m, kaynak, { mutlak: kunyeTutarlari(h.kunye) }), ...kunyeKontrol(h.kunye ?? {}, kaynak), ...alintiKontrol(m, kaynak), ...adKontrol(m, kaynak), ...kopyaKontrol(h.body, kaynak), ...zamanKontrol(m), ...medyaKontrol(m)];
+}
+
+// "Neden önemli" ve kısa maddeler düzeltme turunda yeniden yazılmaz (muhabir yalnız başlık/spot/metin döndürür);
+// kaynakta doğrulanamayan rakam ya da ölçek hatası taşıyan madde yayımlanmadan düşer, haber durmaz (rakam şeridi düzeni).
+// Ölçüm (20 Ekim, son 100 haber): ek alanı denetime sokup bekletmek haberlerin %12'sine kadarını durdurabilirdi.
+const ekGecer = (s, kaynak) => !rakamKontrol(s, kaynak).length && !olcekKontrol(s, kaynak).length && !alintiKontrol(s, kaynak).length;
+export function ekAlanlariSuz(h, kaynak) {
+  const out = { ...h };
+  if (typeof h.why_matters === 'string' && h.why_matters && !ekGecer(h.why_matters, kaynak)) out.why_matters = '';
+  if (Array.isArray(h.key_points)) out.key_points = h.key_points.filter((p) => typeof p === 'string' && ekGecer(p, kaynak));
+  return out;
 }
 
 const tamMetinKisa = (h) => `BAŞLIK: ${h.title}\nSPOT: ${h.description}\nMETİN:\n${h.body}`;
@@ -406,5 +421,5 @@ export async function denetle(h, kaynak, opts = {}) {
   }
   // belirsiz: yazı işleri kontrolü hiç çalışmadı (boş yanıt, kota, zaman aşımı); olay reddedilmez, sonraki turda yeniden denenir.
   const belirsiz = sorunlar.some((x) => x.includes(CALISMADI));
-  return { haber: taslak, sorunlar, notlar, belirsiz };
+  return { haber: ekAlanlariSuz(taslak, kaynak), sorunlar, notlar, belirsiz };
 }
