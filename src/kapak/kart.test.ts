@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { bol, kapakDuzeni, kartSvg, kunyeEtiketi } from './kart.ts';
+import { bol, bultenMaddeleri, kapakDuzeni, kartSvg, kunyeEtiketi } from './kart.ts';
 
 const oznitelik = (svg: string, ad: string) => Number(svg.match(new RegExp(`data-${ad}="([0-9.]+)"`))?.[1]);
 
@@ -124,4 +124,20 @@ test('alt satırda logo ile kategori birbirine yaklaşmaz', async () => {
     const s = kartSvg({ baslik: 'Gece Bülteni — 30 Eylül 2026', kategori: 'gunluk-bulten' }, b);
     assert.ok(oznitelik(s, 'logo-sag') + 24 <= oznitelik(s, 'kategori-sol'), `${b} bülten`);
   }
+});
+
+test('bülten kapağı: haber listesinden en çok üç madde, sağ altta tarih, maddeler alt satıra değmez', () => {
+  const govde = 'Son bültenden bu yana:\n\n- [Bir haber, uzun bir başlık](/haber/a/)\n- [İki](/haber/b/)\n* [Üç](/haber/c/)\n- [Dört](/haber/d/)\n\nDüz satır [bağlantı](/x/)';
+  const m = bultenMaddeleri(govde);
+  assert.deepEqual(m, ['Bir haber, uzun bir başlık', 'İki', 'Üç', 'Dört']);
+  assert.deepEqual(bultenMaddeleri(undefined), []);
+  const uzun = 'Enzo Ventures, Güney Avrupa kökenli girişimler için 20 milyon euro büyüklüğünde ikinci fonunu kapattı';
+  for (const b of BICIMLER) {
+    const s = kartSvg({ baslik: 'Öğle Bülteni — 19 Ekim 2026', kategori: 'gunluk-bulten', maddeler: [uzun, ...m] }, b);
+    assert.match(s, /data-kategori="19 EKİM 2026"/, b);
+    assert.ok(oznitelik(s, 'madde-alt') + 24 <= oznitelik(s, 'alt-ust'), `${b} maddeler alt satıra değmez`);
+    assert.ok(oznitelik(s, 'logo-sag') + 24 <= oznitelik(s, 'kategori-sol'), `${b} logo ile tarih`);
+  }
+  // Maddesiz bülten eski düz kapakla çizilir.
+  assert.doesNotMatch(kartSvg({ baslik: 'Gece Bülteni — 17 Ekim 2026', kategori: 'gunluk-bulten' }), /data-madde-alt/);
 });

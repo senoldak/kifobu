@@ -7,7 +7,7 @@ import path from 'node:path';
 import { create, type Font } from 'fontkitten';
 import { categoryName, SITE } from '../lib/site.ts';
 import { KIMLIK, tohumIsaretiSvg } from '../lib/kimlik.ts';
-import { kartSvg } from './kart.ts';
+import { bultenMaddeleri, kartSvg } from './kart.ts';
 import type { Haber } from '../lib/news';
 
 export const KAPAK_G = 1200;
@@ -130,6 +130,7 @@ export function kapakSvg(h: Haber) {
       durum: d.durum,
       paraBirimi: d.paraBirimi,
       tur: d.tur,
+      maddeler: d.category === 'gunluk-bulten' ? bultenMaddeleri(h.body) : undefined,
     },
     'kapak',
   );

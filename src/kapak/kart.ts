@@ -5,7 +5,7 @@
 // 18:00 kapanış bülteninin görselleri (scripts/bulten-gorsel-*) bu dosyayı kullanmaz.
 import { BUYUK_HARF, genislik, kisalt, logo, metin, satirlar, type MetinAyar } from './ciz.ts';
 import { categoryName, type Durum } from '../lib/site.ts';
-import { KIMLIK, cubukOlcegi, durumEtiketi, tutarKisa, yuzdeKesik } from '../lib/kimlik.ts';
+import { KIMLIK, cubukOlcegi, durumEtiketi, tohumIsaretiSvg, tutarKisa, yuzdeKesik } from '../lib/kimlik.ts';
 
 export interface KapakVeri {
   baslik: string;
@@ -18,6 +18,7 @@ export interface KapakVeri {
   durum?: Durum;
   paraBirimi?: string;
   tur?: string;
+  maddeler?: string[]; // bülten: içerdiği haberlerin başlıkları
 }
 
 export type Bicim = 'kapak' | 'post' | 'story';
@@ -236,10 +237,72 @@ function yatirimSvg(v: KapakVeri, o: Olcu) {
   return `${ac(o, { 'baslik-alt': b.alt.toFixed(1), 'tutar-alt': tutarTaban.toFixed(1), 'alt-ust': alt.ust.toFixed(1), 'tutar-sag': tutarSag.toFixed(1), 'icerik-sag': o.g - o.pad, 'baslik-sag': b.sag.toFixed(1), 'tutar-ust': (tutarTaban - tutarBoyu * BUYUK_HARF).toFixed(1), 'logo-sag': alt.logoSag.toFixed(1), 'kategori-sol': alt.kategoriSol.toFixed(1), kategori: etiketYazi })}${zemin(o)}${svg}${alt.svg}</svg>`;
 }
 
+const BULTEN_MADDE = 3;
+
+/** Bülten metnindeki haber listesinin başlıkları ("- [Başlık](/haber/…/)" satırları). */
+export function bultenMaddeleri(govde: string | undefined): string[] {
+  return [...(govde ?? '').matchAll(/^\s*[-*]\s+\[(.+?)\]\([^)]*\)/gm)].map((m) => m[1].trim());
+}
+
+/** Tek satıra sığmayan başlığı sözcük sınırında keser ("…"); sözcük ortasından bölmez. */
+function sozcukKisalt(s: string, maks: number, ayar: MetinAyar) {
+  if (genislik(s, ayar) <= maks) return s;
+  const soz = s.split(/\s+/);
+  while (soz.length > 1 && genislik(`${soz.join(' ').replace(/[,;:]$/, '')} …`, ayar) > maks) soz.pop();
+  return `${soz.join(' ').replace(/[,;:]$/, '')} …`;
+}
+
+/** Büyük soluk tohum işareti, sağ kenardan taşar; sarı kol tam renk kalır, ucu sağ alttaki tarihten uzakta (yukarıda) durur. */
+function arkaIsaret(o: Olcu) {
+  const boy = o.y * 0.86;
+  const x = o.g - boy * 0.6;
+  const y = (o.y - boy) / 2 + o.bant / 2;
+  return tohumIsaretiSvg({ boyut: boy })
+    .replaceAll(`fill="${KIMLIK.murekkep}"`, 'fill="#e6e3da"')
+    .replace('aria-hidden="true">', 'aria-hidden="true"><g transform="rotate(-110 100 100)">')
+    .replace('</svg>', '</g></svg>')
+    .replace('<svg ', `<svg x="${x.toFixed(1)}" y="${y.toFixed(1)}" `);
+}
+
+// Bülten kapağı: "Öğle Bülteni", altında en çok üç haber başlığı (birer satır), sağda taşan soluk tohum işareti;
+// sağ altta bültenin tarihi.
+function bultenSvg(v: KapakVeri, o: Olcu) {
+  const k = o.k;
+  const { ana, tarih } = bol(v.baslik, v.kategori);
+  const maddeler = v.maddeler ?? [];
+  const etiketYazi = kunyeEtiketi(v.kategori, tarih);
+  const alt = altSatir(o, etiketYazi);
+  const x = o.pad;
+  const genis = o.g * 0.7 - x;
+  let svg = arkaIsaret(o);
+  const bb = o.baslik[0];
+  const taban = o.ust + 26 * k + bb * BUYUK_HARF;
+  svg += metin(ana, x - 2, taban, { yuz: 'kalin', boyut: bb, renk: KIMLIK.murekkep, aralik: -bb * 0.025 });
+  const mb = 30 * k;
+  const adim = 62 * k;
+  const ayar: MetinAyar = { yuz: 'orta', boyut: mb, renk: KIMLIK.murekkep, aralik: -mb * 0.01 };
+  let y = taban + 44 * k;
+  for (const m of maddeler.slice(0, BULTEN_MADDE)) {
+    svg += `<rect x="${x}" y="${y.toFixed(1)}" width="${genis.toFixed(1)}" height="${(1.5 * k).toFixed(1)}" fill="${KIMLIK.cizgi}"/>`;
+    const mt = y + adim / 2 + (mb * BUYUK_HARF) / 2;
+    svg += `<rect x="${x}" y="${(mt - mb * BUYUK_HARF * 0.5 - 5 * k).toFixed(1)}" width="${(10 * k).toFixed(1)}" height="${(10 * k).toFixed(1)}" fill="${KIMLIK.sari}"/>`;
+    svg += metin(sozcukKisalt(m, genis - 30 * k, ayar), x + 30 * k, mt, ayar);
+    y += adim;
+  }
+  svg += `<rect x="${x}" y="${y.toFixed(1)}" width="${genis.toFixed(1)}" height="${(1.5 * k).toFixed(1)}" fill="${KIMLIK.cizgi}"/>`;
+  let enAlt = y;
+  if (maddeler.length > BULTEN_MADDE) {
+    enAlt = y + 40 * k;
+    svg += metin(`+${maddeler.length - BULTEN_MADDE} haber daha`, x + 30 * k, enAlt, { yuz: 'normal', boyut: 24 * k, renk: KIMLIK.gri });
+  }
+  return `${ac(o, { 'madde-alt': enAlt.toFixed(1), 'alt-ust': alt.ust.toFixed(1), 'logo-sag': alt.logoSag.toFixed(1), 'kategori-sol': alt.kategoriSol.toFixed(1), kategori: etiketYazi })}${zemin(o)}${svg}${alt.svg}</svg>`;
+}
+
 /** Haber kartı (SVG). Düzen veriden seçilir. */
 export function kartSvg(v: KapakVeri, bicim: Bicim = 'kapak') {
   const o = OLCU[bicim];
   const duzen = kapakDuzeni(v);
+  if (v.kategori === 'gunluk-bulten' && v.maddeler?.length) return bultenSvg(v, o);
   if (duzen === 'kunye') return kunyeSvg(v, o);
   if (duzen === 'yatirim') return yatirimSvg(v, o);
   return haberSvg(v, o);
