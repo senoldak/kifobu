@@ -1,0 +1,86 @@
+{
+  "tarih": "2026-10-20",
+  "sayi": 1533,
+  "baslangic": false,
+  "girisimler": [
+    {
+      "ad": "ATHLETICLABS",
+      "platform": "fonangels",
+      "url": "https://fonangels.com/kampanyalar/projehakkinda/athleticlabs?pid=1689",
+      "bugun": 0,
+      "alinan": 7602500,
+      "kalan": null,
+      "hedef": 7500000,
+      "degerleme": 75000000,
+      "yuzde": 101.37,
+      "durum": "SONA ERDİ",
+      "veriAlinamadi": false,
+      "birikmis": false
+    },
+    {
+      "ad": "OYLİO",
+      "platform": "fonangels",
+      "url": "https://fonangels.com/kampanyalar/projehakkinda/oylio?pid=1778",
+      "bugun": 100000,
+      "alinan": 2686300,
+      "kalan": 2313700,
+      "hedef": 5000000,
+      "degerleme": 50000000,
+      "yuzde": 53.73,
+      "durum": "son 16 gün",
+      "veriAlinamadi": false,
+      "birikmis": false
+    },
+    {
+      "ad": "PUPAQ",
+      "platform": "trinkfon",
+      "url": "https://kfs.trinkfon.com/projeler/pupaq/kampanya/",
+      "bugun": 0,
+      "alinan": 124282,
+      "kalan": 875750,
+      "hedef": 1000032,
+      "degerleme": 25000800,
+      "yuzde": 12.43,
+      "durum": "Aktif",
+      "veriAlinamadi": false,
+      "birikmis": false
+    },
+    {
+      "ad": "LOOPYON",
+      "platform": "ecofolio",
+      "url": "https://ecofolio.com.tr/kampanyalar/loopyon",
+      "bugun": 0,
+      "alinan": 452200,
+      "kalan": 34547800,
+      "hedef": 35000000,
+      "degerleme": 385038504,
+      "yuzde": 1.29,
+      "durum": "son 26 gün",
+      "veriAlinamadi": false,
+      "birikmis": false
+    }
+  ],
+  "platformlar": [
+    {
+      "anahtar": "fonangels",
+      "ad": "fonangels",
+      "renk": "#f47b3d",
+      "bugun": 100000,
+      "toplam": 10288800
+    },
+    {
+      "anahtar": "trinkfon",
+      "ad": "trinkfon",
+      "renk": "#7c3aed",
+      "bugun": 0,
+      "toplam": 124282
+    },
+    {
+      "anahtar": "ecofolio",
+      "ad": "ecofolio",
+      "renk": "#009bae",
+      "bugun": 0,
+      "toplam": 452200
+    }
+  ]
+}
