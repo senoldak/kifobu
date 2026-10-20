@@ -92,3 +92,26 @@ test('denetle: opts yoksa tek haber davranışı aynı (200 kelime alt sınırı
     geri();
   }
 });
+
+test('denetle: onay veren değerlendirme redaksiyonu da verirse ayrı redaksiyon çağrısı yapılmaz', async () => {
+  const gercek = globalThis.fetch;
+  const istemler = [];
+  globalThis.fetch = async (_url, init) => {
+    const istem = JSON.parse(init.body).contents[0].parts[0].text;
+    istemler.push(istem);
+    const cevap = istem.includes('yazı işleri müdürüsün')
+      ? { onay: true, sorunlar: [], duzeltilmis: { title: BASLIK, description: 'Dilimin özeti.', body: govde(210) } }
+      : { title: BASLIK, description: 'Dilimin özeti.', body: govde(210) };
+    return new Response(JSON.stringify({ candidates: [{ content: { parts: [{ text: JSON.stringify(cevap) }] } }], usageMetadata: {} }));
+  };
+  try {
+    const r = await denetle(taslak(210), KAYNAK);
+    assert.equal(istemler.length, 1);
+    assert.match(istemler[0], /"duzeltilmis" alanında aynı haberin redaksiyonunu/);
+    assert.match(istemler[0], /TDK Yazım Kılavuzu/);
+    assert.equal(r.haber.body, govde(210));
+    assert.equal(r.haber.category, 'yatirimlar'); // taslağın diğer alanları korunur
+  } finally {
+    globalThis.fetch = gercek;
+  }
+});

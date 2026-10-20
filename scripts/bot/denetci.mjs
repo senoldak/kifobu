@@ -213,12 +213,19 @@ const METIN_SEMASI = {
   required: ['title', 'description', 'body'],
 };
 
+// Kota (20 Ekim): ayrı redaksiyon çağrısı günde ~40 istekti. Onay veren değerlendirme redaksiyonu aynı yanıtta verir.
+const DEGERLENDIRME_REDAKSIYON_SEMASI = {
+  type: 'object',
+  properties: { ...DEGERLENDIRME_SEMASI.properties, duzeltilmis: METIN_SEMASI },
+  required: ['onay', 'sorunlar'],
+};
+
 // ── 2. Yazı işleri müdürü ──────────────────────────────────────────────
-export async function degerlendir(h, kaynak, uzunluk = {}) {
+export async function degerlendir(h, kaynak, uzunluk = {}, { redaksiyon = null } = {}) {
   const sorunlar = kesinKontroller(h, kaynak, uzunluk);
   const r = await gemini({
     denetim: true,
-    schema: DEGERLENDIRME_SEMASI,
+    schema: redaksiyon ? DEGERLENDIRME_REDAKSIYON_SEMASI : DEGERLENDIRME_SEMASI,
     prompt: `Sen kifobu'nun yazı işleri müdürüsün. Yapay zekânın yazdığı bir haber taslağını yayından önce kaynaklarla karşılaştırıyorsun (Basın Meslek İlkeleri). Sıkı ol: şüphe varsa onaylama.
 
 Şunlardan biri varsa onay=false ver ve sorunu kısaca, somut olarak yaz:
@@ -237,11 +244,18 @@ KAYNAKLAR:
 ${ilgiliKisim(kaynak, tamMetin(h), 14000)}
 
 TASLAK:
-${tamMetinKisa(h)}`,
+${tamMetinKisa(h)}${redaksiyon ? `
+
+Onay verirsen (onay=true) "duzeltilmis" alanında aynı haberin redaksiyonunu da ver (son okuma): SADECE dilini düzelt, içeriğine asla dokunma. Metin zaten doğruysa aynen ver. Onay vermezsen "duzeltilmis" alanını boş bırak.
+
+${redaksiyonKurallari(redaksiyon.derleme)}` : ''}`,
   });
   if (!r) return { onay: false, sorunlar: [...sorunlar, 'Yazı işleri kontrolü çalıştırılamadı'] };
   sorunlar.push(...r.sorunlar);
-  return { onay: r.onay && sorunlar.length === 0, sorunlar };
+  const onay = r.onay && sorunlar.length === 0;
+  const d = r.duzeltilmis;
+  const duzeltilmis = onay && d?.title && d?.description && d?.body ? { title: d.title, description: d.description, body: d.body } : null;
+  return { onay, sorunlar, duzeltilmis };
 }
 
 // ── 3. Muhabire düzeltme ───────────────────────────────────────────────
@@ -265,12 +279,9 @@ ${tamMetinKisa(h)}`,
 }
 
 // ── 4. Redaktör ────────────────────────────────────────────────────────
-export async function redakte(h, { derleme = false } = {}) {
-  const r = await gemini({
-    schema: METIN_SEMASI,
-    prompt: `Sen kifobu'nun redaktörüsün (son okuma). Aşağıdaki haberin SADECE dilini düzelt, içeriğine asla dokunma.
-
-Düzelt:
+// Kurallar ortak: yazı işleri onay verdiği çağrıda redaksiyonu da döndürebilir (degerlendir, redaksiyon seçeneği).
+function redaksiyonKurallari(derleme) {
+  return `Düzelt:
 - Yazım ve noktalama: TDK Yazım Kılavuzu. Bağlaç "de/da" ve "ki" ayrı, ekler bitişik; kesme işareti özel adlarda ("Apple'ın", "Türkiye'de"); "yapay zekâ", "mi" soru eki ayrı.
 - Çeviri kokan ifadeler ve gereksiz yabancı kelimeler: "-den dolayı olarak", "bir şekilde", "konumlandırıyor", "ilgili olarak", "gerçekleştirdi" (yerine "yaptı"), "sağlamakta" (yerine "sağlıyor"); doğal Türkçe karşılıkları kullan. Marka, ürün ve şirket adları değişmez.
 - Haber dili: kısa ve net cümleler (tercihen 25 kelimenin altında), etken çatı, bir cümlede bir bilgi. "olduğu ifade ediliyor", "kaydediliyor", "belirtiliyor" gibi kalıpları üst üste kullanma.
@@ -285,7 +296,15 @@ Değiştirme:
 - Doğrudan alıntıların sözcükleri.
 - Atıflar ("şirketin açıklamasına göre").
 - Uzunluk (belirgin biçimde).
-- Paragraf yapısı: ${derleme ? 'derlemedeki "## " ara başlıkları ve haber başına bir paragraf düzeni kalır' : 'metin 4-6 paragraf kalır'}; paragrafları tek bir blokta birleştirme. Paragraflar arasında boş satır olur.
+- Paragraf yapısı: ${derleme ? 'derlemedeki "## " ara başlıkları ve haber başına bir paragraf düzeni kalır' : 'metin 4-6 paragraf kalır'}; paragrafları tek bir blokta birleştirme. Paragraflar arasında boş satır olur.`;
+}
+
+export async function redakte(h, { derleme = false } = {}) {
+  const r = await gemini({
+    schema: METIN_SEMASI,
+    prompt: `Sen kifobu'nun redaktörüsün (son okuma). Aşağıdaki haberin SADECE dilini düzelt, içeriğine asla dokunma.
+
+${redaksiyonKurallari(derleme)}
 
 Metin zaten doğruysa aynen geri ver.
 
@@ -328,9 +347,13 @@ export async function denetle(h, kaynak, opts = {}) {
   let taslak = yerelDuzelt(h);
   if (uzat && kisa(taslak)) taslak = await uzatmayi(taslak, 'değerlendirme öncesi');
   const notlar = [];
+  let redaksiyonlu = null;
   for (let tur = 1; tur <= 2; tur++) {
-    const d = await degerlendir(taslak, kaynak, uzunluk);
-    if (d.onay) break;
+    const d = await degerlendir(taslak, kaynak, uzunluk, { redaksiyon: { derleme: Boolean(uzat) } });
+    if (d.onay) {
+      redaksiyonlu = d.duzeltilmis;
+      break;
+    }
     console.log(`  yazı işleri ${tur}: ${medyaGizle(d.sorunlar.join(' | '))}`);
     notlar.push(...d.sorunlar);
     taslak = await duzeltIle(taslak, d.sorunlar);
@@ -338,7 +361,7 @@ export async function denetle(h, kaynak, opts = {}) {
 
   // Redaksiyon kesin kontrollerde yeni sorun yarattıysa atılır (alt sınırın altına inen metin de sorun sayılır).
   const once = taslak;
-  const temiz = await redakte(taslak, { derleme: Boolean(uzat) });
+  const temiz = redaksiyonlu ? { ...taslak, ...redaksiyonlu } : await redakte(taslak, { derleme: Boolean(uzat) });
   if (kesinKontroller(temiz, kaynak, uzunluk).length > kesinKontroller(once, kaynak, uzunluk).length) {
     notlar.push('Redaksiyon olguları değiştirdi, atıldı');
   } else {
