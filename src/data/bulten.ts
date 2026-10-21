@@ -1,7 +1,7 @@
 /**
  * Günlük kitle fonlama bülteni verisi ("Bugün" tablosu).
  * Otomatik Bot tarafından oluşturulmuştur.
- * Son güncelleme: 2026-10-21T09:01:13.804Z
+ * Son güncelleme: 2026-10-21T10:01:21.148Z
  */
 export interface Girisim {
   ad: string;
