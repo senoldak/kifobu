@@ -12,10 +12,10 @@ const kaynaklarPath = path.join(rootDir, 'src', 'data', 'bulten-kaynaklari.ts');
 const kaynaklarContent = fs.readFileSync(kaynaklarPath, 'utf8');
 
 const referansPath = path.join(rootDir, 'src', 'data', 'bulten-referans.json');
-let referans = {
+let referans: { tarih: string; sayi: number; girisimler: Record<string, number>; mkk?: Mkk } = {
   tarih: '10 Ekim 2026',
   sayi: 1523,
-  girisimler: {} as Record<string, number>,
+  girisimler: {},
 };
 if (fs.existsSync(referansPath)) {
   try {
@@ -218,24 +218,60 @@ async function scrapeTrinkfon(url: string) {
   return { toplanan, durum };
 }
 
-/** VAP (MKK) istatistikleri */
-async function scrapeMkk() {
+/** VAP (MKK) istatistikleri. */
+interface Mkk {
+  platform: number;
+  sirket: number;
+  yatirimci: number;
+  fon: string;
+  /** Canlı okunamadı, son bilinen değer kullanılıyor. */
+  bayat?: boolean;
+}
+
+/** Son bilinen MKK değeri: kapanış referansında, yoksa yayındaki bulten.ts içinde. */
+function mkkSonBilinen(): Mkk | null {
+  if (referans.mkk) return referans.mkk;
+  try {
+    const eski = fs.readFileSync(path.join(rootDir, 'src', 'data', 'bulten.ts'), 'utf8');
+    const m = eski.match(/\r?\n  mkk: (\{[\s\S]*?\r?\n\}),/);
+    if (m) {
+      const { platform, sirket, yatirimci, fon } = JSON.parse(m[1]);
+      if ([platform, sirket, yatirimci].every(Number.isFinite) && typeof fon === 'string') return { platform, sirket, yatirimci, fon };
+    }
+  } catch {
+    // okunamazsa null
+  }
+  return null;
+}
+
+/**
+ * Sayfa okunamaz ya da beklenen alanlardan biri bulunamazsa sabit (uydurma) sayı yazılmaz: son bilinen değer
+ * bayat=true ile döner, o da yoksa null (F5, 21 Ekim). Eskiden her eksik alan yerine 18 / 179 / 47.163 / ₺1,60 Milyar
+ * gibi sabitler canlı veri gibi yayına giriyordu.
+ */
+async function scrapeMkk(yedek: Mkk | null): Promise<Mkk | null> {
   try {
     const html = await fetchHtml('https://www.vap.org.tr/');
     const platMatch = html.match(/Platform Sayısı[\s\S]*?<span class="val fBig">\s*(\d+)/i);
     const sirketMatch = html.match(/Kaydileşen Şirket Sayısı[\s\S]*?<span class="val fBig">\s*(\d+)/i);
     const yatirimciMatch = html.match(/Kaydileşen Şirketlerin Yatırımcı Sayısı[\s\S]*?<span class="val fBig">\s*([\d\.]+)/i);
     const fonMatch = html.match(/Başarılı Fonlama Tutarı[\s\S]*?<span class="val fBig">\s*([^<]+)<\/span>\s*<span class="val fNormal">\s*([^<]+)/i);
-
+    if (!platMatch || !sirketMatch || !yatirimciMatch || !fonMatch) {
+      throw new Error('VAP sayfasında beklenen alanlar bulunamadı (sayfa yapısı değişmiş olabilir)');
+    }
     return {
-      platform: platMatch ? parseInt(platMatch[1], 10) : 18,
-      sirket: sirketMatch ? parseInt(sirketMatch[1], 10) : 179,
-      yatirimci: yatirimciMatch ? parseInt(yatirimciMatch[1].replace(/\./g, ''), 10) : 47163,
-      fon: fonMatch ? `${fonMatch[1].trim()} ${fonMatch[2].trim()}` : '₺1,60 Milyar',
+      platform: parseInt(platMatch[1], 10),
+      sirket: parseInt(sirketMatch[1], 10),
+      yatirimci: parseInt(yatirimciMatch[1].replace(/\./g, ''), 10),
+      fon: `${fonMatch[1].trim()} ${fonMatch[2].trim()}`,
     };
-  } catch (e) {
-    console.error('MKK verisi çekilemedi, yedek kullanılıyor:', e);
-    return { platform: 18, yatirimci: 47165, sirket: 179, fon: '₺1,60 Milyar' };
+  } catch (e: any) {
+    if (yedek) {
+      console.error(`MKK verisi çekilemedi; son bilinen değer kullanılıyor (bayat): ${e.message}`);
+      return { ...yedek, bayat: true };
+    }
+    console.error(`MKK verisi çekilemedi ve son bilinen değer yok; MKK şeridi boş kalacak: ${e.message}`);
+    return null;
   }
 }
 
@@ -380,7 +416,7 @@ async function main() {
 
   // MKK verisi
   console.log('- MKK (VAP) verisi taranıyor...');
-  const mkk = await scrapeMkk();
+  const mkk = await scrapeMkk(mkkSonBilinen());
 
   // Bülten sayısı ve tarih
   const tarih = getTrTarih();
@@ -435,7 +471,7 @@ export const BULTEN = {
     liste: ${JSON.stringify(platformListesi, null, 4)} as Platform[],
   },
   yakinda: ${JSON.stringify(filtrelenmisYakinda, null, 4)} as Yakinda[],
-  mkk: ${JSON.stringify(mkk, null, 4)},
+  mkk: ${JSON.stringify(mkk ?? {}, null, 4)},
 };
 `;
 
@@ -474,10 +510,13 @@ export const BULTEN = {
       console.warn('[BÜLTEN BOTU] ! Arşiv kaydı yazılamadı:', err.message);
     }
 
+    // MKK: yalnız canlı okunan değer referansa girer; bayatsa dünkü referans korunur (yarınki yedek).
+    const mkkCanli = mkk && !mkk.bayat ? { platform: mkk.platform, sirket: mkk.sirket, yatirimci: mkk.yatirimci, fon: mkk.fon } : referans.mkk;
     const yeniReferans = {
       tarih,
       sayi,
       girisimler: bugunkuToplamlar,
+      ...(mkkCanli ? { mkk: mkkCanli } : {}),
     };
     fs.writeFileSync(referansPath, JSON.stringify(yeniReferans, null, 2), 'utf8');
     console.log(`[BÜLTEN BOTU] ✓ Yeni referans tablosu mühürlendi (bulten-referans.json).`);
