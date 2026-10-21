@@ -440,8 +440,16 @@ export const BULTEN = {
 `;
 
   const hedefBultenPath = path.join(rootDir, 'src', 'data', 'bulten.ts');
-  fs.writeFileSync(hedefBultenPath, bultenTsIcerik, 'utf8');
-  console.log(`[BÜLTEN BOTU] ✓ bulten.ts güncellendi!`);
+  // Yalnız veri değişince yaz (ücretsiz plan denetimi B1, 21 Ekim): zaman damgası her çalışmada değiştiği için
+  // saatlik canlı turların %68'i yalnız bu satır yüzünden commit atıp tam yayın tetikliyordu.
+  const damgasiz = (s: string) => s.replace(/^ \* Son güncelleme: .*$/m, '');
+  const eskiIcerik = fs.existsSync(hedefBultenPath) ? fs.readFileSync(hedefBultenPath, 'utf8') : '';
+  if (damgasiz(eskiIcerik) === damgasiz(bultenTsIcerik)) {
+    console.log(`[BÜLTEN BOTU] = bulten.ts değişmedi (yalnız zaman damgası farklı); yazılmadı.`);
+  } else {
+    fs.writeFileSync(hedefBultenPath, bultenTsIcerik, 'utf8');
+    console.log(`[BÜLTEN BOTU] ✓ bulten.ts güncellendi!`);
+  }
 
   // Eğer 18:00 Kapanış moduysa, bugünkü rakamları referans olarak kaydet (yarın için)
   if (isKapanis) {
