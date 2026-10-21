@@ -1,6 +1,8 @@
 # build output
 dist/
 dist-bulten/
+# kapak PNG önbelleği (src/lib/kapak-onbellek.mjs); CI'da actions/cache saklar
+.kapak-onbellek/
 
 # generated types
 .astro/

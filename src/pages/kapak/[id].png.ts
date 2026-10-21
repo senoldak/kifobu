@@ -1,8 +1,9 @@
 // Her haber için derleme anında çizilen kapak (1200×675 PNG). Paylaşım görseli olarak da kullanılır.
+// Çizim önbelleklidir (src/lib/kapak-onbellek.mjs): aynı SVG bir kez çizilir, sonraki derlemeler hazır PNG'yi kullanır.
 import type { APIRoute, GetStaticPaths } from 'astro';
-import sharp from 'sharp';
 import { getNews, type Haber } from '../../lib/news';
 import { kapakSvg } from '../../kapak/ciz';
+import { onbellekliPng } from '../../lib/kapak-onbellek.mjs';
 
 export const getStaticPaths = (async () => {
   const news = await getNews();
@@ -11,8 +12,6 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 export const GET: APIRoute = async ({ props }) => {
-  const png = await sharp(Buffer.from(kapakSvg((props as { haber: Haber }).haber)))
-    .png({ compressionLevel: 9, palette: true, quality: 90 })
-    .toBuffer();
+  const png = await onbellekliPng(kapakSvg((props as { haber: Haber }).haber));
   return new Response(new Uint8Array(png), { headers: { 'Content-Type': 'image/png' } });
 };

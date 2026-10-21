@@ -42,8 +42,23 @@ jobs:
       - name: Bağımlılıkları kur
         run: npm ci --no-audit --no-fund
 
+      # Kapak PNG önbelleği (src/lib/kapak-onbellek.mjs): kapaklar her derlemede yeniden çizilip derlemenin ~%75'ini
+      # alıyordu ve haber sayısıyla büyüyordu. Anahtar tasarım dosyalarının özetini taşır (tasarım değişince hepsi
+      # yeniden çizilir) ve her koşuda yeni sürüm kaydeder; restore-keys en sonunu getirir. Önbellek yoksa eskisi gibi çizer.
+      - name: Kapak önbelleği
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .kapak-onbellek
+          key: kapak-${{ hashFiles('src/kapak/**', 'src/lib/kapak-onbellek.mjs') }}-${{ github.run_id }}
+          restore-keys: kapak-${{ hashFiles('src/kapak/**', 'src/lib/kapak-onbellek.mjs') }}-
+
       - name: Derle
         run: npm run build
+
+      - name: Kapak önbelleği sayısı
+        run: |
+          n=$(ls .kapak-onbellek 2>/dev/null | wc -l)
+          echo "kapak önbelleği: $n PNG" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Cloudflare'e gönder
         env:
