@@ -168,15 +168,22 @@ jobs:
             fi
             sleep 30
           done
+          # Her kanal denenir; biri düşerse diğerleri durmaz ama iş sonunda kırmızı biter ki mecmua-saat alarm versin
+          # (ücretsiz plan denetimi F1: 15–18 Ekim'de LinkedIn her gün 403 aldı, "::warning::" yüzünden iş yeşil göründü).
+          HATALI=""
           if [ -n "$TELEGRAM_BOT_TOKEN" ] && [ -n "$TELEGRAM_CHAT_ID" ]; then
             echo "Telegram kanalına bülten post görseli gönderiliyor..."
-            npm run bulten:telegram || echo "::warning::Telegram paylaşımı başarısız"
+            npm run bulten:telegram || { echo "::error::Telegram paylaşımı başarısız"; HATALI="$HATALI Telegram"; }
           fi
           if [ -n "$LINKEDIN_ACCESS_TOKEN" ] && [ -n "$LINKEDIN_PERSON_URN" ]; then
             echo "LinkedIn'e bülten post görseli gönderiliyor..."
-            npm run bulten:linkedin || echo "::warning::LinkedIn paylaşımı başarısız"
+            npm run bulten:linkedin || { echo "::error::LinkedIn paylaşımı başarısız"; HATALI="$HATALI LinkedIn"; }
           fi
           if [ -n "$META_TOKEN" ]; then
             echo "Facebook/Instagram'a bülten post + story gönderiliyor..."
-            npm run bulten:meta || echo "::warning::Facebook/Instagram paylaşımı başarısız"
+            npm run bulten:meta || { echo "::error::Facebook/Instagram paylaşımı başarısız"; HATALI="$HATALI Meta"; }
+          fi
+          if [ -n "$HATALI" ]; then
+            echo "::error::Paylaşım başarısız olan kanal(lar):$HATALI"
+            exit 1
           fi
