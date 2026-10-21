@@ -1,7 +1,7 @@
 /**
  * Günlük kitle fonlama bülteni verisi ("Bugün" tablosu).
  * Otomatik Bot tarafından oluşturulmuştur.
- * Son güncelleme: 2026-10-21T11:01:16.544Z
+ * Son güncelleme: 2026-10-21T14:01:30.285Z
  */
 export interface Girisim {
   ad: string;
@@ -61,10 +61,10 @@ export const BULTEN = {
         "ad": "PUPAQ",
         "platform": "trinkfon",
         "bugun": 0,
-        "alinan": 124282,
-        "kalan": 875750,
+        "alinan": 121782,
+        "kalan": 878250,
         "degerleme": 25000800,
-        "yuzde": 12.42,
+        "yuzde": 12.17,
         "durum": "Aktif",
         "url": "https://kfs.trinkfon.com/projeler/pupaq/kampanya/"
     },
@@ -82,7 +82,7 @@ export const BULTEN = {
 ] as Girisim[],
   platformlar: {
     bugun: 0,
-    toplam: 10865282,
+    toplam: 10862782,
     liste: [
     {
         "ad": "fonangels",
@@ -100,7 +100,7 @@ export const BULTEN = {
     },
     {
         "ad": "trinkfon",
-        "toplam": 124282,
+        "toplam": 121782,
         "girisim": 1,
         "renk": "#7c3aed",
         "url": "https://kfs.trinkfon.com"
