@@ -7,7 +7,7 @@ import Yol from '../../components/Yol.astro';
 import { platformUrl, yayimlananRaporlar } from '../../lib/dizin';
 import { gommeKodu, raporKartAlt } from '../../kapak/rapor-kart';
 import { KAPAK_G, KAPAK_Y } from '../../kapak/ciz';
-import { EN_AZ_RAPOR_HABERI, kaynakNotu, type CeyrekOzeti } from '../../lib/rapor';
+import { EN_AZ_RAPOR_HABERI, LISANS, kaynakNotu, type CeyrekOzeti } from '../../lib/rapor';
 import { sayfaLd } from '../../lib/ld';
 import { categoryName, formatMoneyShort, formatNumber, formatDate, RISK_NOTU } from '../../lib/site';
 
@@ -68,6 +68,7 @@ if (o) {
     creator: orgRef,
     publisher: orgRef,
     isAccessibleForFree: true,
+    license: LISANS.url,
     creditText: kaynakNotu(o.ceyrek, sayfaUrl),
     distribution: [{ '@type': 'DataDownload', encodingFormat: 'text/csv', contentUrl: new URL(csv!, Astro.site).href }],
   });
@@ -191,7 +192,8 @@ const gomme = o ? gommeKodu(o, sayfaUrl, new URL(gorsel!, Astro.site).href) : ''
 
           <h2>Raporu kullanın</h2>
           <p>
-            Rakamları alıntılayabilir, görseli ve tabloları paylaşabilirsiniz; kaynak olarak bu sayfayı gösterin:
+            Rapor <a href={LISANS.url} rel="license">{LISANS.ad}</a> lisansıyla yayımlanır: rakamları, tabloları ve görseli
+            ticari işler dahil serbestçe kullanabilirsiniz; tek şart kaynak olarak bu sayfayı göstermek:
           </p>
           <p><strong>{kaynak}</strong></p>
           <figure>

@@ -166,6 +166,9 @@ export function veriliCeyrekler(gunler: string[]): Ceyrek[] {
 /** Ay aralığı: "2026 4. çeyrek (Ekim–Aralık)" → "Ekim–Aralık 2026". */
 export const ceyrekAylari = (c: Ceyrek) => `${AYLAR[(c.c - 1) * 3]}–${AYLAR[(c.c - 1) * 3 + 2]} ${c.yil}`;
 
+/** Rapor verisinin lisansı: atıfla serbest kullanım (alıntı = kaynak bağlantısı). */
+export const LISANS = { ad: 'CC BY 4.0', url: 'https://creativecommons.org/licenses/by/4.0/deed.tr' };
+
 /** Alıntı ve paylaşım için kaynak notu (sayfada, CSV'de ve duyuru metinlerinde aynı cümle). */
 export const kaynakNotu = (c: Ceyrek, url: string) => `Kaynak: kifobu, ${c.ad} raporu, ${url}`;
 
@@ -191,5 +194,5 @@ export function raporCsv(o: CeyrekOzeti, url: string): string {
     ...o.turlar.map((t) => ['tur', t.tur, t.adet]),
     ...o.kampanya.platformlar.map((p) => ['platform', p.platform, p.kampanya, p.toplam, 'TRY']),
   ];
-  return `# ${kaynakNotu(o.ceyrek, url)}\n${satirlar.map((s) => [...s, ...Array(5 - s.length).fill(undefined)].map(alan).join(',')).join('\n')}\n`;
+  return `# ${kaynakNotu(o.ceyrek, url)} (lisans: ${LISANS.ad}, ${LISANS.url})\n${satirlar.map((s) => [...s, ...Array(5 - s.length).fill(undefined)].map(alan).join(',')).join('\n')}\n`;
 }
