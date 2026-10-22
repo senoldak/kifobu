@@ -396,6 +396,26 @@ test("isle: ayar hatası fırlatılır, e.sonuclar o ana kadarki yazildi'yi içe
   assert.equal(u.ozet.hata.length, 1); // ayar hatası habere sayılmaz
 });
 
+test('isle: havuzdaki derleme kırmızı kapıya takılırsa her üye kapı gerekçesiyle elendi', async () => {
+  const durum = bosDurum();
+  const olay = (id, iso, uyeIdler) => ({
+    ...havuzOlayi({ id, taslak: taslak(), basliklar: [`Baslik ${id}`], kaynaklar: [{ baslik: 'b', tarih: '2026-10-22', metin: uydur(60, 3) }], kullanilan: [], iso }),
+    uyeIdler,
+  });
+  durum.havuz.push(olay('bir:e1', '2026-10-22T06:40:00.000Z', ['bir:e1', 'iki:e1b']), olay('bir:e2', '2026-10-22T06:30:00.000Z', ['bir:e2']));
+  const { u, yazilan } = kur({
+    durum,
+    bag: {
+      derlemeYaz: async () => taslak({ title: 'Orionlab ve Zefirnet haftalik gelisme ozeti' }),
+      standartKapisi: async () => ({ yayimla: false, std: { gerekce: 'standart:kirmizi:test' }, yazildi: async () => {} }),
+    },
+  });
+  const sonuclar = await u.isle([]);
+  assert.equal(yazilan.length, 0);
+  assert.equal(sonuclar.length, 3);
+  assert.ok(sonuclar.every((s) => s.durum === 'elendi' && s.gerekce === 'standart:kirmizi:test'));
+});
+
 test('isle: havuzdan derleme yazılınca her olayın üyeleri yazildi, hiçbirinde yazi yok; üyelerin gorulen zamanı değişmez', async () => {
   const durum = bosDurum();
   const olay = (id, iso, uyeIdler) => ({
@@ -524,4 +544,24 @@ test('yerel eşitlik: karışık tur bugünkü akışın yazı ve durum sonucunu
   assert.equal(sonuclar.length, 4); // mükerrer, düşük değer, yazılan, hatalı (bekliyor); puansız ve önceden karar verilen yok
   assert.deepEqual(u.ozet.yazilan, [BASLIK]);
   assert.equal(u.ozet.hata.length, 1);
+});
+
+test('yerel yol: adaylar() tam description tutar; yük kırpılı olsa da yazıya giren öğe tamını görür', async () => {
+  const uzun = 'aciklama '.repeat(400);
+  const o = { ...oge(K1, 'a1', BASLIK), description: uzun };
+  let gorulen;
+  const durum = bosDurum();
+  const { u } = kur({
+    durum,
+    bag: {
+      hentTekst: async (akis) => akis,
+      rssOku: (akis) => (akis === K1.akis ? [o] : []).map(({ kaynak, id, ...r }) => r),
+      tamMetin: async (x) => {
+        gorulen = x.description;
+        return uydur(200, 4);
+      },
+    },
+  });
+  await yerelTur(u, durum);
+  assert.equal(gorulen, uzun);
 });

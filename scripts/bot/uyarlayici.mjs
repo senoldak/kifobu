@@ -98,6 +98,7 @@ export function uyarlayiciKur({ rot, durum, simdi, ayar = {}, bag = {} }) {
 
   const ozet = { yazilan: [], elenen: [], atlanan: [], hata: [] };
   const icerikler = new Map(); // bu turda okunan tam akış içerikleri (yükte kırpılı taşınır); yerel yol eskisi gibi tamını kullanır
+  const aciklamalar = new Map(); // aynı şekilde tam description
   let hazir = null;
 
   const gorulduIsaretle = (id) => (durum.gorulen[id] = simdi.toISOString());
@@ -146,6 +147,7 @@ export function uyarlayiciKur({ rot, durum, simdi, ayar = {}, bag = {} }) {
       // Zaman olarak yayın tarihi (gelecekteyse şimdi): ilk turda akışta günlerdir duran adaylar bugüne yığılmasın.
       for (const o of taze) durum.taranan[o.id] ??= { zaman: new Date(Math.min(o.tarih, s)).toISOString(), kod: k.kod, ...(k.yerli && { yerli: true }) };
       for (const o of taze) if (o.icerik) icerikler.set(o.id, o.icerik);
+      for (const o of taze) if (o.description) aciklamalar.set(o.id, o.description);
       // Günlükteki sayı karar bekleyen (gorulen'de olmayan) adaylardır; dönen liste hepsini içerir.
       log(`${k.kod}: ${taze.filter((o) => !durum.gorulen[o.id]).length} aday`);
       for (const o of taze) cikti.push({ kimlik: motorKimlik(o.id), yuk: adayYuku(o), baslik: o.baslik });
@@ -180,6 +182,7 @@ export function uyarlayiciKur({ rot, durum, simdi, ayar = {}, bag = {} }) {
         continue;
       }
       if (icerikler.has(o.id)) o.icerik = icerikler.get(o.id);
+      if (aciklamalar.has(o.id)) o.description = aciklamalar.get(o.id);
       if (tekrarMi(o.baslik, 'mükerrer kalkanı')) {
         if (!kuru) koy({ kimlik: motorKimlik(o.id), durum: 'elendi', gerekce: `zaten yazıldı (mükerrer kalkanı, son ${HAFIZA_SAAT} saat)` });
         isaretle(o.id);
@@ -467,6 +470,8 @@ export function uyarlayiciKur({ rot, durum, simdi, ayar = {}, bag = {} }) {
         const onceki = [...durum.havuz];
         const yazilanOlaylar = new Set(); // derlemeye giren olaylar
         let derlemeKapisi = null;
+        const dusenNeden = new Map(); // havuzdan düşen olay -> düşme gerekçesi (grubun her olayı için)
+        const nedenKoy = (grup, gerekce) => grup.forEach((o) => dusenNeden.set(o, temiz(gerekce)));
         const sh = await havuzuIsle(durum.havuz, {
           simdi,
           // Bu arada (bu turda ya da son 72 saatte) tam haber olarak yazılan olay düşer.
@@ -474,16 +479,35 @@ export function uyarlayiciKur({ rot, durum, simdi, ayar = {}, bag = {} }) {
             const t = o.basliklar.map((b) => tekrarBul(b, hafiza)).find(Boolean);
             return t ? `son ${HAFIZA_SAAT} saatte yazıldı` : null;
           },
-          yaz: B.derlemeYaz,
+          yaz: async (grup, kaynak) => {
+            try {
+              const t = await B.derlemeYaz(grup, kaynak);
+              if (!t) nedenKoy(grup, 'derleme yazılamadı');
+              return t;
+            } catch (e) {
+              if (!e.ayar) nedenKoy(grup, `derleme hatası: ${e.message}`);
+              throw e;
+            }
+          },
           // Derleme alt sınırı derlemeEnAz(n); kısa kalan derleme denetimden önce ve düzeltme turundan sonra kaynaklarından uzatılır.
           denetle: async (t, kaynak, grup) => {
             const { alt, ust } = derlemeHedefi(grup.length);
-            const sonuc = await B.denetle(t, kaynak, { enAz: derlemeEnAz(grup.length), hedef: `${alt}-${ust}`, uzat: (tas, kelime) => B.derlemeUzat(tas, grup, kelime) });
+            let sonuc;
+            try {
+              sonuc = await B.denetle(t, kaynak, { enAz: derlemeEnAz(grup.length), hedef: `${alt}-${ust}`, uzat: (tas, kelime) => B.derlemeUzat(tas, grup, kelime) });
+            } catch (e) {
+              if (!e.ayar) nedenKoy(grup, `derleme hatası: ${e.message}`);
+              throw e;
+            }
             // Denetim tamamlanmadıysa derleme yayımlanmaz ve olaylar havuzda kalır (havuz.mjs belirsiz bayrağına bakar).
-            if (sonuc.sorunlar.length) return sonuc;
+            if (sonuc.sorunlar.length) {
+              if (!sonuc.belirsiz) nedenKoy(grup, `derleme denetimden geçemedi: ${sonuc.sorunlar.join('; ')}`);
+              return sonuc;
+            }
             // Standartlar: kırmızı süzgeç derlemenin tamamında; madde madde ayıklanamadığı için kırmızıysa derleme yayımlanmaz.
             const kapi = await B.standartKapisi({ baslik: sonuc.haber.title, ozet: sonuc.haber.description, metin: sonuc.haber.body, ekler: [sonuc.haber.why_matters ?? t.why_matters, ...(sonuc.haber.key_points ?? t.key_points ?? [])], kaynakMetni: kaynak, kimlik: grup[0].id, motor: MOTOR, log: (m) => log(medyaGizle(m)) });
             derlemeKapisi = kapi;
+            if (!kapi.yayimla) nedenKoy(grup, kapi.std.gerekce);
             return kapi.yayimla ? sonuc : { ...sonuc, sorunlar: [kapi.std.gerekce] };
           },
           kaydet: async (haber, t, grup) => {
@@ -519,7 +543,7 @@ export function uyarlayiciKur({ rot, durum, simdi, ayar = {}, bag = {} }) {
         for (const o of onceki) {
           if (kalan.has(o) || yazilanOlaylar.has(o)) continue;
           uyeler(o).forEach((kimlik, ui) => {
-            koy({ kimlik, durum: 'elendi', gerekce: 'kısa, eş bulunamadı' });
+            koy({ kimlik, durum: 'elendi', gerekce: dusenNeden.get(o) ?? 'kısa, eş bulunamadı' });
             durum.gorulen[o.uyeIdler?.[ui] ?? o.id] ??= simdi.toISOString();
           });
         }
