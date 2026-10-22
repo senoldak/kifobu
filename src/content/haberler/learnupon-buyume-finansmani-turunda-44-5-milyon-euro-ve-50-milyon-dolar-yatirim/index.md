@@ -14,7 +14,6 @@ key_points:
   - "Yatırım Londra merkezli Claret Capital Partners tarafından sağlandı."
   - "Kaynak, yapay zekâ tabanlı öğrenme platformunun geliştirilmesi için kullanılacak."
 kaynakIzi: "v1.PTiWMk2wjc+kfd7m.GYUNxHTH9wKDdhFxKJWQWIQzv/0dr3bnouVADl9Y/mxTWHtMWletnNrehE6DITQ+BBJPXvBFJHQW1xqX4KZdzMbnIYMArXfiKh7kVVJncXdPc18Y+Ot4pV4c68TmCCOwLbFMqdIaNfSN39eYNuc1N/OXCeK644pzIRcFLY9+JdByDHok5zYewr67meDBOeOngPuVYvgynkx5n16T16mP58HwnPOL0ps="
-duzeltme: "20.10.2026: Başlıkta aynı tutar iki para biriminde “ve” ile toplam gibi yazılmış ve finansman “yatırım” olarak nitelenmişti. Doğrusu 44,5 milyon euro (yaklaşık 50 milyon dolar) tutarında büyüme borç finansmanı. Başlık düzeltildi."
 uretim: yapay-zeka
 ---
 

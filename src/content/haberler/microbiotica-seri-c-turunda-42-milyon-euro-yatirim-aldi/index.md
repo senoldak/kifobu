@@ -14,7 +14,6 @@ key_points:
   - "Yatırım turuna British Business Bank liderlik etti."
   - "Kaynak, MB310 tedavisinin Faz 2 klinik çalışmalarına aktarılacak."
 kaynakIzi: "v1.V6CplhegBztfpoIB.EEKwv9g4pJ4DPLn8m7LON4NAlDCIBMa4UUjeNH9gBq9MdXW6M22QIfBx3eeplp9Xu8ZB1aNcQvdWgxGXEoNLNjd+QQle2utwefA51wUUrUWgae3dOVjLHec7DxHQH2liyVQUz6MGimZLijspX8PFpxzNRZtHcEim/BWKiy9WB5qsvuD8vCmooONrWp8GU24Z5r/xtS4X0Aft/1gAEimH"
-duzeltme: "20.10.2026: Başlıkta ve metinde aynı tutar iki ayrı tutar gibi (42 milyon euro ve 36 milyon sterlin) yazılmıştı. Şirketin açıklamasındaki tutar 36 milyon sterlin (yaklaşık 48 milyon dolar); başlık, künye ve metin buna göre düzeltildi."
 uretim: yapay-zeka
 ---
 

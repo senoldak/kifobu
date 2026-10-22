@@ -13,7 +13,6 @@ key_points:
   - "Yatırım turuna Conduit EIS Impact Fund ve Wrightwood liderlik etti."
   - "Micro Lab cihazı tükürük örneği ile evde hormon ölçümü yapmayı hedefliyor."
 kaynakIzi: "v1.sQXis/NVHnlGeYUt.KvdGzwSU2zyUx5vSVNIbSBRthgKn8P5cmo01Iu66Pbghq/buO1VzQQI0mmFTmefhedeJMPiaDP5G1GEm39Xok2qsuVnh2WddrX5x8LukiiNzlfdfSJZVzr5a9ZIvDANSBQJ3mh6Xv8bBfLGNWOTAamaAZ2vF/I46ckYQm7is2H/q1uyli0E7n4i1kKYj0EgAxBtxsCMGeZtuxxrSEgek6mObirjDvuK/3YxqOESx0rgemAus7SsfXoGu"
-duzeltme: "20.10.2026: Metindeki anlamsız bir cümle düzeltildi; “sterlon” yazım hatası giderildi; ilk kapanış için yazılan geçersiz tarih ifadesi çıkarıldı. Tutar (2,96 milyon euro, yaklaşık 2,5 milyon sterlin) şirket açıklamasına göre doğrulandı."
 uretim: yapay-zeka
 ---
 

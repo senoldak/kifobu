@@ -11,7 +11,6 @@ key_points:
   - "Girişimin toplam yatırımı 40 milyon dolar"
   - "Kuruluş yılı 2021"
 kaynakIzi: "v1.G+muUh+aZX25iRh0.Lt2Ne79A8fsFPgdLs/bMv+7khu8BZrXfE9j9UYi/ewdrWw+vV9x9HDO9QChxAARFiSyYsUuOQLCZ06TUrG/5aABGa30i5ximUJ5ak2OaO3wqrsbY1i5u+BhSPbPRl/VDmawCkbMGbWETJQ9G8WIL/N5vvhscfTdpxd4iQMfcPO+QjwnowqyaCOBQGA=="
-duzeltme: "20.10.2026: Başlıkta satış bedeli kesin tutar gibi yazılmıştı; doğrusu yaklaşık 200 milyon dolar değerleme. Künyede satış bedeli “toplanan” olarak gösterilmişti; künye kaldırıldı. İsimsiz kaynaklara dayanan bir hisse oranı cümlesi çıkarıldı."
 uretim: yapay-zeka
 ---
 

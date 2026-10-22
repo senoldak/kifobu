@@ -10,7 +10,6 @@ key_points:
   - "Anduril'in değerlemesi 61 milyar dolardan 90 milyar dolara yükseldi"
   - "Çalışanların hisse satışı için 1,3 milyar dolarlık bir sınır belirlendi"
   - "Hisse satış teklifi 16 ülkedeki çalışanları kapsıyor"
-duzeltme: "20.10.2026: “Militaries” sözcüğü “orduevleri” diye çevrilmişti; doğrusu “ordular”. Künyede 1,3 milyar dolar “toplanan” olarak gösterilmişti; bu bir yatırım turu değil çalışan hisse satışı olduğundan künye kaldırıldı."
 uretim: yapay-zeka
 ---
 

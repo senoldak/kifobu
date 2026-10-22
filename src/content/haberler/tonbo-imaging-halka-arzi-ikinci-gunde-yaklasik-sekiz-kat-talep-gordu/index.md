@@ -11,7 +11,6 @@ key_points:
   - "İkinci günün sonunda 7,78 kat talep"
   - "Bireysel yatırımcı kotası 7,13 kat aşıldı"
 kaynakIzi: "v1.ro6PMgLB+t/2zzZv.6vlHSmQo4LE3hYLoU4aVTCAYsbPKDFLKvTGzzZQCxsV2JgAUlusUKN3xDdVAtJEzWKgOgAbBU0n8XoowGOJwlCgSYs5GN4dIBl2pm3PeyNg1Y0dd9n/qgMXCfnB6uBoIFjB+Gz+XP+Z9wwdI3yBl+aiaxCsSkwJ/AXfl"
-duzeltme: "20.10.2026: Halka arz büyüklüğü ve değerleme crore biriminden milyara çevrilirken 100 kat büyük yazılmıştı. Doğrusu 852 crore rupi (yaklaşık 8,52 milyar rupi) ve yaklaşık 4.010 crore rupi (yaklaşık 40,1 milyar rupi). Düzeltildi."
 uretim: yapay-zeka
 ---
 

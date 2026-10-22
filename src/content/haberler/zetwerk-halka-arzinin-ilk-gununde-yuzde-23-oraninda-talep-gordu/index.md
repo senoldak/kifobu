@@ -12,7 +12,6 @@ key_points:
   - "Halka arz büyüklüğü 5.012 crore rupi (yaklaşık 50,1 milyar rupi) olarak belirlendi."
   - "Şirket halka arz öncesinde çapa yatırımcılardan 2.251,2 crore rupi (yaklaşık 22,5 milyar rupi) topladı."
 kaynakIzi: "v1.zUCJUx7d9CCULwaF.l6vEdSxiOrMp/z16KT3LIHQ85OgjLXU8pXabB72QE9ZWovEqPKNkBASHY+9AwgMWKLYCsJETRMmqRMhMCvYFbbgUztdIvijCf1ciWPtSDdHj76W2wu/qqM8dSTfwmofDlXA7Yedy4mOx"
-duzeltme: "20.10.2026: Künyedeki hedef tutarı ve öne çıkanlardaki rakamlar 100 kat büyük yazılmıştı; künyedeki hedef alanı kaldırıldı. Doğrusu: halka arz büyüklüğü 5.012 crore rupi (yaklaşık 50,1 milyar rupi), çapa yatırımcılardan toplanan 2.251,2 crore rupi (yaklaşık 22,5 milyar rupi)."
 uretim: yapay-zeka
 ---
 

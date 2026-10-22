@@ -4,7 +4,6 @@ description: "MIT tabanlı LNK Energies, ağır vasıta kamyonları dizelden hid
 date: 2026-10-13T23:21:04+03:00
 category: girisimler
 girisim: "LNK Energies"
-duzeltme: "20.10.2026: Başlıkta ve metinde “MİT” yazılmıştı; doğrusu Massachusetts Institute of Technology anlamına gelen “MIT”. Düzeltildi."
 uretim: yapay-zeka
 ---
 

@@ -10,7 +10,6 @@ key_points:
   - "Girişimin Zeus grafik işlemcisi şu an altı milimetrekarelik test çipi aşamasında."
   - "Ticari çip üretiminin dördüncü çeyreğinde başlaması planlanıyor."
 kaynakIzi: "v1.9RApqV7EH3A9unKN.943EfoVbD03hQ6MrJan2CwLw5iTWUOiAKMjrNqALQB5U4Vu7yLr6Ey4tPeZV0ARjVI17oEU5uik5BZOLY6QQFxlRxngeEi6JvCy3+U7mV3lr7SSkxWnpdG8Jb9pGqSsWwdLpj2GnBdEEykzWSJ4whng+cuWwKtQNhRLu5Ic7rL9R5r8JkrPtj15AC0P6S9rd4YQvc1AKuI1thNOZSHlc1IodaZ8aj9zWH4s="
-duzeltme: "20.10.2026: Künyede 100 milyon dolar “toplanan” olarak gösterilmişti; şirket bu tutarı toplamadı, arıyor. Künye kaldırıldı."
 uretim: yapay-zeka
 ---
 

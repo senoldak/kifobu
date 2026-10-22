@@ -9,7 +9,6 @@ key_points:
   - "DeFacto, Manuka ve Fresh Scarfs ile stratejik ortaklık kurdu."
   - "Markalar özgün kimliklerini koruyarak global pazarlarda büyüyecek."
 kaynakIzi: "v1.P5HpfZPsrmCDZKhL.HL1G8i9dvKqxj7ztSwOL/Kf5yjsODr2xkbtHjyxM9fv108ikbrF5OrQ1W7evPdKGbV7wWIhuuZJYPEse/QJQLmkUzvqYw1S58Axl7QBymBpZ/PhYIwups21Tx1j1A9Pj5gHbN1fTnemSnFmigmK+goRgp8DdswgWe5qvi+7wXHN1Scb3j14Zc2/ZixSERqWnU3xMuqlPaoHwXdZbBz2x"
-duzeltme: "20.10.2026: Haber, şirket açıklaması olarak atfedilmeden yazılmıştı; atıf eklendi, tanıtım niteliğindeki hedef ve temenni cümleleri çıkarıldı. Künyede yer alan yatırımcı bilgisi metindeki içerikle örtüşmediği için kaldırıldı."
 uretim: yapay-zeka
 ---
 

@@ -9,7 +9,6 @@ key_points:
   - "Nvidia, İngiltere ve Fransa'da yeni girişim yatırımları planlıyor."
   - "Stockholm AI Lab, 2027 yılında kapılarını açacak."
   - "Bölgedeki bulut sağlayıcıları 2027 sonuna kadar bir gigavat kapasiteyi hedefliyor."
-duzeltme: "20.10.2026: Metinde “2027” yılı “yirmi yedi” diye eksik yazılmıştı; merkezin açılış yılı ve bulut kapasitesi hedef yılı 2027 olarak düzeltildi."
 uretim: yapay-zeka
 ---
 
