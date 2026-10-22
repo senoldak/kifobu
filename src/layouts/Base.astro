@@ -18,7 +18,7 @@ interface Props {
 
 const { title, description: rawDescription, image, type = 'website', imageWidth, imageHeight, imageAlt, noindex = false } = Astro.props;
 // Uzun başlıklarda site adı eklenmez (Google ~60 karakterden sonrasını keser); ana sayfa konusunu söyleyen başlık alır.
-const fullTitle = title ? (title.length > 55 ? title : `${title} | ${SITE.name}`) : `${SITE.name}: kitle fonlama ve girişim yatırımı haberleri`;
+const fullTitle = title ? (title.length > 55 ? title : `${title} | ${SITE.name}`) : `${SITE.name}: dünyadan ve Türkiye'den girişim yatırımları ve kitle fonlama`;
 const ogTitle = title ?? fullTitle;
 // Açıklama boşsa site açıklaması; 160 karakteri aşarsa kelime sınırında kısaltılır.
 const kisalt = (s: string, n = 160) => {

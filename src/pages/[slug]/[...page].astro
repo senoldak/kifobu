@@ -49,8 +49,8 @@ const noindex = !bolumIndekslenir(slug, indeksli);
 
 // Her bölüm için ayrı açıklama (arama sonuçlarında aynı metin tekrarlanmasın).
 const ACIKLAMA: Record<string, string> = {
-  'gunluk-bulten': "Günlük Kitle Fonlama Bülteni: Türkiye'de günün kampanyaları, platform dağılımı, ön talepler ve MKK verileri.",
-  gundem: "Türkiye girişim ve kitle fonlama ekosisteminde günün gündemi: öne çıkan gelişmeler ve kısa haberler.",
+  'gunluk-bulten': "Günlük bülten: dünyadan ve Türkiye'den günün girişim yatırımları ve kitle fonlama haberleri, sabah, öğle ve gece.",
+  gundem: "Dünyadan ve Türkiye'den girişim yatırımları ve kitle fonlamada günün gündemi: öne çıkan gelişmeler ve kısa haberler.",
   'yapay-zeka': 'Yapay zekâ girişimleri, yatırımları ve ürünleri: Türkiye ve dünyadan yapay zekâ ekosistemi haberleri.',
   girisimler: "Türk ve yabancı girişimlerden haberler: yeni ürünler, büyüme, ortaklıklar ve kuruluş hikâyeleri.",
   yatirimlar: 'Girişim yatırımları: tohum, Seri A ve sonraki turlar; hangi girişim kimden ne kadar yatırım aldı.',
@@ -61,7 +61,7 @@ const ACIKLAMA: Record<string, string> = {
   mevzuat: 'Kitle fonlama ve girişim mevzuatı: SPK düzenlemeleri, tebliğler ve resmî duyurular.',
   analiz: 'Kitle fonlama ve girişim ekosistemi analizleri: veriler, eğilimler ve dönemsel değerlendirmeler.',
 };
-const anaAciklama = ACIKLAMA[slug] ?? `${SITE.name} ${name}: Türkiye'de kitle fonlama ve girişim haberleri.`;
+const anaAciklama = ACIKLAMA[slug] ?? `${SITE.name} ${name}: dünyadan ve Türkiye'den girişim yatırımları ve kitle fonlama haberleri.`;
 const description = ilkSayfa ? anaAciklama : `${anaAciklama} Sayfa ${page.currentPage}/${page.lastPage}.`;
 const sectionUrl = new URL(`/${slug}/`, Astro.site).href;
 const pageUrl = new URL(page.url.current.endsWith('/') ? page.url.current : `${page.url.current}/`, Astro.site).href;

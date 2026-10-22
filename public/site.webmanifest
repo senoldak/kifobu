@@ -1,7 +1,7 @@
 {
   "name": "kifobu",
   "short_name": "kifobu",
-  "description": "Türkiye'de kitle fonlama: hangi girişim, hangi platformda, ne kadar topladı. Her gün bülten.",
+  "description": "Dünyadan ve Türkiye'den girişim yatırımları ve kitle fonlama: hangi girişim, kimden, ne kadar topladı. Her gün bülten.",
   "lang": "tr",
   "start_url": "/",
   "scope": "/",
