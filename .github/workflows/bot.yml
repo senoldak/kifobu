@@ -66,6 +66,18 @@ jobs:
 
       # Telegram'a haberler tek tek gitmez; yalnız günün bültenleri (ozet.yml) ve kapanış gider; plan mecmua-saat Worker'ında.
 
+      # Üç aylık standartlar raporu (yol haritası madde 22): biten çeyreğin ilk 31 gününde defter sayıları bir kez
+      # src/data/standartlar-raporu/<YYYY>-c<N>.json'a yazılır. Hata haber işini düşürmez.
+      - name: Çeyrek standartlar raporu
+        if: ${{ !cancelled() && vars.MOTOR_TUR == '1' }}
+        continue-on-error: true
+        timeout-minutes: 2
+        env:
+          MOTOR_URL: ${{ vars.MOTOR_URL }}
+          MOTOR_ANAHTARI: ${{ secrets.MOTOR_ANAHTARI }}
+          GH_TOKEN: ${{ github.token }}
+        run: node .mecmua/motor/bin/ceyrek-raporu.mjs --site kifobu --dizin src/data/standartlar-raporu --kural scripts/bot/standart-kurallar.json
+
       - name: Commit
         id: commit
         if: ${{ !cancelled() }}
@@ -74,7 +86,7 @@ jobs:
         run: |
           git config user.name "kifobu-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add src/content/haberler scripts/bot/gorulen.json
+          git add src/content/haberler scripts/bot/gorulen.json src/data/standartlar-raporu
           if git diff --cached --quiet; then
             echo "Değişiklik yok."
             exit 0
