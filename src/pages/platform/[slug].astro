@@ -1,0 +1,106 @@
+---
+// Platform sayfası: kifobu'nun kampanya kayıtları ve platformla ilgili haberler. Lisans/yetki durumu gibi bilgiler
+// repoda doğrulanabilir veri olmadığı için yazılmaz; okur SPK'ya yönlendirilir. En az 3 haberi olmayan platform
+// sayfası "noindex, follow" kalır (src/lib/konular.ts → platformSayfasi).
+import { jsonLdMetni } from '../../lib/json-ld.mjs';
+import Base from '../../layouts/Base.astro';
+import HaberSatiri from '../../components/HaberSatiri.astro';
+import KampanyaTablosu from '../../components/KampanyaTablosu.astro';
+import Yol from '../../components/Yol.astro';
+import { dizinVerisi, type PlatformSayfasi } from '../../lib/dizin';
+import { newsUrl } from '../../lib/news';
+import { sayfaLd } from '../../lib/ld';
+import { RISK_NOTU } from '../../lib/site';
+
+export async function getStaticPaths() {
+  const { platformlar } = await dizinVerisi();
+  return platformlar.map((p) => ({ params: { slug: p.platform.slug }, props: { p } }));
+}
+
+interface Props {
+  p: PlatformSayfasi;
+}
+
+const { p } = Astro.props;
+const { platform, haberler, kampanyalar, indeks } = p;
+const yol = `/platform/${platform.slug}/`;
+const bultende = kampanyalar.length > 0;
+const aciklama = bultende
+  ? `${platform.ad} kitle fonlama platformundaki kampanyalar: kifobu'nun günlük kayıtlarına göre toplanan tutar, hedef ve gerçekleşme; platformla ilgili haberler.`
+  : `${platform.ad} kitle fonlama platformuyla ilgili kifobu haberleri.`;
+const adimlar = [{ ad: 'Anasayfa', url: '/' }, { ad: 'Platformlar', url: '/platform/' }, { ad: platform.ad, url: yol }];
+const jsonLd = sayfaLd({
+  site: Astro.site!,
+  yol,
+  ad: platform.ad,
+  aciklama,
+  ogeler: [...kampanyalar.map((k) => `/kampanya/${k.slug}/`), ...haberler.map(newsUrl)],
+  adimlar,
+  ek: { about: { '@type': 'Organization', name: platform.ad, ...(platform.url ? { url: platform.url } : {}) } },
+});
+---
+
+<Base title={`${platform.ad}: kampanyalar ve haberler`} description={aciklama} noindex={!indeks}>
+  <script slot="head" type="application/ld+json" set:html={jsonLdMetni(jsonLd)} />
+  <div slot="tahta" class="kategori-bas">
+    <h1 class="kategori-isim">{platform.ad}</h1>
+    <p class="kategori-sayi">
+      {kampanyalar.length > 0 && `${kampanyalar.length} kampanya · `}{haberler.length} haber
+    </p>
+  </div>
+
+  <Yol adimlar={adimlar} />
+
+  <div class="metin dizin-giris">
+    {
+      bultende ? (
+        <p>
+          {platform.ad}, kifobu’nun günlük kitle fonlama bülteninde kampanyalarını izlediği platformlardan biridir. Aşağıda
+          platformdaki kampanyaların kifobu kayıtlarındaki son değerleri ve platformla ilgili haberler yer alır.
+        </p>
+      ) : (
+        <p>Bu sayfada kifobu’da {platform.ad} ile ilgili yayımlanan haberler yer alır.</p>
+      )
+    }
+    <p>
+      Kitle fonlama platformlarının yetki durumunu ve güncel listesini Sermaye Piyasası Kurulu’nun sitesinden
+      doğrulayabilirsiniz: <a href="https://spk.gov.tr/" rel="noopener">spk.gov.tr</a>.
+      {platform.url && (
+        <>
+          {' '}Platformun kendi sitesi: <a href={platform.url} rel="noopener noreferrer">{new URL(platform.url).hostname}</a>.
+        </>
+      )}
+    </p>
+  </div>
+
+  {
+    kampanyalar.length > 0 && (
+      <section class="bolum" aria-labelledby="platform-kampanyalar">
+        <div class="bolum-bas">
+          <h2 class="bolum-baslik" id="platform-kampanyalar">Kampanyalar</h2>
+          <a href="/kampanya/">Bütün kampanyalar</a>
+        </div>
+        <KampanyaTablosu kampanyalar={kampanyalar} platformGoster={false} baslik={`${platform.ad} kampanyaları`} />
+        <p class="dizin-not">Rakamlar kifobu’nun her gün 18:00’de aldığı kayıtlardandır. {RISK_NOTU}</p>
+      </section>
+    )
+  }
+
+  <section class="bolum" aria-labelledby="platform-haberler">
+    <div class="bolum-bas">
+      <h2 class="bolum-baslik" id="platform-haberler">Haberler</h2>
+      <a href="/platformlar/">Platformlar bölümü</a>
+    </div>
+    {
+      haberler.length > 0 ? (
+        <div class="satir-izgara">
+          {haberler.map((h) => (
+            <HaberSatiri haber={h} />
+          ))}
+        </div>
+      ) : (
+        <p class="dizin-not">Bu platformla ilgili henüz haber yayımlanmadı.</p>
+      )
+    }
+  </section>
+</Base>

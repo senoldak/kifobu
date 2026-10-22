@@ -1,0 +1,211 @@
+name: Bülten Otomasyonu (Canlı & Kapanış)
+
+on:
+  # Zamanlama Cloudflare'deki "saat" Worker'ındadır: her gün Türkiye saatiyle 10:00–17:00 canlı, 18:00 kapanış (mecmua-saat, saat/src/ayarlar.js).
+  # GitHub'ın cron'u UTC'dir ve yaz/kış saatini izlemez, bu yüzden burada schedule yok.
+  # Manuel çalıştırma imkanı (GitHub arayüzünden tek tıkla)
+  workflow_dispatch:
+    inputs:
+      mod:
+        description: 'Çalışma Modu'
+        required: true
+        default: 'canli'
+        type: choice
+        options:
+          - canli
+          - kapanis
+          - linkedin-test
+          - telegram
+          - meta-kontrol
+
+jobs:
+  bulten-guncelle:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      # Bülten verisi değişince "Yayınla" iş akışını başlatmak için.
+      actions: write
+    steps:
+      - name: Kodu Çek
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # Sıradaki çalışma tetiklendiği anki commit'i değil, dalın en son hâlini alır; yoksa eski görülen listesiyle aynı haberleri yeniden yazar.
+          ref: ${{ github.ref_name }}
+
+      - name: Node.js Kurulumu
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .node-version
+
+      - name: Bağımlılıkları Yükle
+        run: npm ci || npm install
+
+      # Standartlar: acil durdurma açıksa canlı güncelleme, kapanış ve paylaşım adımları çalışmaz.
+      - name: Acil durdurma kontrolü
+        id: dur
+        env:
+          MOTOR_URL: ${{ vars.MOTOR_URL }}
+          MOTOR_ANAHTARI: ${{ secrets.MOTOR_ANAHTARI }}
+        run: node scripts/bot/durdu.mjs
+
+      # Kapanış yalnızca mod=kapanis ile (saat Worker'ı Türkiye 18:00'de gönderir; elle de seçilebilir). UTC saatine bakılmaz:
+      # kış saatinde Oslo 16:00 canlı güncellemesi de UTC 15'e düşüp ikinci bir kapanış üretirdi.
+      # Hiçbir şey yayımlamadan META_TOKEN'ın Kifobu Sayfasına ve @kifobu Instagram'ına erişimini sınar.
+      - name: Facebook/Instagram erişim kontrolü
+        if: github.event.inputs.mod == 'meta-kontrol'
+        env:
+          META_PAGE_ID: '1362769116928478'
+          INSTAGRAM_USER_ID: '17841456470366778'
+          META_TOKEN: ${{ secrets.META_TOKEN }}
+        run: npm run bulten:meta -- --kontrol
+
+      - name: Bülten Botunu Çalıştır
+        id: bot
+        if: github.event.inputs.mod != 'meta-kontrol' && steps.dur.outputs.durdu != '1'
+        env:
+          MOD: ${{ github.event.inputs.mod }}
+          MOTOR_URL: ${{ vars.MOTOR_URL }}
+          MOTOR_ANAHTARI: ${{ secrets.MOTOR_ANAHTARI }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          LINKEDIN_PERSON_URN: ${{ secrets.LINKEDIN_PERSON_URN }}
+          LINKEDIN_ORGANIZATION_URN: ${{ secrets.LINKEDIN_ORGANIZATION_URN }}
+        run: |
+          # Giriş doğrulama (Allowlist): Script injection önlemi
+          GECERLI_MOD="canli"
+          case "$MOD" in
+            kapanis|linkedin-test|telegram|canli)
+              GECERLI_MOD="$MOD"
+              ;;
+            "")
+              GECERLI_MOD="canli"
+              ;;
+            *)
+              echo "Geçersiz mod parametresi: $MOD, varsayılan canli modu kullanılacak."
+              GECERLI_MOD="canli"
+              ;;
+          esac
+
+          if [ "$GECERLI_MOD" = "kapanis" ]; then
+            echo "18:00 Bülten Kapanışı çalıştırılıyor..."
+            npm run bulten:kapanis
+            echo "Instagram Gönderi & Hikaye görselleri üretiliyor..."
+            npm run bulten:gorsel
+            # Güncel görselleri public klasörüne de kopyala (siteden ve sosyal medya botundan doğrudan erişilebilir olsun)
+            cp dist-bulten/bulten-post.png public/bulten-post.png
+            cp dist-bulten/bulten-story.png public/bulten-story.png
+            # Paylaşım, günün kalıcı sayfası yayına girdikten sonra ayrı adımda yapılır (aşağıda "Sosyal medyada paylaş").
+            echo "paylas=1" >> "$GITHUB_OUTPUT"
+          elif [ "$GECERLI_MOD" = "linkedin-test" ]; then
+            echo "LinkedIn Bülten Gönderim Testi çalıştırılıyor..."
+            npm run bulten:gorsel
+            npm run bulten:linkedin
+          elif [ "$GECERLI_MOD" = "telegram" ]; then
+            echo "Telegram Bülten Gönderimi çalıştırılıyor..."
+            npm run bulten:gorsel
+            cp dist-bulten/bulten-post.png public/bulten-post.png
+            cp dist-bulten/bulten-story.png public/bulten-story.png
+            if [ -n "$TELEGRAM_BOT_TOKEN" ] && [ -n "$TELEGRAM_CHAT_ID" ]; then
+              npm run bulten:telegram
+            else
+              echo "::error::TELEGRAM_BOT_TOKEN veya TELEGRAM_CHAT_ID eksik"
+              exit 1
+            fi
+          else
+            echo "Saatlik Canlı Güncelleme çalıştırılıyor..."
+            npm run bulten:canli
+          fi
+
+      - name: Değişiklikleri Commit ve Push Et
+        id: commit
+        if: github.event.inputs.mod != 'meta-kontrol'
+        run: |
+          git config --global user.name "Kifobu Bülten Botu"
+          git config --global user.email "bot@kifobu.com"
+          git add -A src/data/ public/ scripts/bot/
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(bulten): otomatik bülten ve infografik görselleri güncellendi [skip ci]"
+            # Başka iş aynı anda push ederse reddedilmesin diye pull --rebase ile 5 kez denenir (bot workflow'larındaki gibi).
+            for i in 1 2 3 4 5; do
+              git pull --rebase -X theirs && git push && break
+              git rebase --abort 2>/dev/null || true
+              sleep $((i * 5))
+              [ "$i" = "5" ] && exit 1
+            done
+            echo "yayin=1" >> "$GITHUB_OUTPUT"
+          else
+            echo "Commit edilecek değişiklik bulunamadı."
+          fi
+
+      # Bot commit'i "[skip ci]" ve GITHUB_TOKEN ile atıldığı için yayın kendiliğinden başlamaz; elle başlatılır.
+      - name: Siteyi yayınla
+        if: steps.commit.outputs.yayin == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run yayinla.yml --ref "${{ github.ref_name }}"
+
+      # Telegram/LinkedIn bağlantısı o günün kalıcı sayfasına (/gunluk-bulten/YYYY-AA-GG/) gider. Sayfa yayına girene kadar
+      # en fazla 15 dakika beklenir; girmezse betikler genel bülten sayfasına düşer.
+      - name: Sosyal medyada paylaş
+        if: steps.bot.outputs.paylas == '1'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          LINKEDIN_PERSON_URN: ${{ secrets.LINKEDIN_PERSON_URN }}
+          LINKEDIN_ORGANIZATION_URN: ${{ secrets.LINKEDIN_ORGANIZATION_URN }}
+          # Kifobu Facebook Sayfası ve @kifobu Instagram kimlikleri (gizli değil); token kifobu-paylasim sistem kullanıcısının.
+          META_PAGE_ID: '1362769116928478'
+          INSTAGRAM_USER_ID: '17841456470366778'
+          META_TOKEN: ${{ secrets.META_TOKEN }}
+        run: |
+          GUN=$(TZ=Europe/Istanbul date +%F)
+          for i in $(seq 1 30); do
+            if [ "$(curl -s -o /dev/null -w '%{http_code}' -I "https://kifobu.com/gunluk-bulten/$GUN/")" = "200" ]; then
+              echo "Gün sayfası yayında."
+              break
+            fi
+            sleep 30
+          done
+          # Her kanal denenir; biri düşerse diğerleri durmaz ama iş sonunda kırmızı biter ki mecmua-saat alarm versin
+          # (ücretsiz plan denetimi F1: 15–18 Ekim'de LinkedIn her gün 403 aldı, "::warning::" yüzünden iş yeşil göründü).
+          # Kırmızı biten kapanışı mecmua-saat yeniden başlatır; bugün giden kanal src/data/bulten-paylasim.json'da
+          # işaretlenir ve yeniden denemede atlanır, yoksa Telegram/Meta aynı bülteni iki kez alırdı.
+          HATALI=""
+          paylas() {
+            KANAL="$1"; AD="$2"; shift 2
+            if node scripts/bulten-paylasim-kaydi.mjs gonderildi "$KANAL"; then
+              echo "$AD bugün zaten paylaşıldı, atlandı."
+              return
+            fi
+            echo "$AD paylaşımı gönderiliyor..."
+            if "$@"; then
+              node scripts/bulten-paylasim-kaydi.mjs isaretle "$KANAL"
+            else
+              echo "::error::$AD paylaşımı başarısız"; HATALI="$HATALI $AD"
+            fi
+          }
+          if [ -n "$TELEGRAM_BOT_TOKEN" ] && [ -n "$TELEGRAM_CHAT_ID" ]; then
+            paylas telegram Telegram npm run bulten:telegram
+          fi
+          if [ -n "$LINKEDIN_ACCESS_TOKEN" ] && [ -n "$LINKEDIN_PERSON_URN" ]; then
+            paylas linkedin LinkedIn npm run bulten:linkedin
+          fi
+          if [ -n "$META_TOKEN" ]; then
+            paylas meta Facebook/Instagram npm run bulten:meta
+          fi
+          if [ -n "$(git status --porcelain -- src/data/bulten-paylasim.json)" ]; then
+            git add src/data/bulten-paylasim.json
+            git commit -m "chore(bulten): günün paylaşım kaydı [skip ci]"
+            for i in 1 2 3 4 5; do
+              git pull --rebase -X theirs && git push && break
+              git rebase --abort 2>/dev/null || true
+              sleep $((i * 5))
+              [ "$i" = "5" ] && echo "::error::Paylaşım kaydı push edilemedi; yeniden denemede kanallar tekrar gidebilir"
+            done
+          fi
+          if [ -n "$HATALI" ]; then
+            echo "::error::Paylaşım başarısız olan kanal(lar):$HATALI"
+            exit 1
+          fi

@@ -1,0 +1,35 @@
+---
+// Rehber dizini: kitle fonlamasına giriş, yatırım süreci ve SPK mevzuatı kılavuzu.
+import { jsonLdMetni } from '../../lib/json-ld.mjs';
+import Base from '../../layouts/Base.astro';
+import Yol from '../../components/Yol.astro';
+import { REHBERLER } from '../../lib/rehber';
+import { sayfaLd } from '../../lib/ld';
+
+const aciklama = 'kifobu rehberi: kitle fonlaması nedir, kitle fonlamasına nasıl yatırım yapılır, SPK kitle fonlaması mevzuatı.';
+const adimlar = [{ ad: 'Anasayfa', url: '/' }, { ad: 'Rehber', url: '/rehber/' }];
+const jsonLd = sayfaLd({ site: Astro.site!, yol: '/rehber/', ad: 'Rehber', aciklama, ogeler: REHBERLER.map((r) => `/rehber/${r.slug}/`), adimlar });
+---
+
+<Base title="Kitle fonlaması rehberi" description={aciklama}>
+  <script slot="head" type="application/ld+json" set:html={jsonLdMetni(jsonLd)} />
+  <div slot="tahta" class="kategori-bas">
+    <h1 class="kategori-isim">Rehber</h1>
+    <p class="kategori-sayi">{REHBERLER.length} yazı</p>
+  </div>
+
+  <Yol adimlar={adimlar} />
+
+  <div class="satir-izgara">
+    {
+      REHBERLER.map((r) => (
+        <article class="satir">
+          <h3>
+            <a href={`/rehber/${r.slug}/`}>{r.baslik}</a>
+          </h3>
+          <p>{r.aciklama}</p>
+        </article>
+      ))
+    }
+  </div>
+</Base>

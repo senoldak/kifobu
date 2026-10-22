@@ -1,0 +1,262 @@
+---
+import type { ArsivKaydi, Donem } from '../../lib/arsiv/tipler.ts';
+import { dilimle, kampanyaTablosu, kampanyaSerileri } from '../../lib/arsiv/hesap.ts';
+import { paraKisa } from '../../lib/arsiv/bicim.ts';
+import Tablo from './Tablo.astro';
+
+interface Props {
+  kayitlar: ArsivKaydi[];
+}
+
+const { kayitlar } = Astro.props;
+const donemler: { donem: Donem; ad: string }[] = [
+  { donem: 'gun', ad: 'Günlük' },
+  { donem: 'hafta', ad: 'Haftalık' },
+  { donem: 'ay', ad: 'Aylık' },
+];
+
+const TAHTA = '#f7f5ef';
+const TEBESIR = '#141a17';
+const TEBESIR_SOLUK = '#5d645f';
+const CIZGI = '#dcd9cf';
+const YAZI = "'Schibsted Grotesk', sans-serif";
+
+const sonKayit = kayitlar[kayitlar.length - 1];
+const platformlar: Record<string, { ad: string; renk: string }> = {};
+for (const k of kayitlar) for (const p of k.platformlar) platformlar[p.anahtar] = { ad: p.ad, renk: p.renk };
+const seriler = kampanyaSerileri(kayitlar);
+const sonTarih = sonKayit?.tarih ?? '';
+
+function guzelTavan(m: number): number {
+  if (m <= 0) return 1;
+  const us = 10 ** Math.floor(Math.log10(m));
+  for (const c of [1, 1.5, 2, 3, 5, 10]) if (c * us >= m) return c * us;
+  return 10 * us;
+}
+
+function baslik(d: { ilk: string; son: string }): string {
+  const ic = kayitlar.filter((k) => k.tarih >= d.ilk && k.tarih <= d.son);
+  if (ic.length > 0 && ic.every((k) => k.baslangic)) return 'Başlangıç günü';
+  if (ic.some((k) => k.girisimler.some((g) => g.veriAlinamadi))) return 'Veri alınamadı';
+  return 'Veri yok';
+}
+
+// Hiç bilinen giriş yokken grafiğin ortasındaki not. Mobilde iki satıra bölünür.
+const bosNot = kayitlar.length > 0 && kayitlar.every((k) => k.baslangic)
+  ? ['Başlangıç günü', 'günlük giriş ertesi kapanıştan itibaren']
+  : ['Henüz günlük giriş yok', 'veri alınan ilk kapanıştan itibaren'];
+
+function ciz(dilimler: ReturnType<typeof dilimle>, W: number, H: number, SOL: number, maxEtiket: number) {
+  const SAG = 12;
+  const UST = 18;
+  const ALT = 36;
+  const alanW = W - SOL - SAG;
+  const alanH = H - UST - ALT;
+  const veriVar = dilimler.some((d) => d.toplam !== null);
+  const tavan = guzelTavan(Math.max(0, ...dilimler.map((d) => d.toplam ?? 0)));
+  const n = dilimler.length;
+  const slot = alanW / Math.max(n, 1);
+  const cubukW = Math.min(slot * 0.68, 46);
+  const adim = Math.max(1, Math.ceil(n / maxEtiket));
+  const y = (v: number) => UST + alanH - (v / tavan) * alanH;
+  const cubuklar = dilimler.map((d, i) => {
+    const x = SOL + slot * i + (slot - cubukW) / 2;
+    let alt = UST + alanH;
+    const parcalar = Object.entries(d.platformlar)
+      .filter(([, v]) => v > 0)
+      .map(([anahtar, v]) => {
+        const h = (v / tavan) * alanH;
+        alt -= h;
+        return { anahtar, y: alt, h, renk: platformlar[anahtar]?.renk ?? '#888888' };
+      });
+    return { d, i, x, parcalar, ust: alt, etiket: i % adim === (n - 1) % adim };
+  });
+  return {
+    W, H, SOL, SAG, UST, alanH, cubukW, y, cubuklar, veriVar,
+    // Hiç bilinen giriş yoksa ölçek uydurulmaz: kılavuz çizgisi ve etiketi çizilmez.
+    kilavuz: veriVar ? [1, 2, 3].map((k) => (tavan * k) / 3) : [],
+  };
+}
+
+const bloklar = donemler.map(({ donem, ad }) => {
+  const dilimler = dilimle(kayitlar, donem);
+  const kullanilan = new Set(dilimler.flatMap((d) => Object.keys(d.platformlar)));
+  return {
+    donem,
+    ad,
+    platAnahtar: Object.keys(platformlar).filter((a) => kullanilan.has(a)),
+    // Masaüstü: 720 genişlik. Mobil: 300 genişlik; ~285px kapta yazılar ~%95 ölçekte kalır.
+    varyantlar: [
+      { sinif: 'masa', png: true, g: ciz(dilimler, 720, 280, 58, 8) },
+      { sinif: 'mobil', png: false, g: ciz(dilimler, 300, 240, 54, 5) },
+    ],
+  };
+});
+---
+
+{
+  bloklar.map((b) => (
+    <div data-donem-blok={b.donem} hidden={b.donem !== 'gun'}>
+      <div class="akis-kutu">
+        <ul class="aciklama" aria-label="Platformlar">
+          {b.platAnahtar.map((a) => (
+            <li>
+              <svg class="nokta" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><rect width="10" height="10" fill={platformlar[a].renk} /></svg>
+              {platformlar[a].ad}
+            </li>
+          ))}
+        </ul>
+        {b.varyantlar.map((v) => (
+        <svg
+          class={`grafik grafik-${v.sinif}`}
+          viewBox={`0 0 ${v.g.W} ${v.g.H}`}
+          width="100%"
+          role="img"
+          aria-label={`Kitle fonlama girişleri, ${b.ad.toLowerCase()} yığılmış çubuk grafik`}
+          {...(v.png ? { 'data-png-grafik': '' } : {})}
+          data-png-baslik={`Akış · ${b.ad}`}
+          font-family={YAZI}
+        >
+          <rect x="0" y="0" width={v.g.W} height={v.g.H} fill={TAHTA} />
+          {v.g.kilavuz.map((t) => (
+            <g>
+              <line x1={v.g.SOL} x2={v.g.W - v.g.SAG} y1={v.g.y(t)} y2={v.g.y(t)} stroke={CIZGI} stroke-width="1" />
+              <text x={v.g.SOL - 8} y={v.g.y(t) + 4} text-anchor="end" font-size="12" fill={TEBESIR_SOLUK} font-family={YAZI}>
+                {paraKisa(t)}
+              </text>
+            </g>
+          ))}
+          {!v.g.veriVar && (
+            v.sinif === 'mobil' ? (
+              <text x={v.g.SOL + (v.g.W - v.g.SOL - v.g.SAG) / 2} y={v.g.UST + v.g.alanH / 2 - 8} text-anchor="middle" font-size="13" fill={TEBESIR_SOLUK} font-family={YAZI}>
+                <tspan x={v.g.SOL + (v.g.W - v.g.SOL - v.g.SAG) / 2} dy="0">{bosNot[0]} ·</tspan>
+                <tspan x={v.g.SOL + (v.g.W - v.g.SOL - v.g.SAG) / 2} dy="18">{bosNot[1]}</tspan>
+              </text>
+            ) : (
+              <text x={v.g.SOL + (v.g.W - v.g.SOL - v.g.SAG) / 2} y={v.g.UST + v.g.alanH / 2} text-anchor="middle" font-size="13" fill={TEBESIR_SOLUK} font-family={YAZI}>
+                {`${bosNot[0]} · ${bosNot[1]}`}
+              </text>
+            )
+          )}
+          <line x1={v.g.SOL} x2={v.g.W - v.g.SAG} y1={v.g.UST + v.g.alanH} y2={v.g.UST + v.g.alanH} stroke="#5d645f" stroke-width="1" />
+          {v.g.cubuklar.map((c) => (
+            <g>
+              {c.d.toplam === null ? (
+                <>
+                  <title>{`${c.d.etiket}: ${baslik(c.d)}`}</title>
+                  <rect
+                    x={c.x}
+                    y={v.g.UST + v.g.alanH - 28}
+                    width={v.g.cubukW}
+                    height="28"
+                    fill="none"
+                    stroke={TEBESIR_SOLUK}
+                    stroke-width="1"
+                    stroke-dasharray="3 3"
+                  />
+                </>
+              ) : (
+                <>
+                  <title>
+                    {`${c.d.etiket}: ${paraKisa(c.d.toplam)}${c.d.eksik ? ' · bazı kampanyalarda veri alınamadı' : ''}${c.d.birikmis ? ' · önceki günle birlikte' : ''}`}
+                  </title>
+                  {c.parcalar.map((p) => (
+                    <rect x={c.x} y={p.y} width={v.g.cubukW} height={p.h} fill={p.renk} />
+                  ))}
+                  {c.d.eksik && (
+                    <text x={c.x + v.g.cubukW / 2} y={c.ust - 4} text-anchor="middle" font-size="12" font-weight="700" fill="#f2d45c" font-family={YAZI}>
+                      !
+                    </text>
+                  )}
+                  {c.d.birikmis && (
+                    <text x={c.x + v.g.cubukW / 2 + (c.d.eksik ? 9 : 0)} y={c.ust - 4} text-anchor="middle" font-size="12" font-weight="700" fill={TEBESIR} font-family={YAZI}>
+                      *
+                    </text>
+                  )}
+                </>
+              )}
+              {c.etiket && (
+                <text x={c.x + v.g.cubukW / 2} y={v.g.H - 14} text-anchor="middle" font-size="11" fill={TEBESIR_SOLUK} font-family={YAZI}>
+                  {c.d.etiket}
+                </text>
+              )}
+            </g>
+          ))}
+        </svg>
+        ))}
+        {b.varyantlar[0].g.cubuklar.some((c) => c.d.eksik || c.d.birikmis) && (
+          <p class="not">
+            {b.varyantlar[0].g.cubuklar.some((c) => c.d.eksik) && <span>! bazı kampanyalarda veri alınamadı</span>}
+            {b.varyantlar[0].g.cubuklar.some((c) => c.d.birikmis) && <span>* önceki günle birlikte</span>}
+          </p>
+        )}
+      </div>
+    </div>
+  ))
+}
+
+{
+  donemler.map(({ donem }) => (
+    <Tablo
+      donem={donem}
+      satirlar={kampanyaTablosu(kayitlar, donem)}
+      platformlar={platformlar}
+      seriler={seriler}
+      tarih={sonTarih}
+    />
+  ))
+}
+
+<style>
+  [data-donem-blok][hidden] {
+    display: none;
+  }
+  .akis-kutu {
+    padding: 12px 14px;
+    background: var(--tahta-koyu, #151d1a);
+    border: 1px solid var(--tebesir-ince, rgb(20 26 23 / 0.08));
+    border-radius: 4px;
+    min-width: 0;
+  }
+  .aciklama {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    margin: 0 0 8px;
+    padding: 0;
+    list-style: none;
+    font: 600 0.84rem var(--yazi-baslik, sans-serif);
+    color: var(--tebesir-2, rgb(236 239 233 / 0.74));
+  }
+  .nokta {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 6px;
+    vertical-align: -1px;
+  }
+  .grafik-mobil {
+    display: none;
+  }
+  @media (max-width: 560px) {
+    .grafik-masa {
+      display: none;
+    }
+    .grafik-mobil {
+      display: block;
+    }
+  }
+  svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  .not {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    margin: 8px 0 0;
+    font: 600 0.8rem var(--yazi-baslik, sans-serif);
+    color: var(--tebesir-3, rgb(236 239 233 / 0.62));
+  }
+</style>

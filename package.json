@@ -1,0 +1,28 @@
+{
+  "name": "kifobu",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "bulten:canli": "node --experimental-strip-types scripts/bulten-bot.ts",
+    "bulten:kapanis": "node --experimental-strip-types scripts/bulten-bot.ts --kapanis",
+    "bulten:gorsel": "node --experimental-strip-types scripts/bulten-gorsel-uret.ts",
+    "bulten:telegram": "node --experimental-strip-types scripts/bulten-telegram-gonder.ts",
+    "bulten:linkedin": "node --experimental-strip-types scripts/bulten-linkedin-gonder.ts",
+    "bulten:meta": "node --experimental-strip-types scripts/bulten-meta-gonder.ts",
+    "test": "node --experimental-strip-types --test \"src/lib/**/*.test.ts\" \"src/kapak/*.test.ts\" \"scripts/bot/*.test.mjs\" \"scripts/*.test.mjs\" \"scripts/*.test.ts\""
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.3.8",
+    "fontkitten": "^1.0.3",
+    "sharp": "^0.35.5"
+  }
+}

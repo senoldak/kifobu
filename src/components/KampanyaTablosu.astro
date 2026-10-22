@@ -1,0 +1,56 @@
+---
+// Kampanya listesi tablosu (kampanya dizini, platform sayfası, çeyrek raporu): son 18:00 kaydındaki değerler.
+import { paraTam, yuzdeBicim } from '../lib/arsiv/bicim.ts';
+import { formatDate } from '../lib/site';
+import type { Kampanya } from '../lib/kampanya.ts';
+import { platformUrl } from '../lib/dizin';
+
+interface Props {
+  kampanyalar: Kampanya[];
+  platformGoster?: boolean;
+  baslik: string;
+}
+
+const { kampanyalar, platformGoster = true, baslik } = Astro.props;
+const gun = (t: string) => formatDate(new Date(`${t}T12:00:00+03:00`));
+---
+
+<div class="tablo-kap">
+  <table class="veri-tablo">
+    <caption class="sr-only">{baslik}</caption>
+    <thead>
+      <tr>
+        <th scope="col">Girişim</th>
+        {platformGoster && <th scope="col">Platform</th>}
+        <th scope="col" class="sayi">Toplanan</th>
+        <th scope="col" class="sayi">Hedef</th>
+        <th scope="col" class="sayi">Gerçekleşme</th>
+        <th scope="col">Son durum</th>
+        <th scope="col">Son kayıt</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        kampanyalar.map((k) => (
+          <tr>
+            <th scope="row">
+              <a href={`/kampanya/${k.slug}/`}>{k.ad}</a>
+            </th>
+            {platformGoster && (
+              <td>
+                <a href={platformUrl(k.platform)}>{k.platform}</a>
+              </td>
+            )}
+            <td class="sayi">{paraTam(k.son.alinan)}</td>
+            <td class="sayi">{paraTam(k.hedef)}</td>
+            <td class="sayi">{yuzdeBicim(k.son.yuzde)}</td>
+            <td>{k.son.durum}</td>
+            <td>
+              <time datetime={k.sonTarih}>{gun(k.sonTarih)}</time>
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>

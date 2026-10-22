@@ -1,0 +1,214 @@
+---
+import type { Donem } from '../../lib/arsiv/tipler.ts';
+import type { KampanyaSatiri, KampanyaSerisi } from '../../lib/arsiv/hesap.ts';
+import { paraTam, yuzdeBicim } from '../../lib/arsiv/bicim.ts';
+
+interface Props {
+  donem: Donem;
+  satirlar: KampanyaSatiri[];
+  /** platform anahtarı -> ad/renk */
+  platformlar: Record<string, { ad: string; renk: string }>;
+  seriler: KampanyaSerisi[];
+  /** Son kayıt tarihi (YYYY-MM-DD) */
+  tarih: string;
+  hidden?: boolean;
+}
+
+const { donem, satirlar, platformlar, seriler, tarih, hidden = donem !== 'gun' } = Astro.props;
+const varBirikmis = satirlar.some((s) => s.birikmis);
+const varEksik = satirlar.some((s) => s.donemdeEksik && s.donemGirisi !== null);
+
+const satirVerisi = satirlar.map((s) => {
+  const p = platformlar[s.platform];
+  const seri = seriler.find((x) => x.ad === s.ad);
+  const kart = {
+    ad: s.ad,
+    platform: p?.ad ?? s.platform,
+    platformRenk: p?.renk ?? '#888888',
+    toplam: s.toplam,
+    yuzde: s.yuzde,
+    durum: s.durum,
+    tarih,
+    seri: (seri?.noktalar ?? []).map((n) => (seri && seri.hedef > 0 ? (n.alinan / seri.hedef) * 100 : 0)),
+  };
+  return { s, p, kart };
+});
+---
+
+<div class="tablo-blok" data-donem-blok={donem} hidden={hidden}>
+  <div class="tablo-kap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col" class="sol">Kampanya</th>
+          <th scope="col" class="sol">Platform</th>
+          <th scope="col" class="sag">Dönem girişi</th>
+          <th scope="col" class="sag">Toplam</th>
+          <th scope="col" class="sag">Hedef %</th>
+          <th scope="col" class="sol">Durum</th>
+          <th scope="col" class="sag"><span class="gizli">PNG indir</span><span aria-hidden="true">↓PNG</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          satirVerisi.map(({ s, p, kart }) => (
+            <tr data-kampanya={s.ad} data-kart={JSON.stringify(kart)}>
+              <th scope="row" class="sol ad">
+                {s.url ? (
+                  <a href={s.url} rel="noopener noreferrer" target="_blank">
+                    {s.ad}
+                  </a>
+                ) : (
+                  s.ad
+                )}
+              </th>
+              <td class="sol">
+                <svg class="nokta" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><rect width="10" height="10" fill={p?.renk ?? '#5d645f'} /></svg>
+                {p?.ad ?? s.platform}
+              </td>
+              <td class="sag sayi">
+                {s.donemGirisi === null ? (
+                  s.donemdeEksik ? <span class="soluk">Veri alınamadı</span> : '—'
+                ) : (
+                  <>
+                    {paraTam(s.donemGirisi)}
+                    {s.donemdeEksik && (
+                      <span class="unlem" title="Bu dönemde veri alınamayan gün var">
+                        !
+                      </span>
+                    )}
+                    {s.birikmis && (
+                      <span class="yildiz" title="önceki günle birlikte">
+                        *
+                      </span>
+                    )}
+                  </>
+                )}
+              </td>
+              <td class="sag sayi">{paraTam(s.toplam)}</td>
+              <td class="sag sayi">{yuzdeBicim(s.yuzde)}</td>
+              <td class="sol durum">{s.durum}</td>
+              <td class="sag">
+                <button type="button" data-png-kart aria-label={`${s.ad} kartını PNG olarak indir`}>
+                  PNG
+                </button>
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+  {(varEksik || varBirikmis) && (
+    <p class="dipnot">
+      {varEksik && <span>! bu dönemde veri alınamayan gün var</span>}
+      {varBirikmis && <span>* önceki günle birlikte</span>}
+    </p>
+  )}
+</div>
+
+<style>
+  .tablo-blok {
+    min-width: 0;
+  }
+  .tablo-blok[hidden] {
+    display: none;
+  }
+  .tablo-kap {
+    position: relative;
+    overflow-x: auto;
+    max-width: 100%;
+  }
+  table {
+    width: 100%;
+    min-width: 680px;
+    border-collapse: collapse;
+    font: 500 0.92rem / 1.35 var(--yazi-govde, sans-serif);
+    color: var(--tebesir, #ecefe9);
+  }
+  th,
+  td {
+    padding: 10px;
+    border-bottom: 1px solid var(--tebesir-ince, rgb(20 26 23 / 0.08));
+    vertical-align: middle;
+  }
+  thead th {
+    font: 700 0.74rem var(--yazi-baslik, sans-serif);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--tebesir-3, rgb(236 239 233 / 0.62));
+    border-bottom-color: var(--tebesir-cizgi, #dcd9cf);
+    white-space: nowrap;
+  }
+  .sol {
+    text-align: left;
+  }
+  .sag {
+    text-align: right;
+  }
+  .sayi {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  tbody th.ad {
+    font-weight: 700;
+    min-width: 12ch;
+  }
+  tbody th.ad a {
+    color: inherit;
+    text-decoration-color: var(--tebesir-cizgi, #dcd9cf);
+    text-underline-offset: 3px;
+  }
+  .nokta {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 8px;
+    vertical-align: -1px;
+  }
+  .durum {
+    color: var(--tebesir-2, rgb(236 239 233 / 0.74));
+  }
+  .soluk {
+    color: var(--tebesir-3, rgb(236 239 233 / 0.62));
+  }
+  .unlem {
+    margin-left: 2px;
+    font-weight: 700;
+    color: var(--sari, #f2d45c);
+  }
+  .yildiz {
+    margin-left: 2px;
+    color: var(--sari, #f2d45c);
+  }
+  .dipnot {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    margin: 8px 0 0;
+    font: 600 0.8rem var(--yazi-baslik, sans-serif);
+    color: var(--tebesir-3, rgb(236 239 233 / 0.62));
+  }
+  button[data-png-kart] {
+    min-height: 32px;
+    padding: 0 10px;
+    font: 700 0.76rem var(--yazi-baslik, sans-serif);
+    letter-spacing: 0.08em;
+    color: var(--tebesir, #ecefe9);
+    background: transparent;
+    border: 1px solid var(--tebesir-cizgi, #dcd9cf);
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  button[data-png-kart]:hover {
+    border-color: var(--sari, #f2d45c);
+  }
+  .gizli {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+</style>

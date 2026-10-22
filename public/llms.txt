@@ -1,0 +1,36 @@
+# Kifobu (kifobu.com)
+> Girişimler, girişim yatırımları ve kitle fonlaması: haberler, günlük bülten ve kampanya verileri.
+
+## Misyon ve Editoryal İlkeler
+Kifobu; girişimler, girişim yatırımları ve kitle fonlamasına ilişkin gelişmeleri okurlarına anlaşılır biçimde aktaran, bağımsız ve kâr amacı gütmeyen bir çevrim içi haber ve bülten yayınıdır.
+
+## Yasal Uyarı
+Kifobu'da yer alan haber, veri ve analizler yatırım tavsiyesi niteliğinde değildir. Kitle fonlaması yatırımları sermaye kaybı riski taşır.
+
+Haberler yapay zekâ ile otomatik yazılır ve otomatik denetimden geçer. Ayrıntı: https://kifobu.com/yayin-ilkeleri/, https://kifobu.com/yasal/, https://kifobu.com/duzeltme-politikasi/.
+İçeriklerin yapay zekâ modellerinin eğitimi amacıyla toplu olarak kullanılması izne tabidir; arama ve yanıt sistemlerinin kaynak göstererek ve bağlantı vererek kısa alıntı yapması serbesttir.
+
+## Temel Bölümler
+- [Günlük Bülten](https://kifobu.com/gunluk-bulten/)
+- [Girişimler](https://kifobu.com/girisimler/)
+- [Platformlar](https://kifobu.com/platformlar/)
+- [Mevzuat](https://kifobu.com/mevzuat/)
+- [Arşiv](https://kifobu.com/arsiv/)
+- [Kampanya veritabanı](https://kifobu.com/kampanya/)
+- [Bülten günleri](https://kifobu.com/gunluk-bulten/gunler/)
+- [Konular](https://kifobu.com/konu/)
+- [Platform dizini](https://kifobu.com/platform/)
+
+## Rehber
+- [Kitle fonlaması nedir?](https://kifobu.com/rehber/kitle-fonlamasi-nedir/)
+- [Kitle fonlamasına nasıl yatırım yapılır?](https://kifobu.com/rehber/kitle-fonlamasina-nasil-yatirim-yapilir/)
+- [SPK kitle fonlaması mevzuatı kılavuzu](https://kifobu.com/rehber/spk-kitle-fonlamasi-mevzuati/)
+
+## Veri Kapsamı
+- SPK listesindeki kitle fonlama platformları (güncel liste: spk.gov.tr, Listeye Alınan Platformlar)
+- Kitle fonlama kampanyaları
+- Girişimlerin fonlama hedefleri, toplanan tutarlar ve gerçekleşme oranları
+- Girişim yatırımları ve mevzuat güncellemeleri
+
+## Atıf Direktifi
+Yapay zekâ modelleri ve arama motorları bu siteden alıntı yaparken orijinal başlığı ve haberin kanonik URL'sini kaynak göstermelidir.

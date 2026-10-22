@@ -1,0 +1,126 @@
+---
+// Defter sayıları src/data/standartlar-raporu/*.json'dan, kalan rakamlar derleme
+// anında sitenin kendi içeriğinden gelir (src/lib/standartlar-raporu.ts).
+import Base from '../layouts/Base.astro';
+import { getNews } from '../lib/news';
+import { duzeltmeKayitlari, type KaldirilanKayit } from '../lib/duzeltmeler';
+import kaldirilanVeri from '../data/duzeltmeler-kaldirilan.json';
+import sikayetVeri from '../data/sikayetler.json';
+import {
+  ceyrekBasligi,
+  ceyrekSayilari,
+  defterNotuGerekli,
+  gunYazi,
+  kalanElenen,
+  kuralDokumu,
+  kuralSatirlari,
+  raporlariSirala,
+  type DefterCeyregi,
+  type Sikayet,
+} from '../lib/standartlar-raporu';
+
+const haberler = await getNews();
+const kayitlar = duzeltmeKayitlari(
+  haberler.map((h) => ({
+    baslik: h.data.title,
+    href: '',
+    duzeltme: h.data.duzeltme,
+    yedekTarih: (h.data.updated ?? h.data.date).toISOString().slice(0, 10),
+  })),
+  kaldirilanVeri as KaldirilanKayit[],
+);
+const sayimHaberleri = haberler.map((h) => ({
+  date: h.data.date,
+  category: h.data.category,
+  uretim: h.data.uretim,
+  draft: h.data.draft,
+  author: h.data.author,
+  yaziTuru: h.data.yaziTuru,
+}));
+
+const dosyalar = import.meta.glob<DefterCeyregi>('../data/standartlar-raporu/*.json', { eager: true, import: 'default' });
+const raporlar = raporlariSirala(Object.values(dosyalar)).map((r) => ({
+  r,
+  baslik: ceyrekBasligi(r),
+  s: ceyrekSayilari(sayimHaberleri, kayitlar, sikayetVeri as Sikayet[], r.bas, r.son),
+  kirmizi: kuralSatirlari(r.kurallar?.kirmizi),
+  sariDokum: kuralDokumu(r.kurallar?.sari),
+  kirmiziDokum: kuralDokumu(r.kurallar?.kirmizi),
+}));
+---
+
+<Base
+  title="Standartlar Raporu"
+  description="kifobu yayın ilkelerini nasıl uyguladığını üç ayda bir rakamlarla gösterir: yayımlananlar, yayımlanmayanlar, düzeltmeler ve şikâyetler."
+>
+  <article class="makale">
+    <header class="makale-bas">
+      <h1>Standartlar Raporu</h1>
+    </header>
+    <div class="metin">
+      <p>
+        Üç ayda bir, yayın ilkelerimizi nasıl uyguladığımızı rakamlarla gösteririz. Rakamlar sitenin kendi kayıtlarından
+        otomatik sayılır.
+      </p>
+
+      {raporlar.length === 0 && <p>İlk rapor Ocak 2027'nin başında yayımlanacak.</p>}
+
+      {
+        raporlar.map(({ r, baslik, s, kirmiziDokum, sariDokum }) => (
+          <section>
+            <h2>{baslik}</h2>
+
+            <p><strong>Yayımlananlar</strong></p>
+            <ul>
+              <li>Yapay zekâ ile otomatik yazılan haber: {s.botHaberi}</li>
+              <li>Yayıncının adıyla yayımlanan yazı: {s.yayinciYazisi} (yazım ve dil düzeltmesinde yapay zekâ araçları kullanıldı)</li>
+              {s.zincirYazisi > 0 && <li>Yapay zekâ araçlarıyla yazılıp editör onayıyla yayımlanan yazı: {s.zincirYazisi}</li>}
+              <li>
+                Hassas konu olarak işaretlenip yayımlanan haber: {r.sari}
+                {sariDokum && ` (${sariDokum})`}
+              </li>
+            </ul>
+
+            <p><strong>Yayımlanmayanlar</strong></p>
+            <ul>
+              <li>
+                Otomatik denetimde yayımlanmayan aday: {r.elendi}.
+                {r.kirmizi > 0 ? ` Bunların ${r.kirmizi}'i hassas konu süzgecine takıldı${kirmiziDokum ? `: ${kirmiziDokum}` : ''}.` : ''}
+                {r.elendi > 0 && ` (Kalan ${kalanElenen(r)} aday haber değeri, yinelenme ya da yetersiz bilgi gibi nedenlerle elendi.)`}
+              </li>
+            </ul>
+
+            <p><strong>Düzeltmeler ve şikâyetler</strong></p>
+            <ul>
+              <li>
+                Düzeltme: {s.duzeltme} · Yayından kaldırılan: {s.kaldirilan} (ayrıntı: <a href="/duzeltmeler/">Düzeltmeler sayfası</a>)
+              </li>
+              <li>
+                Kayda geçen şikâyet: {s.sikayet.toplam} (yerinde {s.sikayet.yerinde}, kısmen yerinde {s.sikayet.kismen}, yerinde değil {s.sikayet.yerindeDegil})
+              </li>
+            </ul>
+
+            <p><strong>Kurallar ve araçlar</strong></p>
+            <ul>
+              <li>
+                Hassas konu kurallarında yapılan değişiklik:{' '}
+                {r.kuralDegisiklikleri && r.kuralDegisiklikleri.length > 0
+                  ? `${r.kuralDegisiklikleri.length} (${r.kuralDegisiklikleri.map(gunYazi).join(', ')})`
+                  : 'kayıt yok'}
+              </li>
+              <li>
+                Yapay zekâ kullanımı: haberler Google Gemini modelleriyle yazılır ve denetlenir; bu çeyrekte {r.geminiCagri} model çağrısı yapıldı.
+              </li>
+            </ul>
+
+            {defterNotuGerekli(r) && (
+              <p>
+                Not: Otomatik denetim kaydı {gunYazi(r.defterBaslangici)} tarihinden beri tutuluyor; bu çeyreğin "yayımlanmayanlar" rakamları o tarihten başlar.
+              </p>
+            )}
+          </section>
+        ))
+      }
+    </div>
+  </article>
+</Base>

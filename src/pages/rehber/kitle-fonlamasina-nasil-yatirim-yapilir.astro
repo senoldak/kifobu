@@ -1,0 +1,59 @@
+---
+import RehberSayfa from '../../components/RehberSayfa.astro';
+import { RISK_NOTU } from '../../lib/site';
+---
+
+<RehberSayfa slug="kitle-fonlamasina-nasil-yatirim-yapilir">
+  <p>
+    Türkiye’de paya ya da borçlanmaya dayalı bir kitle fonlaması kampanyasına yatırım, SPK’nın listesindeki kitle fonlama
+    platformları üzerinden yapılır. Bu yazı süreci ana adımlarıyla anlatır; yatırım tavsiyesi değildir.
+  </p>
+
+  <h2>1. Platformun yetkisini doğrulayın</h2>
+  <p>
+    Paya ve borçlanmaya dayalı kitle fonlaması yalnız Sermaye Piyasası Kurulu’nun listesine aldığı platformlarda yapılabilir.
+    Yatırım yapmadan önce platformun bu listede olduğunu <a href="https://spk.gov.tr/" rel="noopener">SPK’nın sitesinden</a>
+    kontrol edin. kifobu’nun izlediği platformlar <a href="/platform/">platform dizininde</a> yer alır.
+  </p>
+
+  <h2>2. Platforma üye olun</h2>
+  <p>
+    Yatırım için platforma üye olmak ve platformun istediği kimlik doğrulama adımlarını tamamlamak gerekir. Platformlar
+    yatırımcıyı riskler konusunda bilgilendirmek ve bazı beyanlar almakla yükümlüdür.
+  </p>
+
+  <h2>3. Kampanya belgelerini okuyun</h2>
+  <p>Kampanya sayfasında ve belgelerinde şu bilgilere bakın:</p>
+  <ul>
+    <li>Girişimin ne iş yaptığı, ekibi ve bugüne kadarki durumu</li>
+    <li>Hedeflenen fon tutarı ve kampanyanın süresi</li>
+    <li>Toplanan paranın nerede kullanılacağı</li>
+    <li>Paya dayalı kampanyada şirket değerlemesi ve yatırım karşılığında verilecek payın oranı</li>
+    <li>Borçlanmaya dayalı kampanyada geri ödeme takvimi ve şartları</li>
+    <li>Platformun ve girişimin risk açıklamaları</li>
+  </ul>
+
+  <h2>4. Yatırım sınırlarını öğrenin</h2>
+  <p>
+    Tebliğ, nitelikli olmayan yatırımcıların kitle fonlamasına yatırabileceği tutara yıllık sınırlar koyar. Bu tutarlar SPK
+    kararıyla güncellenebildiği için burada rakam vermiyoruz; güncel sınırları <a href="https://spk.gov.tr/" rel="noopener">SPK’nın
+    sitesinden</a> ve tebliğin yürürlükteki metninden doğrulayın.
+  </p>
+
+  <h2>5. Kampanyanın sonucunu izleyin</h2>
+  <p>
+    Kampanya süresince taahhüt ettiğiniz tutar doğrudan girişime geçmez. Kampanya başarılı olursa paya dayalı modelde
+    girişimin paylarına, borçlanmaya dayalı modelde borçlanma aracına sahip olursunuz; kampanya başarısız olursa tutar
+    tebliğdeki usule göre iade edilir. Kampanyaların günlük seyrini kifobu’nun <a href="/kampanya/">kampanya veritabanında</a>
+    izleyebilirsiniz.
+  </p>
+
+  <h2>Riskler</h2>
+  <ul>
+    <li><strong>Sermaye kaybı:</strong> Girişim başarısız olursa yatırılan paranın tamamı kaybedilebilir.</li>
+    <li><strong>Likidite:</strong> Kitle fonlamasıyla alınan paylar borsada işlem görmez; istenildiği zaman satılamayabilir.</li>
+    <li><strong>Sulanma:</strong> Girişim sonraki turlarda yeni pay çıkarırsa ortaklık oranınız düşebilir.</li>
+    <li><strong>Getiri belirsizliği:</strong> Erken aşamadaki girişimler çoğu zaman kâr payı dağıtmaz; borçlanmaya dayalı modelde geri ödeme girişimin durumuna bağlıdır.</li>
+  </ul>
+  <p>{RISK_NOTU}</p>
+</RehberSayfa>

@@ -1,0 +1,51 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../lib/site';
+---
+
+<Base
+  title="Gizlilik"
+  description="kifobu'yu okurken hangi verinin işlendiği: üyelik ya da form yok, çerez yok; yalnız toplu ziyaret ölçümü."
+>
+  <article class="makale">
+    <header class="makale-bas">
+      <h1>Gizlilik</h1>
+      <p class="makale-spot">Siteyi okurken hangi veri işleniyor?</p>
+    </header>
+    <div class="metin">
+      <p>Bu sayfa, {SITE.name} sitesini okurken kişisel verinin nasıl işlendiğini anlatır.</p>
+
+      <h2>Sizden veri toplamıyoruz</h2>
+      <p>
+        Sitede üyelik, yorum ya da form yoktur; sizden kişisel bilgi istemiyoruz. Bize e-posta yazarsanız (örneğin
+        "Hata bildir" ile), yazdıklarınızı ve e-posta adresinizi yalnızca yanıtlamak ve gerekirse düzeltme yapmak için
+        kullanırız. Site çerez kullanmaz. Arama, tarayıcınızda çalışır; yazdığınız sözcükler bize gönderilmez.
+      </p>
+
+      <h2>Barındırma ve ölçüm</h2>
+      <p>
+        Site Cloudflare üzerinde yayınlanır. Sayfaları sunmak ve kötüye kullanımı önlemek için Cloudflare, her bağlantıda
+        olduğu gibi IP adresi ve tarayıcı bilgisini teknik olarak işler. Ziyaretleri toplu olarak saymak için çerez
+        kullanmayan Cloudflare Web Analytics kullanılır; bu ölçüm kişiyi tanımlamaz ve sizi başka sitelerde izlemez.
+      </p>
+
+      <h2>Bağlantılar</h2>
+      <p>
+        Telegram, LinkedIn ya da başka sitelere giden bağlantılar, hangi kanaldan geldiğini gösteren izleme parametreleri
+        (utm_source gibi) taşıyabilir. Bu parametreler kişiyi tanımlamaz. Başka bir siteye geçtiğinizde o sitenin gizlilik
+        kuralları geçerlidir.
+      </p>
+
+      <h2>Haklarınız ve iletişim</h2>
+      <p>
+        6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamındaki haklarınızı kullanmak ya da sorunuz olursa
+        <a href="mailto:contact@kifobu.com">contact@kifobu.com</a> adresine yazabilirsiniz.
+      </p>
+      <p>
+        Editoryal ilkeler için <a href="/yayin-ilkeleri/">Yayın İlkeleri</a>, yasal bilgiler için
+        <a href="/yasal/">Yasal Bilgilendirme</a> sayfasına bakın.
+      </p>
+      <p>Son güncelleme: 20 Ekim 2026.</p>
+    </div>
+  </article>
+</Base>

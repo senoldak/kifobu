@@ -1,0 +1,48 @@
+---
+// Platform dizini: kifobu'nun kampanya kaydı ya da en az 3 haberi olan kitle fonlama platformları.
+import { jsonLdMetni } from '../../lib/json-ld.mjs';
+import Base from '../../layouts/Base.astro';
+import Yol from '../../components/Yol.astro';
+import { dizinVerisi } from '../../lib/dizin';
+import { sayfaLd } from '../../lib/ld';
+
+const { platformlar } = await dizinVerisi();
+const aciklama = "Türkiye'deki kitle fonlama platformları: kifobu'nun kampanya kayıtları ve platform haberleri.";
+const adimlar = [{ ad: 'Anasayfa', url: '/' }, { ad: 'Platformlar', url: '/platform/' }];
+// Dizin, arama motorlarına açık en az bir platform sayfası olunca açılır.
+const jsonLd = sayfaLd({ site: Astro.site!, yol: '/platform/', ad: 'Kitle fonlama platformları', aciklama, ogeler: platformlar.map((p) => `/platform/${p.platform.slug}/`), adimlar });
+---
+
+<Base title="Kitle fonlama platformları" description={aciklama} noindex={!platformlar.some((p) => p.indeks)}>
+  <script slot="head" type="application/ld+json" set:html={jsonLdMetni(jsonLd)} />
+  <div slot="tahta" class="kategori-bas">
+    <h1 class="kategori-isim">Platformlar</h1>
+    <p class="kategori-sayi">{platformlar.length} platform</p>
+  </div>
+
+  <Yol adimlar={adimlar} />
+
+  <div class="metin dizin-giris">
+    <p>
+      kifobu’nun günlük bülteninde kampanyalarını izlediği ve haberlerinde yer alan kitle fonlama platformları. Platformların
+      yetki durumunu Sermaye Piyasası Kurulu’nun sitesinden doğrulayabilirsiniz:
+      <a href="https://spk.gov.tr/" rel="noopener">spk.gov.tr</a>.
+    </p>
+  </div>
+
+  <div class="satir-izgara">
+    {
+      platformlar.map((p) => (
+        <article class="satir">
+          <h3>
+            <a href={`/platform/${p.platform.slug}/`}>{p.platform.ad}</a>
+          </h3>
+          <div class="kunye">
+            {p.kampanyalar.length > 0 && <span>{p.kampanyalar.length} kampanya</span>}
+            <span>{p.haberler.length} haber</span>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</Base>

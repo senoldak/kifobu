@@ -1,0 +1,602 @@
+---
+/**
+ * Günlük Kitle Fonlama Bülteni ("Bugün" görünümü)
+ * 18:00 bülteni görselinin HTML ikizi; Kimlik v2 (BRAND.md §11): yapı ve metinler aynı, Schibsted Grotesk, kâğıt zemin.
+ * - Girişimler: 2 satırlı ilerleme kartları
+ * - Platformlar: Segmentli dağılım çubuğu + 4 sütun döküm
+ * - Ön Talep & Yakında: Temiz tipografik sütunlar
+ * - MKK Verileri: Yatay rozet bandı
+ */
+import { BULTEN } from '../data/bulten';
+import { formatNumber } from '../lib/site';
+import { newsUrl, type Haber } from '../lib/news';
+import { KIMLIK, kapandiMi, yuzdeSonda } from '../lib/kimlik';
+import PlatformAdi from './PlatformAdi.astro';
+
+interface Props {
+  breaking?: Haber[];
+}
+
+const { breaking = [] } = Astro.props;
+const b = BULTEN;
+
+const tl = (n: number) => '₺' + n.toLocaleString('tr-TR');
+const yuzde = (n: number) => yuzdeSonda(n);
+
+// Platform dağılımı toplamı
+const platformToplami = b.platformlar.liste.reduce((s, p) => s + p.toplam, 0) || 1;
+
+// CSP (style-src 'self') satır içi style'ı engellediği için çubuklar SVG
+// öznitelikleriyle çizilir; segmentlerin başlangıç noktaları önceden hesaplanır.
+let platformX = 0;
+const platformSegmentleri = b.platformlar.liste.map((p) => {
+  const oran = (p.toplam / platformToplami) * 100;
+  const s = { p, x: platformX, oran };
+  platformX += oran;
+  return s;
+});
+
+// İlerleme çubuğu ve yüzde rozeti: 18:00 görselindeki eşiklerin aynısı (veri renkleri).
+const cubukRengi = (y: number) => {
+  if (y >= 100) return KIMLIK.yesil;
+  if (y >= 50) return '#0284c7';
+  return '#6366f1';
+};
+const platformRenk = (ad: string) => b.platformlar.liste.find((p) => p.ad.toLowerCase() === ad.toLowerCase())?.renk ?? KIMLIK.gri;
+
+const cubukSinifi = (y: number) => {
+  if (y >= 100) return 'renk-yesil';
+  if (y >= 50) return 'renk-mavi';
+  return 'renk-indigo';
+};
+
+const slug = (str: string) =>
+  str.toLowerCase().replace(/[^a-z0-9]/g, '');
+---
+
+<section class="bulten-alani" aria-label="Günlük Kitle Fonlama Bülteni">
+  <!-- Üst Başlık -->
+  <header class="bulten-baslik">
+    <div>
+      <h2 class="bulten-ana-baslik">GÜNLÜK <b>KİTLE FONLAMA</b> BÜLTENİ</h2>
+      <p class="bulten-tarih-sayi">{b.tarih} / {b.sayi}</p>
+    </div>
+  </header>
+
+  <!-- GİRİŞİMLER -->
+  <section class="bulten-bolum">
+    <div class="bolum-baslik">
+      <h3>GİRİŞİMLER</h3>
+      <span class="bolum-cizgi"></span>
+    </div>
+
+    <div class="girisimler-liste">
+      {
+        b.girisimler.map((g) => (
+          <article class="girisim-karti">
+            <svg class="gk-kenar" viewBox="0 0 6 10" preserveAspectRatio="none" aria-hidden="true"><rect width="6" height="10" fill={platformRenk(g.platform)} /></svg>
+            <!-- Üst Satır -->
+            <div class="gk-satir gk-ust">
+              <div class="gk-ad">
+                {g.url ? <a href={g.url}>{g.ad}</a> : <span>{g.ad}</span>}
+              </div>
+              <div class="gk-metrik">
+                <span class="gk-etiket">bugün</span>
+                <span class="ayrac">|</span>
+                <span class="deger">{tl(g.bugun)}</span>
+              </div>
+              <div class="gk-metrik gk-metrik-sag">
+                <span class="deger">{tl(g.alinan)}</span>
+                <span class="ayrac">|</span>
+                <span class="gk-etiket">alınan</span>
+              </div>
+              <div class={`gk-yuzde ${cubukSinifi(g.yuzde)}`}>
+                {yuzde(g.yuzde)}
+              </div>
+            </div>
+
+            <!-- İlerleme Çubuğu -->
+            <div class="gk-cubuk-alani" role="progressbar" aria-valuenow={g.yuzde} aria-valuemin="0" aria-valuemax="100">
+              <svg class="cubuk-svg" aria-hidden="true">
+                <rect
+                  class={`gk-bar-${slug(g.ad)}`}
+                  width={`${Math.min(g.yuzde, 100)}%`}
+                  height="100%"
+                  fill={cubukRengi(g.yuzde)}
+                />
+              </svg>
+            </div>
+
+            <!-- Alt Satır -->
+            <div class="gk-satir gk-alt">
+              <div class="gk-platform"><PlatformAdi ad={g.platform} /></div>
+              <div class="gk-metrik">
+                <span class="gk-etiket">değerleme</span>
+                <span class="ayrac">|</span>
+                <span class="deger">{tl(g.degerleme)}</span>
+              </div>
+              <div class="gk-metrik gk-metrik-sag">
+                {g.kalan === null ? (
+                  <span class="deger vurgu-fonlandi">FONLANDI</span>
+                ) : (
+                  <span class="deger">{tl(g.kalan)}</span>
+                )}
+                <span class="ayrac">|</span>
+                <span class="gk-etiket">kalan</span>
+              </div>
+              <div class:list={['gk-durum', { 'gk-durum--gecmis': kapandiMi(g.durum) }]}>{g.durum.toLocaleUpperCase('tr-TR')}</div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- PLATFORMLAR -->
+  <section class="bulten-bolum">
+    <div class="bolum-baslik">
+      <h3>PLATFORMLAR</h3>
+      <span class="bolum-cizgi"></span>
+    </div>
+
+    <div class="platformlar-govde">
+      <!-- Rakamlar (Sol: Bugün, Sağ: Toplam) -->
+      <div class="platformlar-sayaclar">
+        <div class="sayac-kutu sayac-sol">
+          <span class="sayac-etiket">bugün</span>
+          <span class="sayac-deger">{tl(b.platformlar.bugun)}</span>
+        </div>
+        <div class="sayac-kutu sayac-sag">
+          <span class="sayac-etiket">toplam</span>
+          <span class="sayac-deger">{tl(b.platformlar.toplam)}</span>
+        </div>
+      </div>
+
+      <!-- Segmentli Dağılım Çubuğu -->
+      <div class="platform-segment-cubuk" aria-hidden="true">
+        <svg class="cubuk-svg">
+          {
+            platformSegmentleri.map((s) => (
+              <rect
+                class={`segment plat-${slug(s.p.ad)}`}
+                x={`${s.x}%`}
+                width={`${s.oran}%`}
+                height="100%"
+                fill={s.p.renk}
+              >
+                <title>{`${s.p.ad}: ${tl(s.p.toplam)}`}</title>
+              </rect>
+            ))
+          }
+        </svg>
+      </div>
+
+      <!-- 4 Platform Sütun Listesi -->
+      <div class="platform-kartlar-izgara">
+        {
+          b.platformlar.liste.map((p) => (
+            <div class="platform-kolon">
+              <span class="pk-ad"><PlatformAdi ad={p.ad} href={p.url} /></span>
+              <span class="pk-tutar">{tl(p.toplam)}</span>
+              <span class="pk-adet">{p.girisim} girişim</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ÖN TALEP & YAKINDA -->
+  <section class="bulten-bolum">
+    <div class="bolum-baslik">
+      <h3>ÖN TALEP &amp; YAKINDA</h3>
+      <span class="bolum-cizgi"></span>
+    </div>
+
+    <div class="yakinda-izgara">
+      {
+        b.yakinda.map((y) => (
+          <div class="yakinda-oge">
+            <span class="yo-ad">
+              {y.url ? <a href={y.url}>{y.ad}</a> : y.ad}
+            </span>
+            <span class="yo-plat">{y.platform}</span>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- MKK VERİLERİ -->
+  <section class="bulten-bolum">
+    <div class="bolum-baslik">
+      <h3>MKK VERİLERİ</h3>
+      <span class="bolum-cizgi"></span>
+    </div>
+
+    <div class="mkk-serit">
+      <div class="mkk-hucre">
+        <span class="mkk-lbl">platform</span>
+        <strong class="mkk-val">{b.mkk.platform}</strong>
+      </div>
+      <div class="mkk-hucre">
+        <span class="mkk-lbl">yatırımcı sayısı</span>
+        <strong class="mkk-val">{formatNumber(b.mkk.yatirimci)}</strong>
+      </div>
+      <div class="mkk-hucre">
+        <span class="mkk-lbl">kaydileşen şirket</span>
+        <strong class="mkk-val">{b.mkk.sirket}</strong>
+      </div>
+      <div class="mkk-hucre">
+        <span class="mkk-lbl">toplanan fon</span>
+        <strong class="mkk-val">{b.mkk.fon}</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- Son Dakika -->
+  {
+    breaking.length > 0 && (
+      <div class="bulten-son-dakika" role="region" aria-label="Son dakika">
+        <span class="son-dakika-etiket">Son dakika</span>
+        <ul>
+          {breaking.map((h) => (
+            <li>
+              <a href={newsUrl(h)}>{h.data.title}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
+</section>
+
+<style>
+  /* 18:00 bülteni görselinin dili: açık zemin, beyaz kartlar, platform renginde sol kenar, yüzde rozetleri. */
+  .bulten-alani {
+    padding-block: 26px 30px;
+    color: var(--murekkep);
+  }
+
+  .bulten-baslik {
+    margin-bottom: 8px;
+  }
+
+  .bulten-ana-baslik {
+    margin: 0;
+    font-size: clamp(1.5rem, 3.4vw, 2.3rem);
+    font-weight: 400;
+    letter-spacing: 0.005em;
+    line-height: 1.1;
+  }
+
+  .bulten-ana-baslik b {
+    font-weight: 800;
+  }
+
+  .bulten-tarih-sayi {
+    margin: 6px 0 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--gri);
+  }
+
+  .bulten-bolum {
+    margin-top: 26px;
+  }
+
+  .bolum-baslik {
+    margin-bottom: 14px;
+    border-bottom: 3px solid var(--marka-sari);
+    padding-bottom: 7px;
+  }
+
+  .bolum-baslik h3 {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #2b3442;
+  }
+
+  .bolum-cizgi {
+    display: none;
+  }
+
+  /* Girişim kartları */
+  .girisimler-liste {
+    display: grid;
+    gap: 14px;
+  }
+
+  .girisim-karti {
+    position: relative;
+    background: var(--beyaz);
+    border: 1px solid #e3e6ea;
+    border-radius: 8px;
+    padding: 13px 20px 12px 26px;
+    overflow: hidden;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .gk-kenar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 6px;
+    height: 100%;
+  }
+
+  .gk-satir {
+    display: grid;
+    grid-template-columns: minmax(150px, 1.4fr) 1fr 1.1fr minmax(96px, 0.7fr);
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+  }
+
+  .gk-ad {
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+
+  .gk-metrik {
+    display: flex;
+    justify-content: flex-end;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .gk-metrik-sag {
+    justify-content: flex-end;
+  }
+
+  .gk-etiket {
+    color: #6b7380;
+    font-weight: 400;
+  }
+
+  .ayrac {
+    color: #c9ced6;
+  }
+
+  .deger {
+    font-weight: 600;
+  }
+
+  .vurgu-fonlandi {
+    color: var(--yesil);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .gk-yuzde {
+    justify-self: end;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 5px;
+  }
+
+  .gk-yuzde.renk-yesil {
+    color: var(--yesil);
+    background: #e3f6ee;
+  }
+
+  .gk-yuzde.renk-mavi {
+    color: #0284c7;
+    background: #e4f0fa;
+  }
+
+  .gk-yuzde.renk-indigo {
+    color: #6366f1;
+    background: #ecebfd;
+  }
+
+  .gk-cubuk-alani {
+    height: 6px;
+    margin: 9px 0 9px;
+    background: #eef0f3;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .cubuk-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .gk-platform {
+    font-size: 0.95rem;
+  }
+
+  .gk-durum {
+    justify-self: end;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .gk-durum--gecmis {
+    color: var(--gri);
+    font-weight: 500;
+  }
+
+  /* Platformlar */
+  .platformlar-sayaclar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .sayac-kutu {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sayac-sag {
+    align-items: flex-end;
+  }
+
+  .sayac-etiket {
+    font-size: 0.9rem;
+    color: #6b7380;
+  }
+
+  .sayac-deger {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .sayac-sol .sayac-deger {
+    color: var(--yesil);
+  }
+
+  .platform-segment-cubuk {
+    height: 16px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .platform-kartlar-izgara {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 12px;
+    margin-top: 14px;
+  }
+
+  .platform-kolon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    background: var(--beyaz);
+    border: 1px solid #e3e6ea;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .pk-tutar {
+    font-weight: 700;
+  }
+
+  .pk-adet {
+    color: #6b7380;
+    font-size: 0.92rem;
+  }
+
+  /* Ön talep */
+  .yakinda-izgara {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+  }
+
+  .yakinda-oge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--beyaz);
+    border: 1px solid #e3e6ea;
+    border-radius: 8px;
+    padding: 12px;
+  }
+
+  .yo-ad {
+    font-weight: 700;
+  }
+
+  .yo-plat {
+    color: #6b7380;
+  }
+
+  /* MKK */
+  .mkk-serit {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px 24px;
+    background: var(--beyaz);
+    border: 1px solid #e3e6ea;
+    border-radius: 8px;
+    padding: 14px 24px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .mkk-hucre {
+    display: flex;
+    gap: 6px;
+    align-items: baseline;
+  }
+
+  .mkk-lbl {
+    color: #6b7380;
+  }
+
+  .mkk-val {
+    font-weight: 700;
+  }
+
+  /* Son dakika */
+  .bulten-son-dakika {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-top: 22px;
+    padding-top: 12px;
+    border-top: 1px solid var(--cizgi);
+  }
+
+  .son-dakika-etiket {
+    flex: none;
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--kagit);
+    background: var(--murekkep);
+    padding: 4px 8px;
+  }
+
+  .bulten-son-dakika ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 20px;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--marka-sari);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+  }
+
+  @media (max-width: 760px) {
+    .gk-satir {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      row-gap: 4px;
+      font-size: 0.9rem;
+    }
+
+    .gk-metrik {
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      column-gap: 6px;
+    }
+
+    .gk-satir > :nth-child(2) {
+      justify-content: flex-end;
+    }
+
+    .girisim-karti {
+      padding-inline: 18px 12px;
+    }
+  }
+</style>

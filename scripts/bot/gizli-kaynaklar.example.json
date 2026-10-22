@@ -1,0 +1,8 @@
+{
+  "kaynaklar": [
+    { "ad": "Örnek Haber Yatırım", "kisa": "ornekhaber", "akis": "https://haber.example.com/kategori/yatirim/feed/", "yerli": true },
+    { "ad": "Örnek Girişim Kitle Fonlama", "kisa": "ornekgirisimkf", "akis": "https://girisim.example.com/etiket/kitle-fonlama/feed/", "sayfa": "post-content", "bitis": ["post-tags", "post-sharing"], "yerli": true, "adlar": ["Örnek Girişim", "OrnekGirisim"] },
+    { "ad": "Example Startup News", "kisa": "examplenews", "akis": "https://news.example.org/feed/" }
+  ],
+  "medya": ["Ajans Örnek", "Gazete Örnek"]
+}

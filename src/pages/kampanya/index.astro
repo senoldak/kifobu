@@ -1,0 +1,47 @@
+---
+// Kampanya veritabanı: günlük bültenin 18:00 kayıtlarındaki bütün kampanyalar (src/lib/kampanya.ts).
+import { jsonLdMetni } from '../../lib/json-ld.mjs';
+import Base from '../../layouts/Base.astro';
+import KampanyaTablosu from '../../components/KampanyaTablosu.astro';
+import Yol from '../../components/Yol.astro';
+import { dizinVerisi } from '../../lib/dizin';
+import { hedefeUlasti } from '../../lib/kampanya';
+import { sayfaLd } from '../../lib/ld';
+import { RISK_NOTU, formatDate } from '../../lib/site';
+
+const { kampanyalar, kayitlar } = await dizinVerisi();
+const ilk = kayitlar[0]?.tarih;
+const son = kayitlar[kayitlar.length - 1]?.tarih;
+const gun = (t: string) => formatDate(new Date(`${t}T12:00:00+03:00`));
+const aciklama =
+  "Türkiye'deki paya dayalı kitle fonlama kampanyalarının kifobu veritabanı: girişim, platform, toplanan tutar, hedef, gerçekleşme ve günlük seyir.";
+const adimlar = [{ ad: 'Anasayfa', url: '/' }, { ad: 'Kampanyalar', url: '/kampanya/' }];
+const jsonLd = sayfaLd({ site: Astro.site!, yol: '/kampanya/', ad: 'Kitle fonlama kampanyaları', aciklama, ogeler: kampanyalar.map((k) => `/kampanya/${k.slug}/`), adimlar });
+---
+
+<Base title="Kitle fonlama kampanyaları" description={aciklama} noindex={kampanyalar.length === 0}>
+  <script slot="head" type="application/ld+json" set:html={jsonLdMetni(jsonLd)} />
+  <div slot="tahta" class="kategori-bas">
+    <h1 class="kategori-isim">Kampanyalar</h1>
+    <p class="kategori-sayi">{kampanyalar.length} kampanya · {kampanyalar.filter(hedefeUlasti).length} hedefe ulaştı</p>
+  </div>
+
+  <Yol adimlar={adimlar} />
+
+  <div class="metin dizin-giris">
+    <p>
+      kifobu’nun günlük kitle fonlama bülteninde izlediği kampanyalar. Rakamlar her gün 18:00’de platformların kampanya
+      sayfalarından alınır{ilk && son && `; kayıtlar ${gun(ilk)} – ${gun(son)} arasını kapsar`}. Her kampanyanın sayfasında
+      günlük seyir yer alır; bütün seri <a href="/arsiv/">arşivde</a> ve CSV olarak indirilebilir.
+    </p>
+  </div>
+
+  {
+    kampanyalar.length > 0 ? (
+      <KampanyaTablosu kampanyalar={kampanyalar} baslik="Kitle fonlama kampanyaları" />
+    ) : (
+      <p class="bos">Kampanya kaydı henüz yok.</p>
+    )
+  }
+  <p class="dizin-not">{RISK_NOTU}</p>
+</Base>

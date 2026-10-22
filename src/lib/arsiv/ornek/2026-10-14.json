@@ -1,0 +1,86 @@
+{
+  "tarih": "2026-10-14",
+  "sayi": 4,
+  "baslangic": false,
+  "girisimler": [
+    {
+      "ad": "ATHLETICLABS",
+      "platform": "fonangels",
+      "url": "https://fonangels.com/kampanyalar/projehakkinda/athleticlabs?pid=1689",
+      "bugun": 0,
+      "alinan": 7602500,
+      "kalan": null,
+      "hedef": 7500000,
+      "degerleme": 75000000,
+      "yuzde": 101.37,
+      "durum": "SONA ERDİ",
+      "veriAlinamadi": false,
+      "birikmis": false
+    },
+    {
+      "ad": "OYLİO",
+      "platform": "fonangels",
+      "url": "https://fonangels.com/kampanyalar/projehakkinda/oylio?pid=1778",
+      "bugun": 64000,
+      "alinan": 2596200,
+      "kalan": 2403800,
+      "hedef": 5000000,
+      "degerleme": 50000000,
+      "yuzde": 51.92,
+      "durum": "son 27 gün",
+      "veriAlinamadi": false,
+      "birikmis": false
+    },
+    {
+      "ad": "PUPAQ",
+      "platform": "trinkfon",
+      "url": "https://kfs.trinkfon.com/projeler/pupaq/kampanya/",
+      "bugun": 2400,
+      "alinan": 26682,
+      "kalan": 973350,
+      "hedef": 1000032,
+      "degerleme": 25000800,
+      "yuzde": 2.67,
+      "durum": "son 2 gün",
+      "veriAlinamadi": false,
+      "birikmis": false
+    },
+    {
+      "ad": "LOOPYON",
+      "platform": "ecofolio",
+      "url": "https://ecofolio.com.tr/kampanyalar/loopyon",
+      "bugun": 31000,
+      "alinan": 385200,
+      "kalan": 34614800,
+      "hedef": 35000000,
+      "degerleme": 385038504,
+      "yuzde": 1.1,
+      "durum": "son 33 gün",
+      "veriAlinamadi": false,
+      "birikmis": false
+    }
+  ],
+  "platformlar": [
+    {
+      "anahtar": "fonangels",
+      "ad": "fonangels",
+      "renk": "#f47b3d",
+      "bugun": 64000,
+      "toplam": 10198700
+    },
+    {
+      "anahtar": "trinkfon",
+      "ad": "trinkfon",
+      "renk": "#7c3aed",
+      "bugun": 2400,
+      "toplam": 26682
+    },
+    {
+      "anahtar": "ecofolio",
+      "ad": "ecofolio",
+      "renk": "#009bae",
+      "bugun": 31000,
+      "toplam": 385200
+    }
+  ]
+}

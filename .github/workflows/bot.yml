@@ -1,0 +1,147 @@
+# Yatırım haberi sitelerinin akışlarını okur, yeni haberleri yapay zekâyla yeniden yazar ve repoya ekler.
+# Yeni yazı varsa bot, Yayınla iş akışını (yayinla.yml) başlatır; o da siteyi derleyip Cloudflare'e gönderir.
+# Zamanlama mecmua-saat Worker'ındadır (private mecmua reposu, saat/src/ayarlar.js).
+# GitHub'ın cron'u UTC'dir ve yaz/kış saatini izlemez, bu yüzden burada schedule yok.
+name: Haber botu
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  # Yeni haber yazıldığında "Yayınla" iş akışını başlatmak için.
+  actions: write
+
+concurrency:
+  group: haber-botu
+  cancel-in-progress: false
+
+jobs:
+  bot:
+    runs-on: ubuntu-latest
+    # Süre bütçesi yeni yazıyı ~15–18. dakikada keser; Gemini 503 beklemeleri için pay bırakılır (repo açık, dakika ücretsiz).
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # Sıradaki çalışma tetiklendiği anki commit'i değil, dalın en son hâlini alır; yoksa eski görülen listesiyle aynı haberleri yeniden yazar.
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .node-version
+
+      # Ortak motor private mecmua deposundadır; yalnız vars.MOTOR_TUR=1 iken salt-okur çekilir (.mecmua/motor).
+      - name: Motoru getir
+        if: ${{ vars.MOTOR_TUR == '1' }}
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: senoldak/mecmua
+          ssh-key: '${{ secrets.MECMUA_OKUMA }}'
+          path: .mecmua
+          sparse-checkout: |
+            motor
+            standartlar
+          persist-credentials: false
+
+      # Bot paket kullanmıyor (kapaklar site derlenirken çiziliyor); npm ci gerekmez.
+      - name: Haberleri yaz
+        id: bot
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_KULLANIM_DOSYASI: ${{ runner.temp }}/gemini-kullanim.json
+          MOTOR_URL: ${{ vars.MOTOR_URL }} # Katman 3: tur başında Gemini bütçesi okunur
+          MOTOR_ANAHTARI: ${{ secrets.MOTOR_ANAHTARI }}
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
+          # Gölge denetim (20 Ekim): turda en çok bu kadar denetim kararı Gemma'ya da sorulur, yalnız loga yazılır (golge.mjs).
+          GEMINI_GOLGE: ${{ vars.GEMINI_GOLGE }}
+          EN_FAZLA: ${{ vars.EN_FAZLA }}
+          KAPSAM: ${{ vars.KAPSAM }}
+          # Kaynak listesi ve yayın adları repoda şifreli durur (scripts/bot/gizli-kaynaklar.sifreli); anahtar bu secret'ta.
+          KAYNAK_ANAHTARI: ${{ secrets.KAYNAK_ANAHTARI }}
+          # Ortak motor modu: vars.MOTOR_TUR=1 iken tur motorla sürülür (private mecmua'dan salt-okur çekilir).
+          MOTOR_TUR: ${{ vars.MOTOR_TUR }}
+          # Standartlar kural kitabı tek kaynaktan (mecmua/standartlar/siteler); dosya yoksa standart.mjs yerel kopyayı okur.
+          STANDART_KURALLAR: ${{ github.workspace }}/.mecmua/standartlar/siteler/kifobu.json
+          MOTOR_DIZIN: ${{ github.workspace }}/.mecmua/motor
+          # Ortak yayın kapısının ikinci okuması (motor/ortak/kapi.mjs): vars.KAPI_MOD = kapali | golge | acik (boşsa kapalı).
+          KAPI_MOD: ${{ vars.KAPI_MOD }}
+        run: |
+          if [ -z "$KAYNAK_ANAHTARI" ]; then echo "::error::KAYNAK_ANAHTARI secret'ı yok; haber kaynakları okunamaz."; exit 1; fi
+          node scripts/bot/calistir.mjs
+
+      # Telegram'a haberler tek tek gitmez; yalnız günün bültenleri (ozet.yml) ve kapanış gider; plan mecmua-saat Worker'ında.
+
+      # Üç aylık standartlar raporu (yol haritası madde 22): biten çeyreğin ilk 31 gününde defter sayıları bir kez
+      # src/data/standartlar-raporu/<YYYY>-c<N>.json'a yazılır. Hata haber işini düşürmez.
+      - name: Çeyrek standartlar raporu
+        if: ${{ !cancelled() && vars.MOTOR_TUR == '1' }}
+        continue-on-error: true
+        timeout-minutes: 2
+        env:
+          MOTOR_URL: ${{ vars.MOTOR_URL }}
+          MOTOR_ANAHTARI: ${{ secrets.MOTOR_ANAHTARI }}
+          GH_TOKEN: ${{ github.token }}
+        run: node .mecmua/motor/bin/ceyrek-raporu.mjs --site kifobu --dizin src/data/standartlar-raporu --kural scripts/bot/standart-kurallar.json
+
+      - name: Commit
+        id: commit
+        if: ${{ !cancelled() }}
+        env:
+          SAYI: ${{ steps.bot.outputs.sayi || '0' }}
+        run: |
+          git config user.name "kifobu-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/content/haberler scripts/bot/gorulen.json
+          # Çeyrek raporu klasörü ilk rapora kadar yoktur; yoksa git add pathspec hatası verir.
+          [ -d src/data/standartlar-raporu ] && git add src/data/standartlar-raporu
+          if git diff --cached --quiet; then
+            echo "Değişiklik yok."
+            exit 0
+          fi
+          # Sadece durum dosyası değiştiyse siteyi boşuna yeniden derletme.
+          if [ "$SAYI" = "0" ]; then
+            git commit -m "Bot: durum güncellendi [skip ci]"
+          else
+            git commit -m "Bot: $SAYI yeni haber"
+            echo "yayin=1" >> "$GITHUB_OUTPUT"
+          fi
+          # Başka işler de depoya yazar; çakışmada yazılan haberler kaybolmasın diye 5 kez denenir.
+          for i in 1 2 3 4 5; do
+            git pull --rebase -X theirs && git push && exit 0
+            git rebase --abort 2>/dev/null || true
+            sleep $((i * 5))
+          done
+          exit 1
+
+      # Planlı (ileri tarihli) yazılar vakti gelince bu turla yayına girer: vadesi gelip sitede 404 dönen yazı varsa yayınla.
+      # Standartlar: acil durdurma açıksa planlı yazı da yayına alınmaz.
+      - name: Acil durdurma kontrolü
+        id: dur
+        if: ${{ !cancelled() && steps.commit.outputs.yayin != '1' }}
+        env:
+          MOTOR_URL: ${{ vars.MOTOR_URL }}
+          MOTOR_ANAHTARI: ${{ secrets.MOTOR_ANAHTARI }}
+        run: node scripts/bot/durdu.mjs
+
+      - name: Planlı yazılar
+        id: planlagt
+        if: ${{ !cancelled() && steps.commit.outputs.yayin != '1' && steps.dur.outputs.durdu != '1' }}
+        run: node scripts/planlagt.mjs
+
+      # Botun push'u yayın iş akışını kendiliğinden tetiklemez (GITHUB_TOKEN); elle başlatılır.
+      - name: Siteyi yayınla
+        if: ${{ !cancelled() && (steps.commit.outputs.yayin == '1' || steps.planlagt.outputs.yayin == '1') }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run yayinla.yml --ref "${{ github.ref_name }}"
+
+      # Katman 0 (Gemini kota planı): bu işin Gemini kullanımını model ve amaç başına mecmua-saat'e bildirir. İşi düşürmez.
+      - name: Gemini kullanımını saate bildir
+        if: always()
+        continue-on-error: true
+        env:
+          GEMINI_KULLANIM_DOSYASI: ${{ runner.temp }}/gemini-kullanim.json
+          MOTOR_URL: ${{ vars.MOTOR_URL }}
+          MOTOR_ANAHTARI: ${{ secrets.MOTOR_ANAHTARI }}
+        run: node scripts/bot/gemini-rapor.mjs kifobu

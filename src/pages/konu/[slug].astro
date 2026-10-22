@@ -1,0 +1,60 @@
+---
+// Konu sayfası: kısa tarafsız giriş ve konudaki bütün haberler. Yalnız en az 3 listelenen haberi olan konular
+// üretilir (src/lib/konular.ts).
+import { jsonLdMetni } from '../../lib/json-ld.mjs';
+import Base from '../../layouts/Base.astro';
+import HaberSatiri from '../../components/HaberSatiri.astro';
+import Yol from '../../components/Yol.astro';
+import { dizinVerisi } from '../../lib/dizin';
+import { newsUrl, type Haber } from '../../lib/news';
+import { sayfaLd } from '../../lib/ld';
+import type { Konu } from '../../lib/konular';
+
+export async function getStaticPaths() {
+  const { konular } = await dizinVerisi();
+  return konular.map(({ konu, haberler }) => ({ params: { slug: konu.slug }, props: { konu, haberler } }));
+}
+
+interface Props {
+  konu: Konu;
+  haberler: Haber[];
+}
+
+const { konu, haberler } = Astro.props;
+const yol = `/konu/${konu.slug}/`;
+const adimlar = [{ ad: 'Anasayfa', url: '/' }, { ad: 'Konular', url: '/konu/' }, { ad: konu.ad, url: yol }];
+const jsonLd = sayfaLd({ site: Astro.site!, yol, ad: konu.ad, aciklama: konu.aciklama, ogeler: haberler.map(newsUrl), adimlar });
+---
+
+<Base title={konu.ad} description={konu.aciklama}>
+  <script slot="head" type="application/ld+json" set:html={jsonLdMetni(jsonLd)} />
+  <div slot="tahta" class="kategori-bas">
+    <h1 class="kategori-isim">{konu.ad}</h1>
+    <p class="kategori-sayi">{haberler.length} haber</p>
+  </div>
+
+  <Yol adimlar={adimlar} />
+
+  <div class="metin dizin-giris">
+    {konu.giris.map((p) => <p>{p}</p>)}
+    {
+      ['kitle-fonlamasi', 'spk', 'mkk'].includes(konu.slug) && (
+        <p>
+          Ayrıca bakınız: <a href="/rehber/kitle-fonlamasi-nedir/">Kitle fonlaması nedir?</a> ·{' '}
+          <a href="/rehber/spk-kitle-fonlamasi-mevzuati/">SPK kitle fonlaması mevzuatı</a> ·{' '}
+          <a href="/kampanya/">Kampanya veritabanı</a>
+        </p>
+      )
+    }
+  </div>
+
+  <section class="bolum" aria-labelledby="konu-haberler">
+    <div class="bolum-bas">
+      <h2 class="bolum-baslik" id="konu-haberler">Haberler</h2>
+      <a href="/konu/">Bütün konular</a>
+    </div>
+    <div class="satir-izgara">
+      {haberler.map((h) => <HaberSatiri haber={h} />)}
+    </div>
+  </section>
+</Base>

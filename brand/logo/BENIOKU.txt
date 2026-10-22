@@ -1,0 +1,16 @@
+kifobu logo paketi (BRAND.md §5–6). Üretici: scripts/marka/logo-paketi.mjs — elle düzenlemeyin, yeniden üretin.
+
+Hangi dosya nerede:
+- kifobu-logo-yatay        Web sitesi, e-posta imzası, sunum, belge üst bilgisi (varsayılan logo)
+- kifobu-logo-dikey        Kare alanlar, kartvizit, afiş
+- kifobu-logo-dikey-slogan Baskı ve tanıtım ("Ulaşılabilir ve anlaşılır veri")
+- kifobu-isaret            Yazısız işaret, 64 piksel ve üstü (profil fotoğrafı, uygulama simgesi)
+- kifobu-isaret-kucuk      33–63 piksel arası (55 tohum)
+- kifobu-isaret-minik      32 piksel ve altı (34 tohum; favicon gibi)
+
+"-koyu-zemin" ekli dosyalar koyu zemin içindir: siyah tohumlar ve yazı kâğıt rengine döner, sarı kol aynı kalır.
+SVG her boyda keskindir, öncelik onda. PNG'ler saydam zeminlidir.
+
+Kurallar: döndürme, renk değiştirme, gölge, kontur, tohum ekleme/çıkarma, yazıyı başka yazı tipiyle yeniden yazma yapılmaz.
+Logonun çevresinde en az işaretin dörtte biri kadar boşluk kalır (dosyalarda bu boşluk var).
+Renkler: sarı #e8b40c, mürekkep #141a17, kâğıt #f7f5ef. Yazı tipi: Schibsted Grotesk (OFL).

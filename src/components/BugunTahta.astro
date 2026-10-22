@@ -1,0 +1,334 @@
+---
+/**
+ * Bugün Tahtası - Anasayfa İçin Zarif Girişimler Tahtası
+ * - Bulten.ts verisinden beslenir (BULTEN.girisimler).
+ * - Sadece girişimleri gösterir (Platformlar, Ön Talep ve MKK verileri "Günlük Bülten" sayfasına taşındı).
+ * - Kimlik v2 (BRAND.md): kâğıt zemin, çerçeveli durum etiketleri, platform veri rengi, hedef çubuğu.
+ */
+import { BULTEN } from '../data/bulten';
+import { newsUrl, type Haber } from '../lib/news';
+import { kapandiMi, yuzdeKesik } from '../lib/kimlik';
+import HedefCubugu from './HedefCubugu.astro';
+import PlatformAdi from './PlatformAdi.astro';
+
+interface Props {
+  breaking?: Haber[];
+}
+
+const { breaking = [] } = Astro.props;
+const b = BULTEN;
+
+const tl = (n: number) => '₺' + n.toLocaleString('tr-TR');
+/** Sona eren, iptal edilen ya da geri çekilen kampanya geçmişte kalır: gri çerçeve. */
+const gecmis = kapandiMi;
+
+const slug = (str: string) =>
+  str.toLowerCase().replace(/[^a-z0-9]/g, '');
+---
+
+<section class="bugun-tahta" aria-label="Günün Girişimleri">
+  <!-- Üst Bar: Başlık ve Bültene Geçiş -->
+  <div class="bt-baslik-satiri">
+    <div class="bt-baslik-sol">
+      <span class="bt-tarih">{b.tarih}</span>
+      <span class="bt-sayac">Bülten {b.sayi}</span>
+    </div>
+    <div class="bt-baslik-sag">
+      <a href="/gunluk-bulten/" class="bt-link-bulten">
+        Tüm bülten &amp; platformlar <span aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Zarif Tebeşir Tablosu -->
+  <div class="bt-tablo-sarma">
+    <table class="bt-tablo">
+      <thead>
+        <tr>
+          <th scope="col" class="kol-durum">Durum</th>
+          <th scope="col" class="kol-girisim">Girişim</th>
+          <th scope="col" class="kol-platform">Platform</th>
+          <th scope="col" class="kol-rakam kol-bugun">Bugün</th>
+          <th scope="col" class="kol-rakam">Alınan</th>
+          <th scope="col" class="kol-rakam kol-degerleme">Değerleme</th>
+          <th scope="col" class="kol-rakam kol-kalan">Kalan</th>
+          <th scope="col" class="kol-yuzde">%</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          b.girisimler.map((g) => (
+            <tr class={`satir-${slug(g.ad)}`}>
+              <td class="kol-durum">
+                <span class:list={['etiket', { 'etiket--gri': gecmis(g.durum) }]}>{g.durum.toLocaleUpperCase('tr-TR')}</span>
+              </td>
+              <th scope="row" class="kol-girisim">
+                {g.url ? <a href={g.url}>{g.ad}</a> : <span>{g.ad}</span>}
+              </th>
+              <td class="kol-platform">
+                <PlatformAdi ad={g.platform} />
+              </td>
+              <td class="kol-rakam kol-bugun">
+                {g.bugun > 0 ? <strong class="vurgu-bugun">{tl(g.bugun)}</strong> : <span class="soluk">₺0</span>}
+              </td>
+              <td class="kol-rakam">
+                <strong class="rakam-vurgu">{tl(g.alinan)}</strong>
+              </td>
+              <td class="kol-rakam kol-degerleme">
+                <span>{tl(g.degerleme)}</span>
+              </td>
+              <td class="kol-rakam kol-kalan">
+                {g.kalan === null ? (
+                  <span class="etiket etiket--yesil">FONLANDI</span>
+                ) : (
+                  <span>{tl(g.kalan)}</span>
+                )}
+              </td>
+              <td class="kol-yuzde">
+                <div class="yuzde-hucre">
+                  <span class:list={['yuzde-sayi', { 'yuzde-sayi--fonlandi': g.yuzde >= 100 }]}>{yuzdeKesik(g.yuzde)}</span>
+                  <HedefCubugu yuzde={g.yuzde} class="mini-cubuk" />
+                </div>
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <p class="bt-arsiv">
+    <a href="/arsiv/" class="bt-link-bulten">Arşiv <span aria-hidden="true">&rarr;</span></a>
+  </p>
+
+  <!-- Son Dakika Bandı -->
+  {
+    breaking.length > 0 && (
+      <div class="bt-son-dakika" role="region" aria-label="Son dakika">
+        <span class="son-dakika-etiket">Son dakika</span>
+        <ul>
+          {breaking.map((h) => (
+            <li>
+              <a href={newsUrl(h)}>{h.data.title}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
+</section>
+
+<style>
+  .bugun-tahta {
+    padding-block: 18px 22px;
+    color: var(--murekkep);
+  }
+
+  .bt-baslik-satiri {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+
+  .bt-baslik-sol {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .bt-tarih {
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+
+  .bt-sayac {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--kagit);
+    background: var(--murekkep);
+    padding: 4px 9px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .bt-link-bulten {
+    color: var(--murekkep);
+    font-weight: 500;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .bt-link-bulten:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--marka-sari);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+  }
+
+  .bt-tablo-sarma {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .bt-tablo {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.98rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .bt-tablo thead th {
+    padding: 10px 12px 8px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gri);
+    border-bottom: 2px solid var(--murekkep);
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .bt-tablo tbody th,
+  .bt-tablo tbody td {
+    padding: 13px 12px;
+    border-bottom: 1px solid var(--cizgi);
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+
+  .bt-tablo tbody tr:hover {
+    background: var(--kagit-2);
+  }
+
+  .kol-rakam {
+    text-align: right;
+  }
+
+  .bt-tablo thead .kol-rakam,
+  .bt-tablo thead .kol-yuzde {
+    text-align: right;
+  }
+
+  .kol-yuzde {
+    text-align: right;
+    width: 130px;
+    min-width: 110px;
+  }
+
+  .kol-girisim {
+    text-align: left;
+    font-weight: 600;
+    font-size: 1.02rem;
+    color: var(--murekkep);
+  }
+
+  .kol-girisim a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--marka-sari);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+  }
+
+  .rakam-vurgu {
+    font-weight: 600;
+  }
+
+  .vurgu-bugun {
+    color: var(--yesil);
+    font-weight: 600;
+  }
+
+  .soluk {
+    color: var(--gri);
+  }
+
+  .yuzde-hucre {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+  }
+
+  .yuzde-sayi {
+    font-weight: 600;
+  }
+
+  .yuzde-sayi--fonlandi {
+    color: var(--yesil);
+  }
+
+  .yuzde-hucre :global(.mini-cubuk) {
+    width: 110px;
+  }
+
+  .bt-arsiv {
+    margin: 12px 0 0;
+    text-align: right;
+  }
+
+  .bt-son-dakika {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid var(--cizgi);
+  }
+
+  .son-dakika-etiket {
+    flex: none;
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--kagit);
+    background: var(--murekkep);
+    padding: 4px 8px;
+  }
+
+  .bt-son-dakika ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 20px;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .bt-son-dakika a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--marka-sari);
+  }
+
+  @media (max-width: 768px) {
+    .kol-degerleme,
+    .kol-bugun {
+      display: none;
+    }
+
+    .bt-tablo tbody th,
+    .bt-tablo tbody td {
+      padding: 10px 8px;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .kol-kalan {
+      display: none;
+    }
+
+    .bt-baslik-satiri {
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-start;
+    }
+  }
+</style>

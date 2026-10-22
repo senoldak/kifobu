@@ -1,0 +1,173 @@
+---
+// Kampanya sayfası: günlük bültenin 18:00 kayıtlarından kampanyanın künyesi ve günlük seyri (src/lib/kampanya.ts).
+// Yalnız kayıttaki rakamlar gösterilir; tahmin yok.
+import { jsonLdMetni } from '../../lib/json-ld.mjs';
+import Base from '../../layouts/Base.astro';
+import HaberSatiri from '../../components/HaberSatiri.astro';
+import Yol from '../../components/Yol.astro';
+import { dizinVerisi, platformUrl } from '../../lib/dizin';
+import { girisimEslesir, type Kampanya } from '../../lib/kampanya';
+import { gunUrl } from '../../lib/gunler';
+import { paraTam, yuzdeBicim } from '../../lib/arsiv/bicim.ts';
+import { sayfaLd } from '../../lib/ld';
+import { RISK_NOTU, formatDate, formatNumber } from '../../lib/site';
+import type { Haber } from '../../lib/news';
+
+export async function getStaticPaths() {
+  const { kampanyalar, news } = await dizinVerisi();
+  return kampanyalar.map((k) => ({
+    params: { slug: k.slug },
+    props: { k, haberler: news.filter((h) => h.data.category !== 'gunluk-bulten' && girisimEslesir(k, h.data.girisim)) },
+  }));
+}
+
+interface Props {
+  k: Kampanya;
+  haberler: Haber[];
+}
+
+const { k, haberler } = Astro.props;
+const yol = `/kampanya/${k.slug}/`;
+const gun = (t: string) => formatDate(new Date(`${t}T12:00:00+03:00`));
+const aciklama = `${k.ad} kitle fonlama kampanyası (${k.platform}): ${gun(k.sonTarih)} kaydına göre ${paraTam(k.son.alinan)} toplandı, hedef ${paraTam(k.hedef)}, gerçekleşme ${yuzdeBicim(k.son.yuzde)}. Günlük seyir.`;
+const adimlar = [{ ad: 'Anasayfa', url: '/' }, { ad: 'Kampanyalar', url: '/kampanya/' }, { ad: k.ad, url: yol }];
+const gunler = [...k.gunler].reverse();
+const jsonLd = sayfaLd({
+  site: Astro.site!,
+  yol,
+  ad: `${k.ad} kampanyası`,
+  aciklama,
+  tur: 'WebPage',
+  adimlar,
+  ek: { about: { '@type': 'Organization', name: k.ad }, dateModified: k.sonTarih },
+});
+---
+
+<Base title={`${k.ad} kampanyası: ${k.platform}`} description={aciklama}>
+  <script slot="head" type="application/ld+json" set:html={jsonLdMetni(jsonLd)} />
+  <div slot="tahta" class="kategori-bas">
+    <h1 class="kategori-isim">{k.ad}</h1>
+    <p class="kategori-sayi">Kitle fonlama kampanyası</p>
+  </div>
+
+  <article class="makale">
+    <Yol adimlar={adimlar} />
+
+    <section class="kampanya-kunyesi tahta-zemin kampanya-kunyesi-ust" aria-label="Kampanya künyesi">
+      <dl>
+        <div class="kk-girisim">
+          <dt>Girişim</dt>
+          <dd>{k.ad}</dd>
+        </div>
+        <div>
+          <dt>Platform</dt>
+          <dd class="kk-platform"><a href={platformUrl(k.platform)}>{k.platform}</a></dd>
+        </div>
+        <div class="kk-toplanan">
+          <dt>Toplanan</dt>
+          <dd class="tk-toplanan">{paraTam(k.son.alinan)}</dd>
+        </div>
+        <div>
+          <dt>Hedef</dt>
+          <dd>{paraTam(k.hedef)}</dd>
+        </div>
+        <div>
+          <dt>Gerçekleşme</dt>
+          <dd>{yuzdeBicim(k.son.yuzde)}</dd>
+        </div>
+        {
+          k.degerleme > 0 && (
+            <div>
+              <dt>Değerleme</dt>
+              <dd>{paraTam(k.degerleme)}</dd>
+            </div>
+          )
+        }
+        <div class="kk-genis">
+          <dt>Son durum</dt>
+          <dd class="kk-yatirimcilar">{k.son.durum}</dd>
+        </div>
+        <div class="kk-genis">
+          <dt>Kayıt aralığı</dt>
+          <dd class="kk-yatirimcilar">{k.ilkTarih === k.sonTarih ? gun(k.sonTarih) : `${gun(k.ilkTarih)} – ${gun(k.sonTarih)}`}</dd>
+        </div>
+      </dl>
+      <p class="kk-risk">
+        Rakamlar kifobu’nun her gün 18:00’de platformun kampanya sayfasından aldığı kayıtlardır; kampanya sürerken
+        değişir. {RISK_NOTU}
+      </p>
+    </section>
+
+    <div class="metin dizin-giris">
+      <p>
+        {k.ad} girişiminin {k.platform} platformundaki kitle fonlama kampanyası kifobu kayıtlarında ilk kez{' '}
+        {gun(k.ilkTarih)}, son olarak {gun(k.sonTarih)} günü yer aldı.
+        {k.url && (
+          <>
+            {' '}Kampanyanın güncel durumu ve belgeleri için <a href={k.url} rel="noopener noreferrer">platformdaki kampanya sayfasına</a> bakabilirsiniz.
+          </>
+        )}
+      </p>
+    </div>
+
+    <section class="bolum" aria-labelledby="kampanya-seyir">
+      <div class="bolum-bas">
+        <h2 class="bolum-baslik" id="kampanya-seyir">Günlük seyir</h2>
+        <a href="/arsiv/">Arşiv</a>
+      </div>
+      <div class="tablo-kap">
+        <table class="veri-tablo">
+          <caption class="sr-only">{k.ad} kampanyasının günlük 18:00 kayıtları</caption>
+          <thead>
+            <tr>
+              <th scope="col">Gün</th>
+              <th scope="col" class="sayi">Bülten</th>
+              <th scope="col" class="sayi">Günlük giriş</th>
+              <th scope="col" class="sayi">Toplam</th>
+              <th scope="col" class="sayi">Gerçekleşme</th>
+              <th scope="col">Durum</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              gunler.map((g) => (
+                <tr>
+                  <th scope="row">
+                    <a href={gunUrl(g.tarih)}>{gun(g.tarih)}</a>
+                  </th>
+                  <td class="sayi">{formatNumber(g.sayi)}</td>
+                  <td class="sayi">
+                    {g.veriAlinamadi ? 'Veri alınamadı' : paraTam(g.bugun)}
+                    {g.birikmis && '*'}
+                  </td>
+                  <td class="sayi">{paraTam(g.alinan)}</td>
+                  <td class="sayi">{yuzdeBicim(g.yuzde)}</td>
+                  <td>{g.durum}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      <p class="dizin-not">
+        Günlük giriş, toplamın bir önceki 18:00 kaydına göre farkıdır; serinin ilk günü hesaplanmaz (—). * Önceki gün(ler)in
+        girişini de içerir.
+      </p>
+    </section>
+
+    {
+      haberler.length > 0 && (
+        <section class="bolum" aria-labelledby="kampanya-haberler">
+          <div class="bolum-bas">
+            <h2 class="bolum-baslik" id="kampanya-haberler">Haberler</h2>
+          </div>
+          <div class="satir-izgara">
+            {haberler.map((h) => (
+              <HaberSatiri haber={h} />
+            ))}
+          </div>
+        </section>
+      )
+    }
+  </article>
+</Base>

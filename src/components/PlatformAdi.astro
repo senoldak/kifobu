@@ -1,0 +1,30 @@
+---
+// Platform adı ve yanında kendi veri renginde küçük kare (BRAND.md §7). Ad mürekkep rengindedir; renk yalnız karede.
+import { BULTEN } from '../data/bulten';
+import { platformRengi } from '../lib/kimlik';
+
+interface Props {
+  ad: string;
+  href?: string;
+}
+const { ad, href } = Astro.props;
+const renk = platformRengi(ad, BULTEN.platformlar.liste);
+---
+
+<span class="platform-adi">
+  <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><rect width="10" height="10" fill={renk} /></svg>
+  {href ? <a href={href}>{ad}</a> : <span>{ad}</span>}
+</span>
+
+<style>
+  .platform-adi {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .platform-adi svg {
+    flex: none;
+  }
+</style>

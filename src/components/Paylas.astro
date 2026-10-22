@@ -1,0 +1,56 @@
+---
+// Paylaşım bağlantıları: düz bağlantılar, üçüncü taraf betiği yok. "Bağlantıyı kopyala" düğmesi yalnızca
+// JavaScript ve Pano API'si varken görünür (src/scripts/kopyala.ts; CSP script-src 'self' ile uyumlu).
+import { SITE } from '../lib/site';
+
+interface Props {
+  url: string;
+  baslik: string;
+}
+const { url, baslik } = Astro.props;
+const u = encodeURIComponent(url);
+const t = encodeURIComponent(baslik);
+const baglantilar = [
+  { ad: 'Telegram', href: `https://t.me/share/url?url=${u}&text=${t}` },
+  { ad: 'LinkedIn', href: `https://www.linkedin.com/sharing/share-offsite/?url=${u}` },
+  { ad: 'Bluesky', href: `https://bsky.app/intent/compose?text=${encodeURIComponent(`${baslik} ${url}`)}` },
+  { ad: 'X', href: `https://x.com/intent/post?url=${u}&text=${t}` },
+  { ad: 'WhatsApp', href: `https://wa.me/?text=${t}%20${u}` },
+];
+// Sitenin kendi hesapları (src/lib/site.ts); boş olan gösterilmez.
+const takip = [
+  { ad: 'Telegram kanalı', href: SITE.social.telegram },
+  { ad: 'LinkedIn sayfası', href: SITE.social.linkedin },
+].filter((x) => x.href);
+---
+
+<div class="paylas-kutu">
+  <p class="paylas">
+    <span>Paylaş</span>
+    {
+      baglantilar.map((b) => (
+        <a href={b.href} target="_blank" rel="noopener noreferrer" aria-label={`${b.ad} ile paylaş (yeni sekmede açılır)`}>
+          {b.ad}
+        </a>
+      ))
+    }
+    <button type="button" class="kopyala" data-kopyala={url} hidden>Bağlantıyı kopyala</button>
+    <span class="kopyala-durum" role="status" aria-live="polite"></span>
+  </p>
+  {
+    takip.length > 0 && (
+      <p class="takip">
+        <span>Takip et</span>
+        {takip.map((x) => (
+          <a href={x.href} target="_blank" rel="noopener noreferrer">
+            {SITE.name} {x.ad}
+          </a>
+        ))}
+      </p>
+    )
+  }
+</div>
+
+<script>
+  import '../scripts/kopyala.ts';
+</script>

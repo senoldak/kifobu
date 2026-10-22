@@ -1,0 +1,62 @@
+---
+// kifobu logosu (BRAND.md §6): tohum işareti + küçük harf "kifobu". Dikey düzen profil ve baskı içindir.
+// CSP satır içi style'a izin vermez (public/_headers); boyutlar bu yüzden sınıfla seçilir.
+import { tohumIsaretiSvg } from '../lib/kimlik';
+import { SITE } from '../lib/site';
+
+interface Props {
+  boyut?: 30 | 44 | 64;
+  dikey?: boolean;
+  slogan?: boolean;
+}
+const { boyut = 44, dikey = false, slogan = false } = Astro.props;
+const isaret = tohumIsaretiSvg({ boyut, kucuk: boyut < 64 });
+---
+
+<span class:list={['marka', `marka--${boyut}`, { 'marka--dikey': dikey }]}>
+  <span class="marka-isaret" set:html={isaret} />
+  <span class="marka-isim">{SITE.name}</span>
+  {slogan && <span class="marka-slogan">{SITE.tagline}</span>}
+</span>
+
+<style>
+  .marka {
+    display: inline-flex;
+    align-items: center;
+    color: var(--murekkep);
+  }
+  .marka-isaret {
+    display: block;
+    flex: none;
+  }
+  .marka-isaret :global(svg) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .marka-isim {
+    font-family: var(--yazi);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .marka--30 { gap: 8px; }
+  .marka--30 .marka-isaret { width: 30px; height: 30px; }
+  .marka--30 .marka-isim { font-size: 1.55rem; }
+  .marka--44 { gap: 12px; }
+  .marka--44 .marka-isaret { width: 44px; height: 44px; }
+  .marka--44 .marka-isim { font-size: clamp(1.9rem, 4.6vw, 2.3rem); }
+  .marka--64 { gap: 16px; }
+  .marka--64 .marka-isaret { width: 64px; height: 64px; }
+  .marka--64 .marka-isim { font-size: 3.3rem; }
+  .marka--dikey {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .marka-slogan {
+    font-family: var(--yazi);
+    font-weight: 500;
+    font-size: 0.95rem;
+    letter-spacing: 0;
+  }
+</style>

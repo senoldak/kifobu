@@ -1,0 +1,108 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import BugunTahta from '../components/BugunTahta.astro';
+import Kunye from '../components/Kunye.astro';
+import HaberSatiri from '../components/HaberSatiri.astro';
+import { ACIK_KATEGORILER } from '../lib/site';
+import { getNews, newsUrl } from '../lib/news';
+import { kapakUrl, KAPAK_G, KAPAK_Y } from '../kapak/ciz';
+import { REHBERLER } from '../lib/rehber';
+
+const news = await getNews();
+const breaking = news.filter((h) => h.data.breaking).slice(0, 3);
+const hero = news.find((h) => h.data.featured) ?? news[0];
+const rest = news.filter((h) => h !== hero);
+// Manşetin altında iki haber, sağ sütunda akış.
+const notBreaking = rest.filter((h) => !breaking.includes(h));
+const alti = notBreaking.slice(0, 2);
+const akis = notBreaking.slice(2, 8);
+// Üstte gösterilen haberler (manşet, manşet altı, akış, son dakika) bölümlerde tekrar etmez.
+const shown = new Set([hero, ...alti, ...akis, ...breaking]);
+const sections = ACIK_KATEGORILER.map((c) => ({
+  ...c,
+  items: news.filter((h) => h.data.category === c.slug && !shown.has(h)).slice(0, 3),
+})).filter((s) => s.items.length > 0);
+---
+
+<Base>
+  <BugunTahta slot="tahta" breaking={breaking} />
+  <h1 class="sr-only">kifobu: Türkiye'de kitle fonlama ve girişim yatırımı haberleri</h1>
+
+  {
+    hero ? (
+      <div class="on-izgara">
+        <div class="on-sol">
+          <article class="manset">
+            <a href={newsUrl(hero)} class="manset-gorsel" tabindex="-1" aria-hidden="true">
+              {hero.data.cover ? (
+                <Image src={hero.data.cover} alt="" width={1200} loading="eager" fetchpriority="high" decoding="async" />
+              ) : (
+                <img src={kapakUrl(hero)} alt="" width={KAPAK_G} height={KAPAK_Y} loading="eager" fetchpriority="high" decoding="async" />
+              )}
+            </a>
+            <h2>
+              <a href={newsUrl(hero)}>{hero.data.title}</a>
+            </h2>
+            <p class="manset-spot">{hero.data.description}</p>
+            <Kunye haber={hero} withTime />
+          </article>
+          {alti.length > 0 && (
+            <div class="manset-alti">
+              {alti.map((h) => (
+                <HaberSatiri haber={h} showImage={false} />
+              ))}
+            </div>
+          )}
+        </div>
+
+        {akis.length > 0 && (
+          <aside class="akis" aria-labelledby="akis-baslik">
+            <h2 class="bolum-baslik" id="akis-baslik">
+              Son haberler
+            </h2>
+            {akis.map((h) => (
+              <HaberSatiri haber={h} showSummary={false} showImage={false} />
+            ))}
+          </aside>
+        )}
+      </div>
+    ) : (
+      <p class="bos">Henüz haber yok.</p>
+    )
+  }
+
+  {
+    sections.map((s) => (
+      <section class="bolum" aria-labelledby={`b-${s.slug}`}>
+        <div class="bolum-bas">
+          <h2 class="bolum-baslik" id={`b-${s.slug}`}>
+            {s.name}
+          </h2>
+          <a href={`/${s.slug}/`}>Tümü</a>
+        </div>
+        <div class="satir-izgara">
+          {s.items.map((h) => (
+            <HaberSatiri haber={h} showCategory={false} />
+          ))}
+        </div>
+      </section>
+    ))
+  }
+
+  <section class="bolum" aria-labelledby="b-veri">
+    <div class="bolum-bas">
+      <h2 class="bolum-baslik" id="b-veri">Veri ve rehber</h2>
+      <a href="/rehber/">Rehber</a>
+    </div>
+    <ul class="dizin-liste">
+      <li><a href="/kampanya/">Kampanya veritabanı</a><span>Toplanan, hedef, günlük seyir</span></li>
+      <li><a href="/gunluk-bulten/gunler/">Bülten günleri</a><span>Her günün kaydı</span></li>
+      <li><a href="/platform/">Platform dizini</a><span>Kitle fonlama platformları</span></li>
+      <li><a href="/konu/">Konular</a><span>Tohum, Seri A, melek yatırım…</span></li>
+      {REHBERLER.map((r) => (
+        <li><a href={`/rehber/${r.slug}/`}>{r.baslik}</a></li>
+      ))}
+    </ul>
+  </section>
+</Base>
