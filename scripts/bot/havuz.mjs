@@ -20,10 +20,12 @@ const KAYNAK_AZAMI = 3500; // olay başına saklanan kaynak metni (derleme istem
 const yas = (o, simdi) => (simdi.getTime() - Date.parse(o.havuzaGirdi)) / 3600e3;
 
 // Kısa kalan taslaktan havuz olayı: id (olayın ilk kaynağı), kategori, başlık, kaynak başlıkları, kırpılmış kaynak
-// metinleri ve haberde şifreli iz olacak kullanılan kaynaklar.
-export function havuzOlayi({ id, taslak, basliklar, kaynaklar, kullanilan, iso }) {
+// metinleri ve haberde şifreli iz olacak kullanılan kaynaklar. uyeIdler: olayın bütün üyelerinin kimlikleri (motor
+// sonuçları her üyeye verilir; verilmezse yalnız id üyedir).
+export function havuzOlayi({ id, taslak, basliklar, kaynaklar, kullanilan, iso, uyeIdler }) {
   return {
     id,
+    ...(uyeIdler?.length && { uyeIdler }),
     kategori: taslak.category,
     baslik: taslak.title ?? basliklar[0] ?? '',
     basliklar,
