@@ -61,6 +61,8 @@ const noindexSayfa = (/** @type {string} */ p) => {
 
 // https://astro.build/config
 export default defineConfig({
+  // Astro 7 varsayılanı "jsx": satır sonundaki boşluğu etiket kenarında siler (ör. "</a>" + yeni satır + "kelime" bitişik çıkar). true: tek boşluğa indirir.
+  compressHTML: true,
   site: SITE_URL,
   integrations: [
     sitemap({
