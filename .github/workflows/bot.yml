@@ -39,7 +39,9 @@ jobs:
           repository: senoldak/mecmua
           ssh-key: '${{ secrets.MECMUA_OKUMA }}'
           path: .mecmua
-          sparse-checkout: motor
+          sparse-checkout: |
+            motor
+            standartlar
           persist-credentials: false
 
       # Bot paket kullanmıyor (kapaklar site derlenirken çiziliyor); npm ci gerekmez.
@@ -59,6 +61,8 @@ jobs:
           KAYNAK_ANAHTARI: ${{ secrets.KAYNAK_ANAHTARI }}
           # Ortak motor modu: vars.MOTOR_TUR=1 iken tur motorla sürülür (private mecmua'dan salt-okur çekilir).
           MOTOR_TUR: ${{ vars.MOTOR_TUR }}
+          # Standartlar kural kitabı tek kaynaktan (mecmua/standartlar/siteler); dosya yoksa standart.mjs yerel kopyayı okur.
+          STANDART_KURALLAR: ${{ github.workspace }}/.mecmua/standartlar/siteler/kifobu.json
           MOTOR_DIZIN: ${{ github.workspace }}/.mecmua/motor
         run: |
           if [ -z "$KAYNAK_ANAHTARI" ]; then echo "::error::KAYNAK_ANAHTARI secret'ı yok; haber kaynakları okunamaz."; exit 1; fi
