@@ -273,7 +273,7 @@ test("isle: bilinen girişim (aynı yatırım zaten yazıldı) elendi", async ()
   assert.equal(yazilan.length, 0);
 });
 
-test('isle: kapsam dışı (0) ve düşük değer (< 60) elendi; puanlanamayan yazılmaz ve işaretlenmez', async () => {
+test('isle: kapsam dışı (0) ve düşük değer (< MIN_DEGER) elendi; puanlanamayan yazılmaz ve işaretlenmez', async () => {
   const durum = bosDurum();
   const { u, yazilan } = kur({ durum, bag: { onbellekliPuanla: async (basliklar) => basliklar.map((b) => (b.includes('Kapsamdisi') ? 0 : b.includes('Dusukdeger') ? 40 : b.includes('Puansiz') ? undefined : 90)) } });
   const kd = oge(K1, 'k1', 'Kapsamdisi alakasiz bir sey yaşandi');

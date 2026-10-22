@@ -175,7 +175,8 @@ ${taslak.body}`,
 // Yerli de yabancı da MIN_DEGER'le geçer. 2026-10-17 site sahibinin kararıyla ölçek 0–5'ten 0–100'e geçti ve eşik
 // 3/5'ten 3,5/5'e, yani 70/100'e çıktı (tam sayılı 0–5'te 3,5 pratikte 4 olurdu). 2026-10-19 sahibinin kararıyla 60'a indi:
 // kapsam dünya girişim ekosistemine açıldıktan sonra dünyadaki sıradan turlar 50–69 alıp eleniyor, günlük yazı 0–2'ye düşmüştü.
-export const MIN_DEGER = 60;
+// 2026-10-22 sahibinin kararıyla 55'e indi: Gemini kotası boştaydı, elenenlerin çoğu tam 55 alan 20–40 milyon dolarlık turlardı.
+export const MIN_DEGER = 55;
 export const OLCEK = 100;
 const ELEME_SEMASI = {
   type: 'object',
@@ -209,7 +210,7 @@ Puanlar:
 50–69 = kapsamda ama sıradan haber (Türkiye'de program başvuruları, yönetici değişiklikleri; dünyada 50 milyon doların altındaki sıradan turlar).
 30–49 = kapsamda ama zayıf: rutin duyuru, içeriği belirsiz ortaklık, tanıtım kokan haber.
 1–29 = kapsamda ama okura neredeyse hiçbir şey söylemiyor.
-Aralığın içinde ince ayar yap; 60 ve üstü yayımlanır, emin değilsen 60 verme. Kararsızsan düşük puan ver: kifobu az ama konusunda haber yayımlar. Aynı önemdeki haberlerde Türkiye ile ilgili olana daha yüksek puan ver.
+Aralığın içinde ince ayar yap; ${MIN_DEGER} ve üstü yayımlanır, emin değilsen ${MIN_DEGER} verme. Kararsızsan düşük puan ver: kifobu az ama konusunda haber yayımlar. Aynı önemdeki haberlerde Türkiye ile ilgili olana daha yüksek puan ver.
 
 Başlıklar:
 ${basliklar.map((b, i) => `${i}. ${b}`).join('\n')}`,
