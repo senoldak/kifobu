@@ -69,6 +69,11 @@ const DURAK = new Set([
   ...'için ile ve veya bir bu şu o da de ki mi en daha çok yeni olarak olan oldu etti yaptı geliyor geldi açıkladı duyurdu başladı tanıttı sunuyor işte nasıl neden ne kadar artık tüm her yıl ilk son büyük'.split(' '),
   ...'the and for with that this from have has was were are been will would can could about into over after before says said unveils launches reveals new first more than its their who what when where why how'.split(' '),
 ]);
+// Yatırım haberi kalıbının kökleri ("X, Seri A turunda 5 milyon dolar yatırım aldı"): her tur haberinde geçer, olayı ayırt etmez.
+// Sayılsalardı her yerli tur haberi yazılmış başka bir turla "aynı" çıkıyordu (22 Ekim). Ayırt eden: girişimin adı, rakam.
+const KALIP = new Set(
+  'yatır aldı alara almış milyo milya dolar euro sterl lira turda turun turu tohum önces seri aşama değer raise raisi milli billi fundi round serie seed valua giriş şirke yapay zekâ zeka odakl taban merke fonu fonun kapat büyük topla çeyre'.split(' '),
+);
 
 export function anahtarlar(baslik) {
   const out = new Set();
@@ -80,7 +85,7 @@ export function anahtarlar(baslik) {
       continue;
     }
     const l = w.toLowerCase();
-    if (l.length < 3 || DURAK.has(l)) continue;
+    if (l.length < 3 || DURAK.has(l) || KALIP.has(l.slice(0, 5))) continue;
     out.add(l.slice(0, 5)); // kaba kök: "investments" ~ "invest", "yatırımı" ~ "yatır"
   }
   return out;
