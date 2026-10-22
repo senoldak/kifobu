@@ -11,6 +11,8 @@ permissions:
   contents: write
   # Yeni haber yazıldığında "Yayınla" iş akışını başlatmak için.
   actions: write
+  # Yayın kapısının ikinci okuması GitHub Models ile yapılır (KAPI_MOD: kapali|golge|acik).
+  models: read
 
 concurrency:
   group: haber-botu
@@ -64,6 +66,9 @@ jobs:
           # Standartlar kural kitabı tek kaynaktan (mecmua/standartlar/siteler); dosya yoksa standart.mjs yerel kopyayı okur.
           STANDART_KURALLAR: ${{ github.workspace }}/.mecmua/standartlar/siteler/kifobu.json
           MOTOR_DIZIN: ${{ github.workspace }}/.mecmua/motor
+          # İkinci okuma (GitHub Models): vars.KAPI_MOD kapali|golge|acik; belirteç otomatik GITHUB_TOKEN.
+          KAPI_MOD: ${{ vars.KAPI_MOD }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [ -z "$KAYNAK_ANAHTARI" ]; then echo "::error::KAYNAK_ANAHTARI secret'ı yok; haber kaynakları okunamaz."; exit 1; fi
           node scripts/bot/calistir.mjs

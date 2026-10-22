@@ -13,9 +13,12 @@ export async function standartKapisi({ baslik, ozet, metin, ekler = [], kaynakMe
   return {
     yayimla: true,
     std,
-    // Yazı dosyası yazıldıktan sonra çağrılır; yalnız sarıda motor kaydı gerekir.
-    yazildi: async (slug) => {
-      if (std.karar === 'sari') await kaydet({ ...motor, site: 'kifobu', kayit: sariKayit(kimlik, slug, std) });
+    // Yazı dosyası yazıldıktan sonra çağrılır; yalnız sarıda ya da ikinci okuma gerekçesi (ek) varken motor kaydı gerekir.
+    // Defterde ilk biten kayıt gerekçeyi taşır: sarı gerekçe ile ek boşlukla birleşir, 300 karakterle kesilir.
+    yazildi: async (slug, ek) => {
+      const sari = std.karar === 'sari';
+      const gerekce = [sari ? std.gerekce : '', ek].filter(Boolean).join(' ').slice(0, 300);
+      if (sari || gerekce) await kaydet({ ...motor, site: 'kifobu', kayit: sari ? { ...sariKayit(kimlik, slug, std), gerekce } : { kimlik, durum: 'yazildi', slug, gerekce } });
     },
   };
 }

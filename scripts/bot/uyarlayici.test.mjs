@@ -586,3 +586,83 @@ test("isle: kapı gerekçesiz dönerse 'standart kapısı' yazılır", async () 
   const s = sonucu(await u.isle([aday(a)]), a);
   assert.equal(s.gerekce, 'standart kapısı');
 });
+
+// ── Yayın kapısının ikinci okuması (kapi) ──────────────────────────────────
+test("isle kapı: 'elendi' yazmaz, her üye elendi + gerekçe", async () => {
+  const { u, yazilan } = kur();
+  const a = oge(K1, 'a1', BASLIK);
+  const sonuclar = await u.isle([aday(a)], { kapi: async () => ({ karar: 'elendi', gerekce: 'standart:kirmizi:kapi-x' }) });
+  assert.equal(yazilan.length, 0);
+  assert.equal(sonucu(sonuclar, a).durum, 'elendi');
+  assert.equal(sonucu(sonuclar, a).gerekce, 'standart:kirmizi:kapi-x');
+});
+
+test("isle kapı: 'bekle' yazmaz, sonuç vermez ve hata sayılmaz", async () => {
+  const { u, yazilan, durum } = kur();
+  const a = oge(K1, 'a1', BASLIK);
+  const sonuclar = await u.isle([aday(a)], { kapi: async () => ({ karar: 'bekle', gerekce: 'kapi:hata:kota' }) });
+  assert.equal(yazilan.length, 0);
+  assert.equal(sonucu(sonuclar, a), undefined);
+  assert.deepEqual(durum.hatalar, {});
+  assert.equal(durum.gorulen[a.id], undefined);
+});
+
+test("isle kapı: 'gec' yazar; kayıt gerekçesi sarı gerekçe + kapı gerekçesi (300 karakter)", async () => {
+  const kayitlar = [];
+  const std = { karar: 'sari', gerekce: 'standart:sari:K1' };
+  const { u, yazilan } = kur({
+    bag: {
+      standartKapisi: async (p) => {
+        const gercek = await (await import('./standart-kapi.mjs')).standartKapisi({ baslik: 'x', ozet: 'y', metin: 'z', kimlik: p.kimlik, log: () => {}, kaydet: async (k) => (kayitlar.push(k), true) });
+        return { yayimla: true, std, yazildi: async (slug, ek) => {
+          const g = [std.gerekce, ek].filter(Boolean).join(' ').slice(0, 300);
+          kayitlar.push({ slug, gerekce: g });
+          return gercek;
+        } };
+      },
+    },
+  });
+  const a = oge(K1, 'a1', BASLIK);
+  const sonuclar = await u.isle([aday(a)], { kapi: async () => ({ karar: 'gec', gerekce: 'kapi:temiz gpt' }) });
+  assert.equal(yazilan.length, 1);
+  assert.equal(sonucu(sonuclar, a).durum, 'yazildi');
+  assert.equal(kayitlar[0].gerekce, 'standart:sari:K1 kapi:temiz gpt');
+});
+
+test('standartKapisi.yazildi: temizde ek gerekçe kayda gider; ek de sarı da yoksa kayıt yok; 300 karakterle kesilir', async () => {
+  const { standartKapisi } = await import('./standart-kapi.mjs');
+  const kayitlar = [];
+  const kaydet = async (k) => (kayitlar.push(k.kayit), true);
+  const k = await standartKapisi({ baslik: 'Şirket yeni tur açıkladı', ozet: 'Özet.', metin: 'Şirket yeni bir tur açıkladı.', kimlik: 'k1', log: () => {}, kaydet });
+  assert.equal(k.yayimla, true);
+  await k.yazildi('s1');
+  assert.equal(kayitlar.length, 0);
+  await k.yazildi('s1', 'e'.repeat(400));
+  assert.equal(kayitlar[0].durum, 'yazildi');
+  assert.equal(kayitlar[0].gerekce.length, 300);
+});
+
+test('isle kapı: null ise eski davranış (yazılır, kapı çağrısı yok)', async () => {
+  const { u, yazilan } = kur();
+  const a = oge(K1, 'a1', BASLIK);
+  const sonuclar = await u.isle([aday(a)], { kapi: null });
+  assert.equal(yazilan.length, 1);
+  assert.equal(sonucu(sonuclar, a).durum, 'yazildi');
+});
+
+test('isle kapı: belirlenimci kırmızıda kapı çağrılmaz', async () => {
+  let cagri = 0;
+  const { u, yazilan } = kur({ bag: { standartKapisi: async () => ({ yayimla: false, std: { gerekce: 'k' }, yazildi: async () => {} }) } });
+  const a = oge(K1, 'a1', BASLIK);
+  await u.isle([aday(a)], { kapi: async () => (cagri++, { karar: 'gec', gerekce: '' }) });
+  assert.equal(cagri, 0);
+  assert.equal(yazilan.length, 0);
+});
+
+test('isle kapı: ayar hatası turu durdurur (ayar hatası fırlar, sonuçlar eklenir)', async () => {
+  const { u, yazilan } = kur();
+  const a = oge(K1, 'a1', BASLIK);
+  const hata = Object.assign(new Error('ikinci okuma 401'), { ayar: true });
+  await assert.rejects(() => u.isle([aday(a)], { kapi: async () => { throw hata; } }), (e) => e.ayar === true);
+  assert.equal(yazilan.length, 0);
+});

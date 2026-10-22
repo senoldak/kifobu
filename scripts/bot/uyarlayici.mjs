@@ -213,7 +213,7 @@ export function uyarlayiciKur({ rot, durum, simdi, ayar = {}, bag = {} }) {
     }
   }
 
-  async function isle(girdi, { surVar, log = console.log } = {}) {
+  async function isle(girdi, { surVar, log = console.log, kapi: ikinciOkuma = null } = {}) {
     const h = await hazirla();
     const { yazilmis, hafiza, yazilmisAnahtar, bilinenGirisimler } = h;
     const sonuclar = [];
@@ -235,6 +235,11 @@ export function uyarlayiciKur({ rot, durum, simdi, ayar = {}, bag = {} }) {
     };
     // Sonuc'a yazi eklenmez (jendume ile aynı): Telegram'a gidiş saat'in RSS süpürgesinden yapılır.
     const yazildi = (g, slug) => g.uyeler.forEach((u) => koy({ kimlik: kim(u), durum: 'yazildi', slug }));
+    // Yayın kapısının ikinci okuması (ortak motor; null = kapalı/yerel mod → davranış değişmez). Ayar hatası fırlar (e.ayar).
+    const ikinci = async (haber, t) => {
+      if (typeof ikinciOkuma !== 'function') return { karar: 'gec', gerekce: '' };
+      return ikinciOkuma([{ dil: 'tr', baslik: haber.title, ozet: haber.description, metin: haber.body, ekler: [haber.why_matters ?? t.why_matters, ...(haber.key_points ?? t.key_points ?? [])].filter((e) => typeof e === 'string' && e) }]);
+    };
     const tekrarMi = (baslik, nerede) => {
       const t = tekrarBul(baslik, hafiza);
       if (t) log(`zaten yazıldı (${nerede}, son ${HAFIZA_SAAT} saat: ${t.baslik}): ${baslik}`);
@@ -435,9 +440,21 @@ export function uyarlayiciKur({ rot, durum, simdi, ayar = {}, bag = {} }) {
           elendi(g, kapiGerekce(kapi));
           continue;
         }
+        const ik = await ikinci(haber, t);
+        if (ik.karar === 'elendi') {
+          ozet.elenen.push(`${haber.title} — ${ik.gerekce}`);
+          elendi(g, ik.gerekce);
+          continue;
+        }
+        if (ik.karar === 'bekle') {
+          log(`  BEKLİYOR (ikinci okuma tamamlanamadı): ${medyaGizle(String(ik.gerekce ?? ''))}`);
+          ozet.hata.push(`${haber.title} — ikinci okuma tamamlanamadı, sonraki turda yeniden denenecek`);
+          g.uyeler.forEach((u) => delete durum.gorulen[u.id]); // denetim belirsizinde olduğu gibi görülmedi kalır
+          continue;
+        }
         const slug = await B.haberYaz(rot, { ...haber, category: t.category, date: istanbulIso(simdi), draft: false, kaynakIzi: kaynakIzi(secilen.slice(0, 3).map((u) => ({ ad: u.kaynak.ad, url: u.link }))), why_matters: haber.why_matters ?? t.why_matters, key_points: haber.key_points ?? t.key_points });
         delete durum.hatalar[hataId];
-        await kapi.yazildi(slug);
+        await kapi.yazildi(slug, ik.gerekce);
         if (girisimNorm) bilinenGirisimler.add(girisimNorm);
         hafiza.push(kayitKur({ title: haber.title, description: haber.description, girisim: kunye.girisim, slug }));
         yazilmisAnahtar.push(anahtarlar(haber.title), anahtarlar(`${haber.title} ${haber.description}`), ...g.uyeler.map((u) => u.anahtar));
@@ -471,6 +488,7 @@ export function uyarlayiciKur({ rot, durum, simdi, ayar = {}, bag = {} }) {
         const onceki = [...durum.havuz];
         const yazilanOlaylar = new Set(); // derlemeye giren olaylar
         let derlemeKapisi = null;
+        let derlemeEk = '';
         const dusenNeden = new Map(); // havuzdan düşen olay -> düşme gerekçesi (grubun her olayı için)
         const nedenKoy = (grup, gerekce) => grup.forEach((o) => dusenNeden.set(o, temiz(gerekce)));
         const sh = await havuzuIsle(durum.havuz, {
@@ -512,7 +530,16 @@ export function uyarlayiciKur({ rot, durum, simdi, ayar = {}, bag = {} }) {
             const kapi = await B.standartKapisi({ baslik: sonuc.haber.title, ozet: sonuc.haber.description, metin: sonuc.haber.body, ekler: [sonuc.haber.why_matters ?? t.why_matters, ...(sonuc.haber.key_points ?? t.key_points ?? [])], kaynakMetni: kaynak, kimlik: grup[0].id, motor: MOTOR, log: (m) => log(medyaGizle(m)) });
             derlemeKapisi = kapi;
             if (!kapi.yayimla) nedenKoy(grup, kapiGerekce(kapi));
-            return kapi.yayimla ? sonuc : { ...sonuc, sorunlar: [kapiGerekce(kapi)] };
+            if (!kapi.yayimla) return { ...sonuc, sorunlar: [kapiGerekce(kapi)] };
+            // İkinci okuma (kapı): elendi → derleme yazılmaz; bekle → denetim tamamlanmadı gibi olaylar havuzda kalır.
+            const ik = await ikinci(sonuc.haber, t);
+            derlemeEk = ik.gerekce;
+            if (ik.karar === 'elendi') {
+              nedenKoy(grup, ik.gerekce);
+              return { ...sonuc, sorunlar: [ik.gerekce] };
+            }
+            if (ik.karar === 'bekle') return { ...sonuc, sorunlar: [`ikinci okuma tamamlanamadı: ${ik.gerekce ?? ''}`], belirsiz: true };
+            return sonuc;
           },
           kaydet: async (haber, t, grup) => {
             const slug = await B.haberYaz(rot, {
@@ -525,7 +552,7 @@ export function uyarlayiciKur({ rot, durum, simdi, ayar = {}, bag = {} }) {
               why_matters: haber.why_matters ?? t.why_matters,
               key_points: haber.key_points ?? t.key_points,
             });
-            await derlemeKapisi?.yazildi(slug);
+            await derlemeKapisi?.yazildi(slug, derlemeEk);
             hafiza.push(kayitKur({ title: haber.title, description: haber.description, slug }));
             yazilanSayi++;
             ozet.yazilan.push(`${haber.title} (derleme)`);
