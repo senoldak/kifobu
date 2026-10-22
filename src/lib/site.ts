@@ -87,6 +87,19 @@ export type Durum = keyof typeof DURUMLAR;
 export const RISK_NOTU =
   'kifobu kampanya verilerini bilgi amacıyla yayımlar; yatırım tavsiyesi değildir. Kitle fonlaması yatırımları sermaye kaybı riski taşır.';
 
+// Girişim sermayesi (VC turu) haberlerinde kitle fonlaması riski anlatılmaz; yalnız RISK_NOTU'nun ilk cümlesi gösterilir.
+export const GENEL_NOT = 'kifobu haberleri bilgi amacıyla yayımlar; yatırım tavsiyesi değildir.';
+
+/** Künyeli haberin kitle fonlaması haberi olup olmadığı: platform alanı dolu ya da kampanyalar bölümü. */
+export function kitleFonlamasiMi(d: { platform?: string; category?: string }): boolean {
+  return Boolean(d.platform?.trim()) || d.category === 'kampanyalar';
+}
+
+/** Haber künyesinin altındaki uyarı: kitle fonlaması haberinde RISK_NOTU, diğerinde (VC turu) GENEL_NOT. */
+export function kunyeNotu(d: { platform?: string; category?: string }): string {
+  return kitleFonlamasiMi(d) ? RISK_NOTU : GENEL_NOT;
+}
+
 export function formatDate(date: Date, withTime = false) {
   return date.toLocaleString(SITE.locale, {
     day: 'numeric',

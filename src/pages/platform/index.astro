@@ -39,7 +39,7 @@ const jsonLd = sayfaLd({ site: Astro.site!, yol: '/platform/', ad: 'Kitle fonlam
           </h3>
           <div class="kunye">
             {p.kampanyalar.length > 0 && <span>{p.kampanyalar.length} kampanya</span>}
-            <span>{p.haberler.length} haber</span>
+            {p.haberler.length > 0 && <span>{p.haberler.length} haber</span>}
           </div>
         </article>
       ))

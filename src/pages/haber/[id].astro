@@ -9,7 +9,7 @@ import Isaret from '../../components/Isaret.astro';
 import SentezBlok from '../../components/SentezBlok.astro';
 import Yol from '../../components/Yol.astro';
 import Paylas from '../../components/Paylas.astro';
-import { SITE, YAZAR, yazarLd, yazarUrl, DURUMLAR, RISK_NOTU, categoryName, formatDate, formatMoney, formatNumber, percentOf, type Durum } from '../../lib/site';
+import { SITE, YAZAR, yazarLd, yazarUrl, DURUMLAR, kunyeNotu, categoryName, formatDate, formatMoney, formatNumber, percentOf, type Durum } from '../../lib/site';
 import { getNews, isFunding, type Haber } from '../../lib/news';
 import { indekslenir } from '../../lib/indeks';
 import { ilgiliHaberler } from '../../lib/ilgili';
@@ -212,7 +212,7 @@ const jsonLd = {
               </div>
             )}
           </dl>
-          <p class="kk-risk">{RISK_NOTU}</p>
+          <p class="kk-risk">{kunyeNotu(d)}</p>
         </section>
       )
     }
