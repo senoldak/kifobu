@@ -4,19 +4,15 @@
 import { jsonLdMetni } from '../../lib/json-ld.mjs';
 import Base from '../../layouts/Base.astro';
 import Yol from '../../components/Yol.astro';
-import { dizinVerisi, platformUrl } from '../../lib/dizin';
-import { istanbulGunu } from '../../lib/gunler';
-import { EN_AZ_RAPOR_HABERI, ceyrekOzeti, veriliCeyrekler, type CeyrekOzeti } from '../../lib/rapor';
+import { platformUrl, yayimlananRaporlar } from '../../lib/dizin';
+import { gommeKodu, raporKartAlt } from '../../kapak/rapor-kart';
+import { KAPAK_G, KAPAK_Y } from '../../kapak/ciz';
+import { EN_AZ_RAPOR_HABERI, kaynakNotu, type CeyrekOzeti } from '../../lib/rapor';
 import { sayfaLd } from '../../lib/ld';
 import { categoryName, formatMoneyShort, formatNumber, formatDate, RISK_NOTU } from '../../lib/site';
 
 export async function getStaticPaths() {
-  const { news, kayitlar } = await dizinVerisi();
-  const bugun = istanbulGunu(new Date());
-  const gunler = [...news.map((h) => istanbulGunu(h.data.date)), ...kayitlar.map((k) => k.tarih)];
-  const raporlar = veriliCeyrekler(gunler)
-    .map((c) => ceyrekOzeti(news, kayitlar, c, bugun))
-    .filter((o) => o.yayimlanir);
+  const { raporlar } = await yayimlananRaporlar();
   if (raporlar.length === 0) return [];
   return [
     { params: { ceyrek: undefined }, props: { raporlar } },
@@ -37,6 +33,10 @@ const aciklama = o
   ? `kifobu ${o.ceyrek.ad} raporu: ${o.haberSayisi} haber, ${o.yatirimHaberi} yatırım haberi, ${o.kampanya.kampanyaSayisi} kitle fonlama kampanyası. Yalnız kifobu kayıtlarından sayılan rakamlar.`
   : 'kifobu çeyrek raporları: kitle fonlama kampanyaları ve girişim yatırımı haberlerinden sayılan dönemsel rakamlar.';
 const adimlar = [{ ad: 'Anasayfa', url: '/' }, { ad: 'Raporlar', url: '/rapor/' }, ...(o ? [{ ad: o.ceyrek.ad, url: yol }] : [])];
+const sayfaUrl = new URL(yol, Astro.site).href;
+const gorsel = o ? `/rapor/${o.ceyrek.slug}.png` : undefined;
+const csv = o ? `/rapor/${o.ceyrek.slug}.csv` : undefined;
+const orgRef = { '@id': `${new URL('/', Astro.site).href}#organization` };
 const jsonLd = sayfaLd({
   site: Astro.site!,
   yol,
@@ -45,11 +45,38 @@ const jsonLd = sayfaLd({
   tur: o ? 'Report' : 'CollectionPage',
   ogeler: o ? undefined : raporlar.map((r) => `/rapor/${r.ceyrek.slug}/`),
   adimlar,
-  ek: o ? { temporalCoverage: `${o.ceyrek.bas}/${o.ceyrek.son}`, author: { '@id': `${new URL('/', Astro.site).href}#organization` } } : {},
+  ek: o
+    ? {
+        temporalCoverage: `${o.ceyrek.bas}/${o.ceyrek.son}`,
+        author: orgRef,
+        primaryImageOfPage: { '@type': 'ImageObject', url: new URL(gorsel!, Astro.site).href, width: KAPAK_G, height: KAPAK_Y },
+        about: { '@id': `${sayfaUrl}#veri` },
+      }
+    : {},
 });
+// Rapor rakamları Dataset olarak da tanımlanır (Google Dataset Search); dağıtım CSV'dir.
+if (o) {
+  (jsonLd['@graph'] as object[]).push({
+    '@type': 'Dataset',
+    '@id': `${sayfaUrl}#veri`,
+    name: `${ad} (kifobu)`,
+    description: `${aciklama} Haber ve yatırım haberi sayıları bölüme, tura ve para birimine göre; kitle fonlama kampanyaları platforma göre.`,
+    url: sayfaUrl,
+    inLanguage: 'tr-TR',
+    temporalCoverage: `${o.ceyrek.bas}/${o.ceyrek.son}`,
+    keywords: ['kitle fonlama', 'paya dayalı kitle fonlaması', 'girişim yatırımı', 'girişim sermayesi', o.ceyrek.ad],
+    creator: orgRef,
+    publisher: orgRef,
+    isAccessibleForFree: true,
+    creditText: kaynakNotu(o.ceyrek, sayfaUrl),
+    distribution: [{ '@type': 'DataDownload', encodingFormat: 'text/csv', contentUrl: new URL(csv!, Astro.site).href }],
+  });
+}
+const kaynak = o ? kaynakNotu(o.ceyrek, sayfaUrl) : '';
+const gomme = o ? gommeKodu(o, sayfaUrl, new URL(gorsel!, Astro.site).href) : '';
 ---
 
-<Base title={ad} description={aciklama}>
+<Base title={ad} description={aciklama} image={gorsel} imageWidth={o ? KAPAK_G : undefined} imageHeight={o ? KAPAK_Y : undefined} imageAlt={o ? raporKartAlt(o) : undefined}>
   <script slot="head" type="application/ld+json" set:html={jsonLdMetni(jsonLd)} />
   <div slot="tahta" class="kategori-bas">
     <h1 class="kategori-isim">{o ? o.ceyrek.ad : 'Raporlar'}</h1>
@@ -95,7 +122,10 @@ const jsonLd = sayfaLd({
           {o.tutarlar.length > 0 && (
             <>
               <h2>Haberlerdeki yatırım tutarları</h2>
-              <p>Tutarlar para birimine göre ayrı toplanmıştır; kur çevirisi yapılmamıştır.</p>
+              <p>
+                Tutarlar para birimine göre ayrı toplanmıştır; kur çevirisi yapılmamıştır.
+                {o.tutarDisi > 0 && ` Fon kapanışı ve halka arz haberleri (${formatNumber(o.tutarDisi)} haber) girişim turu olmadığı için toplama katılmamıştır.`}
+              </p>
               <table>
                 <thead>
                   <tr><th scope="col">Para birimi</th><th scope="col">Haber</th><th scope="col">Toplam</th></tr>
@@ -128,7 +158,7 @@ const jsonLd = sayfaLd({
           {o.enBuyukler.length > 0 && (
             <>
               <h2>En büyük tutarlar</h2>
-              <p>Her para biriminde en büyük beş tutar.</p>
+              <p>Her para biriminde en büyük beş girişim turu.</p>
               <ul>
                 {o.enBuyukler.map((e) => (
                   <li><a href={`/haber/${e.id}/`}>{e.title}</a>: {formatMoneyShort(e.toplanan, e.paraBirimi)}</li>
@@ -159,10 +189,26 @@ const jsonLd = sayfaLd({
             <p>Bu çeyrekte kampanya kaydı yok.</p>
           )}
 
+          <h2>Raporu kullanın</h2>
+          <p>
+            Rakamları alıntılayabilir, görseli ve tabloları paylaşabilirsiniz; kaynak olarak bu sayfayı gösterin:
+          </p>
+          <p><strong>{kaynak}</strong></p>
+          <figure>
+            <img src={gorsel} alt={raporKartAlt(o)} width={KAPAK_G} height={KAPAK_Y} loading="lazy" decoding="async" />
+          </figure>
+          <ul>
+            <li><a href={csv} download>Bütün tablolar (CSV)</a></li>
+            <li><a href={gorsel} download>Özet görseli (PNG, 1200×675)</a></li>
+          </ul>
+          <p>Sitenize ya da bülteninize eklemek için gömme kodu:</p>
+          <pre class="gomme-kodu"><code>{gomme}</code></pre>
+
           <h2>Yöntem</h2>
           <ul>
             <li>Haber sayıları arama motorlarına açık haberleri kapsar; bülten yazıları, kısa ve kapsam dışı haberler sayılmaz.</li>
             <li>Yatırım tutarları haberlerin künyesindeki tutardır; aynı olayın tekrar yazılmaması için mükerrer haberler yayından önce elenir.</li>
+            <li>Tur adları gruplanır (ör. “Ön tohum” ve “Tohum öncesi” tek satırdır); yalnız bir haberde geçen turlar “Diğer” satırındadır.</li>
             <li>Kampanya rakamları her gün 18:00’de platformların kampanya sayfalarından alınan kayıtlardır; platform toplamı her kampanyanın çeyrekteki son kaydının toplamıdır.</li>
             <li>Rapor, çeyrek bittikten sonra ve çeyrekte en az {EN_AZ_RAPOR_HABERI} haber varsa yayımlanır.</li>
           </ul>
@@ -172,3 +218,20 @@ const jsonLd = sayfaLd({
     )
   }
 </Base>
+
+<style>
+  .gomme-kodu {
+    margin: 0 0 1.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--kagit-2);
+    border: 1px solid var(--cizgi);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    user-select: all;
+  }
+  figure {
+    margin: 0 0 1rem;
+  }
+</style>

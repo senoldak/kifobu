@@ -4,7 +4,8 @@ import { getNews, type Haber } from './news';
 import { arsivKayitlari } from './arsiv/yukle.ts';
 import { kampanyalar, girisimEslesir, type Kampanya } from './kampanya.ts';
 import { platformHaberleri, platformlar, platformSayfasi, platformEslesir, slugTr, yayimlananKonular, type Konu, type Platform } from './konular.ts';
-import { bultenGunleri } from './gunler.ts';
+import { bultenGunleri, istanbulGunu } from './gunler.ts';
+import { ceyrekOzeti, veriliCeyrekler, type CeyrekOzeti } from './rapor.ts';
 
 export interface PlatformSayfasi {
   platform: Platform;
@@ -44,3 +45,17 @@ export function haberBaglantilari(
 }
 
 export const platformUrl = (anahtar: string) => `/platform/${slugTr(anahtar)}/`;
+
+/**
+ * Yayımlanacak çeyrek raporları (/rapor/, /rapor/YYYY-cN/ ve .png/.csv uçları), en yeni önce.
+ * RAPOR_BUGUN=YYYY-AA-GG yalnız yerel denemede bugünü değiştirir (bitmemiş çeyreği bitmiş saymak için); CI'da tanımlı değildir.
+ */
+export async function yayimlananRaporlar(): Promise<{ news: Haber[]; raporlar: CeyrekOzeti[] }> {
+  const { news, kayitlar } = await dizinVerisi();
+  const bugun = process.env.RAPOR_BUGUN || istanbulGunu(new Date());
+  const gunler = [...news.map((h) => istanbulGunu(h.data.date)), ...kayitlar.map((k) => k.tarih)];
+  const raporlar = veriliCeyrekler(gunler)
+    .map((c) => ceyrekOzeti(news, kayitlar, c, bugun))
+    .filter((o) => o.yayimlanir);
+  return { news, raporlar };
+}
