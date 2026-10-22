@@ -6,6 +6,8 @@ import Tahta from '../../components/Tahta.astro';
 import Bulten from '../../components/Bulten.astro';
 import HaberSatiri from '../../components/HaberSatiri.astro';
 import Yol from '../../components/Yol.astro';
+import FiltreDugmeleri from '../../components/FiltreDugmeleri.astro';
+import { filtreDegerleri, type FiltreDegeri } from '../../lib/filtre';
 import { CATEGORIES, SITE, formatDate, formatNumber } from '../../lib/site';
 import { getNews, boardRows, newsUrl, type Haber } from '../../lib/news';
 import { bolumIndekslenir, indekslenir } from '../../lib/indeks';
@@ -24,7 +26,7 @@ export const getStaticPaths = (async ({ paginate }) => {
     return paginate(items, {
       pageSize: SAYFA_BOYU,
       params: { slug: c.slug },
-      props: { slug: c.slug, name: c.name, veri: 'veri' in c ? c.veri : undefined, toplam: items.length, indeksli, rows: boardRows(items, 12) },
+      props: { slug: c.slug, name: c.name, veri: 'veri' in c ? c.veri : undefined, toplam: items.length, indeksli, rows: boardRows(items, 12), turler: c.slug === 'yatirimlar' ? filtreDegerleri(items, 'tur') : [], paralar: c.slug === 'yatirimlar' ? filtreDegerleri(items, 'paraBirimi') : [] },
     });
   });
 }) satisfies GetStaticPaths;
@@ -37,9 +39,11 @@ interface Props {
   toplam: number;
   indeksli: number;
   rows: Haber[];
+  turler: FiltreDegeri[];
+  paralar: FiltreDegeri[];
 }
 
-const { page, slug, name, veri, toplam, indeksli } = Astro.props;
+const { page, slug, name, veri, toplam, indeksli, turler, paralar } = Astro.props;
 const items = page.data;
 const ilkSayfa = page.currentPage === 1;
 // Tahta (bölümün kampanya/yatırım özeti) yalnız ilk sayfada.
@@ -154,6 +158,8 @@ const jsonLd = {
       </nav>
     )
   }
+
+  {ilkSayfa && <FiltreDugmeleri turler={turler} paralar={paralar} />}
 
   {
     sonGunler.length > 0 && (

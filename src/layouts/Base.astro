@@ -2,6 +2,7 @@
 import Logo from '../components/Logo.astro';
 import { jsonLdMetni } from '../lib/json-ld.mjs';
 import { SITE, RISK_NOTU, ACIK_KATEGORILER, menuAdresi, dayNumber, formatNumber } from '../lib/site';
+import { ICERIK_LISANSI } from '../lib/icerik-lisansi';
 import '../styles/fonts.css';
 import '../styles/global.css';
 
@@ -226,6 +227,7 @@ const social = [
       <div class="kap">
         <div class="alt-not">
           <p>© {new Date().getFullYear()} {SITE.name}</p>
+          <p>İçerik <a href={ICERIK_LISANSI.url} rel="license">{ICERIK_LISANSI.ad}</a>: kifobu kaynak gösterilerek ticari olmayan amaçlarla serbestçe kullanılabilir.</p>
           <p>{RISK_NOTU}</p>
         </div>
       </div>

@@ -1,0 +1,88 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { jsonLdMetni } from '../../../lib/json-ld.mjs';
+import Base from '../../../layouts/Base.astro';
+import HaberSatiri from '../../../components/HaberSatiri.astro';
+import FiltreDugmeleri from '../../../components/FiltreDugmeleri.astro';
+import Yol from '../../../components/Yol.astro';
+import { SITE, PARA_BIRIMLERI } from '../../../lib/site';
+import { getNews, newsUrl, type Haber } from '../../../lib/news';
+import { filtreDegerleri, filtreUyar, type FiltreDegeri } from '../../../lib/filtre';
+
+// Süzülmüş yatırım listeleri: /yatirimlar/tur/<tur>/ ve /yatirimlar/para/<kod>/. Tek sayfa (sayfalama yok).
+// Ana bölümün alt kümesi oldukları için arama motorlarına kapalıdır (noindex, follow; site haritasına girmez).
+export const getStaticPaths = (async () => {
+  const items = (await getNews()).filter((h) => h.data.category === 'yatirimlar');
+  const turler = filtreDegerleri(items, 'tur');
+  const paralar = filtreDegerleri(items, 'paraBirimi');
+  return [
+    ...turler.map((d) => ({
+      params: { tip: 'tur', deger: d.slug },
+      props: { tip: 'tur' as const, d, turler, paralar, haberler: items.filter((h) => filtreUyar(h, 'tur', d.slug)) },
+    })),
+    ...paralar.map((d) => ({
+      params: { tip: 'para', deger: d.slug },
+      props: { tip: 'para' as const, d, turler, paralar, haberler: items.filter((h) => filtreUyar(h, 'paraBirimi', d.slug)) },
+    })),
+  ];
+}) satisfies GetStaticPaths;
+
+interface Props {
+  tip: 'tur' | 'para';
+  d: FiltreDegeri;
+  turler: FiltreDegeri[];
+  paralar: FiltreDegeri[];
+  haberler: Haber[];
+}
+const { tip, d, turler, paralar, haberler } = Astro.props;
+const pb = tip === 'para' ? PARA_BIRIMLERI[d.ad.toUpperCase() as keyof typeof PARA_BIRIMLERI] : undefined;
+const etiket = tip === 'tur' ? `${d.ad} turu` : `${d.ad.toUpperCase()} (${pb?.ad ?? d.ad}) yatırımları`;
+const baslik = `Yatırımlar: ${etiket}`;
+const description = `${SITE.name} yatırım haberleri, ${tip === 'tur' ? `${d.ad} turu` : `${d.ad.toUpperCase()} cinsinden`} olanlar (${d.sayi} haber).`;
+const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
+const siteUrl = new URL('/', Astro.site).href;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      '@id': `${pageUrl}#page`,
+      name: `${baslik} | ${SITE.name}`,
+      description,
+      url: pageUrl,
+      inLanguage: 'tr-TR',
+      isPartOf: { '@id': `${siteUrl}#website` },
+      publisher: { '@id': `${siteUrl}#organization` },
+      mainEntity: {
+        '@type': 'ItemList',
+        itemListElement: haberler.map((h, i) => ({ '@type': 'ListItem', position: i + 1, url: new URL(newsUrl(h), Astro.site).href })),
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Anasayfa', item: siteUrl },
+        { '@type': 'ListItem', position: 2, name: 'Yatırımlar', item: new URL('/yatirimlar/', Astro.site).href },
+        { '@type': 'ListItem', position: 3, name: etiket, item: pageUrl },
+      ],
+    },
+  ],
+};
+---
+
+<Base title={baslik} description={description} noindex={true}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={jsonLdMetni(jsonLd)} />
+  </Fragment>
+  <div slot="tahta" class="kategori-bas">
+    <h1 class="kategori-isim">Yatırımlar: {etiket}</h1>
+    <p class="kategori-sayi">{d.sayi} haber</p>
+  </div>
+
+  <Yol adimlar={[{ ad: 'Anasayfa', url: '/' }, { ad: 'Yatırımlar', url: '/yatirimlar/' }, { ad: etiket }]} />
+  <FiltreDugmeleri turler={turler} paralar={paralar} etkin={{ tip, slug: d.slug }} />
+
+  <div class="satir-izgara">
+    {haberler.map((h) => <HaberSatiri haber={h} showCategory={false} />)}
+  </div>
+</Base>

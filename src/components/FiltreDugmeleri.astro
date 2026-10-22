@@ -1,0 +1,63 @@
+---
+// /yatirimlar/ ve süzülmüş sayfaların üstündeki tur ve para birimi bağlantıları (JS gerekmez; her değer statik sayfadır).
+import type { FiltreDegeri } from '../lib/filtre';
+
+interface Props {
+  turler: FiltreDegeri[];
+  paralar: FiltreDegeri[];
+  /** Etkin süzgeç. */
+  etkin?: { tip: 'tur' | 'para'; slug: string };
+}
+const { turler, paralar, etkin } = Astro.props;
+const grup = [
+  { tip: 'tur' as const, etiket: 'Tur', liste: turler },
+  { tip: 'para' as const, etiket: 'Para birimi', liste: paralar },
+].filter((g) => g.liste.length > 0);
+---
+
+{
+  grup.length > 0 && (
+    <div class="filtre" role="group" aria-label="Haberleri süz">
+      {grup.map((g) => (
+        <nav class="filtre-satir" aria-label={g.etiket}>
+          <span>{g.etiket}</span>
+          {etkin?.tip === g.tip && <a href="/yatirimlar/">Tümü</a>}
+          {g.liste.map((d) => {
+            const aktif = etkin?.tip === g.tip && etkin.slug === d.slug;
+            return (
+              <a href={`/yatirimlar/${g.tip}/${d.slug}/`} aria-current={aktif ? 'page' : undefined} class:list={[{ aktif }]}>
+                {d.ad} <small>{d.sayi}</small>
+              </a>
+            );
+          })}
+        </nav>
+      ))}
+    </div>
+  )
+}
+
+<style>
+  .filtre { margin: 20px 0 0; display: grid; gap: 10px; }
+  .filtre-satir {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 10px;
+    font-family: var(--yazi-baslik);
+    font-weight: 700;
+    font-size: 0.92rem;
+  }
+  .filtre-satir span {
+    min-width: 7.5em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    color: var(--murekkep-2);
+  }
+  .filtre-satir a { padding: 4px 10px; border: 1px solid var(--cizgi-koyu); }
+  .filtre-satir a small { font-size: 0.8em; font-variant-numeric: tabular-nums; color: var(--murekkep-2); }
+  .filtre-satir a:hover,
+  .filtre-satir a.aktif { background: var(--tahta); border-color: var(--tahta); color: var(--tebesir); }
+  .filtre-satir a:hover small,
+  .filtre-satir a.aktif small { color: inherit; }
+</style>

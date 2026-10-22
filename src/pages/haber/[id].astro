@@ -18,6 +18,8 @@ import { gunUrl, istanbulGunu } from '../../lib/gunler';
 import { matchEntities } from '../../lib/entities';
 import { duzeltmeNotu } from '../../lib/duzeltme';
 import { yapayZekaNotu } from '../../lib/yapay-zeka-notu';
+import { kaynakSatiri } from '../../lib/kaynak-satiri';
+import { ICERIK_LISANSI } from '../../lib/icerik-lisansi';
 import { kapakAlt, kapakUrl, KAPAK_G, KAPAK_Y, LOGO_G, LOGO_Y } from '../../kapak/ciz';
 
 export async function getStaticPaths() {
@@ -48,6 +50,7 @@ const duzeltme = duzeltmeNotu(d, 'tr');
 const yzNotu = yapayZekaNotu(d, d.title, new URL(Astro.url.pathname, Astro.site).href);
 const { title, description, date, category, cover, coverAlt } = d;
 const { Content } = await render(haber);
+const kaynak = kaynakSatiri(d);
 const funding = isFunding(haber);
 // Kapsam dışı ya da 120 kelimeden kısa haber: sayfa kalır, arama motorlarına kapalıdır (noindex, follow).
 const noindex = !indekslenir({ draft: d.draft, noindex: d.noindex, govde: haber.body });
@@ -88,6 +91,7 @@ const articleSchema: Record<string, any> = {
   url: pageUrl,
   articleSection: categoryName(category),
   inLanguage: 'tr-TR',
+  license: ICERIK_LISANSI.url,
   isAccessibleForFree: true,
   isPartOf: { '@id': `${siteUrl}#website` },
   image: [
@@ -229,6 +233,9 @@ const jsonLd = {
     <div class="metin">
       <Content />
     </div>
+
+    {/* Medya kaynaklı bot haberinde adsız kaynak satırı (src/lib/kaynak-satiri.ts); aynı sınıf, yapay zekâ notuyla aynı görünüm. */}
+    {kaynak && <p class="yz-notu kaynak-satiri">{kaynak}</p>}
 
     {/* Standartlar: gövdeden sonra, paylaşımdan önce tek satırlık yapay zekâ notu (src/lib/yapay-zeka-notu.ts). */}
     {
