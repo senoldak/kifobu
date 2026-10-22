@@ -565,3 +565,24 @@ test('yerel yol: adaylar() tam description tutar; yük kırpılı olsa da yazıy
   await yerelTur(u, durum);
   assert.equal(gorulen, uzun);
 });
+
+test("isle: havuzdan mükerrer düşen olay 'zaten yazıldı' gerekçesiyle elenir (varsayılan değil)", async () => {
+  const durum = bosDurum();
+  const olay = havuzOlayi({ id: 'bir:m1', taslak: taslak(), basliklar: ['Zefirnet 450 milyon dolar yatirim aldi'], kaynaklar: [{ baslik: 'b', tarih: '2026-10-22', metin: 'x' }], kullanilan: [], iso: '2026-10-22T06:40:00.000Z' });
+  durum.havuz.push(olay);
+  const { u } = kur({
+    durum,
+    bag: { sonHaberler: async () => [{ slug: 'eski-haber', tarih: SIMDI.valueOf() - 3_600_000, category: 'yatirimlar', title: 'Zefirnet 450 milyon dolar yatirim aldi', description: 'ozet' }] },
+  });
+  const sonuclar = await u.isle([]);
+  assert.equal(sonuclar.length, 1);
+  assert.equal(sonuclar[0].durum, 'elendi');
+  assert.match(sonuclar[0].gerekce, /zaten yazıldı/);
+});
+
+test("isle: kapı gerekçesiz dönerse 'standart kapısı' yazılır", async () => {
+  const { u } = kur({ bag: { standartKapisi: async () => ({ yayimla: false, std: {}, yazildi: async () => {} }) } });
+  const a = oge(K1, 'a1', BASLIK);
+  const s = sonucu(await u.isle([aday(a)]), a);
+  assert.equal(s.gerekce, 'standart kapısı');
+});

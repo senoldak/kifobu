@@ -245,6 +245,7 @@ export function uyarlayiciKur({ rot, durum, simdi, ayar = {}, bag = {} }) {
       if (surDolduMu()) return 'Süre bütçesi';
       return B.geminiPayiBitti() ? 'Gemini tur payı' : null;
     };
+    const kapiGerekce = (kapi) => kapi.std?.gerekce ?? 'standart kapısı';
     const gemini = B.geminiVar();
 
     const { gruplar, teyitli } = grupla(girdi, koy, { log }, h);
@@ -430,8 +431,8 @@ export function uyarlayiciKur({ rot, durum, simdi, ayar = {}, bag = {} }) {
         // Standartlar: kırmızı süzgeç, dosya yazılmadan hemen önce.
         const kapi = await B.standartKapisi({ baslik: haber.title, ozet: haber.description, metin: haber.body, ekler: [haber.why_matters ?? t.why_matters, ...(haber.key_points ?? t.key_points ?? [])], kaynakMetni, kimlik: hataId, motor: MOTOR, log: (m) => log(medyaGizle(m)) });
         if (!kapi.yayimla) {
-          ozet.elenen.push(`${haber.title} — ${kapi.std.gerekce}`);
-          elendi(g, kapi.std.gerekce);
+          ozet.elenen.push(`${haber.title} — ${kapiGerekce(kapi)}`);
+          elendi(g, kapiGerekce(kapi));
           continue;
         }
         const slug = await B.haberYaz(rot, { ...haber, category: t.category, date: istanbulIso(simdi), draft: false, kaynakIzi: kaynakIzi(secilen.slice(0, 3).map((u) => ({ ad: u.kaynak.ad, url: u.link }))), why_matters: haber.why_matters ?? t.why_matters, key_points: haber.key_points ?? t.key_points });
@@ -477,7 +478,10 @@ export function uyarlayiciKur({ rot, durum, simdi, ayar = {}, bag = {} }) {
           // Bu arada (bu turda ya da son 72 saatte) tam haber olarak yazılan olay düşer.
           mukerrer: (o) => {
             const t = o.basliklar.map((b) => tekrarBul(b, hafiza)).find(Boolean);
-            return t ? `son ${HAFIZA_SAAT} saatte yazıldı` : null;
+            if (!t) return null;
+            const neden = `son ${HAFIZA_SAAT} saatte yazıldı`;
+            dusenNeden.set(o, `zaten yazıldı (${neden})`);
+            return neden;
           },
           yaz: async (grup, kaynak) => {
             try {
@@ -507,8 +511,8 @@ export function uyarlayiciKur({ rot, durum, simdi, ayar = {}, bag = {} }) {
             // Standartlar: kırmızı süzgeç derlemenin tamamında; madde madde ayıklanamadığı için kırmızıysa derleme yayımlanmaz.
             const kapi = await B.standartKapisi({ baslik: sonuc.haber.title, ozet: sonuc.haber.description, metin: sonuc.haber.body, ekler: [sonuc.haber.why_matters ?? t.why_matters, ...(sonuc.haber.key_points ?? t.key_points ?? [])], kaynakMetni: kaynak, kimlik: grup[0].id, motor: MOTOR, log: (m) => log(medyaGizle(m)) });
             derlemeKapisi = kapi;
-            if (!kapi.yayimla) nedenKoy(grup, kapi.std.gerekce);
-            return kapi.yayimla ? sonuc : { ...sonuc, sorunlar: [kapi.std.gerekce] };
+            if (!kapi.yayimla) nedenKoy(grup, kapiGerekce(kapi));
+            return kapi.yayimla ? sonuc : { ...sonuc, sorunlar: [kapiGerekce(kapi)] };
           },
           kaydet: async (haber, t, grup) => {
             const slug = await B.haberYaz(rot, {

@@ -10,18 +10,19 @@
 //
 // Ortam değişkenleri: KAYNAK_ANAHTARI (zorunlu; şifreli kaynak listesi ve kimlikler, bkz. gizli.mjs), GEMINI_API_KEY (zorunlu), GEMINI_MODEL, EN_FAZLA (çalışma başına haber, varsayılan 12),
 // TEYIT (kaç farklı sitede yer almalı, varsayılan 1), YAS_GUN (en fazla kaç günlük haber, varsayılan 3),
-// SURE_DK (yeni habere başlamak için dakika bütçesi, varsayılan 18; iş akışının zaman aşımı 25 dk).
+// SURE_DK (yeni habere başlamak için dakika bütçesi, varsayılan 18; iş akışının zaman aşımı 40 dk).
 import { writeFile, appendFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { KAYNAKLAR } from './kaynaklar.mjs';
 import { jsonOku } from './lib.mjs';
-import { butceYukle } from './butce.mjs';
+import { butceYukle, geminiPayiBitti } from './butce.mjs';
 import { adresiSil, anahtarVar, gizliId } from './gizli.mjs';
 import { medyaGizle } from './yerel.mjs';
 import { yayinDurduMu } from './standart.mjs';
 import { havuzAc, havuzKapat } from './havuz.mjs';
 import { gorulmeyen, uyarlayiciKur, yerelTur } from './uyarlayici.mjs';
+import { turSec } from './motor-modu.mjs';
 
 const ROT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const DURUM_DOSYASI = path.join(ROT, 'scripts/bot/gorulen.json');
@@ -108,8 +109,25 @@ if (!process.env.GEMINI_API_KEY) {
   console.warn('GEMINI_API_KEY yok; haber yazılamaz. Adaylar bir sonraki çalışmada tekrar denenecek.');
 }
 
-// Turu durduran ayar hatası (anahtar ya da model) ozet.hata'ya yazılır; durum yine kaydedilir ve süreç normal biter.
-await yerelTur(uyarlayici, durum);
+// MOTOR_TUR=1: tur ortak motorla (MOTOR_DIZIN), aksi hâlde yerel tur. Yerelde turu durduran ayar hatası (anahtar ya da model)
+// ozet.hata'ya yazılır, durum kaydedilir ve süreç normal biter. Motor modunda hata yerel tura düşmez; durum yine yazılır
+// (yerel durum kaybolmasın) ve süreç sonunda hata koduyla çıkar.
+let turHatasi = null;
+try {
+  await turSec({
+    env: process.env,
+    uyarlayici,
+    durum,
+    simdi,
+    rot: ROT,
+    yerel: yerelTur,
+    // Motor surVar'ı varsayılan olarak hep true sayar; süre bütçesi ve Gemini tur payı burada verilir.
+    surVar: () => Date.now() - BASLANGIC <= SURE_MS && !geminiPayiBitti(),
+  });
+} catch (e) {
+  turHatasi = e;
+  console.error(`Tur hatayla bitti: ${adresiSil(e?.message ?? e)}`);
+}
 const { ozet } = uyarlayici;
 
 // ── Durum ve özet ──────────────────────────────────────────────────────
@@ -134,3 +152,5 @@ if (process.env.GITHUB_STEP_SUMMARY) {
     medyaGizle(adresiSil(`## kifobu botu\n${liste('Yayımlandı', ozet.yazilan)}${liste('Denetimden geçemedi (yayımlanmadı)', ozet.elenen)}${liste('Atlandı', ozet.atlanan)}${liste('Hata', ozet.hata)}`)),
   );
 }
+
+if (turHatasi) process.exitCode = 1;

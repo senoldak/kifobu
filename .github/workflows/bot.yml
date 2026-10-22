@@ -31,6 +31,17 @@ jobs:
         with:
           node-version-file: .node-version
 
+      # Ortak motor private mecmua deposundadır; yalnız vars.MOTOR_TUR=1 iken salt-okur çekilir (.mecmua/motor).
+      - name: Motoru getir
+        if: ${{ vars.MOTOR_TUR == '1' }}
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: senoldak/mecmua
+          ssh-key: '${{ secrets.MECMUA_OKUMA }}'
+          path: .mecmua
+          sparse-checkout: motor
+          persist-credentials: false
+
       # Bot paket kullanmıyor (kapaklar site derlenirken çiziliyor); npm ci gerekmez.
       - name: Haberleri yaz
         id: bot
@@ -46,6 +57,9 @@ jobs:
           KAPSAM: ${{ vars.KAPSAM }}
           # Kaynak listesi ve yayın adları repoda şifreli durur (scripts/bot/gizli-kaynaklar.sifreli); anahtar bu secret'ta.
           KAYNAK_ANAHTARI: ${{ secrets.KAYNAK_ANAHTARI }}
+          # Ortak motor modu: vars.MOTOR_TUR=1 iken tur motorla sürülür (private mecmua'dan salt-okur çekilir).
+          MOTOR_TUR: ${{ vars.MOTOR_TUR }}
+          MOTOR_DIZIN: ${{ github.workspace }}/.mecmua/motor
         run: |
           if [ -z "$KAYNAK_ANAHTARI" ]; then echo "::error::KAYNAK_ANAHTARI secret'ı yok; haber kaynakları okunamaz."; exit 1; fi
           node scripts/bot/calistir.mjs
@@ -54,8 +68,9 @@ jobs:
 
       - name: Commit
         id: commit
+        if: ${{ !cancelled() }}
         env:
-          SAYI: ${{ steps.bot.outputs.sayi }}
+          SAYI: ${{ steps.bot.outputs.sayi || '0' }}
         run: |
           git config user.name "kifobu-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

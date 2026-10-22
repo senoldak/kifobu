@@ -61,3 +61,6 @@ PRODUCT.md
 DESIGN.md
 BRAND.md
 AGENTS.md
+
+# ortak motorun salt-okur çekimi (bkz. .github/workflows/bot.yml)
+.mecmua/
