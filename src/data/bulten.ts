@@ -1,7 +1,7 @@
 /**
  * Günlük kitle fonlama bülteni verisi ("Bugün" tablosu).
  * Otomatik Bot tarafından oluşturulmuştur.
- * Son güncelleme: 2026-10-23T11:01:22.726Z
+ * Son güncelleme: 2026-10-23T13:01:19.352Z
  */
 export interface Girisim {
   ad: string;
@@ -49,11 +49,11 @@ export const BULTEN = {
     {
         "ad": "OYLİO",
         "platform": "fonangels",
-        "bugun": 500000,
-        "alinan": 3284150,
-        "kalan": 1715850,
+        "bugun": 560000,
+        "alinan": 3344150,
+        "kalan": 1655850,
         "degerleme": 50000000,
-        "yuzde": 65.68,
+        "yuzde": 66.88,
         "durum": "son 13 gün",
         "url": "https://fonangels.com/kampanyalar/projehakkinda/oylio?pid=1778"
     },
@@ -71,29 +71,29 @@ export const BULTEN = {
     {
         "ad": "LOOPYON",
         "platform": "ecofolio",
-        "bugun": 0,
-        "alinan": 466200,
-        "kalan": 34533800,
+        "bugun": 42000,
+        "alinan": 508200,
+        "kalan": 34491800,
         "degerleme": 385038504,
-        "yuzde": 1.33,
+        "yuzde": 1.45,
         "durum": "son 23 gün",
         "url": "https://ecofolio.com.tr/kampanyalar/loopyon"
     }
 ] as Girisim[],
   platformlar: {
-    bugun: 500000,
-    toplam: 11474632,
+    bugun: 602000,
+    toplam: 11576632,
     liste: [
     {
         "ad": "fonangels",
-        "toplam": 10886650,
+        "toplam": 10946650,
         "girisim": 2,
         "renk": "#f47b3d",
         "url": "https://fonangels.com"
     },
     {
         "ad": "ecofolio",
-        "toplam": 466200,
+        "toplam": 508200,
         "girisim": 1,
         "renk": "#009bae",
         "url": "https://ecofolio.com.tr"
