@@ -17,6 +17,11 @@ test('özel analiz (bot dışı üretim) Şenol Dak', () => {
   assert.equal(kisiYazariMi({ uretim: 'editor', category: 'analiz' }), true);
 });
 
+test('yaziTuru analiz: üretimi yapay-zeka olsa da Şenol Dak; analiz olmayan aynı yazı site adı', () => {
+  assert.equal(kisiYazariMi({ yaziTuru: 'analiz', category: 'yatirimlar', uretim: 'yapay-zeka' }), true);
+  assert.equal(kisiYazariMi({ yaziTuru: 'haber', category: 'yatirimlar', uretim: 'yapay-zeka' }), false);
+});
+
 test('açıklayıcı ve referans, üretimi ne olursa olsun Şenol Dak', () => {
   assert.equal(kisiYazariMi({ uretim: 'yapay-zeka', yaziTuru: 'aciklayici', category: 'girisimler' }), true);
   assert.equal(kisiYazariMi({ uretim: 'yazi-isleri', yaziTuru: 'referans' }), true);

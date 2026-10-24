@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { z } from 'astro/zod';
-import { YAZI_TURLERI, VARSAYILAN_YAZI_TURU, aciklayiciMi, analizMi } from './yazi-turu.ts';
+import { YAZI_TURLERI, VARSAYILAN_YAZI_TURU, aciklayiciMi, analizMi, bolumAdlari } from './yazi-turu.ts';
 
 // src/content.config.ts'deki alanın aynısı.
 const alan = z.enum(YAZI_TURLERI).default(VARSAYILAN_YAZI_TURU);
@@ -37,4 +37,10 @@ test('analizMi: yalnız analiz true; açıklayıcı, haber ve boş false; analiz
   assert.equal(analizMi({}), false);
   assert.equal(analizMi(undefined), false);
   assert.equal(aciklayiciMi({ yaziTuru: 'analiz' }), false);
+});
+
+test('bolumAdlari: analizde [kategori, Analiz], diğerlerinde yalnız kategori adı', () => {
+  assert.deepEqual(bolumAdlari('Yatırımlar', { yaziTuru: 'analiz' }), ['Yatırımlar', 'Analiz']);
+  assert.equal(bolumAdlari('Yatırımlar', { yaziTuru: 'haber' }), 'Yatırımlar');
+  assert.equal(bolumAdlari('Yatırımlar', {}), 'Yatırımlar');
 });

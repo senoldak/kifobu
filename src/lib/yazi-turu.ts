@@ -14,3 +14,8 @@ export function aciklayiciMi(veri: { yaziTuru?: YaziTuru } | null | undefined): 
 export function analizMi(veri: { yaziTuru?: YaziTuru } | null | undefined): boolean {
   return veri?.yaziTuru === 'analiz';
 }
+
+// JSON-LD articleSection: analizde kategori adı ve "Analiz" birlikte; diğer yazılarda yalnız kategori adı.
+export function bolumAdlari(kategoriAdi: string, veri: { yaziTuru?: YaziTuru } | null | undefined): string | string[] {
+  return analizMi(veri) ? [kategoriAdi, 'Analiz'] : kategoriAdi;
+}

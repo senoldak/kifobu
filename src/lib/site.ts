@@ -1,5 +1,5 @@
 import { yuzdeKesik } from './kimlik.ts';
-import { aciklayiciMi } from './yazi-turu.ts';
+import { aciklayiciMi, analizMi, type YaziTuru } from './yazi-turu.ts';
 export const SITE = {
   name: 'kifobu',
   tagline: 'Ulaşılabilir ve anlaşılır veri',
@@ -32,12 +32,13 @@ export const YAZAR = {
 /**
  * Görünen yazar kişi mi (Şenol Dak) yoksa yayıncı kuruluş mu? Sahibinin kararı (24 Ekim 2026): analiz, açıklayıcı/referans
  * yazıları ve köşe yazıları (author: Şenol Dak) kişi imzasıyla çıkar; bot haberleri, bültenler ve derlemeler site adıyla.
- * Botun "analiz" kategorisine yazdığı derlemeler (uretim: yapay-zeka) özel yazı değildir; site adıyla kalır.
+ * İstisna: yaziTuru "analiz" olan yazı, üretimi ne olursa olsun kişi imzalıdır. Yazı türü analiz olmayıp yalnızca botun
+ * "analiz" kategorisine yazdığı derlemeler (uretim: yapay-zeka) özel yazı değildir; site adıyla kalır.
  */
-export function kisiYazariMi(veri: { yaziTuru?: string; category?: string; author?: string; uretim?: string } | null | undefined): boolean {
+export function kisiYazariMi(veri: { yaziTuru?: YaziTuru; category?: string; author?: string; uretim?: string } | null | undefined): boolean {
   if (!veri) return false;
-  if (aciklayiciMi(veri as { yaziTuru?: 'haber' | 'aciklayici' | 'referans' })) return true;
-  if (veri.yaziTuru === 'analiz') return true;
+  if (aciklayiciMi(veri)) return true;
+  if (analizMi(veri)) return true;
   if (veri.author === YAZAR.ad) return true;
   return veri.category === 'analiz' && veri.uretim !== 'yapay-zeka';
 }
