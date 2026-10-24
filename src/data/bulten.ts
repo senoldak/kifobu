@@ -1,7 +1,7 @@
 /**
  * Günlük kitle fonlama bülteni verisi ("Bugün" tablosu).
  * Otomatik Bot tarafından oluşturulmuştur.
- * Son güncelleme: 2026-10-23T13:01:19.352Z
+ * Son güncelleme: 2026-10-24T07:01:14.963Z
  */
 export interface Girisim {
   ad: string;
@@ -32,8 +32,8 @@ export interface Yakinda {
 }
 
 export const BULTEN = {
-  tarih: '23 Ekim 2026',
-  sayi: 1536,
+  tarih: '24 Ekim 2026',
+  sayi: 1537,
   girisimler: [
     {
         "ad": "ATHLETICLABS",
@@ -49,12 +49,12 @@ export const BULTEN = {
     {
         "ad": "OYLİO",
         "platform": "fonangels",
-        "bugun": 560000,
-        "alinan": 3344150,
-        "kalan": 1655850,
+        "bugun": 100000,
+        "alinan": 3444150,
+        "kalan": 1555850,
         "degerleme": 50000000,
-        "yuzde": 66.88,
-        "durum": "son 13 gün",
+        "yuzde": 68.88,
+        "durum": "son 12 gün",
         "url": "https://fonangels.com/kampanyalar/projehakkinda/oylio?pid=1778"
     },
     {
@@ -71,7 +71,7 @@ export const BULTEN = {
     {
         "ad": "LOOPYON",
         "platform": "ecofolio",
-        "bugun": 42000,
+        "bugun": 0,
         "alinan": 508200,
         "kalan": 34491800,
         "degerleme": 385038504,
@@ -81,12 +81,12 @@ export const BULTEN = {
     }
 ] as Girisim[],
   platformlar: {
-    bugun: 602000,
-    toplam: 11576632,
+    bugun: 100000,
+    toplam: 11676632,
     liste: [
     {
         "ad": "fonangels",
-        "toplam": 10946650,
+        "toplam": 11046650,
         "girisim": 2,
         "renk": "#f47b3d",
         "url": "https://fonangels.com"
