@@ -17,6 +17,7 @@ import { dizinVerisi, haberBaglantilari } from '../../lib/dizin';
 import { gunUrl, istanbulGunu } from '../../lib/gunler';
 import { matchEntities } from '../../lib/entities';
 import { duzeltmeNotu } from '../../lib/duzeltme';
+import { analizMi } from '../../lib/yazi-turu';
 import { yapayZekaNotu } from '../../lib/yapay-zeka-notu';
 import { kaynakSatiri } from '../../lib/kaynak-satiri';
 import { ICERIK_LISANSI } from '../../lib/icerik-lisansi';
@@ -76,7 +77,7 @@ const isoModified = (d.updated && d.updated > date ? d.updated : date).toISOStri
 const entities = matchEntities(`${title} ${description} ${haber.body ?? ''}`);
 
 const articleSchema: Record<string, any> = {
-  '@type': 'NewsArticle',
+  '@type': analizMi(haber.data) ? 'AnalysisNewsArticle' : 'NewsArticle',
   '@id': `${pageUrl}#article`,
   headline,
   description,
@@ -137,6 +138,7 @@ const jsonLd = {
   <article class="makale">
     <Yol adimlar={[{ ad: 'Anasayfa', url: '/' }, { ad: categoryName(category), url: `/${category}/` }, { ad: title }]} />
     <header class="makale-bas">
+      {analizMi(haber.data) && <p style="margin: 0 0 12px"><span class="etiket">Analiz</span></p>}
       <h1>{title}</h1>
       <p class="makale-spot">{description}</p>
       <p class="makale-imza">

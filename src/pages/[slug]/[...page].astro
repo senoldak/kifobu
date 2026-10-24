@@ -13,6 +13,7 @@ import { getNews, boardRows, newsUrl, type Haber } from '../../lib/news';
 import { bolumIndekslenir, indekslenir } from '../../lib/indeks';
 import { dizinVerisi } from '../../lib/dizin';
 import { gunUrl } from '../../lib/gunler';
+import { analizMi } from '../../lib/yazi-turu';
 
 // Bölüm sayfaları sayfalanır: /<bölüm>/ ilk sayfa, /<bölüm>/2/ ve sonrası. Her sayfa kendi canonical'ını taşır ve
 // (bölüm indekslenebilirse) site haritasına girer.
@@ -21,7 +22,8 @@ export const SAYFA_BOYU = 20;
 export const getStaticPaths = (async ({ paginate }) => {
   const news = await getNews();
   return CATEGORIES.flatMap((c) => {
-    const items = news.filter((h) => h.data.category === c.slug);
+    // Analiz bölümü: analiz kategorisi ya da yaziTuru: analiz olan yazılar (kategorisi başka olsa da); tarih sırası korunur.
+    const items = news.filter((h) => h.data.category === c.slug || (c.slug === 'analiz' && analizMi(h.data)));
     const indeksli = items.filter((h) => indekslenir({ draft: h.data.draft, noindex: h.data.noindex, govde: h.body })).length;
     return paginate(items, {
       pageSize: SAYFA_BOYU,

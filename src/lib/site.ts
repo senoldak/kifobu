@@ -37,6 +37,7 @@ export const YAZAR = {
 export function kisiYazariMi(veri: { yaziTuru?: string; category?: string; author?: string; uretim?: string } | null | undefined): boolean {
   if (!veri) return false;
   if (aciklayiciMi(veri as { yaziTuru?: 'haber' | 'aciklayici' | 'referans' })) return true;
+  if (veri.yaziTuru === 'analiz') return true;
   if (veri.author === YAZAR.ad) return true;
   return veri.category === 'analiz' && veri.uretim !== 'yapay-zeka';
 }
