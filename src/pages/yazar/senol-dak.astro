@@ -1,16 +1,16 @@
 ---
-// Yazar sayfası: sitedeki bütün yazıların görünen yazarı. Biyografi uydurulmaz; yalnız ad, unvan, nötr tek cümle,
+// Yazar sayfası: analiz, açıklayıcı ve köşe yazılarının görünen yazarı. Biyografi uydurulmaz; yalnız ad, unvan, nötr tek cümle,
 // iletişim e-postası ve son yazılar yer alır.
 import Base from '../../layouts/Base.astro';
 import HaberSatiri from '../../components/HaberSatiri.astro';
 import { jsonLdMetni } from '../../lib/json-ld.mjs';
-import { SITE, YAZAR, yazarLd, yazarUrl } from '../../lib/site';
+import { SITE, YAZAR, yazarLd, yazarUrl, kisiYazariMi } from '../../lib/site';
 import { getNews, newsUrl } from '../../lib/news';
 
-const haberler = await getNews();
+const haberler = (await getNews()).filter((h) => kisiYazariMi(h.data));
 const sayfaUrl = yazarUrl(Astro.site!);
 const siteUrl = new URL('/', Astro.site).href;
-const aciklama = `${YAZAR.ad}, ${SITE.name} yayınının ${YAZAR.unvan.toLocaleLowerCase('tr-TR')}dir. Sitedeki yazılar bu adla yayımlanır. İletişim: ${YAZAR.epost}.`;
+const aciklama = `${YAZAR.ad}, ${SITE.name} yayınının ${YAZAR.unvan.toLocaleLowerCase('tr-TR')}dir. Sitedeki analiz ve köşe yazıları bu adla yayımlanır. İletişim: ${YAZAR.epost}.`;
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -50,8 +50,7 @@ const jsonLd = {
     </header>
     <div class="metin">
       <p>
-        {YAZAR.ad}, {SITE.name} yayınının {YAZAR.unvan.toLocaleLowerCase('tr-TR')}dir. Sitedeki yazılar bu adla yayımlanır; yapay zekâ
-        kullanımı her yazının sonundaki nottan ve <a href="/yapay-zeka-kullanimi/">Yapay Zekâ Kullanımı</a> sayfasından okunabilir.
+        {YAZAR.ad}, {SITE.name} yayınının {YAZAR.unvan.toLocaleLowerCase('tr-TR')}dir. Sitedeki analiz, açıklayıcı ve köşe yazıları bu adla yayımlanır; haber ve bültenler {SITE.name} adıyla çıkar. Yapay zekâkullanımı her yazının sonundaki nottan ve <a href="/yapay-zeka-kullanimi/">Yapay Zekâ Kullanımı</a> sayfasından okunabilir.
       </p>
       <p>İletişim: <a href={`mailto:${YAZAR.epost}`}>{YAZAR.epost}</a></p>
     </div>

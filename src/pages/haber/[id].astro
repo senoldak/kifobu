@@ -9,7 +9,7 @@ import Isaret from '../../components/Isaret.astro';
 import SentezBlok from '../../components/SentezBlok.astro';
 import Yol from '../../components/Yol.astro';
 import Paylas from '../../components/Paylas.astro';
-import { SITE, YAZAR, yazarLd, yazarUrl, DURUMLAR, kunyeNotu, categoryName, formatDate, formatMoney, formatNumber, percentOf, type Durum } from '../../lib/site';
+import { SITE, YAZAR, yazarLd, yazarUrl, kisiYazariMi, DURUMLAR, kunyeNotu, categoryName, formatDate, formatMoney, formatNumber, percentOf, type Durum } from '../../lib/site';
 import { getNews, isFunding, type Haber } from '../../lib/news';
 import { indekslenir } from '../../lib/indeks';
 import { ilgiliHaberler } from '../../lib/ilgili';
@@ -82,8 +82,8 @@ const articleSchema: Record<string, any> = {
   description,
   datePublished: isoDate,
   dateModified: isoModified,
-  // Görünen yazar her yazıda site sahibidir (SITE ayarındaki YAZAR); yayıncı Organization kalır.
-  author: yazarLd(Astro.site!),
+  // Analiz ve köşe yazılarında kişi imzası; diğer tüm haberlerde yayıncı kuruluş gösterilir.
+  author: kisiYazariMi(haber.data) ? yazarLd(Astro.site!) : orgRef,
   // Yayıncının tek tanımı Base.astro'daki Organization düğümünde; aynı @id ile çelişen ikinci logo yazılmaz.
   publisher: orgRef,
 
@@ -126,8 +126,8 @@ const jsonLd = {
 
 <Base title={title} description={description} image={ogImage} imageWidth={ogW} imageHeight={ogH} imageAlt={ogAlt} type="article" noindex={noindex}>
   <Fragment slot="head">
-    <meta name="author" content={YAZAR.ad} />
-    <meta property="article:author" content={yazarUrl(Astro.site!)} />
+    <meta name="author" content={kisiYazariMi(haber.data) ? YAZAR.ad : SITE.name} />
+    {kisiYazariMi(haber.data) && <meta property="article:author" content={yazarUrl(Astro.site!)} />}
     <meta property="article:published_time" content={isoDate} />
     <meta property="article:modified_time" content={isoModified} />
     <meta property="article:section" content={categoryName(category)} />
@@ -141,7 +141,7 @@ const jsonLd = {
       <p class="makale-spot">{description}</p>
       <p class="makale-imza">
         <a href={`/${category}/`}>{categoryName(category)}</a>
-        <span>Yazan: <a href={YAZAR.yol} rel="author">{YAZAR.ad}</a></span>
+        <span>Yazan: {kisiYazariMi(haber.data) ? <a href={YAZAR.yol} rel="author">{YAZAR.ad}</a> : <strong>{SITE.name}</strong>}</span>
         <time datetime={date.toISOString()}>{formatDate(date, true)}</time>
       </p>
     </header>

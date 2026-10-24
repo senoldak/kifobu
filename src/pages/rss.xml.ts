@@ -1,7 +1,7 @@
 import rss from '@astrojs/rss';
 import type { APIContext } from 'astro';
 import { getImage } from 'astro:assets';
-import { SITE, YAZAR, categoryName } from '../lib/site';
+import { SITE, gorunenYazarAdi, categoryName } from '../lib/site';
 import { getNews, newsUrl } from '../lib/news';
 import { kapakUrl, KAPAK_G, KAPAK_Y } from '../kapak/ciz';
 
@@ -24,7 +24,7 @@ export async function GET(context: APIContext) {
         pubDate: h.data.date,
         link: newsUrl(h),
         categories: [categoryName(h.data.category)],
-        customData: `<dc:creator>${xml(YAZAR.ad)}</dc:creator>${media}`,
+        customData: `<dc:creator>${xml(gorunenYazarAdi(h.data))}</dc:creator>${media}`,
       };
     }),
   );

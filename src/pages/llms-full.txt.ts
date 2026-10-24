@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { YAZAR } from '../lib/site';
+import { gorunenYazarAdi } from '../lib/site';
 import { getNews, newsUrl } from '../lib/news';
 import { indekslenir } from '../lib/indeks';
 
@@ -18,7 +18,7 @@ export const GET: APIRoute = async () => {
     metin += `## ${h.data.title}\n`;
     metin += `- URL: https://kifobu.com${newsUrl(h)}\n`;
     metin += `- Tarih: ${h.data.date.toISOString()}\n`;
-    metin += `- Yazar: ${YAZAR.ad}
+    metin += `- Yazar: ${gorunenYazarAdi(h.data)}
 `;
     metin += `- Kategori: ${h.data.category}\n`;
     if (h.data.girisim) metin += `- Girişim: ${h.data.girisim}\n`;

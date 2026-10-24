@@ -1,4 +1,5 @@
 import { yuzdeKesik } from './kimlik.ts';
+import { aciklayiciMi } from './yazi-turu.ts';
 export const SITE = {
   name: 'kifobu',
   tagline: 'Ulaşılabilir ve anlaşılır veri',
@@ -18,7 +19,7 @@ export const SITE = {
   },
 };
 
-// Sitedeki her yazının görünen yazarı: frontmatter'daki author alanı ne derse desin bu kişi gösterilir.
+// Analiz ve köşe yazılarının görünen yazarı (rutin haberlerde site adı gösterilir).
 // (Yapay zekâ notu ve standart sayımları ham author alanını okumaya devam eder; bkz. yapay-zeka-notu.ts.)
 export const YAZAR = {
   ad: 'Şenol Dak',
@@ -27,6 +28,21 @@ export const YAZAR = {
   yol: '/yazar/senol-dak/',
   epost: 'contact@kifobu.com',
 } as const;
+
+/**
+ * Görünen yazar kişi mi (Şenol Dak) yoksa yayıncı kuruluş mu? Sahibinin kararı (24 Ekim 2026): analiz, açıklayıcı/referans
+ * yazıları ve köşe yazıları (author: Şenol Dak) kişi imzasıyla çıkar; bot haberleri, bültenler ve derlemeler site adıyla.
+ * Botun "analiz" kategorisine yazdığı derlemeler (uretim: yapay-zeka) özel yazı değildir; site adıyla kalır.
+ */
+export function kisiYazariMi(veri: { yaziTuru?: string; category?: string; author?: string; uretim?: string } | null | undefined): boolean {
+  if (!veri) return false;
+  if (aciklayiciMi(veri as { yaziTuru?: 'haber' | 'aciklayici' | 'referans' })) return true;
+  if (veri.author === YAZAR.ad) return true;
+  return veri.category === 'analiz' && veri.uretim !== 'yapay-zeka';
+}
+
+/** Yazar adı: kişi imzalı yazıda Şenol Dak, diğerlerinde site adı. */
+export const gorunenYazarAdi = (veri: Parameters<typeof kisiYazariMi>[0]) => (kisiYazariMi(veri) ? YAZAR.ad : SITE.name);
 
 /** Yazar sayfasının mutlak adresi ve JSON-LD kimliği. */
 export const yazarUrl = (site: URL | string) => new URL(YAZAR.yol, site).href;
