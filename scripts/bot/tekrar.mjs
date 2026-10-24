@@ -50,6 +50,23 @@ const ilkKelime = (baslik = '') =>
  */
 const ilkOzelMi = (baslik = '') => /^\s*[\p{L}\d][\p{L}\d.&-]*(?:[,’']|\s*,)/u.test(baslik) || /^\s*\p{L}[\p{L}\d.&-]*[\p{Lu}\d]/u.test(baslik);
 
+/**
+ * Başlıkta `ad` özel adının hemen ardından gelen büyük harfli ya da rakamlı kelime (küçük harf), yoksa ''.
+ * "Peak Energy" → 'energy', "Peak XV" → 'xv'; adın ardından virgül/nokta varsa ya da başlık orada bitiyorsa ''.
+ * Aynı ilk kelimeyi paylaşan iki ayrı adı (Peak Energy ↔ Peak XV) birbirinden ayırmak için kullanılır.
+ */
+export function adDevami(baslik = '', ad = '') {
+  const kelimeler = baslik.trim().split(/\s+/);
+  for (let i = 0; i < kelimeler.length; i++) {
+    const k = kelimeler[i];
+    if (/[,;:.!?)]$/.test(k)) continue;
+    if (k.replace(/[’'][\p{L}]+$/u, '').toLocaleLowerCase('tr') !== ad) continue;
+    const n = kelimeler[i + 1]?.replace(/[,;:.!?()]+$/g, '');
+    return n && /^[\p{Lu}\d]/u.test(n) ? n.toLocaleLowerCase('tr') : '';
+  }
+  return '';
+}
+
 /** Hafıza kaydı: yayımlanmış haberden (başlık, spot, girişim) ya da adaydan (yalnız başlık) kurulur. */
 export function kayitKur({ title = '', description = '', girisim = '', slug, tarih } = {}) {
   const basAdlar = sirala(title);
@@ -83,8 +100,14 @@ export function ayniOlay(a, b) {
   if (ortakSayi) return true; // B
   // C: öznesi ötekinin başlığında cümle ortasında geçiyor (aynı kelimeyle başlamıyorlar).
   if (a.ilk === b.ilk) return false;
-  const ozneA = a.ozne && !BUYUK_SIRKETLER.has(a.ozne) && a.ozne === a.ilk ? a.ozne : undefined;
-  const ozneB = b.ozne && !BUYUK_SIRKETLER.has(b.ozne) && b.ozne === b.ilk ? b.ozne : undefined;
+  // Aynı ilk kelimeyi taşıyan farklı adlar ("Peak Energy" şirketi ↔ "Led By Peak XV" yatırımcısı) aynı özne sayılmaz.
+  const farkliAd = (ad, x, y) => {
+    const dx = adDevami(x.baslik, ad);
+    const dy = adDevami(y.baslik, ad);
+    return Boolean(dx && dy && dx !== dy);
+  };
+  const ozneA = a.ozne && !BUYUK_SIRKETLER.has(a.ozne) && a.ozne === a.ilk && !farkliAd(a.ozne, a, b) ? a.ozne : undefined;
+  const ozneB = b.ozne && !BUYUK_SIRKETLER.has(b.ozne) && b.ozne === b.ilk && !farkliAd(b.ozne, a, b) ? b.ozne : undefined;
   return Boolean((ozneA && b.basAdlar.has(ozneA)) || (ozneB && a.basAdlar.has(ozneB)));
 }
 

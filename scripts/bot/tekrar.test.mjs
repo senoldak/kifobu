@@ -1,7 +1,7 @@
 // node --test scripts/bot/
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { ayniOlay, hafizaKur, kayitKur, sayilar, tekrarBul } from './tekrar.mjs';
+import { adDevami, ayniOlay, hafizaKur, kayitKur, sayilar, tekrarBul } from './tekrar.mjs';
 import { slugify } from './lib.mjs';
 
 const SAAT = 3_600_000;
@@ -64,4 +64,30 @@ test('slug 80 karakteri geçince kelime ortasından değil son tireden kesilir',
   assert.ok(s.length <= 80);
   assert.equal(s, 'accenture-ingiltere-merkezli-veri-ve-musteri-zekasi-girisimi-sagacity-yi-satin');
   assert.equal(slugify('Kısa başlık'), 'kisa-baslik');
+});
+
+// 24 Ekim: Maxinsights'ı finanse eden yatırımcı Peak XV, Peak Energy şirketiyle eşleşmişti (kural C: yatırımcı adı şirket adı sanıldı).
+const PEAK_ENERGY = yayimlanan(
+  'Peak Energy, Seri B turunda 108 milyon dolar yatırım aldı',
+  'Enerji depolama sistemleri geliştiren Peak Energy, aşırı talep gören Seri B turunda 108 milyon dolar topladı.',
+  { girisim: 'Peak Energy' },
+);
+
+test('aynı ilk kelimeli farklı ad eşleşmez: Peak XV yatırımcısı ↔ Peak Energy şirketi', () => {
+  const hafiza = hafizaKur([PEAK_ENERGY], simdi);
+  assert.equal(tekrarBul('Maxinsights Raises $30 Million In Seed Funding Led By Peak XV To Build Physical AI Data Platform For Robotics', hafiza), undefined);
+  assert.equal(tekrarBul('Maxinsights raises $30M from Peak XV to pay more than 5,000 people to film real work for robotsX', hafiza), undefined);
+});
+
+test('Peak Energy gerçek tekrarı hâlâ yakalanır', () => {
+  const hafiza = hafizaKur([PEAK_ENERGY], simdi);
+  assert.ok(tekrarBul('Peak Energy raises $108M Series B to scale sodium-ion storage', hafiza));
+  assert.ok(tekrarBul('Peak Energy, GM Ventures liderliğinde 108 milyon dolar topladı', hafiza));
+});
+
+test('adDevami: ardışık büyük harfli kelimeyi verir, noktalamada durur', () => {
+  assert.equal(adDevami('Led By Peak XV To Build', 'peak'), 'xv');
+  assert.equal(adDevami('Peak Energy, Seri B', 'peak'), 'energy');
+  assert.equal(adDevami('Peak, yeni tur', 'peak'), '');
+  assert.equal(adDevami('Yeni tur Peak', 'peak'), '');
 });
