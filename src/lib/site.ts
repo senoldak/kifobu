@@ -23,10 +23,15 @@ export const SITE = {
 // (Yapay zekâ notu ve standart sayımları ham author alanını okumaya devam eder; bkz. yapay-zeka-notu.ts.)
 export const YAZAR = {
   ad: 'Şenol Dak',
-  unvan: 'Yayın yönetmeni ve editör',
+  unvan: 'Yayıncı ve editör',
   slug: 'senol-dak',
   yol: '/yazar/senol-dak/',
   epost: 'contact@kifobu.com',
+  // Künye (sahibinin onayladığı metin; dört sitede aynı kişi, aynı dört yayın).
+  kunye: [
+    'Türkçe ve yapay zekâ öğretmeniyim; yazılım sektöründe üretken yapay zekâ sistemleri üzerinde çalışıyorum. 10 Ağustos 2022’de kifobu’nun ilk bültenini yayımladım ve o günden beri gazetecilik yapıyorum.',
+    'kifobu, finfolis, JEN DUME ve tidsrøst aracılığıyla girişimlerden ve kitle fonlamasından finans piyasalarına, yapay zekâdan bilime, Norveç’ten dünya gündemine uzanan konuları ele alıyorum. Farklı alanlarda çalışsam da merakım aynı: Bilginin ötesine geçmek, bağlantıları görmek ve olup bitenin neden önemli olduğunu anlamak.',
+  ],
 } as const;
 
 /**

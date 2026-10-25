@@ -10,7 +10,7 @@ import { getNews, newsUrl } from '../../lib/news';
 const haberler = (await getNews()).filter((h) => kisiYazariMi(h.data));
 const sayfaUrl = yazarUrl(Astro.site!);
 const siteUrl = new URL('/', Astro.site).href;
-const aciklama = `${YAZAR.ad}, ${SITE.name} yayınının ${YAZAR.unvan.toLocaleLowerCase('tr-TR')}dir. Sitedeki analiz ve köşe yazıları bu adla yayımlanır. İletişim: ${YAZAR.epost}.`;
+const aciklama = YAZAR.kunye[0];
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -49,9 +49,7 @@ const jsonLd = {
       <p class="makale-spot">{YAZAR.unvan}</p>
     </header>
     <div class="metin">
-      <p>
-        {YAZAR.ad}, {SITE.name} yayınının {YAZAR.unvan.toLocaleLowerCase('tr-TR')}dir. Sitedeki analiz, açıklayıcı ve köşe yazıları bu adla yayımlanır; haber ve bültenler {SITE.name} adıyla çıkar. Yapay zekâkullanımı her yazının sonundaki nottan ve <a href="/yapay-zeka-kullanimi/">Yapay Zekâ Kullanımı</a> sayfasından okunabilir.
-      </p>
+      {YAZAR.kunye.map((p) => <p>{p}</p>)}
       <p>İletişim: <a href={`mailto:${YAZAR.epost}`}>{YAZAR.epost}</a></p>
     </div>
   </article>
