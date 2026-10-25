@@ -2,8 +2,7 @@
 // tidsrost'un botundan uyarlandı (scripts/nyheter/lib.mjs); paket gerektirmez, sadece Node 22.
 import { mkdir, readFile, readdir, writeFile, access } from 'node:fs/promises';
 import path from 'node:path';
-import { kullanimEkle, hataEkle, amacBul, gunlukDolu } from './kullanim.mjs';
-import { golge } from './golge.mjs';
+import { geminiCagir } from './istemci.mjs';
 
 export const USER_AGENT = 'kifobu-bot/1.0 (+https://kifobu.com; contact@kifobu.com)';
 
@@ -152,100 +151,16 @@ export function istanbulIso(date = new Date()) {
 }
 
 // Ücretsiz katmanın dakikalık sınırını aşmamak için istekler arasında en az bu kadar beklenir.
-const GEMINI_ARALIK_MS = Number(process.env.GEMINI_ARALIK_MS || 4500);
-// Google "meşgul" (5xx) ya da istek sınırı (429) dönerse ana ve yedek model sırayla, giderek uzayan aralıklarla
-// denenir (iki model ayrı kapasite ve ayrı ücretsiz kotadır). Bir çağrı tümüyle düşerse aynı çalışmadaki sonraki
-// çağrılar yalnız iki kez dener: Google uzun süre kapalıysa iş zaman aşımına düşmesin. İlk başarı bunu sıfırlar.
-const GEMINI_BEKLEMELER_SN = [15, 30, 60, 90, 120];
-let geminiKesik = false;
-let sonGemini = 0;
-
-// Gemini'ye istek atar, JSON şemasına uygun yanıt döner. Anahtar yoksa null.
 // Katman 4 (Gemini kota planı): ücretsiz katmanda Flash günde 20 çağrı, Gemma 26B 14.400 (dakikada 16 bin token).
 // Denemede (2026-10-17) Gemma denetim kararlarında Flash Lite kadar isabetliydi, puanlamada çok daha sıkıydı;
 // bu yüzden yalnız evet/hayır denetimlerinde yedektir.
 export const DENETIM_YEDEK_MODEL = 'gemma-4-26b-a4b-it';
 
-// denetim: evet/hayır denetim çağrısı; yedek model Gemma olur (Katman 4, bkz. DENETIM_YEDEK_MODEL).
-export async function gemini({ prompt, schema, dusunme: seviye = 'low', denetim = false, _model = null, _amac = null }) {
-  const key = process.env.GEMINI_API_KEY;
-  if (!key) return null;
-  const bekle = sonGemini + GEMINI_ARALIK_MS - Date.now();
-  if (bekle > 0) await sleep(bekle);
-  sonGemini = Date.now();
-  const yedek = denetim
-    ? process.env.GEMINI_DENETIM_YEDEK_MODEL || DENETIM_YEDEK_MODEL
-    : process.env.GEMINI_YEDEK_MODEL || 'gemini-flash-latest';
-  const modeller = _model ? [_model] : [process.env.GEMINI_MODEL || 'gemini-flash-lite-latest', yedek];
-  const carpan = Number(process.env.GEMINI_BEKLE_CARPAN ?? 1);
-  const enFazla = _model ? 1 : geminiKesik ? 2 : GEMINI_BEKLEMELER_SN.length + 1;
-  const amac = _amac ?? amacBul(); // Katman 0: çağıran dosya/fonksiyon
-
-  // Düşünme seviyesini düşük tutmak cevabı çok hızlandırıyor; desteklemeyen modelde kapatılır.
-  let dusunme = { thinkingLevel: seviye };
-  for (let deneme = 1; deneme <= enFazla; deneme++) {
-    // 429 disiplini (Gemini kota planı): günlük kotası dolan model bu süreçte bir daha denenmez.
-    const acik = modeller.filter((m) => !gunlukDolu.has(m));
-    if (!acik.length) {
-      const hata = new Error('Gemini: bütün modellerin günlük kotası dolu');
-      hata.kota = true;
-      throw hata;
-    }
-    const model = acik[(deneme - 1) % acik.length];
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
-      body: JSON.stringify({
-        contents: [{ role: 'user', parts: [{ text: prompt }] }],
-        generationConfig: {
-          temperature: 0.3,
-          responseMimeType: 'application/json',
-          responseSchema: schema,
-          ...(dusunme && { thinkingConfig: dusunme }),
-        },
-      }),
-      signal: AbortSignal.timeout(180_000),
-    });
-    if (res.status === 400 && dusunme && /thinking/i.test(await res.clone().text())) {
-      dusunme = dusunme.thinkingLevel === 'low' ? null : { thinkingLevel: 'low' };
-      deneme--;
-      continue;
-    }
-    if (res.status === 429 || res.status >= 500) {
-      if (_model) return null; // gölge çağrısı: tek deneme, sayaçlara girmez
-      hataEkle(model, amac, res.status);
-      if (res.status === 429 && /PerDay/i.test(await res.clone().text())) {
-        gunlukDolu.add(model);
-        console.warn(`  Gemini 429 (${model}): günlük kota doldu; bu turda bir daha denenmez`);
-        continue;
-      }
-      console.warn(`  Gemini ${res.status} (${model}), ${deneme}. deneme; bekleniyor...`);
-      if (deneme < enFazla) await sleep(GEMINI_BEKLEMELER_SN[deneme - 1] * 1000 * carpan);
-      continue;
-    }
-    if (!res.ok) {
-      const raw = await res.text();
-      let msg = raw.slice(0, 300);
-      try {
-        msg = JSON.parse(raw).error?.message ?? msg;
-      } catch {}
-      const hata = new Error(`Gemini ${res.status}: ${msg}`);
-      // Anahtar/model hatası: haberin suçu değil, haber atlanmamalı.
-      hata.ayar = [400, 401, 403, 404].includes(res.status);
-      throw hata;
-    }
-    geminiKesik = false;
-    const data = await res.json();
-    kullanimEkle(data.usageMetadata, { model, amac });
-    const metin = data.candidates?.[0]?.content?.parts?.map((p) => p.text).join('') ?? '';
-    const sonuc = JSON.parse(metin);
-    if (denetim && !_model && model !== yedek) await golge(amac, sonuc, () => gemini({ prompt, schema, dusunme: seviye, denetim: true, _model: yedek, _amac: `golge/${amac}` }));
-    return sonuc;
-  }
-  if (_model) return null;
-  geminiKesik = true;
-  throw new Error('Gemini: çok fazla deneme');
+// Gemini'ye istek atar, JSON şemasına uygun yanıt döner; anahtar yoksa null. Model zinciri, yeniden deneme, bütçe ve
+// gölge ortak çekirdekte (istemci.mjs, yönlendirici Faz 1); burada yalnız bu sitenin imzası ve ayarı.
+// denetim: evet/hayır denetim çağrısı; zincirin son halkası Gemma.
+export function gemini({ prompt, schema, dusunme = 'low', denetim = false, _model = null, _amac = null }) {
+  return geminiCagir({ istem: prompt, sema: schema, dusunme, denetim, _model, _amac }, { sicaklik: 0.3, ayarAlani: 'ayar' });
 }
 
 // YAML'da güvenli çift tırnaklı metin.
