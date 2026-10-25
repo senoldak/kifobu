@@ -2,6 +2,7 @@
 // Sahibin yazısı: "Bu yazı nasıl hazırlandı" satırları (src/lib/yapay-zeka-notu.ts). Yapay zekâ notuyla aynı sakin
 // dil; kutu ve ikon yok, ince çizgiyle ayrılır.
 import { NASIL_BASLIK, YZ_SAYFASI, type NasilSatiri } from '../lib/yapay-zeka-notu';
+import { satirParcalari } from '../lib/kunye.mjs';
 
 interface Props {
   satirlar: NasilSatiri[];
@@ -18,7 +19,7 @@ const { satirlar, mailto, baglantiMetni } = Astro.props;
       satirlar.map((s) => (
         <div>
           <dt>{s.etiket}</dt>
-          <dd>{s.metin}</dd>
+          <dd>{satirParcalari(s.metin, s.baglanti).map((x) => (x.adres ? <a href={x.adres}>{x.metin}</a> : x.metin))}</dd>
         </div>
       ))
     }

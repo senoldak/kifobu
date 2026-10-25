@@ -6,6 +6,7 @@ import HaberSatiri from '../../components/HaberSatiri.astro';
 import { jsonLdMetni } from '../../lib/json-ld.mjs';
 import { SITE, YAZAR, yazarLd, yazarUrl, kisiYazariMi } from '../../lib/site';
 import { getNews, newsUrl } from '../../lib/news';
+import { kunyeParcalari } from '../../lib/kunye.mjs';
 
 const haberler = (await getNews()).filter((h) => kisiYazariMi(h.data));
 const sayfaUrl = yazarUrl(Astro.site!);
@@ -23,7 +24,7 @@ const jsonLd = {
       description: aciklama,
       inLanguage: 'tr-TR',
       isPartOf: { '@id': `${siteUrl}#website` },
-      mainEntity: { ...yazarLd(Astro.site!), description: aciklama, email: YAZAR.epost },
+      mainEntity: { ...yazarLd(Astro.site!), description: aciklama, email: YAZAR.epost, image: new URL('/yazar-foto/senol-dak.jpg', Astro.site).href },
       hasPart: haberler.slice(0, 50).map((h) => ({
         '@type': 'NewsArticle',
         url: new URL(newsUrl(h), Astro.site).href,
@@ -45,11 +46,12 @@ const jsonLd = {
   <script slot="head" type="application/ld+json" set:html={jsonLdMetni(jsonLd)} />
   <article class="makale">
     <header class="makale-bas">
+      <img class="yazar-foto" src="/yazar-foto/senol-dak.jpg" width="96" height="96" alt="Şenol Dak" />
       <h1>{YAZAR.ad}</h1>
       <p class="makale-spot">{YAZAR.unvan}</p>
     </header>
     <div class="metin">
-      {YAZAR.kunye.map((p) => <p>{p}</p>)}
+      {YAZAR.kunye.map((p) => <p>{kunyeParcalari(p).map((x) => (x.adres ? <a href={x.adres}>{x.metin}</a> : x.metin))}</p>)}
       <p>İletişim: <a href={`mailto:${YAZAR.epost}`}>{YAZAR.epost}</a></p>
     </div>
   </article>
@@ -62,3 +64,15 @@ const jsonLd = {
     </div>
   </section>
 </Base>
+
+<style>
+  /* Yazar fotoğrafı: sitenin kendi renklerinde (mürekkep, marka rengi, kâğıt) üç duraklı ton. */
+  .yazar-foto {
+    display: block;
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 0 16px;
+  }
+</style>

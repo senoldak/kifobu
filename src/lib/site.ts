@@ -23,7 +23,7 @@ export const SITE = {
 // (Yapay zekâ notu ve standart sayımları ham author alanını okumaya devam eder; bkz. yapay-zeka-notu.ts.)
 export const YAZAR = {
   ad: 'Şenol Dak',
-  unvan: 'Yayıncı ve editör',
+  unvan: 'Gazeteci',
   slug: 'senol-dak',
   yol: '/yazar/senol-dak/',
   epost: 'contact@kifobu.com',

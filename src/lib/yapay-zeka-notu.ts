@@ -19,6 +19,7 @@ export const BAGLANTI_METNI = 'Hata bildir →';
 export interface NasilSatiri {
   etiket: string;
   metin: string;
+  baglanti?: { parca: string; adres: string };
 }
 export const NASIL_BASLIK = 'Bu yazı nasıl hazırlandı';
 export const NASIL_SATIRLAR: NasilSatiri[] = [
@@ -38,7 +39,11 @@ export const NASIL_SATIRLAR: NasilSatiri[] = [
   },
 ];
 export const YONTEM_SATIRI: NasilSatiri = { etiket: 'Yöntem', metin: 'Hesaplamalar “Nasıl hesapladık” bölümünde açıklanır.' };
-export const ILKE_SATIRI: NasilSatiri = { etiket: 'İlkeler', metin: 'Yazı, yayın ilkelerimize göre hazırlandı.' };
+export const ILKE_SATIRI: NasilSatiri = {
+  etiket: 'İlkeler',
+  metin: 'Yazı, yayın ilkelerimize göre hazırlandı.',
+  baglanti: { parca: 'yayın ilkelerimize', adres: '/yayin-ilkeleri/' },
+};
 export const YZ_SAYFASI = { metin: 'Yapay zekâyı nasıl kullanıyoruz →', adres: '/yapay-zeka-kullanimi/' };
 
 export interface YapayZekaNotu {
