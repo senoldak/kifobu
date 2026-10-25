@@ -3,7 +3,7 @@
 // (src/data/standartlar-raporu/<YYYY>-c<N>.json), (2) derleme anında sitenin kendi içeriğinden sayılanlar
 // (bot haberi, yayıncının adıyla çıkan yazı, düzeltme ve kaldırma, şikâyet). Saf TypeScript: birim testiyle sınanır.
 import { botHaberi, type SeffafHaber } from './seffaflik.ts';
-import { yapayZekaNotu, ZINCIR_URETIMI } from './yapay-zeka-notu.ts';
+import { yapayZekaNotu } from './yapay-zeka-notu.ts';
 import { istanbulGunu } from './gunler.ts';
 
 /**
@@ -132,7 +132,8 @@ export interface SayimHaber extends SeffafHaber {
 /**
  * Çeyrek aralığında (İstanbul günü) sitenin kendi içeriğinden sayılanlar.
  * - botHaberi: seffaflik.ts `botHaberi` (uretim yapay-zeka; bülten ve taslak hariç).
- * - yayinciYazisi: yapayZekaNotu() 'sahip' türünü verenler (yazar Şenol Dak ya da yazı türü dolu); zincir yazıları hariç.
+ * - yayinciYazisi: yapayZekaNotu() 'sahip' türünü verenler (yazar Şenol Dak ya da yazı türü dolu; zincirden gelse de).
+ * - zincirYazisi: 'zincir' türü (sahibin olmayan yazi-isleri yazısı).
  * - duzeltme / kaldirilan: Düzeltmeler sayfasının kayıtları (tarih ve tur).
  * - sikayet: `karar` tarihine göre.
  */
@@ -149,7 +150,7 @@ export function ceyrekSayilari(
   return {
     botHaberi: aralikta.filter(botHaberi).length,
     yayinciYazisi: aralikta.filter((h) => yapayZekaNotu({ uretim: h.uretim, author: h.author, yaziTuru: h.yaziTuru }, '', '')?.tur === 'sahip').length,
-    zincirYazisi: aralikta.filter((h) => h.uretim === ZINCIR_URETIMI).length,
+    zincirYazisi: aralikta.filter((h) => yapayZekaNotu({ uretim: h.uretim, author: h.author, yaziTuru: h.yaziTuru }, '', '')?.tur === 'zincir').length,
     duzeltme: dz.filter((k) => k.tur === 'Düzeltme').length,
     kaldirilan: dz.filter((k) => k.tur === 'Yayından kaldırıldı').length,
     sikayet: {

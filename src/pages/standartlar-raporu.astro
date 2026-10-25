@@ -73,7 +73,7 @@ const raporlar = raporlariSirala(Object.values(dosyalar)).map((r) => ({
             <p><strong>Yayımlananlar</strong></p>
             <ul>
               <li>Yapay zekâ ile otomatik yazılan haber: {s.botHaberi}</li>
-              <li>Yayıncının adıyla yayımlanan yazı: {s.yayinciYazisi} (yazım ve dil düzeltmesinde yapay zekâ araçları kullanıldı)</li>
+              <li>Yayıncının adıyla yayımlanan yazı: {s.yayinciYazisi} (yazar kendisi yazdı; yapay zekâ araçları yalnız imla ve dil düzeltmesinde kullanıldı)</li>
               {s.zincirYazisi > 0 && <li>Yapay zekâ araçlarıyla yazılıp editör onayıyla yayımlanan yazı: {s.zincirYazisi}</li>}
               <li>
                 Hassas konu olarak işaretlenip yayımlanan haber: {r.sari}

@@ -1,0 +1,69 @@
+---
+// Sahibin yazısı: "Bu yazı nasıl hazırlandı" satırları (src/lib/yapay-zeka-notu.ts). Yapay zekâ notuyla aynı sakin
+// dil; kutu ve ikon yok, ince çizgiyle ayrılır.
+import { NASIL_BASLIK, YZ_SAYFASI, type NasilSatiri } from '../lib/yapay-zeka-notu';
+
+interface Props {
+  satirlar: NasilSatiri[];
+  mailto: string;
+  baglantiMetni: string;
+}
+const { satirlar, mailto, baglantiMetni } = Astro.props;
+---
+
+<section class="yz-notu nasil" data-yz="sahip" aria-labelledby="nasil-hazirlandi">
+  <h2 id="nasil-hazirlandi" class="nasil-baslik">{NASIL_BASLIK}</h2>
+  <dl>
+    {
+      satirlar.map((s) => (
+        <div>
+          <dt>{s.etiket}</dt>
+          <dd>{s.metin}</dd>
+        </div>
+      ))
+    }
+  </dl>
+  <p class="nasil-baglantilar">
+    <a href={mailto}>{baglantiMetni}</a> · <a href={YZ_SAYFASI.adres}>{YZ_SAYFASI.metin}</a>
+  </p>
+</section>
+
+<style>
+  .nasil {
+    padding-top: 12px;
+    border-top: 1px solid var(--murekkep);
+  }
+
+  .nasil-baslik {
+    margin: 0 0 10px;
+    font: 700 0.875rem/1.4 var(--yazi);
+    color: var(--murekkep);
+  }
+
+  dl {
+    margin: 0;
+  }
+
+  dl > div {
+    margin: 0 0 8px;
+  }
+
+  dt {
+    display: inline;
+    font-weight: 700;
+    color: var(--murekkep);
+  }
+
+  dt::after {
+    content: ': ';
+  }
+
+  dd {
+    display: inline;
+    margin: 0;
+  }
+
+  .nasil-baglantilar {
+    margin: 12px 0 0;
+  }
+</style>

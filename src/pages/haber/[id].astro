@@ -19,6 +19,7 @@ import { matchEntities } from '../../lib/entities';
 import { duzeltmeNotu } from '../../lib/duzeltme';
 import { analizMi, bolumAdlari } from '../../lib/yazi-turu';
 import { yapayZekaNotu } from '../../lib/yapay-zeka-notu';
+import NasilHazirlandi from '../../components/NasilHazirlandi.astro';
 import { kaynakSatiri } from '../../lib/kaynak-satiri';
 import { ICERIK_LISANSI } from '../../lib/icerik-lisansi';
 import { kapakAlt, kapakUrl, KAPAK_G, KAPAK_Y, LOGO_G, LOGO_Y } from '../../kapak/ciz';
@@ -239,13 +240,16 @@ const jsonLd = {
     {/* Medya kaynaklı bot haberinde adsız kaynak satırı (src/lib/kaynak-satiri.ts); aynı sınıf, yapay zekâ notuyla aynı görünüm. */}
     {kaynak && <p class="yz-notu kaynak-satiri">{kaynak}</p>}
 
-    {/* Standartlar: gövdeden sonra, paylaşımdan önce tek satırlık yapay zekâ notu (src/lib/yapay-zeka-notu.ts). */}
+    {/* Standartlar: gövdeden sonra, paylaşımdan önce yapay zekâ notu; sahibin yazısında "Bu yazı nasıl hazırlandı" (src/lib/yapay-zeka-notu.ts). */}
     {
-      yzNotu && (
-        <p class="yz-notu" data-yz={yzNotu.tur}>
-          {yzNotu.metin} <a href={yzNotu.mailto}>{yzNotu.baglantiMetni}</a>
-        </p>
-      )
+      yzNotu &&
+        (yzNotu.satirlar ? (
+          <NasilHazirlandi satirlar={yzNotu.satirlar} mailto={yzNotu.mailto} baglantiMetni={yzNotu.baglantiMetni} />
+        ) : (
+          <p class="yz-notu" data-yz={yzNotu.tur}>
+            {yzNotu.metin} <a href={yzNotu.mailto}>{yzNotu.baglantiMetni}</a>
+          </p>
+        ))
     }
 
     {

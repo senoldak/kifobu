@@ -45,6 +45,7 @@ test('site içeriğinden sayımlar', () => {
       haber('2026-11-07T10:00:00Z', { author: 'Şenol Dak' }),
       haber('2026-11-08T10:00:00Z', { yaziTuru: 'aciklayici' }),
       haber('2026-11-09T10:00:00Z', { uretim: 'yazi-isleri', author: 'Şenol Dak' }),
+      haber('2026-11-10T10:00:00Z', { uretim: 'yazi-isleri' }),
       haber('2027-01-02T10:00:00Z', { uretim: 'yapay-zeka' }),
     ],
     [
@@ -62,7 +63,7 @@ test('site içeriğinden sayımlar', () => {
     SON,
   );
   assert.equal(s.botHaberi, 1);
-  assert.equal(s.yayinciYazisi, 2);
+  assert.equal(s.yayinciYazisi, 3);
   assert.equal(s.zincirYazisi, 1);
   assert.equal(s.duzeltme, 1);
   assert.equal(s.kaldirilan, 1);

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { yapayZekaNotu, hataBildirMailto, BOT_NOTU, SAHIP_NOTU, ZINCIR_NOTU } from './yapay-zeka-notu.ts';
+import { yapayZekaNotu, hataBildirMailto, BOT_NOTU, SAHIP_NOTU, ZINCIR_NOTU, NASIL_SATIRLAR, YONTEM_SATIRI, ILKE_SATIRI } from './yapay-zeka-notu.ts';
 
 const URL_ = 'https://kifobu.com/haber/ornek/';
 
@@ -31,17 +31,32 @@ test('"Sorumlu" kelimesi notlarda yok', () => {
   assert.doesNotMatch(`${BOT_NOTU}${SAHIP_NOTU}`, /sorumlu/i);
 });
 
-test('yazı işleri zinciri (uretim yazi-isleri): yazı türü dolu ya da yazar Şenol Dak olsa da zincir notu; bağlantı aynı', () => {
+test('yazı işleri zinciri (uretim yazi-isleri): sahibin olmayan yazı zincir notu alır; bağlantı aynı', () => {
   const metin =
     'Bu yazı yapay zekâ araçlarıyla yazıldı. Rakamlar ve alıntılar resmî kaynaklarla karşılaştırıldı; yazı yayından önce editör tarafından okunup onaylandı.';
   assert.equal(ZINCIR_NOTU, metin);
-  for (const veri of [{ uretim: 'yazi-isleri', yaziTuru: 'aciklayici' }, { uretim: 'yazi-isleri', yaziTuru: 'referans', author: 'Şenol Dak' }]) {
-    const n = yapayZekaNotu(veri, 'Örnek & yazı', URL_);
-    assert.equal(n?.tur, 'zincir');
-    assert.equal(n?.metin, metin);
-    assert.notEqual(n?.metin, SAHIP_NOTU);
-    assert.equal(n?.baglantiMetni, 'Hata bildir →');
-    assert.equal(n?.mailto, hataBildirMailto('Örnek & yazı', URL_));
-  }
+  const n = yapayZekaNotu({ uretim: 'yazi-isleri', yaziTuru: 'haber' }, 'Örnek & yazı', URL_);
+  assert.equal(n?.tur, 'zincir');
+  assert.equal(n?.metin, metin);
+  assert.equal(n?.satirlar, undefined);
+  assert.equal(n?.mailto, hataBildirMailto('Örnek & yazı', URL_));
   assert.doesNotMatch(ZINCIR_NOTU, /sorumlu/i);
+});
+
+test('sahibin yazısı zincirden gelse de "Bu yazı nasıl hazırlandı" satırlarını alır; çeviri ve "sorumlu" yok', () => {
+  for (const veri of [{ uretim: 'yazi-isleri', yaziTuru: 'aciklayici' }, { uretim: 'yazi-isleri', yaziTuru: 'referans', author: 'Şenol Dak' }]) {
+    const n = yapayZekaNotu(veri, 'x', URL_);
+    assert.equal(n?.tur, 'sahip');
+    assert.equal(n?.metin, SAHIP_NOTU);
+    assert.deepEqual(n?.satirlar?.map((s) => s.etiket), ['Yazar', 'Dil ve yapay zekâ', 'Rakamlar ve kaynaklar', 'İlkeler']);
+  }
+  for (const t of [...NASIL_SATIRLAR, YONTEM_SATIRI, ILKE_SATIRI].map((s) => s.metin).concat(SAHIP_NOTU)) {
+    assert.doesNotMatch(t, /sorumlu|çevir/i);
+  }
+});
+
+test('analiz: sahibin yazısı, yöntem satırı İlkeler satırından önce', () => {
+  const n = yapayZekaNotu({ uretim: 'yazi-isleri', yaziTuru: 'analiz' }, 'x', URL_);
+  assert.equal(n?.tur, 'sahip');
+  assert.deepEqual(n?.satirlar?.map((s) => s.etiket), ['Yazar', 'Dil ve yapay zekâ', 'Rakamlar ve kaynaklar', 'Yöntem', 'İlkeler']);
 });
