@@ -1,0 +1,86 @@
+{
+  "tarih": "2026-10-25",
+  "sayi": 1538,
+  "baslangic": false,
+  "girisimler": [
+    {
+      "ad": "ATHLETICLABS",
+      "platform": "fonangels",
+      "url": "https://fonangels.com/kampanyalar/projehakkinda/athleticlabs?pid=1689",
+      "bugun": 0,
+      "alinan": 7602500,
+      "kalan": null,
+      "hedef": 7500000,
+      "degerleme": 75000000,
+      "yuzde": 101.37,
+      "durum": "SONA ERDİ",
+      "veriAlinamadi": false,
+      "birikmis": false
+    },
+    {
+      "ad": "OYLİO",
+      "platform": "fonangels",
+      "url": "https://fonangels.com/kampanyalar/projehakkinda/oylio?pid=1778",
+      "bugun": 0,
+      "alinan": 3444150,
+      "kalan": 1555850,
+      "hedef": 5000000,
+      "degerleme": 50000000,
+      "yuzde": 68.88,
+      "durum": "son 11 gün",
+      "veriAlinamadi": false,
+      "birikmis": false
+    },
+    {
+      "ad": "PUPAQ",
+      "platform": "trinkfon",
+      "url": "https://kfs.trinkfon.com/projeler/pupaq/kampanya/",
+      "bugun": null,
+      "alinan": 124282,
+      "kalan": 875750,
+      "hedef": 1000032,
+      "degerleme": 25000800,
+      "yuzde": 12.43,
+      "durum": "Aktif",
+      "veriAlinamadi": true,
+      "birikmis": false
+    },
+    {
+      "ad": "LOOPYON",
+      "platform": "ecofolio",
+      "url": "https://ecofolio.com.tr/kampanyalar/loopyon",
+      "bugun": 1400,
+      "alinan": 509600,
+      "kalan": 34490400,
+      "hedef": 35000000,
+      "degerleme": 385038504,
+      "yuzde": 1.46,
+      "durum": "son 21 gün",
+      "veriAlinamadi": false,
+      "birikmis": false
+    }
+  ],
+  "platformlar": [
+    {
+      "anahtar": "fonangels",
+      "ad": "fonangels",
+      "renk": "#f47b3d",
+      "bugun": 0,
+      "toplam": 11046650
+    },
+    {
+      "anahtar": "trinkfon",
+      "ad": "trinkfon",
+      "renk": "#7c3aed",
+      "bugun": 0,
+      "toplam": 124282
+    },
+    {
+      "anahtar": "ecofolio",
+      "ad": "ecofolio",
+      "renk": "#009bae",
+      "bugun": 1400,
+      "toplam": 509600
+    }
+  ]
+}
