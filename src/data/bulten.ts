@@ -1,7 +1,7 @@
 /**
  * Günlük kitle fonlama bülteni verisi ("Bugün" tablosu).
  * Otomatik Bot tarafından oluşturulmuştur.
- * Son güncelleme: 2026-10-26T09:01:19.447Z
+ * Son güncelleme: 2026-10-26T11:01:17.499Z
  */
 export interface Girisim {
   ad: string;
@@ -49,11 +49,11 @@ export const BULTEN = {
     {
         "ad": "OYLİO",
         "platform": "fonangels",
-        "bugun": 432040,
-        "alinan": 3876190,
-        "kalan": 1123810,
+        "bugun": 433640,
+        "alinan": 3877790,
+        "kalan": 1122210,
         "degerleme": 50000000,
-        "yuzde": 77.52,
+        "yuzde": 77.55,
         "durum": "son 10 gün",
         "url": "https://fonangels.com/kampanyalar/projehakkinda/oylio?pid=1778"
     },
@@ -76,17 +76,17 @@ export const BULTEN = {
         "kalan": 34420400,
         "degerleme": 385038504,
         "yuzde": 1.65,
-        "durum": "son 21 gün",
+        "durum": "son 20 gün",
         "url": "https://ecofolio.com.tr/kampanyalar/loopyon"
     }
 ] as Girisim[],
   platformlar: {
-    bugun: 502040,
-    toplam: 12180072,
+    bugun: 503640,
+    toplam: 12181672,
     liste: [
     {
         "ad": "fonangels",
-        "toplam": 11478690,
+        "toplam": 11480290,
         "girisim": 2,
         "renk": "#f47b3d",
         "url": "https://fonangels.com"
