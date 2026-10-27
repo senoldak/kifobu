@@ -8,7 +8,10 @@
 import { KAYNAKLAR, anahtarlar, baslikTemiz, benzer, tamMetin } from './kaynaklar.mjs';
 import { MIN_DEGER, onbellekliPuanla, taslakYaz, derlemeYaz, derlemeUzat, derlemeHedefi } from './yazar.mjs';
 import { HAFIZA_SAAT, hafizaKur, kayitKur, tekrarBul } from './tekrar.mjs';
-import { ciftleriKur, onbellekliEsle, ozelAdlar, uygula } from './esleme.mjs';
+import { ayniOlayMi, ciftleriKur, onbellekliEsle, ozelAdlar, uygula } from './esleme.mjs';
+import { gommeliEsle } from './esleme-gomme.mjs';
+import { ortakOnbellek } from './vektorler.mjs';
+import path from 'node:path';
 import { denetle, derlemeEnAz } from './denetci.mjs';
 import { adNorm, haberYaz, hentTekst, istanbulIso, rssOku, sonHaberler } from './lib.mjs';
 import { geminiPayiBitti } from './butce.mjs';
@@ -82,7 +85,7 @@ const grupKimligi = (ids) => ids.map(gizliId).sort().join('+');
 export function uyarlayiciKur({ rot, durum, simdi, ayar = {}, bag = {} }) {
   const A = { enFazla: 12, teyit: 1, yasGun: 3, sureMs: 18 * 60_000, baslangic: Date.now(), ...ayar };
   const B = {
-    KAYNAKLAR, hentTekst, rssOku, tamMetin, taslakYaz, derlemeYaz, derlemeUzat, denetle, onbellekliPuanla, onbellekliEsle,
+    KAYNAKLAR, hentTekst, rssOku, tamMetin, taslakYaz, derlemeYaz, derlemeUzat, denetle, onbellekliPuanla, onbellekliEsle, gommeliEsle, ayniOlayMi,
     haberYaz, sonHaberler, geminiPayiBitti, standartKapisi,
     geminiVar: () => Boolean(process.env.GEMINI_API_KEY),
     ...bag,
@@ -274,12 +277,17 @@ export function uyarlayiciKur({ rot, durum, simdi, ayar = {}, bag = {} }) {
         metin: `${x.title} — ${x.description}`,
         adlar: ozelAdlar(`${x.title} ${x.description} ${x.girisim ?? ''}`),
       }));
-      const ciftler = ciftleriKur(sira, yazilmisAdlar, ayrikMi);
       // Gemini hatası (ör. art arda 503) turu düşürmez: eşleme atlanır, gruplar kelime benzerliğiyle kalır.
-      const ayni = await B.onbellekliEsle(ciftler, durum.ayni, (c) => ciftAnahtar(c.idA, c.idB), { zaman: simdi.toISOString() }).catch((e) => {
+      // Gemini Faz 2: gömme ölçümü / ön eleme (GOMME_ON_ELEME); kapalıyken ve gömme düşünce bugünkü yol.
+      const esle = (c) => B.onbellekliEsle(c, durum.ayni, (x) => ciftAnahtar(x.idA, x.idB), { zaman: simdi.toISOString() });
+      const { ciftler, ayni, ozet: gozet } = await B.gommeliEsle({
+        ciftler: ciftleriKur(sira, yazilmisAdlar, ayrikMi), gruplar: sira, yazilmis: yazilmisAdlar, ayrikMi, esle, sor: B.ayniOlayMi,
+        onbellek: ortakOnbellek(path.join(rot, 'scripts/bot/gomme-onbellek.json')), log,
+      }).catch((e) => {
         console.warn(`Eşleme hatası: ${e.message}`);
-        return null;
+        return { ciftler: [], ayni: null, ozet: null };
       });
+      if (gozet) log(`Gömme ön elemesi: ${gozet.elenen} çift sorulmadı, ${gozet.ek} ek çift.`);
       if (ayni) {
         const sonuc = uygula(sira, ciftler, ayni);
         for (const [x, y] of sonuc.ayrik) durum.ayrik[ciftAnahtar(x, y)] = simdi.toISOString();
