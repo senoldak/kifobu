@@ -2,6 +2,7 @@
 // varlık yoksa aynı bölümün son haberleriyle tamamlanır. Bülten yazıları ve arama motorlarına kapalı (noindex)
 // haberler önerilmez. Saf TypeScript: astro:content'e bağlı değil, birim testiyle sınanır.
 import { indekslenir } from './indeks.ts';
+import { anlamBenzerligi, anlamPuani, vektorleriOku } from './anlam.mjs';
 
 export interface IlgiliAday {
   id: string;
@@ -40,7 +41,11 @@ export function ortaklikPuani(a: IlgiliAday, b: IlgiliAday): number {
   return puan;
 }
 
-export function ilgiliHaberler<T extends IlgiliAday>(haber: T, tum: T[], limit = 3): T[] {
+// Gemini Faz 2 (27 Ekim): anlam benzerliği (src/data/vektorler.jsonl, kimlik = haber id'si); vektör yoksa 0 puan.
+export type Anlam = (a: IlgiliAday, b: IlgiliAday) => number | null;
+const varsayilanAnlam: Anlam = (a, b) => anlamBenzerligi(vektorleriOku(), a.id, b.id);
+
+export function ilgiliHaberler<T extends IlgiliAday>(haber: T, tum: T[], limit = 3, anlam: Anlam = varsayilanAnlam): T[] {
   const adaylar = tum.filter(
     (h) =>
       h.id !== haber.id &&
@@ -49,7 +54,7 @@ export function ilgiliHaberler<T extends IlgiliAday>(haber: T, tum: T[], limit =
   );
   const yeni = (x: T, y: T) => y.data.date.valueOf() - x.data.date.valueOf();
   const puanli = adaylar
-    .map((h) => ({ h, p: ortaklikPuani(haber, h) }))
+    .map((h) => ({ h, p: ortaklikPuani(haber, h) + anlamPuani(anlam(haber, h)) }))
     .filter((x) => x.p > 0)
     .sort((x, y) => y.p - x.p || Number(y.h.data.category === haber.data.category) - Number(x.h.data.category === haber.data.category) || yeni(x.h, y.h))
     .map((x) => x.h);

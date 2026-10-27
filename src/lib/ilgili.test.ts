@@ -35,3 +35,22 @@ test('ortak varlık yoksa aynı bölümün en yeni haberleri', () => {
   const baska = h('baska', { category: 'mevzuat' });
   assert.deepEqual(ilgiliHaberler(ana, [ana, eski, yeni, baska], 2).map((x) => x.id), ['yeni', 'eski']);
 });
+
+// Gemini Faz 2 (27 Ekim): anlam benzerliği. Sahte anlam: kimlik çiftine göre benzerlik.
+const anlamIle = (tablo: Record<string, number>) => (a: IlgiliAday, b: IlgiliAday) => tablo[`${a.id}|${b.id}`] ?? null;
+const kurB = () => {
+  const ana = h('anaB', { category: 'yatirimlar' });
+  return { ana, tum: [ana, h('y1', { category: 'yatirimlar' }), h('g1', { category: 'girisimler' }), h('y2', { category: 'yatirimlar' }), h('bltn', { category: 'gunluk-bulten' })] };
+};
+
+test('anlam yoksa bugünkü sıra birebir', () => {
+  const { ana, tum } = kurB();
+  assert.deepEqual(ilgiliHaberler(ana, tum, 3, () => null).map((x) => x.id), ilgiliHaberler(ana, tum, 3).map((x) => x.id));
+});
+
+test('anlamca yakın haber ortak varlığı olmasa da öne gelir; bülten yine çıkmaz; düşük benzerlik etkisiz', () => {
+  const { ana, tum } = kurB();
+  assert.equal(ilgiliHaberler(ana, tum, 3, anlamIle({ 'anaB|g1': 0.9 }))[0].id, 'g1');
+  assert.ok(!ilgiliHaberler(ana, tum, 4, anlamIle({ 'anaB|bltn': 0.95 })).some((x) => x.id === 'bltn'));
+  assert.deepEqual(ilgiliHaberler(ana, tum, 3, anlamIle({ 'anaB|g1': 0.5 })).map((x) => x.id), ilgiliHaberler(ana, tum, 3).map((x) => x.id));
+});
