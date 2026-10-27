@@ -14,6 +14,7 @@
 import { writeFile, appendFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { gommeTurSonu } from './vektorler.mjs';
 import { KAYNAKLAR } from './kaynaklar.mjs';
 import { jsonOku } from './lib.mjs';
 import { butceYukle, geminiPayiBitti } from './butce.mjs';
@@ -140,6 +141,8 @@ for (const [k, v] of Object.entries(durum.puan)) if (simdi - new Date(v.zaman) >
 durum.kimlik = 'hmac-v1';
 durum.havuz = havuzKapat(durum.havuz);
 
+// Gemini Faz 2: yayımlanan haberlerin vektör dosyası (GOMME_VEKTOR=1) ve gömme önbelleği; hata turu düşürmez.
+await gommeTurSonu({ kok: ROT, icerik: 'src/content/haberler', onbellekDosyasi: path.join(ROT, 'scripts/bot/gomme-onbellek.json') });
 await writeFile(DURUM_DOSYASI, `${JSON.stringify(durum, null, 2)}\n`, 'utf8');
 
 const sayi = ozet.yazilan.length;
