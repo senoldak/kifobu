@@ -1,0 +1,338 @@
+---
+import type { KifobuGrafikTanimi } from '../../lib/kifobu-charts-data';
+import KifobuChartRenderer from './KifobuChartRenderer.astro';
+
+interface Props {
+  grafik: KifobuGrafikTanimi;
+  kucuk?: boolean;
+}
+
+const { grafik, kucuk = false } = Astro.props;
+
+const artisMi = grafik.degisim >= 0;
+// BRAND.md §4 & §7: Sıfat yok, duygu yok. Artış fonlandı yeşili, düşüş mürekkep.
+const degisimOk = artisMi ? '▲' : '▼';
+const degisimMetni = `${degisimOk} %${Math.abs(grafik.degisim).toLocaleString('tr-TR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}`;
+const zamanSerisiMi = ['alan', 'sutun', 'coklu-karma', 'ayrisan-cubuk'].includes(grafik.tur);
+---
+
+<article class="kifobu-kart" data-kart-id={grafik.id}>
+  <header class="kart-ust">
+    <div class="kategori-satiri">
+      <span class="kart-kategori">{grafik.kategori}</span>
+      <span class="kart-no">#{grafik.id.replace('charts-', '')}</span>
+    </div>
+
+    <div class="baslik-blok">
+      <h3 class="kart-baslik">{grafik.baslik}</h3>
+      <p class="kart-aciklama">{grafik.aciklama}</p>
+    </div>
+
+    <div class="metrik-blok">
+      <div class="metrik-deger">{grafik.metrik}</div>
+      <div class={`degisim-rozet ${artisMi ? 'artis' : 'azalis'}`}>
+        <span class="degisim-oran">{degisimMetni}</span>
+        <span class="degisim-etiket">{grafik.degisimEtiket}</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Zaman aralığı filtresi: Yalnızca zaman serisi grafiklerinde -->
+  {
+    zamanSerisiMi ? (
+      <div class="zaman-filtresi" role="tablist" aria-label="Zaman aralığı">
+        <button type="button" class="filtre-sekme aktif" role="tab" aria-selected="true" data-vade="1A">1A</button>
+        <button type="button" class="filtre-sekme" role="tab" aria-selected="false" data-vade="3A">3A</button>
+        <button type="button" class="filtre-sekme" role="tab" aria-selected="false" data-vade="1Y">1Y</button>
+        <button type="button" class="filtre-sekme" role="tab" aria-selected="false" data-vade="Tümü">Tümü</button>
+      </div>
+    ) : (
+      <div class="tur-rozet-serit">
+        <span class="tur-etiket">{grafik.tur.toUpperCase()}</span>
+      </div>
+    )
+  }
+
+  <!-- SVG Çizim Alanı -->
+  <div class="kart-cizim-alani">
+    <KifobuChartRenderer grafik={grafik} yukseklik={kucuk ? 180 : 220} />
+  </div>
+
+  <!-- Tohum Dili (BRAND.md §5: Ayçiçeği tohumu spirali temsili) -->
+  {
+    typeof grafik.tohumMiktar === 'number' && (
+      <div class="tohum-seridi" aria-label={`Ekosistem tohumları: ${grafik.tohumMiktar} birim`}>
+        <div class="tohumlar">
+          {Array.from({ length: 10 }).map((_, i) => (
+            <span
+              class:list={[
+                'tohum-nokta',
+                i < (grafik.tohumMiktar ?? 1) ? (i === (grafik.tohumMiktar ?? 1) - 1 ? 'tohum-sari' : 'tohum-koyu') : 'tohum-acik'
+              ]}
+            />
+          ))}
+        </div>
+        <span class="tohum-aciklama">🌻 {grafik.tohumBirim ?? '1 tohum birimi'}</span>
+      </div>
+    )
+  }
+
+  <!-- Kart Altı: Kaynak, Tarih ve Yasal Uyarı -->
+  <footer class="kart-alt">
+    <div class="kaynak-satiri">
+      <span class="kaynak-metin">Kaynak: <strong>{grafik.kaynak}</strong></span>
+      <span class="tarih-metin">{grafik.tarih}</span>
+    </div>
+    <div class="spk-notu">Kitle fonlama yatırımları risk içerir. Yatırım tavsiyesi değildir.</div>
+  </footer>
+</article>
+
+<script>
+  // Kart içi zaman sekmesi etkileşimi
+  document.querySelectorAll<HTMLElement>('.kifobu-kart').forEach((kart) => {
+    const sekmeler = kart.querySelectorAll<HTMLButtonElement>('.filtre-sekme');
+    sekmeler.forEach((sekme) => {
+      sekme.addEventListener('click', () => {
+        sekmeler.forEach((s) => {
+          s.classList.remove('aktif');
+          s.setAttribute('aria-selected', 'false');
+        });
+        sekme.classList.add('aktif');
+        sekme.setAttribute('aria-selected', 'true');
+      });
+    });
+  });
+</script>
+
+<style>
+  .kifobu-kart {
+    background: #ffffff;
+    border: 1px solid var(--cizgi, #dcd9cf);
+    border-radius: 0px; /* BRAND.md: Yuvarlak köşe yok */
+    border-top: 3px solid var(--sari, #e8b40c); /* BRAND.md §7: Ayçiçeği sarısı üst vurgu */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: var(--sans, 'Schibsted Grotesk', system-ui, sans-serif);
+    transition: border-color 0.15s ease;
+    position: relative;
+  }
+
+  .kifobu-kart:hover {
+    border-color: var(--ink, #141a17);
+  }
+
+  .kart-ust {
+    margin-bottom: 12px;
+  }
+
+  .kategori-satiri {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+
+  .kart-kategori {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink, #141a17);
+    border-left: 2px solid var(--sari, #e8b40c);
+    padding-left: 6px;
+  }
+
+  .kart-no {
+    font-family: monospace;
+    font-size: 0.7rem;
+    color: var(--gri, #5d645f);
+    background: var(--paper, #f7f5ef);
+    padding: 1px 6px;
+    border: 1px solid var(--cizgi, #dcd9cf);
+  }
+
+  .baslik-blok {
+    margin-bottom: 10px;
+  }
+
+  .kart-baslik {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--ink, #141a17);
+    margin: 0 0 4px 0;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  .kart-aciklama {
+    font-size: 0.825rem;
+    color: var(--gri, #5d645f);
+    margin: 0;
+    line-height: 1.45;
+  }
+
+  .metrik-blok {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid var(--cizgi, #dcd9cf);
+  }
+
+  .metrik-deger {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--ink, #141a17);
+    letter-spacing: -0.02em;
+  }
+
+  .degisim-rozet {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 2px 6px;
+  }
+
+  .degisim-rozet.artis {
+    background: rgba(16, 185, 129, 0.12);
+    color: var(--yesil, #10b981);
+    border-left: 2px solid var(--yesil, #10b981);
+  }
+
+  .degisim-rozet.azalis {
+    background: rgba(20, 26, 23, 0.08);
+    color: var(--ink, #141a17); /* BRAND.md: Eksi durum mürekkep */
+    border-left: 2px solid var(--ink, #141a17);
+  }
+
+  .degisim-oran {
+    font-weight: 700;
+  }
+
+  .degisim-etiket {
+    color: var(--gri, #5d645f);
+    font-size: 0.7rem;
+  }
+
+  .zaman-filtresi {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 12px;
+  }
+
+  .filtre-sekme {
+    background: transparent;
+    border: 1px solid var(--cizgi, #dcd9cf);
+    color: var(--gri, #5d645f);
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    cursor: pointer;
+    border-radius: 0px;
+    transition: all 0.15s ease;
+  }
+
+  .filtre-sekme:hover {
+    border-color: var(--ink, #141a17);
+    color: var(--ink, #141a17);
+  }
+
+  .filtre-sekme.aktif {
+    background: var(--ink, #141a17);
+    border-color: var(--ink, #141a17);
+    color: #ffffff;
+  }
+
+  .tur-rozet-serit {
+    margin-bottom: 12px;
+  }
+
+  .tur-etiket {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--gri, #5d645f);
+    background: var(--paper, #f7f5ef);
+    padding: 2px 6px;
+    border: 1px solid var(--cizgi, #dcd9cf);
+  }
+
+  .kart-cizim-alani {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 4px 0 12px 0;
+  }
+
+  /* Tohum Şeridi */
+  .tohum-seridi {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 10px;
+    background: var(--paper, #f7f5ef);
+    border: 1px solid var(--cizgi, #dcd9cf);
+    margin-bottom: 12px;
+  }
+
+  .tohumlar {
+    display: flex;
+    gap: 5px;
+  }
+
+  .tohum-nokta {
+    width: 6px;
+    height: 6px;
+    display: inline-block;
+  }
+
+  .tohum-nokta.tohum-koyu {
+    background: var(--ink, #141a17);
+  }
+
+  .tohum-nokta.tohum-sari {
+    background: var(--sari, #e8b40c); /* Her son tohum ayçiçeği sarısı */
+    transform: scale(1.3);
+  }
+
+  .tohum-nokta.tohum-acik {
+    background: var(--cizgi, #dcd9cf);
+  }
+
+  .tohum-aciklama {
+    font-size: 0.7rem;
+    color: var(--gri, #5d645f);
+    font-weight: 500;
+  }
+
+  .kart-alt {
+    padding-top: 10px;
+    border-top: 1px solid var(--cizgi, #dcd9cf);
+    font-size: 0.72rem;
+  }
+
+  .kaynak-satiri {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+    color: var(--gri, #5d645f);
+  }
+
+  .tarih-metin {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .spk-notu {
+    font-size: 0.65rem;
+    color: var(--gri, #5d645f);
+    font-style: italic;
+  }
+</style>

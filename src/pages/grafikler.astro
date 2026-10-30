@@ -1,0 +1,309 @@
+---
+import Base from '../layouts/Base.astro';
+import KifobuChartCard from '../components/kartlar/KifobuChartCard.astro';
+import { KİFOBU_GRAFİKLER } from '../lib/kifobu-charts-data';
+
+const baslik = 'Kitle Fonlama ve Girişim Veri Kataloğu — 62 Grafik';
+const description =
+  'Türkiye kitle fonlama ekosistemi, paya ve borca dayalı fonlama, girişim sermayesi ve SPK lisanslı platform verilerini içeren 62 interaktif grafik kartı.';
+
+const kategoriler = [
+  'TÜMÜ',
+  'PAYA DAYALI FONLAMA',
+  'BORCA DAYALI FONLAMA',
+  'GİRİŞİM EKOSİSTEMİ',
+  'YATIRIMCI DAĞILIMI',
+  'GSYO & SERMAYE',
+  'PLATFORM VERİLERİ',
+];
+
+const normalle = (str: string) =>
+  str
+    .toLowerCase()
+    .replace(/ğ/g, 'g')
+    .replace(/ü/g, 'u')
+    .replace(/ş/g, 's')
+    .replace(/ı/g, 'i')
+    .replace(/ö/g, 'o')
+    .replace(/ç/g, 'c');
+---
+
+<Base title={baslik} description={description}>
+  <div class="katalog-kapsayici">
+    <header class="sayfa-baslik-alani">
+      <div class="ust-etiket">
+        <span class="tohum-simge">🌻</span>
+        <span>ULAŞILABİLİR VE ANLAŞILIR VERİ</span>
+      </div>
+      <h1>Kitle Fonlama Veri Kataloğu</h1>
+      <p class="sayfa-ozet">
+        Türkiye kitle fonlama ve girişim ekosisteminin dağınık verilerini anlaşılır bilgiye dönüştüren 62 interaktif grafik kartı.
+      </p>
+    </header>
+
+    <!-- Filtre Çubuğu -->
+    <div class="filtre-paneli">
+      <div class="kategori-butonlari" role="tablist" aria-label="Kategori filtresi">
+        {
+          kategoriler.map((kat, i) => (
+            <button
+              type="button"
+              class={`kategori-sekme ${i === 0 ? 'aktif' : ''}`}
+              role="tab"
+              aria-selected={i === 0 ? 'true' : 'false'}
+              data-kategori={kat}
+            >
+              {kat}
+            </button>
+          ))
+        }
+      </div>
+
+      <div class="arama-kutusu-sarmal">
+        <label for="grafik-arama" class="sr-only">Grafik Ara</label>
+        <input
+          type="search"
+          id="grafik-arama"
+          placeholder="Grafik, metrik veya kaynak ara..."
+          class="arama-girdisi"
+          autocomplete="off"
+        />
+      </div>
+    </div>
+
+    <!-- Grafik Sayacı -->
+    <div class="sonuc-bilgisi">
+      <span>Toplam <strong>{KİFOBU_GRAFİKLER.length}</strong> grafik göstergesi</span>
+      <span id="gorunen-sayac" class="gorunen-adet">62 gösteriliyor</span>
+    </div>
+
+    <!-- 62 Kartlık Izgara -->
+    <div class="grafikler-izgara" id="grafikler-izgara">
+      {
+        KİFOBU_GRAFİKLER.map((grafik) => (
+          <div
+            class="grafik-karti-sarmal"
+            data-kategori={grafik.kategori}
+            data-tur={grafik.tur}
+            data-arama={normalle(`${grafik.baslik} ${grafik.aciklama} ${grafik.metrik} ${grafik.id} ${grafik.kategori} ${grafik.kaynak}`)}
+          >
+            <KifobuChartCard grafik={grafik} />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</Base>
+
+<script>
+  const aramaInput = document.getElementById('grafik-arama') as HTMLInputElement | null;
+  const kategoriButonlari = document.querySelectorAll<HTMLButtonElement>('.kategori-sekme');
+  const kartlar = document.querySelectorAll<HTMLElement>('.grafik-karti-sarmal');
+  const gorunenSayac = document.getElementById('gorunen-sayac');
+
+  let aktifKategori = 'TÜMÜ';
+  let aramaMetni = '';
+
+  const normalle = (str: string) =>
+    str
+      .toLowerCase()
+      .replace(/ğ/g, 'g')
+      .replace(/ü/g, 'u')
+      .replace(/ş/g, 's')
+      .replace(/ı/g, 'i')
+      .replace(/ö/g, 'o')
+      .replace(/ç/g, 'c');
+
+  function filtrele() {
+    let sayac = 0;
+    kartlar.forEach((kart) => {
+      const kat = kart.dataset.kategori ?? '';
+      const veriArama = kart.dataset.arama ?? '';
+
+      const katUyar = aktifKategori === 'TÜMÜ' || kat === aktifKategori;
+      const aramaUyar = !aramaMetni || veriArama.includes(aramaMetni);
+
+      if (katUyar && aramaUyar) {
+        kart.style.display = '';
+        sayac++;
+      } else {
+        kart.style.display = 'none';
+      }
+    });
+
+    if (gorunenSayac) {
+      gorunenSayac.textContent = `${sayac} gösteriliyor`;
+    }
+  }
+
+  kategoriButonlari.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      kategoriButonlari.forEach((b) => {
+        b.classList.remove('aktif');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('aktif');
+      btn.setAttribute('aria-selected', 'true');
+      aktifKategori = btn.dataset.kategori ?? 'TÜMÜ';
+      filtrele();
+    });
+  });
+
+  if (aramaInput) {
+    aramaInput.addEventListener('input', (e) => {
+      aramaMetni = normalle((e.target as HTMLInputElement).value.trim());
+      filtrele();
+    });
+  }
+</script>
+
+<style>
+  .katalog-kapsayici {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 32px 16px 64px 16px;
+    font-family: var(--sans, 'Schibsted Grotesk', system-ui, sans-serif);
+    color: var(--ink, #141a17);
+  }
+
+  .sayfa-baslik-alani {
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--ink, #141a17);
+  }
+
+  .ust-etiket {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink, #141a17);
+    margin-bottom: 8px;
+  }
+
+  .tohum-simge {
+    font-size: 1rem;
+  }
+
+  h1 {
+    font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    letter-spacing: -0.02em;
+    color: var(--ink, #141a17);
+  }
+
+  .sayfa-ozet {
+    font-size: 1.05rem;
+    color: var(--gri, #5d645f);
+    max-width: 720px;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .filtre-paneli {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    background: var(--paper, #f7f5ef);
+    border: 1px solid var(--cizgi, #dcd9cf);
+  }
+
+  .kategori-butonlari {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .kategori-sekme {
+    background: transparent;
+    border: 1px solid var(--cizgi, #dcd9cf);
+    color: var(--gri, #5d645f);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 5px 12px;
+    cursor: pointer;
+    border-radius: 0px;
+    transition: all 0.15s ease;
+  }
+
+  .kategori-sekme:hover {
+    border-color: var(--ink, #141a17);
+    color: var(--ink, #141a17);
+  }
+
+  .kategori-sekme.aktif {
+    background: var(--ink, #141a17);
+    border-color: var(--ink, #141a17);
+    color: #ffffff;
+  }
+
+  .arama-kutusu-sarmal {
+    min-width: 260px;
+  }
+
+  .arama-girdisi {
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    border: 1px solid var(--cizgi, #dcd9cf);
+    background: #ffffff;
+    border-radius: 0px;
+    color: var(--ink, #141a17);
+    outline: none;
+    font-family: inherit;
+  }
+
+  .arama-girdisi:focus {
+    border-color: var(--ink, #141a17);
+  }
+
+  .sonuc-bilgisi {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--gri, #5d645f);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--cizgi, #dcd9cf);
+  }
+
+  .gorunen-adet {
+    font-weight: 600;
+    color: var(--ink, #141a17);
+  }
+
+  .grafikler-izgara {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .grafikler-izgara {
+      grid-template-columns: 1fr;
+    }
+    .filtre-paneli {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+</style>
