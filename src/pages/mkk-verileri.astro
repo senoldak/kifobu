@@ -1,0 +1,296 @@
+---
+import Base from '../layouts/Base.astro';
+import Yol from '../components/Yol.astro';
+import mkkVerisi from '../data/resmi-mkk.json';
+import { formatNumber } from '../lib/site';
+
+const baslik = 'MKK Kitle Fonlaması ve Girişim Piyasası Verileri';
+const aciklama = 'Merkezi Kayıt Kuruluşu (MKK) resmi aylık piyasa bülteni verileriyle Türkiye kitle fonlaması ekosistemi (KFS) ve girişim sermayesi fonları (GSYF) 13 aylık zaman serisi.';
+
+const adimlar = [
+  { ad: 'Anasayfa', url: '/' },
+  { ad: 'MKK Verileri', url: '/mkk-verileri/' }
+];
+
+const kfs = mkkVerisi.kfs;
+const gsyf = mkkVerisi.gsyf;
+const sonKfs = kfs.zaman_serisi[kfs.zaman_serisi.length - 1];
+const sonGsyf = gsyf.zaman_serisi[gsyf.zaman_serisi.length - 1];
+
+// Grafik koordinatları hesabı (SVG viewBox: 0 0 800 240)
+const kfsNoktalar = kfs.zaman_serisi.map((item, idx) => {
+  const x = 50 + idx * 58;
+  // Fonlanan: 1.0 Mr ile 1.8 Mr arası ölçekle
+  const yFon = 200 - ((item.fonlanan_milyar_tl - 1.1) / 0.7) * 160;
+  // Yatırımcı: 43.000 ile 48.000 arası ölçekle
+  const yYat = 200 - ((item.yatirimci_sayisi - 44000) / 4000) * 160;
+  return { ...item, x, yFon, yYat };
+});
+
+const fonPolyline = kfsNoktalar.map(p => `${p.x},${p.yFon.toFixed(1)}`).join(' ');
+const yatPolyline = kfsNoktalar.map(p => `${p.x},${p.yYat.toFixed(1)}`).join(' ');
+---
+
+<Base title={baslik} description={aciklama}>
+  <div slot="tahta" class="kategori-bas">
+    <h1 class="kategori-isim">MKK Resmi Piyasa Göstergeleri</h1>
+    <p class="kategori-sayi">Kitle Fonlaması (KFS) &amp; Girişim Sermayesi (GSYF) İstatistikleri</p>
+  </div>
+
+  <Yol adimlar={adimlar} />
+
+  <article class="makale mkk-sayfa">
+    <header class="mkk-ust-bilgi">
+      <div class="mkk-rozet-satir">
+        <span class="mkk-kaynak-etiket">RESMİ BİRİNCİL VERİ</span>
+        <span class="mkk-bulten-etiket">{mkkVerisi.kaynak.bulten}</span>
+      </div>
+      <p class="mkk-spot">
+        Merkezi Kayıt Kuruluşu (MKK) tarafından yayımlanan aylık piyasa bültenlerinden derlenen resmi kitle fonlaması ve kurumsal girişim fonu göstergeleridir.
+      </p>
+    </header>
+
+    <!-- 4 Büyük İndikatör Kartı -->
+    <div class="mkk-kartlar-izgara">
+      <div class="mkk-kart">
+        <span class="mkk-kart-baslik">Toplam Fonlanan Hacim</span>
+        <div class="mkk-kart-sayi">₺{sonKfs.fonlanan_milyar_tl.toFixed(2).replace('.', ',')} Mr</div>
+        <div class="mkk-kart-degisim pozitif">
+          <span>Yıllık: {kfs.degisim.fonlanan.yillik}</span>
+          <span class="mkk-alt-degisim">Aylık: {kfs.degisim.fonlanan.aylik}</span>
+        </div>
+      </div>
+
+      <div class="mkk-kart">
+        <span class="mkk-kart-baslik">KFS Yatırımcı Sayısı</span>
+        <div class="mkk-kart-sayi">{formatNumber(sonKfs.yatirimci_sayisi)}</div>
+        <div class="mkk-kart-degisim pozitif">
+          <span>Yıllık: {kfs.degisim.yatirimci.yillik}</span>
+          <span class="mkk-alt-degisim">Aylık: {kfs.degisim.yatirimci.aylik}</span>
+        </div>
+      </div>
+
+      <div class="mkk-kart">
+        <span class="mkk-kart-baslik">Kaydileşen Şirket</span>
+        <div class="mkk-kart-sayi">{kfs.kaydilesen_sirket}</div>
+        <div class="mkk-kart-not">MKS nezdinde ihraç edilen girişimler</div>
+      </div>
+
+      <div class="mkk-kart">
+        <span class="mkk-kart-baslik">Lisanslı KFS Platformu</span>
+        <div class="mkk-kart-sayi">{kfs.platform_sayisi}</div>
+        <div class="mkk-kart-not">SPK izinli aktif kitle fonlama platformu</div>
+      </div>
+    </div>
+
+    <!-- 13 Aylık İnteraktif Trend Grafiği -->
+    <section class="mkk-grafik-bolumu" aria-labelledby="grafik-baslik">
+      <div class="mkk-grafik-baslik-alani">
+        <div>
+          <h2 id="grafik-baslik" class="bolum-baslik">KFS 13 Aylık Büyüme Eğrisi</h2>
+          <p class="grafik-alt-aciklama">Eylül 2025 – Eylül 2026 dönemi resmi fonlama tutarı ve yatırımcı tabanı gelişimi</p>
+        </div>
+        <div class="mkk-lejant">
+          <span class="lejant-oge fon"><span class="lejant-cizgi"></span> Fonlama Tutarı (Milyar TL)</span>
+          <span class="lejant-oge yat"><span class="lejant-cizgi"></span> Yatırımcı Sayısı</span>
+        </div>
+      </div>
+
+      <div class="mkk-svg-kapsayici">
+        <svg viewBox="0 0 800 250" class="mkk-svg" preserveAspectRatio="none">
+          <!-- Yatay Kılavuz Çizgileri -->
+          <line x1="40" y1="40" x2="760" y2="40" stroke="currentColor" stroke-opacity="0.08" stroke-dasharray="3,3" />
+          <line x1="40" y1="120" x2="760" y2="120" stroke="currentColor" stroke-opacity="0.08" stroke-dasharray="3,3" />
+          <line x1="40" y1="200" x2="760" y2="200" stroke="currentColor" stroke-opacity="0.15" />
+
+          <!-- Fonlanan Alan & Çizgi -->
+          <polyline fill="none" stroke="var(--renk-vurgu, #2563eb)" stroke-width="3" points={fonPolyline} />
+          <!-- Yatırımcı Çizgi -->
+          <polyline fill="none" stroke="var(--renk-yesil, #10b981)" stroke-width="2.5" stroke-dasharray="4,2" points={yatPolyline} />
+
+          <!-- Veri Noktaları -->
+          {kfsNoktalar.map((p) => (
+            <g class="nokta-grup">
+              <circle cx={p.x} cy={p.yFon} r="4.5" fill="var(--renk-vurgu, #2563eb)" />
+              <circle cx={p.x} cy={p.yYat} r="4" fill="var(--renk-yesil, #10b981)" />
+              <text x={p.x} y="222" font-size="10" text-anchor="middle" fill="currentColor" fill-opacity="0.65">
+                {p.tarih.slice(3, 10)}
+              </text>
+            </g>
+          ))}
+        </svg>
+      </div>
+    </section>
+
+    <!-- 13 Aylık Karşılaştırmalı Tablo -->
+    <section class="mkk-tablo-bolumu" aria-labelledby="tablo-baslik">
+      <h2 id="tablo-baslik" class="bolum-baslik">13 Aylık Resmi Tarihsel Döküm</h2>
+      <div class="tablo-kap">
+        <table class="veri-tablo mkk-tablo">
+          <thead>
+            <tr>
+              <th scope="col">Tarih</th>
+              <th scope="col" class="sayi">KFS Fonlama (TL)</th>
+              <th scope="col" class="sayi">KFS Yatırımcı</th>
+              <th scope="col" class="sayi">GSYF Portföy (TL)</th>
+              <th scope="col" class="sayi">GSYF Yatırımcı</th>
+            </tr>
+          </thead>
+          <tbody>
+            {kfs.zaman_serisi.map((item, i) => {
+              const gItem = gsyf.zaman_serisi[i] ?? { portfoy_milyar_tl: 0, yatirimci_sayisi: 0 };
+              return (
+                <tr>
+                  <th scope="row" class="kalin">{item.tarih}</th>
+                  <td class="sayi">₺{item.fonlanan_milyar_tl.toFixed(2).replace('.', ',')} Milyar</td>
+                  <td class="sayi">{formatNumber(item.yatirimci_sayisi)}</td>
+                  <td class="sayi">₺{gItem.portfoy_milyar_tl} Milyar</td>
+                  <td class="sayi">{formatNumber(gItem.yatirimci_sayisi)}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      <p class="dizin-not">
+        * Veriler doğrudan Merkezi Kayıt Kuruluşu (MKK) aylık piyasa bülteni PDF raporlarından teyit edilerek kaydedilmektedir.
+      </p>
+    </section>
+  </article>
+</Base>
+
+<style>
+  .mkk-sayfa {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 1rem 0 3rem;
+  }
+  .mkk-rozet-satir {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  .mkk-kaynak-etiket {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.5rem;
+    background: #e0f2fe;
+    color: #0369a1;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+  }
+  .mkk-bulten-etiket {
+    font-size: 0.85rem;
+    color: var(--renk-metin-hafif, #64748b);
+  }
+  .mkk-spot {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: var(--renk-metin-orta, #334155);
+    margin-bottom: 2rem;
+  }
+  .mkk-kartlar-izgara {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .mkk-kart {
+    background: var(--renk-kart-zemin, #f8fafc);
+    border: 1px solid var(--renk-kart-kenar, #e2e8f0);
+    border-radius: 8px;
+    padding: 1.25rem;
+  }
+  .mkk-kart-baslik {
+    font-size: 0.825rem;
+    font-weight: 600;
+    color: var(--renk-metin-hafif, #64748b);
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+  .mkk-kart-sayi {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--renk-metin, #0f172a);
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+  .mkk-kart-degisim {
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  .mkk-kart-degisim.pozitif {
+    color: #16a34a;
+  }
+  .mkk-alt-degisim {
+    font-weight: 400;
+    color: var(--renk-metin-hafif, #64748b);
+  }
+  .mkk-kart-not {
+    font-size: 0.775rem;
+    color: var(--renk-metin-hafif, #64748b);
+    line-height: 1.3;
+  }
+  .mkk-grafik-bolumu {
+    background: var(--renk-kart-zemin, #f8fafc);
+    border: 1px solid var(--renk-kart-kenar, #e2e8f0);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .mkk-grafik-baslik-alani {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .grafik-alt-aciklama {
+    font-size: 0.85rem;
+    color: var(--renk-metin-hafif, #64748b);
+    margin-top: 0.2rem;
+  }
+  .mkk-lejant {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.8rem;
+  }
+  .lejant-oge {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .lejant-cizgi {
+    width: 14px;
+    height: 3px;
+    display: inline-block;
+    border-radius: 2px;
+  }
+  .lejant-oge.fon .lejant-cizgi {
+    background: var(--renk-vurgu, #2563eb);
+  }
+  .lejant-oge.yat .lejant-cizgi {
+    background: var(--renk-yesil, #10b981);
+  }
+  .mkk-svg-kapsayici {
+    width: 100%;
+    overflow-x: auto;
+  }
+  .mkk-svg {
+    width: 100%;
+    min-width: 600px;
+    height: 240px;
+  }
+  .mkk-tablo-bolumu {
+    margin-top: 2rem;
+  }
+  .mkk-tablo th.kalin {
+    font-weight: 600;
+  }
+</style>
+

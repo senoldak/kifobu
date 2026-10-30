@@ -1,0 +1,170 @@
+{
+  "kfs": {
+    "kaydilesen_sirket": 179,
+    "platform_sayisi": 18,
+    "degisim": {
+      "fonlanan": {
+        "aylik": "%+0,63",
+        "ucAylik": "%+2,56",
+        "yillik": "%+28,00"
+      },
+      "yatirimci": {
+        "aylik": "%+0,16",
+        "ucAylik": "%+0,99",
+        "yillik": "%+5,53"
+      }
+    },
+    "zaman_serisi": [
+      {
+        "tarih": "30.09.2025",
+        "fonlanan_milyar_tl": 1.25,
+        "yatirimci_sayisi": 44695
+      },
+      {
+        "tarih": "31.10.2025",
+        "fonlanan_milyar_tl": 1.25,
+        "yatirimci_sayisi": 44954
+      },
+      {
+        "tarih": "30.11.2025",
+        "fonlanan_milyar_tl": 1.35,
+        "yatirimci_sayisi": 45270
+      },
+      {
+        "tarih": "31.12.2025",
+        "fonlanan_milyar_tl": 1.45,
+        "yatirimci_sayisi": 46003
+      },
+      {
+        "tarih": "31.01.2026",
+        "fonlanan_milyar_tl": 1.46,
+        "yatirimci_sayisi": 46360
+      },
+      {
+        "tarih": "28.02.2026",
+        "fonlanan_milyar_tl": 1.5,
+        "yatirimci_sayisi": 46498
+      },
+      {
+        "tarih": "31.03.2026",
+        "fonlanan_milyar_tl": 1.51,
+        "yatirimci_sayisi": 46600
+      },
+      {
+        "tarih": "30.04.2026",
+        "fonlanan_milyar_tl": 1.54,
+        "yatirimci_sayisi": 46705
+      },
+      {
+        "tarih": "31.05.2026",
+        "fonlanan_milyar_tl": 1.54,
+        "yatirimci_sayisi": 46703
+      },
+      {
+        "tarih": "30.06.2026",
+        "fonlanan_milyar_tl": 1.56,
+        "yatirimci_sayisi": 46703
+      },
+      {
+        "tarih": "31.07.2026",
+        "fonlanan_milyar_tl": 1.58,
+        "yatirimci_sayisi": 47022
+      },
+      {
+        "tarih": "31.08.2026",
+        "fonlanan_milyar_tl": 1.59,
+        "yatirimci_sayisi": 47088
+      },
+      {
+        "tarih": "30.09.2026",
+        "fonlanan_milyar_tl": 1.6,
+        "yatirimci_sayisi": 47165
+      }
+    ]
+  },
+  "gsyf": {
+    "degisim": {
+      "portfoy": {
+        "aylik": "%-4,05",
+        "ucAylik": "%+3,97",
+        "yillik": "%+51,37"
+      },
+      "yatirimci": {
+        "aylik": "%+0,24",
+        "ucAylik": "%+2,53",
+        "yillik": "%+30,81"
+      }
+    },
+    "zaman_serisi": [
+      {
+        "tarih": "30.09.2025",
+        "portfoy_milyar_tl": 329,
+        "yatirimci_sayisi": 9437
+      },
+      {
+        "tarih": "31.10.2025",
+        "portfoy_milyar_tl": 341,
+        "yatirimci_sayisi": 9556
+      },
+      {
+        "tarih": "30.11.2025",
+        "portfoy_milyar_tl": 351,
+        "yatirimci_sayisi": 9724
+      },
+      {
+        "tarih": "31.12.2025",
+        "portfoy_milyar_tl": 420,
+        "yatirimci_sayisi": 10807
+      },
+      {
+        "tarih": "31.01.2026",
+        "portfoy_milyar_tl": 426,
+        "yatirimci_sayisi": 10951
+      },
+      {
+        "tarih": "28.02.2026",
+        "portfoy_milyar_tl": 431,
+        "yatirimci_sayisi": 11208
+      },
+      {
+        "tarih": "31.03.2026",
+        "portfoy_milyar_tl": 446,
+        "yatirimci_sayisi": 11487
+      },
+      {
+        "tarih": "30.04.2026",
+        "portfoy_milyar_tl": 458,
+        "yatirimci_sayisi": 11551
+      },
+      {
+        "tarih": "31.05.2026",
+        "portfoy_milyar_tl": 462,
+        "yatirimci_sayisi": 11649
+      },
+      {
+        "tarih": "30.06.2026",
+        "portfoy_milyar_tl": 479,
+        "yatirimci_sayisi": 12040
+      },
+      {
+        "tarih": "31.07.2026",
+        "portfoy_milyar_tl": 492,
+        "yatirimci_sayisi": 12227
+      },
+      {
+        "tarih": "31.08.2026",
+        "portfoy_milyar_tl": 519,
+        "yatirimci_sayisi": 12315
+      },
+      {
+        "tarih": "30.09.2026",
+        "portfoy_milyar_tl": 498,
+        "yatirimci_sayisi": 12345
+      }
+    ]
+  },
+  "kaynak": {
+    "bulten": "MKK Aylık Piyasa Bülteni - Eylül 2026",
+    "url": "https://www.mkk.com.tr/sites/default/files/2026-10/MKK-Aylik-Piyasa-Bulteni-Eylul-2026.pdf"
+  }
+}
