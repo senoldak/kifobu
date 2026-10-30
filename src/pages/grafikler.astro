@@ -1,11 +1,17 @@
 ---
 import Base from '../layouts/Base.astro';
+import Yol from '../components/Yol.astro';
 import KifobuChartCard from '../components/kartlar/KifobuChartCard.astro';
 import { KİFOBU_GRAFİKLER } from '../lib/kifobu-charts-data';
 
 const baslik = 'Kitle Fonlama ve Girişim Veri Kataloğu — 62 Grafik';
 const description =
   'Türkiye kitle fonlama ekosistemi, paya ve borca dayalı fonlama, girişim sermayesi ve SPK lisanslı platform verilerini içeren 62 interaktif grafik kartı.';
+
+const adimlar = [
+  { ad: 'Anasayfa', url: '/' },
+  { ad: 'Grafik Kataloğu', url: '/grafikler/' },
+];
 
 const kategoriler = [
   'TÜMÜ',
@@ -30,6 +36,7 @@ const normalle = (str: string) =>
 
 <Base title={baslik} description={description}>
   <div class="katalog-kapsayici">
+    <Yol adimlar={adimlar} />
     <header class="sayfa-baslik-alani">
       <div class="ust-etiket">
         <span class="tohum-simge">🌻</span>
