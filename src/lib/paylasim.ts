@@ -1,5 +1,6 @@
 // Günlük bülten paylaşımları (Telegram, LinkedIn, Facebook): bağlantı kanala göre UTM'li olur ve o günün kalıcı sayfası
 // canlıdaysa oraya gider; değilse genel bülten sayfasına düşer. Saf TypeScript: ağ isteği enjekte edilebilir.
+import { createHash } from 'node:crypto';
 import { gunUrl, istanbulGunu } from './gunler.ts';
 
 export const SITE_ORIGIN = 'https://kifobu.com';
@@ -33,9 +34,27 @@ export function metinBaglantisiniCikar(metin: string): string {
     .trim();
 }
 
-/** public/'teki günlük görselin adresi. Dosya adı her gün aynı olduğu için Meta eski kopyayı çekmesin diye gün eklenir. */
-export function gorselAdresi(dosya: string, tarih: string = istanbulGunu(new Date())): string {
-  return `${SITE_ORIGIN}/${dosya}?v=${tarih}`;
+/** public/'teki günlük görselin adresi. Dosya adı her gün aynı olduğu için Meta eski kopyayı çekmesin diye sürüm eklenir
+ *  (gün ya da dosyanın özeti). */
+export function gorselAdresi(dosya: string, surum: string = istanbulGunu(new Date())): string {
+  return `${SITE_ORIGIN}/${dosya}?v=${surum}`;
+}
+
+/** Dosya içeriğinin kısa özeti (sha256'nın ilk 12 hanesi). */
+export function dosyaOzeti(veri: Uint8Array): string {
+  return createHash('sha256').update(veri).digest('hex').slice(0, 12);
+}
+
+/** Sitedeki görsel, beklenen içerikle bayt bayt aynı mı? Gün sayfası gün içindeki canlı güncellemelerle zaten
+ *  yayında olduğu için "sayfa canlı mı" bakmak yetmez: yeni görsel yayına girmeden Meta dünkü görseli çeker (31 Ekim). */
+export async function gorselYayindaMi(url: string, beklenenOzet: string, istek: typeof fetch = fetch): Promise<boolean> {
+  try {
+    const res = await istek(url, { cache: 'no-store', signal: AbortSignal.timeout(20_000) });
+    if (res.status !== 200) return false;
+    return dosyaOzeti(new Uint8Array(await res.arrayBuffer())) === beklenenOzet;
+  } catch {
+    return false;
+  }
 }
 
 /** O günün kalıcı sayfası canlıda mı (HEAD, 200 ise evet). Ağ hatasında hayır. */

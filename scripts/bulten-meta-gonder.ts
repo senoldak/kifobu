@@ -33,14 +33,41 @@ if (!facebookVar && !instagramVar) {
 }
 
 const { istanbulGunu } = await import('../src/lib/gunler.ts');
-const { bultenBaglantisi, gorselAdresi, metinBaglantisiniCikar, metinBaglantisiniDegistir } = await import('../src/lib/paylasim.ts');
+const { bultenBaglantisi, dosyaOzeti, gorselAdresi, gorselYayindaMi, metinBaglantisiniCikar, metinBaglantisiniDegistir } = await import('../src/lib/paylasim.ts');
 
 const gun = istanbulGunu(new Date());
-const postGorseli = gorselAdresi('bulten-post.png', gun);
-const storyGorseli = gorselAdresi('bulten-story.png', gun);
 
 // --kontrol: hiçbir şey yayımlamadan token'ın Sayfaya ve Instagram'a erişimini sınar (bulten-otomasyon.yml mod=meta-kontrol).
 const kontrol = process.argv.includes('--kontrol');
+
+// Meta görseli siteden çeker. Adres, bu çalışmada üretilen dosyanın özetini taşır ve sitedeki kopya onunla aynı olana
+// kadar (yayın bitene kadar) beklenir; en çok 15 dakika. Olmazsa eski görsel gitmesin diye hiçbir şey yayımlanmaz.
+// 31 Ekim: gün sayfası canlı güncellemelerle zaten yayındaydı, bekleme hemen geçti ve Instagram'a 30 Ekim görseli gitti.
+async function guncelGorselAdresi(dosya: string): Promise<string> {
+  const yerel = path.join(rootDir, 'public', dosya);
+  if (!fs.existsSync(yerel)) throw new Error(`Görsel bulunamadı: ${yerel}`);
+  const ozet = dosyaOzeti(fs.readFileSync(yerel));
+  const url = gorselAdresi(dosya, ozet);
+  for (let i = 0; i < 30; i++) {
+    if (await gorselYayindaMi(url, ozet)) return url;
+    if (i === 0) console.log(`[META] ${dosya} sitede henüz güncel değil, yayın bekleniyor...`);
+    await new Promise((r) => setTimeout(r, 30_000));
+  }
+  throw new Error(`${dosya} 15 dakikada sitede güncellenmedi; eski görsel paylaşılmasın diye Meta'ya gönderilmedi.`);
+}
+
+let postGorseli = '';
+let storyGorseli = '';
+if (!kontrol) {
+  try {
+    postGorseli = await guncelGorselAdresi('bulten-post.png');
+    storyGorseli = await guncelGorselAdresi('bulten-story.png');
+    console.log('[META] Sitedeki görseller bu çalışmanın görselleriyle aynı.');
+  } catch (err: any) {
+    console.error(`[META] HATA: ${err?.message}`);
+    process.exit(1);
+  }
+}
 
 const metinPath = path.join(rootDir, 'dist-bulten', 'bulten-metin.txt');
 if (!kontrol && !fs.existsSync(metinPath)) {

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { GENEL_BULTEN_URL, bultenBaglantisi, gorselAdresi, gunSayfasiCanliMi, metinBaglantisiniCikar, metinBaglantisiniDegistir, utmEkle } from './paylasim.ts';
+import { GENEL_BULTEN_URL, bultenBaglantisi, dosyaOzeti, gorselAdresi, gorselYayindaMi, gunSayfasiCanliMi, metinBaglantisiniCikar, metinBaglantisiniDegistir, utmEkle } from './paylasim.ts';
 
 const sahte = (durum: number | 'hata') => (async () => {
   if (durum === 'hata') throw new Error('ağ');
@@ -51,4 +51,20 @@ test('Meta metninde bülten bağlantısının satırı çıkar, boş satır üst
 
 test('görsel adresi güne göre önbellek kırıcı alır', () => {
   assert.equal(gorselAdresi('bulten-story.png', '2026-10-17'), 'https://kifobu.com/bulten-story.png?v=2026-10-17');
+});
+
+test('görsel yayında sayılması için sitedeki baytlar yerel dosyayla aynı olmalı', async () => {
+  const yeni = new Uint8Array([1, 2, 3]);
+  const eski = new Uint8Array([9, 9]);
+  const sunan = (veri: Uint8Array | 'hata' | 404) => (async () => {
+    if (veri === 'hata') throw new Error('ağ');
+    if (veri === 404) return new Response('yok', { status: 404 });
+    return new Response(veri, { status: 200 });
+  }) as unknown as typeof fetch;
+  const ozet = dosyaOzeti(yeni);
+  assert.equal(ozet.length, 12);
+  assert.equal(await gorselYayindaMi('https://kifobu.com/x.png', ozet, sunan(yeni)), true);
+  assert.equal(await gorselYayindaMi('https://kifobu.com/x.png', ozet, sunan(eski)), false);
+  assert.equal(await gorselYayindaMi('https://kifobu.com/x.png', ozet, sunan(404)), false);
+  assert.equal(await gorselYayindaMi('https://kifobu.com/x.png', ozet, sunan('hata')), false);
 });
