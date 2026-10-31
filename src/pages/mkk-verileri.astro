@@ -17,16 +17,9 @@ const gsyf = mkkVerisi.gsyf;
 const sonKfs = kfs.zaman_serisi[kfs.zaman_serisi.length - 1];
 const sonGsyf = gsyf.zaman_serisi[gsyf.zaman_serisi.length - 1];
 
-// Grafik veri paketi (istemci tarafı interaktif çizim için)
 const grafikPaketi = {
   kfs: kfs.zaman_serisi,
-  gsyf: gsyf.zaman_serisi,
-  degisimler: {
-    kfsFon: kfs.degisim.fonlanan,
-    kfsYat: kfs.degisim.yatirimci,
-    gsyfPort: gsyf.degisim.portfoy,
-    gsyfYat: gsyf.degisim.yatirimci
-  }
+  gsyf: gsyf.zaman_serisi
 };
 ---
 
@@ -52,7 +45,7 @@ const grafikPaketi = {
 
     <!-- 4 Büyük Canlı İndikatör Kartı -->
     <div class="mkk-kartlar-izgara">
-      <div class="mkk-kart" data-metrik="fonlanan">
+      <div class="mkk-kart">
         <span class="mkk-kart-baslik">KFS Toplam Fonlanan Tutar</span>
         <div class="mkk-kart-sayi">₺{sonKfs.fonlanan_milyar_tl.toFixed(2).replace('.', ',')} Mr</div>
         <div class="mkk-kart-degisim pozitif">
@@ -61,7 +54,7 @@ const grafikPaketi = {
         </div>
       </div>
 
-      <div class="mkk-kart" data-metrik="yatirimci">
+      <div class="mkk-kart">
         <span class="mkk-kart-baslik">KFS Yatırımcı Sayısı</span>
         <div class="mkk-kart-sayi">{formatNumber(sonKfs.yatirimci_sayisi)}</div>
         <div class="mkk-kart-degisim pozitif">
@@ -70,13 +63,13 @@ const grafikPaketi = {
         </div>
       </div>
 
-      <div class="mkk-kart" data-metrik="sirket">
+      <div class="mkk-kart">
         <span class="mkk-kart-baslik">Kaydileşen Girişim</span>
         <div class="mkk-kart-sayi">{kfs.kaydilesen_sirket}</div>
         <div class="mkk-kart-not">MKS nezdinde payları kayden ihraç edilen başarılı girişimler</div>
       </div>
 
-      <div class="mkk-kart" data-metrik="gsyf">
+      <div class="mkk-kart">
         <span class="mkk-kart-baslik">GSYF Portföy Büyüklüğü</span>
         <div class="mkk-kart-sayi">₺{sonGsyf.portfoy_milyar_tl} Mr</div>
         <div class="mkk-kart-degisim pozitif">
@@ -88,13 +81,15 @@ const grafikPaketi = {
 
     <!-- FİNFOLİS KALİTESİNDE İNTERAKTİF GRAFİK BİLEŞENİ -->
     <section class="finfolis-grafik-karti" data-mkk-grafik>
+      <!-- CSP Güvenli Veri Kapsayıcısı -->
+      <script type="application/json" class="fg-veri-json" set:html={JSON.stringify(grafikPaketi)} />
+
       <header class="fg-ust">
         <div class="fg-baslik-blok">
           <h2 class="fg-baslik">Türkiye Kitle Fonlaması &amp; Girişim Sermayesi Zaman Serisi</h2>
           <p class="fg-aciklama">13 Aylık resmi MKK bülten kayıtları; imleci grafik üzerinde gezdirerek değerleri inceleyebilirsiniz.</p>
         </div>
 
-        <!-- Seri Seçici Düğmeler (KFS Fonlama, KFS Yatırımcı, GSYF Portföy) -->
         <div class="fg-kontroller">
           <div class="fg-mod-secici" role="tablist" aria-label="Veri Serisi">
             <button type="button" class="fg-sekme aktif" data-seri="kfs-fon" aria-selected="true">
@@ -126,8 +121,8 @@ const grafikPaketi = {
         <svg class="fg-svg" viewBox="0 0 840 320" preserveAspectRatio="none" data-svg>
           <defs>
             <linearGradient id="maviDegrade" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="var(--renk-vurgu, #2563eb)" stop-opacity="0.28" />
-              <stop offset="100%" stop-color="var(--renk-vurgu, #2563eb)" stop-opacity="0.0" />
+              <stop offset="0%" stop-color="#2563eb" stop-opacity="0.28" />
+              <stop offset="100%" stop-color="#2563eb" stop-opacity="0.0" />
             </linearGradient>
             <linearGradient id="yesilDegrade" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stop-color="#10b981" stop-opacity="0.28" />
@@ -144,16 +139,16 @@ const grafikPaketi = {
 
           <!-- Alan ve Çizgi -->
           <path class="fg-alan" data-alan fill="url(#maviDegrade)" />
-          <path class="fg-cizgi" data-cizgi fill="none" stroke="var(--renk-vurgu, #2563eb)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+          <path class="fg-cizgi" data-cizgi fill="none" stroke="#2563eb" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
 
           <!-- Dikey İmleç Çizgisi -->
           <line class="fg-imlec-cizgi" data-imlec-cizgi x1="0" y1="30" x2="0" y2="270" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3,3" opacity="0" />
 
           <!-- Vurgu Noktası -->
-          <circle class="fg-vurgu-nokta" data-vurgu-nokta cx="0" cy="0" r="6" fill="#ffffff" stroke="var(--renk-vurgu, #2563eb)" stroke-width="3" opacity="0" />
+          <circle class="fg-vurgu-nokta" data-vurgu-nokta cx="0" cy="0" r="6" fill="#ffffff" stroke="#2563eb" stroke-width="3" opacity="0" />
 
           <!-- Etkileşim Katmanı -->
-          <rect class="fg-hitbox" x="0" y="0" width="840" height="320" fill="transparent" style="cursor: crosshair;" />
+          <rect class="fg-hitbox" x="0" y="0" width="840" height="320" fill="transparent" />
         </svg>
       </div>
 
@@ -212,228 +207,242 @@ const grafikPaketi = {
       </p>
     </section>
   </article>
-
-  <!-- İstemci Tarafı Etkileşim Scripti (Finfolis Standartlarında İmleç ve Çizim) -->
-  <script is:inline define:vars={{ veri: grafikPaketi }}>
-    (function initMkkGrafik() {
-      const kok = document.querySelector('[data-mkk-grafik]');
-      if (!kok) return;
-
-      const svg = kok.querySelector('[data-svg]');
-      const alan = kok.querySelector('[data-alan]');
-      const cizgi = kok.querySelector('[data-cizgi]');
-      const izgara = kok.querySelector('[data-izgara]');
-      const imlecCizgi = kok.querySelector('[data-imlec-cizgi]');
-      const vurguNokta = kok.querySelector('[data-vurgu-nokta]');
-      const ipucu = kok.querySelector('[data-ipucu]');
-      const ipucuTarih = kok.querySelector('[data-ipucu-tarih]');
-      const ipucuDeger = kok.querySelector('[data-ipucu-deger]');
-      const ipucuEk = kok.querySelector('[data-ipucu-ek]');
-      const hitbox = kok.querySelector('.fg-hitbox');
-
-      const W = 840;
-      const H = 320;
-      const P = { ust: 30, alt: 50, sol: 70, sag: 30 };
-      const cizimW = W - P.sol - P.sag;
-      const cizimH = H - P.ust - P.alt;
-
-      let aktifSeri = 'kfs-fon'; // 'kfs-fon' | 'kfs-yat' | 'gsyf-port'
-      let aktifAralik = 13; // 6 | 13
-      let seriler = [];
-
-      function seriyiHazirla() {
-        const kfsData = veri.kfs;
-        const gsyfData = veri.gsyf;
-        const baslangic = aktifAralik === 6 ? Math.max(0, kfsData.length - 6) : 0;
-
-        if (aktifSeri === 'kfs-fon') {
-          seriler = kfsData.slice(baslangic).map(d => ({
-            tarih: d.tarih,
-            deger: d.fonlanan_milyar_tl,
-            etiket: `₺${d.fonlanan_milyar_tl.toFixed(2).replace('.', ',')} Milyar`,
-            ek: 'MKK KFS Toplam Fon',
-            renk: 'var(--renk-vurgu, #2563eb)',
-            degrade: 'url(#maviDegrade)'
-          }));
-        } else if (aktifSeri === 'kfs-yat') {
-          seriler = kfsData.slice(baslangic).map(d => ({
-            tarih: d.tarih,
-            deger: d.yatirimci_sayisi,
-            etiket: `${d.yatirimci_sayisi.toLocaleString('tr-TR')} Yatırımcı`,
-            ek: 'Kitle Fonlaması Yatırımcısı',
-            renk: '#10b981',
-            degrade: 'url(#yesilDegrade)'
-          }));
-        } else if (aktifSeri === 'gsyf-port') {
-          seriler = gsyfData.slice(baslangic).map(d => ({
-            tarih: d.tarih,
-            deger: d.portfoy_milyar_tl,
-            etiket: `₺${d.portfoy_milyar_tl} Milyar`,
-            ek: 'Girişim Sermayesi Yatırım Fonları',
-            renk: '#d97706',
-            degrade: 'url(#toprakDegrade)'
-          }));
-        }
-      }
-
-      function ciz() {
-        seriyiHazirla();
-        if (seriler.length === 0) return;
-
-        const degerler = seriler.map(s => s.deger);
-        let min = Math.min(...degerler);
-        let max = Math.max(...degerler);
-        
-        // Yumuşak sınır payı
-        const span = max - min || 1;
-        const pad = span * 0.12;
-        min = Math.max(0, min - pad);
-        max = max + pad;
-
-        const getX = (i) => P.sol + (i / (seriler.length - 1)) * cizimW;
-        const getY = (val) => P.ust + (1 - (val - min) / (max - min)) * cizimH;
-
-        // Izgara ve eksen çizgileri
-        let izgaraHtml = '';
-        const adimSayisi = 4;
-        for (let i = 0; i <= adimSayisi; i++) {
-          const y = P.ust + (i / adimSayisi) * cizimH;
-          const val = max - (i / adimSayisi) * (max - min);
-          let valStr = '';
-          if (aktifSeri === 'kfs-fon') valStr = `₺${val.toFixed(2).replace('.', ',')} Mr`;
-          else if (aktifSeri === 'kfs-yat') valStr = Math.round(val).toLocaleString('tr-TR');
-          else if (aktifSeri === 'gsyf-port') valStr = `₺${Math.round(val)} Mr`;
-
-          izgaraHtml += `
-            <line x1="${P.sol}" y1="${y}" x2="${W - P.sag}" y2="${y}" stroke="currentColor" stroke-opacity="0.08" stroke-dasharray="3,3" />
-            <text x="${P.sol - 12}" y="${y + 4}" text-anchor="end" font-size="11" fill="currentColor" fill-opacity="0.55" font-family="monospace">${valStr}</text>
-          `;
-        }
-
-        // X Eksen Tarihleri
-        seriler.forEach((s, idx) => {
-          const x = getX(idx);
-          const ayAd = s.tarih.slice(3, 10);
-          izgaraHtml += `
-            <line x1="${x}" y1="${H - P.alt}" x2="${x}" y2="${H - P.alt + 6}" stroke="currentColor" stroke-opacity="0.25" />
-            <text x="${x}" y="${H - P.alt + 22}" text-anchor="middle" font-size="10.5" fill="currentColor" fill-opacity="0.65">${ayAd}</text>
-          `;
-        });
-        izgara.innerHTML = izgaraHtml;
-
-        // Yol çizimi
-        let yolD = '';
-        seriler.forEach((s, idx) => {
-          const x = getX(idx);
-          const y = getY(s.deger);
-          yolD += `${idx === 0 ? 'M' : 'L'} ${x.toFixed(1)} ${y.toFixed(1)} `;
-        });
-
-        cizgi.setAttribute('d', yolD);
-        cizgi.setAttribute('stroke', seriler[0].renk);
-
-        const alanD = `${yolD} L ${getX(seriler.length - 1).toFixed(1)} ${H - P.alt} L ${getX(0).toFixed(1)} ${H - P.alt} Z`;
-        alan.setAttribute('d', alanD);
-        alan.setAttribute('fill', seriler[0].degrade);
-
-        vurguNokta.setAttribute('stroke', seriler[0].renk);
-      }
-
-      // Etkileşim: Fare / Dokunma
-      function fareHareketi(e) {
-        const rect = svg.getBoundingClientRect();
-        const clientX = e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
-        const relX = ((clientX - rect.left) / rect.width) * W;
-
-        if (relX < P.sol || relX > W - P.sag) {
-          imlecCizgi.setAttribute('opacity', '0');
-          vurguNokta.setAttribute('opacity', '0');
-          ipucu.hidden = true;
-          return;
-        }
-
-        // En yakın noktayı bul
-        const noktaAralik = cizimW / (seriler.length - 1);
-        let enYakinIdx = Math.round((relX - P.sol) / noktaAralik);
-        enYakinIdx = Math.max(0, Math.min(seriler.length - 1, enYakinIdx));
-
-        const s = seriler[enYakinIdx];
-        const degerler = seriler.map(item => item.deger);
-        let min = Math.min(...degerler);
-        let max = Math.max(...degerler);
-        const span = max - min || 1;
-        const pad = span * 0.12;
-        min = Math.max(0, min - pad);
-        max = max + pad;
-
-        const x = P.sol + (enYakinIdx / (seriler.length - 1)) * cizimW;
-        const y = P.ust + (1 - (s.deger - min) / (max - min)) * cizimH;
-
-        // Çizgi ve Nokta güncelle
-        imlecCizgi.setAttribute('x1', x);
-        imlecCizgi.setAttribute('x2', x);
-        imlecCizgi.setAttribute('opacity', '0.7');
-
-        vurguNokta.setAttribute('cx', x);
-        vurguNokta.setAttribute('cy', y);
-        vurguNokta.setAttribute('opacity', '1');
-
-        // Tooltip güncelle
-        ipucuTarih.textContent = s.tarih;
-        ipucuDeger.textContent = s.etiket;
-        ipucuEk.textContent = s.ek;
-        ipucu.hidden = false;
-
-        // Tooltip konumlandırma
-        const screenX = (x / W) * rect.width;
-        const screenY = (y / H) * rect.height;
-        ipucu.style.transform = `translate(${screenX}px, ${screenY}px)`;
-      }
-
-      hitbox.addEventListener('mousemove', fareHareketi);
-      hitbox.addEventListener('mouseleave', () => {
-        imlecCizgi.setAttribute('opacity', '0');
-        vurguNokta.setAttribute('opacity', '0');
-        ipucu.hidden = true;
-      });
-
-      // Dokunmatik cihazlar
-      hitbox.addEventListener('touchmove', fareHareketi, { passive: true });
-      hitbox.addEventListener('touchend', () => {
-        imlecCizgi.setAttribute('opacity', '0');
-        vurguNokta.setAttribute('opacity', '0');
-        ipucu.hidden = true;
-      });
-
-      // Mod Seçici Düğmeler
-      kok.querySelectorAll('.fg-sekme').forEach(btn => {
-        btn.addEventListener('click', () => {
-          kok.querySelectorAll('.fg-sekme').forEach(b => {
-            b.classList.remove('aktif');
-            b.setAttribute('aria-selected', 'false');
-          });
-          btn.classList.add('aktif');
-          btn.setAttribute('aria-selected', 'true');
-          aktifSeri = btn.getAttribute('data-seri');
-          ciz();
-        });
-      });
-
-      // Aralık Seçici Düğmeler
-      kok.querySelectorAll('.fg-aralik-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          kok.querySelectorAll('.fg-aralik-btn').forEach(b => b.classList.remove('aktif'));
-          btn.classList.add('aktif');
-          aktifAralik = parseInt(btn.getAttribute('data-aralik'), 10);
-          ciz();
-        });
-      });
-
-      // İlk çizim
-      ciz();
-    })();
-  </script>
 </Base>
+
+<!-- Astro Harici JS Çıktısı (CSP script-src 'self' uyumlu) -->
+<script>
+  interface KfsItem {
+    tarih: string;
+    fonlanan_milyar_tl: number;
+    yatirimci_sayisi: number;
+  }
+  interface GsyfItem {
+    tarih: string;
+    portfoy_milyar_tl: number;
+    yatirimci_sayisi: number;
+  }
+  interface GrafikPaketi {
+    kfs: KfsItem[];
+    gsyf: GsyfItem[];
+  }
+
+  interface NoktaVeri {
+    tarih: string;
+    deger: number;
+    etiket: string;
+    ek: string;
+    renk: string;
+    degrade: string;
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-mkk-grafik]').forEach((kok) => {
+    const jsonEl = kok.querySelector<HTMLScriptElement>('.fg-veri-json');
+    if (!jsonEl || !jsonEl.textContent) return;
+    const veri: GrafikPaketi = JSON.parse(jsonEl.textContent);
+
+    const svg = kok.querySelector<SVGSVGElement>('[data-svg]');
+    const alan = kok.querySelector<SVGPathElement>('[data-alan]');
+    const cizgi = kok.querySelector<SVGPathElement>('[data-cizgi]');
+    const izgara = kok.querySelector<SVGGElement>('[data-izgara]');
+    const imlecCizgi = kok.querySelector<SVGLineElement>('[data-imlec-cizgi]');
+    const vurguNokta = kok.querySelector<SVGCircleElement>('[data-vurgu-nokta]');
+    const ipucu = kok.querySelector<HTMLElement>('[data-ipucu]');
+    const ipucuTarih = kok.querySelector<HTMLElement>('[data-ipucu-tarih]');
+    const ipucuDeger = kok.querySelector<HTMLElement>('[data-ipucu-deger]');
+    const ipucuEk = kok.querySelector<HTMLElement>('[data-ipucu-ek]');
+    const hitbox = kok.querySelector<SVGRectElement>('.fg-hitbox');
+
+    if (!svg || !alan || !cizgi || !izgara || !imlecCizgi || !vurguNokta || !ipucu || !hitbox) return;
+
+    const W = 840;
+    const H = 320;
+    const P = { ust: 30, alt: 50, sol: 70, sag: 30 };
+    const cizimW = W - P.sol - P.sag;
+    const cizimH = H - P.ust - P.alt;
+
+    let aktifSeri = 'kfs-fon';
+    let aktifAralik = 13;
+    let seriler: NoktaVeri[] = [];
+
+    function seriyiHazirla() {
+      const kfsData = veri.kfs;
+      const gsyfData = veri.gsyf;
+      const baslangic = aktifAralik === 6 ? Math.max(0, kfsData.length - 6) : 0;
+
+      if (aktifSeri === 'kfs-fon') {
+        seriler = kfsData.slice(baslangic).map((d) => ({
+          tarih: d.tarih,
+          deger: d.fonlanan_milyar_tl,
+          etiket: `₺${d.fonlanan_milyar_tl.toFixed(2).replace('.', ',')} Milyar`,
+          ek: 'MKK KFS Toplam Fon',
+          renk: '#2563eb',
+          degrade: 'url(#maviDegrade)',
+        }));
+      } else if (aktifSeri === 'kfs-yat') {
+        seriler = kfsData.slice(baslangic).map((d) => ({
+          tarih: d.tarih,
+          deger: d.yatirimci_sayisi,
+          etiket: `${d.yatirimci_sayisi.toLocaleString('tr-TR')} Yatırımcı`,
+          ek: 'Kitle Fonlaması Yatırımcısı',
+          renk: '#10b981',
+          degrade: 'url(#yesilDegrade)',
+        }));
+      } else if (aktifSeri === 'gsyf-port') {
+        seriler = gsyfData.slice(baslangic).map((d) => ({
+          tarih: d.tarih,
+          deger: d.portfoy_milyar_tl,
+          etiket: `₺${d.portfoy_milyar_tl} Milyar`,
+          ek: 'Girişim Sermayesi Yatırım Fonları',
+          renk: '#d97706',
+          degrade: 'url(#toprakDegrade)',
+        }));
+      }
+    }
+
+    function ciz() {
+      seriyiHazirla();
+      if (seriler.length === 0) return;
+
+      const degerler = seriler.map((s) => s.deger);
+      let min = Math.min(...degerler);
+      let max = Math.max(...degerler);
+
+      const span = max - min || 1;
+      const pad = span * 0.12;
+      min = Math.max(0, min - pad);
+      max = max + pad;
+
+      const getX = (i: number) => P.sol + (i / (seriler.length - 1)) * cizimW;
+      const getY = (val: number) => P.ust + (1 - (val - min) / (max - min)) * cizimH;
+
+      let izgaraHtml = '';
+      const adimSayisi = 4;
+      for (let i = 0; i <= adimSayisi; i++) {
+        const y = P.ust + (i / adimSayisi) * cizimH;
+        const val = max - (i / adimSayisi) * (max - min);
+        let valStr = '';
+        if (aktifSeri === 'kfs-fon') valStr = `₺${val.toFixed(2).replace('.', ',')} Mr`;
+        else if (aktifSeri === 'kfs-yat') valStr = Math.round(val).toLocaleString('tr-TR');
+        else if (aktifSeri === 'gsyf-port') valStr = `₺${Math.round(val)} Mr`;
+
+        izgaraHtml += `
+          <line x1="${P.sol}" y1="${y}" x2="${W - P.sag}" y2="${y}" stroke="currentColor" stroke-opacity="0.08" stroke-dasharray="3,3" />
+          <text x="${P.sol - 12}" y="${y + 4}" text-anchor="end" font-size="11" fill="currentColor" fill-opacity="0.55" font-family="monospace">${valStr}</text>
+        `;
+      }
+
+      seriler.forEach((s, idx) => {
+        const x = getX(idx);
+        const ayAd = s.tarih.slice(3, 10);
+        izgaraHtml += `
+          <line x1="${x}" y1="${H - P.alt}" x2="${x}" y2="${H - P.alt + 6}" stroke="currentColor" stroke-opacity="0.25" />
+          <text x="${x}" y="${H - P.alt + 22}" text-anchor="middle" font-size="10.5" fill="currentColor" fill-opacity="0.65">${ayAd}</text>
+        `;
+      });
+      izgara.innerHTML = izgaraHtml;
+
+      let yolD = '';
+      seriler.forEach((s, idx) => {
+        const x = getX(idx);
+        const y = getY(s.deger);
+        yolD += `${idx === 0 ? 'M' : 'L'} ${x.toFixed(1)} ${y.toFixed(1)} `;
+      });
+
+      cizgi.setAttribute('d', yolD);
+      cizgi.setAttribute('stroke', seriler[0].renk);
+
+      const alanD = `${yolD} L ${getX(seriler.length - 1).toFixed(1)} ${H - P.alt} L ${getX(0).toFixed(1)} ${H - P.alt} Z`;
+      alan.setAttribute('d', alanD);
+      alan.setAttribute('fill', seriler[0].degrade);
+
+      vurguNokta.setAttribute('stroke', seriler[0].renk);
+    }
+
+    function fareHareketi(e: MouseEvent | TouchEvent) {
+      const rect = svg.getBoundingClientRect();
+      const clientX = 'clientX' in e ? e.clientX : e.touches?.[0]?.clientX ?? 0;
+      const relX = ((clientX - rect.left) / rect.width) * W;
+
+      if (relX < P.sol || relX > W - P.sag) {
+        imlecCizgi.setAttribute('opacity', '0');
+        vurguNokta.setAttribute('opacity', '0');
+        ipucu.hidden = true;
+        return;
+      }
+
+      const noktaAralik = cizimW / (seriler.length - 1);
+      let enYakinIdx = Math.round((relX - P.sol) / noktaAralik);
+      enYakinIdx = Math.max(0, Math.min(seriler.length - 1, enYakinIdx));
+
+      const s = seriler[enYakinIdx];
+      const degerler = seriler.map((item) => item.deger);
+      let min = Math.min(...degerler);
+      let max = Math.max(...degerler);
+      const span = max - min || 1;
+      const pad = span * 0.12;
+      min = Math.max(0, min - pad);
+      max = max + pad;
+
+      const x = P.sol + (enYakinIdx / (seriler.length - 1)) * cizimW;
+      const y = P.ust + (1 - (s.deger - min) / (max - min)) * cizimH;
+
+      imlecCizgi.setAttribute('x1', String(x));
+      imlecCizgi.setAttribute('x2', String(x));
+      imlecCizgi.setAttribute('opacity', '0.7');
+
+      vurguNokta.setAttribute('cx', String(x));
+      vurguNokta.setAttribute('cy', String(y));
+      vurguNokta.setAttribute('opacity', '1');
+
+      if (ipucuTarih) ipucuTarih.textContent = s.tarih;
+      if (ipucuDeger) ipucuDeger.textContent = s.etiket;
+      if (ipucuEk) ipucuEk.textContent = s.ek;
+      ipucu.hidden = false;
+
+      const screenX = (x / W) * rect.width;
+      const screenY = (y / H) * rect.height;
+      ipucu.style.transform = `translate(${screenX}px, ${screenY}px)`;
+    }
+
+    hitbox.addEventListener('mousemove', fareHareketi);
+    hitbox.addEventListener('mouseleave', () => {
+      imlecCizgi.setAttribute('opacity', '0');
+      vurguNokta.setAttribute('opacity', '0');
+      ipucu.hidden = true;
+    });
+
+    hitbox.addEventListener('touchmove', fareHareketi, { passive: true });
+    hitbox.addEventListener('touchend', () => {
+      imlecCizgi.setAttribute('opacity', '0');
+      vurguNokta.setAttribute('opacity', '0');
+      ipucu.hidden = true;
+    });
+
+    kok.querySelectorAll<HTMLButtonElement>('.fg-sekme').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        kok.querySelectorAll('.fg-sekme').forEach((b) => {
+          b.classList.remove('aktif');
+          b.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.add('aktif');
+        btn.setAttribute('aria-selected', 'true');
+        aktifSeri = btn.getAttribute('data-seri') || 'kfs-fon';
+        ciz();
+      });
+    });
+
+    kok.querySelectorAll<HTMLButtonElement>('.fg-aralik-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        kok.querySelectorAll('.fg-aralik-btn').forEach((b) => b.classList.remove('aktif'));
+        btn.classList.add('aktif');
+        aktifAralik = parseInt(btn.getAttribute('data-aralik') || '13', 10);
+        ciz();
+      });
+    });
+
+    ciz();
+  });
+</script>
 
 <style>
   .mkk-sayfa {
@@ -598,7 +607,7 @@ const grafikPaketi = {
     height: 8px;
     border-radius: 50%;
   }
-  .renk-nokta.mavi { background: var(--renk-vurgu, #2563eb); }
+  .renk-nokta.mavi { background: #2563eb; }
   .renk-nokta.yesil { background: #10b981; }
   .renk-nokta.toprak { background: #d97706; }
 
@@ -636,6 +645,9 @@ const grafikPaketi = {
     height: 320px;
     display: block;
     overflow: visible;
+  }
+  .fg-hitbox {
+    cursor: crosshair;
   }
   .fg-ipucu {
     position: absolute;
