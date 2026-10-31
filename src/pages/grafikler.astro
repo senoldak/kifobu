@@ -2,11 +2,13 @@
 import Base from '../layouts/Base.astro';
 import Yol from '../components/Yol.astro';
 import KifobuChartCard from '../components/kartlar/KifobuChartCard.astro';
+import HedefCubugu from '../components/HedefCubugu.astro';
+import SentezBlok from '../components/SentezBlok.astro';
 import { KİFOBU_GRAFİKLER } from '../lib/kifobu-charts-data';
 
-const baslik = 'Kitle Fonlama ve Girişim Veri Kataloğu — 62 Grafik';
+const baslik = 'Kitle Fonlama ve Girişim Veri Kataloğu — 62 Grafik & Temel Sistem';
 const description =
-  'Türkiye kitle fonlama ekosistemi, paya ve borca dayalı fonlama, girişim sermayesi ve SPK lisanslı platform verilerini içeren 62 interaktif grafik kartı.';
+  'Türkiye kitle fonlama ekosistemi, paya ve borca dayalı fonlama, hedef çubukları, editoryal sentez blokları ve 62 interaktif grafik kartı.';
 
 const adimlar = [
   { ad: 'Anasayfa', url: '/' },
@@ -37,68 +39,204 @@ const normalle = (str: string) =>
 <Base title={baslik} description={description}>
   <div class="katalog-kapsayici">
     <Yol adimlar={adimlar} />
+
     <header class="sayfa-baslik-alani">
       <div class="ust-etiket">
         <span class="tohum-simge">🌻</span>
-        <span>ULAŞILABİLİR VE ANLAŞILIR VERİ</span>
+        <span>ULAŞILABİLİR VE ANLAŞILIR VERİ &middot; KİFOBU SİSTEMİ</span>
       </div>
       <h1>Kitle Fonlama Veri Kataloğu</h1>
       <p class="sayfa-ozet">
-        Türkiye kitle fonlama ve girişim ekosisteminin dağınık verilerini anlaşılır bilgiye dönüştüren 62 interaktif grafik kartı.
+        Kifobu'nun editoryal kimliği (toprak kâğıt, zeytin mürekkep, ayçiçeği sarısı vurgu, kavisli çizgiler) ile üretilen
+        hedef çubukları, sentez blokları ve 62 interaktif gösterge kartı.
       </p>
     </header>
 
-    <!-- Filtre Çubuğu -->
-    <div class="filtre-paneli">
-      <div class="kategori-butonlari" role="tablist" aria-label="Kategori filtresi">
+    <!-- Hızlı Atlama -->
+    <nav class="hizli-atlama" aria-label="Bölüm seçici">
+      <span class="atlama-etiket">Bölümler:</span>
+      <a href="#temel-bilesenler" class="atlama-link">1. Yerel Veri Bileşenleri (Hedef Çubuğu &amp; Sentez)</a>
+      <a href="#kifobu-matris" class="atlama-link">2. Editoryal Seçim Matrisi</a>
+      <a href="#kart-katalogu" class="atlama-link">3. 62 Gösterge Kartı Koleksiyonu</a>
+    </nav>
+
+    <!-- BÖLÜM 1: TEMEL BİLEŞENLER -->
+    <section id="temel-bilesenler" class="temel-seksiyon">
+      <div class="seksiyon-baslik-blok">
+        <span class="seksiyon-no">01</span>
+        <div>
+          <h2 class="seksiyon-ana-baslik">Kifobu Yerel Veri ve Kampanya Bileşenleri</h2>
+          <p class="seksiyon-alt-metin">Girişim sayfalarında, günlük bültende ve kampanya dizininde kullanılan temel gösterge araçları.</p>
+        </div>
+      </div>
+
+      <!-- Örnek 1: Hedef Çubuğu -->
+      <article class="bilesen-vitrin-karti">
+        <div class="bilesen-karti-ust">
+          <div>
+            <span class="bilesen-tur-tag">KAMPANYA İLERLEMESİ &middot; HEDEFCUBUGU.ASTRO</span>
+            <h3 class="bilesen-tittel">Fonlama Hedef Çubuğu (Hedef %100 Çizgisi)</h3>
+            <p class="bilesen-aciklama">
+              BRAND.md §9 standardına göre, siyah hedef çizgisi her zaman %100 noktasında sabit durur. Hedefi aşan fonlama açık yeşille taşar.
+              Girişimin gerçek başarı oranını gözü yormadan tek bakışta gösterir.
+            </p>
+          </div>
+          <div class="kod-etiket"><code>&lt;HedefCubugu /&gt;</code></div>
+        </div>
+        <div class="bilesen-onizleme">
+          <div class="hedef-ornek-kutu">
+            <div class="hedef-satir">
+              <span>%65 Fonlanan Kampanya (Hedef Altı)</span>
+              <strong>%65</strong>
+            </div>
+            <HedefCubugu yuzde={65} />
+          </div>
+          <div class="hedef-ornek-kutu">
+            <div class="hedef-satir">
+              <span>%135 Fonlanan Kampanya (Aşırı Fonlama)</span>
+              <strong>%135 (Hedef Aşıldı)</strong>
+            </div>
+            <HedefCubugu yuzde={135} />
+          </div>
+        </div>
+      </article>
+
+      <!-- Örnek 2: Sentez Bloğu -->
+      <article class="bilesen-vitrin-karti">
+        <div class="bilesen-karti-ust">
+          <div>
+            <span class="bilesen-tur-tag">EDİTORYAL PERSPEKTİF &middot; SENTEZBLOK.ASTRO</span>
+            <h3 class="bilesen-tittel">Kampanya ve Ekosistem Sentez Bloğu</h3>
+            <p class="bilesen-aciklama">
+              "Neden Önemli?" başlığı altında girişimin ekosistemdeki yerini ve fonlama gerekçesini 3 kritik maddede özetleyen editoryal levha.
+            </p>
+          </div>
+          <div class="kod-etiket"><code>&lt;SentezBlok /&gt;</code></div>
+        </div>
+        <div class="bilesen-onizleme">
+          <SentezBlok
+            whyMatters="Paya dayalı kitle fonlama, erken aşama teknoloji girişimlerinin halka açık sermayeye ilk erişim kapısıdır."
+            keyPoints={[
+              "SPK lisanslı platformlar üzerinden toplanan fonlar MKK ve Takasbank güvencesinde saklanır.",
+              "Yatırımcılar, e-Devlet ve MKK entegrasyonuyla doğrudan şirketin pay defterine hissedar olarak kaydedilir.",
+              "Bedelsiz pay teşvikleri, erken yatırımcıların risk-getiri dengesini destekler."
+            ]}
+          />
+        </div>
+      </article>
+    </section>
+
+    <!-- BÖLÜM 2: SEÇİM MATRİSİ -->
+    <section id="kifobu-matris" class="matris-seksiyon">
+      <div class="seksiyon-baslik-blok">
+        <span class="seksiyon-no">02</span>
+        <div>
+          <h2 class="seksiyon-ana-baslik">Editoryal Seçim Matrisi</h2>
+          <p class="seksiyon-alt-metin">Kifobu içeriklerinde hangi veri ve grafik formatının kullanılması gerektiğine dair rehber.</p>
+        </div>
+      </div>
+
+      <div class="tablo-omslag">
+        <table class="matris-tablo">
+          <thead>
+            <tr>
+              <th>Bileşen</th>
+              <th>Şablon Kodu</th>
+              <th>Kullanım Yeri</th>
+              <th>Veri Özelliği</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Hedef İlerleme Çubuğu</strong></td>
+              <td><code>&lt;HedefCubugu /&gt;</code></td>
+              <td>Kampanya kartları, bülten satırları, detay sayfaları</td>
+              <td>Sabit %100 çizgisi, aşırı fonlamada açık yeşil şerit</td>
+            </tr>
+            <tr>
+              <td><strong>Sentez Bloğu</strong></td>
+              <td><code>&lt;SentezBlok /&gt;</code></td>
+              <td>Özel analizler, girişim profilleri, haftalık bülten</td>
+              <td>"Neden Önemli?" ve 3 maddelik risk/fırsat özeti</td>
+            </tr>
+            <tr>
+              <td><strong>Gösterge Kartları (62 adet)</strong></td>
+              <td><code>&lt;KifobuChartCard /&gt;</code></td>
+              <td>Veri kataloğu, ekosistem raporları, pazar analizleri</td>
+              <td>Saf SVG: Ayçiçeği sarısı tohum göstergeli 62 mikro kart</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- BÖLÜM 3: 62 KARTLIK KATALOG -->
+    <section id="kart-katalogu" class="katalog-seksiyon">
+      <div class="seksiyon-baslik-blok">
+        <span class="seksiyon-no">03</span>
+        <div>
+          <h2 class="seksiyon-ana-baslik">62 Gösterge Kartı Koleksiyonu</h2>
+          <p class="seksiyon-alt-metin">SPK platformları, girişim sermayesi ve yatırımcı dağılımına dair interaktif mikro kartlar.</p>
+        </div>
+      </div>
+
+      <!-- Filtre Çubuğu -->
+      <div class="filtre-paneli">
+        <div class="kategori-butonlari" role="tablist" aria-label="Kategori filtresi">
+          {
+            kategoriler.map((kat, i) => (
+              <button
+                type="button"
+                class={`kategori-sekme ${i === 0 ? 'aktif' : ''}`}
+                role="tab"
+                aria-selected={i === 0 ? 'true' : 'false'}
+                data-kategori={kat}
+              >
+                {kat}
+              </button>
+            ))
+          }
+        </div>
+
+        <div class="arama-kutusu-sarmal">
+          <label for="grafik-arama" class="sr-only">Grafik Ara</label>
+          <input
+            type="search"
+            id="grafik-arama"
+            placeholder="62 grafik veya metrik içinde ara..."
+            class="arama-girdisi"
+            autocomplete="off"
+          />
+        </div>
+      </div>
+
+      <!-- Sonuç Sayacı -->
+      <div class="sonuc-bilgisi">
+        <span>Toplam <strong>{KİFOBU_GRAFİKLER.length}</strong> gösterge kartı</span>
+        <span id="gorunen-sayac" class="gorunen-adet">62 gösteriliyor</span>
+      </div>
+
+      <!-- 62 Kartlık Izgara -->
+      <div class="grafikler-izgara" id="grafikler-izgara">
         {
-          kategoriler.map((kat, i) => (
-            <button
-              type="button"
-              class={`kategori-sekme ${i === 0 ? 'aktif' : ''}`}
-              role="tab"
-              aria-selected={i === 0 ? 'true' : 'false'}
-              data-kategori={kat}
-            >
-              {kat}
-            </button>
-          ))
+          KİFOBU_GRAFİKLER.map((grafik) => {
+            const aramaMetni = normalle(
+              `${grafik.baslik} ${grafik.aciklama} ${grafik.metrik} ${grafik.kategori} ${grafik.kaynak} ${grafik.id}`
+            );
+            return (
+              <div
+                class="grafik-karti-sarmal"
+                data-kategori={grafik.kategori}
+                data-tur={grafik.tur}
+                data-arama={aramaMetni}
+              >
+                <KifobuChartCard grafik={grafik} />
+              </div>
+            );
+          })
         }
       </div>
-
-      <div class="arama-kutusu-sarmal">
-        <label for="grafik-arama" class="sr-only">Grafik Ara</label>
-        <input
-          type="search"
-          id="grafik-arama"
-          placeholder="Grafik, metrik veya kaynak ara..."
-          class="arama-girdisi"
-          autocomplete="off"
-        />
-      </div>
-    </div>
-
-    <!-- Grafik Sayacı -->
-    <div class="sonuc-bilgisi">
-      <span>Toplam <strong>{KİFOBU_GRAFİKLER.length}</strong> grafik göstergesi</span>
-      <span id="gorunen-sayac" class="gorunen-adet">62 gösteriliyor</span>
-    </div>
-
-    <!-- 62 Kartlık Izgara -->
-    <div class="grafikler-izgara" id="grafikler-izgara">
-      {
-        KİFOBU_GRAFİKLER.map((grafik) => (
-          <div
-            class="grafik-karti-sarmal"
-            data-kategori={grafik.kategori}
-            data-tur={grafik.tur}
-            data-arama={normalle(`${grafik.baslik} ${grafik.aciklama} ${grafik.metrik} ${grafik.id} ${grafik.kategori} ${grafik.kaynak}`)}
-          >
-            <KifobuChartCard grafik={grafik} />
-          </div>
-        ))
-      }
-    </div>
+    </section>
   </div>
 </Base>
 
@@ -125,12 +263,12 @@ const normalle = (str: string) =>
     let sayac = 0;
     kartlar.forEach((kart) => {
       const kat = kart.dataset.kategori ?? '';
-      const veriArama = kart.dataset.arama ?? '';
+      const arama = kart.dataset.arama ?? '';
 
-      const katUyar = aktifKategori === 'TÜMÜ' || kat === aktifKategori;
-      const aramaUyar = !aramaMetni || veriArama.includes(aramaMetni);
+      const kategoriUyumu = aktifKategori === 'TÜMÜ' || kat === aktifKategori;
+      const aramaUyumu = !aramaMetni || arama.includes(aramaMetni);
 
-      if (katUyar && aramaUyar) {
+      if (kategoriUyumu && aramaUyumu) {
         kart.style.display = '';
         sayac++;
       } else {
@@ -166,28 +304,26 @@ const normalle = (str: string) =>
 
 <style>
   .katalog-kapsayici {
-    max-width: 1280px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 32px 16px 64px 16px;
-    font-family: var(--sans, 'Schibsted Grotesk', system-ui, sans-serif);
-    color: var(--ink, #141a17);
+    padding: 24px 16px 64px;
+    font-family: var(--font-metin, system-ui, sans-serif);
   }
 
   .sayfa-baslik-alani {
-    margin-bottom: 28px;
+    margin-bottom: 24px;
     padding-bottom: 20px;
-    border-bottom: 2px solid var(--ink, #141a17);
+    border-bottom: 2px solid var(--kenar, #141a17);
   }
 
   .ust-etiket {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     font-size: 0.75rem;
     font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink, #141a17);
+    letter-spacing: 0.08em;
+    color: var(--zeytin, #234d31);
     margin-bottom: 8px;
   }
 
@@ -195,112 +331,289 @@ const normalle = (str: string) =>
     font-size: 1rem;
   }
 
-  h1 {
-    font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  .sayfa-baslik-alani h1 {
+    font-size: 2.2rem;
     font-weight: 700;
-    margin: 0 0 10px 0;
-    letter-spacing: -0.02em;
-    color: var(--ink, #141a17);
+    color: var(--murekkep, #141a17);
+    margin: 0 0 8px 0;
   }
 
   .sayfa-ozet {
     font-size: 1.05rem;
-    color: var(--gri, #5d645f);
-    max-width: 720px;
+    color: var(--soluk, #475249);
+    max-width: 820px;
+    line-height: 1.6;
     margin: 0;
+  }
+
+  /* Hızlı Atlama */
+  .hizli-atlama {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 14px;
+    padding: 12px 16px;
+    background: var(--zemin-koyuca, #f2ede4);
+    border: 1px solid var(--kenar, #141a17);
+    margin-bottom: 36px;
+    font-size: 0.85rem;
+  }
+
+  .atlama-etiket {
+    font-weight: 700;
+    color: var(--murekkep, #141a17);
+  }
+
+  .atlama-link {
+    color: var(--zeytin, #234d31);
+    text-decoration: underline;
+    font-weight: 600;
+  }
+
+  /* Seksiyon Başlıkları */
+  .seksiyon-baslik-blok {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--kenar, #141a17);
+  }
+
+  .seksiyon-no {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--zeytin, #234d31);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .seksiyon-ana-baslik {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--murekkep, #141a17);
+    margin: 0 0 4px 0;
+  }
+
+  .seksiyon-alt-metin {
+    font-size: 0.9rem;
+    color: var(--soluk, #475249);
+    margin: 0;
+  }
+
+  /* Bölüm 1: Bileşenler */
+  .temel-seksiyon {
+    margin-bottom: 48px;
+  }
+
+  .bilesen-vitrin-karti {
+    background: #ffffff;
+    border: 1px solid var(--kenar, #141a17);
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+
+  .bilesen-karti-ust {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--kenar-ince, #d9d5cb);
+  }
+
+  .bilesen-tur-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--zeytin, #234d31);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .bilesen-tittel {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--murekkep, #141a17);
+    margin: 0 0 6px 0;
+  }
+
+  .bilesen-aciklama {
+    font-size: 0.9rem;
+    color: var(--soluk, #475249);
     line-height: 1.5;
+    margin: 0;
+    max-width: 760px;
+  }
+
+  .kod-etiket code {
+    background: var(--zemin-koyuca, #f2ede4);
+    border: 1px solid var(--kenar, #141a17);
+    padding: 6px 10px;
+    font-size: 0.82rem;
+    font-family: var(--font-mono, monospace);
+    color: var(--murekkep, #141a17);
+    white-space: nowrap;
+  }
+
+  .bilesen-onizleme {
+    background: var(--zemin, #faf7f2);
+    padding: 20px;
+    border: 1px solid var(--kenar-ince, #d9d5cb);
+  }
+
+  .hedef-ornek-kutu {
+    margin-bottom: 16px;
+  }
+
+  .hedef-ornek-kutu:last-child {
+    margin-bottom: 0;
+  }
+
+  .hedef-satir {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--murekkep, #141a17);
+  }
+
+  /* Bölüm 2: Matris */
+  .matris-seksiyon {
+    margin-bottom: 48px;
+  }
+
+  .tablo-omslag {
+    overflow-x: auto;
+    border: 1px solid var(--kenar, #141a17);
+    background: #ffffff;
+  }
+
+  .matris-tablo {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    text-align: left;
+  }
+
+  .matris-tablo th {
+    background: var(--zemin-koyuca, #f2ede4);
+    padding: 10px 14px;
+    font-weight: 700;
+    color: var(--murekkep, #141a17);
+    border-bottom: 1px solid var(--kenar, #141a17);
+  }
+
+  .matris-tablo td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--kenar-ince, #d9d5cb);
+    color: var(--murekkep, #141a17);
+  }
+
+  .matris-tablo tr:last-child td {
+    border-bottom: none;
+  }
+
+  .matris-tablo code {
+    background: var(--zemin-koyuca, #f2ede4);
+    padding: 2px 6px;
+    font-size: 0.82rem;
+    font-family: var(--font-mono, monospace);
+  }
+
+  /* Bölüm 3: Kart Kataloğu */
+  .katalog-seksiyon {
+    margin-bottom: 48px;
   }
 
   .filtre-paneli {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 16px;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    padding: 12px 16px;
-    background: var(--paper, #f7f5ef);
-    border: 1px solid var(--cizgi, #dcd9cf);
+    margin-bottom: 24px;
   }
 
   .kategori-butonlari {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 8px;
   }
 
   .kategori-sekme {
-    background: transparent;
-    border: 1px solid var(--cizgi, #dcd9cf);
-    color: var(--gri, #5d645f);
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 5px 12px;
+    all: unset;
     cursor: pointer;
-    border-radius: 0px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 6px 12px;
+    background: var(--zemin-koyuca, #f2ede4);
+    border: 1px solid var(--kenar, #141a17);
+    color: var(--murekkep, #141a17);
     transition: all 0.15s ease;
   }
 
   .kategori-sekme:hover {
-    border-color: var(--ink, #141a17);
-    color: var(--ink, #141a17);
+    background: var(--zemin, #faf7f2);
+    border-color: var(--zeytin, #234d31);
   }
 
   .kategori-sekme.aktif {
-    background: var(--ink, #141a17);
-    border-color: var(--ink, #141a17);
+    background: var(--zeytin, #234d31);
     color: #ffffff;
+    border-color: var(--zeytin, #234d31);
   }
 
   .arama-kutusu-sarmal {
-    min-width: 260px;
+    position: relative;
+    max-width: 600px;
   }
 
   .arama-girdisi {
     width: 100%;
-    padding: 6px 12px;
-    font-size: 0.85rem;
-    border: 1px solid var(--cizgi, #dcd9cf);
+    padding: 10px 14px;
+    font-size: 0.9rem;
     background: #ffffff;
-    border-radius: 0px;
-    color: var(--ink, #141a17);
-    outline: none;
-    font-family: inherit;
+    border: 1px solid var(--kenar, #141a17);
+    border-radius: 0;
+    color: var(--murekkep, #141a17);
+    box-sizing: border-box;
   }
 
   .arama-girdisi:focus {
-    border-color: var(--ink, #141a17);
+    outline: none;
+    border-color: var(--zeytin, #234d31);
   }
 
   .sonuc-bilgisi {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     font-size: 0.85rem;
-    color: var(--gri, #5d645f);
-    margin-bottom: 16px;
-    padding-bottom: 8px;
-    border-bottom: 1px dashed var(--cizgi, #dcd9cf);
+    color: var(--soluk, #475249);
+    padding-bottom: 12px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--kenar, #141a17);
   }
 
   .gorunen-adet {
     font-weight: 600;
-    color: var(--ink, #141a17);
+    color: var(--zeytin, #234d31);
   }
 
   .grafikler-izgara {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 20px;
   }
 
-  @media (max-width: 768px) {
-    .grafikler-izgara {
-      grid-template-columns: 1fr;
-    }
-    .filtre-paneli {
-      flex-direction: column;
-      align-items: stretch;
-    }
+  .grafik-karti-sarmal {
+    display: flex;
+  }
+
+  .grafik-karti-sarmal > :global(article) {
+    width: 100%;
   }
 
   .sr-only {
@@ -311,6 +624,17 @@ const normalle = (str: string) =>
     margin: -1px;
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
     border: 0;
+  }
+
+  @media (max-width: 768px) {
+    .grafikler-izgara {
+      grid-template-columns: 1fr;
+    }
+
+    .bilesen-karti-ust {
+      flex-direction: column;
+    }
   }
 </style>
