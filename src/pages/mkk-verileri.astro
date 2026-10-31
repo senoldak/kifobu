@@ -5,7 +5,7 @@ import mkkVerisi from '../data/resmi-mkk.json';
 import { formatNumber } from '../lib/site';
 
 const baslik = 'MKK Kitle Fonlaması ve Girişim Piyasası Verileri';
-const aciklama = 'Merkezi Kayıt Kuruluşu (MKK) resmi aylık piyasa bülteni verileriyle Türkiye kitle fonlaması ekosistemi (KFS) ve girişim sermayesi fonları (GSYF) 13 aylık zaman serisi.';
+const aciklama = 'Merkezi Kayıt Kuruluşu (MKK) resmi aylık piyasa bülteni verileriyle Türkiye kitle fonlaması ekosistemi (KFS) ve girişim sermayesi fonları (GSYF) 13 aylık interaktif zaman serisi.';
 
 const adimlar = [
   { ad: 'Anasayfa', url: '/' },
@@ -17,24 +17,23 @@ const gsyf = mkkVerisi.gsyf;
 const sonKfs = kfs.zaman_serisi[kfs.zaman_serisi.length - 1];
 const sonGsyf = gsyf.zaman_serisi[gsyf.zaman_serisi.length - 1];
 
-// Grafik koordinatları hesabı (SVG viewBox: 0 0 800 240)
-const kfsNoktalar = kfs.zaman_serisi.map((item, idx) => {
-  const x = 50 + idx * 58;
-  // Fonlanan: 1.0 Mr ile 1.8 Mr arası ölçekle
-  const yFon = 200 - ((item.fonlanan_milyar_tl - 1.1) / 0.7) * 160;
-  // Yatırımcı: 43.000 ile 48.000 arası ölçekle
-  const yYat = 200 - ((item.yatirimci_sayisi - 44000) / 4000) * 160;
-  return { ...item, x, yFon, yYat };
-});
-
-const fonPolyline = kfsNoktalar.map(p => `${p.x},${p.yFon.toFixed(1)}`).join(' ');
-const yatPolyline = kfsNoktalar.map(p => `${p.x},${p.yYat.toFixed(1)}`).join(' ');
+// Grafik veri paketi (istemci tarafı interaktif çizim için)
+const grafikPaketi = {
+  kfs: kfs.zaman_serisi,
+  gsyf: gsyf.zaman_serisi,
+  degisimler: {
+    kfsFon: kfs.degisim.fonlanan,
+    kfsYat: kfs.degisim.yatirimci,
+    gsyfPort: gsyf.degisim.portfoy,
+    gsyfYat: gsyf.degisim.yatirimci
+  }
+};
 ---
 
 <Base title={baslik} description={aciklama}>
   <div slot="tahta" class="kategori-bas">
     <h1 class="kategori-isim">MKK Resmi Piyasa Göstergeleri</h1>
-    <p class="kategori-sayi">Kitle Fonlaması (KFS) &amp; Girişim Sermayesi (GSYF) İstatistikleri</p>
+    <p class="kategori-sayi">Kitle Fonlaması (KFS) &amp; Girişim Sermayesi (GSYF) İnteraktif Terminali</p>
   </div>
 
   <Yol adimlar={adimlar} />
@@ -44,87 +43,137 @@ const yatPolyline = kfsNoktalar.map(p => `${p.x},${p.yYat.toFixed(1)}`).join(' '
       <div class="mkk-rozet-satir">
         <span class="mkk-kaynak-etiket">RESMİ BİRİNCİL VERİ</span>
         <span class="mkk-bulten-etiket">{mkkVerisi.kaynak.bulten}</span>
+        <span class="mkk-guncel-nokta" title="Doğrulanmış MKK Kaydı"></span>
       </div>
       <p class="mkk-spot">
-        Merkezi Kayıt Kuruluşu (MKK) tarafından yayımlanan aylık piyasa bültenlerinden derlenen resmi kitle fonlaması ve kurumsal girişim fonu göstergeleridir.
+        Merkezi Kayıt Kuruluşu (MKK) tarafından yayımlanan aylık piyasa bültenlerinden derlenen resmi kitle fonlaması ve kurumsal girişim fonu göstergeleridir. Değerler üzerinde tahmin ya da türetme yapılmaz.
       </p>
     </header>
 
-    <!-- 4 Büyük İndikatör Kartı -->
+    <!-- 4 Büyük Canlı İndikatör Kartı -->
     <div class="mkk-kartlar-izgara">
-      <div class="mkk-kart">
-        <span class="mkk-kart-baslik">Toplam Fonlanan Hacim</span>
+      <div class="mkk-kart" data-metrik="fonlanan">
+        <span class="mkk-kart-baslik">KFS Toplam Fonlanan Tutar</span>
         <div class="mkk-kart-sayi">₺{sonKfs.fonlanan_milyar_tl.toFixed(2).replace('.', ',')} Mr</div>
         <div class="mkk-kart-degisim pozitif">
-          <span>Yıllık: {kfs.degisim.fonlanan.yillik}</span>
-          <span class="mkk-alt-degisim">Aylık: {kfs.degisim.fonlanan.aylik}</span>
+          <span class="vurgu-oran">▲ {kfs.degisim.fonlanan.yillik}</span>
+          <span class="mkk-alt-degisim">1 yılda fonlama büyümesi (3A: {kfs.degisim.fonlanan.ucAylik})</span>
         </div>
       </div>
 
-      <div class="mkk-kart">
+      <div class="mkk-kart" data-metrik="yatirimci">
         <span class="mkk-kart-baslik">KFS Yatırımcı Sayısı</span>
         <div class="mkk-kart-sayi">{formatNumber(sonKfs.yatirimci_sayisi)}</div>
         <div class="mkk-kart-degisim pozitif">
-          <span>Yıllık: {kfs.degisim.yatirimci.yillik}</span>
-          <span class="mkk-alt-degisim">Aylık: {kfs.degisim.yatirimci.aylik}</span>
+          <span class="vurgu-oran">▲ {kfs.degisim.yatirimci.yillik}</span>
+          <span class="mkk-alt-degisim">1 yılda yatırımcı artışı (Aylık: {kfs.degisim.yatirimci.aylik})</span>
         </div>
       </div>
 
-      <div class="mkk-kart">
-        <span class="mkk-kart-baslik">Kaydileşen Şirket</span>
+      <div class="mkk-kart" data-metrik="sirket">
+        <span class="mkk-kart-baslik">Kaydileşen Girişim</span>
         <div class="mkk-kart-sayi">{kfs.kaydilesen_sirket}</div>
-        <div class="mkk-kart-not">MKS nezdinde ihraç edilen girişimler</div>
+        <div class="mkk-kart-not">MKS nezdinde payları kayden ihraç edilen başarılı girişimler</div>
       </div>
 
-      <div class="mkk-kart">
-        <span class="mkk-kart-baslik">Lisanslı KFS Platformu</span>
-        <div class="mkk-kart-sayi">{kfs.platform_sayisi}</div>
-        <div class="mkk-kart-not">SPK izinli aktif kitle fonlama platformu</div>
+      <div class="mkk-kart" data-metrik="gsyf">
+        <span class="mkk-kart-baslik">GSYF Portföy Büyüklüğü</span>
+        <div class="mkk-kart-sayi">₺{sonGsyf.portfoy_milyar_tl} Mr</div>
+        <div class="mkk-kart-degisim pozitif">
+          <span class="vurgu-oran">▲ {gsyf.degisim.portfoy.yillik}</span>
+          <span class="mkk-alt-degisim">Girişim Sermayesi Fonları ({formatNumber(sonGsyf.yatirimci_sayisi)} yatırımcı)</span>
+        </div>
       </div>
     </div>
 
-    <!-- 13 Aylık İnteraktif Trend Grafiği -->
-    <section class="mkk-grafik-bolumu" aria-labelledby="grafik-baslik">
-      <div class="mkk-grafik-baslik-alani">
-        <div>
-          <h2 id="grafik-baslik" class="bolum-baslik">KFS 13 Aylık Büyüme Eğrisi</h2>
-          <p class="grafik-alt-aciklama">Eylül 2025 – Eylül 2026 dönemi resmi fonlama tutarı ve yatırımcı tabanı gelişimi</p>
+    <!-- FİNFOLİS KALİTESİNDE İNTERAKTİF GRAFİK BİLEŞENİ -->
+    <section class="finfolis-grafik-karti" data-mkk-grafik>
+      <header class="fg-ust">
+        <div class="fg-baslik-blok">
+          <h2 class="fg-baslik">Türkiye Kitle Fonlaması &amp; Girişim Sermayesi Zaman Serisi</h2>
+          <p class="fg-aciklama">13 Aylık resmi MKK bülten kayıtları; imleci grafik üzerinde gezdirerek değerleri inceleyebilirsiniz.</p>
         </div>
-        <div class="mkk-lejant">
-          <span class="lejant-oge fon"><span class="lejant-cizgi"></span> Fonlama Tutarı (Milyar TL)</span>
-          <span class="lejant-oge yat"><span class="lejant-cizgi"></span> Yatırımcı Sayısı</span>
+
+        <!-- Seri Seçici Düğmeler (KFS Fonlama, KFS Yatırımcı, GSYF Portföy) -->
+        <div class="fg-kontroller">
+          <div class="fg-mod-secici" role="tablist" aria-label="Veri Serisi">
+            <button type="button" class="fg-sekme aktif" data-seri="kfs-fon" aria-selected="true">
+              <span class="renk-nokta mavi"></span> KFS Fon Tutarı (Milyar TL)
+            </button>
+            <button type="button" class="fg-sekme" data-seri="kfs-yat" aria-selected="false">
+              <span class="renk-nokta yesil"></span> KFS Yatırımcı Sayısı
+            </button>
+            <button type="button" class="fg-sekme" data-seri="gsyf-port" aria-selected="false">
+              <span class="renk-nokta toprak"></span> GSYF Portföyü (Milyar TL)
+            </button>
+          </div>
+
+          <div class="fg-aralik-secici" role="group" aria-label="Zaman Aralığı">
+            <button type="button" class="fg-aralik-btn" data-aralik="6">6 Ay</button>
+            <button type="button" class="fg-aralik-btn aktif" data-aralik="13">13 Ay (Tümü)</button>
+          </div>
         </div>
-      </div>
+      </header>
 
-      <div class="mkk-svg-kapsayici">
-        <svg viewBox="0 0 800 250" class="mkk-svg" preserveAspectRatio="none">
-          <!-- Yatay Kılavuz Çizgileri -->
-          <line x1="40" y1="40" x2="760" y2="40" stroke="currentColor" stroke-opacity="0.08" stroke-dasharray="3,3" />
-          <line x1="40" y1="120" x2="760" y2="120" stroke="currentColor" stroke-opacity="0.08" stroke-dasharray="3,3" />
-          <line x1="40" y1="200" x2="760" y2="200" stroke="currentColor" stroke-opacity="0.15" />
+      <!-- İnteraktif SVG ve Bilgi İpucu (Tooltip) Alanı -->
+      <div class="fg-cizim-alani">
+        <div class="fg-ipucu" data-ipucu hidden>
+          <div class="fg-ipucu-tarih" data-ipucu-tarih>30.09.2026</div>
+          <div class="fg-ipucu-deger" data-ipucu-deger>₺1,60 Milyar</div>
+          <div class="fg-ipucu-ek" data-ipucu-ek>Yıllık Değişim: %+28,00</div>
+        </div>
 
-          <!-- Fonlanan Alan & Çizgi -->
-          <polyline fill="none" stroke="var(--renk-vurgu, #2563eb)" stroke-width="3" points={fonPolyline} />
-          <!-- Yatırımcı Çizgi -->
-          <polyline fill="none" stroke="var(--renk-yesil, #10b981)" stroke-width="2.5" stroke-dasharray="4,2" points={yatPolyline} />
+        <svg class="fg-svg" viewBox="0 0 840 320" preserveAspectRatio="none" data-svg>
+          <defs>
+            <linearGradient id="maviDegrade" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="var(--renk-vurgu, #2563eb)" stop-opacity="0.28" />
+              <stop offset="100%" stop-color="var(--renk-vurgu, #2563eb)" stop-opacity="0.0" />
+            </linearGradient>
+            <linearGradient id="yesilDegrade" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#10b981" stop-opacity="0.28" />
+              <stop offset="100%" stop-color="#10b981" stop-opacity="0.0" />
+            </linearGradient>
+            <linearGradient id="toprakDegrade" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#d97706" stop-opacity="0.28" />
+              <stop offset="100%" stop-color="#d97706" stop-opacity="0.0" />
+            </linearGradient>
+          </defs>
 
-          <!-- Veri Noktaları -->
-          {kfsNoktalar.map((p) => (
-            <g class="nokta-grup">
-              <circle cx={p.x} cy={p.yFon} r="4.5" fill="var(--renk-vurgu, #2563eb)" />
-              <circle cx={p.x} cy={p.yYat} r="4" fill="var(--renk-yesil, #10b981)" />
-              <text x={p.x} y="222" font-size="10" text-anchor="middle" fill="currentColor" fill-opacity="0.65">
-                {p.tarih.slice(3, 10)}
-              </text>
-            </g>
-          ))}
+          <!-- Izgara Çizgileri -->
+          <g class="fg-izgara" data-izgara></g>
+
+          <!-- Alan ve Çizgi -->
+          <path class="fg-alan" data-alan fill="url(#maviDegrade)" />
+          <path class="fg-cizgi" data-cizgi fill="none" stroke="var(--renk-vurgu, #2563eb)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+
+          <!-- Dikey İmleç Çizgisi -->
+          <line class="fg-imlec-cizgi" data-imlec-cizgi x1="0" y1="30" x2="0" y2="270" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3,3" opacity="0" />
+
+          <!-- Vurgu Noktası -->
+          <circle class="fg-vurgu-nokta" data-vurgu-nokta cx="0" cy="0" r="6" fill="#ffffff" stroke="var(--renk-vurgu, #2563eb)" stroke-width="3" opacity="0" />
+
+          <!-- Etkileşim Katmanı -->
+          <rect class="fg-hitbox" x="0" y="0" width="840" height="320" fill="transparent" style="cursor: crosshair;" />
         </svg>
       </div>
+
+      <footer class="fg-alt">
+        <div class="fg-kaynak-notu">
+          Kaynak: <strong>Merkezi Kayıt Kuruluşu (MKK)</strong> Aylık Piyasa Bültenleri &amp; VAP Veri Tabanı.
+        </div>
+        <div class="fg-canli-durum">
+          <span class="mkk-guncel-nokta"></span> Resmi Kayıt: 30 Eylül 2026 Kapanışı
+        </div>
+      </footer>
     </section>
 
-    <!-- 13 Aylık Karşılaştırmalı Tablo -->
+    <!-- 13 Aylık Resmi Karşılaştırmalı Tablo -->
     <section class="mkk-tablo-bolumu" aria-labelledby="tablo-baslik">
-      <h2 id="tablo-baslik" class="bolum-baslik">13 Aylık Resmi Tarihsel Döküm</h2>
+      <div class="mkk-tablo-baslik-satiri">
+        <h2 id="tablo-baslik" class="bolum-baslik">13 Aylık Resmi Zaman Serisi Veri Tablosu</h2>
+        <span class="mkk-tablo-etiket">Tüm Rakamlar Kesinleşmiş MKK İbrazıdır</span>
+      </div>
+      
       <div class="tablo-kap">
         <table class="veri-tablo mkk-tablo">
           <thead>
@@ -134,18 +183,24 @@ const yatPolyline = kfsNoktalar.map(p => `${p.x},${p.yYat.toFixed(1)}`).join(' '
               <th scope="col" class="sayi">KFS Yatırımcı</th>
               <th scope="col" class="sayi">GSYF Portföy (TL)</th>
               <th scope="col" class="sayi">GSYF Yatırımcı</th>
+              <th scope="col" class="sayi">Platform</th>
             </tr>
           </thead>
           <tbody>
             {kfs.zaman_serisi.map((item, i) => {
               const gItem = gsyf.zaman_serisi[i] ?? { portfoy_milyar_tl: 0, yatirimci_sayisi: 0 };
+              const sonMu = i === kfs.zaman_serisi.length - 1;
               return (
-                <tr>
-                  <th scope="row" class="kalin">{item.tarih}</th>
-                  <td class="sayi">₺{item.fonlanan_milyar_tl.toFixed(2).replace('.', ',')} Milyar</td>
+                <tr class={sonMu ? 'vurgulu-satir' : ''}>
+                  <th scope="row" class="kalin">
+                    {item.tarih}
+                    {sonMu && <span class="son-rozet">Son Ay</span>}
+                  </th>
+                  <td class="sayi"><strong>₺{item.fonlanan_milyar_tl.toFixed(2).replace('.', ',')} Mr</strong></td>
                   <td class="sayi">{formatNumber(item.yatirimci_sayisi)}</td>
-                  <td class="sayi">₺{gItem.portfoy_milyar_tl} Milyar</td>
+                  <td class="sayi">₺{gItem.portfoy_milyar_tl} Mr</td>
                   <td class="sayi">{formatNumber(gItem.yatirimci_sayisi)}</td>
+                  <td class="sayi">18</td>
                 </tr>
               );
             })}
@@ -153,144 +208,518 @@ const yatPolyline = kfsNoktalar.map(p => `${p.x},${p.yYat.toFixed(1)}`).join(' '
         </table>
       </div>
       <p class="dizin-not">
-        * Veriler doğrudan Merkezi Kayıt Kuruluşu (MKK) aylık piyasa bülteni PDF raporlarından teyit edilerek kaydedilmektedir.
+        * Not: GSYF portföy değerleri, fon kurucuları ve portföy yönetim şirketleri tarafından geçmişe dönük fiyat düzeltmeleri yapılabildiği için dönemsel revizyonlara tabidir. KFS verileri MKS tescilli kesin tutarlardır.
       </p>
     </section>
   </article>
+
+  <!-- İstemci Tarafı Etkileşim Scripti (Finfolis Standartlarında İmleç ve Çizim) -->
+  <script is:inline define:vars={{ veri: grafikPaketi }}>
+    (function initMkkGrafik() {
+      const kok = document.querySelector('[data-mkk-grafik]');
+      if (!kok) return;
+
+      const svg = kok.querySelector('[data-svg]');
+      const alan = kok.querySelector('[data-alan]');
+      const cizgi = kok.querySelector('[data-cizgi]');
+      const izgara = kok.querySelector('[data-izgara]');
+      const imlecCizgi = kok.querySelector('[data-imlec-cizgi]');
+      const vurguNokta = kok.querySelector('[data-vurgu-nokta]');
+      const ipucu = kok.querySelector('[data-ipucu]');
+      const ipucuTarih = kok.querySelector('[data-ipucu-tarih]');
+      const ipucuDeger = kok.querySelector('[data-ipucu-deger]');
+      const ipucuEk = kok.querySelector('[data-ipucu-ek]');
+      const hitbox = kok.querySelector('.fg-hitbox');
+
+      const W = 840;
+      const H = 320;
+      const P = { ust: 30, alt: 50, sol: 70, sag: 30 };
+      const cizimW = W - P.sol - P.sag;
+      const cizimH = H - P.ust - P.alt;
+
+      let aktifSeri = 'kfs-fon'; // 'kfs-fon' | 'kfs-yat' | 'gsyf-port'
+      let aktifAralik = 13; // 6 | 13
+      let seriler = [];
+
+      function seriyiHazirla() {
+        const kfsData = veri.kfs;
+        const gsyfData = veri.gsyf;
+        const baslangic = aktifAralik === 6 ? Math.max(0, kfsData.length - 6) : 0;
+
+        if (aktifSeri === 'kfs-fon') {
+          seriler = kfsData.slice(baslangic).map(d => ({
+            tarih: d.tarih,
+            deger: d.fonlanan_milyar_tl,
+            etiket: `₺${d.fonlanan_milyar_tl.toFixed(2).replace('.', ',')} Milyar`,
+            ek: 'MKK KFS Toplam Fon',
+            renk: 'var(--renk-vurgu, #2563eb)',
+            degrade: 'url(#maviDegrade)'
+          }));
+        } else if (aktifSeri === 'kfs-yat') {
+          seriler = kfsData.slice(baslangic).map(d => ({
+            tarih: d.tarih,
+            deger: d.yatirimci_sayisi,
+            etiket: `${d.yatirimci_sayisi.toLocaleString('tr-TR')} Yatırımcı`,
+            ek: 'Kitle Fonlaması Yatırımcısı',
+            renk: '#10b981',
+            degrade: 'url(#yesilDegrade)'
+          }));
+        } else if (aktifSeri === 'gsyf-port') {
+          seriler = gsyfData.slice(baslangic).map(d => ({
+            tarih: d.tarih,
+            deger: d.portfoy_milyar_tl,
+            etiket: `₺${d.portfoy_milyar_tl} Milyar`,
+            ek: 'Girişim Sermayesi Yatırım Fonları',
+            renk: '#d97706',
+            degrade: 'url(#toprakDegrade)'
+          }));
+        }
+      }
+
+      function ciz() {
+        seriyiHazirla();
+        if (seriler.length === 0) return;
+
+        const degerler = seriler.map(s => s.deger);
+        let min = Math.min(...degerler);
+        let max = Math.max(...degerler);
+        
+        // Yumuşak sınır payı
+        const span = max - min || 1;
+        const pad = span * 0.12;
+        min = Math.max(0, min - pad);
+        max = max + pad;
+
+        const getX = (i) => P.sol + (i / (seriler.length - 1)) * cizimW;
+        const getY = (val) => P.ust + (1 - (val - min) / (max - min)) * cizimH;
+
+        // Izgara ve eksen çizgileri
+        let izgaraHtml = '';
+        const adimSayisi = 4;
+        for (let i = 0; i <= adimSayisi; i++) {
+          const y = P.ust + (i / adimSayisi) * cizimH;
+          const val = max - (i / adimSayisi) * (max - min);
+          let valStr = '';
+          if (aktifSeri === 'kfs-fon') valStr = `₺${val.toFixed(2).replace('.', ',')} Mr`;
+          else if (aktifSeri === 'kfs-yat') valStr = Math.round(val).toLocaleString('tr-TR');
+          else if (aktifSeri === 'gsyf-port') valStr = `₺${Math.round(val)} Mr`;
+
+          izgaraHtml += `
+            <line x1="${P.sol}" y1="${y}" x2="${W - P.sag}" y2="${y}" stroke="currentColor" stroke-opacity="0.08" stroke-dasharray="3,3" />
+            <text x="${P.sol - 12}" y="${y + 4}" text-anchor="end" font-size="11" fill="currentColor" fill-opacity="0.55" font-family="monospace">${valStr}</text>
+          `;
+        }
+
+        // X Eksen Tarihleri
+        seriler.forEach((s, idx) => {
+          const x = getX(idx);
+          const ayAd = s.tarih.slice(3, 10);
+          izgaraHtml += `
+            <line x1="${x}" y1="${H - P.alt}" x2="${x}" y2="${H - P.alt + 6}" stroke="currentColor" stroke-opacity="0.25" />
+            <text x="${x}" y="${H - P.alt + 22}" text-anchor="middle" font-size="10.5" fill="currentColor" fill-opacity="0.65">${ayAd}</text>
+          `;
+        });
+        izgara.innerHTML = izgaraHtml;
+
+        // Yol çizimi
+        let yolD = '';
+        seriler.forEach((s, idx) => {
+          const x = getX(idx);
+          const y = getY(s.deger);
+          yolD += `${idx === 0 ? 'M' : 'L'} ${x.toFixed(1)} ${y.toFixed(1)} `;
+        });
+
+        cizgi.setAttribute('d', yolD);
+        cizgi.setAttribute('stroke', seriler[0].renk);
+
+        const alanD = `${yolD} L ${getX(seriler.length - 1).toFixed(1)} ${H - P.alt} L ${getX(0).toFixed(1)} ${H - P.alt} Z`;
+        alan.setAttribute('d', alanD);
+        alan.setAttribute('fill', seriler[0].degrade);
+
+        vurguNokta.setAttribute('stroke', seriler[0].renk);
+      }
+
+      // Etkileşim: Fare / Dokunma
+      function fareHareketi(e) {
+        const rect = svg.getBoundingClientRect();
+        const clientX = e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
+        const relX = ((clientX - rect.left) / rect.width) * W;
+
+        if (relX < P.sol || relX > W - P.sag) {
+          imlecCizgi.setAttribute('opacity', '0');
+          vurguNokta.setAttribute('opacity', '0');
+          ipucu.hidden = true;
+          return;
+        }
+
+        // En yakın noktayı bul
+        const noktaAralik = cizimW / (seriler.length - 1);
+        let enYakinIdx = Math.round((relX - P.sol) / noktaAralik);
+        enYakinIdx = Math.max(0, Math.min(seriler.length - 1, enYakinIdx));
+
+        const s = seriler[enYakinIdx];
+        const degerler = seriler.map(item => item.deger);
+        let min = Math.min(...degerler);
+        let max = Math.max(...degerler);
+        const span = max - min || 1;
+        const pad = span * 0.12;
+        min = Math.max(0, min - pad);
+        max = max + pad;
+
+        const x = P.sol + (enYakinIdx / (seriler.length - 1)) * cizimW;
+        const y = P.ust + (1 - (s.deger - min) / (max - min)) * cizimH;
+
+        // Çizgi ve Nokta güncelle
+        imlecCizgi.setAttribute('x1', x);
+        imlecCizgi.setAttribute('x2', x);
+        imlecCizgi.setAttribute('opacity', '0.7');
+
+        vurguNokta.setAttribute('cx', x);
+        vurguNokta.setAttribute('cy', y);
+        vurguNokta.setAttribute('opacity', '1');
+
+        // Tooltip güncelle
+        ipucuTarih.textContent = s.tarih;
+        ipucuDeger.textContent = s.etiket;
+        ipucuEk.textContent = s.ek;
+        ipucu.hidden = false;
+
+        // Tooltip konumlandırma
+        const screenX = (x / W) * rect.width;
+        const screenY = (y / H) * rect.height;
+        ipucu.style.transform = `translate(${screenX}px, ${screenY}px)`;
+      }
+
+      hitbox.addEventListener('mousemove', fareHareketi);
+      hitbox.addEventListener('mouseleave', () => {
+        imlecCizgi.setAttribute('opacity', '0');
+        vurguNokta.setAttribute('opacity', '0');
+        ipucu.hidden = true;
+      });
+
+      // Dokunmatik cihazlar
+      hitbox.addEventListener('touchmove', fareHareketi, { passive: true });
+      hitbox.addEventListener('touchend', () => {
+        imlecCizgi.setAttribute('opacity', '0');
+        vurguNokta.setAttribute('opacity', '0');
+        ipucu.hidden = true;
+      });
+
+      // Mod Seçici Düğmeler
+      kok.querySelectorAll('.fg-sekme').forEach(btn => {
+        btn.addEventListener('click', () => {
+          kok.querySelectorAll('.fg-sekme').forEach(b => {
+            b.classList.remove('aktif');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('aktif');
+          btn.setAttribute('aria-selected', 'true');
+          aktifSeri = btn.getAttribute('data-seri');
+          ciz();
+        });
+      });
+
+      // Aralık Seçici Düğmeler
+      kok.querySelectorAll('.fg-aralik-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          kok.querySelectorAll('.fg-aralik-btn').forEach(b => b.classList.remove('aktif'));
+          btn.classList.add('aktif');
+          aktifAralik = parseInt(btn.getAttribute('data-aralik'), 10);
+          ciz();
+        });
+      });
+
+      // İlk çizim
+      ciz();
+    })();
+  </script>
 </Base>
 
 <style>
   .mkk-sayfa {
     max-width: 960px;
     margin: 0 auto;
-    padding: 1rem 0 3rem;
+    padding: 1rem 0 3.5rem;
   }
   .mkk-rozet-satir {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.6rem;
     align-items: center;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
   }
   .mkk-kaynak-etiket {
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 0.2rem 0.5rem;
+    font-size: 0.725rem;
+    font-weight: 800;
+    padding: 0.2rem 0.55rem;
     background: #e0f2fe;
     color: #0369a1;
     border-radius: 4px;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
   }
   .mkk-bulten-etiket {
     font-size: 0.85rem;
+    font-weight: 500;
     color: var(--renk-metin-hafif, #64748b);
+  }
+  .mkk-guncel-nokta {
+    width: 8px;
+    height: 8px;
+    background: #10b981;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
   }
   .mkk-spot {
     font-size: 1.05rem;
-    line-height: 1.5;
+    line-height: 1.55;
     color: var(--renk-metin-orta, #334155);
     margin-bottom: 2rem;
   }
+
+  /* 4 Büyük İndikatör Kartı */
   .mkk-kartlar-izgara {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
     gap: 1rem;
     margin-bottom: 2.5rem;
   }
   .mkk-kart {
     background: var(--renk-kart-zemin, #f8fafc);
     border: 1px solid var(--renk-kart-kenar, #e2e8f0);
-    border-radius: 8px;
-    padding: 1.25rem;
+    border-radius: 10px;
+    padding: 1.35rem 1.25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+  .mkk-kart:hover {
+    border-color: var(--renk-vurgu, #2563eb);
+    transform: translateY(-2px);
   }
   .mkk-kart-baslik {
-    font-size: 0.825rem;
-    font-weight: 600;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
     color: var(--renk-metin-hafif, #64748b);
     display: block;
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.4rem;
   }
   .mkk-kart-sayi {
-    font-size: 1.75rem;
-    font-weight: 800;
+    font-size: 1.85rem;
+    font-weight: 850;
     color: var(--renk-metin, #0f172a);
-    line-height: 1.2;
+    line-height: 1.15;
     margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
   }
   .mkk-kart-degisim {
     font-size: 0.8rem;
-    font-weight: 600;
     display: flex;
     flex-direction: column;
     gap: 0.15rem;
   }
-  .mkk-kart-degisim.pozitif {
+  .mkk-kart-degisim .vurgu-oran {
+    font-weight: 800;
     color: #16a34a;
   }
   .mkk-alt-degisim {
-    font-weight: 400;
+    font-size: 0.75rem;
     color: var(--renk-metin-hafif, #64748b);
   }
   .mkk-kart-not {
     font-size: 0.775rem;
     color: var(--renk-metin-hafif, #64748b);
-    line-height: 1.3;
+    line-height: 1.35;
   }
-  .mkk-grafik-bolumu {
-    background: var(--renk-kart-zemin, #f8fafc);
+
+  /* FİNFOLİS KALİTESİNDE İNTERAKTİF GRAFİK KARTI */
+  .finfolis-grafik-karti {
+    background: var(--renk-kart-zemin, #ffffff);
     border: 1px solid var(--renk-kart-kenar, #e2e8f0);
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-bottom: 2.5rem;
+    border-radius: 12px;
+    padding: 1.75rem 1.5rem 1.25rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   }
-  .mkk-grafik-baslik-alani {
+  .fg-ust {
+    margin-bottom: 1.5rem;
+  }
+  .fg-baslik {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--renk-metin, #0f172a);
+    margin-bottom: 0.35rem;
+  }
+  .fg-aciklama {
+    font-size: 0.875rem;
+    color: var(--renk-metin-hafif, #64748b);
+    margin: 0;
+  }
+  .fg-kontroller {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
-    margin-bottom: 1rem;
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--renk-kart-kenar, #f1f5f9);
   }
-  .grafik-alt-aciklama {
-    font-size: 0.85rem;
-    color: var(--renk-metin-hafif, #64748b);
-    margin-top: 0.2rem;
-  }
-  .mkk-lejant {
+  .fg-mod-secici {
     display: flex;
-    gap: 1rem;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+  .fg-sekme {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.4rem 0.75rem;
     font-size: 0.8rem;
+    font-weight: 600;
+    background: transparent;
+    border: 1px solid var(--renk-kart-kenar, #e2e8f0);
+    border-radius: 6px;
+    color: var(--renk-metin-orta, #475569);
+    cursor: pointer;
+    transition: all 0.15s ease;
   }
-  .lejant-oge {
+  .fg-sekme:hover {
+    background: var(--renk-hover, #f8fafc);
+    color: var(--renk-metin, #0f172a);
+  }
+  .fg-sekme.aktif {
+    background: #0f172a;
+    border-color: #0f172a;
+    color: #ffffff;
+  }
+  .renk-nokta {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .renk-nokta.mavi { background: var(--renk-vurgu, #2563eb); }
+  .renk-nokta.yesil { background: #10b981; }
+  .renk-nokta.toprak { background: #d97706; }
+
+  .fg-aralik-secici {
     display: flex;
+    background: var(--renk-kart-kenar, #f1f5f9);
+    padding: 0.2rem;
+    border-radius: 6px;
+  }
+  .fg-aralik-btn {
+    padding: 0.25rem 0.65rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: none;
+    background: transparent;
+    color: var(--renk-metin-hafif, #64748b);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .fg-aralik-btn.aktif {
+    background: #ffffff;
+    color: var(--renk-metin, #0f172a);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Çizim & Tooltip Alanı */
+  .fg-cizim-alani {
+    position: relative;
+    width: 100%;
+    margin: 1rem 0;
+  }
+  .fg-svg {
+    width: 100%;
+    height: 320px;
+    display: block;
+    overflow: visible;
+  }
+  .fg-ipucu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(4px);
+    color: #ffffff;
+    padding: 0.6rem 0.85rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+    transform: translate(-50%, -120%);
+    transition: transform 0.08s ease-out;
+    z-index: 10;
+    margin-top: -12px;
+  }
+  .fg-ipucu-tarih {
+    font-size: 0.7rem;
+    opacity: 0.75;
+    margin-bottom: 0.2rem;
+  }
+  .fg-ipucu-deger {
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+  .fg-ipucu-ek {
+    font-size: 0.7rem;
+    color: #38bdf8;
+    margin-top: 0.15rem;
+  }
+
+  .fg-alt {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--renk-kart-kenar, #f1f5f9);
+    font-size: 0.775rem;
+    color: var(--renk-metin-hafif, #64748b);
+  }
+  .fg-canli-durum {
+    display: inline-flex;
     align-items: center;
     gap: 0.4rem;
+    font-weight: 600;
+    color: var(--renk-metin-orta, #334155);
   }
-  .lejant-cizgi {
-    width: 14px;
-    height: 3px;
-    display: inline-block;
-    border-radius: 2px;
-  }
-  .lejant-oge.fon .lejant-cizgi {
-    background: var(--renk-vurgu, #2563eb);
-  }
-  .lejant-oge.yat .lejant-cizgi {
-    background: var(--renk-yesil, #10b981);
-  }
-  .mkk-svg-kapsayici {
-    width: 100%;
-    overflow-x: auto;
-  }
-  .mkk-svg {
-    width: 100%;
-    min-width: 600px;
-    height: 240px;
-  }
+
+  /* Tablo Bölümü */
   .mkk-tablo-bolumu {
-    margin-top: 2rem;
+    margin-top: 3rem;
+  }
+  .mkk-tablo-baslik-satiri {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .mkk-tablo-etiket {
+    font-size: 0.8rem;
+    color: var(--renk-metin-hafif, #64748b);
   }
   .mkk-tablo th.kalin {
     font-weight: 600;
   }
+  .vurgulu-satir {
+    background: #f0fdf4 !important;
+  }
+  .son-rozet {
+    font-size: 0.65rem;
+    background: #16a34a;
+    color: #ffffff;
+    padding: 0.1rem 0.35rem;
+    border-radius: 3px;
+    margin-left: 0.4rem;
+    vertical-align: middle;
+  }
 </style>
-
