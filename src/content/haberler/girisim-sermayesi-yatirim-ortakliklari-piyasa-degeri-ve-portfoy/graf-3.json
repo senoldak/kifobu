@@ -1,0 +1,55 @@
+{
+ "tittel": "Portföyün en az beşte dördü girişimlerde",
+ "under": "Ortaklık başına girişim sermayesi yatırımlarının portföydeki payı, ikinci çeyrek, yüzde",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "SPK"
+ },
+ "form": "rangering",
+ "serier": [
+  {
+   "navn": "Girişim payı",
+   "punkter": [
+    {
+     "x": "Bulls",
+     "y": 86.45
+    },
+    {
+     "x": "Gözde",
+     "y": 97.71
+    },
+    {
+     "x": "Hedef",
+     "y": 93.99
+    },
+    {
+     "x": "Hub",
+     "y": 95.15
+    },
+    {
+     "x": "ICU",
+     "y": 83
+    },
+    {
+     "x": "İş",
+     "y": 95.2
+    },
+    {
+     "x": "Pardus",
+     "y": 96.63
+    },
+    {
+     "x": "Verusatürk",
+     "y": 83.97
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "sorter": true,
+  "fremhev": [
+   "ICU"
+  ]
+ }
+}

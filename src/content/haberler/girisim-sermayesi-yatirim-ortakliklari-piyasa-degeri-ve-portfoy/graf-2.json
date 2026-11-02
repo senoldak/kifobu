@@ -1,0 +1,55 @@
+{
+ "tittel": "Piyasa değerinin yarıdan fazlası iki ortaklıkta",
+ "under": "Ortaklıkların toplam piyasa değerindeki payı, ikinci çeyrek sonu, yüzde",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "SPK"
+ },
+ "form": "rangering",
+ "serier": [
+  {
+   "navn": "Pay",
+   "punkter": [
+    {
+     "x": "Bulls",
+     "y": 27.279999999999998
+    },
+    {
+     "x": "Gözde",
+     "y": 23.43
+    },
+    {
+     "x": "Hedef",
+     "y": 6.9
+    },
+    {
+     "x": "Hub",
+     "y": 2.03
+    },
+    {
+     "x": "ICU",
+     "y": 4.71
+    },
+    {
+     "x": "İş",
+     "y": 26.700000000000003
+    },
+    {
+     "x": "Pardus",
+     "y": 3.53
+    },
+    {
+     "x": "Verusatürk",
+     "y": 5.43
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "sorter": true,
+  "fremhev": [
+   "Bulls"
+  ]
+ }
+}
