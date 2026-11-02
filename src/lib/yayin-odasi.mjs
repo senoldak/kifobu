@@ -1,6 +1,6 @@
 // Yayın odası sayfasının verisi: yalnız gerçek kayıtlardan (tidsrøst src/lib/redaksjonen.mjs uyarlaması).
 // gunluk: botun günlük sayıları (src/data/yayin-odasi/gunluk.json, scripts/bot/gunluk-sayilar.mjs yazar); haberler:
-// yayımlanmış yazıların ön bilgisi (zincir kaydı `zincir`, yazı işleri yerleştirirken yazar). Sayfa hiçbir sayıyı tahmin
+// yayımlanmış yazıların ön bilgisi (zincir kaydı `kjede`, ortak zincir yerleştirirken yazar; alan adları dört sitede ortak). Sayfa hiçbir sayıyı tahmin
 // etmez: kayıt yoksa alan boş kalır.
 
 // Ret kodu → okura giden metin. Kodlar scripts/bot/gunluk-sayilar.mjs KODLAR'dan gelir; bilinmeyen kod "diger" sayılır.
@@ -50,7 +50,7 @@ const SAHIP = 'Şenol Dak';
 
 /**
  * @param {{ haberler: Array<{ slug: string, title: string, date: Date, draft?: boolean, uretim?: string, yaziTuru?: string,
- *   author?: string, category?: string, haberDegeri?: number, zincir?: { turlar: Record<string, number>, denetlenen: number, cekilen: number } }>,
+ *   author?: string, category?: string, haberDegeri?: number, kjede?: { runder: Record<string, number>, kontrollert: number, hentet: number } }>,
  *   gunluk?: { gunler?: Record<string, object> }, simdi?: Date }} p
  */
 export function yayinOdasiVerisi({ haberler, gunluk, simdi = new Date() }) {
@@ -62,7 +62,7 @@ export function yayinOdasiVerisi({ haberler, gunluk, simdi = new Date() }) {
   const elenenler = Object.entries(haftaSayi.elenen)
     .map(([kod, sayi]) => ({ kod, metin: RET_METNI[kod], sayi }))
     .sort((a, b) => b.sayi - a.sayi || a.kod.localeCompare(b.kod));
-  const zincirYazisi = gorunen.find((h) => h.uretim === 'yazi-isleri' && h.zincir);
+  const zincirYazisi = gorunen.find((h) => h.uretim === 'yazi-isleri' && h.kjede);
   const sahipYazisi = gorunen.find((h) => h.author === SAHIP || (h.yaziTuru && h.yaziTuru !== 'haber'));
   return {
     gun: sonGun ? { tarih: sonGun, bugun: sonGun === istanbulGunu(simdi), ...topla([gunluk.gunler[sonGun]]) } : null,
@@ -74,11 +74,11 @@ export function yayinOdasiVerisi({ haberler, gunluk, simdi = new Date() }) {
       ? {
         baslik: zincirYazisi.title,
         url: url(zincirYazisi.slug),
-        turlar: Object.entries(zincirYazisi.zincir.turlar).filter(([, n]) => n > 0)
+        turlar: Object.entries(zincirYazisi.kjede.runder).filter(([, n]) => n > 0)
           .map(([adim, sayi]) => ({ adim, ad: ADIM[adim]?.ad ?? adim, figur: ADIM[adim]?.figur ?? null, sayi })),
-        geri: Object.values(zincirYazisi.zincir.turlar).reduce((a, b) => a + b, 0),
-        denetlenen: zincirYazisi.zincir.denetlenen,
-        cekilen: zincirYazisi.zincir.cekilen,
+        geri: Object.values(zincirYazisi.kjede.runder).reduce((a, b) => a + b, 0),
+        denetlenen: zincirYazisi.kjede.kontrollert,
+        cekilen: zincirYazisi.kjede.hentet,
       }
       : null,
     sonSahip: sahipYazisi ? { baslik: sahipYazisi.title, url: url(sahipYazisi.slug) } : null,

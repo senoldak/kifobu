@@ -33,7 +33,7 @@ test('yayinOdasiVerisi: son haberler yalnız bot haberleri; zincir kaydı ve sah
   const r = yayinOdasiVerisi({
     haberler: [
       haber('a', 1), haber('b', 2, { haberDegeri: 70 }), haber('bulten', 2, { category: 'gunluk-bulten' }), haber('gelecek', 9),
-      haber('zincir', 1, { uretim: 'yazi-isleri', yaziTuru: 'analiz', zincir: { turlar: { dogrulama: 2, dil: 0 }, denetlenen: 40, cekilen: 12 } }),
+      haber('zincir', 1, { uretim: 'yazi-isleri', yaziTuru: 'analiz', kjede: { runder: { dogrulama: 2, dil: 0 }, kontrollert: 40, hentet: 12 } }),
     ],
     simdi,
   });

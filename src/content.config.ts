@@ -56,9 +56,10 @@ const haberler = defineCollection({
       haberDegeri: z.number().int().min(0).max(100).optional(),
       // Botun dilim derlemesi (tek başına kısa kalan haberler bir yazıda); kart derleme adımlarını gösterir.
       derleme: z.boolean().optional(),
-      // Yazı işleri zincirinin kaydı (yayın odası): geri göndermeler adım başına, kaynakla karşılaştırılan iddia ve yeniden
-      // çekilen rakam sayısı. Yalnız sayı; zincir yerleştirirken yazar.
-      zincir: z.object({ turlar: z.record(z.string(), z.number().int().nonnegative()), denetlenen: z.number().int().nonnegative(), cekilen: z.number().int().nonnegative() }).optional(),
+      // Yazı işleri zincirinin kaydı (yayın odası): geri göndermeler adım başına (runder), kaynakla karşılaştırılan iddia
+      // (kontrollert) ve yeniden çekilen rakam (hentet). Yalnız sayı; ortak zincir (mecmua onay/yerlestir.mjs kjedeKaydi)
+      // yerleştirirken yazar; alan adları dört sitede ortak.
+      kjede: z.object({ runder: z.record(z.string(), z.number().int().nonnegative()), kontrollert: z.number().int().nonnegative(), hentet: z.number().int().nonnegative() }).optional(),
     }),
 });
 
