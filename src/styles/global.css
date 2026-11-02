@@ -16,6 +16,7 @@
   --marka-sari: #e8b40c;
   /* Veri */
   --yesil: #10b981;
+  --yesil-yazi: #047857; /* yazıda ve yazı taşıyan etikette (kâğıtta 5,0:1, beyazla 5,5:1); grafikler --yesil */
   --asim: #a7e9cf;
 
   /* Eski adlar → yeni değerler */
@@ -1772,8 +1773,8 @@ h3 {
 }
 
 .etiket--yesil {
-  background: var(--yesil);
-  border-color: var(--yesil);
+  background: var(--yesil-yazi);
+  border-color: var(--yesil-yazi);
   color: var(--beyaz);
 }
 
