@@ -17,7 +17,7 @@ kaynakIzi: "v1.9pAEZlp1awluNWVT.KMTnxc6W8F/XIO0RExbrqg/rI6Ua8c1H21/2kfVlx1ALZLZv
 uretim: yapay-zeka
 ---
 
-ABD merkezli savunma ve biyoteknoloji girişimi Warhound, tamamlanan tohum yatırım turunda 200 milyon dolar finansman sağladı. Sağlanan bu kaynakla birlikte şirketin ulaştığı değerleme 1,2 milyar dolar oldu. Söz konusu finansman turuna katılan yatırımcılar arasında Sequoia, 8VC ve In-Q-Tel yer aldı. Girişim, Ben Lamm ile Palmer Luckey ortaklığında kur കുdu.
+ABD merkezli savunma ve biyoteknoloji girişimi Warhound, tamamlanan tohum yatırım turunda 200 milyon dolar finansman sağladı. Sağlanan bu kaynakla birlikte şirketin ulaştığı değerleme 1,2 milyar dolar oldu. Söz konusu finansman turuna katılan yatırımcılar arasında Sequoia, 8VC ve In-Q-Tel yer aldı. Girişim, Ben Lamm ile Palmer Luckey ortaklığında kuruldu.
 
 Elde edilen fonun temel kullanım alanı, genetik mühendisliği yöntemleriyle görev köpekleri üretmek ve bu hayvanları klonlamak olarak açıklandı. Amerika Birleşik Devletleri ordusunun operasyonel köpek ihtiyacı konusunda büyük ölçüde Avrupa'daki yetiştiricilere bağımlı olduğu, ancak bu hayvanların önemli bir kısmının kanser riski, görme bozuklukları veya kas zayıflığı gibi genetik sağlık sorunları nedeniyle eğitim süreçlerini tamamlayamadığı belirtildi.
 

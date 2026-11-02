@@ -1,6 +1,6 @@
 ---
 title: "Gece Bülteni — 28 Ekim 2026"
-description: "Gece bülteninde 9 haber: Deetken Impact, Inclusive Climate Action Fund icin 100 milyon dolar topladi; Wealthsimple, 425 milyon CAD finansman turuyla 13,8 milyar CAD değerlemeye ulaştı; Coherence Neuro, Seri A turunda 45 milyon dolar yatırım aldı ve diğerleri."
+description: "Gece bülteninde 9 haber: Deetken Impact, Inclusive Climate Action Fund için 100 milyon dolar topladı; Wealthsimple, 425 milyon CAD finansman turuyla 13,8 milyar CAD değerlemeye ulaştı; Coherence Neuro, Seri A turunda 45 milyon dolar yatırım aldı ve diğerleri."
 date: 2026-10-28T20:00:57.890Z
 category: gunluk-bulten
 coverAlt: "kifobu gece bülteni"
@@ -9,7 +9,7 @@ uretim: yapay-zeka
 
 Son bültenden bu yana kifobu'da yayımlanan haberler:
 
-- [Deetken Impact, Inclusive Climate Action Fund icin 100 milyon dolar topladi](/haber/deetken-impact-inclusive-climate-action-fund-icin-100-milyon-dolar-topladi/)
+- [Deetken Impact, Inclusive Climate Action Fund için 100 milyon dolar topladı](/haber/deetken-impact-inclusive-climate-action-fund-icin-100-milyon-dolar-topladi/)
 - [Wealthsimple, 425 milyon CAD finansman turuyla 13,8 milyar CAD değerlemeye ulaştı](/haber/wealthsimple-425-milyon-cad-finansman-turuyla-13-8-milyar-cad-degerlemeye-ulasti/)
 - [Coherence Neuro, Seri A turunda 45 milyon dolar yatırım aldı](/haber/coherence-neuro-seri-a-turunda-45-milyon-dolar-yatirim-aldi/)
 - [Fragment, 56 milyon dolar yatırım alarak faaliyetlerini başlattı](/haber/fragment-56-milyon-dolar-yatirim-alarak-faaliyetlerini-baslatti/)
