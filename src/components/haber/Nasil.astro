@@ -13,14 +13,15 @@ import { hataBildirMailto } from '../../lib/yapay-zeka-notu';
 const YAYIN_ODASI = true;
 
 interface Props {
-  haber: { uretim?: string; author?: string; yaziTuru?: string; category?: string; title?: string; derleme?: boolean; haberDegeri?: number };
+  haber: { kaynakSayisi?: number; uretim?: string; author?: string; yaziTuru?: string; category?: string; title?: string; derleme?: boolean; haberDegeri?: number };
   baslik: string;
   url: string;
   yayin: Date;
   degisti?: Date;
   duzeltildi?: boolean;
+  kaynakSayisi?: number;
 }
-const { haber, baslik, url, yayin, degisti, duzeltildi } = Astro.props;
+const { haber, baslik, url, yayin, degisti, duzeltildi, kaynakSayisi = 0 } = Astro.props;
 
 const liste = adimlar(haber) ?? [];
 const sahip = sahipYazisi(haber);
@@ -29,7 +30,7 @@ const yzSayisi = liste.filter((a) => AJANLAR[a.id as keyof typeof AJANLAR]?.yz).
 const kisa = sahip ? `${SAHIP} yazdı. Yapay zekâ yalnız dili düzeltti.` : `${sayiAdi(yzSayisi)} otomatik adımla yazıldı.`;
 const aciklama = sahip
   ? `Yazı ${SAHIP}’ındır. Yapay zekâ yalnız imla ve dil düzeltmesinde kullanıldı; konu, bakış açısı ve rakamlar için kullanılmadı.`
-  : 'Haber, izlediğimiz yayınların haberlerinden otomatik olarak yazıldı. Yayından önce bir gazeteci okumadı.';
+  : `Haber, ${kaynakSayisi ? 'kaynaklarda adı geçen yayınların' : 'izlediğimiz yayınların'} haberlerinden otomatik olarak yazıldı. Yayından önce bir gazeteci okumadı.`;
 const sorumluluk = sahip
   ? ', gazeteci, yayıncı ve editör, yazıyı yazdı ve yayımladı.'
   : ', gazeteci, yayıncı ve editör, neyin otomatik yayımlanabileceğinin kurallarını koyar.';
@@ -73,6 +74,7 @@ const ajan = (id: string) => AJANLAR[id as keyof typeof AJANLAR];
           {insanOkumadi(haber) && <span class="okunmadi">Yayından önce bir insan okumadı</span>}
           <span>Yayın {tarih(yayin)}</span>
           <span>{duzeltildi ? `Düzeltildi${degisti ? ` ${tarih(degisti)}` : ''}` : degisti ? `Güncellendi ${tarih(degisti)}` : 'Değişiklik yok'}</span>
+          {kaynakSayisi > 0 && <a href="#kaynaklar">{kaynakSayisi === 1 ? 'Kaynağı gör' : `${kaynakSayisi} kaynağı gör`}</a>}
         </p>
         <p>{aciklama}</p>
         {!sahip && (

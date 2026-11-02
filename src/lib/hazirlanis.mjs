@@ -20,11 +20,15 @@ export const AJANLAR = {
   senol: { ad: SAHIP, rol: 'Gazeteci', yz: false, u: { sac: 'kisa', sacRenk: '#2b211b', ten: '#e6bc96', ust: '#fdfdfb', ceket: '#16191c' } },
 };
 
+const KUCUK = { 1: 'bir', 2: 'iki', 3: 'üç', 4: 'dört', 5: 'beş' };
 const SAYI_ADI = { 2: 'İki', 3: 'Üç', 4: 'Dört', 5: 'Beş', 6: 'Altı', 7: 'Yedi', 8: 'Sekiz', 9: 'Dokuz', 10: 'On' };
 export const sayiAdi = (n) => SAYI_ADI[n] ?? String(n);
 
 const adim = (id, metin) => ({ id, metin });
 const degerVar = (h) => Number.isFinite(h?.haberDegeri);
+// Gösterilen kaynak sayısı (src/lib/kaynaklar.mjs); yoksa 0 ve metin sayı vermez.
+const kaynakSayisi = (h) => (Number.isInteger(h?.kaynakSayisi) && h.kaynakSayisi > 0 ? h.kaynakSayisi : 0);
+const bulma = (h, ne) => (kaynakSayisi(h) ? `${ne} ${KUCUK[kaynakSayisi(h)] ?? kaynakSayisi(h)} yayında buldu.` : `${ne} izlediğimiz yayınlarda buldu.`);
 
 /** Sahibin yazısı: Şenol Dak imzalı ya da yazı türü haber dışı (analiz, açıklayıcı, referans); src/lib/yapay-zeka-notu.ts ile aynı kural. */
 export function sahipYazisi(h) {
@@ -53,7 +57,7 @@ export function adimlar(h) {
     : `Daha önce yazılıp yazılmadığına baktı ve haber değerini puanladı. ${HABER_DEGERI_ESIGI}’in altındaki haberler yazılmaz.`;
   if (derlemeMi(h)) {
     return [
-      adim('nil', 'Haberleri izlediğimiz yayınlarda buldu.'),
+      adim('nil', bulma(h, 'Haberleri')),
       adim('baran', deger),
       adim('ece', 'Tek başına kısa kalan haberleri bir derlemede topladı.'),
       adim('tuna', 'Metni yayın kurallarımızdan geçirdi.'),
@@ -62,7 +66,7 @@ export function adimlar(h) {
     ];
   }
   return [
-    adim('nil', 'Haberi izlediğimiz yayınlarda buldu.'),
+    adim('nil', bulma(h, 'Haberi')),
     adim('baran', deger),
     adim('ece', 'Metni kaynaklara dayanarak yazdı; girişim, tutar, tur ve yatırımcıları künyeye çıkardı.'),
     adim('derya', 'Rakamları, adları ve alıntıları kaynaklarda aradı; haberi kaynaklarla madde madde karşılaştırdı, kopya olmadığına baktı.'),
@@ -76,6 +80,7 @@ export function adimlar(h) {
 export function olguSatiri(h) {
   if (sahipYazisi(h)) return [{ on: 'Yazan ', kalin: SAHIP }, { on: 'Dil düzeltmesi yapay zekâyla' }];
   const ut = [];
+  if (kaynakSayisi(h)) ut.push({ kalin: String(kaynakSayisi(h)), son: ' kaynak' });
   if (degerVar(h)) ut.push({ on: 'Haber değeri ', kalin: String(h.haberDegeri), son: '/100' });
   return ut;
 }

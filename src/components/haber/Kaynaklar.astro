@@ -1,0 +1,26 @@
+---
+// Haberin kaynakları: yalın atıf, yayının adı ve haberine bağlantı (rel="nofollow noopener"), yorum ya da övgü yok.
+// Liste src/lib/kaynaklar.mjs'ten; boşsa bölüm yok. Haber metninde yayın adı geçmez, yalnız burada ve başlık altında.
+interface Props {
+  kaynaklar: { ad: string; url: string }[];
+}
+const { kaynaklar } = Astro.props;
+const alan = (u: string) => new URL(u).hostname.replace(/^www\./, '');
+---
+
+{
+  kaynaklar.length > 0 && (
+    <section class="yh-kaynaklar" id="kaynaklar" aria-labelledby="kaynaklar-b">
+      <h2 class="yh-etiket" id="kaynaklar-b">{kaynaklar.length === 1 ? 'Kaynak' : 'Kaynaklar'}</h2>
+      <ol>
+        {kaynaklar.map((k) => (
+          <li>
+            <a href={k.url} rel="nofollow noopener" target="_blank">{k.ad}</a>
+            <span>{alan(k.url)}</span>
+          </li>
+        ))}
+      </ol>
+      <p>Haber {kaynaklar.length === 1 ? 'bu yayının haberinden' : 'bu yayınların haberlerinden'} yararlanılarak kendi cümlelerimizle yazıldı.</p>
+    </section>
+  )
+}

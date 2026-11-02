@@ -164,3 +164,12 @@ html.yh-karsitlik .yh-imza, html.yh-karsitlik .yh-kaynak, html.yh-karsitlik .yh-
   .yh-ilerleme, .yh-arac, .yh-fayda, .yh-oda, .yh-okuma-cik, .yh-nasil summary .yuzler { display: none !important; }
   .yh-nasil { border: 0; }
 }
+
+/* Kaynaklar: yalın atıf, yayının adı ve haberine bağlantı */
+.yh-kaynak a { color: var(--murekkep); font-weight: 600; }
+.yh-kaynaklar { margin: 28px 0; border-top: 1px solid var(--murekkep); padding-top: 10px; font: 400 0.95rem/1.5 var(--yazi); }
+.yh-kaynaklar ol { list-style: none; margin: 8px 0; padding: 0; }
+.yh-kaynaklar li { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; padding: 6px 0; border-bottom: 1px dashed var(--cizgi); }
+.yh-kaynaklar a { color: var(--murekkep); font-weight: 600; }
+.yh-kaynaklar span { color: var(--gri); font-size: 0.85rem; }
+.yh-kaynaklar p { color: var(--gri); font-size: 0.85rem; margin: 8px 0 0; }

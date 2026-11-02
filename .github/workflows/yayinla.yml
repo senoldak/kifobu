@@ -54,6 +54,9 @@ jobs:
           restore-keys: kapak-${{ hashFiles('src/kapak/**', 'src/lib/kapak-onbellek.mjs') }}-
 
       - name: Derle
+        # Kaynak adları derlemede şifreli kaynak izinden çözülür (src/lib/kaynaklar.mjs); adlar repoda ve logda açık durmaz.
+        env:
+          KAYNAK_ANAHTARI: ${{ secrets.KAYNAK_ANAHTARI }}
         run: npm run build
 
       - name: Kapak önbelleği sayısı

@@ -30,6 +30,8 @@ import DahaOnce from '../../components/haber/DahaOnce.astro';
 import Degisiklikler from '../../components/haber/Degisiklikler.astro';
 import Fayda from '../../components/haber/Fayda.astro';
 import YerHaritasi from '../../components/haber/YerHaritasi.astro';
+import Kaynaklar from '../../components/haber/Kaynaklar.astro';
+import { haberKaynaklari } from '../../lib/kaynaklar.mjs';
 import { dahaOnce } from '../../lib/daha-once';
 import { adimlar } from '../../lib/hazirlanis.mjs';
 import { haberinIli } from '../../lib/yer.mjs';
@@ -64,7 +66,9 @@ const duzeltme = duzeltmeNotu(d, 'tr');
 const yzNotu = yapayZekaNotu(d, d.title, new URL(Astro.url.pathname, Astro.site).href);
 const { title, description, date, category, cover, coverAlt } = d;
 const { Content } = await render(haber);
-const kaynak = kaynakSatiri(d);
+// Kaynaklar adıyla (src/lib/kaynaklar.mjs; adlar derlemede şifreli izden çözülür). Çözülemezse eski adsız satır.
+const kaynaklar = haberKaynaklari(d);
+const kaynak = kaynaklar.length ? undefined : kaynakSatiri(d);
 const funding = isFunding(haber);
 // Kapsam dışı ya da 120 kelimeden kısa haber: sayfa kalır, arama motorlarına kapalıdır (noindex, follow).
 const noindex = !indekslenir({ draft: d.draft, noindex: d.noindex, govde: haber.body });
@@ -127,6 +131,8 @@ const articleSchema: Record<string, any> = {
 if (entities.length > 0) {
   articleSchema.about = entities;
 }
+// Yararlanılan haberler (yalın atıf; adlar derlemede çözülür).
+if (kaynaklar.length) articleSchema.isBasedOn = kaynaklar.map((k) => ({ '@type': 'NewsArticle', url: k.url, publisher: { '@type': 'Organization', name: k.ad } }));
 // Haberin geçtiği yer (yer haritası çıkan haberlerde).
 if (il) articleSchema.contentLocation = { '@type': 'Place', name: il, address: { '@type': 'PostalAddress', addressLocality: il, addressCountry: 'TR' } };
 
@@ -178,6 +184,15 @@ const jsonLd = {
         {il && <span>◉ {il}</span>}
       </p>
       {/* Medya kaynaklı bot haberinde adsız kaynak satırı (src/lib/kaynak-satiri.ts). */}
+      {
+        kaynaklar.length > 0 && (
+          <p class="yh-kaynak">
+            {kaynaklar.length === 1 ? 'Kaynak' : 'Kaynaklar'}:{' '}
+            {/* Tek satırda: satır sonları virgülden önce boşluk bırakıyordu. */}
+            {kaynaklar.map((k, i) => <>{i > 0 && ', '}<a href={k.url} rel="nofollow noopener" target="_blank">{k.ad}</a></>)}
+          </p>
+        )
+      }
       {kaynak && <p class="yh-kaynak">{kaynak}</p>}
       <AracSatiri url={pageUrl} baslik={title} />
     </header>
@@ -268,9 +283,11 @@ const jsonLd = {
 
     <DahaOnce haberler={onceki} baslik={title} tarih={date} />
 
+    <Kaynaklar kaynaklar={kaynaklar} />
+
     {/* Standartlar: gövdeden sonra yapay zekâ notu. Bot haberi ve sahibin yazısı "Bu haber nasıl hazırlandı" kartını
         alır (src/lib/hazirlanis.mjs); öteki yazılar (günlük bülten, zincir) tek satırlık notu korur. */}
-    {kart && <Nasil haber={d} baslik={title} url={pageUrl} yayin={date} degisti={d.updated && d.updated > date ? d.updated : undefined} duzeltildi={Boolean(duzeltme)} />}
+    {kart && <Nasil haber={{ ...d, kaynakSayisi: kaynaklar.length }} kaynakSayisi={kaynaklar.length} baslik={title} url={pageUrl} yayin={date} degisti={d.updated && d.updated > date ? d.updated : undefined} duzeltildi={Boolean(duzeltme)} />}
     {
       !kart && yzNotu &&
         (yzNotu.satirlar ? (
