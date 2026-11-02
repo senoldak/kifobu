@@ -666,3 +666,20 @@ test('isle kapı: ayar hatası turu durdurur (ayar hatası fırlar, sonuçlar ek
   await assert.rejects(() => u.isle([aday(a)], { kapi: async () => { throw hata; } }), (e) => e.ayar === true);
   assert.equal(yazilan.length, 0);
 });
+
+test('adaylar: suz işaretli genel akışta konu dışı haber aday olmaz, taranana da girmez', async () => {
+  const GENEL = { ad: 'Genel Kaynak', kisa: 'genel', akis: 'https://haber.example.com/genel.xml', kod: 'kodgenel', yerli: true, suz: true };
+  const ogeler = [oge(GENEL, 'g1', 'Merkez Bankası politika faizini sabit tuttu'), oge(GENEL, 'g2', 'Ankaralı girişim Örnekco, tohum turunda 2 milyon dolar yatırım aldı')];
+  const durum = bosDurum();
+  const { u } = kur({
+    durum,
+    bag: {
+      KAYNAKLAR: [GENEL],
+      hentTekst: async (akis) => akis,
+      rssOku: () => ogeler.map(({ kaynak, id, ...r }) => r),
+    },
+  });
+  const cikti = await u.adaylar({ log: () => {} });
+  assert.deepEqual(cikti.map((a) => a.baslik), ['Ankaralı girişim Örnekco, tohum turunda 2 milyon dolar yatırım aldı']);
+  assert.equal(Object.keys(durum.taranan).length, 1);
+});

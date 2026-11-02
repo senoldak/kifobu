@@ -9,10 +9,11 @@
 // Düzenlemek için: node scripts/bot/gizli.mjs ac → gizli-kaynaklar.json (git'e girmez) → node scripts/bot/gizli.mjs kapat.
 // Biçim için gizli-kaynaklar.example.json. Loglarda ve durum dosyasında kaynak adı yerine kısa kod (kod) kullanılır.
 //
-// Her kaynak: { ad, kisa, akis, sayfa?, bitis?, yerli?, adlar? } — sayfa: akışta tam metin yoksa haber sayfasındaki
+// Her kaynak: { ad, kisa, akis, sayfa?, bitis?, yerli?, adlar?, suz? } — sayfa: akışta tam metin yoksa haber sayfasındaki
 // gövdenin başlangıç işareti; yerli: Türkiye kaynaklı (öncelik ve daha düşük eşik); adlar: haber metninde geçmemesi
-// gereken yayın adları (denetci.mjs → medyaKontrol; verilmezse ad kullanılır). kisa haber kimliğinin parçasıdır:
-// aynı sitenin akışı değişse de görülen haberler tekrar aday olmasın diye korunmalı.
+// gereken yayın adları (denetci.mjs → medyaKontrol; verilmezse ad kullanılır); suz: genel akış, yalnız konuIcindeMi'den
+// geçen haberler aday olur. kisa haber kimliğinin parçasıdır: aynı sitenin akışı değişse de görülen haberler tekrar
+// aday olmasın diye korunmalı.
 import { hentTekst, htmlMetin, varlikCoz } from './lib.mjs';
 import { adresiSil, gizliKaynaklar, kaynakKodu } from './gizli.mjs';
 
@@ -62,6 +63,12 @@ export async function tamMetin(oge) {
 }
 
 export const baslikTemiz = (s) => varlikCoz(s).replace(/\s+/g, ' ').trim();
+
+// Genel Türkçe ekonomi akışları (suz: true) 22 Ekim'de çıkarılmıştı: haberlerin hemen hepsi kapsam dışıydı ama her tur
+// Gemini puanlamasına giriyordu. 2 Kasım'da geri geldiler; başlıkta ya da özette girişim yatırımı / kitle fonlama sözcüğü
+// geçmeyen haber aday bile olmaz. Süzgeçten geçen yanlış haberi puanlama yine eler; burada amaç yalnız yükü kesmek.
+const KONU = /yatırım (aldı|al[ıd]ğını|alacak|turu|turunda|topladı)|fonlama turu|tohum|seri [a-e]\b|kitle fonlama|paya dayalı|borçlanmaya dayalı|girişim sermayesi|melek yatırım|risk sermayesi|gsyf|gsyo|turcorn|unicorn|startup|girişim(?!ci)|değerleme/iu;
+export const konuIcindeMi = (o) => KONU.test(`${baslikTemiz(o.title ?? '')} ${htmlMetin(o.description ?? '')}`);
 
 // ── Benzerlik (aynı olayı gruplamak için) ───────────────────────────
 // Aynı olayı anlatan başlıklar farklı yazılır ama özel adlar, rakamlar ve anahtar kelimeler ortaktır.

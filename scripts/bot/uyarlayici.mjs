@@ -5,7 +5,7 @@
 // ve habere özgü hatalar durum.hatalar'a sayılır (3 deneme kuralı bunu okur); iki modda da.
 // Sonuc = { kimlik, durum: 'yazildi' | 'elendi' | 'bekliyor', gerekce?, hata?, slug?, havuzda? }
 // Sonucu olmayan aday bekliyor kalır (puanlanamadı, denetim tamamlanamadı, süre ya da Gemini payı doldu).
-import { KAYNAKLAR, anahtarlar, baslikTemiz, benzer, tamMetin } from './kaynaklar.mjs';
+import { KAYNAKLAR, anahtarlar, baslikTemiz, benzer, konuIcindeMi, tamMetin } from './kaynaklar.mjs';
 import { MIN_DEGER, onbellekliPuanla, taslakYaz, derlemeYaz, derlemeUzat, derlemeHedefi } from './yazar.mjs';
 import { HAFIZA_SAAT, hafizaKur, kayitKur, tekrarBul } from './tekrar.mjs';
 import { ayniOlayMi, ciftleriKur, onbellekliEsle, ozelAdlar, uygula } from './esleme.mjs';
@@ -146,7 +146,8 @@ export function uyarlayiciKur({ rot, durum, simdi, ayar = {}, bag = {} }) {
       const taze = ogeler
         .map((o) => ({ ...o, id: gizliId(`${k.kisa}:${o.guid || o.link}`), tarih: new Date(o.pubDate), baslik: baslikTemiz(o.title), kaynak: k }))
         .filter((o) => o.link.startsWith('https://') && !Number.isNaN(o.tarih.valueOf()))
-        .filter((o) => s - o.tarih <= A.yasGun * GUN_MS);
+        .filter((o) => s - o.tarih <= A.yasGun * GUN_MS)
+        .filter((o) => !k.suz || konuIcindeMi(o));
       // Zaman olarak yayın tarihi (gelecekteyse şimdi): ilk turda akışta günlerdir duran adaylar bugüne yığılmasın.
       for (const o of taze) durum.taranan[o.id] ??= { zaman: new Date(Math.min(o.tarih, s)).toISOString(), kod: k.kod, ...(k.yerli && { yerli: true }) };
       for (const o of taze) if (o.icerik) icerikler.set(o.id, o.icerik);

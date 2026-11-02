@@ -17,3 +17,13 @@ test('benzer: aynı olay farklı yazılsa da eşleşir', () => {
   assert.equal(ayni('Paidex, DOMiNO Ventures’ın da katıldığı turda 1 milyon dolar yatırım aldı', 'Dijital yatırım platformu Paidex, DOMiNO Ventures’ın katıldığı turda 1 milyon dolar yatırım aldı'), true);
   assert.equal(ayni('Acme raises $20 million Series A', 'Acme, Seri A turunda 20 milyon dolar yatırım aldı'), true);
 });
+
+test('konuIcindeMi: genel akışta yalnız girişim yatırımı ve kitle fonlama haberleri geçer', async () => {
+  const { konuIcindeMi } = await import('./kaynaklar.mjs');
+  assert.equal(konuIcindeMi({ title: 'Hibrit oyun modeli yatırım aldı' }), true);
+  assert.equal(konuIcindeMi({ title: 'Girişim yatırımlarında hedef 1 milyar dolar: Turcorn sayısı 13’e çıkarılacak' }), true);
+  assert.equal(konuIcindeMi({ title: 'Platform kapandı', description: '<p>Paya dayalı kitle fonlama kampanyası 5 milyon lira topladı.</p>' }), true);
+  assert.equal(konuIcindeMi({ title: 'Merkez Bankası politika faizini sabit tuttu' }), false);
+  assert.equal(konuIcindeMi({ title: 'Akaryakıta zam geldi', description: 'Benzinin litresi 2 lira arttı.' }), false);
+  assert.equal(konuIcindeMi({ title: 'Girişimcilik haftası başladı' }), false);
+});

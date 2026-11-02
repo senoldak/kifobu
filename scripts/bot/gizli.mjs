@@ -94,7 +94,7 @@ export function kaynakIzi(liste) {
 // Hata mesajındaki adresleri siler: açık Actions loglarına ve durum dosyasına kaynak adresi düşmesin.
 export const adresiSil = (mesaj) => String(mesaj).replace(/https?:\/\/\S+/gi, '[adres]');
 
-// { kaynaklar: [{ ad, kisa, akis, sayfa?, bitis?, yerli?, adlar? }], medya: [ad] }
+// { kaynaklar: [{ ad, kisa, akis, sayfa?, bitis?, yerli?, adlar?, suz? }], medya: [ad] }
 // medya: haber metninde anılmaması gereken ek yayın adları (yerel.mjs → MEDYA).
 // Anahtar varken dosya yoksa ya da çözülemezse hata atılır: bot kaynaksız kalıp sessizce boş çalışmasın.
 export function gizliKaynaklar({ dosya = SIFRELI_DOSYA, a = anahtar(), uyar = console.warn } = {}) {
