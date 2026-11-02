@@ -207,12 +207,25 @@ export function turkceHarfKontrol(metin = '') {
     : [];
 }
 
+// ── Alfabe karışması ─────────────────────────────────────────────────────
+// 2 Kasım 2026 yazım taraması: model Türkçe sözcüklere Arap, Kiril, Malayalam ve Tamil harfi karıştırmıştı
+// ("milyار", "gerileді", "sistemங்கள்"); Türkçe harf kontrolü bunları yakalamaz. Latin harfli bir sözcükte Latin ve
+// Yunan dışında bir alfabeden harf varsa sorun döner. Bütünüyle başka alfabede yazılmış ad ya da alıntıya bakılmaz.
+const LATIN = /\p{Script=Latin}/u;
+const YABANCI_HARF = /[^\p{Script=Latin}\p{Script=Greek}\p{M}]/u;
+export function alfabeKontrol(metin = '') {
+  const bulunan = [...new Set((String(metin).match(/[\p{L}\p{M}]+/gu) ?? []).filter((s) => LATIN.test(s) && YABANCI_HARF.test(s)))];
+  return bulunan.length
+    ? [`Sözcüklere başka alfabeden harf karışmış (${bulunan.slice(0, 5).join(', ')}); bu sözcükleri yalnız Latin harfleriyle doğru yaz`]
+    : [];
+}
+
 // Standartlar Faz 1 ölçek kontrolü: metindeki ve künyedeki tutar, kaynaktaki tutardan 10 kat ya da daha fazla
 // kaymışsa (crore/lakh/milyar çevirisi) sorun olur; düzelmezse haber yayımlanmaz.
 const kunyeTutarlari = (k = {}) => [k.toplanan, k.hedef].map(Number).filter((n) => n > 0);
 export function kesinKontroller(h, kaynak, { enAz, hedef } = {}) {
   const m = tamMetin(h);
-  return [...baslikKontrol(h.title), ...uzunlukKontrol(h.body, enAz, hedef), ...rakamKontrol(m, kaynak), ...olcekKontrol(m, kaynak, { mutlak: kunyeTutarlari(h.kunye) }), ...kunyeKontrol(h.kunye ?? {}, kaynak), ...alintiKontrol(m, kaynak), ...adKontrol(m, kaynak), ...kopyaKontrol(h.body, kaynak), ...zamanKontrol(m), ...medyaKontrol(m), ...turkceHarfKontrol(`${h.title}\n${h.body}`)];
+  return [...baslikKontrol(h.title), ...uzunlukKontrol(h.body, enAz, hedef), ...rakamKontrol(m, kaynak), ...olcekKontrol(m, kaynak, { mutlak: kunyeTutarlari(h.kunye) }), ...kunyeKontrol(h.kunye ?? {}, kaynak), ...alintiKontrol(m, kaynak), ...adKontrol(m, kaynak), ...kopyaKontrol(h.body, kaynak), ...zamanKontrol(m), ...medyaKontrol(m), ...turkceHarfKontrol(`${h.title}\n${h.body}`), ...alfabeKontrol(m)];
 }
 
 // "Neden önemli" ve kısa maddeler düzeltme turunda yeniden yazılmaz (muhabir yalnız başlık/spot/metin döndürür);
