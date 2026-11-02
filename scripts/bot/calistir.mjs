@@ -24,9 +24,12 @@ import { yayinDurduMu } from './standart.mjs';
 import { havuzAc, havuzKapat } from './havuz.mjs';
 import { gorulmeyen, uyarlayiciKur, yerelTur } from './uyarlayici.mjs';
 import { turSec } from './motor-modu.mjs';
+import { sayan, gunlukYaz } from './gunluk-sayilar.mjs';
 
 const ROT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const DURUM_DOSYASI = path.join(ROT, 'scripts/bot/gorulen.json');
+// Yayın odasının günlük sayıları (yalnız sayı ve sabit kod; scripts/bot/gunluk-sayilar.mjs).
+const GUNLUK_DOSYASI = path.join(ROT, 'src/data/yayin-odasi/gunluk.json');
 const KURU = process.argv.includes('--kuru');
 // Ortam değişkeni pozitif tam sayı değilse varsayılan kullanılır (yanlış değer sınırları kaldırmasın).
 const sayiAyar = (ad, varsayilan) => {
@@ -113,11 +116,13 @@ if (!process.env.GEMINI_API_KEY) {
 // MOTOR_TUR=1: tur ortak motorla (MOTOR_DIZIN), aksi hâlde yerel tur. Yerelde turu durduran ayar hatası (anahtar ya da model)
 // ozet.hata'ya yazılır, durum kaydedilir ve süreç normal biter. Motor modunda hata yerel tura düşmez; durum yine yazılır
 // (yerel durum kaybolmasın) ve süreç sonunda hata koduyla çıkar.
+// Yayın odası: adaylar ve sonuçlar sayılır (kaynak adı ya da başlık tutulmaz).
+const sayac = sayan(uyarlayici);
 let turHatasi = null;
 try {
   await turSec({
     env: process.env,
-    uyarlayici,
+    uyarlayici: sayac.uyarlayici,
     durum,
     simdi,
     rot: ROT,
@@ -144,6 +149,12 @@ durum.havuz = havuzKapat(durum.havuz);
 // Gemini Faz 2: yayımlanan haberlerin vektör dosyası (GOMME_VEKTOR=1) ve gömme önbelleği; hata turu düşürmez.
 await gommeTurSonu({ kok: ROT, icerik: 'src/content/haberler', onbellekDosyasi: path.join(ROT, 'scripts/bot/gomme-onbellek.json') });
 await writeFile(DURUM_DOSYASI, `${JSON.stringify(durum, null, 2)}\n`, 'utf8');
+// Günlük sayıların yazılamaması turu düşürmez.
+try {
+  await gunlukYaz(GUNLUK_DOSYASI, sayac.sayilar());
+} catch (e) {
+  console.warn(`Günlük sayılar yazılamadı: ${adresiSil(e?.message ?? e)}`);
+}
 
 const sayi = ozet.yazilan.length;
 console.log(`\nYazılan: ${ozet.yazilan.length}, denetimden geçemeyen: ${ozet.elenen.length}, atlanan: ${ozet.atlanan.length}, hata: ${ozet.hata.length}`);

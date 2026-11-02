@@ -1,0 +1,118 @@
+---
+// "Bu haber nasıl hazırlandı": kapalı <details> kartı; olgu satırı ve küçük portreler. Açılınca adımlar
+// (src/lib/hazirlanis.mjs), her otomatik adım bir satır, en sonda sorumlu kişinin satırı. Ajan adları otomatik adımların
+// adıdır, insan değildir. Adımı olmayan yazıda (günlük bülten, zincirin sahibe ait olmayan yazısı) kart çıkmaz.
+// tidsrøst src/components/artikkel/SlikBleSakenLaget.astro uyarlaması.
+import { AJANLAR, adimlar, insanOkumadi, olguSatiri, sahipYazisi, sayiAdi, SAHIP } from '../../lib/hazirlanis.mjs';
+import { portre } from '../../lib/portre.mjs';
+import { tohumIsaretiSvg } from '../../lib/kimlik';
+import { formatDate } from '../../lib/site';
+import { hataBildirMailto } from '../../lib/yapay-zeka-notu';
+
+// "Yayın odasına gir" şeridi: /yayin-odasi/ (piksel yayın odası).
+const YAYIN_ODASI = true;
+
+interface Props {
+  haber: { uretim?: string; author?: string; yaziTuru?: string; category?: string; title?: string; derleme?: boolean; haberDegeri?: number };
+  baslik: string;
+  url: string;
+  yayin: Date;
+  degisti?: Date;
+  duzeltildi?: boolean;
+}
+const { haber, baslik, url, yayin, degisti, duzeltildi } = Astro.props;
+
+const liste = adimlar(haber) ?? [];
+const sahip = sahipYazisi(haber);
+const olgu = olguSatiri(haber);
+const yzSayisi = liste.filter((a) => AJANLAR[a.id as keyof typeof AJANLAR]?.yz).length;
+const kisa = sahip ? `${SAHIP} yazdı. Yapay zekâ yalnız dili düzeltti.` : `${sayiAdi(yzSayisi)} otomatik adımla yazıldı.`;
+const aciklama = sahip
+  ? `Yazı ${SAHIP}’ındır. Yapay zekâ yalnız imla ve dil düzeltmesinde kullanıldı; konu, bakış açısı ve rakamlar için kullanılmadı.`
+  : 'Haber, izlediğimiz yayınların haberlerinden otomatik olarak yazıldı. Yayından önce bir gazeteci okumadı.';
+const sorumluluk = sahip
+  ? ', gazeteci, yayıncı ve editör, yazıyı yazdı ve yayımladı.'
+  : ', gazeteci, yayıncı ve editör, neyin otomatik yayımlanabileceğinin kurallarını koyar.';
+const tarih = (d: Date) => formatDate(d, true);
+const ajan = (id: string) => AJANLAR[id as keyof typeof AJANLAR];
+---
+
+{
+  liste.length > 0 && (
+    <details class="yh-nasil" id="nasil">
+      <summary>
+        <span class="isaret" aria-hidden="true" set:html={tohumIsaretiSvg({ boyut: 120, kucuk: true })} />
+        <span class="sum">
+          <span class="bas">{sahip ? 'Bu yazı nasıl hazırlandı' : 'Bu haber nasıl hazırlandı'}</span>
+          <span class="kisa">{kisa}</span>
+          {olgu.length > 0 && (
+            <span class="olgu">
+              {olgu.map((o) => (
+                <span>
+                  {o.on}
+                  {o.kalin && <b>{o.kalin}</b>}
+                  {o.son}
+                </span>
+              ))}
+            </span>
+          )}
+        </span>
+        <span class="yuzler" aria-hidden="true">
+          {liste.map((a) => (
+            <span class="mini" set:html={portre(ajan(a.id).u, ajan(a.id).yz, 2)} />
+          ))}
+        </span>
+        <span class="ac">
+          <span class="kapali">Nasıl?</span>
+          <span class="acik">Kapat</span>
+          <svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" /></svg>
+        </span>
+      </summary>
+      <div class="ic">
+        <p class="olgu-acik">
+          {insanOkumadi(haber) && <span class="okunmadi">Yayından önce bir insan okumadı</span>}
+          <span>Yayın {tarih(yayin)}</span>
+          <span>{duzeltildi ? `Düzeltildi${degisti ? ` ${tarih(degisti)}` : ''}` : degisti ? `Güncellendi ${tarih(degisti)}` : 'Değişiklik yok'}</span>
+        </p>
+        <p>{aciklama}</p>
+        {!sahip && (
+          <p class="ekip">
+            <span class="yz">YZ</span> Aşağıdaki adların hepsi kifobu’nun otomatik adımlarıdır; insan değildir.
+          </p>
+        )}
+        <ol class="yh-adimlar">
+          {liste.map((a) => (
+            <li>
+              <span class:list={['ava', !ajan(a.id).yz && 'insan']} set:html={portre(ajan(a.id).u, ajan(a.id).yz)} />
+              <span class="tx">
+                <span class="kim">
+                  <b>{ajan(a.id).ad}</b>
+                  <span class="rol">{ajan(a.id).rol}</span>
+                  {ajan(a.id).yz && <span class="yz">YZ</span>}
+                </span>
+                <span class="ne">{a.metin}</span>
+              </span>
+            </li>
+          ))}
+        </ol>
+        <div class="sorumlu">
+          <span class="ava insan" set:html={portre(AJANLAR.senol.u, false)} />
+          <p>
+            <b>{SAHIP}</b>
+            {sorumluluk} <a href={hataBildirMailto(baslik, url)}>Hata bildir →</a>
+          </p>
+        </div>
+        {YAYIN_ODASI && (
+          <a class="yh-oda" href="/yayin-odasi/">
+            <span class="t">
+              <b>Yayın odasına gir</b>
+              <span>Nil, Baran ve ekibin geri kalanını çalışırken gör.</span>
+            </span>
+            <span class="ok" aria-hidden="true">→</span>
+          </a>
+        )}
+        <p class="yz-sayfa"><a href="/yapay-zeka-kullanimi/">Yapay zekâyı nasıl kullanıyoruz →</a></p>
+      </div>
+    </details>
+  )
+}

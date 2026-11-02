@@ -1,0 +1,19 @@
+{
+  "aciklama": "kifobu sözlüğü: metindeki terimlerin kısa açıklamaları (src/lib/sozluk.mjs). kifobu'nun kendi tanımlarıdır; TDK sözlüğünün metni lisans izni olmadan yayımlanmaz. Uzun biçim önce yazılır, kısa biçim onun içinde eşleşmez.",
+  "terimler": [
+    { "terim": "Seri A öncesi", "tanim": "Girişimin ilk büyük kurumsal yatırım turundan (Seri A) önce aldığı yatırım." },
+    { "terim": "tohum öncesi", "tanim": "Tohum turundan önce, çoğu zaman ürün henüz ortaya çıkmadan alınan yatırım." },
+    { "terim": "tohum turu", "tanim": "Girişimin ürününü geliştirmek için aldığı ilk yatırım turlarından biri." },
+    { "terim": "Seri A", "tanim": "Ürününü pazarda denemiş girişimin büyümek için aldığı ilk büyük kurumsal yatırım turu." },
+    { "terim": "melek yatırımcı", "tanim": "Erken aşamadaki girişimlere kendi birikimiyle yatırım yapan kişi." },
+    { "terim": "girişim sermayesi", "tanim": "Büyüme beklentisi yüksek genç şirketlere, ortaklık payı karşılığında yapılan yatırım." },
+    { "terim": "paya dayalı kitle fonlaması", "tanim": "Yatırımcının verdiği para karşılığında girişime ortak olduğu kitle fonlaması." },
+    { "terim": "borçlanmaya dayalı kitle fonlaması", "tanim": "Girişimin topladığı parayı, baştan belirlenen koşullarla yatırımcıya geri ödediği kitle fonlaması." },
+    { "terim": "kitle fonlaması", "tanim": "Bir girişimin ya da projenin, çok sayıda kişiden toplanan parayla finansman sağlaması. Türkiye’de SPK’nın izin verdiği platformlar üzerinden yapılır." },
+    { "terim": "değerleme", "tanim": "Yatırım turunda şirkete biçilen toplam değer." },
+    { "terim": "halka arz", "tanim": "Şirketin paylarını borsada satışa sunarak halka açık şirket olması." },
+    { "terim": "unicorn", "tanim": "Değeri 1 milyar doları aşan, payları borsada işlem görmeyen girişim." },
+    { "terim": "ARR", "tanim": "Yıllık yinelenen gelir: aboneliklerden bir yıl boyunca düzenli olarak gelen gelir." },
+    { "terim": "GSYO", "tanim": "Girişim sermayesi yatırım ortaklığı: girişimlere yatırım yapan, payları borsada işlem gören şirket." }
+  ]
+}

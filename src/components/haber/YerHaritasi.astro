@@ -1,0 +1,23 @@
+---
+// Haberin geçtiği yer: Türkiye sınırı üzerinde il işareti, altında il adı. Yalnız haberinIli() bir il döndürünce
+// (src/lib/yer.mjs). Çizim derlemede yapılır; resim dosyası yok.
+import sinir from '../../data/turkiye-sinir.json';
+import { haritaCiz } from '../../lib/yer.mjs';
+
+interface Props {
+  il: string;
+}
+const { il } = Astro.props;
+const h = haritaCiz(sinir as number[][][], il);
+const solda = h.cx > h.genislik * 0.75;
+---
+
+<figure class="yh-harita">
+  <svg viewBox={`0 0 ${h.genislik} ${h.yukseklik}`} role="img" aria-label={`Türkiye haritasında ${il}`}>
+    <path d={h.yol} class="kara" />
+    <circle cx={h.cx} cy={h.cy} r="16" class="halka" />
+    <circle cx={h.cx} cy={h.cy} r="6" class="nokta" />
+    <text x={solda ? h.cx - 14 : h.cx + 14} y={h.cy - 14} class="ad" text-anchor={solda ? 'end' : 'start'}>{il}</text>
+  </svg>
+  <figcaption><b>{il}</b> · girişimin merkezi</figcaption>
+</figure>

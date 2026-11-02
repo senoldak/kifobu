@@ -460,7 +460,7 @@ export function uyarlayiciKur({ rot, durum, simdi, ayar = {}, bag = {} }) {
           g.uyeler.forEach((u) => delete durum.gorulen[u.id]); // denetim belirsizinde olduğu gibi görülmedi kalır
           continue;
         }
-        const slug = await B.haberYaz(rot, { ...haber, category: t.category, date: istanbulIso(simdi), draft: false, kaynakIzi: kaynakIzi(secilen.slice(0, 3).map((u) => ({ ad: u.kaynak.ad, url: u.link }))), why_matters: haber.why_matters ?? t.why_matters, key_points: haber.key_points ?? t.key_points });
+        const slug = await B.haberYaz(rot, { ...haber, category: t.category, date: istanbulIso(simdi), draft: false, haberDegeri: puan.get(g), kaynakIzi: kaynakIzi(secilen.slice(0, 3).map((u) => ({ ad: u.kaynak.ad, url: u.link }))), why_matters: haber.why_matters ?? t.why_matters, key_points: haber.key_points ?? t.key_points });
         delete durum.hatalar[hataId];
         await kapi.yazildi(slug, ik.gerekce);
         if (girisimNorm) bilinenGirisimler.add(girisimNorm);
@@ -553,6 +553,7 @@ export function uyarlayiciKur({ rot, durum, simdi, ayar = {}, bag = {} }) {
             const slug = await B.haberYaz(rot, {
               ...haber,
               title: `${haber.title} · ${dilimEki(grup)}`,
+              derleme: true,
               category: t.category,
               date: istanbulIso(simdi),
               draft: false,

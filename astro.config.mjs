@@ -9,6 +9,9 @@ import { bolumIndekslenir, indekslenir } from './src/lib/indeks.ts';
 import { onyuzMaddesiYayinda } from './src/lib/yayinda.mjs';
 import { satteri } from '@astrojs/markdown-satteri';
 import { satteriGraf } from './src/lib/graf/yazi.mjs';
+import { satteriSozluk } from './src/lib/sozluk.mjs';
+
+const sozluk = JSON.parse(readFileSync('./src/data/sozluk.json', 'utf8'));
 import { grafEtkilesimDenetle } from './src/lib/graf/etkilesim-denetim.mjs';
 
 // Grafiği olan her sayfa etkileşim betiğini yüklemeli; eksikse grafik sessizce statik kalır, o yüzden derleme durur.
@@ -128,7 +131,8 @@ export default defineConfig({
     grafEtkilesim(),
   ],
   // Astro 7 Sätteri kullanır; yazılardaki graf-N.svg, yanında graf-N.json varsa etkileşimli karta döner (src/lib/graf/yazi.mjs).
-  markdown: { processor: satteri({ hastPlugins: [satteriGraf()] }) },
+  // Sözcük açıklamaları: haber başına en çok üç terim, kifobu sözlüğünden (src/lib/sozluk.mjs, src/data/sozluk.json).
+  markdown: { processor: satteri({ hastPlugins: [satteriGraf(), satteriSozluk(sozluk)] }) },
   redirects: categoryRedirects,
   // CSP (public/_headers) satır içi stile izin vermez; tüm CSS ayrı dosya olarak yüklenir.
   build: { inlineStylesheets: 'never' },

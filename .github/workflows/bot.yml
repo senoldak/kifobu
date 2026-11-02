@@ -108,6 +108,8 @@ jobs:
           [ -f src/data/vektorler.jsonl ] && git add src/data/vektorler.jsonl
           # Çeyrek raporu klasörü ilk rapora kadar yoktur; yoksa git add pathspec hatası verir.
           [ -d src/data/standartlar-raporu ] && git add src/data/standartlar-raporu
+          # Yayın odasının günlük sayıları (yalnız sayı ve sabit kod) ilk turdan önce yoktur.
+          [ -f src/data/yayin-odasi/gunluk.json ] && git add src/data/yayin-odasi/gunluk.json
           if git diff --cached --quiet; then
             echo "Değişiklik yok."
             exit 0

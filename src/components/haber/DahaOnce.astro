@@ -1,0 +1,34 @@
+---
+// "Daha önce bu konuda": sarı dikey çizgi üzerinde aynı konudaki eski haberler (src/lib/daha-once.ts), en sonda bu
+// haber. Eski haber yoksa bölüm yok. tidsrøst Tidligere.astro uyarlaması.
+import { newsUrl, type Haber } from '../../lib/news';
+
+interface Props {
+  haberler: Haber[];
+  baslik: string;
+  tarih: Date;
+}
+const { haberler, baslik, tarih } = Astro.props;
+const gun = (d: Date) => d.toLocaleDateString('tr-TR', { day: 'numeric', month: 'short', timeZone: 'Europe/Istanbul' });
+---
+
+{
+  haberler.length > 0 && (
+    <section class="yh-once" aria-labelledby="once-b">
+      <h2 id="once-b">Daha önce bu konuda</h2>
+      <ol>
+        {haberler.map((h) => (
+          <li>
+            <time datetime={h.data.date.toISOString()}>{gun(h.data.date)}</time>
+            <a href={newsUrl(h)}>{h.data.title}</a>
+          </li>
+        ))}
+        <li class="bu" aria-current="page">
+          <time datetime={tarih.toISOString()}>{gun(tarih)}</time>
+          <span>{baslik}</span>
+          <em>Bu haber</em>
+        </li>
+      </ol>
+    </section>
+  )
+}

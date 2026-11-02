@@ -1,0 +1,93 @@
+---
+// Araç satırı (imzanın altında): solda sitenin hesapları, sağda Aa (yazı boyu, okuma modu, yüksek karşıtlık, yazdır),
+// Dinle ve Paylaş. Davranış tek pakette (src/scripts/okuma-araclari.ts). JavaScript yokken Paylaş bağlantıları,
+// hesaplar ve <details> menüleri çalışır; Dinle, Aa düğmeleri ve "Bağlantıyı kopyala" gizli ya da etkisiz kalır.
+// Paylaşım bağlantıları düz bağlantıdır (CSP üçüncü taraf betiğe izin vermez). tidsrøst Verktoylinje.astro uyarlaması.
+import { SITE } from '../../lib/site';
+
+interface Props {
+  url: string;
+  baslik: string;
+}
+const { url, baslik } = Astro.props;
+const u = encodeURIComponent(url);
+const t = encodeURIComponent(baslik);
+const IKON: Record<string, string> = {
+  facebook: 'M14 8h3V4h-3c-2.8 0-4 1.7-4 4.3V10H7v4h3v8h4v-8h3l1-4h-4V8.6c0-.4.2-.6.6-.6Z',
+  instagram: 'M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Zm5 5a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm5.5-2a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z',
+  telegram: 'M21 4 3 11l6 2 2 6 3-4 5 4 2-15Z',
+  linkedin: 'M4 9h4v11H4zM6 3a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm4 6h4v1.6c.6-1 1.9-1.9 3.6-1.9 3.2 0 3.4 2.4 3.4 5V20h-4v-4.8c0-1.2 0-2.6-1.6-2.6s-1.8 1.2-1.8 2.5V20h-4z',
+  rss: 'M5 3a16 16 0 0 1 16 16h-3A13 13 0 0 0 5 6Zm0 6a10 10 0 0 1 10 10h-3a7 7 0 0 0-7-7Zm1.5 6.5a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z',
+  dinle: 'M4 9v6h4l5 4V5L8 9Z',
+  paylas: 'M18 8a3 3 0 1 0-2.8-4L8.9 7.6a3 3 0 1 0 0 4.8l6.3 3.6A3 3 0 1 0 16 14l-6.3-3.6a3 3 0 0 0 0-.8L16 6a3 3 0 0 0 2 2Z',
+};
+const hesaplar = [
+  { ad: 'facebook', etiket: 'Facebook', href: SITE.social.facebook },
+  { ad: 'instagram', etiket: 'Instagram', href: SITE.social.instagram },
+  { ad: 'telegram', etiket: 'Telegram', href: SITE.social.telegram },
+  { ad: 'linkedin', etiket: 'LinkedIn', href: SITE.social.linkedin },
+].filter((h) => h.href);
+const paylasim = [
+  { ad: 'Facebook', href: `https://www.facebook.com/sharer/sharer.php?u=${u}` },
+  { ad: 'WhatsApp', href: `https://wa.me/?text=${t}%20${u}` },
+  { ad: 'LinkedIn', href: `https://www.linkedin.com/sharing/share-offsite/?url=${u}` },
+  { ad: 'Telegram', href: `https://t.me/share/url?url=${u}&text=${t}` },
+  { ad: 'X', href: `https://x.com/intent/post?url=${u}&text=${t}` },
+  { ad: 'Bluesky', href: `https://bsky.app/intent/compose?text=${encodeURIComponent(`${baslik} ${url}`)}` },
+  { ad: 'E-posta', href: `mailto:?subject=${t}&body=${encodeURIComponent(`${baslik}\n\n${url}`)}`, eposta: true },
+];
+---
+
+<div class="yh-arac">
+  <div class="takip">
+    <span class="yh-etiket">Takip et</span>
+    {
+      hesaplar.map((h) => (
+        <a class="ikon" href={h.href} target="_blank" rel="noopener noreferrer" aria-label={`${SITE.name} ${h.etiket} hesabı (yeni sekmede açılır)`} title={h.etiket}>
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d={IKON[h.ad]} fill="currentColor" /></svg>
+        </a>
+      ))
+    }
+    <a class="ikon" href="/rss.xml" aria-label={`${SITE.name} RSS`} title="RSS"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d={IKON.rss} fill="currentColor" /></svg></a>
+  </div>
+  <div class="sag">
+    <details class="boy">
+      <summary aria-label="Yazı boyu ve okuma modu"><span class="aa">A<small>a</small></span></summary>
+      <div class="menu">
+        <p class="yh-etiket">Yazı boyu</p>
+        <div class="olcek" role="group" aria-label="Yazı boyu">
+          <button type="button" data-olcek="0" aria-label="Küçük yazı" aria-pressed="false">A−</button>
+          <button type="button" data-olcek="1" aria-label="Olağan yazı" aria-pressed="true">A</button>
+          <button type="button" data-olcek="2" aria-label="Büyük yazı" aria-pressed="false">A+</button>
+          <button type="button" data-olcek="3" aria-label="En büyük yazı" aria-pressed="false">A++</button>
+        </div>
+        <button type="button" class="satir" data-okuma>Okuma modu</button>
+        <button type="button" class="satir" data-karsitlik aria-pressed="false">Yüksek karşıtlık</button>
+        <button type="button" class="satir" data-yazdir>Yazdır</button>
+      </div>
+    </details>
+    <button type="button" class="dinle" aria-pressed="false" aria-label="Haberi dinle" hidden>
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d={IKON.dinle} fill="currentColor" /></svg>
+      <span>Dinle</span>
+    </button>
+    <details class="paylas">
+      <summary aria-label="Haberi paylaş"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d={IKON.paylas} fill="currentColor" /></svg><span>Paylaş</span></summary>
+      <div class="menu">
+        {
+          paylasim.map((p) => (
+            <a href={p.href} target={p.eposta ? undefined : '_blank'} rel="noopener noreferrer" aria-label={`${p.ad} ile paylaş${p.eposta ? '' : ' (yeni sekmede açılır)'}`}>
+              {p.ad}
+            </a>
+          ))
+        }
+        <button type="button" class="satir kopyala" data-url={url} hidden>Bağlantıyı kopyala</button>
+      </div>
+    </details>
+  </div>
+</div>
+<span class="yh-duyuru" role="status" aria-live="polite"></span>
+<button type="button" class="yh-okuma-cik">Okuma modundan çık ✕</button>
+
+<script>
+  import '../../scripts/okuma-araclari.ts';
+</script>

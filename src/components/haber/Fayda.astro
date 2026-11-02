@@ -1,0 +1,15 @@
+---
+// "Bu haber işine yaradı mı?": iki düğme, yanıt /api/fayda'ya anonim gider (yalnız gün, haber ve yanıt başına sayı;
+// worker/index.js). JavaScript yokken gizli; src/scripts/okuma-araclari.ts gösterir.
+interface Props {
+  slug: string;
+}
+const { slug } = Astro.props;
+---
+
+<div class="yh-fayda" data-slug={slug} hidden>
+  <span class="soru" id="fayda-soru">Bu haber işine yaradı mı?</span>
+  <button type="button" data-yanit="evet" aria-describedby="fayda-soru">Evet</button>
+  <button type="button" data-yanit="hayir" aria-describedby="fayda-soru">Hayır</button>
+  <span class="tesekkur" role="status" hidden>Teşekkürler. Yanıtın daha iyi haber yazmamıza yardım ediyor.</span>
+</div>

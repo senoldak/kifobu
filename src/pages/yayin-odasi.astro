@@ -1,0 +1,151 @@
+---
+// Yayın odası: piksel sahne (tidsrøst /redaksjonen/ uyarlaması). Sayılar ve başlıklar gerçek kayıtlardan
+// (src/lib/yayin-odasi.mjs): botun günlük sayıları (src/data/yayin-odasi/gunluk.json) ve yayımlanmış yazılar (zincir
+// yazılarının `zincir` kaydı). Sahne betiği src/scripts/yayin-odasi.mjs; veri ona #yayin-odasi-veri JSON'uyla geçer
+// (CSP: satır içi betik yok). Figürlerin hareketi temsilîdir.
+import Base from '../layouts/Base.astro';
+import Yol from '../components/Yol.astro';
+import { getNews } from '../lib/news';
+import { yayinOdasiVerisi } from '../lib/yayin-odasi.mjs';
+import { jsonLdMetni } from '../lib/json-ld.mjs';
+import '../styles/yayin-odasi.css';
+
+// Dosya ilk bot turundan önce yoktur: glob boş döner, sayfa sayısız açılır.
+const gunlukDosyasi = import.meta.glob('../data/yayin-odasi/gunluk.json', { eager: true, import: 'default' });
+const gunluk = Object.values(gunlukDosyasi)[0] as { gunler?: Record<string, object> } | undefined;
+
+const haberler = (await getNews()).map((h) => ({ ...h.data, slug: h.id }));
+const R = yayinOdasiVerisi({ haberler, gunluk, simdi: new Date() });
+
+const sayi = (n: number) => new Intl.NumberFormat('tr-TR').format(n);
+const tarihMetni = (g: string) => new Intl.DateTimeFormat('tr-TR', { day: 'numeric', month: 'long', timeZone: 'UTC' }).format(new Date(`${g}T12:00:00Z`));
+const KAOS = [['serverbrann', 'Sunucu yangını'], ['strombrudd', 'Elektrik kesintisi'], ['ekstra', 'Son dakika!'], ['kaffekrise', 'Çay bitti'], ['kaptein', 'Kaptan Tohum']];
+const TEMA = [['ingen', 'Olağan'], ['republikk', '29 Ekim'], ['id', 'Ramazan Bayramı'], ['jul', 'Yılbaşı']];
+const site = new URL('/', Astro.site).href;
+const yolLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Anasayfa', item: site },
+    { '@type': 'ListItem', position: 2, name: 'Yayın odası', item: new URL('/yayin-odasi/', Astro.site).href },
+  ],
+};
+---
+
+<Base title="Yayın odası" description="kifobu nasıl çalışıyor: bir gazeteci ve üç ekip yapay zekâ ajanı. Haber botunun bugünkü sayıları ve uzun yazıların nasıl denetlendiği.">
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={jsonLdMetni(yolLd)} />
+  </Fragment>
+
+  <div class="yo">
+    <div class="yo-bas">
+      <Yol adimlar={[{ ad: 'Anasayfa', url: '/' }, { ad: 'Yayın odası' }]} />
+      <h1>Yayın odası</h1>
+      <p>
+        Bir gazeteci ve üç ekip yapay zekâ ajanı: kısa haberleri yazan haber masası, uzun yazıları hazırlayan yazı masası ve Şenol’un
+        kendi yazılarının dilinin düzeltildiği yazar odası. Ne iş yaptığını görmek için bir figüre dokun. Sayılar ve başlıklar gerçek;
+        figürler işin bir çizimi. Ajanların adları otomatik adımların adıdır, insan değildir.
+      </p>
+    </div>
+
+    {
+      R.sonHaberler.length > 0 && (
+        <nav class="serit" aria-label="Son haberler">
+          <div>
+            <span class="ek">SON</span>
+            <div class="pencere">
+              <div class="kay">
+                {R.sonHaberler.map((s) => <a href={s.url}>{s.baslik}</a>)}
+                {R.sonHaberler.map((s) => <a href={s.url} aria-hidden="true" tabindex="-1">{s.baslik}</a>)}
+              </div>
+            </div>
+          </div>
+        </nav>
+      )
+    }
+
+    <div class="scene">
+      <svg id="rom" viewBox="0 0 1820 1200" shape-rendering="crispEdges" role="img" aria-label="Yayın odasının yukarıdan çizimi"></svg>
+    </div>
+    <div class="dugmeler">
+      <span>Kaos:</span>
+      {KAOS.map(([k, n]) => <button type="button" data-yo-kaos={k}>{n}</button>)}
+      <span>Tema:</span>
+      {TEMA.map(([k, n]) => <button type="button" data-yo-tema={k}>{n}</button>)}
+    </div>
+
+    <section class="kort" aria-live="polite">
+      <div id="kort">
+        <h2>Bir figür seç</h2>
+        <p>Her figür işin bir parçasını yapar: haberin bulunmasından yayımlanmasına kadar.</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="pano">
+        <h2>Bugünün sayıları</h2>
+        {
+          R.gun ? (
+            <>
+              <p class="tarih">{R.gun.bugun ? `Bugün, ${tarihMetni(R.gun.tarih)}` : `Son kayıtlı gün: ${tarihMetni(R.gun.tarih)}`}</p>
+              <dl>
+                <dt>Kaynak haber</dt>
+                <dd>{sayi(R.gun.bulunan)}</dd>
+                <dt>Değerlendirilen</dt>
+                <dd>{sayi(R.gun.degerlendirilen)}</dd>
+                <dt>Yayımlanan</dt>
+                <dd>{sayi(R.gun.yayimlanan)}</dd>
+              </dl>
+            </>
+          ) : (
+            <p class="tarih">Sayılar ilk bot turundan sonra görünür.</p>
+          )
+        }
+        {
+          R.hafta && R.elenenler.length > 0 && (
+            <>
+              <h3>Çöp sepeti, son {R.hafta.gun === 1 ? 'gün' : `${R.hafta.gun} gün`}</h3>
+              <ul>
+                {R.elenenler.map((e) => (
+                  <li>
+                    <span>{e.metin}</span>
+                    <b>{sayi(e.sayi)}</b>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )
+        }
+        <p class="liten">Sayılar haber botunun kendi kaydından gelir ve site her derlendiğinde tazelenir. Bir haber birden çok kaynak haberden yazılabilir.</p>
+      </div>
+
+      <div class="pano">
+        <h2>Son uzun yazı</h2>
+        {
+          R.sonZincir ? (
+            <>
+              <p><a href={R.sonZincir.url}>{R.sonZincir.baslik}</a></p>
+              <ul>
+                <li><span>Kaynakla karşılaştırılan iddia</span><b>{sayi(R.sonZincir.denetlenen)}</b></li>
+                <li><span>Yayından önce yeniden çekilen rakam</span><b>{sayi(R.sonZincir.cekilen)}</b></li>
+                <li><span>Yeniden yazılmak üzere geri gönderme</span><b>{sayi(R.sonZincir.geri)}</b></li>
+                {R.sonZincir.turlar.map((t) => <li><span>– {t.ad} masasına</span><b>{sayi(t.sayi)}</b></li>)}
+              </ul>
+              <p class="liten">Yayından önce Şenol Dak onayladı.</p>
+            </>
+          ) : (
+            <>
+              <p>Denetim kaydı olan uzun yazı henüz yok.</p>
+              {R.sonSahip && <p class="liten">Son yazı: <a href={R.sonSahip.url}>{R.sonSahip.baslik}</a></p>}
+            </>
+          )
+        }
+      </div>
+    </section>
+  </div>
+
+  <script type="application/json" id="yayin-odasi-veri" set:html={JSON.stringify(R).replace(/</g, '\\u003c')} />
+  <script>
+    import '../scripts/yayin-odasi.mjs';
+  </script>
+</Base>

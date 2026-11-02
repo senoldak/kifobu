@@ -52,6 +52,13 @@ const haberler = defineCollection({
       kaynakIzi: z.string().optional(),
       // 'yazi-isleri': yazı işleri zincirinin yazısı (yerleştirme yazar); sayfa sonunda zincir notunu alır (src/lib/yapay-zeka-notu.ts).
       uretim: z.enum(['editor', 'yapay-zeka', 'yazi-isleri']).default('editor'),
+      // Botun verdiği haber değeri (0–100, eşik 55); "Bu haber nasıl hazırlandı" kartında gösterilir. Eski haberlerde yok.
+      haberDegeri: z.number().int().min(0).max(100).optional(),
+      // Botun dilim derlemesi (tek başına kısa kalan haberler bir yazıda); kart derleme adımlarını gösterir.
+      derleme: z.boolean().optional(),
+      // Yazı işleri zincirinin kaydı (yayın odası): geri göndermeler adım başına, kaynakla karşılaştırılan iddia ve yeniden
+      // çekilen rakam sayısı. Yalnız sayı; zincir yerleştirirken yazar.
+      zincir: z.object({ turlar: z.record(z.string(), z.number().int().nonnegative()), denetlenen: z.number().int().nonnegative(), cekilen: z.number().int().nonnegative() }).optional(),
     }),
 });
 

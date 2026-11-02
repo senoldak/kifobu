@@ -1,0 +1,39 @@
+---
+// "Haberdeki değişiklikler": düzeltme (tarihi ve notuyla) ya da güncelleme (tarihiyle). Tarih ön bilgideki `updated`.
+// Düzeltme notları 1 Aralık 2026'ya kadar kapalı (src/content.config.ts DUZELTME_ACILIS); o güne kadar yalnız
+// "Güncellendi" satırı çıkar. Değişiklik yoksa bölüm yok. tidsrøst Endringer.astro uyarlaması.
+import { formatDate } from '../../lib/site';
+
+interface Props {
+  duzeltme?: string;
+  degisti?: Date;
+}
+const { duzeltme, degisti } = Astro.props;
+const tarih = (d: Date) => formatDate(d, true);
+---
+
+{
+  (duzeltme || degisti) && (
+    <section class="yh-degisiklik" id="degisiklikler" aria-labelledby="degisiklik-b">
+      <h2 class="yh-etiket" id="degisiklik-b">Haberdeki değişiklikler</h2>
+      <ol>
+        {duzeltme ? (
+          <li>
+            <span class="durum duzeltildi">Düzeltildi</span>
+            {degisti ? <time datetime={degisti.toISOString()}>{tarih(degisti)}</time> : <span />}
+            <span>{duzeltme}</span>
+          </li>
+        ) : (
+          degisti && (
+            <li>
+              <span class="durum">Güncellendi</span>
+              <time datetime={degisti.toISOString()}>{tarih(degisti)}</time>
+              <span />
+            </li>
+          )
+        )}
+      </ol>
+      <a href="/duzeltmeler/">Bütün düzeltmeler →</a>
+    </section>
+  )
+}

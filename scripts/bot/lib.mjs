@@ -269,6 +269,9 @@ export async function haberYaz(rot, h) {
       : null,
     // Kaynakların şifreli kaydı (bkz. gizli.mjs); sitede gösterilmez.
     h.kaynakIzi ? `kaynakIzi: ${yamlStr(h.kaynakIzi)}` : null,
+    // Ön elemenin haber değeri (0–100) ve derleme işareti: "Bu haber nasıl hazırlandı" kartı (src/lib/hazirlanis.mjs).
+    Number.isInteger(h.haberDegeri) && h.haberDegeri >= 0 && h.haberDegeri <= 100 ? `haberDegeri: ${h.haberDegeri}` : null,
+    h.derleme ? 'derleme: true' : null,
     'uretim: yapay-zeka',
     '---',
   ].filter(Boolean);
