@@ -32,7 +32,7 @@ const yolLd = {
 };
 ---
 
-<Base title="Yayın odası" description="kifobu nasıl çalışıyor: bir gazeteci ve üç ekip yapay zekâ ajanı. Haber botunun bugünkü sayıları ve uzun yazıların nasıl denetlendiği.">
+<Base title="Yayın odası" description="kifobu'yu bir gazeteci ve üç ekip yapay zekâ ajanı hazırlıyor. Sayfada haber botunun bugünkü sayıları ve uzun yazıların nasıl denetlendiği var.">
   <Fragment slot="head">
     <script type="application/ld+json" set:html={jsonLdMetni(yolLd)} />
   </Fragment>
@@ -42,9 +42,10 @@ const yolLd = {
       <Yol adimlar={[{ ad: 'Anasayfa', url: '/' }, { ad: 'Yayın odası' }]} />
       <h1>Yayın odası</h1>
       <p>
-        Bir gazeteci ve üç ekip yapay zekâ ajanı: kısa haberleri yazan haber masası, uzun yazıları hazırlayan yazı masası ve Şenol’un
-        kendi yazılarının dilinin düzeltildiği yazar odası. Ne iş yaptığını görmek için bir figüre dokun. Sayılar ve başlıklar gerçek;
-        figürler işin bir çizimi. Ajanların adları otomatik adımların adıdır, insan değildir.
+        kifobu’yu bir gazeteci ve üç ekip yapay zekâ ajanı hazırlıyor. Haber masası kısa haberleri yazıyor, yazı masası uzun yazıları
+        hazırlıyor, yazar odasında da Şenol Dak’ın kendi yazılarının dili düzeltiliyor. Bir figüre dokunursanız ne iş yaptığını
+        görürsünüz. Sayılar ve başlıklar gerçek, figürlerin hareketi temsilî. Ajanların adları otomatik adımların adıdır; hiçbiri insan
+        değildir.
       </p>
     </div>
 
@@ -76,8 +77,8 @@ const yolLd = {
 
     <section class="kort" aria-live="polite">
       <div id="kort">
-        <h2>Bir figür seç</h2>
-        <p>Her figür işin bir parçasını yapar: haberin bulunmasından yayımlanmasına kadar.</p>
+        <h2>Bir figür seçin</h2>
+        <p>Her figür, haberin bulunmasından yayımlanmasına kadar işin bir parçasını yapar.</p>
       </div>
     </section>
 
@@ -116,7 +117,7 @@ const yolLd = {
             </>
           )
         }
-        <p class="liten">Sayılar haber botunun kendi kaydından gelir ve site her derlendiğinde tazelenir. Bir haber birden çok kaynak haberden yazılabilir.</p>
+        <p class="liten">Sayılar haber botunun kendi kaydından geliyor; sayfa yeni haber yayımlandıkça yenileniyor. Bir haber birden çok kaynak haberden yazılabilir.</p>
       </div>
 
       <div class="pano">
@@ -128,7 +129,7 @@ const yolLd = {
               <ul>
                 <li><span>Kaynakla karşılaştırılan iddia</span><b>{sayi(R.sonZincir.denetlenen)}</b></li>
                 <li><span>Yayından önce yeniden çekilen rakam</span><b>{sayi(R.sonZincir.cekilen)}</b></li>
-                <li><span>Yeniden yazılmak üzere geri gönderme</span><b>{sayi(R.sonZincir.geri)}</b></li>
+                <li><span>Yeniden yazılması için geri gönderildi</span><b>{sayi(R.sonZincir.geri)}</b></li>
                 {R.sonZincir.turlar.map((t) => <li><span>– {t.ad} masasına</span><b>{sayi(t.sayi)}</b></li>)}
               </ul>
               <p class="liten">Yayından önce Şenol Dak onayladı.</p>

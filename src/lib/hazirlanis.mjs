@@ -69,7 +69,7 @@ export function adimlar(h) {
     adim('nil', bulma(h, 'Haberi')),
     adim('baran', deger),
     adim('ece', 'Metni kaynaklara dayanarak yazdı; girişim, tutar, tur ve yatırımcıları künyeye çıkardı.'),
-    adim('derya', 'Rakamları, adları ve alıntıları kaynaklarda aradı; haberi kaynaklarla madde madde karşılaştırdı, kopya olmadığına baktı.'),
+    adim('derya', 'Rakamları, adları ve alıntıları kaynaklarda aradı. Haberi kaynakla madde madde karşılaştırdı ve kopya cümle olup olmadığına baktı.'),
     adim('tuna', 'Yalnız dili düzeltti (TDK yazımı), sonra metni yayın kurallarımızdan geçirdi.'),
     adim('kaan', 'Kapak görselini çizdi.'),
     adim('ada', 'Haberi yayımladı.'),

@@ -29,8 +29,8 @@ const olgu = olguSatiri(haber);
 const yzSayisi = liste.filter((a) => AJANLAR[a.id as keyof typeof AJANLAR]?.yz).length;
 const kisa = sahip ? `${SAHIP} yazdı. Yapay zekâ yalnız dili düzeltti.` : `${sayiAdi(yzSayisi)} otomatik adımla yazıldı.`;
 const aciklama = sahip
-  ? `Yazı ${SAHIP}’ındır. Yapay zekâ yalnız imla ve dil düzeltmesinde kullanıldı; konu, bakış açısı ve rakamlar için kullanılmadı.`
-  : `Haber, ${kaynakSayisi ? 'kaynaklarda adı geçen yayınların' : 'izlediğimiz yayınların'} haberlerinden otomatik olarak yazıldı. Yayından önce bir gazeteci okumadı.`;
+  ? `Yazı ${SAHIP}’ın. Yapay zekâ yalnız imlayı ve dili düzeltti; konuyu, bakış açısını ve rakamları ${SAHIP} belirledi.`
+  : `Haberi yapay zekâ, ${kaynakSayisi ? 'kaynaklarda adı geçen yayınların' : 'izlediğimiz yayınların'} haberlerinden yazdı. Yayından önce bir gazeteci okumadı.`;
 const sorumluluk = sahip
   ? ', gazeteci, yayıncı ve editör, yazıyı yazdı ve yayımladı.'
   : ', gazeteci, yayıncı ve editör, neyin otomatik yayımlanabileceğinin kurallarını koyar.';
@@ -79,7 +79,7 @@ const ajan = (id: string) => AJANLAR[id as keyof typeof AJANLAR];
         <p>{aciklama}</p>
         {!sahip && (
           <p class="ekip">
-            <span class="yz">YZ</span> Aşağıdaki adların hepsi kifobu’nun otomatik adımlarıdır; insan değildir.
+            <span class="yz">YZ</span> Aşağıdaki adlar kifobu’nun otomatik adımlarının adıdır; hiçbiri insan değildir.
           </p>
         )}
         <ol class="yh-adimlar">
@@ -107,8 +107,8 @@ const ajan = (id: string) => AJANLAR[id as keyof typeof AJANLAR];
         {YAYIN_ODASI && (
           <a class="yh-oda" href="/yayin-odasi/">
             <span class="t">
-              <b>Yayın odasına gir</b>
-              <span>Nil, Baran ve ekibin geri kalanını çalışırken gör.</span>
+              <b>Yayın odasına girin</b>
+              <span>Nil, Baran ve ekibin geri kalanını çalışırken görün.</span>
             </span>
             <span class="ok" aria-hidden="true">→</span>
           </a>

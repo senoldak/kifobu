@@ -182,7 +182,7 @@ const NYHET = [
   { id: 'skriver', navn: 'Ece', rolle: 'Muhabir', ...aapen(1.5, 14), u: { sac: 'topuz', sacRenk: '#6b4226', ten: '#f5d4ba', ust: '#e8b40c', ustGolge: '#c99b08', gozluk: true },
     jobb: 'Haberi kaynaklara dayanarak Türkçe yazar; girişim, tutar, tur ve yatırımcıları künyeye çıkarır.', rep: ['Spotu yazıyorum …', 'Başlık oturdu!'] },
   { id: 'kontroll', navn: 'Derya', rolle: 'Denetçi', ...aapen(6.0, 14), u: { sac: 'kivircik', sacRenk: '#1f1611', ten: '#a8714e', ust: '#3b413d', ustGolge: '#2b302d' },
-    jobb: 'Rakamları, adları ve alıntıları kaynaklarda arar; haberi kaynaklarla madde madde karşılaştırır, kopyaya bakar.', rep: [] },
+    jobb: 'Rakamları, adları ve alıntıları kaynaklarda arar. Haberi kaynakla madde madde karşılaştırır ve kopya cümle olup olmadığına bakar.', rep: [] },
   { id: 'leser', navn: 'Tuna', rolle: 'Redaktör', ...aapen(10.5, 14), u: { sac: 'kakul', sacRenk: '#b5482a', ten: '#f2cfb0', ust: '#dcd9cf', ustGolge: '#c4c0b4' },
     jobb: 'Yalnız dili düzeltir (TDK yazımı), sonra metni yayın kurallarımızdan geçirir.', rep: ['Onaylandı.', 'Bir kez daha okuyorum …', 'Bu virgül fazla.'] },
   { id: 'tegner', navn: 'Kaan', rolle: 'Çizer', ...aapen(1.5, 9), u: { sac: 'kisa', sacRenk: '#e2c26a', ten: '#f5d4ba', ust: '#e8b40c', ustGolge: '#c99b08', alt: '#141a17' },

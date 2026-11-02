@@ -13,7 +13,7 @@
     { "terim": "değerleme", "tanim": "Yatırım turunda şirkete biçilen toplam değer." },
     { "terim": "halka arz", "tanim": "Şirketin paylarını borsada satışa sunarak halka açık şirket olması." },
     { "terim": "unicorn", "tanim": "Değeri 1 milyar doları aşan, payları borsada işlem görmeyen girişim." },
-    { "terim": "ARR", "tanim": "Yıllık yinelenen gelir: aboneliklerden bir yıl boyunca düzenli olarak gelen gelir." },
+    { "terim": "ARR", "tanim": "Yıllık yinelenen gelir. Aboneliklerin bir yılda düzenli olarak getirdiği para." },
     { "terim": "GSYO", "tanim": "Girişim sermayesi yatırım ortaklığı: girişimlere yatırım yapan, payları borsada işlem gören şirket." }
   ]
 }
