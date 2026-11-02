@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdtemp, readFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { haberYaz } from './lib.mjs';
+import { haberYaz, guvenli } from './lib.mjs';
 import { TASLAK_SEMASI } from './yazar.mjs';
 
 test('TASLAK_SEMASI why_matters ve key_points alanlarını içerir', () => {
@@ -49,4 +49,17 @@ test('haberYaz gövdedeki HTML etiketlerini ve yorumlarını atar, Markdown ve m
   assert.match(metin, /tıkla/);
   assert.match(metin, /3 < 5 ve 7 > 2/);
   assert.match(metin, /\[rapor\]\(https:\/\/www\.spk\.gov\.tr\/\)/);
+});
+
+test('guvenli: iç içe etiket ve başvuru bağlantıları ham HTML ya da https dışı adres bırakmaz', () => {
+  for (const girdi of [
+    '<<b>meta http-equiv="refresh" content="0;url=https://haber.example.com">',
+    "<<b>a href='https://haber.example.com/'>x<</b>/a>",
+    '<!DOCTYPE x> <?php ?>',
+  ]) {
+    assert.doesNotMatch(guvenli(girdi), /<[a-z0-9_/!?-]/i, girdi);
+  }
+  assert.equal(guvenli('3 < 5'), '3 < 5');
+  assert.equal(guvenli('[a [b](javascript:x)](javascript:y)'), 'a b');
+  assert.doesNotMatch(guvenli('[x][r]\n\n[r]: javascript:alert(1)'), /javascript/);
 });

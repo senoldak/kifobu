@@ -353,7 +353,9 @@ export function uyarlayiciKur({ rot, durum, simdi, ayar = {}, bag = {} }) {
         log(`\n${pay} doldu; kalan olaylar sonraki çalışmaya kaldı.`);
         break;
       }
-      const ad = g.uyeler[0].baslik;
+      // Loglar ve özet herkese açık: gizli kaynağın ham başlığı aranınca yayına götürür, kod ile yan yana kaynak listesini ele verir.
+      // Başlık yalnız bütün üyeler resmi kaynaksa yazılır; değilse anahtarlı aday kimliği.
+      const ad = g.uyeler.every((u) => u.kaynak?.resmi === true) ? g.uyeler[0].baslik : g.uyeler[0].id;
       log(`\n[${[...g.siteler].join(', ')}] ${ad}`);
       const hataId = g.uyeler[0].id;
       // Bu çalışmada az önce yazılan bir olayla aynıysa (aynı turda iki gruba bölünmüş olay) yazılmaz.

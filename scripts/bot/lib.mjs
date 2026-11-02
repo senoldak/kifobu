@@ -168,13 +168,26 @@ const yamlStr = (s) => JSON.stringify(String(s));
 
 // Dışarıdan gelen ya da yapay zekânın ürettiği metni güvenli Markdown'a çevirir:
 // ham HTML, resimler ve https dışındaki linkler (javascript: vb.) kaldırılır (XSS'e karşı).
-export function guvenli(metin = '') {
-  return String(metin)
+const guvenliAdim = (s) =>
+  s
     .replace(/<!--[\s\S]*?(?:-->|$)/g, '')
     .replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1\s*>/gi, '')
     .replace(/<\/?(?:[a-z0-9_-]+|\/)[^>]*>/gi, '')
     .replace(/!\[([^\]]*)\]\((?:[^()]|\([^()]*\))*\)/g, '$1')
-    .replace(/\[([^\]]*)\]\(\s*((?:[^()\s]|\([^()\s]*\))*)[^)]*\)/g, (m, txt, url) => (/^https:\/\/[^\s"'<>]+$/i.test(url) ? `[${txt}](${url})` : txt));
+    .replace(/\[([^\]]*)\]\(\s*((?:[^()\s]|\([^()\s]*\))*)[^)]*\)/g, (m, txt, url) => (/^https:\/\/[^\s"'<>]+$/i.test(url) ? `[${txt}](${url})` : txt))
+    // Başvuru tarzı bağlantılar ([x][r] + "[r]: adres") https-yalnız kuralını atlatır: tanımları sil, kullanımları düz metne indir.
+    .replace(/^ {0,3}\[(?!\^)[^\]\n]+\]:[^\n]*$/gm, '')
+    .replace(/\[([^\]]*)\]\[[^\]]*\]/g, '$1');
+
+// Tek geçiş yetmez: "<<b>meta …>" içindeki <b> silinince dıştaki etiket yeniden oluşur. Metin değişmeyene kadar
+// tekrarlanır; sonra kalan her etiket başına ("<!x", "<?x" gibi) boşluk eklenir: "< x" etiket sayılmaz, düz metin kalır.
+export function guvenli(metin = '') {
+  let ut = String(metin);
+  for (let onceki; onceki !== ut; ) {
+    onceki = ut;
+    ut = guvenliAdim(ut);
+  }
+  return ut.replace(/<(?=[a-z0-9_/!?-])/gi, '< ');
 }
 
 // Türkçe yazım düzeltmeleri; yapay zekâya bırakmadan her habere en son uygulanır.
