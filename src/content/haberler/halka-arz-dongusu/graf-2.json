@@ -1,0 +1,69 @@
+{
+ "tittel": "Fiyatlardan arındırılmış halka arz tutarı bir tepe yaptıktan sonra geriledi",
+ "under": "Satışa sunulan tutar, 2025 yılı fiyatlarıyla, TÜFE yıllık ortalamasıyla, milyar TL",
+ "enhet": "milyar TL",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "SPK, TÜİK (TCMB EVDS)"
+ },
+ "form": "linje",
+ "serier": [
+  {
+   "navn": "Reel tutar",
+   "punkter": [
+    {
+     "x": "2013",
+     "y": 18.7478
+    },
+    {
+     "x": "2014",
+     "y": 9.0801
+    },
+    {
+     "x": "2015",
+     "y": 1.3384
+    },
+    {
+     "x": "2016",
+     "y": 3.8877
+    },
+    {
+     "x": "2017",
+     "y": 12.7909
+    },
+    {
+     "x": "2018",
+     "y": 47.5159
+    },
+    {
+     "x": "2019",
+     "y": 2.0078
+    },
+    {
+     "x": "2020",
+     "y": 7.6181
+    },
+    {
+     "x": "2021",
+     "y": 122.2066
+    },
+    {
+     "x": "2022",
+     "y": 61.8506
+    },
+    {
+     "x": "2023",
+     "y": 170.581
+    },
+    {
+     "x": "2024",
+     "y": 77.3048
+    },
+    {
+     "x": "2025",
+     "y": 45.1547
+    }
+   ]
+  }
+ ]
+}

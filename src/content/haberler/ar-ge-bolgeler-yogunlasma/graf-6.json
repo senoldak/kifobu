@@ -1,0 +1,64 @@
+{
+ "tittel": "Ar-Ge harcamasının GSYH’ye oranı Ankara’da geriledi, İstanbul’da arttı",
+ "under": "Bölgenin Ar-Ge harcamasının bölge GSYH’sine oranı, yüzde",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "manual",
+ "valg": {
+  "gruppenavn": [
+   "2021 yılı",
+   "2024 yılı"
+  ],
+  "sorter": false
+ },
+ "serier": [
+  {
+   "navn": "Ar-Ge harcamasının GSYH’ye oranı Ankara’da geriledi, İstanbul’da arttı",
+   "punkter": [
+    {
+     "x": "Türkiye",
+     "y": 1.37,
+     "y2": 1.46
+    },
+    {
+     "x": "Ankara (TR51)",
+     "y": 4.3,
+     "y2": 3.88
+    },
+    {
+     "x": "Kocaeli bölgesi (TR42)",
+     "y": 1.94,
+     "y2": 2.21
+    },
+    {
+     "x": "İstanbul (TR10)",
+     "y": 1.37,
+     "y2": 1.67
+    },
+    {
+     "x": "Bursa bölgesi (TR41)",
+     "y": 1.47,
+     "y2": 1.38
+    },
+    {
+     "x": "İzmir (TR31)",
+     "y": 0.9,
+     "y2": 1.09
+    },
+    {
+     "x": "Erzurum bölgesi (TRA1)",
+     "y": 1.72,
+     "y2": 1.52
+    },
+    {
+     "x": "Mardin bölgesi (TRC3)",
+     "y": 0.53,
+     "y2": 0.33
+    }
+   ]
+  }
+ ]
+}

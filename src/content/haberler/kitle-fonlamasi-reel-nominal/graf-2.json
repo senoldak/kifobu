@@ -1,0 +1,62 @@
+{
+ "tittel": "Fiyatlardan arındırılmış tutar son yılda geriledi",
+ "under": "Kitle fonlaması yoluyla sağlanan finansman tutarı, nominal ve 2025 yılı fiyatlarıyla, milyon TL",
+ "enhet": "milyon TL",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "SPK, TÜİK (TCMB EVDS)"
+ },
+ "form": "linje",
+ "serier": [
+  {
+   "navn": "Nominal",
+   "punkter": [
+    {
+     "x": "2021",
+     "y": 19.6
+    },
+    {
+     "x": "2022",
+     "y": 37.1
+    },
+    {
+     "x": "2023",
+     "y": 137.7
+    },
+    {
+     "x": "2024",
+     "y": 317.2
+    },
+    {
+     "x": "2025",
+     "y": 320.6
+    }
+   ]
+  },
+  {
+   "navn": "Fiyatlardan arındırılmış",
+   "punkter": [
+    {
+     "x": "2021",
+     "y": 111.1
+    },
+    {
+     "x": "2022",
+     "y": 122
+    },
+    {
+     "x": "2023",
+     "y": 294.4
+    },
+    {
+     "x": "2024",
+     "y": 427.8
+    },
+    {
+     "x": "2025",
+     "y": 320.6
+    }
+   ]
+  }
+ ]
+}

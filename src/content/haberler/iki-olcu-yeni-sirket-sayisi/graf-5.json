@@ -1,0 +1,38 @@
+{
+ "tittel": "Doğum sayısı, kayıt sayısının 4,26 ile 9,62 katı arasında seyretti",
+ "under": "Eurostat doğum sayısının Dünya Bankası kayıt sayısına oranı, seçilmiş yıllar",
+ "enhet": "Eurostat doğum sayısının Dünya Bankası kayıt sayısına oranı, seçilmiş yıllar",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "Eurostat, Dünya Bankası"
+ },
+ "form": "soyle",
+ "serier": [
+  {
+   "navn": "Oran",
+   "punkter": [
+    {
+     "x": "2011",
+     "y": 7.09
+    },
+    {
+     "x": "2012",
+     "y": 9.62
+    },
+    {
+     "x": "2022",
+     "y": 4.26
+    },
+    {
+     "x": "2024",
+     "y": 5.45
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "fremhev": [
+   "2024"
+  ]
+ }
+}

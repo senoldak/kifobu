@@ -1,0 +1,54 @@
+{
+ "tittel": "Yapay zekâ kullanan işletme payı iki tarafta da arttı, puan farkı açıldı",
+ "under": "On ve üzeri çalışanlı işletmelerde pay",
+ "enhet": "prosent",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "linje",
+ "serier": [
+  {
+   "navn": "Türkiye",
+   "punkter": [
+    {
+     "x": "2021",
+     "y": 2.69
+    },
+    {
+     "x": "2023",
+     "y": 5.51
+    },
+    {
+     "x": "2024",
+     "y": 4.42
+    },
+    {
+     "x": "2025",
+     "y": 7.41
+    }
+   ]
+  },
+  {
+   "navn": "AB",
+   "punkter": [
+    {
+     "x": "2021",
+     "y": 7.65
+    },
+    {
+     "x": "2023",
+     "y": 8.06
+    },
+    {
+     "x": "2024",
+     "y": 13.48
+    },
+    {
+     "x": "2025",
+     "y": 19.95
+    }
+   ]
+  }
+ ]
+}

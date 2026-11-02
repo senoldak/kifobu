@@ -1,0 +1,43 @@
+{
+ "tittel": "Listedeki platform başına tutar son yılda geriledi",
+ "under": "Fiyatlardan arındırılmış tutarın yıl sonu listeli platform sayısına oranı, 2025 yılı fiyatlarıyla, milyon TL",
+ "enhet": "milyon TL",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "SPK, TÜİK (TCMB EVDS)"
+ },
+ "form": "rangering",
+ "serier": [
+  {
+   "navn": "Platform başına tutar",
+   "punkter": [
+    {
+     "x": "2021",
+     "y": 22.2
+    },
+    {
+     "x": "2022",
+     "y": 15.3
+    },
+    {
+     "x": "2023",
+     "y": 21
+    },
+    {
+     "x": "2024",
+     "y": 23.8
+    },
+    {
+     "x": "2025",
+     "y": 16.9
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "sorter": false,
+  "fremhev": [
+   "2025"
+  ]
+ }
+}

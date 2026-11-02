@@ -1,0 +1,91 @@
+{
+ "tittel": "Türkiye, seçilmiş ülkeler ve gruplar arasında yüksek teknolojili ihracat payında en altta",
+ "under": "Yüksek teknolojili ürünlerin imalat ihracatı içindeki payı, yüzde; 2024 yılı",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "Dünya Bankası"
+ },
+ "form": "rangering",
+ "serier": [
+  {
+   "navn": "Pay",
+   "punkter": [
+    {
+     "x": "Türkiye",
+     "y": 5.13775956987065
+    },
+    {
+     "x": "Güney Kore",
+     "y": 36.2582559366674
+    },
+    {
+     "x": "Birleşik Krallık",
+     "y": 29.233260009076
+    },
+    {
+     "x": "Çin",
+     "y": 26.2777380479223
+    },
+    {
+     "x": "ABD",
+     "y": 24.322982844202
+    },
+    {
+     "x": "Dünya",
+     "y": 24.6923279470414
+    },
+    {
+     "x": "OECD ülkeleri",
+     "y": 22.3034829278341
+    },
+    {
+     "x": "Fransa",
+     "y": 23.1371073769038
+    },
+    {
+     "x": "Macaristan",
+     "y": 22.5745118826045
+    },
+    {
+     "x": "Çekya",
+     "y": 22.4045215279558
+    },
+    {
+     "x": "AB",
+     "y": 20.5560787740106
+    },
+    {
+     "x": "Almanya",
+     "y": 17.9772990379432
+    },
+    {
+     "x": "Japonya",
+     "y": 17.5547415163067
+    },
+    {
+     "x": "Polonya",
+     "y": 13.5099699026858
+    },
+    {
+     "x": "Romanya",
+     "y": 13.4497511493721
+    },
+    {
+     "x": "İtalya",
+     "y": 11.891145607858
+    },
+    {
+     "x": "İspanya",
+     "y": 9.28447661569937
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "sorter": true,
+  "fremhev": [
+   "Türkiye"
+  ]
+ }
+}

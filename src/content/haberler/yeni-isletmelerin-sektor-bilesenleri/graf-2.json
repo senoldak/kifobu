@@ -1,0 +1,31 @@
+{
+ "tittel": "Posta ve kurye ile mağaza dışı perakende, artışın üçte birinden fazlasını taşıdı",
+ "under": "Toplam doğum artışındaki pay, iki alt bölüm",
+ "enhet": "prosent",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "rangering",
+ "serier": [
+  {
+   "navn": "Pay",
+   "punkter": [
+    {
+     "x": "İki alt bölüm birlikte",
+     "y": 37.8
+    },
+    {
+     "x": "Ulaştırma, ticaret ve inşaat birlikte",
+     "y": 73
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "sorter": false,
+  "fremhev": [
+   "İki alt bölüm birlikte"
+  ]
+ }
+}

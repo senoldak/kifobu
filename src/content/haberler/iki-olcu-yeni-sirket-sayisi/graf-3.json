@@ -1,0 +1,38 @@
+{
+ "tittel": "Son yılda kayıt sayısı azalırken doğum sayısı arttı",
+ "under": "Bir önceki yıla göre değişim",
+ "enhet": "prosent",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "Dünya Bankası, Eurostat"
+ },
+ "form": "helning",
+ "serier": [
+  {
+   "navn": "Dünya Bankası",
+   "punkter": [
+    {
+     "x": "2023 yılı",
+     "y": -9.7
+    },
+    {
+     "x": "2024 yılı",
+     "y": -10.2
+    }
+   ]
+  },
+  {
+   "navn": "Eurostat",
+   "punkter": [
+    {
+     "x": "2023 yılı",
+     "y": -3.4
+    },
+    {
+     "x": "2024 yılı",
+     "y": 7.3
+    }
+   ]
+  }
+ ]
+}

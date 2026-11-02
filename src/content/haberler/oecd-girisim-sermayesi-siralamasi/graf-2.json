@@ -1,0 +1,67 @@
+{
+ "tittel": "KOBİ kredisi payında Türkiye grubun ortalamasının altında",
+ "under": "KOBİ kredilerinin toplam işletme kredisi içindeki payı, yüzde, Türkiye'nin çevresindeki on bir ülke",
+ "enhet": "prosent",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "OECD"
+ },
+ "form": "rangering",
+ "serier": [
+  {
+   "navn": "Pay",
+   "punkter": [
+    {
+     "x": "İrlanda",
+     "y": 47.31
+    },
+    {
+     "x": "İspanya",
+     "y": 45.33
+    },
+    {
+     "x": "Avusturya",
+     "y": 44.75
+    },
+    {
+     "x": "Fransa",
+     "y": 39.4
+    },
+    {
+     "x": "Norveç",
+     "y": 38.94
+    },
+    {
+     "x": "Türkiye",
+     "y": 35.17
+    },
+    {
+     "x": "Birleşik Krallık",
+     "y": 33.296
+    },
+    {
+     "x": "Hollanda",
+     "y": 31.98
+    },
+    {
+     "x": "Lüksemburg",
+     "y": 28.95
+    },
+    {
+     "x": "Estonya",
+     "y": 17.1
+    },
+    {
+     "x": "İtalya",
+     "y": 15.42
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "sorter": true,
+  "fremhev": [
+   "Türkiye"
+  ]
+ }
+}

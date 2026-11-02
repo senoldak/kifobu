@@ -1,0 +1,74 @@
+{
+ "tittel": "Polonya ve Romanya’da pay Türkiye’dekinden çok daha fazla arttı",
+ "under": "Yüksek teknolojili ürünlerin imalat ihracatı içindeki payı, yüzde",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "Dünya Bankası"
+ },
+ "form": "manual",
+ "valg": {
+  "gruppenavn": [
+   "2007 yılı",
+   "2024 yılı"
+  ],
+  "sorter": false
+ },
+ "serier": [
+  {
+   "navn": "Polonya ve Romanya’da pay Türkiye’dekinden çok daha fazla arttı",
+   "punkter": [
+    {
+     "x": "Türkiye",
+     "y": 2.16875430678889,
+     "y2": 5.13775956987065
+    },
+    {
+     "x": "Almanya",
+     "y": 15.4623925898068,
+     "y2": 17.9772990379432
+    },
+    {
+     "x": "Fransa",
+     "y": 20.1428349498868,
+     "y2": 23.1371073769038
+    },
+    {
+     "x": "İtalya",
+     "y": 6.73296300131478,
+     "y2": 11.891145607858
+    },
+    {
+     "x": "İspanya",
+     "y": 5.61297104870674,
+     "y2": 9.28447661569937
+    },
+    {
+     "x": "Polonya",
+     "y": 3.88296143291345,
+     "y2": 13.5099699026858
+    },
+    {
+     "x": "Romanya",
+     "y": 4.41976998737353,
+     "y2": 13.4497511493721
+    },
+    {
+     "x": "Macaristan",
+     "y": 26.0916621380543,
+     "y2": 22.5745118826045
+    },
+    {
+     "x": "Çekya",
+     "y": 15.2861658593061,
+     "y2": 22.4045215279558
+    },
+    {
+     "x": "Güney Kore",
+     "y": 32.4282584168837,
+     "y2": 36.2582559366674
+    }
+   ]
+  }
+ ]
+}

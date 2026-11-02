@@ -1,0 +1,47 @@
+{
+ "tittel": "Personel başına Ar-Ge harcaması gösterilen bölgeler arasında Ankara’da en yüksek",
+ "under": "Tam zaman eşdeğer Ar-Ge personeli başına harcama; ilk beş bölge ve Türkiye; 2024 yılı, milyon TL",
+ "enhet": "milyon TL",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "rangering",
+ "serier": [
+  {
+   "navn": "Personel başına harcama",
+   "punkter": [
+    {
+     "x": "Ankara (TR51)",
+     "y": 2.85
+    },
+    {
+     "x": "Kocaeli bölgesi (TR42)",
+     "y": 2.14
+    },
+    {
+     "x": "Türkiye",
+     "y": 2.1
+    },
+    {
+     "x": "İstanbul (TR10)",
+     "y": 2.01
+    },
+    {
+     "x": "Bursa bölgesi (TR41)",
+     "y": 1.89
+    },
+    {
+     "x": "İzmir (TR31)",
+     "y": 1.61
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "sorter": true,
+  "fremhev": [
+   "Ankara (TR51)"
+  ]
+ }
+}

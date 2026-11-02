@@ -1,0 +1,44 @@
+{
+ "tittel": "Türkiye'nin AB'ye göre endeksi son yılda yedi yılın en yüksek düzeyinde",
+ "under": "Özet yenilik endeksi, AB'nin aynı yıldaki değeri yüz kabul edilerek",
+ "enhet": "Özet yenilik endeksi, AB'nin aynı yıldaki değeri yüz kabul edilerek",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "Avrupa Komisyonu (İnovasyon Karnesi)"
+ },
+ "form": "nokkeltall",
+ "serier": [
+  {
+   "navn": "Son yıl",
+   "rol": "ana",
+   "punkter": [
+    {
+     "x": "2026",
+     "y": 56.911
+    }
+   ]
+  },
+  {
+   "navn": "Önceki yıllar",
+   "rol": "kunye",
+   "punkter": [
+    {
+     "x": "2019",
+     "y": 50.884
+    },
+    {
+     "x": "2021",
+     "y": 51.641
+    },
+    {
+     "x": "2023",
+     "y": 50.97
+    },
+    {
+     "x": "2025",
+     "y": 56.291
+    }
+   ]
+  }
+ ]
+}

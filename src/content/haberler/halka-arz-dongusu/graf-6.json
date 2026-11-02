@@ -1,0 +1,25 @@
+{
+ "tittel": "Satışın yarıdan fazlası yeni pay çıkarılarak yapıldı",
+ "under": "Satışa sunulan nominal tutarın bileşimi, yüzde",
+ "enhet": "prosent",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "SPK"
+ },
+ "form": "smultring",
+ "serier": [
+  {
+   "navn": "Bileşim",
+   "punkter": [
+    {
+     "x": "Nakit sermaye artırımı",
+     "y": 55.4
+    },
+    {
+     "x": "Ortak satışı",
+     "y": 44.6
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "tittel": "Türkiye'nin Ar-Ge harcamasının GSYH'ye oranı, son yıl ve önceki yıllar",
+ "under": "Türkiye, tüm sektörler",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "nokkeltall",
+ "serier": [
+  {
+   "navn": "Son yıl",
+   "rol": "ana",
+   "punkter": [
+    {
+     "x": "2023",
+     "y": 1.39
+    }
+   ]
+  },
+  {
+   "navn": "Önceki yıllar",
+   "rol": "kunye",
+   "punkter": [
+    {
+     "x": "2017",
+     "y": 1.17
+    },
+    {
+     "x": "2019",
+     "y": 1.29
+    },
+    {
+     "x": "2021",
+     "y": 1.37
+    },
+    {
+     "x": "2022",
+     "y": 1.3
+    }
+   ]
+  }
+ ]
+}

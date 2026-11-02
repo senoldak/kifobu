@@ -23,6 +23,7 @@ import NasilHazirlandi from '../../components/NasilHazirlandi.astro';
 import { kaynakSatiri } from '../../lib/kaynak-satiri';
 import { ICERIK_LISANSI } from '../../lib/icerik-lisansi';
 import { kapakAlt, kapakUrl, KAPAK_G, KAPAK_Y, LOGO_G, LOGO_Y } from '../../kapak/ciz';
+import '../../styles/graf.css';
 
 export async function getStaticPaths() {
   const news = await getNews();
@@ -288,6 +289,11 @@ const jsonLd = {
     )
   }
 </Base>
+
+<script>
+  // Yazılardaki grafik kartları (src/lib/graf/yazi.mjs): dokununca ve üzerine gelince değer.
+  import '../../scripts/graf.mjs';
+</script>
 
 <style>
   .analiz-etiketi {

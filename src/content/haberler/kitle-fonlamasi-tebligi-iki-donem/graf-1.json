@@ -1,0 +1,46 @@
+{
+ "tittel": "Yıllık yatırım sınırı her yıl yükseldi, artış hızı ikinci yıldan sonra düştü",
+ "under": "Nitelikli yatırımcı olmayan gerçek kişilerin yıllık yatırım sınırı, TL",
+ "enhet": "Nitelikli yatırımcı olmayan gerçek kişilerin yıllık yatırım sınırı, TL",
+ "desimaler": 0,
+ "kilde": {
+  "navn": "SPK"
+ },
+ "form": "soyle",
+ "serier": [
+  {
+   "navn": "Yıllık sınır",
+   "punkter": [
+    {
+     "x": "2021",
+     "y": 50000
+    },
+    {
+     "x": "2022",
+     "y": 68100
+    },
+    {
+     "x": "2023",
+     "y": 150000
+    },
+    {
+     "x": "2024",
+     "y": 250000
+    },
+    {
+     "x": "2025",
+     "y": 400000
+    },
+    {
+     "x": "2026",
+     "y": 500000
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "fremhev": [
+   "2026"
+  ]
+ }
+}

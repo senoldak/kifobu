@@ -7,6 +7,21 @@ import { fileURLToPath } from 'node:url';
 import { CATEGORIES } from './src/lib/site.ts';
 import { bolumIndekslenir, indekslenir } from './src/lib/indeks.ts';
 import { onyuzMaddesiYayinda } from './src/lib/yayinda.mjs';
+import { satteri } from '@astrojs/markdown-satteri';
+import { satteriGraf } from './src/lib/graf/yazi.mjs';
+import { grafEtkilesimDenetle } from './src/lib/graf/etkilesim-denetim.mjs';
+
+// Grafiği olan her sayfa etkileşim betiğini yüklemeli; eksikse grafik sessizce statik kalır, o yüzden derleme durur.
+const grafEtkilesim = () => ({
+  name: 'graf-etkilesim',
+  hooks: {
+    'astro:build:done': async ({ dir, logger }) => {
+      const { sayfa, grafik, hatalar } = await grafEtkilesimDenetle(fileURLToPath(dir));
+      if (hatalar.length) throw new Error(`Etkileşimsiz grafik (${hatalar.length}):\n${hatalar.slice(0, 20).join('\n')}`);
+      logger.info(`${sayfa} sayfada ${grafik} grafik: hepsi etkileşimli.`);
+    },
+  },
+});
 
 const categoryRedirects = Object.fromEntries(
   CATEGORIES.map((c) => [`/kategori/${c.slug}`, `/${c.slug}`])
@@ -110,7 +125,10 @@ export default defineConfig({
         rehber: (item) => (/^\/(rehber|mevzuat)\//.test(new URL(item.url).pathname) ? item : undefined),
       },
     }),
+    grafEtkilesim(),
   ],
+  // Astro 7 Sätteri kullanır; yazılardaki graf-N.svg, yanında graf-N.json varsa etkileşimli karta döner (src/lib/graf/yazi.mjs).
+  markdown: { processor: satteri({ hastPlugins: [satteriGraf()] }) },
   redirects: categoryRedirects,
   // CSP (public/_headers) satır içi stile izin vermez; tüm CSS ayrı dosya olarak yüklenir.
   build: { inlineStylesheets: 'never' },

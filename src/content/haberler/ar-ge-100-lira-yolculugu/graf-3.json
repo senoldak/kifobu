@@ -1,0 +1,43 @@
+{
+ "tittel": "Beş yol, Ar-Ge harcamasının neredeyse tamamını taşıyor",
+ "under": "Finansman kaynağı ve yürütücü sektör çiftinin toplam harcamadaki payı, yüzde; 2024 yılı",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "rangering",
+ "serier": [
+  {
+   "navn": "Yol",
+   "punkter": [
+    {
+     "x": "İşletme → işletme",
+     "y": 53.49
+    },
+    {
+     "x": "Kamu → yükseköğretim",
+     "y": 17.29
+    },
+    {
+     "x": "Yükseköğretim → yükseköğretim",
+     "y": 12.9
+    },
+    {
+     "x": "Kamu → işletme",
+     "y": 9.11
+    },
+    {
+     "x": "Yurt dışı → işletme",
+     "y": 2.17
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "sorter": true,
+  "fremhev": [
+   "Kamu → yükseköğretim"
+  ]
+ }
+}

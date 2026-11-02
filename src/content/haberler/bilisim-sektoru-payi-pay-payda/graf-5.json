@@ -1,0 +1,54 @@
+{
+ "tittel": "Hacim farkı ile fiyat farkı farklı yıllarda farklı yöne çekti",
+ "under": "Sektör eksi GSYH büyümesi, yüzde puan",
+ "enhet": "Sektör eksi GSYH büyümesi, yüzde puan",
+ "desimaler": 3,
+ "kilde": {
+  "navn": "TCMB EVDS (kaynak TÜİK)"
+ },
+ "form": "manual",
+ "valg": {
+  "gruppenavn": [
+   "Hacim farkı",
+   "Fiyat farkı"
+  ],
+  "sorter": false
+ },
+ "serier": [
+  {
+   "navn": "Hacim farkı ile fiyat farkı farklı yıllarda farklı yöne çekti",
+   "punkter": [
+    {
+     "x": "2020",
+     "y": 12.169,
+     "y2": -6.462
+    },
+    {
+     "x": "2021",
+     "y": 10.591,
+     "y2": -10.785
+    },
+    {
+     "x": "2022",
+     "y": 0.744,
+     "y2": -33.346
+    },
+    {
+     "x": "2023",
+     "y": -1.968,
+     "y2": 10.728
+    },
+    {
+     "x": "2024",
+     "y": 0.276,
+     "y2": 8.446
+    },
+    {
+     "x": "2025",
+     "y": 4.189,
+     "y2": 2.964
+    }
+   ]
+  }
+ ]
+}

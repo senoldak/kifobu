@@ -1,0 +1,50 @@
+{
+ "tittel": "Doğum artışının büyük kısmı ulaştırma, ticaret ve inşaattan geldi",
+ "under": "Doğan işletme sayısındaki değişim, sektörlere göre, 2019 yılından 2024 yılına",
+ "enhet": "Doğan işletme sayısındaki değişim, sektörlere göre, 2019 yılından 2024 yılına",
+ "desimaler": 0,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "bidrag",
+ "serier": [
+  {
+   "navn": "Sektör katkısı",
+   "punkter": [
+    {
+     "x": "Ulaştırma ve depolama",
+     "y": 61374
+    },
+    {
+     "x": "Toptan ve perakende ticaret",
+     "y": 45427
+    },
+    {
+     "x": "İnşaat",
+     "y": 40212
+    },
+    {
+     "x": "Mesleki ve teknik faaliyetler",
+     "y": 11140
+    },
+    {
+     "x": "İmalat",
+     "y": 10682
+    },
+    {
+     "x": "Diğer sektörler",
+     "y": 32565
+    }
+   ]
+  },
+  {
+   "navn": "Toplam",
+   "punkter": [
+    {
+     "x": "Toplam değişim",
+     "y": 201400
+    }
+   ]
+  }
+ ]
+}

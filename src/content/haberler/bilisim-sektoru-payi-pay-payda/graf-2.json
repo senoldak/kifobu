@@ -1,0 +1,45 @@
+{
+ "tittel": "Pay bir yıl düştü, sonraki üç yılda her yıl yükseldi",
+ "under": "Bilgi ve iletişim katma değeri, GSYH içinde pay",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "TCMB EVDS (kaynak TÜİK)"
+ },
+ "form": "linje",
+ "serier": [
+  {
+   "navn": "Bilgi ve iletişim payı",
+   "punkter": [
+    {
+     "x": "2019",
+     "y": 2.55
+    },
+    {
+     "x": "2020",
+     "y": 2.694
+    },
+    {
+     "x": "2021",
+     "y": 2.703
+    },
+    {
+     "x": "2022",
+     "y": 2.258
+    },
+    {
+     "x": "2023",
+     "y": 2.357
+    },
+    {
+     "x": "2024",
+     "y": 2.488
+    },
+    {
+     "x": "2025",
+     "y": 2.645
+    }
+   ]
+  }
+ ]
+}

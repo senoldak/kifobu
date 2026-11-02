@@ -1,0 +1,22 @@
+{
+ "tittel": "İlk beş ülke toplam tutarın beşte dördünden fazlasını topladı",
+ "under": "2024 yılında ilk beş ülkenin AB toplamındaki payı",
+ "enhet": "prosent",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "ESMA"
+ },
+ "form": "nokkeltall",
+ "serier": [
+  {
+   "navn": "Pay",
+   "rol": "ana",
+   "punkter": [
+    {
+     "x": "İlk beş ülkenin payı",
+     "y": 81.6
+    }
+   ]
+  }
+ ]
+}

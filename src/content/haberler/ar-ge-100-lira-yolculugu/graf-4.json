@@ -1,0 +1,38 @@
+{
+ "tittel": "Kamu kaynaklı payın çoğu yükseköğretimde harcanıyor",
+ "under": "Kamu kaynaklı payın yürütücü sektöre göre dağılımı, toplam harcamanın yüzdesi; 2024 yılı",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "bidrag",
+ "serier": [
+  {
+   "navn": "Yürütücü",
+   "punkter": [
+    {
+     "x": "Yükseköğretimde",
+     "y": 17.29
+    },
+    {
+     "x": "İşletmelerde",
+     "y": 9.11
+    },
+    {
+     "x": "Kamu kurumlarında",
+     "y": 3.97
+    }
+   ]
+  },
+  {
+   "navn": "Toplam",
+   "punkter": [
+    {
+     "x": "Kamu kaynaklı toplam",
+     "y": 30.37
+    }
+   ]
+  }
+ ]
+}

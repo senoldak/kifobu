@@ -1,0 +1,64 @@
+{
+ "tittel": "İşletmelerin finansman payı arttı, kamunun ve yükseköğretimin payı geriledi",
+ "under": "Finansman kaynağının toplam harcamadaki payı, yüzde",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "helning",
+ "serier": [
+  {
+   "navn": "İşletmeler",
+   "punkter": [
+    {
+     "x": "2015 yılı",
+     "y": 44.11
+    },
+    {
+     "x": "2024 yılı",
+     "y": 53.82
+    }
+   ]
+  },
+  {
+   "navn": "Kamu",
+   "punkter": [
+    {
+     "x": "2015 yılı",
+     "y": 35.45
+    },
+    {
+     "x": "2024 yılı",
+     "y": 30.37
+    }
+   ]
+  },
+  {
+   "navn": "Yükseköğretim",
+   "punkter": [
+    {
+     "x": "2015 yılı",
+     "y": 19.23
+    },
+    {
+     "x": "2024 yılı",
+     "y": 12.91
+    }
+   ]
+  },
+  {
+   "navn": "Yurt dışı",
+   "punkter": [
+    {
+     "x": "2015 yılı",
+     "y": 1.18
+    },
+    {
+     "x": "2024 yılı",
+     "y": 2.89
+    }
+   ]
+  }
+ ]
+}

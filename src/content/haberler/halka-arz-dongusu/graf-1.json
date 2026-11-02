@@ -1,0 +1,74 @@
+{
+ "tittel": "Halka arz sayısı 2021–2023 arasında yükseldi, sonra geriledi",
+ "under": "Her yıl Borsa İstanbul Pay Piyasası'nda ilk kez işlem gören şirket sayısı",
+ "enhet": "Her yıl Borsa İstanbul Pay Piyasası'nda ilk kez işlem gören şirket sayısı",
+ "desimaler": 0,
+ "kilde": {
+  "navn": "SPK"
+ },
+ "form": "soyle",
+ "serier": [
+  {
+   "navn": "Şirket sayısı",
+   "punkter": [
+    {
+     "x": "2013",
+     "y": 9
+    },
+    {
+     "x": "2014",
+     "y": 9
+    },
+    {
+     "x": "2015",
+     "y": 4
+    },
+    {
+     "x": "2016",
+     "y": 2
+    },
+    {
+     "x": "2017",
+     "y": 3
+    },
+    {
+     "x": "2018",
+     "y": 9
+    },
+    {
+     "x": "2019",
+     "y": 6
+    },
+    {
+     "x": "2020",
+     "y": 8
+    },
+    {
+     "x": "2021",
+     "y": 52
+    },
+    {
+     "x": "2022",
+     "y": 38
+    },
+    {
+     "x": "2023",
+     "y": 56
+    },
+    {
+     "x": "2024",
+     "y": 33
+    },
+    {
+     "x": "2025",
+     "y": 18
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "fremhev": [
+   "2025"
+  ]
+ }
+}

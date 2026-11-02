@@ -1,0 +1,54 @@
+{
+ "tittel": "İstanbul ve Ankara’nın harcama payı nüfus paylarının çok üzerinde, diğer bölgelerinki altında",
+ "under": "Bölgenin Türkiye nüfusundaki ve Ar-Ge harcamasındaki payı, yüzde; 2024 yılı",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "manual",
+ "valg": {
+  "gruppenavn": [
+   "Nüfus payı",
+   "Harcama payı"
+  ],
+  "sorter": false
+ },
+ "serier": [
+  {
+   "navn": "İstanbul ve Ankara’nın harcama payı nüfus paylarının çok üzerinde, diğer bölgelerinki altında",
+   "punkter": [
+    {
+     "x": "İstanbul (TR10)",
+     "y": 18.34,
+     "y2": 33.36
+    },
+    {
+     "x": "Ankara (TR51)",
+     "y": 6.8,
+     "y2": 27.82
+    },
+    {
+     "x": "Kocaeli bölgesi (TR42)",
+     "y": 4.97,
+     "y2": 9.37
+    },
+    {
+     "x": "Bursa bölgesi (TR41)",
+     "y": 5.1,
+     "y2": 4.85
+    },
+    {
+     "x": "İzmir (TR31)",
+     "y": 5.25,
+     "y2": 4.29
+    },
+    {
+     "x": "Diğer bölgeler",
+     "y": 59.54,
+     "y2": 20.3
+    }
+   ]
+  }
+ ]
+}

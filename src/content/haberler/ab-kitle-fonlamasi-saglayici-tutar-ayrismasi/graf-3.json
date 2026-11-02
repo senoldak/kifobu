@@ -1,0 +1,39 @@
+{
+ "tittel": "Krediye dayalı fonlamanın payı azaldı, öteki iki türün payı arttı",
+ "under": "Fon türlerinin toplanan tutardaki payı, yüzde",
+ "enhet": "prosent",
+ "desimaler": 0,
+ "kilde": {
+  "navn": "ESMA"
+ },
+ "form": "manual",
+ "valg": {
+  "gruppenavn": [
+   "2023 yılı verisi",
+   "2024 yılı verisi"
+  ],
+  "sorter": false
+ },
+ "serier": [
+  {
+   "navn": "Krediye dayalı fonlamanın payı azaldı, öteki iki türün payı arttı",
+   "punkter": [
+    {
+     "x": "Krediye dayalı",
+     "y": 65,
+     "y2": 58
+    },
+    {
+     "x": "Borçlanma senedine dayalı",
+     "y": 17,
+     "y2": 23
+    },
+    {
+     "x": "Paya dayalı",
+     "y": 6,
+     "y2": 12
+    }
+   ]
+  }
+ ]
+}

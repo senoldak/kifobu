@@ -1,0 +1,34 @@
+{
+ "tittel": "Bir yıl sonunda işletmelerin çoğu ayakta, beş yıl sonunda yarısından azı",
+ "under": "Aynı kimlikle faal kalan işletmelerin payı, doğum yılı 2019 olan işletmeler",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "soyle",
+ "serier": [
+  {
+   "navn": "Hayatta kalma oranı",
+   "punkter": [
+    {
+     "x": "Birinci yıl sonu",
+     "y": 80.63
+    },
+    {
+     "x": "Üçüncü yıl sonu",
+     "y": 54.89
+    },
+    {
+     "x": "Beşinci yıl sonu",
+     "y": 41.27
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "fremhev": [
+   "Beşinci yıl sonu"
+  ]
+ }
+}

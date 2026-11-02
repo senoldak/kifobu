@@ -1,0 +1,47 @@
+{
+ "tittel": "Nominal artış platform sermayesinde en büyük, nitelikli yatırımcı eşiğinde en küçük",
+ "under": "Altı tutarın 2026 yılı değerinin Tebliğ yürürlüğündeki değerine oranı",
+ "enhet": "Altı tutarın 2026 yılı değerinin Tebliğ yürürlüğündeki değerine oranı",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "SPK"
+ },
+ "form": "rangering",
+ "serier": [
+  {
+   "navn": "Nominal kat",
+   "punkter": [
+    {
+     "x": "Yıllık yatırım sınırı",
+     "y": 10
+    },
+    {
+     "x": "Gelir beyanıyla yıllık sınır",
+     "y": 10
+    },
+    {
+     "x": "Borçlanmaya dayalı proje sınırı",
+     "y": 10
+    },
+    {
+     "x": "Nitelikli yatırımcı payı eşiği",
+     "y": 9
+    },
+    {
+     "x": "Platform asgari sermayesi",
+     "y": 15
+    },
+    {
+     "x": "Fon toplama üst sınırı",
+     "y": 13.06
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "sorter": true,
+  "fremhev": [
+   "Platform asgari sermayesi"
+  ]
+ }
+}

@@ -1,0 +1,41 @@
+{
+ "tittel": "Politika faizi düşen ülkelerin bir kısmında KOBİ faizi yükseldi",
+ "under": "Gecelik faizi 2024 yılında düşen ülkelerden KOBİ faizi de düşenlerin sayısı",
+ "enhet": "Gecelik faizi 2024 yılında düşen ülkelerden KOBİ faizi de düşenlerin sayısı",
+ "desimaler": 0,
+ "kilde": {
+  "navn": "OECD"
+ },
+ "form": "nokkeltall",
+ "serier": [
+  {
+   "navn": "Ülke",
+   "rol": "ana",
+   "punkter": [
+    {
+     "x": "KOBİ faizi de düşen",
+     "y": 5
+    }
+   ]
+  },
+  {
+   "navn": "Karşılaştırma",
+   "rol": "sammenligning",
+   "punkter": [
+    {
+     "x": "Gecelik faizi düşen",
+     "y": 7
+    },
+    {
+     "x": "KOBİ faizi yükselen",
+     "y": 2
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "fremhev": [
+   "Gecelik faizi düşen"
+  ]
+ }
+}

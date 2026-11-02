@@ -1,0 +1,51 @@
+{
+ "tittel": "Sağlayıcı sayısı üç ölçüde de arttı, artış hızı ölçüye göre değişti",
+ "under": "ESMA raporlarında sağlayıcı sayısı",
+ "enhet": "ESMA raporlarında sağlayıcı sayısı",
+ "desimaler": 0,
+ "kilde": {
+  "navn": "ESMA"
+ },
+ "form": "helning",
+ "serier": [
+  {
+   "navn": "Örneklemdeki sağlayıcı",
+   "punkter": [
+    {
+     "x": "2023 yılı verisi",
+     "y": 98
+    },
+    {
+     "x": "2024 yılı verisi",
+     "y": 181
+    }
+   ]
+  },
+  {
+   "navn": "Sicilde yetkili sağlayıcı",
+   "punkter": [
+    {
+     "x": "2023 yılı verisi",
+     "y": 159
+    },
+    {
+     "x": "2024 yılı verisi",
+     "y": 229
+    }
+   ]
+  },
+  {
+   "navn": "Fransa'daki sağlayıcı",
+   "punkter": [
+    {
+     "x": "2023 yılı verisi",
+     "y": 30
+    },
+    {
+     "x": "2024 yılı verisi",
+     "y": 50
+    }
+   ]
+  }
+ ]
+}

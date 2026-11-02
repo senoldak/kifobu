@@ -1,0 +1,45 @@
+{
+ "tittel": "Türkiye'de KOBİ kredilerinin işletme kredisi içindeki payı grup ortalamasının altında",
+ "under": "KOBİ kredilerinin toplam işletme kredisi içindeki payı, yüzde",
+ "enhet": "prosent",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "OECD"
+ },
+ "form": "nokkeltall",
+ "serier": [
+  {
+   "navn": "Türkiye",
+   "rol": "ana",
+   "punkter": [
+    {
+     "x": "Türkiye",
+     "y": 35.17
+    }
+   ]
+  },
+  {
+   "navn": "Karşılaştırma",
+   "rol": "sammenligning",
+   "punkter": [
+    {
+     "x": "Grup ortalaması",
+     "y": 48.9
+    },
+    {
+     "x": "Slovakya",
+     "y": 83.8
+    },
+    {
+     "x": "Kanada",
+     "y": 11.75
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "fremhev": [
+   "Grup ortalaması"
+  ]
+ }
+}

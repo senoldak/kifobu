@@ -1,0 +1,75 @@
+{
+ "tittel": "Çalışan payında Türkiye, verisi bulunan ülkeler arasında Malta’dan sonra ikinci",
+ "under": "Hızlı büyüyen işletmelerdeki çalışanların payı, yüzde; 2024 yılı",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "rangering",
+ "serier": [
+  {
+   "navn": "Çalışan payı",
+   "punkter": [
+    {
+     "x": "Malta",
+     "y": 31.87
+    },
+    {
+     "x": "Türkiye",
+     "y": 26.87
+    },
+    {
+     "x": "Yunanistan",
+     "y": 26.37
+    },
+    {
+     "x": "Portekiz",
+     "y": 21.73
+    },
+    {
+     "x": "Norveç",
+     "y": 20.43
+    },
+    {
+     "x": "Danimarka",
+     "y": 20.26
+    },
+    {
+     "x": "Finlandiya",
+     "y": 18.79
+    },
+    {
+     "x": "İsveç",
+     "y": 17.73
+    },
+    {
+     "x": "AB toplamı",
+     "y": 12.84
+    },
+    {
+     "x": "Almanya",
+     "y": 12.39
+    },
+    {
+     "x": "İtalya",
+     "y": 11.59
+    },
+    {
+     "x": "İspanya",
+     "y": 11.09
+    },
+    {
+     "x": "Fransa",
+     "y": 5.67
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "sorter": true,
+  "fremhev": [
+   "Türkiye"
+  ]
+ }
+}

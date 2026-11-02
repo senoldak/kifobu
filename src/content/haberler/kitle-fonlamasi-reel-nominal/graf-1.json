@@ -1,0 +1,42 @@
+{
+ "tittel": "Nominal tutar beş yılda hızla büyüdü, son yılda neredeyse yerinde kaldı",
+ "under": "Kitle fonlaması yoluyla sağlanan finansman tutarı, nominal, milyon TL",
+ "enhet": "milyon TL",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "SPK"
+ },
+ "form": "soyle",
+ "serier": [
+  {
+   "navn": "Nominal tutar",
+   "punkter": [
+    {
+     "x": "2021",
+     "y": 19.6
+    },
+    {
+     "x": "2022",
+     "y": 37.1
+    },
+    {
+     "x": "2023",
+     "y": 137.7
+    },
+    {
+     "x": "2024",
+     "y": 317.2
+    },
+    {
+     "x": "2025",
+     "y": 320.6
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "fremhev": [
+   "2025"
+  ]
+ }
+}

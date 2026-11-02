@@ -1,0 +1,44 @@
+{
+ "tittel": "Birinci ve üçüncü yıl hayatta kalma oranları, Avrupa Birliği ve Türkiye",
+ "under": "Hayatta kalma oranı: Avrupa Birliği ve Türkiye, doğum yılına göre",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "manual",
+ "valg": {
+  "gruppenavn": [
+   "Avrupa Birliği",
+   "Türkiye"
+  ],
+  "sorter": false
+ },
+ "serier": [
+  {
+   "navn": "Birinci ve üçüncü yıl hayatta kalma oranları, Avrupa Birliği ve Türkiye",
+   "punkter": [
+    {
+     "x": "2021 yılı, birinci yıl",
+     "y": 81.17,
+     "y2": 75.25
+    },
+    {
+     "x": "2022 yılı, birinci yıl",
+     "y": 81.04,
+     "y2": 75.23
+    },
+    {
+     "x": "2023 yılı, birinci yıl",
+     "y": 80.52,
+     "y2": 78.3
+    },
+    {
+     "x": "2021 yılı, üçüncü yıl",
+     "y": 57.18,
+     "y2": 49.25
+    }
+   ]
+  }
+ ]
+}

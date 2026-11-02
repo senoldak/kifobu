@@ -1,0 +1,59 @@
+{
+ "tittel": "2025'in sayısı on üç yıllık ortalamanın hemen altında",
+ "under": "Yıllık ilk kez işlem gören şirket sayısı",
+ "enhet": "Yıllık ilk kez işlem gören şirket sayısı",
+ "desimaler": 0,
+ "kilde": {
+  "navn": "SPK"
+ },
+ "form": "nokkeltall",
+ "serier": [
+  {
+   "navn": "2025",
+   "rol": "ana",
+   "punkter": [
+    {
+     "x": "2025 yılında işlem görmeye başlayan şirket",
+     "y": 18
+    }
+   ]
+  },
+  {
+   "navn": "Karşılaştırma",
+   "rol": "sammenligning",
+   "punkter": [
+    {
+     "x": "2016",
+     "y": 2
+    },
+    {
+     "x": "2023",
+     "y": 56
+    },
+    {
+     "x": "2013–2025 ortalaması",
+     "y": 19
+    }
+   ]
+  },
+  {
+   "navn": "Toplamlar",
+   "rol": "kunye",
+   "punkter": [
+    {
+     "x": "2013–2020 toplam",
+     "y": 50
+    },
+    {
+     "x": "2021–2025 toplam",
+     "y": 197
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "fremhev": [
+   "2013–2025 ortalaması"
+  ]
+ }
+}

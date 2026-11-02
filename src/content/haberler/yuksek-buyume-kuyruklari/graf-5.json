@@ -1,0 +1,87 @@
+{
+ "tittel": "Çalışan payı en yüksek sektör konaklama ve yiyecek hizmeti",
+ "under": "Hızlı büyüyen işletmelerdeki çalışanların payı, yüzde; Türkiye, 2024 yılı",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "rangering",
+ "serier": [
+  {
+   "navn": "Çalışan payı",
+   "punkter": [
+    {
+     "x": "Konaklama ve yiyecek",
+     "y": 42.37
+    },
+    {
+     "x": "Eğlence, dinlence, spor",
+     "y": 34.23
+    },
+    {
+     "x": "İnşaat",
+     "y": 32.15
+    },
+    {
+     "x": "Ticaret",
+     "y": 32.12
+    },
+    {
+     "x": "İdari ve destek",
+     "y": 28.61
+    },
+    {
+     "x": "Ulaştırma ve depolama",
+     "y": 26.85
+    },
+    {
+     "x": "Elektrik ve gaz",
+     "y": 23.06
+    },
+    {
+     "x": "Mesleki ve teknik",
+     "y": 24.83
+    },
+    {
+     "x": "Madencilik",
+     "y": 24.67
+    },
+    {
+     "x": "Eğitim",
+     "y": 22.63
+    },
+    {
+     "x": "İmalat",
+     "y": 21.02
+    },
+    {
+     "x": "Gayrimenkul",
+     "y": 22.68
+    },
+    {
+     "x": "Sağlık ve sosyal hizmet",
+     "y": 15.35
+    },
+    {
+     "x": "Finans ve sigorta",
+     "y": 14.18
+    },
+    {
+     "x": "Bilgi ve iletişim",
+     "y": 25.54
+    },
+    {
+     "x": "Su ve atık yönetimi",
+     "y": 25.22
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "sorter": true,
+  "fremhev": [
+   "Konaklama ve yiyecek"
+  ]
+ }
+}

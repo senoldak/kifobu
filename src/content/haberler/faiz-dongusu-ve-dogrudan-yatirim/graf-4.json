@@ -1,0 +1,45 @@
+{
+ "tittel": "2023 yılı girişi, serinin ortalamasının altında kaldı",
+ "under": "Doğrudan yatırımlar, net yükümlülük oluşumu, milyar dolar",
+ "enhet": "milyar dolar",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "TCMB"
+ },
+ "form": "nokkeltall",
+ "serier": [
+  {
+   "navn": "Giriş",
+   "rol": "ana",
+   "punkter": [
+    {
+     "x": "2023 yılı",
+     "y": 10.621
+    }
+   ]
+  },
+  {
+   "navn": "Karşılaştırma",
+   "rol": "sammenligning",
+   "punkter": [
+    {
+     "x": "2021 yılı",
+     "y": 12.891
+    },
+    {
+     "x": "2022 yılı",
+     "y": 14.776
+    },
+    {
+     "x": "Tüm yılların ortalaması",
+     "y": 13.489
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "fremhev": [
+   "Tüm yılların ortalaması"
+  ]
+ }
+}

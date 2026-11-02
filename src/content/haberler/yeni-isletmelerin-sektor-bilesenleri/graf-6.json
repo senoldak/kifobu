@@ -1,0 +1,43 @@
+{
+ "tittel": "İnşaatta doğumlar sona ermelerden fazlaydı, ama faal işletme sayısı azaldı",
+ "under": "Faal işletme sayısındaki yıllık değişim, 2023 yılı",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "rangering",
+ "serier": [
+  {
+   "navn": "Faal sayı değişimi",
+   "punkter": [
+    {
+     "x": "Ulaştırma ve depolama",
+     "y": 4.19
+    },
+    {
+     "x": "Toptan ve perakende ticaret",
+     "y": 1.6
+    },
+    {
+     "x": "İnşaat",
+     "y": -2.99
+    },
+    {
+     "x": "Konaklama ve yiyecek",
+     "y": -1.02
+    },
+    {
+     "x": "Mesleki ve teknik",
+     "y": 6.5
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "sorter": false,
+  "fremhev": [
+   "İnşaat"
+  ]
+ }
+}

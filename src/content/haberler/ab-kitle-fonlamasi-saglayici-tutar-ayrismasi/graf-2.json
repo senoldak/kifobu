@@ -1,0 +1,34 @@
+{
+ "tittel": "Fransa ve Hollanda'da tutar bir yılda üç ile beş kat arasında arttı",
+ "under": "Ülkedeki sağlayıcılar üzerinden toplanan tutar, milyar avro",
+ "enhet": "milyar avro",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "ESMA"
+ },
+ "form": "manual",
+ "valg": {
+  "gruppenavn": [
+   "2023 yılı verisi",
+   "2024 yılı verisi"
+  ],
+  "sorter": false
+ },
+ "serier": [
+  {
+   "navn": "Fransa ve Hollanda'da tutar bir yılda üç ile beş kat arasında arttı",
+   "punkter": [
+    {
+     "x": "Fransa",
+     "y": 0.292,
+     "y2": 1.45
+    },
+    {
+     "x": "Hollanda",
+     "y": 0.291,
+     "y2": 1
+    }
+   ]
+  }
+ ]
+}

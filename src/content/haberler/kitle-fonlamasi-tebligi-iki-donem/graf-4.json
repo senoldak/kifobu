@@ -1,0 +1,54 @@
+{
+ "tittel": "Altı kalemin hepsinde reel kat, nominal katın altında kaldı",
+ "under": "Altı tutarın nominal ve fiyatlardan arındırılmış artışı, kat olarak",
+ "enhet": "Altı tutarın nominal ve fiyatlardan arındırılmış artışı, kat olarak",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "SPK, TÜİK (TCMB EVDS)"
+ },
+ "form": "manual",
+ "valg": {
+  "gruppenavn": [
+   "Nominal kat",
+   "Reel kat"
+  ],
+  "sorter": false
+ },
+ "serier": [
+  {
+   "navn": "Altı kalemin hepsinde reel kat, nominal katın altında kaldı",
+   "punkter": [
+    {
+     "x": "Yıllık yatırım sınırı",
+     "y": 10,
+     "y2": 1.34
+    },
+    {
+     "x": "Gelir beyanıyla yıllık sınır",
+     "y": 10,
+     "y2": 1.34
+    },
+    {
+     "x": "Borçlanmaya dayalı proje sınırı",
+     "y": 10,
+     "y2": 1.34
+    },
+    {
+     "x": "Nitelikli yatırımcı payı eşiği",
+     "y": 9,
+     "y2": 1.2
+    },
+    {
+     "x": "Platform asgari sermayesi",
+     "y": 15,
+     "y2": 2.01
+    },
+    {
+     "x": "Fon toplama üst sınırı",
+     "y": 13.06,
+     "y2": 1.75
+    }
+   ]
+  }
+ ]
+}

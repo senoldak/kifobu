@@ -1,0 +1,41 @@
+{
+ "tittel": "Doğan işletmelerin yaklaşık üçte biri ticaret sektöründe",
+ "under": "Doğan işletmelerin sektörlere göre payı, 2024 yılı",
+ "enhet": "prosent",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "smultring",
+ "serier": [
+  {
+   "navn": "Pay",
+   "punkter": [
+    {
+     "x": "Ticaret",
+     "y": 32.3
+    },
+    {
+     "x": "Ulaştırma",
+     "y": 17
+    },
+    {
+     "x": "İnşaat",
+     "y": 10.2
+    },
+    {
+     "x": "İmalat",
+     "y": 9.5
+    },
+    {
+     "x": "Konaklama ve yiyecek",
+     "y": 9.5
+    },
+    {
+     "x": "Diğer",
+     "y": 21.6
+    }
+   ]
+  }
+ ]
+}

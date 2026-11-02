@@ -1,0 +1,47 @@
+{
+ "tittel": "Türkiye’nin yüksek teknolojili ürün ihracatı dolar cinsinden beş katından fazla büyüdü",
+ "under": "Yüksek teknolojili ürün ihracatı, cari dolar",
+ "enhet": "Yüksek teknolojili ürün ihracatı, cari dolar",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "Dünya Bankası"
+ },
+ "form": "rangering",
+ "serier": [
+  {
+   "navn": "İhracat",
+   "punkter": [
+    {
+     "x": "2007",
+     "y": 1883247744
+    },
+    {
+     "x": "2012",
+     "y": 2327323000
+    },
+    {
+     "x": "2013",
+     "y": 3782775017
+    },
+    {
+     "x": "2018",
+     "y": 3735743019
+    },
+    {
+     "x": "2022",
+     "y": 6906506415
+    },
+    {
+     "x": "2024",
+     "y": 9903861226
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "sorter": false,
+  "fremhev": [
+   "2024"
+  ]
+ }
+}

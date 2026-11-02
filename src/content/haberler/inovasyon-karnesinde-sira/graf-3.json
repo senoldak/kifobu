@@ -1,0 +1,116 @@
+{
+ "tittel": "Polonya Türkiye'nin üstünde yükseldi, Letonya geriledi",
+ "under": "Özet yenilik endeksi, AB'nin aynı yıldaki değeri yüz kabul edilerek",
+ "enhet": "Özet yenilik endeksi, AB'nin aynı yıldaki değeri yüz kabul edilerek",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "Avrupa Komisyonu (İnovasyon Karnesi)"
+ },
+ "form": "helning",
+ "serier": [
+  {
+   "navn": "Polonya",
+   "punkter": [
+    {
+     "x": "İlk yıl",
+     "y": 56.498
+    },
+    {
+     "x": "Son yıl",
+     "y": 65.222
+    }
+   ]
+  },
+  {
+   "navn": "Slovakya",
+   "punkter": [
+    {
+     "x": "İlk yıl",
+     "y": 59.553
+    },
+    {
+     "x": "Son yıl",
+     "y": 62.306
+    }
+   ]
+  },
+  {
+   "navn": "Letonya",
+   "punkter": [
+    {
+     "x": "İlk yıl",
+     "y": 61.901
+    },
+    {
+     "x": "Son yıl",
+     "y": 61.05
+    }
+   ]
+  },
+  {
+   "navn": "Sırbistan",
+   "punkter": [
+    {
+     "x": "İlk yıl",
+     "y": 59.401
+    },
+    {
+     "x": "Son yıl",
+     "y": 60.432
+    }
+   ]
+  },
+  {
+   "navn": "Türkiye",
+   "punkter": [
+    {
+     "x": "İlk yıl",
+     "y": 50.884
+    },
+    {
+     "x": "Son yıl",
+     "y": 56.911
+    }
+   ]
+  },
+  {
+   "navn": "Bulgaristan",
+   "punkter": [
+    {
+     "x": "İlk yıl",
+     "y": 50.004
+    },
+    {
+     "x": "Son yıl",
+     "y": 48.86
+    }
+   ]
+  },
+  {
+   "navn": "Karadağ",
+   "punkter": [
+    {
+     "x": "İlk yıl",
+     "y": 46.698
+    },
+    {
+     "x": "Son yıl",
+     "y": 44.702
+    }
+   ]
+  },
+  {
+   "navn": "Romanya",
+   "punkter": [
+    {
+     "x": "İlk yıl",
+     "y": 38.468
+    },
+    {
+     "x": "Son yıl",
+     "y": 41.846
+    }
+   ]
+  }
+ ]
+}

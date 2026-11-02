@@ -1,0 +1,29 @@
+{
+ "tittel": "Ar-Ge harcamasını en çok işletmeler yürütüyor, kamu kurumlarının payı küçük",
+ "under": "Yürütücü sektörün toplam harcamadaki payı, yüzde; 2024 yılı",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "smultring",
+ "serier": [
+  {
+   "navn": "Yürütücü",
+   "punkter": [
+    {
+     "x": "İşletme sektörü",
+     "y": 64.79
+    },
+    {
+     "x": "Yükseköğretim",
+     "y": 30.93
+    },
+    {
+     "x": "Kamu kurumları",
+     "y": 4.28
+    }
+   ]
+  }
+ ]
+}

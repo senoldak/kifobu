@@ -1,0 +1,116 @@
+{
+ "tittel": "Romanya Türkiye'den ayrıştı, Macaristan geriledi",
+ "under": "Yapay zekâ, orta/ileri bulut ya da veri analitiği kullanan işletme payı",
+ "enhet": "prosent",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "helning",
+ "serier": [
+  {
+   "navn": "AB",
+   "punkter": [
+    {
+     "x": "İlk ölçüm",
+     "y": 54.7
+    },
+    {
+     "x": "Son ölçüm",
+     "y": 63.2
+    }
+   ]
+  },
+  {
+   "navn": "Danimarka",
+   "punkter": [
+    {
+     "x": "İlk ölçüm",
+     "y": 77.36
+    },
+    {
+     "x": "Son ölçüm",
+     "y": 82.31
+    }
+   ]
+  },
+  {
+   "navn": "Almanya",
+   "punkter": [
+    {
+     "x": "İlk ölçüm",
+     "y": 57.97
+    },
+    {
+     "x": "Son ölçüm",
+     "y": 63.22
+    }
+   ]
+  },
+  {
+   "navn": "Polonya",
+   "punkter": [
+    {
+     "x": "İlk ölçüm",
+     "y": 51.77
+    },
+    {
+     "x": "Son ölçüm",
+     "y": 52.73
+    }
+   ]
+  },
+  {
+   "navn": "Macaristan",
+   "punkter": [
+    {
+     "x": "İlk ölçüm",
+     "y": 65.63
+    },
+    {
+     "x": "Son ölçüm",
+     "y": 59.66
+    }
+   ]
+  },
+  {
+   "navn": "Romanya",
+   "punkter": [
+    {
+     "x": "İlk ölçüm",
+     "y": 28.74
+    },
+    {
+     "x": "Son ölçüm",
+     "y": 43.57
+    }
+   ]
+  },
+  {
+   "navn": "Bulgaristan",
+   "punkter": [
+    {
+     "x": "İlk ölçüm",
+     "y": 29.34
+    },
+    {
+     "x": "Son ölçüm",
+     "y": 34.62
+    }
+   ]
+  },
+  {
+   "navn": "Türkiye",
+   "punkter": [
+    {
+     "x": "İlk ölçüm",
+     "y": 25.54
+    },
+    {
+     "x": "Son ölçüm",
+     "y": 28.95
+    }
+   ]
+  }
+ ]
+}

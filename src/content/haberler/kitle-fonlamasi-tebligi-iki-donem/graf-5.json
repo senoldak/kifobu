@@ -1,0 +1,37 @@
+{
+ "tittel": "Listedeki platform sayısı Tebliğ yürürlüğe girdiğinden beri dört buçuk katına çıktı",
+ "under": "Kitle fonlama platformlarının listedeki sayısı",
+ "enhet": "Kitle fonlama platformlarının listedeki sayısı",
+ "desimaler": 0,
+ "kilde": {
+  "navn": "SPK"
+ },
+ "form": "nokkeltall",
+ "serier": [
+  {
+   "navn": "2026",
+   "rol": "ana",
+   "punkter": [
+    {
+     "x": "2026 yılında listedeki platform",
+     "y": 18
+    }
+   ]
+  },
+  {
+   "navn": "Karşılaştırma",
+   "rol": "sammenligning",
+   "punkter": [
+    {
+     "x": "27 Ekim 2021",
+     "y": 4
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "fremhev": [
+   "27 Ekim 2021"
+  ]
+ }
+}

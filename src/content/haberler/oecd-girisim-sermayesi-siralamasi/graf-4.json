@@ -1,0 +1,64 @@
+{
+ "tittel": "Girişim sermayesi yatırımının GSYH'ye oranı bir yıl sonra sekiz ülkenin dördünde arttı",
+ "under": "Girişim sermayesi yatırımı, GSYH'ye oranı, yüzde",
+ "enhet": "prosent",
+ "desimaler": 3,
+ "kilde": {
+  "navn": "OECD"
+ },
+ "form": "manual",
+ "valg": {
+  "gruppenavn": [
+   "2024 yılı",
+   "2025 yılı"
+  ],
+  "sorter": false
+ },
+ "serier": [
+  {
+   "navn": "Girişim sermayesi yatırımının GSYH'ye oranı bir yıl sonra sekiz ülkenin dördünde arttı",
+   "punkter": [
+    {
+     "x": "ABD",
+     "y": 0.5327,
+     "y2": 0.6244
+    },
+    {
+     "x": "Estonya",
+     "y": 0.2018,
+     "y2": 0.3399
+    },
+    {
+     "x": "İsveç",
+     "y": 0.1134,
+     "y2": 0.2056
+    },
+    {
+     "x": "Kanada",
+     "y": 0.2006,
+     "y2": 0.1845
+    },
+    {
+     "x": "İsviçre",
+     "y": 0.129,
+     "y2": 0.167
+    },
+    {
+     "x": "Birleşik Krallık",
+     "y": 0.177,
+     "y2": 0.1624
+    },
+    {
+     "x": "Almanya",
+     "y": 0.06663104590419745,
+     "y2": 0.0548
+    },
+    {
+     "x": "Danimarka",
+     "y": 0.1402,
+     "y2": 0.1299
+    }
+   ]
+  }
+ ]
+}

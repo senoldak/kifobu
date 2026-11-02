@@ -1,0 +1,70 @@
+{
+ "tittel": "Kişi başına Ar-Ge harcaması Ankara’da Türkiye ortalamasının dört katından fazla",
+ "under": "Kişi başına Ar-Ge harcaması; ilk beş bölge, Türkiye ortalaması ve son beş bölge; 2024 yılı",
+ "enhet": "Kişi başına Ar-Ge harcaması; ilk beş bölge, Türkiye ortalaması ve son beş bölge; 2024 yılı",
+ "desimaler": 0,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "rangering",
+ "serier": [
+  {
+   "navn": "Kişi başına harcama",
+   "punkter": [
+    {
+     "x": "Ankara (TR51)",
+     "y": 878.247
+    },
+    {
+     "x": "Kocaeli bölgesi (TR42)",
+     "y": 404.981
+    },
+    {
+     "x": "İstanbul (TR10)",
+     "y": 390.458
+    },
+    {
+     "x": "Bursa bölgesi (TR41)",
+     "y": 204.102
+    },
+    {
+     "x": "İzmir (TR31)",
+     "y": 175.531
+    },
+    {
+     "x": "Gaziantep bölgesi (TRC1)",
+     "y": 51.174
+    },
+    {
+     "x": "Van bölgesi (TRB2)",
+     "y": 44.89
+    },
+    {
+     "x": "Hatay bölgesi (TR63)",
+     "y": 35.877
+    },
+    {
+     "x": "Şanlıurfa bölgesi (TRC2)",
+     "y": 31.831
+    },
+    {
+     "x": "Mardin bölgesi (TRC3)",
+     "y": 24.791
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "sorter": true,
+  "fremhev": [
+   "Ankara (TR51)"
+  ]
+ },
+ "merknader": [
+  {
+   "type": "mal",
+   "y": 214.628,
+   "tekst": "Türkiye: 215"
+  }
+ ]
+}

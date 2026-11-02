@@ -1,0 +1,116 @@
+{
+ "tittel": "Girişim sermayesi oranı küresel finans krizi döneminde sekiz ülkenin sekizinde de geriledi",
+ "under": "Girişim sermayesi yatırımı, GSYH'ye oranı, yüzde",
+ "enhet": "prosent",
+ "desimaler": 4,
+ "kilde": {
+  "navn": "OECD"
+ },
+ "form": "helning",
+ "serier": [
+  {
+   "navn": "ABD",
+   "punkter": [
+    {
+     "x": "2007 yılı",
+     "y": 0.2584
+    },
+    {
+     "x": "2009 yılı",
+     "y": 0.1837
+    }
+   ]
+  },
+  {
+   "navn": "Kanada",
+   "punkter": [
+    {
+     "x": "2007 yılı",
+     "y": 0.118
+    },
+    {
+     "x": "2009 yılı",
+     "y": 0.059
+    }
+   ]
+  },
+  {
+   "navn": "Birleşik Krallık",
+   "punkter": [
+    {
+     "x": "2007 yılı",
+     "y": 0.06522806861810176
+    },
+    {
+     "x": "2009 yılı",
+     "y": 0.04054236903705356
+    }
+   ]
+  },
+  {
+   "navn": "Almanya",
+   "punkter": [
+    {
+     "x": "2007 yılı",
+     "y": 0.030937273720718146
+    },
+    {
+     "x": "2009 yılı",
+     "y": 0.025539387073265918
+    }
+   ]
+  },
+  {
+   "navn": "Fransa",
+   "punkter": [
+    {
+     "x": "2007 yılı",
+     "y": 0.03539174610809972
+    },
+    {
+     "x": "2009 yılı",
+     "y": 0.021538933387813625
+    }
+   ]
+  },
+  {
+   "navn": "İsveç",
+   "punkter": [
+    {
+     "x": "2007 yılı",
+     "y": 0.115
+    },
+    {
+     "x": "2009 yılı",
+     "y": 0.0738
+    }
+   ]
+  },
+  {
+   "navn": "Danimarka",
+   "punkter": [
+    {
+     "x": "2007 yılı",
+     "y": 0.0707
+    },
+    {
+     "x": "2009 yılı",
+     "y": 0.0325
+    }
+   ]
+  },
+  {
+   "navn": "İspanya",
+   "punkter": [
+    {
+     "x": "2007 yılı",
+     "y": 0.025957170074632847
+    },
+    {
+     "x": "2009 yılı",
+     "y": 0.01799307733929569
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "tittel": "Nominal ile reel değişim arasındaki fark son yılda işaret değiştirdi",
+ "under": "Bir önceki yıla göre yüzde değişim",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "SPK, TÜİK (TCMB EVDS)"
+ },
+ "form": "manual",
+ "valg": {
+  "gruppenavn": [
+   "Nominal",
+   "Fiyatlardan arındırılmış"
+  ],
+  "sorter": false
+ },
+ "serier": [
+  {
+   "navn": "Nominal ile reel değişim arasındaki fark son yılda işaret değiştirdi",
+   "punkter": [
+    {
+     "x": "2022",
+     "y": 89.29,
+     "y2": 9.85
+    },
+    {
+     "x": "2023",
+     "y": 271.16,
+     "y2": 141.23
+    },
+    {
+     "x": "2024",
+     "y": 130.36,
+     "y2": 45.33
+    },
+    {
+     "x": "2025",
+     "y": 1.07,
+     "y2": -25.07
+    }
+   ]
+  }
+ ]
+}

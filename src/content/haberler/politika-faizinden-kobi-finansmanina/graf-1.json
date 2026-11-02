@@ -1,0 +1,64 @@
+{
+ "tittel": "Gecelik faiz sekiz ülkenin sekizinde de 2021–2023 aralığında yükseldi",
+ "under": "Gecelik faiz ve KOBİ kredi faizi, yüzde, 2021 yılı ve 2023 yılı karşılaştırması",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "OECD"
+ },
+ "form": "manual",
+ "valg": {
+  "gruppenavn": [
+   "Gecelik faiz 2021 yılı",
+   "Gecelik faiz 2023 yılı"
+  ],
+  "sorter": false
+ },
+ "serier": [
+  {
+   "navn": "Gecelik faiz sekiz ülkenin sekizinde de 2021–2023 aralığında yükseldi",
+   "punkter": [
+    {
+     "x": "ABD",
+     "y": 0.08,
+     "y2": 5.33
+    },
+    {
+     "x": "Birleşik Krallık",
+     "y": 0.11,
+     "y2": 5.19
+    },
+    {
+     "x": "Kanada",
+     "y": 0.16,
+     "y2": 5.02
+    },
+    {
+     "x": "Polonya",
+     "y": 1.39,
+     "y2": 5.54
+    },
+    {
+     "x": "Macaristan",
+     "y": 2.56,
+     "y2": 11.22
+    },
+    {
+     "x": "Çekya",
+     "y": 3.02,
+     "y2": 6.95
+    },
+    {
+     "x": "Danimarka",
+     "y": -0.41,
+     "y2": 3.71
+    },
+    {
+     "x": "İsviçre",
+     "y": -0.9,
+     "y2": 1.6
+    }
+   ]
+  }
+ ]
+}

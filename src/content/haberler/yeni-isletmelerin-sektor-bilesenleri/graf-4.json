@@ -1,0 +1,116 @@
+{
+ "tittel": "Doğum oranı inşaatta ve ulaştırmada iki katına yaklaştı, yiyecek ve içecekte yerinde kaldı",
+ "under": "Doğum oranı: yeni doğan işletmelerin faal işletmelere oranı",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "helning",
+ "serier": [
+  {
+   "navn": "İnşaat",
+   "punkter": [
+    {
+     "x": "2019 yılı",
+     "y": 10.42
+    },
+    {
+     "x": "2024 yılı",
+     "y": 20.81
+    }
+   ]
+  },
+  {
+   "navn": "Ulaştırma ve depolama",
+   "punkter": [
+    {
+     "x": "2019 yılı",
+     "y": 9.72
+    },
+    {
+     "x": "2024 yılı",
+     "y": 17.71
+    }
+   ]
+  },
+  {
+   "navn": "Gayrimenkul",
+   "punkter": [
+    {
+     "x": "2019 yılı",
+     "y": 14.78
+    },
+    {
+     "x": "2024 yılı",
+     "y": 19.88
+    }
+   ]
+  },
+  {
+   "navn": "Bilgi ve iletişim",
+   "punkter": [
+    {
+     "x": "2019 yılı",
+     "y": 16.64
+    },
+    {
+     "x": "2024 yılı",
+     "y": 19.55
+    }
+   ]
+  },
+  {
+   "navn": "Konaklama ve yiyecek",
+   "punkter": [
+    {
+     "x": "2019 yılı",
+     "y": 18.71
+    },
+    {
+     "x": "2024 yılı",
+     "y": 19.07
+    }
+   ]
+  },
+  {
+   "navn": "Ticaret",
+   "punkter": [
+    {
+     "x": "2019 yılı",
+     "y": 13.38
+    },
+    {
+     "x": "2024 yılı",
+     "y": 14.66
+    }
+   ]
+  },
+  {
+   "navn": "İmalat",
+   "punkter": [
+    {
+     "x": "2019 yılı",
+     "y": 12
+    },
+    {
+     "x": "2024 yılı",
+     "y": 12.44
+    }
+   ]
+  },
+  {
+   "navn": "Tüm sektörler",
+   "punkter": [
+    {
+     "x": "2019 yılı",
+     "y": 13.03
+    },
+    {
+     "x": "2024 yılı",
+     "y": 15.84
+    }
+   ]
+  }
+ ]
+}

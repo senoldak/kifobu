@@ -1,0 +1,33 @@
+{
+ "tittel": "Doğan işletmelerin üçte ikisinden fazlasının ücretli çalışanı yok",
+ "under": "Eurostat işletme doğumlarının çalışan sınıfına göre dağılımı, 2024 yılı",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "smultring",
+ "serier": [
+  {
+   "navn": "Pay",
+   "punkter": [
+    {
+     "x": "Çalışanı olmayan",
+     "y": 68.72
+    },
+    {
+     "x": "Bir ila dört çalışanlı",
+     "y": 29.21
+    },
+    {
+     "x": "Beş ila dokuz çalışanlı",
+     "y": 1.21
+    },
+    {
+     "x": "On ve üzeri çalışanlı",
+     "y": 0.87
+    }
+   ]
+  }
+ ]
+}

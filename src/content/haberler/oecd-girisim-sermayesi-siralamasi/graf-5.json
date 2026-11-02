@@ -1,0 +1,29 @@
+{
+ "tittel": "ABD'de girişim sermayesinin yarısından fazlası sonraki aşama yatırımlarına gidiyor",
+ "under": "ABD, girişim sermayesi yatırımının aşamalara göre payı, yüzde",
+ "enhet": "prosent",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "OECD"
+ },
+ "form": "smultring",
+ "serier": [
+  {
+   "navn": "Aşama payı",
+   "punkter": [
+    {
+     "x": "Tohum",
+     "y": 11.7
+    },
+    {
+     "x": "Başlangıç",
+     "y": 34.5
+    },
+    {
+     "x": "Sonraki aşama",
+     "y": 53.8
+    }
+   ]
+  }
+ ]
+}

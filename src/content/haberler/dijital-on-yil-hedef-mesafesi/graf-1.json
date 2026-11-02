@@ -1,0 +1,45 @@
+{
+ "tittel": "KOBİ'lerde en az temel dijital yoğunluğa ulaşan işletme payı Türkiye'de AB'den düşük",
+ "under": "KOBİ işletmelerinin payı, yüzde",
+ "enhet": "prosent",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "nokkeltall",
+ "serier": [
+  {
+   "navn": "Türkiye",
+   "rol": "ana",
+   "punkter": [
+    {
+     "x": "Türkiye",
+     "y": 42.7
+    }
+   ]
+  },
+  {
+   "navn": "AB",
+   "rol": "sammenligning",
+   "punkter": [
+    {
+     "x": "Türkiye",
+     "y": 42.7
+    },
+    {
+     "x": "AB, aynı ölçü (2025 yılı, üçüncü sürüm)",
+     "y": 71.39
+    },
+    {
+     "x": "AB, resmî ölçü (2024 yılı, dördüncü sürüm)",
+     "y": 72.91
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "fremhev": [
+   "Türkiye"
+  ]
+ }
+}

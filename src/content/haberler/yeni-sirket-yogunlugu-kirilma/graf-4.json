@@ -1,0 +1,41 @@
+{
+ "tittel": "En yüksek değer 2022 yılında, en düşük 2012 yılında görüldü",
+ "under": "Çalışma çağındaki nüfus başına yeni limited şirket kaydı, binde",
+ "enhet": "Çalışma çağındaki nüfus başına yeni limited şirket kaydı, binde",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "Dünya Bankası"
+ },
+ "form": "nokkeltall",
+ "serier": [
+  {
+   "navn": "En yüksek",
+   "rol": "ana",
+   "punkter": [
+    {
+     "x": "2022",
+     "y": 2.45785641220813
+    }
+   ]
+  },
+  {
+   "navn": "Karşılaştırma",
+   "rol": "sammenligning",
+   "punkter": [
+    {
+     "x": "2012",
+     "y": 0.835004997466412
+    },
+    {
+     "x": "2024",
+     "y": 1.97668934775281
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "fremhev": [
+   "2012"
+  ]
+ }
+}

@@ -1,0 +1,39 @@
+{
+ "tittel": "İşletme sektörünün yürütme payı arttı, yükseköğretiminki ve kamu kurumlarınınki geriledi",
+ "under": "Yürütücü sektörün toplam harcamadaki payı, yüzde",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "manual",
+ "valg": {
+  "gruppenavn": [
+   "2015 yılı",
+   "2024 yılı"
+  ],
+  "sorter": false
+ },
+ "serier": [
+  {
+   "navn": "İşletme sektörünün yürütme payı arttı, yükseköğretiminki ve kamu kurumlarınınki geriledi",
+   "punkter": [
+    {
+     "x": "İşletme sektörü",
+     "y": 49.28,
+     "y2": 64.79
+    },
+    {
+     "x": "Yükseköğretim",
+     "y": 41.35,
+     "y2": 30.93
+    },
+    {
+     "x": "Kamu kurumları",
+     "y": 9.37,
+     "y2": 4.28
+    }
+   ]
+  }
+ ]
+}

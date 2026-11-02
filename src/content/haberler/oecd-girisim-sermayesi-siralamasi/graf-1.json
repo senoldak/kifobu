@@ -1,0 +1,63 @@
+{
+ "tittel": "Girişim sermayesi yatırımının GSYH'ye oranında bu grupta ABD ilk sırada",
+ "under": "Girişim sermayesi yatırımı, GSYH'ye oranı, yüzde, grubun ilk on ülkesi",
+ "enhet": "prosent",
+ "desimaler": 3,
+ "kilde": {
+  "navn": "OECD"
+ },
+ "form": "rangering",
+ "serier": [
+  {
+   "navn": "Oran",
+   "punkter": [
+    {
+     "x": "ABD",
+     "y": 0.5327
+    },
+    {
+     "x": "Estonya",
+     "y": 0.2018
+    },
+    {
+     "x": "Kanada",
+     "y": 0.2006
+    },
+    {
+     "x": "Birleşik Krallık",
+     "y": 0.177
+    },
+    {
+     "x": "Danimarka",
+     "y": 0.1402
+    },
+    {
+     "x": "İsviçre",
+     "y": 0.129
+    },
+    {
+     "x": "Hollanda",
+     "y": 0.1186
+    },
+    {
+     "x": "İsveç",
+     "y": 0.1134
+    },
+    {
+     "x": "Finlandiya",
+     "y": 0.1049
+    },
+    {
+     "x": "Fransa",
+     "y": 0.0893
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "sorter": true,
+  "fremhev": [
+   "ABD"
+  ]
+ }
+}

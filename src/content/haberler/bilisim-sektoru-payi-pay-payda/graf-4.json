@@ -1,0 +1,113 @@
+{
+ "tittel": "Cari büyüme iki tarafta da yüksek, hacim büyümesi cari büyümenin çok altında",
+ "under": "Önceki yıla göre yüzde değişim",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "TCMB EVDS (kaynak TÜİK)"
+ },
+ "form": "smaa",
+ "serier": [
+  {
+   "navn": "Sektör, cari fiyatlarla",
+   "punkter": [
+    {
+     "x": "2021",
+     "y": 45.07
+    },
+    {
+     "x": "2022",
+     "y": 72.21
+    },
+    {
+     "x": "2023",
+     "y": 84.52
+    },
+    {
+     "x": "2024",
+     "y": 74.11
+    },
+    {
+     "x": "2025",
+     "y": 50.47
+    }
+   ]
+  },
+  {
+   "navn": "GSYH, cari fiyatlarla",
+   "punkter": [
+    {
+     "x": "2021",
+     "y": 44.58
+    },
+    {
+     "x": "2022",
+     "y": 106.16
+    },
+    {
+     "x": "2023",
+     "y": 76.77
+    },
+    {
+     "x": "2024",
+     "y": 64.91
+    },
+    {
+     "x": "2025",
+     "y": 41.55
+    }
+   ]
+  },
+  {
+   "navn": "Sektör, hacim",
+   "punkter": [
+    {
+     "x": "2021",
+     "y": 22.4
+    },
+    {
+     "x": "2022",
+     "y": 6.19
+    },
+    {
+     "x": "2023",
+     "y": 3.08
+    },
+    {
+     "x": "2024",
+     "y": 3.75
+    },
+    {
+     "x": "2025",
+     "y": 7.93
+    }
+   ]
+  },
+  {
+   "navn": "GSYH, hacim",
+   "punkter": [
+    {
+     "x": "2021",
+     "y": 11.81
+    },
+    {
+     "x": "2022",
+     "y": 5.44
+    },
+    {
+     "x": "2023",
+     "y": 5.05
+    },
+    {
+     "x": "2024",
+     "y": 3.48
+    },
+    {
+     "x": "2025",
+     "y": 3.74
+    }
+   ]
+  }
+ ],
+ "bred": true
+}

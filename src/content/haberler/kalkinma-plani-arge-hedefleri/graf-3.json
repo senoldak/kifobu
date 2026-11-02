@@ -1,0 +1,42 @@
+{
+ "tittel": "Tam zaman eşdeğer Ar-Ge personeli her yıl arttı",
+ "under": "Tüm sektörler, Türkiye",
+ "enhet": "Tüm sektörler, Türkiye",
+ "desimaler": 0,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "soyle",
+ "serier": [
+  {
+   "navn": "Ar-Ge personeli",
+   "punkter": [
+    {
+     "x": "2017",
+     "y": 158563
+    },
+    {
+     "x": "2019",
+     "y": 194952
+    },
+    {
+     "x": "2021",
+     "y": 243905
+    },
+    {
+     "x": "2023",
+     "y": 290850
+    },
+    {
+     "x": "2024",
+     "y": 310472.3
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "fremhev": [
+   "2023"
+  ]
+ }
+}

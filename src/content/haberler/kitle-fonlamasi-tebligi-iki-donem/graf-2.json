@@ -1,0 +1,49 @@
+{
+ "tittel": "Sınır artışı ile yeniden değerleme oranı yıllara göre ayrıştı",
+ "under": "Bir önceki yıla göre yüzde değişim ve yeniden değerleme oranı",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "SPK"
+ },
+ "form": "manual",
+ "valg": {
+  "gruppenavn": [
+   "Yeniden değerleme oranı",
+   "Yıllık sınırın artışı"
+  ],
+  "sorter": false
+ },
+ "serier": [
+  {
+   "navn": "Sınır artışı ile yeniden değerleme oranı yıllara göre ayrıştı",
+   "punkter": [
+    {
+     "x": "2022",
+     "y": 36.2,
+     "y2": 36.2
+    },
+    {
+     "x": "2023",
+     "y": 122.93,
+     "y2": 120.26
+    },
+    {
+     "x": "2024",
+     "y": 58.46,
+     "y2": 66.67
+    },
+    {
+     "x": "2025",
+     "y": 43.93,
+     "y2": 60
+    },
+    {
+     "x": "2026",
+     "y": 25.49,
+     "y2": 25
+    }
+   ]
+  }
+ ]
+}

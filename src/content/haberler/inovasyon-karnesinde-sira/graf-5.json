@@ -1,0 +1,47 @@
+{
+ "tittel": "Puan artışı finans ve destek boyutunda en büyük, dijitalleşmede en küçük",
+ "under": "Yedi yıllık puan artışı",
+ "enhet": "Yedi yıllık puan artışı",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "Avrupa Komisyonu (İnovasyon Karnesi)"
+ },
+ "form": "rangering",
+ "serier": [
+  {
+   "navn": "Artış",
+   "punkter": [
+    {
+     "x": "Finans ve destek",
+     "y": 37.42
+    },
+    {
+     "x": "Bilişim yatırımı",
+     "y": 20
+    },
+    {
+     "x": "İnsan kaynakları",
+     "y": 19.87
+    },
+    {
+     "x": "Yenilik yapanlar",
+     "y": 17.58
+    },
+    {
+     "x": "Fikri varlıklar",
+     "y": 1.12
+    },
+    {
+     "x": "Dijitalleşme",
+     "y": 0.24
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "sorter": true,
+  "fremhev": [
+   "Finans ve destek"
+  ]
+ }
+}

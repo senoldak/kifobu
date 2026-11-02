@@ -1,0 +1,34 @@
+{
+ "tittel": "Özel sektörün payı hem harcamada hem personelde arttı",
+ "under": "Özel sektörün toplam içindeki payı",
+ "enhet": "prosent",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "manual",
+ "valg": {
+  "gruppenavn": [
+   "İlk yıl",
+   "Son yıl"
+  ],
+  "sorter": false
+ },
+ "serier": [
+  {
+   "navn": "Özel sektörün payı hem harcamada hem personelde arttı",
+   "punkter": [
+    {
+     "x": "Ar-Ge harcaması",
+     "y": 49.96,
+     "y2": 65.15
+    },
+    {
+     "x": "Ar-Ge personeli",
+     "y": 55.45,
+     "y2": 65.44
+    }
+   ]
+  }
+ ]
+}

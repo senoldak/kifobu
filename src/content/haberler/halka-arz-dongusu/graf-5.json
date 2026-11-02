@@ -1,0 +1,43 @@
+{
+ "tittel": "Şirket başına ortalama büyüklük en yüksek düzeyinden geriledi",
+ "under": "Satışa sunulan tutarın şirket başına ortalaması, 2025 yılı fiyatlarıyla, milyar TL",
+ "enhet": "milyar TL",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "SPK, TÜİK (TCMB EVDS)"
+ },
+ "form": "rangering",
+ "serier": [
+  {
+   "navn": "Şirket başına tutar",
+   "punkter": [
+    {
+     "x": "2021",
+     "y": 2.3501
+    },
+    {
+     "x": "2022",
+     "y": 1.6276
+    },
+    {
+     "x": "2023",
+     "y": 3.0461
+    },
+    {
+     "x": "2024",
+     "y": 2.3426
+    },
+    {
+     "x": "2025",
+     "y": 2.5086
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "sorter": false,
+  "fremhev": [
+   "2025"
+  ]
+ }
+}

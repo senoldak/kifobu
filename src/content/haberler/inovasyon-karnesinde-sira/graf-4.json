@@ -1,0 +1,86 @@
+{
+ "tittel": "Türkiye'nin endeksi iki ölçekte de son üç yılda yükseldi",
+ "under": "Özet yenilik endeksi",
+ "enhet": "Özet yenilik endeksi",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "Avrupa Komisyonu (İnovasyon Karnesi)"
+ },
+ "form": "linje",
+ "serier": [
+  {
+   "navn": "AB'nin ilk yıl değerine göre",
+   "punkter": [
+    {
+     "x": "2019",
+     "y": 50.884
+    },
+    {
+     "x": "2020",
+     "y": 51.448
+    },
+    {
+     "x": "2021",
+     "y": 52.713
+    },
+    {
+     "x": "2022",
+     "y": 54.569
+    },
+    {
+     "x": "2023",
+     "y": 54.933
+    },
+    {
+     "x": "2024",
+     "y": 61.535
+    },
+    {
+     "x": "2025",
+     "y": 61.852
+    },
+    {
+     "x": "2026",
+     "y": 63.494
+    }
+   ]
+  },
+  {
+   "navn": "Her yılın AB değerine göre",
+   "punkter": [
+    {
+     "x": "2019",
+     "y": 50.884
+    },
+    {
+     "x": "2020",
+     "y": 51.227
+    },
+    {
+     "x": "2021",
+     "y": 51.641
+    },
+    {
+     "x": "2022",
+     "y": 51.281
+    },
+    {
+     "x": "2023",
+     "y": 50.97
+    },
+    {
+     "x": "2024",
+     "y": 56.244
+    },
+    {
+     "x": "2025",
+     "y": 56.291
+    },
+    {
+     "x": "2026",
+     "y": 56.911
+    }
+   ]
+  }
+ ]
+}

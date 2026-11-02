@@ -1,0 +1,90 @@
+{
+ "tittel": "İstanbul’un payı üç yılda arttı, Ankara’nın ve diğer bölgelerin payı geriledi",
+ "under": "Bölgenin Türkiye Ar-Ge harcamasındaki payı, yüzde",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "helning",
+ "serier": [
+  {
+   "navn": "İstanbul",
+   "punkter": [
+    {
+     "x": "2021 yılı",
+     "y": 29.69
+    },
+    {
+     "x": "2024 yılı",
+     "y": 33.36
+    }
+   ]
+  },
+  {
+   "navn": "Ankara",
+   "punkter": [
+    {
+     "x": "2021 yılı",
+     "y": 28.17
+    },
+    {
+     "x": "2024 yılı",
+     "y": 27.82
+    }
+   ]
+  },
+  {
+   "navn": "Kocaeli bölgesi",
+   "punkter": [
+    {
+     "x": "2021 yılı",
+     "y": 9.17
+    },
+    {
+     "x": "2024 yılı",
+     "y": 9.37
+    }
+   ]
+  },
+  {
+   "navn": "Bursa bölgesi",
+   "punkter": [
+    {
+     "x": "2021 yılı",
+     "y": 5.9
+    },
+    {
+     "x": "2024 yılı",
+     "y": 4.85
+    }
+   ]
+  },
+  {
+   "navn": "İzmir",
+   "punkter": [
+    {
+     "x": "2021 yılı",
+     "y": 4.11
+    },
+    {
+     "x": "2024 yılı",
+     "y": 4.29
+    }
+   ]
+  },
+  {
+   "navn": "Diğer bölgeler",
+   "punkter": [
+    {
+     "x": "2021 yılı",
+     "y": 22.96
+    },
+    {
+     "x": "2024 yılı",
+     "y": 20.3
+    }
+   ]
+  }
+ ]
+}

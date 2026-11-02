@@ -1,0 +1,25 @@
+{
+ "tittel": "Her yüz işletmeden yaklaşık altmışı beşinci yıl sonunda aynı kimlikle görünmüyor",
+ "under": "Doğum yılı 2019 olan işletmelerin beşinci yıl sonundaki durumu",
+ "enhet": "prosent",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "rutenett",
+ "serier": [
+  {
+   "navn": "Durum",
+   "punkter": [
+    {
+     "x": "Faal",
+     "y": 41.27
+    },
+    {
+     "x": "Kayıtta aynı kimlikle yok",
+     "y": 58.73
+    }
+   ]
+  }
+ ]
+}

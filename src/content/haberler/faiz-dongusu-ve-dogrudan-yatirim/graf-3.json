@@ -1,0 +1,39 @@
+{
+ "tittel": "Doğrudan yatırım girişleri 2022 yılında arttı, 2023 yılında azaldı",
+ "under": "Doğrudan yatırım girişlerinde yıllık değişim, yüzde",
+ "enhet": "prosent",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "TCMB"
+ },
+ "form": "rangering",
+ "serier": [
+  {
+   "navn": "Değişim",
+   "punkter": [
+    {
+     "x": "2022 yılı",
+     "y": 14.6
+    },
+    {
+     "x": "2023 yılı",
+     "y": -28.1
+    },
+    {
+     "x": "2024 yılı",
+     "y": 9.8
+    },
+    {
+     "x": "2025 yılı",
+     "y": 10.8
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "sorter": false,
+  "fremhev": [
+   "2023 yılı"
+  ]
+ }
+}

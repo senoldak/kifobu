@@ -1,0 +1,41 @@
+{
+ "tittel": "İstanbul ve Ankara, Ar-Ge harcamasının yarısından fazlasını yapıyor",
+ "under": "Bölgenin Türkiye Ar-Ge harcamasındaki payı, yüzde; 2024 yılı",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "smultring",
+ "serier": [
+  {
+   "navn": "Pay",
+   "punkter": [
+    {
+     "x": "İstanbul (TR10)",
+     "y": 33.36
+    },
+    {
+     "x": "Ankara (TR51)",
+     "y": 27.82
+    },
+    {
+     "x": "Kocaeli bölgesi (TR42)",
+     "y": 9.37
+    },
+    {
+     "x": "Bursa bölgesi (TR41)",
+     "y": 4.85
+    },
+    {
+     "x": "İzmir (TR31)",
+     "y": 4.29
+    },
+    {
+     "x": "Diğer bölgeler",
+     "y": 20.3
+    }
+   ]
+  }
+ ]
+}

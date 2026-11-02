@@ -1,0 +1,54 @@
+{
+ "tittel": "Türkiye'nin sırası altı yılda aynı kaldı, iki yılda bir basamak geriledi",
+ "under": "Özet endekse göre ülke sırası",
+ "enhet": "Özet endekse göre ülke sırası",
+ "desimaler": 0,
+ "kilde": {
+  "navn": "Avrupa Komisyonu (İnovasyon Karnesi)"
+ },
+ "form": "soyle",
+ "serier": [
+  {
+   "navn": "Sıra",
+   "punkter": [
+    {
+     "x": "2019",
+     "y": 31
+    },
+    {
+     "x": "2020",
+     "y": 32
+    },
+    {
+     "x": "2021",
+     "y": 31
+    },
+    {
+     "x": "2022",
+     "y": 32
+    },
+    {
+     "x": "2023",
+     "y": 31
+    },
+    {
+     "x": "2024",
+     "y": 31
+    },
+    {
+     "x": "2025",
+     "y": 31
+    },
+    {
+     "x": "2026",
+     "y": 31
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "fremhev": [
+   "2026"
+  ]
+ }
+}

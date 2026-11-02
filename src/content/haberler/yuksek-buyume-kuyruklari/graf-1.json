@@ -1,0 +1,41 @@
+{
+ "tittel": "Türkiye’de hızlı büyüyen işletmelerin çalışan payı AB toplamının iki katından fazla",
+ "under": "En az on çalışanı olan işletmelerde çalışanların payı, yüzde; 2024 yılı",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "nokkeltall",
+ "serier": [
+  {
+   "navn": "Türkiye",
+   "rol": "ana",
+   "punkter": [
+    {
+     "x": "Türkiye çalışan payı",
+     "y": 26.87
+    }
+   ]
+  },
+  {
+   "navn": "Karşılaştırma",
+   "rol": "sammenligning",
+   "punkter": [
+    {
+     "x": "AB toplamı çalışan payı",
+     "y": 12.84
+    },
+    {
+     "x": "Türkiye işletme payı",
+     "y": 14.47
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "fremhev": [
+   "AB toplamı çalışan payı"
+  ]
+ }
+}

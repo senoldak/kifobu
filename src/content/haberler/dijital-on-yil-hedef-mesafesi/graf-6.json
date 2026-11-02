@@ -1,0 +1,39 @@
+{
+ "tittel": "Türkiye'nin AB değerine oranı en düşük yapay zekâda",
+ "under": "Türkiye değerinin AB değerine oranı",
+ "enhet": "prosent",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "rangering",
+ "serier": [
+  {
+   "navn": "Oran",
+   "punkter": [
+    {
+     "x": "KOBİ dijital yoğunluğu",
+     "y": 59.81
+    },
+    {
+     "x": "Bulut, YZ, veri",
+     "y": 45.81
+    },
+    {
+     "x": "Yapay zekâ",
+     "y": 37.14
+    },
+    {
+     "x": "Orta/ileri bulut",
+     "y": 38.45
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "sorter": true,
+  "fremhev": [
+   "Yapay zekâ"
+  ]
+ }
+}

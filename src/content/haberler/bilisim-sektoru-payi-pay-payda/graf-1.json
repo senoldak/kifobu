@@ -1,0 +1,44 @@
+{
+ "tittel": "Bilgi ve iletişimin GSYH payı, incelenen yedi yılda en düşük düzeyine bir kez indi",
+ "under": "Cari fiyatlarla katma değerin GSYH'ye oranı",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "TCMB EVDS (kaynak TÜİK)"
+ },
+ "form": "nokkeltall",
+ "serier": [
+  {
+   "navn": "Pay",
+   "rol": "ana",
+   "punkter": [
+    {
+     "x": "2022",
+     "y": 2.258
+    }
+   ]
+  },
+  {
+   "navn": "Yıllar",
+   "rol": "kunye",
+   "punkter": [
+    {
+     "x": "2019",
+     "y": 2.55
+    },
+    {
+     "x": "2021",
+     "y": 2.703
+    },
+    {
+     "x": "2023",
+     "y": 2.357
+    },
+    {
+     "x": "2025",
+     "y": 2.645
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,54 @@
+{
+ "tittel": "Hızlı büyüyenlerin çalışan payı işletme payından Türkiye’de çok yüksek, Fransa’da düşük",
+ "under": "Çalışan payının işletme payından yüzde farkı, 2024 yılı",
+ "enhet": "prosent",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "soyle",
+ "serier": [
+  {
+   "navn": "Fark",
+   "punkter": [
+    {
+     "x": "Türkiye",
+     "y": 85.69
+    },
+    {
+     "x": "Almanya",
+     "y": 48.56
+    },
+    {
+     "x": "Danimarka",
+     "y": 37.26
+    },
+    {
+     "x": "AB",
+     "y": 28.27
+    },
+    {
+     "x": "Finlandiya",
+     "y": 28.43
+    },
+    {
+     "x": "İtalya",
+     "y": 20.73
+    },
+    {
+     "x": "İspanya",
+     "y": 2.97
+    },
+    {
+     "x": "Fransa",
+     "y": -28.41
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "fremhev": [
+   "Türkiye"
+  ]
+ }
+}

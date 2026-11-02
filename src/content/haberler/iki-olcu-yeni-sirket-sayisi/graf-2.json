@@ -1,0 +1,79 @@
+{
+ "tittel": "Şirket kayıtlarının işletme doğumlarına oranı yıldan yıla değişti",
+ "under": "Dünya Bankası kayıt sayısının Eurostat doğum sayısındaki payı",
+ "enhet": "prosent",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "Dünya Bankası, Eurostat"
+ },
+ "form": "rangering",
+ "serier": [
+  {
+   "navn": "Pay",
+   "punkter": [
+    {
+     "x": "2011",
+     "y": 14.1
+    },
+    {
+     "x": "2012",
+     "y": 10.4
+    },
+    {
+     "x": "2013",
+     "y": 13.1
+    },
+    {
+     "x": "2014",
+     "y": 15.5
+    },
+    {
+     "x": "2015",
+     "y": 17.2
+    },
+    {
+     "x": "2016",
+     "y": 16.3
+    },
+    {
+     "x": "2017",
+     "y": 16.8
+    },
+    {
+     "x": "2018",
+     "y": 19.6
+    },
+    {
+     "x": "2019",
+     "y": 20
+    },
+    {
+     "x": "2020",
+     "y": 20.5
+    },
+    {
+     "x": "2021",
+     "y": 19.2
+    },
+    {
+     "x": "2022",
+     "y": 23.5
+    },
+    {
+     "x": "2023",
+     "y": 21.9
+    },
+    {
+     "x": "2024",
+     "y": 18.4
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "sorter": false,
+  "fremhev": [
+   "2022"
+  ]
+ }
+}

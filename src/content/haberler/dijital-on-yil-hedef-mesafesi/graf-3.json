@@ -1,0 +1,39 @@
+{
+ "tittel": "Fark, işletme küçüldükçe açılıyor",
+ "under": "En az temel dijital yoğunluktaki işletme payı",
+ "enhet": "prosent",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "manual",
+ "valg": {
+  "gruppenavn": [
+   "AB",
+   "Türkiye"
+  ],
+  "sorter": false
+ },
+ "serier": [
+  {
+   "navn": "Fark, işletme küçüldükçe açılıyor",
+   "punkter": [
+    {
+     "x": "Küçük",
+     "y": 68.85,
+     "y2": 39.97
+    },
+    {
+     "x": "Orta",
+     "y": 86.67,
+     "y2": 58.51
+    },
+    {
+     "x": "Büyük",
+     "y": 96.39,
+     "y2": 85.11
+    }
+   ]
+  }
+ ]
+}

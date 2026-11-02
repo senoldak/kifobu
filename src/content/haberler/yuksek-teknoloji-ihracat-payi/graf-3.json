@@ -1,0 +1,116 @@
+{
+ "tittel": "Türkiye’nin payı arttı, ama Polonya ve Romanya daha hızlı yükseldi",
+ "under": "Yüksek teknolojili ürünlerin imalat ihracatı içindeki payı, yüzde",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "Dünya Bankası"
+ },
+ "form": "helning",
+ "serier": [
+  {
+   "navn": "Türkiye",
+   "punkter": [
+    {
+     "x": "2007 yılı",
+     "y": 2.16875430678889
+    },
+    {
+     "x": "2024 yılı",
+     "y": 5.13775956987065
+    }
+   ]
+  },
+  {
+   "navn": "Almanya",
+   "punkter": [
+    {
+     "x": "2007 yılı",
+     "y": 15.4623925898068
+    },
+    {
+     "x": "2024 yılı",
+     "y": 17.9772990379432
+    }
+   ]
+  },
+  {
+   "navn": "Fransa",
+   "punkter": [
+    {
+     "x": "2007 yılı",
+     "y": 20.1428349498868
+    },
+    {
+     "x": "2024 yılı",
+     "y": 23.1371073769038
+    }
+   ]
+  },
+  {
+   "navn": "İtalya",
+   "punkter": [
+    {
+     "x": "2007 yılı",
+     "y": 6.73296300131478
+    },
+    {
+     "x": "2024 yılı",
+     "y": 11.891145607858
+    }
+   ]
+  },
+  {
+   "navn": "İspanya",
+   "punkter": [
+    {
+     "x": "2007 yılı",
+     "y": 5.61297104870674
+    },
+    {
+     "x": "2024 yılı",
+     "y": 9.28447661569937
+    }
+   ]
+  },
+  {
+   "navn": "Polonya",
+   "punkter": [
+    {
+     "x": "2007 yılı",
+     "y": 3.88296143291345
+    },
+    {
+     "x": "2024 yılı",
+     "y": 13.5099699026858
+    }
+   ]
+  },
+  {
+   "navn": "Romanya",
+   "punkter": [
+    {
+     "x": "2007 yılı",
+     "y": 4.41976998737353
+    },
+    {
+     "x": "2024 yılı",
+     "y": 13.4497511493721
+    }
+   ]
+  },
+  {
+   "navn": "Çekya",
+   "punkter": [
+    {
+     "x": "2007 yılı",
+     "y": 15.2861658593061
+    },
+    {
+     "x": "2024 yılı",
+     "y": 22.4045215279558
+    }
+   ]
+  }
+ ]
+}

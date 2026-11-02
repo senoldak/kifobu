@@ -1,0 +1,42 @@
+{
+ "tittel": "Şirket sayısı son iki yılda üst üste azaldı",
+ "under": "Şirket sayısının bir önceki yıla göre yüzde değişimi",
+ "enhet": "prosent",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "SPK"
+ },
+ "form": "soyle",
+ "serier": [
+  {
+   "navn": "Değişim",
+   "punkter": [
+    {
+     "x": "2021",
+     "y": 550
+    },
+    {
+     "x": "2022",
+     "y": -26.9
+    },
+    {
+     "x": "2023",
+     "y": 47.4
+    },
+    {
+     "x": "2024",
+     "y": -41.1
+    },
+    {
+     "x": "2025",
+     "y": -45.5
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "fremhev": [
+   "2025"
+  ]
+ }
+}

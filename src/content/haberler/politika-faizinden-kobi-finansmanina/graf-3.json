@@ -1,0 +1,116 @@
+{
+ "tittel": "ABD'de KOBİ faizi iki yılda yükseldi",
+ "under": "KOBİ kredi faizi, yüzde, 2021 yılı ve 2023 yılı",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "OECD"
+ },
+ "form": "helning",
+ "serier": [
+  {
+   "navn": "ABD",
+   "punkter": [
+    {
+     "x": "2021 yılı",
+     "y": 3.13
+    },
+    {
+     "x": "2023 yılı",
+     "y": 6.06
+    }
+   ]
+  },
+  {
+   "navn": "Birleşik Krallık",
+   "punkter": [
+    {
+     "x": "2021 yılı",
+     "y": 2.45
+    },
+    {
+     "x": "2023 yılı",
+     "y": 7.01
+    }
+   ]
+  },
+  {
+   "navn": "Kanada",
+   "punkter": [
+    {
+     "x": "2021 yılı",
+     "y": 4.09
+    },
+    {
+     "x": "2023 yılı",
+     "y": 9
+    }
+   ]
+  },
+  {
+   "navn": "Polonya",
+   "punkter": [
+    {
+     "x": "2021 yılı",
+     "y": 2.65
+    },
+    {
+     "x": "2023 yılı",
+     "y": 8.26
+    }
+   ]
+  },
+  {
+   "navn": "Macaristan",
+   "punkter": [
+    {
+     "x": "2021 yılı",
+     "y": 3.53
+    },
+    {
+     "x": "2023 yılı",
+     "y": 15.33
+    }
+   ]
+  },
+  {
+   "navn": "Çekya",
+   "punkter": [
+    {
+     "x": "2021 yılı",
+     "y": 3.23
+    },
+    {
+     "x": "2023 yılı",
+     "y": 8.07
+    }
+   ]
+  },
+  {
+   "navn": "Danimarka",
+   "punkter": [
+    {
+     "x": "2021 yılı",
+     "y": 4.92
+    },
+    {
+     "x": "2023 yılı",
+     "y": 8.97
+    }
+   ]
+  },
+  {
+   "navn": "İsviçre",
+   "punkter": [
+    {
+     "x": "2021 yılı",
+     "y": 1.74
+    },
+    {
+     "x": "2023 yılı",
+     "y": 3.3
+    }
+   ]
+  }
+ ]
+}

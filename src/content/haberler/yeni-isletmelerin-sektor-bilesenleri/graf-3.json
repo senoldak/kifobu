@@ -1,0 +1,54 @@
+{
+ "tittel": "Posta ve kurye faaliyetlerinde doğan işletme sayısı 2020 yılından sonra yükseldi",
+ "under": "Posta ve kurye faaliyetlerinde doğan işletme sayısı",
+ "enhet": "Posta ve kurye faaliyetlerinde doğan işletme sayısı",
+ "desimaler": 0,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "soyle",
+ "serier": [
+  {
+   "navn": "Doğan işletme",
+   "punkter": [
+    {
+     "x": "2017",
+     "y": 611
+    },
+    {
+     "x": "2018",
+     "y": 677
+    },
+    {
+     "x": "2019",
+     "y": 1349
+    },
+    {
+     "x": "2020",
+     "y": 10072
+    },
+    {
+     "x": "2021",
+     "y": 45735
+    },
+    {
+     "x": "2022",
+     "y": 42442
+    },
+    {
+     "x": "2023",
+     "y": 48986
+    },
+    {
+     "x": "2024",
+     "y": 50905
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "fremhev": [
+   "2024"
+  ]
+ }
+}

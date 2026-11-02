@@ -1,0 +1,43 @@
+{
+ "tittel": "Tutarın en yüksek olduğu ülke Fransa",
+ "under": "2024 yılında ülkedeki sağlayıcılar üzerinden toplanan tutar, milyar avro",
+ "enhet": "milyar avro",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "ESMA"
+ },
+ "form": "rangering",
+ "serier": [
+  {
+   "navn": "Toplanan tutar",
+   "punkter": [
+    {
+     "x": "Fransa",
+     "y": 1.45
+    },
+    {
+     "x": "Hollanda",
+     "y": 1
+    },
+    {
+     "x": "İspanya",
+     "y": 0.45
+    },
+    {
+     "x": "İtalya",
+     "y": 0.29
+    },
+    {
+     "x": "Litvanya",
+     "y": 0.28
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "sorter": false,
+  "fremhev": [
+   "Fransa"
+  ]
+ }
+}

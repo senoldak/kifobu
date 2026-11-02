@@ -1,0 +1,71 @@
+{
+ "tittel": "Girişim sermayesi oranı pandemi sonrası dönemde on iki ülkenin on ikisinde geriledi",
+ "under": "Girişim sermayesi oranında değişim, yüzde",
+ "enhet": "prosent",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "OECD"
+ },
+ "form": "rangering",
+ "serier": [
+  {
+   "navn": "Değişim",
+   "punkter": [
+    {
+     "x": "ABD",
+     "y": -57.9
+    },
+    {
+     "x": "Kanada",
+     "y": -50.2
+    },
+    {
+     "x": "Birleşik Krallık",
+     "y": -45.7
+    },
+    {
+     "x": "Almanya",
+     "y": -49.6
+    },
+    {
+     "x": "Fransa",
+     "y": -23.6
+    },
+    {
+     "x": "İsveç",
+     "y": -62
+    },
+    {
+     "x": "Danimarka",
+     "y": -40
+    },
+    {
+     "x": "Hollanda",
+     "y": -22.2
+    },
+    {
+     "x": "İspanya",
+     "y": -56.9
+    },
+    {
+     "x": "Finlandiya",
+     "y": -55.1
+    },
+    {
+     "x": "Avusturya",
+     "y": -88.1
+    },
+    {
+     "x": "Estonya",
+     "y": -73.5
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "sorter": true,
+  "fremhev": [
+   "ABD"
+  ]
+ }
+}

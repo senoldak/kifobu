@@ -1,0 +1,46 @@
+{
+ "tittel": "Cari büyüme farkı yalnızca bir yıl GSYH lehine döndü",
+ "under": "Sektör eksi GSYH cari büyümesi, yüzde puan",
+ "enhet": "Sektör eksi GSYH cari büyümesi, yüzde puan",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "TCMB EVDS (kaynak TÜİK)"
+ },
+ "form": "soyle",
+ "serier": [
+  {
+   "navn": "Cari büyüme farkı",
+   "punkter": [
+    {
+     "x": "2020",
+     "y": 6.597
+    },
+    {
+     "x": "2021",
+     "y": 0.494
+    },
+    {
+     "x": "2022",
+     "y": -33.954
+    },
+    {
+     "x": "2023",
+     "y": 7.746
+    },
+    {
+     "x": "2024",
+     "y": 9.202
+    },
+    {
+     "x": "2025",
+     "y": 8.914
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "fremhev": [
+   "2022"
+  ]
+ }
+}

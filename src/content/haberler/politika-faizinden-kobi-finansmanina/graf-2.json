@@ -1,0 +1,55 @@
+{
+ "tittel": "KOBİ faizindeki artış ülkeler arasında farklı büyüklüklerde",
+ "under": "KOBİ kredi faizinde 2021–2023 değişimi, puan",
+ "enhet": "KOBİ kredi faizinde 2021–2023 değişimi, puan",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "OECD"
+ },
+ "form": "rangering",
+ "serier": [
+  {
+   "navn": "Değişim",
+   "punkter": [
+    {
+     "x": "ABD",
+     "y": 2.93
+    },
+    {
+     "x": "Birleşik Krallık",
+     "y": 4.56
+    },
+    {
+     "x": "Kanada",
+     "y": 4.91
+    },
+    {
+     "x": "Polonya",
+     "y": 5.61
+    },
+    {
+     "x": "Macaristan",
+     "y": 11.8
+    },
+    {
+     "x": "Çekya",
+     "y": 4.84
+    },
+    {
+     "x": "Danimarka",
+     "y": 4.05
+    },
+    {
+     "x": "İsviçre",
+     "y": 1.56
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "sorter": true,
+  "fremhev": [
+   "ABD"
+  ]
+ }
+}

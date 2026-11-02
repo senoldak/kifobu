@@ -1,0 +1,29 @@
+{
+ "tittel": "Ar-Ge harcamasının üçte ikisi işletme sektöründe",
+ "under": "Sektörlere göre pay, son yıl",
+ "enhet": "prosent",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "smultring",
+ "serier": [
+  {
+   "navn": "Sektör payı",
+   "punkter": [
+    {
+     "x": "İşletme sektörü",
+     "y": 65.15
+    },
+    {
+     "x": "Yükseköğretim",
+     "y": 30
+    },
+    {
+     "x": "Kamu",
+     "y": 4.85
+    }
+   ]
+  }
+ ]
+}

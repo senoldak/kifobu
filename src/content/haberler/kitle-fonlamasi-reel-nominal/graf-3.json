@@ -1,0 +1,41 @@
+{
+ "tittel": "Nominal tutar fiyat düzeyinden çok daha hızlı büyüdü",
+ "under": "Beş yılda kaç katına çıktı, nominal tutar, fiyat düzeyi ve fiyatlardan arındırılmış tutar",
+ "enhet": "Beş yılda kaç katına çıktı, nominal tutar, fiyat düzeyi ve fiyatlardan arındırılmış tutar",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "SPK, TÜİK (TCMB EVDS)"
+ },
+ "form": "nokkeltall",
+ "serier": [
+  {
+   "navn": "Nominal",
+   "rol": "ana",
+   "punkter": [
+    {
+     "x": "Nominal tutar, beş yılda kat",
+     "y": 16.4
+    }
+   ]
+  },
+  {
+   "navn": "Karşılaştırma",
+   "rol": "sammenligning",
+   "punkter": [
+    {
+     "x": "Fiyat düzeyi (TÜFE)",
+     "y": 5.7
+    },
+    {
+     "x": "Fiyatlardan arındırılmış tutar",
+     "y": 2.9
+    }
+   ]
+  }
+ ],
+ "valg": {
+  "fremhev": [
+   "Fiyatlardan arındırılmış tutar"
+  ]
+ }
+}

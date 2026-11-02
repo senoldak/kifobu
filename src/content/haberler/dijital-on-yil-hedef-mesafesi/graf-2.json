@@ -1,0 +1,34 @@
+{
+ "tittel": "İki işletme göstergesinde de Türkiye'nin payı AB'nin altında",
+ "under": "İşletme payı, yüzde",
+ "enhet": "prosent",
+ "desimaler": 1,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "manual",
+ "valg": {
+  "gruppenavn": [
+   "AB",
+   "Türkiye"
+  ],
+  "sorter": false
+ },
+ "serier": [
+  {
+   "navn": "İki işletme göstergesinde de Türkiye'nin payı AB'nin altında",
+   "punkter": [
+    {
+     "x": "KOBİ'ler",
+     "y": 71.39,
+     "y2": 42.7
+    },
+    {
+     "x": "Bulut, YZ, veri",
+     "y": 63.2,
+     "y2": 28.95
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "tittel": "Ar-Ge harcamasının yarısından fazlası işletmelerden geliyor",
+ "under": "Finansman kaynağının toplam harcamadaki payı, yüzde; 2024 yılı",
+ "enhet": "prosent",
+ "desimaler": 2,
+ "kilde": {
+  "navn": "Eurostat"
+ },
+ "form": "smultring",
+ "serier": [
+  {
+   "navn": "Kaynak",
+   "punkter": [
+    {
+     "x": "İşletmeler",
+     "y": 53.82
+    },
+    {
+     "x": "Kamu",
+     "y": 30.37
+    },
+    {
+     "x": "Yükseköğretim",
+     "y": 12.91
+    },
+    {
+     "x": "Yurt dışı",
+     "y": 2.89
+    }
+   ]
+  }
+ ]
+}
