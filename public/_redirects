@@ -100,6 +100,10 @@
 /bulten/ /gunluk-bulten/ 301
 /bulten /gunluk-bulten/ 301
 
+# Grafik kataloğu kapatıldı (2026-11-02): örnek grafiklerdeki rakamlar resmî kaynaktan değildi. Gerçek veri MKK sayfasında.
+/grafikler/ /mkk-verileri/ 301
+/grafikler /mkk-verileri/ 301
+
 # Joker (*) içeren kurallar sonda durur: Cloudflare, jokerli bir kuralın ardından gelen her kuralı dinamik sayar ve dinamik kural sınırı 100'dür.
 /kategori/* /:splat 301
 # Eski WordPress bülten adresleri (/YYYY/AA/GG/...) arşiv taşınmadığı için bülten sayfasına
