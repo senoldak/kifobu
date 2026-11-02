@@ -1,14 +1,14 @@
 {
- "guncellendi": "2026-11-02T17:25:57.742Z",
+ "guncellendi": "2026-11-02T19:21:30.620Z",
  "gunler": {
   "2026-11-02": {
-   "tur": 5,
-   "bulunan": 818,
-   "degerlendirilen": 146,
+   "tur": 6,
+   "bulunan": 992,
+   "degerlendirilen": 162,
    "elenen": {
     "zaten-yazildi": 4,
-    "kapsam-disi": 121,
-    "dusuk-haber-degeri": 8,
+    "kapsam-disi": 136,
+    "dusuk-haber-degeri": 9,
     "denetim-durdu": 3,
     "standart:kaynak-benzerligi": 3,
     "diger": 1
