@@ -41,8 +41,12 @@ for (const dosya of readdirSync(HABER_DIZIN, { recursive: true, encoding: 'utf8'
   const category = fm.match(/^category:\s*["']?([\w-]+)/m)?.[1] ?? '';
   // Haber sayfasıyla aynı kural (src/lib/indeks.ts): taslak, noindex işaretli ya da 120 kelimeden kısa haber haritaya girmez.
   const indeks = indekslenir({ draft, noindex: /^noindex:\s*true/m.test(fm), govde: parcalar?.[2] ?? '' });
-  haberBilgi.set(id, { date, modified, draft, cover: /^cover:\s*\S/m.test(fm), category, indeks });
+  // Yazı işleri yazısı site haritasında ayrı parçaya girer (bkz. chunks).
+  const ozel = /^uretim:\s*["']?yazi-isleri/m.test(fm);
+  haberBilgi.set(id, { date, modified, draft, cover: /^cover:\s*\S/m.test(fm), category, indeks, ozel });
 }
+
+const haberKimligi = (/** @type {string} */ url) => new URL(url).pathname.match(/^\/haber\/([^/]+)\/?$/)?.[1] ?? '';
 
 // İndekslenebilir haberi olmayan bölüm sayfaları (ör. henüz boş Kampanyalar) haritaya girmez.
 const indeksliBolumler = new Set(
@@ -90,6 +94,20 @@ export default defineConfig({
           out.img = [{ url: `${SITE_URL}/kapak/${m?.[1]}.png` }];
         }
         return out;
+      },
+      // Site haritası türe göre bölünür (sitemap-<tür>-0.xml; geri kalan sitemap-pages-0.xml). Search Console'da her
+      // harita ayrı gönderilir; "Sayfa dizine ekleme" raporu böylece her türün dizin oranını ayrı gösterir.
+      // Eklenti parçaları birbirinden ayırmaz, koşullar örtüşmemeli.
+      chunks: {
+        ozel: (item) => (haberBilgi.get(haberKimligi(item.url))?.ozel ? item : undefined),
+        haber: (item) => {
+          const h = haberBilgi.get(haberKimligi(item.url));
+          return h && !h.ozel ? item : undefined;
+        },
+        bulten: (item) => (new URL(item.url).pathname.startsWith('/gunluk-bulten/') ? item : undefined),
+        veri: (item) =>
+          /^\/(kampanya|kampanyalar|platform|platformlar|mkk-verileri|grafikler)\//.test(new URL(item.url).pathname) ? item : undefined,
+        rehber: (item) => (/^\/(rehber|mevzuat)\//.test(new URL(item.url).pathname) ? item : undefined),
       },
     }),
   ],
