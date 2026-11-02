@@ -17,7 +17,7 @@ const { standartDenetle } = await import('./standart.mjs');
 const { onEle, onbellekliPuanla } = await import('./yazar.mjs');
 
 const HER = path.dirname(fileURLToPath(import.meta.url));
-const govde = (n) => `${'kelime '.repeat(n - 1).trim()} kelime.`;
+const govde = (n) => `${'sözcük '.repeat(n - 1).trim()} sözcük.`;
 const BASLIK = 'Kitle fonlama platformları yeni dönemde ilerliyor';
 const taslak = () => ({ title: BASLIK, description: 'Dilimin özeti.', body: govde(210), category: 'yatirimlar' });
 const KAYNAK = 'Kaynak metni tamamen farklı sözcüklerden oluşur.';

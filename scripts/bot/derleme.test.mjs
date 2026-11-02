@@ -7,7 +7,7 @@ process.env.GEMINI_ARALIK_MS = '0';
 process.env.GEMINI_BEKLE_CARPAN = '0';
 const { derlemeEnAz, denetle, kelimeSayisi, EN_AZ_KELIME } = await import('./denetci.mjs');
 
-const govde = (n) => `${'kelime '.repeat(n - 1).trim()} kelime.`;
+const govde = (n) => `${'sözcük '.repeat(n - 1).trim()} sözcük.`;
 const BASLIK = 'Kitle fonlama platformları yeni dönemde ilerliyor';
 const taslak = (n) => ({ title: BASLIK, description: 'Dilimin özeti.', body: govde(n), category: 'yatirimlar' });
 const KAYNAK = 'Kaynak metni tamamen farklı sözcüklerden oluşur.';

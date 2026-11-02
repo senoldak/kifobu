@@ -193,12 +193,26 @@ export function baslikKontrol(baslik = '') {
   return sorunlar;
 }
 
+// ── Türkçe harf ──────────────────────────────────────────────────────────
+// 28 Ekim 2026 (kifobu, Deetken Impact): model bütün haberi ç/ğ/ı/ö/ş/ü olmadan yazdı ve hiçbir kontrol yakalamadı.
+// Arşivde bu harflerin harflere oranı en düşük %2,6 (İngilizce adı bol bültenler); eşik %1,5. Kısa metne bakılmaz.
+const TR_HARF = /[çğıöşüÇĞİÖŞÜ]/g;
+export function turkceHarfKontrol(metin = '') {
+  const s = String(metin);
+  const harf = (s.match(/\p{L}/gu) ?? []).length;
+  if (harf < 300) return [];
+  const tr = (s.match(TR_HARF) ?? []).length;
+  return tr / harf < 0.015
+    ? ['Metin Türkçe harfler olmadan yazılmış (ç, ğ, ı, ö, ş, ü neredeyse hiç yok); aynı metni Türkçe harflerle yeniden yaz, içeriği değiştirme']
+    : [];
+}
+
 // Standartlar Faz 1 ölçek kontrolü: metindeki ve künyedeki tutar, kaynaktaki tutardan 10 kat ya da daha fazla
 // kaymışsa (crore/lakh/milyar çevirisi) sorun olur; düzelmezse haber yayımlanmaz.
 const kunyeTutarlari = (k = {}) => [k.toplanan, k.hedef].map(Number).filter((n) => n > 0);
 export function kesinKontroller(h, kaynak, { enAz, hedef } = {}) {
   const m = tamMetin(h);
-  return [...baslikKontrol(h.title), ...uzunlukKontrol(h.body, enAz, hedef), ...rakamKontrol(m, kaynak), ...olcekKontrol(m, kaynak, { mutlak: kunyeTutarlari(h.kunye) }), ...kunyeKontrol(h.kunye ?? {}, kaynak), ...alintiKontrol(m, kaynak), ...adKontrol(m, kaynak), ...kopyaKontrol(h.body, kaynak), ...zamanKontrol(m), ...medyaKontrol(m)];
+  return [...baslikKontrol(h.title), ...uzunlukKontrol(h.body, enAz, hedef), ...rakamKontrol(m, kaynak), ...olcekKontrol(m, kaynak, { mutlak: kunyeTutarlari(h.kunye) }), ...kunyeKontrol(h.kunye ?? {}, kaynak), ...alintiKontrol(m, kaynak), ...adKontrol(m, kaynak), ...kopyaKontrol(h.body, kaynak), ...zamanKontrol(m), ...medyaKontrol(m), ...turkceHarfKontrol(`${h.title}\n${h.body}`)];
 }
 
 // "Neden önemli" ve kısa maddeler düzeltme turunda yeniden yazılmaz (muhabir yalnız başlık/spot/metin döndürür);
