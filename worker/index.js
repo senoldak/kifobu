@@ -20,6 +20,9 @@ export default {
     if (Number(request.headers.get('content-length') || 0) > 1024) return new Response(null, { status: 400 });
     const y = yanitDogrula(await request.text(), request.headers.get('content-type'));
     if (!y.tamam) return new Response(null, { status: 400 });
+    // Yalnız yayımlanmış haber sayılır: rastgele slug'larla D1'e ve hesabın yazma kotasına sınırsız satır eklenmesin.
+    const sayfa = await env.ASSETS.fetch(new Request(new URL(`/haber/${y.slug}/`, url)));
+    if (sayfa.status !== 200) return new Response(null, { status: 404 });
     if (!tabloHazir) {
       await env.DB.prepare(TABLO).run();
       tabloHazir = true;
