@@ -1,7 +1,7 @@
 /**
  * Günlük kitle fonlama bülteni verisi ("Bugün" tablosu).
  * Otomatik Bot tarafından oluşturulmuştur.
- * Son güncelleme: 2026-11-02T15:01:20.534Z
+ * Son güncelleme: 2026-11-03T07:01:16.949Z
  */
 export interface Girisim {
   ad: string;
@@ -32,8 +32,8 @@ export interface Yakinda {
 }
 
 export const BULTEN = {
-  tarih: '2 Kasım 2026',
-  sayi: 1546,
+  tarih: '3 Kasım 2026',
+  sayi: 1547,
   girisimler: [
     {
         "ad": "ATHLETICLABS",
@@ -49,12 +49,12 @@ export const BULTEN = {
     {
         "ad": "OYLİO",
         "platform": "fonangels",
-        "bugun": 13300,
-        "alinan": 4181090,
-        "kalan": 818910,
+        "bugun": 107000,
+        "alinan": 4288090,
+        "kalan": 711910,
         "degerleme": 50000000,
-        "yuzde": 83.62,
-        "durum": "son 3 gün",
+        "yuzde": 85.76,
+        "durum": "son 2 gün",
         "url": "https://fonangels.com/kampanyalar/projehakkinda/oylio?pid=1778"
     },
     {
@@ -81,12 +81,12 @@ export const BULTEN = {
     }
 ] as Girisim[],
   platformlar: {
-    bugun: 13300,
-    toplam: 12617972,
+    bugun: 107000,
+    toplam: 12724972,
     liste: [
     {
         "ad": "fonangels",
-        "toplam": 11783590,
+        "toplam": 11890590,
         "girisim": 2,
         "renk": "#f47b3d",
         "url": "https://fonangels.com"
@@ -122,7 +122,7 @@ export const BULTEN = {
   mkk: {
     "platform": 18,
     "sirket": 179,
-    "yatirimci": 47166,
+    "yatirimci": 47165,
     "fon": "₺1,60 Milyar"
 },
 };
