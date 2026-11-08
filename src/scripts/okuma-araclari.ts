@@ -3,22 +3,11 @@
 // Tarayıcı depolaması try/catch içinde: gizli pencerede ya da engelliyken araçlar çalışır, yalnız hatırlamaz.
 // tidsrøst src/scripts/leseverktoy.ts uyarlaması.
 import { ilerleme, olcekDegeri, turkceSes } from '../lib/okuma.mjs';
+import { safeStorage } from '../lib/safe-storage.ts';
 
 const kok = document.documentElement;
-const oku = (k: string): string | null => {
-  try {
-    return localStorage.getItem(k);
-  } catch {
-    return null;
-  }
-};
-const yaz = (k: string, v: string) => {
-  try {
-    localStorage.setItem(k, v);
-  } catch {
-    /* depolama engelli */
-  }
-};
+const oku = (k: string): string | null => safeStorage.getItem(k);
+const yaz = (k: string, v: string) => safeStorage.setItem(k, v);
 const duyuru = document.querySelector('.yh-duyuru');
 
 // ——— Yazı boyu ———

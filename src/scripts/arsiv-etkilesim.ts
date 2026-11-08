@@ -1,3 +1,5 @@
+import { safeStorage } from '../lib/safe-storage.ts';
+
 const ANAHTAR = 'kifobu-arsiv';
 const GORUNUMLER = ['akis', 'kampanyalar', 'takvim'];
 const DONEMLER = ['gun', 'hafta', 'ay'];
@@ -6,7 +8,7 @@ const kok = document.getElementById('arsiv');
 
 function oku(): { gorunum?: string; donem?: string } {
   try {
-    const ham = localStorage.getItem(ANAHTAR);
+    const ham = safeStorage.getItem(ANAHTAR);
     return ham ? (JSON.parse(ham) ?? {}) : {};
   } catch {
     return {};
@@ -15,7 +17,7 @@ function oku(): { gorunum?: string; donem?: string } {
 
 function yaz(gorunum: string, donem: string) {
   try {
-    localStorage.setItem(ANAHTAR, JSON.stringify({ gorunum, donem }));
+    safeStorage.setItem(ANAHTAR, JSON.stringify({ gorunum, donem }));
   } catch {
     /* depolama yok: sayfa yine çalışır */
   }
