@@ -51,6 +51,7 @@ const digerleri = REHBERLER.filter((x) => x.slug !== slug);
 
 <Base title={r.baslik} description={r.aciklama} type="article">
   <Fragment slot="head">
+    <meta name="author" content="Şenol Dak" />
     <meta property="article:modified_time" content={r.gozdenGecirme} />
     <script type="application/ld+json" set:html={jsonLdMetni(jsonLd)} />
   </Fragment>
