@@ -1,7 +1,7 @@
 /**
  * Günlük kitle fonlama bülteni verisi ("Bugün" tablosu).
  * Otomatik Bot tarafından oluşturulmuştur.
- * Son güncelleme: 2026-11-08T13:01:08.915Z
+ * Son güncelleme: 2026-11-09T07:01:12.670Z
  */
 export interface Girisim {
   ad: string;
@@ -32,8 +32,8 @@ export interface Yakinda {
 }
 
 export const BULTEN = {
-  tarih: '8 Kasım 2026',
-  sayi: 1552,
+  tarih: '9 Kasım 2026',
+  sayi: 1553,
   girisimler: [
     {
         "ad": "ATHLETICLABS",
@@ -72,17 +72,17 @@ export const BULTEN = {
         "ad": "LOOPYON",
         "platform": "ecofolio",
         "bugun": 7000,
-        "alinan": 957600,
-        "kalan": 34042400,
+        "alinan": 964600,
+        "kalan": 34035400,
         "degerleme": 385038504,
-        "yuzde": 2.73,
+        "yuzde": 2.75,
         "durum": "son 7 gün",
         "url": "https://ecofolio.com.tr/kampanyalar/loopyon"
     }
 ] as Girisim[],
   platformlar: {
     bugun: 7000,
-    toplam: 13817782,
+    toplam: 13824782,
     liste: [
     {
         "ad": "fonangels",
@@ -93,7 +93,7 @@ export const BULTEN = {
     },
     {
         "ad": "ecofolio",
-        "toplam": 957600,
+        "toplam": 964600,
         "girisim": 1,
         "renk": "#009bae",
         "url": "https://ecofolio.com.tr"
