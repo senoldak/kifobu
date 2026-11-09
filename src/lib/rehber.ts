@@ -22,4 +22,11 @@ export const REHBERLER = [
     yayin: '2026-10-15',
     gozdenGecirme: '2026-10-18',
   },
+  {
+    slug: 'kitle-fonlamasi-vergi-istisnasi',
+    baslik: 'Kitle fonlaması ve BKY vergi indirimi hesaplayıcı',
+    aciklama: 'Paya dayalı kitle fonlaması ve BKY yatırımlarında Gelir Vergisi matrah indirimi (%75 - %100), net vergi tasarrufu ve 24 ay kuralı rehberi.',
+    yayin: '2026-11-09',
+    gozdenGecirme: '2026-11-09',
+  },
 ] as const;

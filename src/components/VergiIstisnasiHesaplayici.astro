@@ -1,0 +1,674 @@
+---
+// Kitle Fonlaması & BKY Vergi İstisnası Hesaplayıcısı
+// GVK Geçici 82. madde ve ilgili mevzuat uyarınca etkileşimli hesaplama
+import { YILLIK_AZAMI_TAVAN } from '../lib/hesap/vergi-istisnasi.ts';
+
+interface Props {
+  varsayilanYatirim?: number;
+  varsayilanGelir?: number;
+}
+
+const {
+  varsayilanYatirim = 100000,
+  varsayilanGelir = 1500000
+} = Astro.props;
+---
+
+<div class="vergi-hesaplayici" id="vergi-hesaplayici-koku">
+  <div class="hesap-grid">
+    <!-- Girdiler -->
+    <div class="girdi-paneli">
+      <div class="alan-grubu">
+        <label for="yatirim-girdi">
+          <strong>Yatırım Tutarı</strong>
+          <span class="etiket-aciklama">Kitle fonlaması veya BKY yatırımı (TL)</span>
+        </label>
+        <div class="girdi-sarici">
+          <input
+            type="number"
+            id="yatirim-girdi"
+            min="1000"
+            max="10000000"
+            step="1000"
+            value={varsayilanYatirim}
+          />
+          <span class="birim">TL</span>
+        </div>
+        <div class="hizli-secenekler" role="group" aria-label="Hızlı Yatırım Seçenekleri">
+          <button type="button" class="hizli-btn" data-yatirim="25000">25 Bin</button>
+          <button type="button" class="hizli-btn" data-yatirim="50000">50 Bin</button>
+          <button type="button" class="hizli-btn secili" data-yatirim="100000">100 Bin</button>
+          <button type="button" class="hizli-btn" data-yatirim="250000">250 Bin</button>
+          <button type="button" class="hizli-btn" data-yatirim="500000">500 Bin</button>
+        </div>
+      </div>
+
+      <div class="alan-grubu">
+        <label for="gelir-girdi">
+          <strong>Yıllık Beyan Edilen Gelir</strong>
+          <span class="etiket-aciklama">Yıllık gelir vergisi beyannamesindeki toplam matrah (TL)</span>
+        </label>
+        <div class="girdi-sarici">
+          <input
+            type="number"
+            id="gelir-girdi"
+            min="50000"
+            max="50000000"
+            step="10000"
+            value={varsayilanGelir}
+          />
+          <span class="birim">TL</span>
+        </div>
+        <div class="hizli-secenekler" role="group" aria-label="Hızlı Gelir Seçenekleri">
+          <button type="button" class="hizli-gelir-btn" data-gelir="750000">750 Bin</button>
+          <button type="button" class="hizli-gelir-btn secili" data-gelir="1500000">1.5 Milyon</button>
+          <button type="button" class="hizli-gelir-btn" data-gelir="3000000">3 Milyon</button>
+          <button type="button" class="hizli-gelir-btn" data-gelir="5000000">5 Milyon</button>
+        </div>
+      </div>
+
+      <div class="alan-grubu">
+        <span class="grup-basligi">Proje Türü ve İndirim Oranı</span>
+        <div class="secim-kutulari">
+          <label class="secim-kart secili" id="kart-standart">
+            <input type="radio" name="proje-turu" value="standart" checked />
+            <div class="kart-icerik">
+              <span class="kart-baslik">Standart Kampanya</span>
+              <span class="kart-oran">%75 Matrah İndirimi</span>
+              <span class="kart-detay">Genel kitle fonlaması veya lisanslı BKY yatırımları</span>
+            </div>
+          </label>
+
+          <label class="secim-kart" id="kart-arge">
+            <input type="radio" name="proje-turu" value="arge" />
+            <div class="kart-icerik">
+              <span class="kart-baslik">Ar-Ge / Teknoloji Onaylı</span>
+              <span class="kart-oran vurgu">%100 Matrah İndirimi</span>
+              <span class="kart-detay">Sanayi ve Teknoloji Bakanlığı onaylı girişimler</span>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="alan-grubu">
+        <label for="dilim-secici">
+          <strong>Gelir Vergisi Dilimi</strong>
+          <span class="etiket-aciklama">Marjinal vergi oranı</span>
+        </label>
+        <select id="dilim-secici">
+          <option value="otomatik" selected>Otomatik (Beyana Göre Tahmin)</option>
+          <option value="0.15">%15 Vergi Dilimi</option>
+          <option value="0.20">%20 Vergi Dilimi</option>
+          <option value="0.27">%27 Vergi Dilimi</option>
+          <option value="0.35">%35 Vergi Dilimi</option>
+          <option value="0.40">%40 Vergi Dilimi (En Üst Dilim)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Sonuçlar -->
+    <div class="sonuc-paneli">
+      <div class="sonuc-ozet-karti">
+        <span class="sonuc-etiket">Tahmini Net Vergi İadesi / Tasarrufu</span>
+        <div class="sonuc-buyuk-rakam" id="sonuc-tasarruf">0 TL</div>
+        <p class="sonuc-aciklama" id="sonuc-aciklama-metni">
+          Yatırımınız sayesinde yıllık gelir vergisi matrahınızdan indirim elde edersiniz.
+        </p>
+
+        <div class="maliyet-kiyas">
+          <div class="kiyas-sutun">
+            <span class="kiyas-etiket">Yatırılan Tutar</span>
+            <span class="kiyas-deger" id="kiyas-yatirim">100.000 TL</span>
+          </div>
+          <div class="kiyas-ayrac">&minus;</div>
+          <div class="kiyas-sutun">
+            <span class="kiyas-etiket">Vergi Avantajı</span>
+            <span class="kiyas-deger arti" id="kiyas-vergi">26.250 TL</span>
+          </div>
+          <div class="kiyas-ayrac">=</div>
+          <div class="kiyas-sutun cepten">
+            <span class="kiyas-etiket">Net Cepten Çıkan</span>
+            <span class="kiyas-deger net" id="kiyas-net">73.750 TL</span>
+          </div>
+        </div>
+
+        <div class="efektif-oran-bandi" id="efektif-band">
+          <span class="efektif-etiket">Efektif Devlet Teşviki / İndirim Oranı:</span>
+          <strong class="efektif-deger" id="efektif-oran">%26.25</strong>
+        </div>
+      </div>
+
+      <!-- Detay Tablosu -->
+      <div class="detay-kutusu">
+        <h4>Mevzuat ve Matrah Dökümü</h4>
+        <div class="detay-satirlar">
+          <div class="detay-satir">
+            <span>Uygulanan İndirim Oranı</span>
+            <strong id="detay-oran">%75</strong>
+          </div>
+          <div class="detay-satir">
+            <span>Ham İndirim Tutarı</span>
+            <span id="detay-ham">75.000 TL</span>
+          </div>
+          <div class="detay-satir">
+            <span>Beyan Gelirinin %10 Tavanı</span>
+            <span id="detay-gelir-tavan">150.000 TL</span>
+          </div>
+          <div class="detay-satir">
+            <span>Yıllık Azami Mevzuat Sınırı</span>
+            <span>{YILLIK_AZAMI_TAVAN.toLocaleString('tr-TR')} TL</span>
+          </div>
+          <div class="detay-satir vurgulu">
+            <span>İndirilebilir Net Matrah</span>
+            <strong id="detay-matrah">75.000 TL</strong>
+          </div>
+          <div class="detay-satir">
+            <span>Uygulanan Marjinal Vergi Dilimi</span>
+            <strong id="detay-dilim">%35</strong>
+          </div>
+        </div>
+
+        <div class="uyari-karti" id="tavan-uyari" style="display: none;">
+          <strong>Dikkat:</strong> Yatırım tutarınız yıllık beyan ettiğiniz gelirin %10 sınırını veya azami yasal tavanı aştığından, matrah indirimi kanuni üst sınırla kısıtlanmıştır.
+        </div>
+
+        <div class="sart-hatirlatmasi">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          <p>
+            <strong>24 Ay Elde Tutma Kuralı:</strong> Vergi indiriminden yararlanabilmek için iktisap edilen payların en az iki tam yıl (24 ay) süreyle elde tutulması zorunludur. Erken satışta gecikme faiziyle geri alınır.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { vergiIstisnasiHesapla, vergiDilimiBul } from '../lib/hesap/vergi-istisnasi.ts';
+
+  function init() {
+    const yatirimInput = document.getElementById('yatirim-girdi') as HTMLInputElement | null;
+    const gelirInput = document.getElementById('gelir-girdi') as HTMLInputElement | null;
+    const dilimSelect = document.getElementById('dilim-secici') as HTMLSelectElement | null;
+    const radioStandart = document.querySelector('input[name="proje-turu"][value="standart"]') as HTMLInputElement | null;
+    const radioArge = document.querySelector('input[name="proje-turu"][value="arge"]') as HTMLInputElement | null;
+    const kartStandart = document.getElementById('kart-standart');
+    const kartArge = document.getElementById('kart-arge');
+
+    const sonucTasarruf = document.getElementById('sonuc-tasarruf');
+    const kiyasYatirim = document.getElementById('kiyas-yatirim');
+    const kiyasVergi = document.getElementById('kiyas-vergi');
+    const kiyasNet = document.getElementById('kiyas-net');
+    const efektifOran = document.getElementById('efektif-oran');
+
+    const detayOran = document.getElementById('detay-oran');
+    const detayHam = document.getElementById('detay-ham');
+    const detayGelirTavan = document.getElementById('detay-gelir-tavan');
+    const detayMatrah = document.getElementById('detay-matrah');
+    const detayDilim = document.getElementById('detay-dilim');
+    const tavanUyari = document.getElementById('tavan-uyari');
+
+    const hizliYatirimBtn = document.querySelectorAll('.hizli-btn');
+    const hizliGelirBtn = document.querySelectorAll('.hizli-gelir-btn');
+
+    if (!yatirimInput || !gelirInput || !dilimSelect) return;
+
+    const tlYaz = (n: number) => n.toLocaleString('tr-TR', { maximumFractionDigits: 0 }) + ' TL';
+
+    function guncelle() {
+      const yatirim = Math.max(0, parseFloat(yatirimInput.value) || 0);
+      const gelir = Math.max(0, parseFloat(gelirInput.value) || 0);
+      const projeTuru = radioArge?.checked ? 'arge' : 'standart';
+
+      let vergiDilimi: number | undefined = undefined;
+      if (dilimSelect.value !== 'otomatik') {
+        vergiDilimi = parseFloat(dilimSelect.value);
+      }
+
+      if (kartStandart && kartArge) {
+        if (projeTuru === 'arge') {
+          kartArge.classList.add('secili');
+          kartStandart.classList.remove('secili');
+        } else {
+          kartStandart.classList.add('secili');
+          kartArge.classList.remove('secili');
+        }
+      }
+
+      const res = vergiIstisnasiHesapla({
+        yatirimTutari: yatirim,
+        yillikBeyanGeliri: gelir,
+        projeTuru,
+        vergiDilimi
+      });
+
+      if (sonucTasarruf) sonucTasarruf.textContent = tlYaz(res.netVergiAvantaji);
+      if (kiyasYatirim) kiyasYatirim.textContent = tlYaz(res.yatirimTutari);
+      if (kiyasVergi) kiyasVergi.textContent = tlYaz(res.netVergiAvantaji);
+      if (kiyasNet) kiyasNet.textContent = tlYaz(res.netYatirimMaliyeti);
+      if (efektifOran) efektifOran.textContent = `%${res.efektifDestekOrani.toFixed(2)}`;
+
+      if (detayOran) detayOran.textContent = `%${(res.uygulananOran * 100).toFixed(0)}`;
+      if (detayHam) detayHam.textContent = tlYaz(res.hamIndirimTutari);
+      if (detayGelirTavan) detayGelirTavan.textContent = tlYaz(res.gelirTavanSiniri);
+      if (detayMatrah) detayMatrah.textContent = tlYaz(res.uygulanabilirMatrahIndirimi);
+      if (detayDilim) detayDilim.textContent = `%${(res.marjinalVergiOrani * 100).toFixed(0)}`;
+
+      if (tavanUyari) {
+        tavanUyari.style.display = res.tavanAsildiMi ? 'block' : 'none';
+      }
+    }
+
+    yatirimInput.addEventListener('input', guncelle);
+    gelirInput.addEventListener('input', guncelle);
+    dilimSelect.addEventListener('change', guncelle);
+    radioStandart?.addEventListener('change', guncelle);
+    radioArge?.addEventListener('change', guncelle);
+
+    hizliYatirimBtn.forEach((b) => {
+      b.addEventListener('click', () => {
+        hizliYatirimBtn.forEach((x) => x.classList.remove('secili'));
+        b.classList.add('secili');
+        const v = b.getAttribute('data-yatirim');
+        if (v && yatirimInput) {
+          yatirimInput.value = v;
+          guncelle();
+        }
+      });
+    });
+
+    hizliGelirBtn.forEach((b) => {
+      b.addEventListener('click', () => {
+        hizliGelirBtn.forEach((x) => x.classList.remove('secili'));
+        b.classList.add('secili');
+        const v = b.getAttribute('data-gelir');
+        if (v && gelirInput) {
+          gelirInput.value = v;
+          guncelle();
+        }
+      });
+    });
+
+    guncelle();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+</script>
+
+<style>
+  .vergi-hesaplayici {
+    background: var(--kagit, #f7f5ef);
+    border: 1px solid var(--cizgi, #dcd9cf);
+    border-radius: 12px;
+    padding: 1.5rem;
+    font-family: var(--yazi, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+    color: var(--murekkep, #141a17);
+  }
+
+  .hesap-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .alan-grubu {
+    margin-bottom: 1.5rem;
+  }
+
+  .alan-grubu label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .alan-grubu strong {
+    display: block;
+    font-size: 0.9375rem;
+    color: var(--murekkep, #141a17);
+  }
+
+  .etiket-aciklama {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--gri, #5d645f);
+    margin-top: 0.125rem;
+  }
+
+  .grup-basligi {
+    display: block;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--murekkep, #141a17);
+  }
+
+  .girdi-sarici {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .girdi-sarici input {
+    width: 100%;
+    padding: 0.75rem 3rem 0.75rem 0.875rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    background: var(--beyaz, #ffffff);
+    border: 1px solid var(--cizgi, #dcd9cf);
+    border-radius: 8px;
+    color: var(--murekkep, #141a17);
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+
+  .girdi-sarici input:focus {
+    border-color: var(--murekkep, #141a17);
+  }
+
+  .birim {
+    position: absolute;
+    right: 1rem;
+    font-weight: 600;
+    color: var(--gri, #5d645f);
+    font-size: 0.9375rem;
+    pointer-events: none;
+  }
+
+  .hizli-secenekler {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    margin-top: 0.5rem;
+  }
+
+  .hizli-btn,
+  .hizli-gelir-btn {
+    padding: 0.25rem 0.625rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background: var(--kagit-2, #efece4);
+    border: 1px solid var(--cizgi, #dcd9cf);
+    border-radius: 6px;
+    color: var(--murekkep-2, #3b413d);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .hizli-btn:hover,
+  .hizli-gelir-btn:hover {
+    background: var(--beyaz, #ffffff);
+  }
+
+  .hizli-btn.secili,
+  .hizli-gelir-btn.secili {
+    background: var(--murekkep, #141a17);
+    border-color: var(--murekkep, #141a17);
+    color: var(--beyaz, #ffffff);
+  }
+
+  .secim-kutulari {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .secim-kart {
+    display: flex;
+    align-items: flex-start;
+    padding: 0.875rem;
+    background: var(--beyaz, #ffffff);
+    border: 1px solid var(--cizgi, #dcd9cf);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .secim-kart input {
+    margin-right: 0.625rem;
+    margin-top: 0.25rem;
+    accent-color: var(--murekkep, #141a17);
+  }
+
+  .secim-kart.secili {
+    border-color: var(--murekkep, #141a17);
+    box-shadow: 0 0 0 1px var(--murekkep, #141a17);
+    background: var(--kagit-2, #efece4);
+  }
+
+  .kart-icerik {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .kart-baslik {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--murekkep, #141a17);
+  }
+
+  .kart-oran {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--yesil-yazi, #047857);
+    margin: 0.125rem 0;
+  }
+
+  .kart-oran.vurgu {
+    color: #b45309;
+  }
+
+  .kart-detay {
+    font-size: 0.6875rem;
+    color: var(--gri, #5d645f);
+    line-height: 1.3;
+  }
+
+  #dilim-secici {
+    width: 100%;
+    padding: 0.75rem 0.875rem;
+    font-size: 0.9375rem;
+    background: var(--beyaz, #ffffff);
+    border: 1px solid var(--cizgi, #dcd9cf);
+    border-radius: 8px;
+    color: var(--murekkep, #141a17);
+    outline: none;
+  }
+
+  .sonuc-paneli {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .sonuc-ozet-karti {
+    background: var(--beyaz, #ffffff);
+    border: 1px solid var(--cizgi, #dcd9cf);
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  }
+
+  .sonuc-etiket {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--gri, #5d645f);
+  }
+
+  .sonuc-buyuk-rakam {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--yesil-yazi, #047857);
+    letter-spacing: -0.02em;
+    margin: 0.375rem 0;
+  }
+
+  .sonuc-aciklama {
+    font-size: 0.875rem;
+    color: var(--murekkep-2, #3b413d);
+    margin: 0 0 1.25rem;
+    line-height: 1.4;
+  }
+
+  .maliyet-kiyas {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--kagit, #f7f5ef);
+    border: 1px solid var(--cizgi, #dcd9cf);
+    border-radius: 8px;
+    padding: 0.875rem 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .kiyas-sutun {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .kiyas-etiket {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--gri, #5d645f);
+  }
+
+  .kiyas-deger {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--murekkep, #141a17);
+    margin-top: 0.125rem;
+  }
+
+  .kiyas-deger.arti {
+    color: var(--yesil-yazi, #047857);
+  }
+
+  .kiyas-sutun.cepten .kiyas-deger.net {
+    font-size: 1.0625rem;
+    color: #b45309;
+  }
+
+  .kiyas-ayrac {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--gri, #5d645f);
+  }
+
+  .efektif-oran-bandi {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    border-radius: 6px;
+    padding: 0.625rem 0.875rem;
+  }
+
+  .efektif-etiket {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #065f46;
+  }
+
+  .efektif-deger {
+    font-size: 1.125rem;
+    font-weight: 800;
+    color: #047857;
+  }
+
+  .detay-kutusu {
+    background: var(--beyaz, #ffffff);
+    border: 1px solid var(--cizgi, #dcd9cf);
+    border-radius: 10px;
+    padding: 1.25rem;
+  }
+
+  .detay-kutusu h4 {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    margin: 0 0 1rem;
+    color: var(--murekkep, #141a17);
+  }
+
+  .detay-satirlar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .detay-satir {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8125rem;
+    color: var(--murekkep-2, #3b413d);
+    padding-bottom: 0.375rem;
+    border-bottom: 1px dashed var(--cizgi, #dcd9cf);
+  }
+
+  .detay-satir:last-child {
+    border-bottom: none;
+  }
+
+  .detay-satir.vurgulu {
+    font-size: 0.875rem;
+    border-bottom: 1px solid var(--cizgi, #dcd9cf);
+    padding: 0.25rem 0 0.5rem;
+  }
+
+  .uyari-karti {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 6px;
+    padding: 0.625rem 0.75rem;
+    font-size: 0.75rem;
+    color: #92400e;
+    margin-top: 1rem;
+    line-height: 1.4;
+  }
+
+  .sart-hatirlatmasi {
+    display: flex;
+    gap: 0.625rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--cizgi, #dcd9cf);
+    align-items: flex-start;
+  }
+
+  .sart-hatirlatmasi svg {
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+    color: #b45309;
+  }
+
+  .sart-hatirlatmasi p {
+    font-size: 0.75rem;
+    line-height: 1.4;
+    color: var(--gri, #5d645f);
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .hesap-grid {
+      grid-template-columns: 1fr;
+    }
+    .secim-kutulari {
+      grid-template-columns: 1fr;
+    }
+    .maliyet-kiyas {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+  }
+</style>

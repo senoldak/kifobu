@@ -1,0 +1,126 @@
+---
+import RehberSayfa from '../../components/RehberSayfa.astro';
+import VergiIstisnasiHesaplayici from '../../components/VergiIstisnasiHesaplayici.astro';
+---
+
+<RehberSayfa slug="kitle-fonlamasi-vergi-istisnasi">
+  <p class="giris-vurgu">
+    Paya dayalı kitle fonlaması ve Bireysel Katılım Yatırımcısı (BKY) mevzuatı, girişim şirketlerine yapılan sermaye yatırımlarını
+    doğrudan gelir vergisi matrahından düşme imkânı tanır. Doğru planlandığında yapılan yatırımın %40'a varan kısmı
+    devlet tarafından vergi iadesi ya da vergi indirimi olarak geri alınabilir.
+  </p>
+
+  <div class="hesaplayici-bolumu">
+    <h2>Etkileşimli Vergi İndirimi Hesaplayıcı</h2>
+    <p>
+      Yıllık beyan ettiğiniz geliri ve planladığınız yatırım tutarını girerek yararlanabileceğiniz net vergi tasarrufunu
+      ve efektif cepten çıkacak yatırım maliyetini anlık olarak görün.
+    </p>
+    <VergiIstisnasiHesaplayici />
+  </div>
+
+  <h2>1. Vergi İndiriminin Yasal Dayanağı Nedir?</h2>
+  <p>
+    193 sayılı Gelir Vergisi Kanunu'nun (GVK) Geçici 82. maddesi ve Hazine ve Maliye Bakanlığı'nın Bireysel Katılım Sermayesi
+    Hakkında Yönetmeliği uyarınca; tam mükellef gerçek kişiler tarafından SPK lisanslı platformlar üzerinden paya dayalı kitle fonlaması
+    yoluyla sermaye artırımı yapan girişim şirketlerinin iktisap edilen hisselerinin tutarı gelir vergisi matrahından indirilebilir.
+  </p>
+
+  <h2>2. İndirim Oranı: %75 mi, %100 mü?</h2>
+  <ul>
+    <li>
+      <strong>Standart Girişimler (%75 İndirim):</strong> SPK listesindeki platformlar aracılığıyla sermaye toplayan genel girişimlerin
+      paylarının alımında, yatırım tutarının <strong>%75'i</strong> beyan edilen gelirden düşülür.
+    </li>
+    <li>
+      <strong>Ar-Ge ve Yenilikçilik Onaylı Girişimler (%100 İndirim):</strong> Sanayi ve Teknoloji Bakanlığı, TÜBİTAK veya KOSGEB tarafından
+      belirlenen Ar-Ge ve yenilikçilik programları kapsamında son 5 yıl içinde projesi desteklenen girişimlerde bu oran <strong>%100</strong> olarak uygulanır.
+    </li>
+  </ul>
+
+  <h2>3. İndirim Sınırları ve Tavanlar</h2>
+  <p>
+    Vergi indiriminden sınırsız yararlanılamaz. Kanun iki kademeli bir emniyet tavanı belirlemiştir:
+  </p>
+  <ol>
+    <li>
+      <strong>Gelirin %10'u Sınırı:</strong> İndirim konusu yapılacak tutar, ilgili yılın Gelir Vergisi beyannamesinde bildirilen gelirin
+      (ticari kazanç, serbest meslek, beyana tabi kira geliri vb.) <strong>%10'unu</strong> aşamaz.
+    </li>
+    <li>
+      <strong>Yıllık Azami Tavan:</strong> Gelirin %10'u bu tutarı aşsa dahi, yıllık azami kanuni indirim tavanı mevzuatla sınırlandırılmıştır (2.500.000 TL).
+    </li>
+  </ol>
+
+  <h2>4. 24 Ay Elde Tutma Zorunluluğu</h2>
+  <p>
+    Vergi teşvikinin suistimal edilmesini önlemek amacıyla mevzuat katı bir elde tutma kuralı getirmiştir.
+    İktisap edilen şirket paylarının <strong>en az 2 tam yıl (24 ay)</strong> süreyle yatırımcının mülkiyetinde tutulması şarttır.
+    Payların bu süre dolmadan satılması, devredilmesi veya şirketin tasfiyesi halinde, indirim konusu yapılan vergiler
+    vergi ziyaı cezası ve gecikme faizi ile birlikte geri tahsil edilir.
+  </p>
+
+  <h2>5. Hangi Yatırımcılar ve Gelirler Yararlanabilir?</h2>
+  <p>
+    Bu indirimden yıllık Gelir Vergisi beyannamesi vermekle yükümlü olan <strong>tam mükellef gerçek kişiler</strong> yararlanabilir:
+  </p>
+  <ul>
+    <li>Ticari veya zirai kazanç sahipleri (şahıs işletmeleri, ortaklar),</li>
+    <li>Serbest meslek erbabı (avukatlar, mali müşavirler, doktorlar, mimarlar vb.),</li>
+    <li>Beyan sınırını aşan kira (gayrimenkul sermaye iradı) veya temettü/menkul sermaye iradı elde edenler,</li>
+    <li>Birden fazla işverenden ücret alıp yıllık beyanname veren çalışanlar.</li>
+  </ul>
+  <p>
+    Yalnızca tek bir işverenden tevkifata tabi maaş alan ve yıllık beyanname vermeyen bordrolu çalışanlar,
+    beyanname vermedikleri için bu indirim mekanizmasından doğrudan yararlanamazlar.
+  </p>
+
+  <div class="kaynak-notu">
+    <strong>Resmî Mevzuat Referansları:</strong>
+    193 Sayılı Gelir Vergisi Kanunu (Geçici Madde 82), 6362 Sayılı Sermaye Piyasası Kanunu (Madde 35/A),
+    SPK Kitle Fonlaması Tebliği (III-35/A.2) ve Bireysel Katılım Sermayesi Hakkında Yönetmelik.
+  </div>
+</RehberSayfa>
+
+<style>
+  .giris-vurgu {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--murekkep, #141a17);
+    font-weight: 500;
+    margin-bottom: 2rem;
+  }
+
+  .hesaplayici-bolumu {
+    margin: 2.5rem 0 3.5rem;
+  }
+
+  .hesaplayici-bolumu h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .hesaplayici-bolumu p {
+    font-size: 0.9375rem;
+    color: var(--gri, #5d645f);
+    margin-bottom: 1.5rem;
+  }
+
+  .kaynak-notu {
+    margin-top: 2.5rem;
+    padding: 1rem 1.25rem;
+    background: var(--kagit-2, #efece4);
+    border: 1px solid var(--cizgi, #dcd9cf);
+    border-radius: 8px;
+    font-size: 0.8125rem;
+    color: var(--murekkep-2, #3b413d);
+    line-height: 1.5;
+  }
+
+  .kaynak-notu strong {
+    display: block;
+    margin-bottom: 0.25rem;
+    color: var(--murekkep, #141a17);
+  }
+</style>
