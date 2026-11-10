@@ -130,7 +130,10 @@
    "isin": "TRESPG100025"
   },
   "AUTHT-B": {
-   "isin": "TREAUTH00028"
+   "isin": "TREAUTH00028",
+   "sahip": {
+    "2026-11-11": 0
+   }
   },
   "TMZYL-C": {
    "isin": "TRETMZY00019"
@@ -211,6 +214,11 @@
    "sahip": {
     "2026-11-10": 0
    }
+  },
+  "BYQEE-A": {
+   "sahip": {
+    "2026-11-11": 0
+   }
   }
  },
  "sirketler": {
@@ -237,6 +245,30 @@
   },
   "ATRMC": {
    "soruldu": "2026-11-10"
+  },
+  "AUTHT": {
+   "soruldu": "2026-11-11"
+  },
+  "BIGET": {
+   "soruldu": "2026-11-11"
+  },
+  "BLCLL": {
+   "soruldu": "2026-11-11"
+  },
+  "BSCHL": {
+   "soruldu": "2026-11-11"
+  },
+  "BTRYN": {
+   "soruldu": "2026-11-11"
+  },
+  "BYQEE": {
+   "soruldu": "2026-11-11"
+  },
+  "CLASS": {
+   "soruldu": "2026-11-11"
+  },
+  "CLKSY": {
+   "soruldu": "2026-11-11"
   }
  }
 }
