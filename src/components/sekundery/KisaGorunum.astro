@@ -1,0 +1,175 @@
+---
+// Ana sayfanın sekmeli kısa görünümü (sahibin Excel'indeki GUN, GUN2, GUN3, GUN4 sayfaları).
+// Tek ilan yok; her satır bir pay grubu. Renk yok: yüzdeler mürekkep rengi (kazanç/kayıp çağrışımı kurulmaz).
+import { sonGun, tumAnahtarlar, satir, seri, kurlar, avroKurlar, altinKurlar } from '../../lib/sekundery-veri.mjs';
+import { kapanisDegeri, degisim, yuzdeYaz } from '../../lib/sekundery.mjs';
+import { kurBul, paraYaz } from '../../lib/sekundery-kur.mjs';
+import virmanVeri from '../../data/sekundery/virman.json';
+
+const P = ['tl', 'usd', 'eur', 'xau'] as const;
+type Para = (typeof P)[number];
+const KUR: Record<Exclude<Para, 'tl'>, Record<string, number>> = { usd: kurlar, eur: avroKurlar, xau: altinKurlar };
+const bugun = sonGun?.tarih ?? null;
+const cevir = (v: number | null | undefined, t: string | null | undefined, p: Para) =>
+  v == null ? null : p === 'tl' ? v : ((k) => (k ? v / k : null))(kurBul(t, KUR[p]));
+const fiyat = (v: number | null | undefined, t: string | null | undefined) => P.map((p) => ({ p, m: paraYaz(cevir(v, t, p), p) }));
+const tutar = (v: number | null | undefined) => P.map((p) => ({ p, m: paraYaz(cevir(v, bugun, p), p, p === 'xau' ? undefined : 0) }));
+
+// Geri bakış sekmeleri: hedef güne (bugünden N gün önce) kapanışı en yakın, verisi olan ilan dönemi.
+// Seçilen dönem hedeften 45 günden uzaksa sekme gösterilmez (ör. bir ay önce ilan dönemi yoksa); aynı dönem iki kez kullanılmaz.
+const verili = bugun ? virmanVeri.donemler.filter((d) => d.kapanis < bugun && tumAnahtarlar().some((k) => kapanisDegeri(seri(k), d))) : [];
+const gunSaniye = (t: string) => Date.parse(`${t}T12:00:00`);
+const GERI = [
+  { k: 'ay1', gun: 30, ad: 'Bir ay önceye göre' },
+  { k: 'ay3', gun: 91, ad: 'Üç ay önceye göre' },
+  { k: 'ay6', gun: 182, ad: 'Altı ay önceye göre' },
+  { k: 'yil', gun: 365, ad: 'Bir yıl önceye göre' },
+];
+const kullanildi = new Set<string>();
+const geriler = GERI.map((g) => {
+  if (!bugun || !verili.length) return null;
+  const hedef = gunSaniye(bugun) - g.gun * 864e5;
+  const d = [...verili].sort((a, b) => Math.abs(gunSaniye(a.kapanis) - hedef) - Math.abs(gunSaniye(b.kapanis) - hedef))[0];
+  if (Math.abs(gunSaniye(d.kapanis) - hedef) > 45 * 864e5 || kullanildi.has(d.acilis)) return null;
+  kullanildi.add(d.acilis);
+  return { ...g, d };
+}).filter(Boolean) as { k: string; gun: number; ad: string; d: { acilis: string; kapanis: string } }[];
+const uzun = (t: string) => new Date(`${t}T12:00:00`).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const S = tumAnahtarlar().map((k) => satir(k)).filter((s) => s.satis || s.alis);
+// sayaçlar için: dağıtım fiyatı bilinen bütün pay grupları (ilanı olmasa da)
+const TOPLAM = tumAnahtarlar().map((k) => satir(k)).filter((s) => s.dagitim).length;
+const sekmeler = [
+  {
+    k: 'dagitim', ad: 'Dağıtıma göre', b: ['Dağıtım', 'ENDU', 'Fark'],
+    satirlar: S.filter((s) => s.satis && s.dagitim).map((s) => ({ s, a: fiyat(s.dagitim, s.baslangic), b: fiyat(s.satis.enIyi, bugun), y: s.satis.dagitimaGore, yp: { tl: s.satis.dagitimaGore, usd: s.usd.satisDagitimaGore, eur: s.eur.satisDagitimaGore, xau: s.xau.satisDagitimaGore } })),
+  },
+  {
+    k: 'taraf', ad: 'Satış ve alış', b: ['ENDU', 'ENYU', 'Fark'],
+    satirlar: S.filter((s) => s.satis && s.alis).map((s) => ({ s, a: fiyat(s.satis.enIyi, bugun), b: fiyat(s.alis.enIyi, bugun), y: Math.round(((s.satis.enIyi - s.alis.enIyi) / s.satis.enIyi) * 10000) / 100 })),
+  },
+  {
+    k: 'tutar', ad: 'İlan tutarı', b: ['Satış', 'Alış', 'Satış payı'],
+    satirlar: S.map((s) => ({ s, a: tutar(s.satis?.tutar ?? 0), b: tutar(s.alis?.tutar ?? 0), y: ((st, at) => (st + at ? Math.round((st / (st + at)) * 1000) / 10 : null))(s.satis?.tutar ?? 0, s.alis?.tutar ?? 0), oran: true })),
+  },
+  ...geriler.map((g) => ({
+    k: g.k, ad: g.ad, d: g.d, b: [new Date(`${g.d.kapanis}T12:00:00`).toLocaleDateString('tr-TR', { day: 'numeric', month: 'short', year: '2-digit' }), 'ENDU', 'Fark'],
+    satirlar: S.filter((s) => s.satis).map((s) => ({ s, o: kapanisDegeri(seri(s.anahtar), g.d) })).filter((x) => x.o).map(({ s, o }) => ({ s, a: fiyat(o!.deger, o!.tarih), b: fiyat(s.satis.enIyi, bugun), y: degisim(s.satis.enIyi, o!.deger), yp: Object.fromEntries(P.map((p) => [p, degisim(cevir(s.satis.enIyi, bugun, p) as number, cevir(o!.deger, o!.tarih, p) as number)])) })),
+  })),
+];
+const yon = (y: number | null | undefined) => (y == null ? '' : y > 0 ? 'kg-a' : y < 0 ? 'kg-e' : '');
+// Satır zemini yön rengiyle çok açık boyanır; seçili birime göre (yüzde birimle değişebilir). İlan tutarı sekmesinde yön yok.
+const satirYon = (r: { y: number | null; yp?: Record<string, number | null>; oran?: boolean; renksiz?: boolean }) =>
+  r.oran ? Object.fromEntries(P.map((p) => [`data-y-${p}`, r.y == null || r.y === 50 ? '' : r.y > 50 ? 'a' : 'e'])) : r.renksiz ? {} : Object.fromEntries(P.map((p) => { const v = r.yp ? r.yp[p] : r.y; return [`data-y-${p}`, v == null || v === 0 ? '' : v > 0 ? 'a' : 'e']; }));
+const oranYaz = (n: number | null) => (n == null ? '—' : `%${n.toLocaleString('tr-TR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}`);
+---
+
+{S.length > 0 && (
+  <section class="kg" aria-label="Kısa görünüm" data-kg>
+    <div class="kg-sekmeler" role="tablist" aria-label="Görünüm">
+      {sekmeler.map((t, i) => (
+        <button type="button" role="tab" id={`kg-t-${t.k}`} aria-controls={`kg-p-${t.k}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1} data-kg-sekme={t.k}>{t.ad} <small>{t.satirlar.length}</small></button>
+      ))}
+    </div>
+    {sekmeler.map((t, i) => (
+      <div class="kg-panel" role="tabpanel" id={`kg-p-${t.k}`} aria-labelledby={`kg-t-${t.k}`} hidden={i !== 0}>
+        {(t.k === 'dagitim' || (t as { d?: unknown }).d) && (() => {
+          const ys = t.satirlar.map((r) => ((r as { yp?: Record<string, number | null> }).yp ? (r as { yp: Record<string, number | null> }).yp : null));
+          const say = (p: string, f: (v: number) => boolean) => t.satirlar.filter((r, j) => { const v = ys[j] ? ys[j]![p] : r.y; return v != null && f(v); }).length;
+          const ad = t.k === 'dagitim' ? 'Dağıtım fiyatının' : 'O dönemin fiyatının';
+          return (
+            <dl class="kg-sayac">
+              <div><dt>{ad} üstünde</dt><dd>{P.map((p) => <span class={`pv pv-${p} kg-a`}>{say(p, (v) => v > 0)}</span>)}</dd></div>
+              <div><dt>{ad} altında</dt><dd>{P.map((p) => <span class={`pv pv-${p} kg-e`}>{say(p, (v) => v < 0)}</span>)}</dd></div>
+              <div><dt>Aynı fiyatta</dt><dd>{P.map((p) => <span class={`pv pv-${p}`}>{say(p, (v) => v === 0)}</span>)}</dd></div>
+              <div><dt>{t.k === 'dagitim' ? 'Bugün satış ilanı olmayan' : 'Karşılaştırılamayan'}</dt><dd>{TOPLAM - t.satirlar.length}</dd></div>
+              <div><dt>Toplam pay grubu</dt><dd>{TOPLAM}</dd></div>
+            </dl>
+          );
+        })()}
+        {(t as { d?: { acilis: string; kapanis: string } }).d && <p class="kg-not">Karşılaştırma: {uzun((t as { d: { acilis: string } }).d.acilis)} – {uzun((t as { d: { kapanis: string } }).d.kapanis)} ilan döneminin kapanışındaki en düşük satış ilanı.</p>}
+        <div class="kg-izgara">
+          {[0, 1, 2].map((sut) => (
+            <div class="kg-sutun">
+              <div class="kg-satir kg-ust"><span>Girişim</span><span>{t.b[0]}</span><span>{t.b[1]}</span><span>{t.b[2]}</span></div>
+              {t.satirlar.filter((_, j) => Math.floor(j / Math.ceil(t.satirlar.length / 3)) === sut).map((r) => (
+                <a class="kg-satir" href={`/sekundery/${r.s.anahtar.toLowerCase()}/`} {...satirYon(r)}>
+                  <span class="kg-kod">{r.s.kod} <small>{r.s.grup}</small></span>
+                  <span>{r.a.map((x) => <span class={`pv pv-${x.p}`}>{x.m}</span>)}</span>
+                  <span>{r.b.map((x) => <span class={`pv pv-${x.p}`}>{x.m}</span>)}</span>
+                  <span class="kg-y">{(r as { oran?: boolean }).oran ? <span class={r.y == null || r.y === 50 ? '' : r.y > 50 ? 'kg-a' : 'kg-e'}>{oranYaz(r.y)}</span> : (r as { yp?: Record<string, number | null> }).yp ? P.map((p) => { const v = (r as { yp: Record<string, number | null> }).yp[p]; return <span class={`pv pv-${p} ${yon(v)}`}>{v == null ? '—' : yuzdeYaz(v)}</span>; }) : <span class={(r as { renksiz?: boolean }).renksiz ? '' : yon(r.y)}>{r.y == null ? '—' : yuzdeYaz(r.y)}</span>}</span>
+                </a>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </section>
+)}
+
+<script>
+  for (const kok of document.querySelectorAll<HTMLElement>('[data-kg]')) {
+    const dugmeler = [...kok.querySelectorAll<HTMLButtonElement>('[data-kg-sekme]')];
+    const sec = (d: HTMLButtonElement) => {
+      for (const x of dugmeler) {
+        const s = x === d;
+        x.setAttribute('aria-selected', String(s));
+        x.tabIndex = s ? 0 : -1;
+        kok.querySelector<HTMLElement>(`#${x.getAttribute('aria-controls')}`)!.hidden = !s;
+      }
+    };
+    dugmeler.forEach((d, i) => {
+      d.addEventListener('click', () => sec(d));
+      d.addEventListener('keydown', (e) => {
+        const yon = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (!yon) return;
+        const y = dugmeler[(i + yon + dugmeler.length) % dugmeler.length];
+        y.focus();
+        sec(y);
+      });
+    });
+  }
+</script>
+
+<style>
+  /* birim: ana sayfanın ₺ $ € altın düğmesi <html data-para> yazar */
+  .kg :global(.pv) { display: none; }
+  :global(html:not([data-para])) .kg :global(.pv-tl), :global(html[data-para='tl']) .kg :global(.pv-tl), :global(html[data-para='usd']) .kg :global(.pv-usd), :global(html[data-para='eur']) .kg :global(.pv-eur), :global(html[data-para='xau']) .kg :global(.pv-xau) { display: inline; }
+  .kg { margin: 0 0 36px; border: 1px solid var(--cizgi); background: var(--beyaz); }
+  .kg-sekmeler { display: flex; gap: 0; border-bottom: 1px solid var(--cizgi); background: var(--kagit); overflow-x: auto; scrollbar-width: none; }
+  .kg-sekmeler button { font: inherit; font-size: 0.88rem; font-weight: 600; padding: 11px 16px 9px; border: 0; border-bottom: 3px solid transparent; background: transparent; color: var(--gri); cursor: pointer; white-space: nowrap; }
+  .kg-sekmeler button small { font-weight: 600; color: var(--gri); margin-left: 4px; }
+  .kg-sekmeler button[aria-selected='true'] { color: var(--murekkep); border-bottom-color: var(--marka-sari); background: var(--beyaz); }
+  .kg-sekmeler button:focus-visible { outline: 2px solid var(--murekkep); outline-offset: -2px; }
+  .kg-sayac { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin: 0; border-bottom: 1px solid var(--cizgi); }
+  .kg-sayac > div { padding: 10px 16px; }
+  .kg-sayac > div + div { border-left: 1px solid var(--cizgi); }
+  .kg-sayac dt { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gri); }
+  .kg-sayac dd { margin: 2px 0 0; font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em; }
+  .kg-sayac :global(.kg-a) { color: #8a6a00; }
+  .kg-sayac :global(.kg-e) { color: #2f4b6e; }
+  @media (max-width: 760px) { .kg-sayac { grid-template-columns: 1fr 1fr; } }
+  .kg-not { margin: 0; padding: 10px 16px 0; font-size: 0.8rem; color: var(--gri); }
+  .kg-izgara { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; padding: 6px 0 8px; }
+  .kg-sutun { padding: 0 14px; min-width: 0; }
+  .kg-sutun + .kg-sutun { border-left: 1px solid var(--cizgi); }
+  .kg-satir { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 0.9fr); gap: 6px; align-items: center; padding: 5px 0; border-bottom: 1px solid #f1efe9; font-size: 0.78rem; color: var(--murekkep); text-decoration: none; }
+  .kg-satir > span:not(.kg-kod) { text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  a.kg-satir:hover { background: var(--kagit); }
+  .kg-ust { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gri); border-bottom: 1px solid var(--cizgi); }
+  .kg-kod { font-weight: 700; white-space: nowrap; }
+  .kg-kod small { color: var(--gri); font-weight: 600; }
+  .kg-y { font-weight: 600; }
+  /* satır zemini: hardal ve lacivertin çok açık tonu (%7) */
+  :global(html:not([data-para])) .kg-satir[data-y-tl='a'], :global(html[data-para='tl']) .kg-satir[data-y-tl='a'], :global(html[data-para='usd']) .kg-satir[data-y-usd='a'], :global(html[data-para='eur']) .kg-satir[data-y-eur='a'], :global(html[data-para='xau']) .kg-satir[data-y-xau='a'] { background: rgba(138, 106, 0, 0.07); }
+  :global(html:not([data-para])) .kg-satir[data-y-tl='e'], :global(html[data-para='tl']) .kg-satir[data-y-tl='e'], :global(html[data-para='usd']) .kg-satir[data-y-usd='e'], :global(html[data-para='eur']) .kg-satir[data-y-eur='e'], :global(html[data-para='xau']) .kg-satir[data-y-xau='e'] { background: rgba(47, 75, 110, 0.06); }
+  .kg-satir { padding-left: 4px; padding-right: 4px; }
+
+  .kg-y :global(.kg-a) { color: #8a6a00; }
+  .kg-y :global(.kg-e) { color: #2f4b6e; }
+  @media (max-width: 900px) {
+    .kg-izgara { grid-template-columns: 1fr; }
+    .kg-sutun + .kg-sutun { border-left: 0; }
+  }
+</style>

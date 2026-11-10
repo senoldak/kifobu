@@ -1,0 +1,83 @@
+---
+// Paylaşım kartları: günün verisinden kendiliğinden çizilir, PNG olarak indirilir. Tek ilan yok, yorum yok.
+import Base from '../../layouts/Base.astro';
+import Yol from '../../components/Yol.astro';
+import SekunderyMenu from '../../components/sekundery/SekunderyMenu.astro';
+import SekunderyKart from '../../components/sekundery/SekunderyKart.astro';
+import SekunderyUyari from '../../components/sekundery/SekunderyUyari.astro';
+import { kartVerileri } from '../../lib/sekundery-kartlar.mjs';
+
+const baslik = 'Paylaşım kartları';
+const aciklama = 'Sekundery verisinden günlük paylaşım kartları.';
+const adimlar = [{ ad: 'Anasayfa', url: '/' }, { ad: 'Sekundery', url: '/sekundery/' }, { ad: 'Paylaşım kartları', url: '/sekundery/kartlar/' }];
+const { tarih, kartlar } = kartVerileri();
+---
+
+<Base title={baslik} description={aciklama} noindex>
+  <Yol adimlar={adimlar} />
+  <article class="kr">
+    <SekunderyMenu etkin="kartlar" />
+    <header class="kr-bas">
+      <p class="kr-etiket">SEKUNDERY · PAYLAŞIM KARTLARI</p>
+      <h1>Paylaşım kartları</h1>
+      <p class="kr-spot">Son güncellemenin verisinden kendiliğinden çizilir. Her kartın altındaki düğmeyle 1080 × 1350 piksel PNG olarak indirilir.</p>
+    </header>
+    <div class="kr-izgara">
+      {kartlar.map((k) => (
+        <figure class="kr-kart">
+          <SekunderyKart {...k} tarih={tarih} />
+          <figcaption><button type="button" data-kart-indir={k.id}>PNG indir</button></figcaption>
+        </figure>
+      ))}
+    </div>
+    <SekunderyUyari />
+  </article>
+</Base>
+
+<script>
+  // PNG: SVG kopyalanır, sitenin yazı tipi gömülür (yoksa yedek yazı tipine düşer), tuvale çizilir.
+  let gomulu: Promise<string> | null = null;
+  const yaziTipi = () =>
+    (gomulu ??= Promise.all(['/fonts/schibsted-grotesk-latin-v2.woff2', '/fonts/schibsted-grotesk-latin-ext-v2.woff2'].map(async (u) => {
+      const b = await (await fetch(u)).blob();
+      const veri = await new Promise<string>((r) => { const f = new FileReader(); f.onload = () => r(String(f.result)); f.readAsDataURL(b); });
+      return `@font-face{font-family:'Schibsted Grotesk';font-weight:400 800;src:url(${veri}) format('woff2');}`;
+    })).then((l) => l.join('')).catch(() => ''));
+  for (const d of document.querySelectorAll<HTMLButtonElement>('[data-kart-indir]')) {
+    d.addEventListener('click', async () => {
+      const svg = document.getElementById(d.dataset.kartIndir!) as unknown as SVGSVGElement;
+      const kopya = svg.cloneNode(true) as SVGSVGElement;
+      const stil = document.createElementNS('http://www.w3.org/2000/svg', 'style');
+      stil.textContent = await yaziTipi();
+      kopya.insertBefore(stil, kopya.firstChild);
+      const url = URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(kopya)], { type: 'image/svg+xml' }));
+      const img = new Image();
+      img.onload = () => {
+        const c = document.createElement('canvas');
+        c.width = 1080; c.height = 1350;
+        c.getContext('2d')!.drawImage(img, 0, 0, 1080, 1350);
+        URL.revokeObjectURL(url);
+        const a = document.createElement('a');
+        a.href = c.toDataURL('image/png');
+        a.download = `kifobu-sekundery-${d.dataset.kartIndir!.replace('kart-', '')}.png`;
+        a.click();
+      };
+      img.src = url;
+    });
+  }
+</script>
+
+<style>
+  .kr { max-width: 1180px; margin: 0 auto; padding: 0 16px 64px; }
+  .kr-bas { border-top: 10px solid var(--marka-sari); padding-top: 22px; margin-bottom: 24px; }
+  .kr-etiket { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; color: var(--gri); margin: 0; }
+  .kr-bas h1 { font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -0.03em; margin: 4px 0 8px; }
+  .kr-spot { max-width: 64ch; color: var(--murekkep-2); margin: 0; }
+  .kr-izgara { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+  .kr-kart { margin: 0; }
+  .kr-kart figcaption { margin-top: 8px; }
+  .kr-kart button { font: inherit; font-size: 0.85rem; font-weight: 600; padding: 7px 14px; border: 1.5px solid var(--murekkep); background: transparent; color: var(--murekkep); cursor: pointer; }
+  .kr-kart button:hover { background: var(--murekkep); color: var(--kagit); }
+  @media (max-width: 900px) { .kr-izgara { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .kr-izgara { grid-template-columns: 1fr; } }
+</style>

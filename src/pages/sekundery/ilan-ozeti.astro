@@ -1,0 +1,163 @@
+---
+// Sahibin eski görsellerinin (eski görsellerin) nötr, toplu karşılığı.
+// Yorum etiketi yok; tek ilan için fiyat ve adet verilmez. Veri renkleri BRAND.md §7: iki yeşil.
+import Base from '../../layouts/Base.astro';
+import SekunderyMenu from '../../components/sekundery/SekunderyMenu.astro';
+import SekunderyUyari from '../../components/sekundery/SekunderyUyari.astro';
+import SekunderyIzah from '../../components/sekundery/SekunderyIzah.astro';
+import Yol from '../../components/Yol.astro';
+import BirimSecici from '../../components/sekundery/BirimSecici.astro';
+import { GENEL_NOT } from '../../lib/site';
+import { sonGun, defterOzetleri, enBuyukIlanlar } from '../../lib/sekundery-veri.mjs';
+import { paraYaz } from '../../lib/sekundery-kur.mjs';
+import { tamUnvan } from '../../lib/sekundery-virman.mjs';
+
+const baslik = 'İlan özeti';
+const aciklama = "Yayında olan satış ve alış ilanlarının toplu özeti: taraflara göre tutar, pay gruplarında satış ve alış oranı, tutarı en büyük ilanlar.";
+const adimlar = [{ ad: 'Anasayfa', url: '/' }, { ad: 'Sekundery', url: '/sekundery/' }, { ad: 'İlan özeti', url: '/sekundery/ilan-ozeti/' }];
+
+const dz = defterOzetleri().sort((a, b) => b.o.toplamTutar - a.o.toplamTutar);
+const buyuk = enBuyukIlanlar(10);
+const P = ['tl', 'usd', 'eur', 'xau'] as const;
+type Para = (typeof P)[number];
+const ornek = dz.find((x) => x.s.usd.kurBugun)?.s;
+const kur = (p: Para) => (p === 'tl' ? 1 : ornek?.[p]?.kurBugun ?? null);
+const tutar = (v: number) => P.map((p) => ({ p, m: kur(p) ? paraYaz(v / kur(p)!, p, p === 'xau' ? undefined : 0) : '—' }));
+const yuzde = (n: number | null | undefined) => (n == null ? '—' : `%${n.toLocaleString('tr-TR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}`);
+const satisT = dz.reduce((t, x) => t + (x.o.satis?.tutar ?? 0), 0);
+const alisT = dz.reduce((t, x) => t + (x.o.alis?.tutar ?? 0), 0);
+const satisPay = satisT + alisT ? Math.round((satisT / (satisT + alisT)) * 1000) / 10 : null;
+const satisIlan = dz.reduce((t, x) => t + (x.o.satis?.ilan ?? 0), 0);
+const alisIlan = dz.reduce((t, x) => t + (x.o.alis?.ilan ?? 0), 0);
+const uzun = (t: string) => new Date(`${t}T12:00:00`).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<Base title={baslik} description={aciklama} noindex>
+  <Yol adimlar={adimlar} />
+  <article class="io">
+    <SekunderyMenu etkin="ozet" />
+    <header class="io-bas">
+      <p class="io-etiket">SEKUNDERY · İLAN ÖZETİ</p>
+      <h1>İlan özeti</h1>
+      <p class="io-spot">Yayında olan, henüz karşılanmamış satış ve alış ilanlarının toplu görünümü. Gerçekleşen işlem değildir; bir ilanın fiyatı ve adedi gösterilmez.</p>
+      {sonGun && <p class="io-tarih">Son güncelleme: <strong>{uzun(sonGun.tarih)}</strong> · {dz.length} pay grubu</p>}
+      <div class="io-ara">
+        <BirimSecici />
+      </div>
+    </header>
+
+    <section class="io-bolum" aria-labelledby="io-genel">
+      <h2 id="io-genel">Bütün ilanlarda satış ve alış</h2>
+      <div class="io-genel">
+        <div class="io-taraf io-t-s">
+          <p class="io-t-ad">Satış ilanları</p>
+          <p class="io-t-yuzde">{yuzde(satisPay)}</p>
+          <p class="io-t-alt">{tutar(satisT).map((x) => <span class={`pv pv-${x.p}`}>{x.m}</span>)} · {satisIlan.toLocaleString('tr-TR')} ilan</p>
+        </div>
+        <div class="io-cubuk" role="img" aria-label={`Toplam ilan tutarının ${yuzde(satisPay)} kadarı satış ilanlarında`}>
+          <span class="io-c-s" style={`width:${satisPay ?? 0}%`}></span><span class="io-c-a" style={`width:${100 - (satisPay ?? 0)}%`}></span>
+        </div>
+        <div class="io-taraf io-t-a">
+          <p class="io-t-ad">Alış ilanları</p>
+          <p class="io-t-yuzde">{yuzde(satisPay == null ? null : Math.round((100 - satisPay) * 10) / 10)}</p>
+          <p class="io-t-alt">{tutar(alisT).map((x) => <span class={`pv pv-${x.p}`}>{x.m}</span>)} · {alisIlan.toLocaleString('tr-TR')} ilan</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="io-bolum" aria-labelledby="io-harita">
+      <h2 id="io-harita">Pay gruplarında satış ve alış tutarı</h2>
+      <p class="io-aciklama">Toplam ilan tutarına göre sıralı. Çubuğun koyu kısmı satış, açık kısmı alış ilanlarının tutardaki payıdır.</p>
+      <ul class="io-karolar">
+        {dz.map(({ s, o }) => (
+          <li>
+            <a href={`/sekundery/${s.anahtar.toLowerCase()}/`}>
+              <span class="io-k-kod">{s.kod} <small>{s.grup}</small></span>
+              {s.unvan && <span class="io-k-ad" title={tamUnvan(s.unvan) ?? undefined}>{tamUnvan(s.unvan)}</span>}
+              <span class="io-k-tutar">{tutar(o.toplamTutar).map((x) => <span class={`pv pv-${x.p}`}>{x.m}</span>)}</span>
+              <span class="io-k-cubuk"><span style={`width:${o.satisPayi ?? 0}%`}></span></span>
+              <span class="io-k-oran"><span>Satış {yuzde(o.satisPayi)}</span><span>Alış {yuzde(o.satisPayi == null ? null : Math.round((100 - o.satisPayi) * 10) / 10)}</span></span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    {buyuk.length > 0 && (
+      <section class="io-bolum" aria-labelledby="io-buyuk">
+        <h2 id="io-buyuk">Tutarı en büyük ilanlar</h2>
+        <p class="io-aciklama">Tek bir ilanın toplam tutarı. Fiyat ve adet verilmez; yanında o ilanın, pay grubunun aynı taraftaki ilanları içindeki payı durur.</p>
+        <ol class="io-liste">
+          {buyuk.map((b, i) => (
+            <li>
+              <span class="io-l-sira">{i + 1}</span>
+              <a class="io-l-ad" href={`/sekundery/${b.s.anahtar.toLowerCase()}/`}><span class="io-k-kod">{b.s.kod} <small>{b.s.grup}</small></span>{b.s.unvan && <span class="io-k-ad">{tamUnvan(b.s.unvan)}</span>}</a>
+              <span class={`io-l-taraf io-lt-${b.tur}`}>{b.tur === 'satis' ? 'Satış ilanı' : 'Alış ilanı'}</span>
+              <span class="io-l-tutar">{tutar(b.tutar).map((x) => <span class={`pv pv-${x.p}`}>{x.m}</span>)}</span>
+              <span class="io-l-pay"><span class="io-l-pc"><span style={`width:${b.pay}%`}></span></span>{yuzde(b.pay)} <small>{b.tur === 'satis' ? 'satıştakilerin' : 'alıştakilerin'}</small></span>
+            </li>
+          ))}
+        </ol>
+      </section>
+    )}
+
+    <SekunderyIzah sayfa="ozet" />
+    <SekunderyUyari />
+  </article>
+</Base>
+
+<style>
+  .io { max-width: 1180px; margin: 0 auto; padding: 0 16px 64px; }
+  .io-bas { border-top: 10px solid var(--marka-sari); padding-top: 24px; margin-bottom: 28px; }
+  .io-etiket { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; color: var(--gri); margin: 0; }
+  .io-bas h1 { font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -0.03em; margin: 4px 0 8px; }
+  .io-spot { max-width: 66ch; color: var(--murekkep-2); margin: 0 0 8px; }
+  .io-tarih { color: var(--gri); margin: 0; font-size: 0.92rem; }
+  .io-ara { display: flex; justify-content: flex-end; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 12px; }
+  .io-alt-sayfa { display: flex; gap: 18px; flex-wrap: wrap; }
+  .io-alt-sayfa a { color: var(--murekkep); font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--marka-sari); }
+  .io-bolum { margin: 0 0 40px; }
+  .io-bolum h2 { font-size: 1.25rem; letter-spacing: -0.01em; margin: 0 0 4px; padding-bottom: 6px; border-bottom: 2px solid var(--marka-sari); display: inline-block; }
+  .io-aciklama { margin: 6px 0 14px; color: var(--gri); font-size: 0.88rem; max-width: 80ch; }
+  .io-genel { display: grid; grid-template-columns: auto 1fr auto; gap: 24px; align-items: center; margin-top: 14px; padding: 22px 24px; background: var(--beyaz); border: 1px solid var(--cizgi); }
+  .io-taraf p { margin: 0; }
+  .io-t-a { text-align: right; }
+  .io-t-ad { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gri); }
+  .io-t-yuzde { font-size: 2.6rem; font-weight: 700; letter-spacing: -0.03em; color: var(--murekkep); line-height: 1.05; }
+  .io-t-alt { font-size: 0.82rem; color: var(--murekkep-2); }
+  .io-cubuk { display: flex; height: 22px; background: var(--cizgi); }
+  .io-c-s { background: #10b981; }
+  .io-c-a { background: #a7e9cf; }
+  .io-karolar { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+  .io-karolar a { display: flex; flex-direction: column; gap: 4px; height: 100%; padding: 12px 14px; background: var(--beyaz); border: 1px solid var(--cizgi); color: var(--murekkep); text-decoration: none; }
+  .io-karolar a:hover { border-color: var(--murekkep); }
+  .io-k-kod { font-weight: 700; font-size: 1rem; letter-spacing: -0.01em; }
+  .io-k-kod small { font-weight: 600; color: var(--gri); border: 1px solid var(--cizgi); padding: 0 4px; font-size: 0.7rem; vertical-align: 2px; }
+  .io-k-ad { display: block; font-size: 0.62rem; color: var(--gri); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .io-k-tutar { font-size: 1.05rem; font-weight: 700; margin-top: 4px; font-variant-numeric: tabular-nums; }
+  .io-k-cubuk { display: block; height: 8px; background: #a7e9cf; margin-top: 2px; }
+  .io-k-cubuk span { display: block; height: 100%; background: #10b981; }
+  .io-k-oran { display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--gri); }
+  .io-liste { list-style: none; margin: 0; padding: 0; background: var(--beyaz); border: 1px solid var(--cizgi); }
+  .io-liste li { display: grid; grid-template-columns: 34px minmax(0, 1.6fr) 110px minmax(0, 1fr) minmax(0, 1.2fr); gap: 14px; align-items: center; padding: 10px 16px; border-bottom: 1px solid var(--cizgi); }
+  .io-liste li:last-child { border-bottom: 0; }
+  .io-l-sira { font-size: 1.1rem; font-weight: 700; color: var(--gri); }
+  .io-l-ad { color: var(--murekkep); text-decoration: none; min-width: 0; }
+  .io-l-taraf { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; justify-self: start; }
+  .io-lt-satis { background: #10b981; color: var(--beyaz); }
+  .io-lt-alis { background: #a7e9cf; color: var(--murekkep); }
+  .io-l-tutar { font-size: 1.1rem; font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
+  .io-l-pay { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 600; }
+  .io-l-pay small { font-weight: 400; color: var(--gri); }
+  .io-l-pc { flex: 0 0 70px; height: 7px; background: var(--cizgi); }
+  .io-l-pc span { display: block; height: 100%; background: #10b981; }
+  .io-not { color: var(--gri); font-size: 0.88rem; max-width: 80ch; }
+  @media (max-width: 900px) {
+    .io-karolar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .io-genel { grid-template-columns: 1fr 1fr; }
+    .io-cubuk { grid-column: 1 / -1; grid-row: 2; }
+    .io-liste li { grid-template-columns: 28px minmax(0, 1fr) auto; }
+    .io-l-taraf { grid-column: 2; }
+    .io-l-pay { grid-column: 2 / -1; }
+  }
+</style>

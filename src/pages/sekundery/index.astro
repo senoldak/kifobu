@@ -1,0 +1,448 @@
+---
+import Base from '../../layouts/Base.astro';
+import SekunderyMenu from '../../components/sekundery/SekunderyMenu.astro';
+import KisaGorunum from '../../components/sekundery/KisaGorunum.astro';
+import SekunderyUyari from '../../components/sekundery/SekunderyUyari.astro';
+import SekunderyIzah from '../../components/sekundery/SekunderyIzah.astro';
+import Yol from '../../components/Yol.astro';
+import { GENEL_NOT, formatNumber } from '../../lib/site';
+import { sonGun, tumAnahtarlar, satir, itoSonAy, kapanisKarsilastirma, defterOzetleri } from '../../lib/sekundery-veri.mjs';
+import { ayAdi, altinYaz } from '../../lib/sekundery-kur.mjs';
+import { fiyatYaz, yuzdeYaz } from '../../lib/sekundery.mjs';
+import { tamUnvan } from '../../lib/sekundery-virman.mjs';
+import virmanVeri from '../../data/sekundery/virman.json';
+
+const baslik = "Sekundery: pay ilanları";
+const aciklama = "Kitle fonlamasıyla ortak olunan girişimlerin paylarına verilen satış ve alış ilanları: en düşük, en yüksek, medyan fiyat ve dağıtım fiyatına göre değişim.";
+const adimlar = [{ ad: 'Anasayfa', url: '/' }, { ad: 'Sekundery', url: '/sekundery/' }];
+
+const satirlar = tumAnahtarlar().map((k) => satir(k));
+const ilanli = satirlar.filter((s) => s.satis || s.alis);
+const toplam = (tur: 'satis' | 'alis', alan: 'ilanSayisi' | 'tutar') => satirlar.reduce((t, s) => t + (s[tur]?.[alan] ?? 0), 0);
+// Kısmen karşılanan ilanlar: yalnız toplayıcının yazdığı günlerde bilinir (Excel aktarımında yok).
+const kismi = (tur: 'satis' | 'alis') => {
+  const l = satirlar.map((s) => s[tur]).filter((x) => x && x.kismi != null);
+  return l.length ? { ilan: l.reduce((t, x) => t + x!.kismi!, 0), pay: l.reduce((t, x) => t + x!.islenen!, 0) } : null;
+};
+const kismiYaz = (k: { ilan: number; pay: number } | null) => (k && k.ilan > 0 ? `${formatNumber(k.ilan)} ilan kısmen karşılandı · ${formatNumber(k.pay)} pay` : null);
+const tarihYaz = (t: string) => new Date(`${t}T12:00:00`).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
+const yonSinifi = (y: number | null | undefined) => (y == null ? '' : y > 0 ? 'artı' : y < 0 ? 'eksi' : '');
+const tl = (n: number) => `₺${formatNumber(Math.round(n))}`;
+const dovizYaz = (isaret: string) => (n: number | null | undefined) => (n == null || !Number.isFinite(n) ? '' : `${isaret}${n.toLocaleString('tr-TR', { minimumFractionDigits: 3, maximumFractionDigits: 3 })}`);
+const dolarYaz = dovizYaz('$');
+const avroYaz = dovizYaz('€');
+const xauYaz = (n: number | null | undefined) => (n == null || !Number.isFinite(n) ? '' : altinYaz(n));
+const tlYaz = (n: number | null | undefined) => (n == null || !Number.isFinite(n) ? '' : `₺${fiyatYaz(n)}`);
+const kk = kapanisKarsilastirma();
+// Üst şerit: ilan dönemi durumu ve bütün ilanların satış/alış tutarı (İlan özeti sayfasındaki ilk bölümün kısası)
+const bugunT = sonGun?.tarih ?? '';
+const acikDonem = virmanVeri.donemler.find((d) => d.acilis <= bugunT && bugunT <= d.kapanis) ?? null;
+const sonDonem = [...virmanVeri.donemler].reverse().find((d) => d.kapanis < bugunT) ?? null;
+// sonraki dönem: açılış duyurusu yapılmış ama henüz başlamamış dönem
+const sonrakiDonem = virmanVeri.donemler.find((d) => d.acilis > bugunT) ?? null;
+// bugün yayına giren ilan: yalnız yayın zamanı kaydedilen günlerde bilinir
+const yeniIlan = satirlar.some((s) => s.satis?.yeni != null || s.alis?.yeni != null) ? satirlar.reduce((t, s) => t + (s.satis?.yeni ?? 0) + (s.alis?.yeni ?? 0), 0) : null;
+const kalanGun = acikDonem ? Math.round((Date.parse(`${acikDonem.kapanis}T12:00:00`) - Date.parse(`${bugunT}T12:00:00`)) / 864e5) : null;
+const aralikYaz = (d: { acilis: string; kapanis: string }) => {
+  const a = new Date(`${d.acilis}T12:00:00`), b = new Date(`${d.kapanis}T12:00:00`);
+  const ay = (x: Date) => x.toLocaleDateString('tr-TR', { month: 'long' });
+  return a.getMonth() === b.getMonth() ? `${a.getDate()}–${b.getDate()} ${ay(b)}` : `${a.getDate()} ${ay(a)} – ${b.getDate()} ${ay(b)}`;
+};
+const satisTutar = toplam('satis', 'tutar'), alisTutar = toplam('alis', 'tutar');
+const satisPayGenel = satisTutar + alisTutar ? Math.round((satisTutar / (satisTutar + alisTutar)) * 1000) / 10 : null;
+const milyonYaz = (n: number) => `₺${(n / 1e6).toLocaleString('tr-TR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} mn`;
+const dz = defterOzetleri();
+const enCokTutar = [...dz].sort((a, b) => b.o.toplamTutar - a.o.toplamTutar).slice(0, 5);
+const enDarFark = dz.filter((x) => x.o.fark != null && x.o.fark >= 0).sort((a, b) => a.o.fark! - b.o.fark!).slice(0, 5);
+const yz1 = (n: number | null | undefined) => (n == null ? '—' : `%${n.toLocaleString('tr-TR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}`);
+const donemYaz = (d: { acilis: string; kapanis: string }) => {
+  const a = new Date(`${d.acilis}T12:00:00`), b = new Date(`${d.kapanis}T12:00:00`);
+  const ay = (x: Date) => x.toLocaleDateString('tr-TR', { month: 'long' });
+  return a.getMonth() === b.getMonth() ? `${a.getDate()}–${b.getDate()} ${ay(b)} ${b.getFullYear()}` : `${a.getDate()} ${ay(a)} – ${b.getDate()} ${ay(b)} ${b.getFullYear()}`;
+};
+const kisaGun = (t: string) => new Date(`${t}T12:00:00`).toLocaleDateString('tr-TR', { day: 'numeric', month: 'short' });
+const kurBugun = satirlar.find((s) => s.usd.kurBugun)?.usd.kurBugun ?? null;
+const avroBugun = satirlar.find((s) => s.eur.kurBugun)?.eur.kurBugun ?? null;
+const altinBugun = satirlar.find((s) => s.xau.kurBugun)?.xau.kurBugun ?? null;
+---
+
+<Base title={baslik} description={aciklama} noindex>
+  <Yol adimlar={adimlar} />
+
+  <article class="sk">
+
+    <SekunderyMenu etkin="ilanlar" />
+    <header class="sk-bas">
+      <div class="sk-bas-sol">
+        <p class="sk-etiket">BETA · PAY İLANLARI</p>
+        <h1>Sekundery</h1>
+        <p class="sk-spot">
+          Kitle fonlamasıyla ortak olunan girişimlerin paylarına verilen, kamuya açık satış ve alış ilanları. Rakamlar o gün
+          yayında duran, henüz karşılanmamış ilanlardan hesaplanır; gerçekleşen işlem fiyatı değildir.
+        </p>
+      </div>
+      <dl class="sk-durum">
+        <div>
+          <dt>İlan dönemi</dt>
+          {acikDonem
+            ? <dd><strong>{aralikYaz(acikDonem)}</strong><span class="sk-rozet">açık</span></dd>
+            : <dd><strong>Kapalı</strong></dd>}
+          <dd class="sk-durum-alt">{acikDonem ? (kalanGun! > 0 ? `kapanışa ${kalanGun} gün` : 'bugün kapanıyor') : sonrakiDonem ? `sonraki dönem ${aralikYaz(sonrakiDonem)}` : sonDonem ? `son dönem ${aralikYaz(sonDonem)}` : ''}</dd>
+        </div>
+        <div>
+          <dt>Son güncelleme</dt>
+          <dd><strong>{sonGun ? tarihYaz(sonGun.tarih) : '—'}</strong></dd>
+        </div>
+      </dl>
+    </header>
+
+    <section class="sk-serit" aria-label="Bugünkü ilanlar">
+      <dl class="sk-serit-sayilar">
+        <div><dt>İlanı olan pay grubu</dt><dd>{formatNumber(ilanli.length)}</dd>{yeniIlan != null && <dd class="sk-alt">bugün yayına giren {formatNumber(yeniIlan)} ilan</dd>}</div>
+        <div><dt>Satış ilanı</dt><dd>{formatNumber(toplam('satis', 'ilanSayisi'))}</dd><dd class="sk-alt">{milyonYaz(satisTutar)}</dd>{kismiYaz(kismi('satis')) && <dd class="sk-alt">{kismiYaz(kismi('satis'))}</dd>}</div>
+        <div><dt>Alış ilanı</dt><dd>{formatNumber(toplam('alis', 'ilanSayisi'))}</dd><dd class="sk-alt">{milyonYaz(alisTutar)}</dd>{kismiYaz(kismi('alis')) && <dd class="sk-alt">{kismiYaz(kismi('alis'))}</dd>}</div>
+      </dl>
+      {satisPayGenel != null && (
+        <div class="sk-serit-oran">
+          <p class="sk-serit-baslik">İlan tutarında satış ve alış</p>
+          <div class="sk-serit-cubuk" role="img" aria-label={`Toplam ilan tutarının ${yz1(satisPayGenel)} kadarı satış ilanlarında`}>
+            <span class="sk-sc-s" style={`width:${satisPayGenel}%`}></span><span class="sk-sc-a" style={`width:${100 - satisPayGenel}%`}></span>
+          </div>
+          <div class="sk-serit-etiket"><span><i class="sk-n sk-n-s"></i>Satış {yz1(satisPayGenel)}</span><span><i class="sk-n sk-n-a"></i>Alış {yz1(Math.round((100 - satisPayGenel) * 10) / 10)}</span></div>
+          <a class="sk-serit-git" href="/sekundery/ilan-ozeti/">Pay gruplarına göre ve en büyük ilanlar: İlan özeti →</a>
+        </div>
+      )}
+    </section>
+
+    <KisaGorunum />
+
+    {kk.donem && (
+      <section class="sk-kk" aria-labelledby="sk-kk-baslik">
+        <div class="sk-kk-bas">
+          <h2 id="sk-kk-baslik">Geçen kapanışa göre</h2>
+          <p>
+            Bugünkü en düşük satış ilanı, {donemYaz(kk.donem)} ilan döneminin kapanışındakiyle karşılaştırıldı.
+            {kk.atlanan.length > 0 && ` ${kk.atlanan.map(donemYaz).join(', ')} dönemine ait veri olmadığı için bir önceki dönem kullanıldı.`}
+          </p>
+        </div>
+        <div class="sk-kk-iki">
+          {([
+            ['yukselen', 'Daha yüksek ilana verilenler', kk.yukselen],
+            ['dusen', 'Daha düşük ilana verilenler', kk.dusen],
+          ] as const).map(([tur, ad, liste]) => (
+            <div class={`sk-kk-panel sk-kk-${tur}`}>
+              <h3><span>{ad}</span><b>{liste.length}</b></h3>
+              {liste.length === 0 ? (
+                <p class="sk-kk-bos">Yok.</p>
+              ) : (
+                <table class="sk-kk-tablo">
+                  <thead><tr><th scope="col">Girişim</th><th scope="col">Geçen kapanış</th><th scope="col">Bugün</th><th scope="col">Değişim</th></tr></thead>
+                  <tbody>
+                    {liste.slice(0, 8).map(({ s, onceki, simdi, degisim }) => (
+                      <tr>
+                        <th scope="row">
+                          <a href={`/sekundery/${s.anahtar.toLowerCase()}/`}><span class="sk-kod">{s.kod}</span> <span class="sk-grup">{s.grup}</span></a>
+                          {s.unvan && <span class="sk-kk-ad" title={tamUnvan(s.unvan) ?? undefined}>{tamUnvan(s.unvan)}</span>}
+                        </th>
+                        <td>{tlYaz(onceki!.deger)}</td>
+                        <td><strong>{tlYaz(simdi)}</strong></td>
+                        <td class={tur === 'yukselen' ? 'artı' : 'eksi'}>{yuzdeYaz(degisim)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
+            </div>
+          ))}
+        </div>
+        <p class="sk-kk-alt">
+          {kk.ayni > 0 && <span>{kk.ayni} pay grubunda değişmedi. </span>}
+          <a href="/sekundery/donem/">Bütün pay grupları ve dönem ortalamaları →</a>
+        </p>
+      </section>
+    )}
+
+    {dz.length > 0 && (
+      <section class="sk-kk" aria-labelledby="sk-oz-baslik">
+        <div class="sk-kk-bas">
+          <h2 id="sk-oz-baslik">Günün ilan özeti</h2>
+          <p>Son güncellemede yayında olan ilanlardan; tek tek ilan gösterilmez. Ayrıntısı her pay grubunun sayfasında "İlanların dağılımı" bölümünde; bütün pay grupları <a href="/sekundery/ilan-ozeti/">İlan özeti</a> sayfasında.</p>
+        </div>
+        <div class="sk-kk-iki">
+          <div class="sk-kk-panel sk-oz-panel">
+            <h3><span>İlan tutarı en yüksek</span><b title="İlanı olan pay grubu">{dz.length}</b></h3>
+            <table class="sk-kk-tablo">
+              <thead><tr><th scope="col">Girişim</th><th scope="col">İlan tutarı</th><th scope="col">Satış / alış</th></tr></thead>
+              <tbody>
+                {enCokTutar.map(({ s, o }) => (
+                  <tr>
+                    <th scope="row"><a href={`/sekundery/${s.anahtar.toLowerCase()}/`}><span class="sk-kod">{s.kod}</span> <span class="sk-grup">{s.grup}</span></a>{s.unvan && <span class="sk-kk-ad" title={tamUnvan(s.unvan) ?? undefined}>{tamUnvan(s.unvan)}</span>}</th>
+                    <td><strong>{tl(o.toplamTutar)}</strong></td>
+                    <td class="sk-oz-hucre"><span class="sk-oz-oran" title={`Satış ${yz1(o.satisPayi)} · alış ${yz1(o.satisPayi == null ? null : 100 - o.satisPayi)}`}><span style={`width:${o.satisPayi ?? 0}%`}></span></span> <small>{yz1(o.satisPayi)}</small></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div class="sk-kk-panel sk-oz-panel">
+            <h3><span>Satış–alış farkı en dar</span><b title="Hem satış hem alış ilanı olan pay grubu">{dz.filter((x) => x.o.fark != null).length}</b></h3>
+            <table class="sk-kk-tablo">
+              <thead><tr><th scope="col">Girişim</th><th scope="col">En yüksek alış</th><th scope="col">En düşük satış</th><th scope="col">Fark</th></tr></thead>
+              <tbody>
+                {enDarFark.map(({ s, o }) => (
+                  <tr>
+                    <th scope="row"><a href={`/sekundery/${s.anahtar.toLowerCase()}/`}><span class="sk-kod">{s.kod}</span> <span class="sk-grup">{s.grup}</span></a>{s.unvan && <span class="sk-kk-ad" title={tamUnvan(s.unvan) ?? undefined}>{tamUnvan(s.unvan)}</span>}</th>
+                    <td>{tlYaz(o.alis!.enIyi)}</td>
+                    <td>{tlYaz(o.satis!.enIyi)}</td>
+                    <td class={o.fark! > 0 ? 'artı' : o.fark! < 0 ? 'eksi' : ''}><strong>{yz1(o.fark)}</strong></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <h2 class="sk-ara-baslik">Bütün pay grupları</h2>
+    <div class="sk-arac" data-sk-arac>
+      <label class="sk-ara">
+        <span class="gorunmez">Girişim ara</span>
+        <input type="search" placeholder="Kod ya da ad ara" data-sk-ara autocomplete="off" />
+      </label>
+      <div class="sk-suzgec" role="group" aria-label="Para birimi">
+        <button type="button" aria-pressed="true" data-sk-para="tl" title="Türk lirası">₺</button>
+        <button type="button" aria-pressed="false" data-sk-para="usd" title="ABD doları">$</button>
+        <button type="button" aria-pressed="false" data-sk-para="eur" title="Avro">€</button>
+        <button type="button" aria-pressed="false" data-sk-para="xau" title="Gram altın" class="sk-altin">Altın (gr)</button>
+      </div>
+      <div class="sk-suzgec" role="group" aria-label="Süzgeç">
+        <button type="button" aria-pressed="true" data-sk-suz="ilanli">İlanı olanlar</button>
+        <button type="button" aria-pressed="false" data-sk-suz="hepsi">Hepsi</button>
+      </div>
+    </div>
+
+    <div class="sk-tablo-kap">
+      <table class="sk-tablo" data-sk-tablo>
+        <thead>
+          <tr class="sk-ust">
+            <th colspan="3"></th>
+            <th colspan="5" class="sk-taraf">Satış ilanları</th>
+            <th colspan="5" class="sk-taraf">Alış ilanları</th>
+          </tr>
+          <tr>
+            <th data-sirala="metin" scope="col">Girişim</th>
+            <th data-sirala="sayi" scope="col" title="Kampanyadaki pay fiyatı">Dağıtım</th>
+            <th data-sirala="sayi" scope="col" title={`Dağıtım fiyatına ${ayAdi(itoSonAy)} sonuna kadarki İTO enflasyonu eklenmiş değer`}>İTO enf.</th>
+            <th data-sirala="sayi" scope="col" class="sk-ayrac" title="En düşük satış ilanı">ENDU</th>
+            <th data-sirala="sayi" scope="col">Medyan</th>
+            <th data-sirala="sayi" scope="col" class="sk-th-iki" title="ENDU'nun dağıtım fiyatına göre değişimi">Dağıtıma<br />göre %</th>
+            <th data-sirala="sayi" scope="col" class="sk-th-iki" title="ENDU'nun İTO enflasyonlu fiyata göre değişimi">İTO'ya<br />göre %</th>
+            <th data-sirala="sayi" scope="col">İlan</th>
+            <th data-sirala="sayi" scope="col" class="sk-ayrac" title="En yüksek alış ilanı">ENYU</th>
+            <th data-sirala="sayi" scope="col">Medyan</th>
+            <th data-sirala="sayi" scope="col" class="sk-th-iki" title="ENYU'nun dağıtım fiyatına göre değişimi">Dağıtıma<br />göre %</th>
+            <th data-sirala="sayi" scope="col" class="sk-th-iki" title="ENYU'nun İTO enflasyonlu fiyata göre değişimi">İTO'ya<br />göre %</th>
+            <th data-sirala="sayi" scope="col">İlan</th>
+          </tr>
+        </thead>
+        <tbody>
+          {satirlar.map((s) => (
+            <tr data-ilanli={s.satis || s.alis ? '1' : '0'} data-ara={`${s.kod} ${s.grup} ${s.unvan ?? ''}`.toLocaleLowerCase('tr-TR')} hidden={!(s.satis || s.alis)}>
+              <th scope="row" data-d={s.anahtar}>
+                <a href={`/sekundery/${s.anahtar.toLowerCase()}/`}><span class="sk-kod">{s.kod}</span> <span class="sk-grup">{s.grup}</span></a>
+                {s.unvan && <span class="sk-ad" title={tamUnvan(s.unvan) ?? undefined}>{tamUnvan(s.unvan)}</span>}
+              </th>
+              <td data-d={s.dagitim ?? ''} data-du={s.usd.dagitim ?? ''} data-de={s.eur.dagitim ?? ''} data-dx={s.xau.dagitim ?? ''}><span class="p-tl">{tlYaz(s.dagitim)}</span><span class="p-usd">{dolarYaz(s.usd.dagitim)}</span><span class="p-eur">{avroYaz(s.eur.dagitim)}</span><span class="p-xau">{xauYaz(s.xau.dagitim)}</span></td>
+              <td data-d={s.itoEnf ?? ''} data-du={s.usd.itoEnf ?? ''} data-de={s.eur.itoEnf ?? ''} data-dx={s.xau.itoEnf ?? ''} class={s.itoKaynak === 'excel' ? 'sk-eski' : ''} title={s.itoKaynak === 'excel' ? 'Kampanya tarihi bilinmediği için kifobu arşivindeki eski değer' : undefined}><span class="p-tl">{tlYaz(s.itoEnf)}</span><span class="p-usd">{dolarYaz(s.usd.itoEnf)}</span><span class="p-eur">{avroYaz(s.eur.itoEnf)}</span><span class="p-xau">{xauYaz(s.xau.itoEnf)}</span></td>
+              <td class="sk-ayrac" data-d={s.satis?.enIyi ?? ''} data-du={s.usd.satis ?? ''} data-de={s.eur.satis ?? ''} data-dx={s.xau.satis ?? ''}><span class="p-tl">{tlYaz(s.satis?.enIyi)}</span><span class="p-usd">{dolarYaz(s.usd.satis)}</span><span class="p-eur">{avroYaz(s.eur.satis)}</span><span class="p-xau">{xauYaz(s.xau.satis)}</span></td>
+              <td data-d={s.satis?.medyan ?? ''} data-du={s.usd.satisMedyan ?? ''} data-de={s.eur.satisMedyan ?? ''} data-dx={s.xau.satisMedyan ?? ''}><span class="p-tl">{tlYaz(s.satis?.medyan)}</span><span class="p-usd">{dolarYaz(s.usd.satisMedyan)}</span><span class="p-eur">{avroYaz(s.eur.satisMedyan)}</span><span class="p-xau">{xauYaz(s.xau.satisMedyan)}</span></td>
+              <td class={`yz ${yonSinifi(s.satis?.dagitimaGore)}`} data-yt={yonSinifi(s.satis?.dagitimaGore)} data-yu={yonSinifi(s.usd.satisDagitimaGore)} data-ye={yonSinifi(s.eur.satisDagitimaGore)} data-yx={yonSinifi(s.xau.satisDagitimaGore)} data-d={s.satis?.dagitimaGore ?? ''} data-du={s.usd.satisDagitimaGore ?? ''} data-de={s.eur.satisDagitimaGore ?? ''} data-dx={s.xau.satisDagitimaGore ?? ''}><span class="p-tl">{yuzdeYaz(s.satis?.dagitimaGore)}</span><span class="p-usd">{yuzdeYaz(s.usd.satisDagitimaGore)}</span><span class="p-eur">{yuzdeYaz(s.eur.satisDagitimaGore)}</span><span class="p-xau">{yuzdeYaz(s.xau.satisDagitimaGore)}</span></td>
+              <td class={yonSinifi(s.satis?.enfaGore)} data-d={s.satis?.enfaGore ?? ''} data-du={s.satis?.enfaGore ?? ''} data-de={s.satis?.enfaGore ?? ''} data-dx={s.satis?.enfaGore ?? ''}>{yuzdeYaz(s.satis?.enfaGore)}</td>
+              <td data-d={s.satis?.ilanSayisi ?? ''}>{s.satis?.ilanSayisi ?? ''}</td>
+              <td class="sk-ayrac" data-d={s.alis?.enIyi ?? ''} data-du={s.usd.alis ?? ''} data-de={s.eur.alis ?? ''} data-dx={s.xau.alis ?? ''}><span class="p-tl">{tlYaz(s.alis?.enIyi)}</span><span class="p-usd">{dolarYaz(s.usd.alis)}</span><span class="p-eur">{avroYaz(s.eur.alis)}</span><span class="p-xau">{xauYaz(s.xau.alis)}</span></td>
+              <td data-d={s.alis?.medyan ?? ''} data-du={s.usd.alisMedyan ?? ''} data-de={s.eur.alisMedyan ?? ''} data-dx={s.xau.alisMedyan ?? ''}><span class="p-tl">{tlYaz(s.alis?.medyan)}</span><span class="p-usd">{dolarYaz(s.usd.alisMedyan)}</span><span class="p-eur">{avroYaz(s.eur.alisMedyan)}</span><span class="p-xau">{xauYaz(s.xau.alisMedyan)}</span></td>
+              <td class={`yz ${yonSinifi(s.alis?.dagitimaGore)}`} data-yt={yonSinifi(s.alis?.dagitimaGore)} data-yu={yonSinifi(s.usd.alisDagitimaGore)} data-ye={yonSinifi(s.eur.alisDagitimaGore)} data-yx={yonSinifi(s.xau.alisDagitimaGore)} data-d={s.alis?.dagitimaGore ?? ''} data-du={s.usd.alisDagitimaGore ?? ''} data-de={s.eur.alisDagitimaGore ?? ''} data-dx={s.xau.alisDagitimaGore ?? ''}><span class="p-tl">{yuzdeYaz(s.alis?.dagitimaGore)}</span><span class="p-usd">{yuzdeYaz(s.usd.alisDagitimaGore)}</span><span class="p-eur">{yuzdeYaz(s.eur.alisDagitimaGore)}</span><span class="p-xau">{yuzdeYaz(s.xau.alisDagitimaGore)}</span></td>
+              <td class={yonSinifi(s.alis?.enfaGore)} data-d={s.alis?.enfaGore ?? ''} data-du={s.alis?.enfaGore ?? ''} data-de={s.alis?.enfaGore ?? ''} data-dx={s.alis?.enfaGore ?? ''}>{yuzdeYaz(s.alis?.enfaGore)}</td>
+              <td data-d={s.alis?.ilanSayisi ?? ''}>{s.alis?.ilanSayisi ?? ''}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <SekunderyIzah sayfa="ana" />
+    <SekunderyUyari />
+  </article>
+</Base>
+
+<script>
+  const tablo = document.querySelector<HTMLTableElement>('[data-sk-tablo]');
+  const ara = document.querySelector<HTMLInputElement>('[data-sk-ara]');
+  const suzDugmeler = [...document.querySelectorAll<HTMLButtonElement>('[data-sk-suz]')];
+  if (tablo && ara) {
+    const govde = tablo.tBodies[0];
+    let suz = 'ilanli';
+    let para = 'tl';
+    const paraDugmeler = [...document.querySelectorAll<HTMLButtonElement>('[data-sk-para]')];
+    const paraUygula = (p: string) => {
+      para = p === 'usd' || p === 'eur' || p === 'xau' ? p : 'tl';
+      document.documentElement.dataset.para = para;
+      tablo.classList.toggle('para-usd', para === 'usd');
+      tablo.classList.toggle('para-eur', para === 'eur');
+      tablo.classList.toggle('para-xau', para === 'xau');
+      for (const x of paraDugmeler) x.setAttribute('aria-pressed', String(x.dataset.skPara === para));
+      for (const td of tablo.querySelectorAll<HTMLTableCellElement>('td.yz')) {
+        td.classList.remove('artı', 'eksi');
+        const y = para === 'usd' ? td.dataset.yu : para === 'eur' ? td.dataset.ye : para === 'xau' ? td.dataset.yx : td.dataset.yt;
+        if (y) td.classList.add(y);
+      }
+      try { localStorage.setItem('sekundery-para', para); } catch { /* tarayıcı izin vermiyorsa yalnız bu oturum */ }
+    };
+    for (const d of paraDugmeler) d.addEventListener('click', () => paraUygula(d.dataset.skPara ?? 'tl'));
+    try { const p = localStorage.getItem('sekundery-para'); if (p === 'usd' || p === 'eur' || p === 'xau') paraUygula(p); } catch { /* yok say */ }
+    const uygula = () => {
+      const q = ara.value.trim().toLocaleLowerCase('tr-TR');
+      for (const tr of govde.rows) {
+        const gor = (suz === 'hepsi' || tr.dataset.ilanli === '1') && (!q || (tr.dataset.ara ?? '').includes(q));
+        tr.hidden = !gor;
+      }
+    };
+    ara.addEventListener('input', uygula);
+    for (const d of suzDugmeler)
+      d.addEventListener('click', () => {
+        suz = d.dataset.skSuz ?? 'ilanli';
+        for (const x of suzDugmeler) x.setAttribute('aria-pressed', String(x === d));
+        uygula();
+      });
+
+    const basliklar = [...tablo.tHead!.rows[1].cells];
+    basliklar.forEach((th, sutun) => {
+      th.tabIndex = 0;
+      const sirala = () => {
+        const yon = th.getAttribute('aria-sort') === 'descending' ? 'ascending' : 'descending';
+        for (const b of basliklar) b.removeAttribute('aria-sort');
+        th.setAttribute('aria-sort', yon);
+        const sayi = th.dataset.sirala === 'sayi';
+        const k = yon === 'ascending' ? 1 : -1;
+        const deger = (tr: HTMLTableRowElement) => { const ds = tr.cells[sutun].dataset; return (para === 'usd' && ds.du !== undefined ? ds.du : para === 'eur' && ds.de !== undefined ? ds.de : para === 'xau' && ds.dx !== undefined ? ds.dx : ds.d) ?? ''; };
+        const rows = [...govde.rows].sort((a, b) => {
+          const x = deger(a), y = deger(b);
+          if (x === '' && y === '') return 0;
+          if (x === '') return 1;
+          if (y === '') return -1;
+          return (sayi ? Number(x) - Number(y) : x.localeCompare(y, 'tr')) * k;
+        });
+        govde.append(...rows);
+      };
+      th.addEventListener('click', sirala);
+      th.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); sirala(); } });
+    });
+  }
+</script>
+
+<style>
+  .sk { max-width: 1180px; margin: 0 auto; padding: 0 16px 64px; }
+  .sk-bas { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px 40px; align-items: end; border-top: 10px solid var(--marka-sari); padding-top: 22px; margin-bottom: 22px; }
+  .sk-etiket { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; color: var(--gri); margin: 0; }
+  .sk-bas h1 { font-size: clamp(2.4rem, 6vw, 4rem); letter-spacing: -0.03em; margin: 4px 0 8px; line-height: 1; }
+  .sk-spot { max-width: 60ch; color: var(--murekkep-2); margin: 0; }
+  .sk-durum { display: grid; grid-template-columns: auto auto; gap: 0; margin: 0; border: 1px solid var(--cizgi); background: var(--beyaz); }
+  .sk-durum > div { padding: 12px 18px; min-width: 170px; display: flex; flex-direction: column; gap: 3px; }
+  .sk-durum > div + div { border-left: 1px solid var(--cizgi); }
+  .sk-durum dt { font-size: 0.66rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gri); }
+  .sk-durum dd { margin: 0; display: flex; align-items: center; gap: 8px; font-size: 1.05rem; }
+  .sk-durum .sk-durum-alt { font-size: 0.78rem; color: var(--gri); }
+  .sk-rozet { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 7px; background: var(--marka-sari); color: var(--murekkep); }
+  .sk-serit { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 0; margin: 0 0 32px; border: 1px solid var(--cizgi); background: var(--kagit); }
+  .sk-serit-sayilar { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; }
+  .sk-serit-sayilar > div { padding: 16px 18px; border-right: 1px solid var(--cizgi); }
+  .sk-serit-sayilar dt { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gri); }
+  .sk-serit-sayilar dd { margin: 4px 0 0; font-size: 1.9rem; font-weight: 600; letter-spacing: -0.03em; }
+  .sk-serit-sayilar dd.sk-alt { font-size: 0.88rem; font-weight: 400; color: var(--gri); letter-spacing: 0; margin-top: 2px; }
+  .sk-serit-oran { padding: 16px 20px; display: flex; flex-direction: column; justify-content: center; gap: 8px; }
+  .sk-serit-baslik { margin: 0; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gri); }
+  .sk-serit-cubuk { display: flex; height: 14px; background: var(--cizgi); }
+  .sk-sc-s { background: #10b981; }
+  .sk-sc-a { background: #a7e9cf; }
+  .sk-serit-etiket { display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; }
+  .sk-n { display: inline-block; width: 9px; height: 9px; margin-right: 6px; }
+  .sk-n-s { background: #10b981; }
+  .sk-n-a { background: #a7e9cf; }
+  .sk-serit-git { font-size: 0.85rem; font-weight: 600; color: var(--murekkep); text-decoration: none; border-bottom: 2px solid var(--marka-sari); align-self: flex-start; }
+  .sk-arac { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .sk-ara input { font: inherit; padding: 8px 12px; border: 1.5px solid var(--murekkep); background: var(--beyaz); min-width: 240px; border-radius: 0; }
+  .sk-suzgec { display: flex; }
+  .sk-suzgec button { font: inherit; font-size: 0.9rem; padding: 8px 12px; border: 1.5px solid var(--murekkep); background: transparent; color: var(--murekkep); cursor: pointer; }
+  .sk-suzgec button + button { border-left: 0; }
+  .sk-suzgec button[aria-pressed='true'] { background: var(--murekkep); color: var(--kagit); }
+  .sk-tablo-kap { overflow-x: auto; border: 1px solid var(--cizgi); background: var(--beyaz); }
+  .sk-tablo { border-collapse: collapse; width: 100%; font-size: 0.8rem; font-variant-numeric: tabular-nums; }
+  .sk-tablo th, .sk-tablo td { padding: 8px 6px; text-align: right; white-space: nowrap; border-bottom: 1px solid var(--cizgi); }
+  .sk-tablo thead th { font-size: 0.64rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--gri); background: var(--kagit); position: sticky; top: 0; cursor: pointer; user-select: none; }
+  .sk-tablo thead .sk-ust th { cursor: default; text-align: center; border-bottom: 0; }
+  .sk-tablo thead th[aria-sort='ascending']::after { content: ' ↑'; }
+  .sk-tablo thead th[aria-sort='descending']::after { content: ' ↓'; }
+  .sk-tablo .sk-taraf { color: var(--murekkep); border-bottom: 2px solid var(--marka-sari) !important; }
+  .sk-tablo tbody th { text-align: left; font-weight: 400; position: sticky; left: 0; background: var(--beyaz); z-index: 1; }
+  .sk-tablo thead tr:last-child th:first-child { text-align: left; position: sticky; left: 0; z-index: 2; }
+  .sk-tablo tbody th a { color: var(--murekkep); text-decoration: none; }
+  .sk-tablo tbody th a:hover .sk-kod { text-decoration: underline; }
+  .sk-kod { font-weight: 600; }
+  .sk-grup { color: var(--gri); font-size: 0.7rem; border: 1px solid var(--cizgi-koyu, var(--cizgi)); padding: 0 4px; }
+  .sk-ad { display: -webkit-box; color: var(--gri); font-size: 0.64rem; letter-spacing: 0.01em; line-height: 1.3; max-width: 30ch; white-space: normal; margin-top: 2px; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 2.6em; }
+  .sk-ayrac { border-left: 1px solid var(--cizgi); }
+  .sk-tablo .p-usd, .sk-tablo .p-eur, .sk-tablo .p-xau { display: none; }
+  .sk-tablo.para-usd .p-tl, .sk-tablo.para-eur .p-tl, .sk-tablo.para-xau .p-tl { display: none; }
+  .sk-tablo.para-usd .p-usd, .sk-tablo.para-eur .p-eur, .sk-tablo.para-xau .p-xau { display: inline; }
+  .sk-suzgec button.sk-altin { color: #8a6a00; }
+  .sk-suzgec button.sk-altin[aria-pressed='true'] { background: #b8860b; color: var(--beyaz); }
+  .sk-tablo td.sk-eski { color: var(--gri); font-style: italic; }
+  .sk-arac { gap: 12px; }
+  .sk-tablo td.artı { color: #8a6a00; }
+  .sk-tablo td.eksi { color: #2f4b6e; }
+  .sk-tablo thead th.sk-th-iki { white-space: normal; line-height: 1.2; vertical-align: bottom; }
+  .sk-tablo .sk-ayrac, .sk-tablo td:first-of-type { padding-left: 12px; }
+  .sk-tablo tbody tr:hover { background: var(--kagit); }
+  .sk-kk { margin: 0 0 40px; }
+  .sk-kk-bas h2, .sk-ara-baslik { font-size: 1.25rem; letter-spacing: -0.01em; margin: 0 0 4px; }
+  .sk-kk-bas p { margin: 0 0 14px; color: var(--murekkep-2); max-width: 72ch; font-size: 0.92rem; }
+  .sk-kk-iki { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .sk-kk-panel { background: var(--beyaz); border: 1px solid var(--cizgi); border-top: 4px solid var(--murekkep); }
+  .sk-kk-dusen { border-top-color: var(--murekkep); }
+  .sk-kk-panel h3 { display: flex; justify-content: space-between; align-items: baseline; margin: 0; padding: 12px 14px 10px; font-size: 0.95rem; border-bottom: 1px solid var(--cizgi); }
+  .sk-kk-panel h3 b { font-size: 1.4rem; letter-spacing: -0.02em; color: var(--murekkep); }
+  .sk-kk-dusen h3 b { color: #2f4b6e; }
+  .sk-kk-yukselen h3 b { color: #8a6a00; }
+  .sk-kk-bos { color: var(--gri); margin: 0; padding: 14px; }
+  .sk-kk-tablo { width: 100%; border-collapse: collapse; font-size: 0.8rem; font-variant-numeric: tabular-nums; }
+  .sk-kk-tablo th, .sk-kk-tablo td { padding: 7px 10px; text-align: right; white-space: nowrap; border-bottom: 1px solid var(--cizgi); }
+  .sk-kk-tablo tbody tr:last-child > * { border-bottom: 0; }
+  .sk-kk-tablo thead th { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--gri); background: var(--kagit); }
+  .sk-kk-tablo th:first-child { text-align: left; }
+  .sk-kk-tablo tbody th { font-weight: 400; }
+  .sk-kk-tablo tbody th a { color: var(--murekkep); text-decoration: none; }
+  .sk-kk-tablo tbody th a:hover .sk-kod { text-decoration: underline; }
+  .sk-kk-tablo td.artı { color: #8a6a00; font-weight: 600; }
+  .sk-kk-tablo td.eksi { color: #2f4b6e; font-weight: 600; }
+  .sk-kk-ad { display: block; max-width: 26ch; overflow: hidden; text-overflow: ellipsis; color: var(--gri); font-size: 0.62rem; margin-top: 1px; }
+  .sk-oz-panel { border-top-color: #10b981; }
+  .sk-oz-panel h3 b { color: var(--murekkep); }
+  .sk-oz-hucre { width: 1%; }
+  .sk-oz-hucre small { display: inline-block; min-width: 3.4em; text-align: right; font-variant-numeric: normal; }
+  .sk-oz-oran { display: inline-block; width: 64px; height: 7px; background: #a7e9cf; vertical-align: middle; }
+  .sk-oz-oran span { display: block; height: 100%; background: #10b981; }
+  .sk-kk-tablo small { color: var(--gri); }
+  .sk-kk-alt { margin: 10px 0 0; font-size: 0.9rem; color: var(--gri); }
+  .sk-kk-alt a { color: var(--murekkep); font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--marka-sari); }
+  .sk-ara-baslik { margin-bottom: 10px; }
+  .sk-not { margin-top: 32px; max-width: 72ch; color: var(--murekkep-2); }
+  .sk-not h2 { font-size: 1.1rem; }
+  .sk-not li { margin-bottom: 6px; }
+  .gorunmez { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  @media (max-width: 860px) { .sk-kk-iki { grid-template-columns: 1fr; } .sk-bas { grid-template-columns: 1fr; } .sk-serit { grid-template-columns: 1fr; } .sk-serit-sayilar > div:last-child { border-right: 0; } .sk-serit-oran { border-top: 1px solid var(--cizgi); } }
+  @media (max-width: 640px) {
+      .sk-ara input { min-width: 0; width: 100%; }
+    .sk-ara { flex: 1 1 100%; }
+  }
+</style>

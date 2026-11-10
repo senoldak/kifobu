@@ -1,0 +1,533 @@
+{
+ "kaynak": "Açılış duyurularındaki genel veriler; Ağustos 2024 öncesi sahibin Excel arşivi (VERRİ)",
+ "kayitlar": [
+  {
+   "tarih": "2024-02-15",
+   "kaynak": "excel",
+   "tumZamanlar": {
+    "payDagitimSirket": 87.0,
+    "mkkPayAdedi": 615174089.0,
+    "listelenenSirket": 51.0,
+    "toplamHacim": 19749401.0,
+    "toplamIslem": 3453.0,
+    "uyeSayisi": 6575.0
+   },
+   "devamEden": {
+    "islem": 1342.0,
+    "hacim": 6943021.0
+   }
+  },
+  {
+   "tarih": "2024-03-05",
+   "kaynak": "excel",
+   "tumZamanlar": {
+    "payDagitimSirket": 88.0,
+    "mkkPayAdedi": 704812594.0,
+    "listelenenSirket": 59.0,
+    "toplamHacim": 21977586.0,
+    "toplamIslem": 3919.0,
+    "uyeSayisi": 7190.0
+   },
+   "devamEden": {
+    "islem": 1885.0,
+    "hacim": 9949387.0
+   }
+  },
+  {
+   "tarih": "2024-03-29",
+   "kaynak": "excel",
+   "tumZamanlar": {
+    "payDagitimSirket": 82.0,
+    "mkkPayAdedi": 790041478.0,
+    "listelenenSirket": 65.0,
+    "toplamHacim": 33882402.0,
+    "toplamIslem": 5989.0,
+    "uyeSayisi": 7807.0
+   },
+   "devamEden": {
+    "islem": 1310.0,
+    "hacim": 8857847.0
+   }
+  },
+  {
+   "tarih": "2024-08-15",
+   "duyuru": "2024-08-15T20:33",
+   "tumZamanlar": {
+    "payDagitimSirket": 86,
+    "mkkPayAdedi": 763166930,
+    "listelenenSirket": 79,
+    "toplamHacim": 67942252,
+    "toplamIslem": 11413,
+    "uyeSayisi": 9572
+   },
+   "sonDonem": {
+    "islem": 1131,
+    "hacim": 7860493.88,
+    "elDegisenPay": 940665.85,
+    "elDegisenOrani": 1.03
+   },
+   "virmanBekleyen": {
+    "sirket": 2,
+    "tutar": 10144.16
+   },
+   "donemAdi": null,
+   "kaynak": "duyuru"
+  },
+  {
+   "tarih": "2024-09-19",
+   "duyuru": "2024-09-19T20:20",
+   "tumZamanlar": {
+    "payDagitimSirket": 86,
+    "mkkPayAdedi": 763166930,
+    "listelenenSirket": 79,
+    "toplamHacim": 73358590,
+    "toplamIslem": 12532,
+    "uyeSayisi": 9877
+   },
+   "sonDonem": {
+    "islem": 1104,
+    "hacim": 5415794.38,
+    "elDegisenPay": 776112,
+    "elDegisenOrani": 1.01
+   },
+   "virmanBekleyen": {
+    "sirket": 5,
+    "tutar": 154091
+   },
+   "donemAdi": "Eylül 2024",
+   "kaynak": "duyuru"
+  },
+  {
+   "tarih": "2024-10-24",
+   "duyuru": "2024-10-24T21:01",
+   "tumZamanlar": {
+    "payDagitimSirket": 86,
+    "mkkPayAdedi": 784166930,
+    "listelenenSirket": 73,
+    "toplamHacim": 82943809.39,
+    "toplamIslem": 14086,
+    "uyeSayisi": 10130
+   },
+   "sonDonem": {
+    "islem": 1107,
+    "hacim": 9585219.39,
+    "elDegisenPay": 1393102,
+    "elDegisenOrani": 1.7
+   },
+   "virmanBekleyen": {
+    "sirket": 7,
+    "tutar": 87099
+   },
+   "donemAdi": "Ekim 2024",
+   "kaynak": "duyuru"
+  },
+  {
+   "tarih": "2024-11-28",
+   "duyuru": "2024-11-29T00:04",
+   "tumZamanlar": {
+    "payDagitimSirket": 86,
+    "mkkPayAdedi": 793184150,
+    "listelenenSirket": 73,
+    "toplamHacim": 91227168.03,
+    "toplamIslem": 20027,
+    "uyeSayisi": 10463
+   },
+   "sonDonem": {
+    "islem": 1474,
+    "hacim": 8283358.64,
+    "elDegisenPay": 1108702.3,
+    "elDegisenOrani": 1.3
+   },
+   "virmanBekleyen": {
+    "sirket": 6,
+    "tutar": 162669
+   },
+   "donemAdi": "Kasım 2024",
+   "kaynak": "duyuru"
+  },
+  {
+   "tarih": "2025-01-02",
+   "duyuru": "2025-01-02T22:34",
+   "tumZamanlar": {
+    "payDagitimSirket": 88,
+    "mkkPayAdedi": 836586147,
+    "listelenenSirket": 73,
+    "toplamHacim": 97238966.85,
+    "toplamIslem": 21380,
+    "uyeSayisi": 10766
+   },
+   "sonDonem": {
+    "islem": 1353,
+    "hacim": 5965071.643,
+    "elDegisenPay": 946053.02,
+    "elDegisenOrani": 1.01
+   },
+   "virmanBekleyen": {
+    "sirket": 12,
+    "tutar": 574383.15
+   },
+   "donemAdi": "Aralık 2024",
+   "kaynak": "duyuru"
+  },
+  {
+   "tarih": "2025-02-06",
+   "duyuru": "2025-02-06T19:12",
+   "tumZamanlar": {
+    "payDagitimSirket": 88,
+    "mkkPayAdedi": 901626020,
+    "listelenenSirket": 70,
+    "toplamHacim": 108165889.28,
+    "toplamIslem": 22696,
+    "uyeSayisi": 10928
+   },
+   "sonDonem": {
+    "islem": 1201,
+    "hacim": 10803753.32,
+    "elDegisenPay": 1044039.189,
+    "elDegisenOrani": 1.15
+   },
+   "virmanBekleyen": {
+    "sirket": 7,
+    "tutar": 707363.71
+   },
+   "donemAdi": "Ocak 2025",
+   "kaynak": "duyuru"
+  },
+  {
+   "tarih": "2025-03-13",
+   "duyuru": "2025-03-13T16:45",
+   "tumZamanlar": {
+    "payDagitimSirket": 88,
+    "mkkPayAdedi": 901626020,
+    "listelenenSirket": 75,
+    "toplamHacim": 115748580.99,
+    "toplamIslem": 24221,
+    "uyeSayisi": 11170
+   },
+   "sonDonem": {
+    "islem": 1525,
+    "hacim": 7578739.21,
+    "elDegisenPay": 1793834.46,
+    "elDegisenOrani": 1.19
+   },
+   "virmanBekleyen": {
+    "sirket": 2,
+    "tutar": 577556.69
+   },
+   "donemAdi": "Şubat 2025",
+   "kaynak": "duyuru"
+  },
+  {
+   "tarih": "2025-04-17",
+   "duyuru": "2025-04-17T22:31",
+   "tumZamanlar": {
+    "payDagitimSirket": 89,
+    "mkkPayAdedi": 911166269,
+    "listelenenSirket": 75,
+    "toplamHacim": 122091287.64,
+    "toplamIslem": 25405,
+    "uyeSayisi": 11373
+   },
+   "sonDonem": {
+    "islem": 1184,
+    "hacim": 6342706.45,
+    "elDegisenPay": 1354641.216,
+    "elDegisenOrani": 1.4
+   },
+   "virmanBekleyen": {
+    "sirket": 2,
+    "tutar": 616018.16
+   },
+   "donemAdi": "Mart 2025",
+   "kaynak": "duyuru"
+  },
+  {
+   "tarih": "2025-05-22",
+   "duyuru": "2025-05-22T21:24",
+   "tumZamanlar": {
+    "payDagitimSirket": 90,
+    "mkkPayAdedi": 923414869,
+    "listelenenSirket": 76,
+    "toplamHacim": 124928513.96,
+    "toplamIslem": 26043,
+    "uyeSayisi": 11528
+   },
+   "sonDonem": {
+    "islem": 638,
+    "hacim": 2837226.32,
+    "elDegisenPay": 712874.681,
+    "elDegisenOrani": 0.77
+   },
+   "virmanBekleyen": {
+    "sirket": 8,
+    "tutar": 907316.49
+   },
+   "donemAdi": "Mayıs 2025",
+   "kaynak": "duyuru"
+  },
+  {
+   "tarih": "2025-07-03",
+   "duyuru": "2025-07-03T23:14",
+   "tumZamanlar": {
+    "payDagitimSirket": 91,
+    "mkkPayAdedi": 926691121,
+    "listelenenSirket": 76,
+    "toplamHacim": 131183428.08,
+    "toplamIslem": 26977,
+    "uyeSayisi": 11685
+   },
+   "sonDonem": {
+    "islem": 934,
+    "hacim": 6254914.12,
+    "elDegisenPay": 1120454.18,
+    "elDegisenOrani": 0.82
+   },
+   "virmanBekleyen": {
+    "sirket": 10,
+    "tutar": 1000931.62
+   },
+   "donemAdi": "Haziran 2025",
+   "kaynak": "duyuru"
+  },
+  {
+   "tarih": "2025-08-28",
+   "duyuru": "2025-08-28T21:15",
+   "tumZamanlar": {
+    "payDagitimSirket": 91,
+    "mkkPayAdedi": 926691121,
+    "listelenenSirket": 78,
+    "toplamHacim": 136868870.94,
+    "toplamIslem": 27713,
+    "uyeSayisi": 11949
+   },
+   "sonDonem": {
+    "islem": 740,
+    "hacim": 5470156.95,
+    "elDegisenPay": 1052464.142,
+    "elDegisenOrani": 1.13
+   },
+   "virmanBekleyen": {
+    "sirket": 9,
+    "tutar": 583426.86
+   },
+   "donemAdi": "Ağustos 2025",
+   "kaynak": "duyuru"
+  },
+  {
+   "tarih": "2025-10-15",
+   "duyuru": "2025-10-16T20:18",
+   "tumZamanlar": {
+    "payDagitimSirket": 92,
+    "mkkPayAdedi": 930836121,
+    "listelenenSirket": 79,
+    "toplamHacim": 145327878.88,
+    "toplamIslem": 28969,
+    "uyeSayisi": 12203
+   },
+   "sonDonem": {
+    "islem": 1256,
+    "hacim": 8454220.47,
+    "elDegisenPay": 1755376.376,
+    "elDegisenOrani": 1.18
+   },
+   "virmanBekleyen": {
+    "sirket": 10,
+    "tutar": 1036110.94
+   },
+   "donemAdi": "Ekim 2025",
+   "kaynak": "duyuru"
+  },
+  {
+   "tarih": "2025-12-04",
+   "duyuru": "2025-12-04T18:15",
+   "tumZamanlar": {
+    "payDagitimSirket": 93,
+    "mkkPayAdedi": 934981121,
+    "listelenenSirket": 80,
+    "toplamHacim": 149697959.84,
+    "toplamIslem": 29153,
+    "uyeSayisi": 12979
+   },
+   "sonDonem": {
+    "islem": 842,
+    "hacim": 3496352.99,
+    "elDegisenPay": 1077872.05,
+    "elDegisenOrani": 0.72
+   },
+   "virmanBekleyen": {
+    "sirket": 11,
+    "tutar": 761835.77
+   },
+   "donemAdi": "Kasım 2025",
+   "kaynak": "duyuru"
+  },
+  {
+   "tarih": "2026-01-16",
+   "duyuru": "2026-01-15T19:46",
+   "tumZamanlar": {
+    "payDagitimSirket": 96,
+    "mkkPayAdedi": 1001411785,
+    "listelenenSirket": 81,
+    "toplamHacim": 155512688.92,
+    "toplamIslem": 30242,
+    "uyeSayisi": 13159
+   },
+   "sonDonem": {
+    "islem": 1089,
+    "hacim": 6708699.83,
+    "elDegisenPay": 2145112.43,
+    "elDegisenOrani": 0.21
+   },
+   "virmanBekleyen": {
+    "sirket": 13,
+    "tutar": 703621.03
+   },
+   "donemAdi": "Aralık 2025",
+   "kaynak": "duyuru"
+  },
+  {
+   "tarih": "2026-02-26",
+   "duyuru": "2026-02-26T20:54",
+   "tumZamanlar": {
+    "payDagitimSirket": 96,
+    "mkkPayAdedi": 1001411785,
+    "listelenenSirket": 81,
+    "toplamHacim": 164564291.34,
+    "toplamIslem": 31362,
+    "uyeSayisi": 13356
+   },
+   "sonDonem": {
+    "islem": 1064,
+    "hacim": 8983528.311,
+    "elDegisenPay": 2062894.265,
+    "elDegisenOrani": 0.2
+   },
+   "virmanBekleyen": {
+    "sirket": 11,
+    "tutar": 1114573.99
+   },
+   "donemAdi": "Şubat 2026",
+   "kaynak": "duyuru"
+  },
+  {
+   "tarih": "2026-04-09",
+   "duyuru": "2026-04-09T17:47",
+   "tumZamanlar": {
+    "payDagitimSirket": 96,
+    "mkkPayAdedi": 1001411785,
+    "listelenenSirket": 82,
+    "toplamHacim": 171601016.52,
+    "toplamIslem": 32258,
+    "uyeSayisi": 13472
+   },
+   "sonDonem": {
+    "islem": 883,
+    "hacim": 7012576.477,
+    "elDegisenPay": 1652265.277,
+    "elDegisenOrani": 0.18
+   },
+   "virmanBekleyen": {
+    "sirket": 12,
+    "tutar": 1250969.7
+   },
+   "donemAdi": "Nisan 2026",
+   "kaynak": "duyuru"
+  },
+  {
+   "tarih": "2026-05-14",
+   "duyuru": "2026-05-15T08:48",
+   "tumZamanlar": {
+    "payDagitimSirket": 96,
+    "mkkPayAdedi": 1001411785,
+    "listelenenSirket": 82,
+    "toplamHacim": 179886764.19,
+    "toplamIslem": 33176,
+    "uyeSayisi": 13602
+   },
+   "sonDonem": {
+    "islem": 918,
+    "hacim": 9327019.559,
+    "elDegisenPay": 2657989.662,
+    "elDegisenOrani": 0.27
+   },
+   "virmanBekleyen": {
+    "sirket": 14,
+    "tutar": 1207962.74
+   },
+   "donemAdi": "Mayıs 2026",
+   "kaynak": "duyuru"
+  },
+  {
+   "tarih": "2026-07-19",
+   "duyuru": "2026-07-20T08:48",
+   "tumZamanlar": {
+    "payDagitimSirket": 96,
+    "mkkPayAdedi": 1001411785,
+    "listelenenSirket": 82,
+    "toplamHacim": 188003073.81,
+    "toplamIslem": 33876,
+    "uyeSayisi": 13798
+   },
+   "sonDonem": {
+    "islem": 700,
+    "hacim": 8089869.819,
+    "elDegisenPay": 1729481.166,
+    "elDegisenOrani": 0.17
+   },
+   "virmanBekleyen": {
+    "sirket": 19,
+    "tutar": 1423076.65
+   },
+   "donemAdi": "Temmuz 2026",
+   "kaynak": "duyuru"
+  },
+  {
+   "tarih": "2026-10-05",
+   "duyuru": "2026-10-05T09:54",
+   "tumZamanlar": {
+    "payDagitimSirket": 96,
+    "mkkPayAdedi": 1001411785,
+    "listelenenSirket": 89,
+    "toplamHacim": 191893798.86,
+    "toplamIslem": 34122,
+    "uyeSayisi": 13991
+   },
+   "sonDonem": {
+    "islem": 246,
+    "hacim": 3888278.937,
+    "elDegisenPay": 1252515.699,
+    "elDegisenOrani": 0.12
+   },
+   "virmanBekleyen": {
+    "sirket": 49,
+    "tutar": 2480755.68
+   },
+   "donemAdi": "Ekim 2026",
+   "kaynak": "duyuru"
+  },
+  {
+   "tarih": "2026-11-09",
+   "duyuru": "2026-11-08T22:40",
+   "tumZamanlar": {
+    "payDagitimSirket": 98,
+    "mkkPayAdedi": 1001411785,
+    "listelenenSirket": 93,
+    "toplamHacim": 196088281.27,
+    "toplamIslem": 34498,
+    "uyeSayisi": 14055
+   },
+   "sonDonem": {
+    "islem": 376,
+    "hacim": 4194482.411,
+    "elDegisenPay": 1462956.733,
+    "elDegisenOrani": 0.15
+   },
+   "virmanBekleyen": {
+    "sirket": 30,
+    "tutar": 972347.01
+   },
+   "donemAdi": "Kasım 2026",
+   "kaynak": "duyuru"
+  }
+ ]
+}

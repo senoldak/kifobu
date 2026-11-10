@@ -1,0 +1,156 @@
+---
+// Excel DEFTER'in toplu karşılığı. Tek tek ilan GÖSTERİLMEZ (sahibin kuralı): yalnız özet ölçüler ve
+// fiyat dilimlerine göre toplanmış pay adedi. Dil nötr: yorum katan sözcük yok.
+import { sonIlanlar } from '../../lib/sekundery-veri.mjs';
+import { defterOzeti } from '../../lib/sekundery.mjs';
+import { paraYaz } from '../../lib/sekundery-kur.mjs';
+
+interface Props { s: any }
+const { s } = Astro.props;
+const { satis, alis } = sonIlanlar(s.anahtar);
+const o = defterOzeti(satis, alis);
+const P = ['tl', 'usd', 'eur', 'xau'] as const;
+// tutar ve fiyatlar son veri günü kuruyla çevrilir
+const cevir = (v: number | null | undefined, p: (typeof P)[number]) => (v == null ? null : p === 'tl' ? v : s[p]?.kurBugun ? v / s[p].kurBugun : null);
+const fiyat = (v: number | null | undefined, kesin = 2) => P.map((p) => ({ p, m: paraYaz(cevir(v, p), p, p === 'tl' ? kesin : undefined) }));
+const tutar = (v: number | null | undefined) => P.map((p) => ({ p, m: paraYaz(cevir(v, p), p, p === 'xau' ? undefined : 0) }));
+const sayi = (n: number | null | undefined) => (n == null ? '—' : n.toLocaleString('tr-TR', { maximumFractionDigits: 0 }));
+const yuzde = (n: number | null | undefined) => (n == null ? '—' : `%${n.toLocaleString('tr-TR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}`);
+const enCok = Math.max(1, ...o.dagilim.map((d) => Math.max(d.satisAdet, d.alisAdet)));
+const dilimler = [...o.dagilim].reverse(); // yüksek fiyat üstte
+const var_ = o.satis || o.alis;
+// tekliflere açık ilan sayısı yalnız bu bilginin kaydedildiği günlerde bilinir
+const tk = (l: any[]) => (l.some((i) => typeof i.teklif === 'boolean') ? l.filter((i) => i.teklif === true).length : null);
+const teklifSay = tk(satis) != null || tk(alis) != null ? { s: tk(satis) ?? 0, a: tk(alis) ?? 0 } : null;
+---
+
+{var_ && (
+  <section class="id" aria-labelledby="id-baslik">
+    <div class="id-bas">
+      <h2 id="id-baslik">İlanların dağılımı</h2>
+      <p>Yayında olan {sayi((o.satis?.ilan ?? 0) + (o.alis?.ilan ?? 0))} ilanın özeti; tek tek ilan gösterilmez.{teklifSay != null && ` Tekliflere açık: satışta ${sayi(teklifSay.s)}, alışta ${sayi(teklifSay.a)} ilan.`}{(s.satis?.yeni != null || s.alis?.yeni != null) && ` Bugün yayına giren: ${sayi((s.satis?.yeni ?? 0) + (s.alis?.yeni ?? 0))} ilan.`}{s.satis?.yasMedyan != null && ` Satış ilanlarının yayında kalma süresi medyanı ${sayi(s.satis.yasMedyan)} gün.`}</p>
+    </div>
+
+    <dl class="id-kartlar">
+      <div>
+        <dt>Satış–alış farkı</dt>
+        <dd class={`id-buyuk ${o.fark == null ? '' : o.fark > 0 ? 'id-a' : o.fark < 0 ? 'id-e' : ''}`}>{yuzde(o.fark)}</dd>
+        <dd class="id-alt">en düşük satış ile en yüksek alış ilanı arasında</dd>
+      </div>
+      <div>
+        <dt>Ortalama satış ilanı</dt>
+        <dd class="id-buyuk">{o.satis ? fiyat(o.satis.ortalama).map((x) => <span class={`pv pv-${x.p}`}>{x.m}</span>) : '—'}</dd>
+        <dd class="id-alt">pay adediyle ağırlıklı · {sayi(o.satis?.ilan)} ilan</dd>
+      </div>
+      <div>
+        <dt>Ortalama alış ilanı</dt>
+        <dd class="id-buyuk">{o.alis ? fiyat(o.alis.ortalama).map((x) => <span class={`pv pv-${x.p}`}>{x.m}</span>) : '—'}</dd>
+        <dd class="id-alt">pay adediyle ağırlıklı · {sayi(o.alis?.ilan)} ilan</dd>
+      </div>
+      <div class="id-genis">
+        <dt>İlan tutarı</dt>
+        <dd class="id-oran" aria-label={`Satış ilanları toplam tutarın ${yuzde(o.satisPayi)} kadarı`}>
+          <span class="id-o-s" style={`width:${o.satisPayi ?? 0}%`}></span><span class="id-o-a" style={`width:${100 - (o.satisPayi ?? 0)}%`}></span>
+        </dd>
+        <dd class="id-alt id-iki">
+          <span><i class="id-n id-n-s"></i>Satış {yuzde(o.satisPayi)} · {tutar(o.satis?.tutar ?? 0).map((x) => <span class={`pv pv-${x.p}`}>{x.m}</span>)}</span>
+          <span><i class="id-n id-n-a"></i>Alış {yuzde(o.satisPayi == null ? null : Math.round((100 - o.satisPayi) * 10) / 10)} · {tutar(o.alis?.tutar ?? 0).map((x) => <span class={`pv pv-${x.p}`}>{x.m}</span>)}</span>
+        </dd>
+      </div>
+      <div>
+        <dt>İlk ilanların payı</dt>
+        <dd class="id-buyuk">{yuzde(o.satis?.ilkUcPay)}</dd>
+        <dd class="id-alt">en düşük fiyatlı üç satış ilanındaki pay, satıştakilerin içinde · alışta en yüksek üç: {yuzde(o.alis?.ilkUcPay)}</dd>
+      </div>
+    </dl>
+    {o.satis && o.alis && (
+      <dl class="id-kartlar id-kartlar-2">
+        <div>
+          <dt>En iyi ilanın payı</dt>
+          <dd class="id-buyuk">{yuzde(o.satis.enIyiPay)}</dd>
+          <dd class="id-alt">en düşük fiyatlı satış ilanındaki pay, satıştakilerin içinde · alışta en yüksek fiyatlı ilan: {yuzde(o.alis.enIyiPay)}</dd>
+        </div>
+        <div>
+          <dt>Pay adedi</dt>
+          <dd class="id-buyuk">{o.adetOrani == null ? '—' : `${o.adetOrani.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} kat`}</dd>
+          <dd class="id-alt">satıştaki pay adedi alıştakinin bu kadarı · satış {sayi(o.satis.adet)}, alış {sayi(o.alis.adet)} pay, fark {sayi(o.adetFarki)}</dd>
+        </div>
+        <div>
+          <dt>En iyi iki ilanın ağırlıklı fiyatı</dt>
+          <dd class="id-buyuk">{fiyat(o.ortaFiyat).map((x) => <span class={`pv pv-${x.p}`}>{x.m}</span>)}</dd>
+          <dd class="id-alt">en düşük satış ve en yüksek alış ilanlarının toplam tutarı ÷ pay adetleri</dd>
+        </div>
+      </dl>
+    )}
+
+    {dilimler.length > 0 && (
+      <figure class="id-dagilim">
+        <figcaption>Fiyat dilimlerine göre pay adedi</figcaption>
+        <div class="id-ust"><span>Alış ilanları</span><span>Fiyat dilimi</span><span>Satış ilanları</span></div>
+        {dilimler.map((d) => (
+          <div class="id-satir">
+            <div class="id-sol">
+              {d.alisAdet > 0 && <span class="id-say">{sayi(d.alisAdet)}</span>}
+              <span class="id-cubuk id-c-a" style={`width:${(d.alisAdet / enCok) * 100}%`}></span>
+            </div>
+            <div class="id-dilim">
+              {fiyat(d.alt).map((x, i) => (
+                <span class={`pv pv-${x.p}`}>{d.ust == null ? `${x.m} ve üstü` : `${x.m} – ${fiyat(d.ust)[i].m}`}</span>
+              ))}
+            </div>
+            <div class="id-sag">
+              <span class="id-cubuk id-c-s" style={`width:${(d.satisAdet / enCok) * 100}%`}></span>
+              {d.satisAdet > 0 && <span class="id-say">{sayi(d.satisAdet)}</span>}
+            </div>
+          </div>
+        ))}
+        <p class="id-not">Çubuk uzunluğu o fiyat dilimindeki ilanlarda duran pay adedidir; dilimler logaritmik, en yüksek fiyatlı %5 en üstte toplanır. Rakamlar yayındaki, henüz karşılanmamış ilanlardır; gerçekleşen işlem değildir.</p>
+      </figure>
+    )}
+  </section>
+)}
+
+<style>
+  .id { margin: 0 0 40px; background: var(--beyaz); border: 1px solid var(--cizgi); }
+  .id-bas { padding: 14px 18px 10px; border-bottom: 1px solid var(--cizgi); background: var(--kagit); }
+  .id-bas h2 { margin: 0; font-size: 1.15rem; letter-spacing: -0.01em; }
+  .id-bas p { margin: 2px 0 0; font-size: 0.82rem; color: var(--gri); }
+  .id-kartlar { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 1.6fr) minmax(0, 1.2fr); margin: 0; }
+  .id-kartlar > div { padding: 14px 16px; border-right: 1px solid var(--cizgi); display: flex; flex-direction: column; gap: 4px; }
+  .id-kartlar > div:last-child { border-right: 0; }
+  .id-kartlar-2 { grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--cizgi); }
+  .id-kartlar dt { font-size: 0.66rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gri); }
+  .id-kartlar dd { margin: 0; }
+  .id-buyuk.id-a { color: #8a6a00; }
+  .id-buyuk.id-e { color: #2f4b6e; }
+  .id-buyuk { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; color: var(--murekkep); }
+  .id-alt { font-size: 0.74rem; color: var(--gri); line-height: 1.4; }
+  .id-iki { display: flex; flex-direction: column; gap: 2px; }
+  .id-oran { display: flex; height: 10px; margin: 8px 0 4px !important; background: var(--cizgi); }
+  .id-o-s { background: #10b981; }
+  .id-o-a { background: #a7e9cf; }
+  .id-n { display: inline-block; width: 9px; height: 9px; margin-right: 6px; vertical-align: 0; }
+  .id-n-s { background: #10b981; }
+  .id-n-a { background: #a7e9cf; }
+  .id-dagilim { margin: 0; padding: 14px 18px 16px; border-top: 1px solid var(--cizgi); }
+  .id-dagilim figcaption { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--murekkep); margin-bottom: 8px; }
+  .id-ust, .id-satir { display: grid; grid-template-columns: 1fr minmax(150px, auto) 1fr; gap: 12px; align-items: center; }
+  .id-ust { font-size: 0.64rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gri); padding-bottom: 6px; border-bottom: 1px solid var(--cizgi); }
+  .id-ust span:first-child { text-align: right; }
+  .id-ust span:nth-child(2) { text-align: center; }
+  .id-satir { padding: 3px 0; border-bottom: 1px solid #f1efe9; }
+  .id-sol, .id-sag { display: flex; align-items: center; gap: 6px; min-width: 0; }
+  .id-sol { justify-content: flex-end; }
+  .id-cubuk { display: block; height: 14px; min-width: 0; }
+  .id-c-a { background: #a7e9cf; }
+  .id-c-s { background: #10b981; }
+  .id-say { font-size: 0.72rem; color: var(--murekkep-2); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .id-dilim { text-align: center; font-size: 0.76rem; font-weight: 600; color: var(--murekkep); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .id-not { margin: 10px 0 0; font-size: 0.74rem; color: var(--gri); max-width: 90ch; }
+  @media (max-width: 900px) {
+    .id-kartlar { grid-template-columns: 1fr 1fr; }
+    .id-kartlar > div { border-right: 0; border-bottom: 1px solid var(--cizgi); }
+    .id-genis { grid-column: 1 / -1; }
+    .id-ust, .id-satir { grid-template-columns: 1fr minmax(110px, auto) 1fr; gap: 6px; }
+  }
+</style>

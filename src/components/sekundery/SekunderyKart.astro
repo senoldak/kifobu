@@ -1,0 +1,11 @@
+---
+// Paylaşım kartı (1080 × 1350). Çizim src/lib/sekundery-kart-svg.mjs'te; Telegram'a giden PNG de aynı çizimden çıkar.
+import { kartSvg } from '../../lib/sekundery-kart-svg.mjs';
+const { tarih, ...k } = Astro.props as any;
+---
+
+<Fragment set:html={kartSvg(k, tarih)} />
+
+<style is:global>
+  svg.kart { width: 100%; height: auto; display: block; border: 1px solid var(--cizgi); }
+</style>

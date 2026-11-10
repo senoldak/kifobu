@@ -1,0 +1,869 @@
+{
+ "kaynak": "sahibin Excel arşivi (VİRMAN sekmesi)",
+ "donemler": [
+  {
+   "ad": "Ağustos 2024",
+   "referans": "2024-07-20",
+   "kayitlar": [
+    {
+     "unvan": "ACTV BİYOTEKNOLOJİ LABORATUVAR SANAYİ VE TİCARET AŞ",
+     "tarih": "2024-08-01",
+     "gun": 12,
+     "excelGun": 12
+    },
+    {
+     "unvan": "AIHEAR TEKNOLOJİ AŞ",
+     "tarih": "2024-07-30",
+     "gun": 10,
+     "excelGun": 10
+    },
+    {
+     "unvan": "ALPGEN ROBOTİCS TEKNOLOJİ AŞ",
+     "tarih": "2024-07-29",
+     "gun": 9,
+     "excelGun": 9
+    },
+    {
+     "unvan": "AUTHTAKE TEKNOLOJİ AŞ",
+     "tarih": "2024-08-13",
+     "gun": 24,
+     "excelGun": 24
+    },
+    {
+     "unvan": "BATARYASAN ENERJİ SANAYİ VE TİCARET AŞ",
+     "tarih": "2024-08-02",
+     "gun": 13,
+     "excelGun": 13
+    },
+    {
+     "unvan": "BİGETAŞ BİYOTEKNOLOJİ AŞ",
+     "tarih": "2024-08-13",
+     "gun": 24,
+     "excelGun": 24
+    },
+    {
+     "unvan": "BİLİŞİM SCHOOL EĞİTİM TEKNOLOJİLERİ AŞ",
+     "tarih": "2024-08-05",
+     "gun": 16,
+     "excelGun": 16
+    },
+    {
+     "unvan": "BLOOCELL SAĞLIK TEKNOLOJİLERİ SANAYİ VE TİCARET AŞ",
+     "tarih": "2024-08-08",
+     "gun": 19,
+     "excelGun": 19
+    },
+    {
+     "unvan": "BYQEE TEKNOLOJİ AŞ",
+     "tarih": "2024-08-15",
+     "gun": 26,
+     "excelGun": 26
+    },
+    {
+     "unvan": "CLASSEST TEKNOLOJİ AŞ",
+     "tarih": "2024-08-14",
+     "gun": 25,
+     "excelGun": 25
+    },
+    {
+     "unvan": "CLİCKSY YAZILIM SANAYİ VE TİCARET AŞ",
+     "tarih": "2024-08-01",
+     "gun": 12,
+     "excelGun": 12
+    },
+    {
+     "unvan": "CO PRİNT MÜHENDİSLİK MAKİNA YAZILIM SANAYİ VE TİCARET AŞ",
+     "tarih": "2024-08-09",
+     "gun": 20,
+     "excelGun": 20
+    },
+    {
+     "unvan": "COMPACTİVE OYUN YAZILIM VE PAZARLAMA AŞ",
+     "tarih": "2024-08-05",
+     "gun": 16,
+     "excelGun": 16
+    },
+    {
+     "unvan": "CONTENTRAIN YAZILIM TEKNOLOJİLERİ AŞ",
+     "tarih": "2024-08-09",
+     "gun": 20,
+     "excelGun": 20
+    },
+    {
+     "unvan": "CORPUS ENERJİ SOLAR ÜRETİM VE TİCARET AŞ",
+     "tarih": "2024-08-02",
+     "gun": 13,
+     "excelGun": 13
+    },
+    {
+     "unvan": "CRANIOCATCH BİLİŞİM TEKNOLOJİLERİ MEDİKAL DENTAL SANAYİ VE TİCARET AŞ",
+     "tarih": "2024-08-02",
+     "gun": 13,
+     "excelGun": 13
+    },
+    {
+     "unvan": "CURVE ANİMASYON PRODÜKSİYON VE YAZILIM AŞ",
+     "tarih": "2024-08-05",
+     "gun": 16,
+     "excelGun": 16
+    },
+    {
+     "unvan": "DELIVERY ONE TEKNOLOJİ AŞ",
+     "tarih": "2024-07-30",
+     "gun": 10,
+     "excelGun": 10
+    },
+    {
+     "unvan": "EGİRİŞİM MEDYA HİZMETLERİ AŞ",
+     "tarih": "2024-08-15",
+     "gun": 26,
+     "excelGun": 26
+    },
+    {
+     "unvan": "EHBA TEKNOLOJİ AŞ",
+     "tarih": "2024-08-01",
+     "gun": 12,
+     "excelGun": 12
+    },
+    {
+     "unvan": "EPTS ELEKTRONİK VE BİLİŞİM AŞ",
+     "tarih": "2024-07-31",
+     "gun": 11,
+     "excelGun": 11
+    },
+    {
+     "unvan": "ESB OYUN HİZMETLERİ AŞ",
+     "tarih": "2024-08-02",
+     "gun": 13,
+     "excelGun": 13
+    },
+    {
+     "unvan": "ESG YAZILIM ELEKTRONİK ARGE HİZMETLERİ VE OTOMASYON SANAYİ TİCARET AŞ",
+     "tarih": "2024-07-31",
+     "gun": 11,
+     "excelGun": 11
+    },
+    {
+     "unvan": "ESOK ENERJİ VE TEKNOLOJİ AŞ",
+     "tarih": "2024-07-31",
+     "gun": 11,
+     "excelGun": 11
+    },
+    {
+     "unvan": "ESPOİR SUİSSE SAĞLIK ÜRÜNLERİ PAZARLAMA AŞ",
+     "tarih": "2024-08-12",
+     "gun": 23,
+     "excelGun": 23
+    },
+    {
+     "unvan": "EVBEE ELEKTRİKLİ ARAÇ VE ŞARJ SİSTEMLERİ ENERJİ MÜHENDİSLİK ARGE SANAYİ TİCARET AŞ",
+     "tarih": "2024-08-08",
+     "gun": 19,
+     "excelGun": 19
+    },
+    {
+     "unvan": "GENORİDE ELEKTRİKLİ ARAÇLAR AŞ",
+     "tarih": "2024-08-13",
+     "gun": 24,
+     "excelGun": 24
+    },
+    {
+     "unvan": "GRİ FİNANSAL TEKNOLOJİLER AŞ",
+     "tarih": "2024-08-12",
+     "gun": 23,
+     "excelGun": 23
+    },
+    {
+     "unvan": "GÜRLER GLOBAL MAĞAZACILIK SANAYİ VE TİCARET AŞ",
+     "tarih": "2024-08-08",
+     "gun": 19,
+     "excelGun": 19
+    },
+    {
+     "unvan": "ION TEKNOLOJİ SANAYİ VE TİCARET AŞ",
+     "tarih": "2024-08-14",
+     "gun": 25,
+     "excelGun": 25
+    },
+    {
+     "unvan": "JETCONNECT PERAKENDE LOJİSTİK AŞ",
+     "tarih": "2024-08-14",
+     "gun": 25,
+     "excelGun": 25
+    },
+    {
+     "unvan": "KABİ PARTNERS BİLİŞİM TEKNOLOJİLERİ AŞ",
+     "tarih": "2024-08-01",
+     "gun": 12,
+     "excelGun": 12
+    },
+    {
+     "unvan": "KRATOS 3D TEKNOLOJİLERİ SANAYİ TİCARET AŞ",
+     "tarih": "2024-08-01",
+     "gun": 12,
+     "excelGun": 12
+    },
+    {
+     "unvan": "KURU TAKSİ TEMİZLİK HİZMETLERİ AŞ",
+     "tarih": "2024-08-05",
+     "gun": 16,
+     "excelGun": 16
+    },
+    {
+     "unvan": "MAVİKANATLAR TEKNOLOJİ MÜHENDİSLİK VE YAZILIM AŞ",
+     "tarih": "2024-08-02",
+     "gun": 13,
+     "excelGun": 13
+    },
+    {
+     "unvan": "MEDIBOOTH SAĞLIK YAZILIM VE TEKNOLOJİLERİ AŞ",
+     "tarih": "2024-08-13",
+     "gun": 24,
+     "excelGun": 24
+    },
+    {
+     "unvan": "MELOKNOWS BİLGİ TEKNOLOJİLERİ VE REKLAM HİZMETLERİ AŞ",
+     "tarih": "2024-08-02",
+     "gun": 13,
+     "excelGun": 13
+    },
+    {
+     "unvan": "META MOBİLİTE ENERJİ AŞ",
+     "tarih": "2024-08-13",
+     "gun": 24,
+     "excelGun": 24
+    },
+    {
+     "unvan": "MİNİYOL BİLİŞİM AŞ",
+     "tarih": "2024-08-07",
+     "gun": 18,
+     "excelGun": 18
+    },
+    {
+     "unvan": "NEGENTRA YAZILIM VE OYUN TEKNOLOJİLERİ AŞ",
+     "tarih": "2024-08-14",
+     "gun": 25,
+     "excelGun": 25
+    },
+    {
+     "unvan": "NEV YAZILIM SANAYİ VE TİCARET AŞ",
+     "tarih": "2024-07-30",
+     "gun": 10,
+     "excelGun": 10
+    },
+    {
+     "unvan": "NOEXIT GAMES OYUN BİLİŞİM AŞ",
+     "tarih": "2024-07-31",
+     "gun": 11,
+     "excelGun": 11
+    },
+    {
+     "unvan": "NOGAYT ENDÜSTRİ KİMYA ARGE İÇ VE DIŞ TİCARET AŞ",
+     "tarih": "2024-08-05",
+     "gun": 16,
+     "excelGun": 16
+    },
+    {
+     "unvan": "ONİMA BİYOTEKNOLOJİ AŞ",
+     "tarih": "2024-08-02",
+     "gun": 13,
+     "excelGun": 13
+    },
+    {
+     "unvan": "PACHAMAMA GIDA TARIM TEKSTİL DANIŞMANLIK SANAYİ VE TİCARET AŞ",
+     "tarih": "2024-08-09",
+     "gun": 20,
+     "excelGun": 20
+    },
+    {
+     "unvan": "PACKARD KLİMA TEKNOLOJİLERİ SANAYİ VE TİCARET AŞ",
+     "tarih": "2024-08-05",
+     "gun": 16,
+     "excelGun": 16
+    },
+    {
+     "unvan": "PASTACIDAN GIDA SANAYİ VE TİCARET AŞ",
+     "tarih": "2024-08-06",
+     "gun": 17,
+     "excelGun": 17
+    },
+    {
+     "unvan": "PROMOSEED BİYOTEKNOLOJİ AŞ",
+     "tarih": "2024-07-31",
+     "gun": 11,
+     "excelGun": 11
+    },
+    {
+     "unvan": "PURE SOLUTIONS TEKNOLOJİ VE GIDA AŞ",
+     "tarih": "2024-08-05",
+     "gun": 16,
+     "excelGun": 16
+    },
+    {
+     "unvan": "RETİNOW SAĞLIK TEKNOLOJİLERİ VE ARGE SANAYİ AŞ",
+     "tarih": "2024-07-30",
+     "gun": 10,
+     "excelGun": 10
+    },
+    {
+     "unvan": "SAFFON A TARIM AŞ",
+     "tarih": "2024-08-09",
+     "gun": 20,
+     "excelGun": 20
+    },
+    {
+     "unvan": "SCOUTİUM FUTBOL TEKNOLOJİLERİ AŞ",
+     "tarih": "2024-08-02",
+     "gun": 13,
+     "excelGun": 13
+    },
+    {
+     "unvan": "SCOUTLİ TEKNOLOJİ VE YAZILIM AŞ",
+     "tarih": "2024-07-31",
+     "gun": 11,
+     "excelGun": 11
+    },
+    {
+     "unvan": "SECURİFY BİLİŞİM TEKNOLOJİLERİ VE GÜVENLİĞİ EĞİTİM DANIŞMANLIK SANAYİ VE TİCARET AŞ",
+     "tarih": "2024-07-31",
+     "gun": 11,
+     "excelGun": 11
+    },
+    {
+     "unvan": "SERACELL BİLİŞİM VE TARIM TEKNOLOJİLERİ AŞ",
+     "tarih": "2024-08-14",
+     "gun": 25,
+     "excelGun": 25
+    },
+    {
+     "unvan": "SHİFTPLANNER TEKNOLOJİ AŞ",
+     "tarih": "2024-08-08",
+     "gun": 19,
+     "excelGun": 19
+    },
+    {
+     "unvan": "SHOPALM ÖDEME ÇÖZÜMLERİ VE TEKNOLOJİLERİ AŞ",
+     "tarih": "2024-08-05",
+     "gun": 16,
+     "excelGun": 16
+    },
+    {
+     "unvan": "SHOPİVERSE TEKNOLOJİ VE YAZILIM AŞ",
+     "tarih": "2024-07-31",
+     "gun": 11,
+     "excelGun": 11
+    },
+    {
+     "unvan": "SİZEANDME YAZILIM AŞ",
+     "tarih": "2024-08-14",
+     "gun": 25,
+     "excelGun": 25
+    },
+    {
+     "unvan": "SPARGA1 TARIM AŞ",
+     "tarih": "2024-07-30",
+     "gun": 10,
+     "excelGun": 10
+    },
+    {
+     "unvan": "SPARGA2 TARIM AŞ",
+     "tarih": "2024-08-05",
+     "gun": 16,
+     "excelGun": 16
+    },
+    {
+     "unvan": "SPECHTLAB YAZILIM İMALAT İTHALAT İHRACAT SANAYİ VE TİCARET AŞ",
+     "tarih": "2024-08-12",
+     "gun": 23,
+     "excelGun": 23
+    },
+    {
+     "unvan": "STETO SAĞLIK BİLİŞİM TURİZM SANAYİ VE TİCARET AŞ",
+     "tarih": "2024-08-02",
+     "gun": 13,
+     "excelGun": 13
+    },
+    {
+     "unvan": "TECH2BIOLOGY ENDÜSTRİYEL OTOMASYON TEKNOLOJİLERİ AŞ",
+     "tarih": "2024-08-13",
+     "gun": 24,
+     "excelGun": 24
+    },
+    {
+     "unvan": "TECHNOMEDİCARE MEDİKAL TİCARET AŞ",
+     "tarih": "2024-08-02",
+     "gun": 13,
+     "excelGun": 13
+    },
+    {
+     "unvan": "TEMİZLİKYOLDA İNTERNET HİZMETLERİ AŞ",
+     "tarih": "2024-07-30",
+     "gun": 10,
+     "excelGun": 10
+    },
+    {
+     "unvan": "TESTSUİTE BİLİŞİM VE DANIŞMANLIK AŞ",
+     "tarih": "2024-08-19",
+     "gun": 30,
+     "excelGun": 27
+    },
+    {
+     "unvan": "TOURİST MOBİL YAZILIM AŞ",
+     "tarih": "2024-08-20",
+     "gun": 31,
+     "excelGun": 28
+    },
+    {
+     "unvan": "TRİBER TEKNOLOJİ AŞ",
+     "tarih": "2024-08-09",
+     "gun": 20,
+     "excelGun": 20
+    },
+    {
+     "unvan": "TRİWİ TEKNOLOJİ YAZILIM VE TİCARET AŞ",
+     "tarih": "2024-08-02",
+     "gun": 13,
+     "excelGun": 13
+    },
+    {
+     "unvan": "TUNGASOFT YAZILIM EĞİTİM VE DANIŞMANLIK AŞ",
+     "tarih": "2024-08-14",
+     "gun": 25,
+     "excelGun": 25
+    },
+    {
+     "unvan": "YÖRESİ ELEKTRONİK TİCARET PERAKENDE GIDA LOJİSTİK AŞ",
+     "tarih": "2024-08-06",
+     "gun": 17,
+     "excelGun": 17
+    },
+    {
+     "unvan": "ZENOTECH YAZILIM VE EĞİTİM TEKNOLOJİLERİ TİCARET AŞ",
+     "tarih": "2024-08-01",
+     "gun": 12,
+     "excelGun": 12
+    }
+   ]
+  },
+  {
+   "ad": "Eylül 2024",
+   "referans": "2024-08-24",
+   "kayitlar": [
+    {
+     "unvan": "ACTV BİYOTEKNOLOJİ LABORATUVAR SANAYİ VE TİCARET AŞ",
+     "tarih": "2024-09-10",
+     "gun": 17,
+     "excelGun": 17
+    },
+    {
+     "unvan": "AIHEAR TEKNOLOJİ AŞ",
+     "tarih": null,
+     "gun": null,
+     "durum": "bekliyor"
+    },
+    {
+     "unvan": "ALPGEN ROBOTİCS TEKNOLOJİ AŞ",
+     "tarih": "2024-09-11",
+     "gun": 18,
+     "excelGun": 18
+    },
+    {
+     "unvan": "AMAZOİ TEKNİK SİMÜLASYON YAZILIM AŞ",
+     "tarih": "2024-09-11",
+     "gun": 18,
+     "excelGun": 18
+    },
+    {
+     "unvan": "AUTHTAKE TEKNOLOJİ AŞ",
+     "tarih": "2024-09-10",
+     "gun": 17,
+     "excelGun": 17
+    },
+    {
+     "unvan": "BATARYASAN ENERJİ SANAYİ VE TİCARET AŞ",
+     "tarih": "2024-09-09",
+     "gun": 16,
+     "excelGun": 16
+    },
+    {
+     "unvan": "BİGETAŞ BİYOTEKNOLOJİ AŞ",
+     "tarih": "2024-09-05",
+     "gun": 12,
+     "excelGun": 12
+    },
+    {
+     "unvan": "BLOOCELL SAĞLIK TEKNOLOJİLERİ SANAYİ VE TİCARET AŞ",
+     "tarih": "2024-09-06",
+     "gun": 13,
+     "excelGun": 13
+    },
+    {
+     "unvan": "BYQEE TEKNOLOJİ AŞ",
+     "tarih": "2024-09-10",
+     "gun": 17,
+     "excelGun": 17
+    },
+    {
+     "unvan": "CLASSEST TEKNOLOJİ AŞ",
+     "tarih": "2024-09-17",
+     "gun": 24,
+     "excelGun": 24
+    },
+    {
+     "unvan": "CO PRİNT MÜHENDİSLİK MAKİNA YAZILIM SANAYİ VE TİCARET AŞ",
+     "tarih": "2024-09-04",
+     "gun": 11,
+     "excelGun": 11
+    },
+    {
+     "unvan": "COMPACTİVE OYUN YAZILIM VE PAZARLAMA AŞ",
+     "tarih": "2024-09-17",
+     "gun": 24,
+     "excelGun": 24
+    },
+    {
+     "unvan": "CONTENTRAIN YAZILIM TEKNOLOJİLERİ AŞ",
+     "tarih": "2024-09-17",
+     "gun": 24,
+     "excelGun": 24
+    },
+    {
+     "unvan": "CORPUS ENERJİ SOLAR ÜRETİM VE TİCARET AŞ",
+     "tarih": "2024-09-10",
+     "gun": 17,
+     "excelGun": 17
+    },
+    {
+     "unvan": "CRANIOCATCH BİLİŞİM TEKNOLOJİLERİ MEDİKAL DENTAL SANAYİ VE TİCARET AŞ",
+     "tarih": "2024-09-16",
+     "gun": 23,
+     "excelGun": 23
+    },
+    {
+     "unvan": "CURVE ANİMASYON PRODÜKSİYON VE YAZILIM AŞ",
+     "tarih": "2024-09-11",
+     "gun": 18,
+     "excelGun": 18
+    },
+    {
+     "unvan": "DELIVERY ONE TEKNOLOJİ AŞ",
+     "tarih": "2024-09-09",
+     "gun": 16,
+     "excelGun": 16
+    },
+    {
+     "unvan": "EGİRİŞİM MEDYA HİZMETLERİ AŞ",
+     "tarih": null,
+     "gun": null,
+     "durum": "bekliyor"
+    },
+    {
+     "unvan": "EHBA TEKNOLOJİ AŞ",
+     "tarih": "2024-09-12",
+     "gun": 19,
+     "excelGun": 19
+    },
+    {
+     "unvan": "EPTS ELEKTRONİK VE BİLİŞİM AŞ",
+     "tarih": "2024-09-09",
+     "gun": 16,
+     "excelGun": 16
+    },
+    {
+     "unvan": "ESB OYUN HİZMETLERİ AŞ",
+     "tarih": "2024-09-13",
+     "gun": 20,
+     "excelGun": 20
+    },
+    {
+     "unvan": "ESG YAZILIM ELEKTRONİK ARGE HİZMETLERİ VE OTOMASYON SANAYİ TİCARET AŞ",
+     "tarih": "2024-09-12",
+     "gun": 19,
+     "excelGun": 19
+    },
+    {
+     "unvan": "ESOK ENERJİ VE TEKNOLOJİ AŞ",
+     "tarih": "2024-09-11",
+     "gun": 18,
+     "excelGun": 18
+    },
+    {
+     "unvan": "ESPOİR SUİSSE SAĞLIK ÜRÜNLERİ PAZARLAMA AŞ",
+     "tarih": "2024-09-16",
+     "gun": 23,
+     "excelGun": 23
+    },
+    {
+     "unvan": "EVBEE ELEKTRİKLİ ARAÇ VE ŞARJ SİSTEMLERİ ENERJİ MÜHENDİSLİK ARGE SANAYİ TİCARET AŞ",
+     "tarih": "2024-09-06",
+     "gun": 13,
+     "excelGun": 13
+    },
+    {
+     "unvan": "GENORİDE ELEKTRİKLİ ARAÇLAR AŞ",
+     "tarih": "2024-09-11",
+     "gun": 18,
+     "excelGun": 18
+    },
+    {
+     "unvan": "GRİ FİNANSAL TEKNOLOJİLER AŞ",
+     "tarih": "2024-09-19",
+     "gun": 26,
+     "excelGun": 26
+    },
+    {
+     "unvan": "GÜRLER GLOBAL MAĞAZACILIK SANAYİ VE TİCARET AŞ",
+     "tarih": "2024-09-09",
+     "gun": 16,
+     "excelGun": 16
+    },
+    {
+     "unvan": "ION TEKNOLOJİ SANAYİ VE TİCARET AŞ",
+     "tarih": "2024-09-10",
+     "gun": 17,
+     "excelGun": 17
+    },
+    {
+     "unvan": "JETCONNECT PERAKENDE LOJİSTİK AŞ",
+     "tarih": "2024-09-12",
+     "gun": 19,
+     "excelGun": 19
+    },
+    {
+     "unvan": "KABİ PARTNERS BİLİŞİM TEKNOLOJİLERİ AŞ",
+     "tarih": null,
+     "gun": null,
+     "durum": "bekliyor"
+    },
+    {
+     "unvan": "KRATOS 3D TEKNOLOJİLERİ SANAYİ TİCARET AŞ",
+     "tarih": null,
+     "gun": null,
+     "durum": "bekliyor"
+    },
+    {
+     "unvan": "MAVİKANATLAR TEKNOLOJİ MÜHENDİSLİK VE YAZILIM AŞ",
+     "tarih": "2024-09-11",
+     "gun": 18,
+     "excelGun": 18
+    },
+    {
+     "unvan": "MEDIBOOTH SAĞLIK YAZILIM VE TEKNOLOJİLERİ AŞ",
+     "tarih": "2024-09-10",
+     "gun": 17,
+     "excelGun": 17
+    },
+    {
+     "unvan": "MELOKNOWS BİLGİ TEKNOLOJİLERİ VE REKLAM HİZMETLERİ AŞ",
+     "tarih": "2024-09-13",
+     "gun": 20,
+     "excelGun": 20
+    },
+    {
+     "unvan": "META MOBİLİTE ENERJİ AŞ",
+     "tarih": "2024-09-17",
+     "gun": 24,
+     "excelGun": 24
+    },
+    {
+     "unvan": "MİNİYOL BİLİŞİM AŞ",
+     "tarih": "2024-09-12",
+     "gun": 19,
+     "excelGun": 19
+    },
+    {
+     "unvan": "NEGENTRA YAZILIM VE OYUN TEKNOLOJİLERİ AŞ",
+     "tarih": "2024-09-10",
+     "gun": 17,
+     "excelGun": 17
+    },
+    {
+     "unvan": "NEV YAZILIM SANAYİ VE TİCARET AŞ",
+     "tarih": "2024-09-12",
+     "gun": 19,
+     "excelGun": 19
+    },
+    {
+     "unvan": "NOEXIT GAMES OYUN BİLİŞİM AŞ",
+     "tarih": "2024-09-12",
+     "gun": 19,
+     "excelGun": 19
+    },
+    {
+     "unvan": "NOGAYT ENDÜSTRİ KİMYA ARGE İÇ VE DIŞ TİCARET AŞ",
+     "tarih": "2024-09-11",
+     "gun": 18,
+     "excelGun": 18
+    },
+    {
+     "unvan": "ONİMA BİYOTEKNOLOJİ AŞ",
+     "tarih": "2024-09-16",
+     "gun": 23,
+     "excelGun": 23
+    },
+    {
+     "unvan": "PACHAMAMA GIDA TARIM TEKSTİL DANIŞMANLIK SANAYİ VE TİCARET AŞ",
+     "tarih": "2024-09-13",
+     "gun": 20,
+     "excelGun": 20
+    },
+    {
+     "unvan": "PACKARD KLİMA TEKNOLOJİLERİ SANAYİ VE TİCARET AŞ",
+     "tarih": "2024-09-13",
+     "gun": 20,
+     "excelGun": 20
+    },
+    {
+     "unvan": "PASTACIDAN GIDA SANAYİ VE TİCARET AŞ",
+     "tarih": "2024-09-19",
+     "gun": 26,
+     "excelGun": 26
+    },
+    {
+     "unvan": "PROMOSEED BİYOTEKNOLOJİ AŞ",
+     "tarih": "2024-09-04",
+     "gun": 11,
+     "excelGun": 11
+    },
+    {
+     "unvan": "PURE SOLUTIONS TEKNOLOJİ VE GIDA AŞ",
+     "tarih": "2024-09-04",
+     "gun": 11,
+     "excelGun": 11
+    },
+    {
+     "unvan": "RETİNOW SAĞLIK TEKNOLOJİLERİ VE ARGE SANAYİ AŞ",
+     "tarih": "2024-09-11",
+     "gun": 18,
+     "excelGun": 18
+    },
+    {
+     "unvan": "SAFFON A TARIM AŞ",
+     "tarih": null,
+     "gun": null,
+     "durum": "bekliyor"
+    },
+    {
+     "unvan": "SCOUTİUM FUTBOL TEKNOLOJİLERİ AŞ",
+     "tarih": "2024-09-19",
+     "gun": 26,
+     "excelGun": 26
+    },
+    {
+     "unvan": "SCOUTLİ TEKNOLOJİ VE YAZILIM AŞ",
+     "tarih": "2024-09-12",
+     "gun": 19,
+     "excelGun": 19
+    },
+    {
+     "unvan": "SECURİFY BİLİŞİM TEKNOLOJİLERİ VE GÜVENLİĞİ EĞİTİM DANIŞMANLIK SANAYİ VE TİCARET AŞ",
+     "tarih": "2024-09-05",
+     "gun": 12,
+     "excelGun": 12
+    },
+    {
+     "unvan": "SENSİBALL VR ARGE AŞ",
+     "tarih": "2024-09-18",
+     "gun": 25,
+     "excelGun": 25
+    },
+    {
+     "unvan": "SHİFTPLANNER TEKNOLOJİ AŞ",
+     "tarih": "2024-09-10",
+     "gun": 17,
+     "excelGun": 17
+    },
+    {
+     "unvan": "SHOPALM ÖDEME ÇÖZÜMLERİ VE TEKNOLOJİLERİ AŞ",
+     "tarih": "2024-09-11",
+     "gun": 18,
+     "excelGun": 18
+    },
+    {
+     "unvan": "SHOPİVERSE TEKNOLOJİ VE YAZILIM AŞ",
+     "tarih": "2024-09-10",
+     "gun": 17,
+     "excelGun": 17
+    },
+    {
+     "unvan": "SİZEANDME YAZILIM AŞ",
+     "tarih": "2024-09-19",
+     "gun": 26,
+     "excelGun": 26
+    },
+    {
+     "unvan": "SPARGA1 TARIM AŞ",
+     "tarih": "2024-09-04",
+     "gun": 11,
+     "excelGun": 11
+    },
+    {
+     "unvan": "SPARGA2 TARIM AŞ",
+     "tarih": "2024-09-04",
+     "gun": 11,
+     "excelGun": 11
+    },
+    {
+     "unvan": "SPECHTLAB YAZILIM İMALAT İTHALAT İHRACAT SANAYİ VE TİCARET AŞ",
+     "tarih": "2024-09-11",
+     "gun": 18,
+     "excelGun": 18
+    },
+    {
+     "unvan": "STETO SAĞLIK BİLİŞİM TURİZM SANAYİ VE TİCARET AŞ",
+     "tarih": "2024-09-06",
+     "gun": 13,
+     "excelGun": 13
+    },
+    {
+     "unvan": "TECH2BIOLOGY ENDÜSTRİYEL OTOMASYON TEKNOLOJİLERİ AŞ",
+     "tarih": "2024-09-13",
+     "gun": 20,
+     "excelGun": 20
+    },
+    {
+     "unvan": "TECHNOMEDİCARE MEDİKAL TİCARET AŞ",
+     "tarih": "2024-09-05",
+     "gun": 12,
+     "excelGun": 12
+    },
+    {
+     "unvan": "TEMİZLİKYOLDA İNTERNET HİZMETLERİ AŞ",
+     "tarih": "2024-09-12",
+     "gun": 19,
+     "excelGun": 19
+    },
+    {
+     "unvan": "TESTSUİTE BİLİŞİM VE DANIŞMANLIK AŞ",
+     "tarih": "2024-09-13",
+     "gun": 20,
+     "excelGun": 20
+    },
+    {
+     "unvan": "TRİBER TEKNOLOJİ AŞ",
+     "tarih": "2024-09-19",
+     "gun": 26,
+     "excelGun": 26
+    },
+    {
+     "unvan": "TRİWİ TEKNOLOJİ YAZILIM VE TİCARET AŞ",
+     "tarih": "2024-09-12",
+     "gun": 19,
+     "excelGun": 19
+    },
+    {
+     "unvan": "YÖRESİ ELEKTRONİK TİCARET PERAKENDE GIDA LOJİSTİK AŞ",
+     "tarih": "2024-09-12",
+     "gun": 19,
+     "excelGun": 19
+    },
+    {
+     "unvan": "ZENOTECH YAZILIM VE EĞİTİM TEKNOLOJİLERİ TİCARET AŞ",
+     "tarih": "2024-09-05",
+     "gun": 12,
+     "excelGun": 12
+    }
+   ]
+  }
+ ]
+}

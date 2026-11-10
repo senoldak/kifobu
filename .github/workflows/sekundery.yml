@@ -1,0 +1,115 @@
+# Sekundery: /sekundery/ sayfalarının verisini günceller.
+# Burada cron yok: mecmua-saat Worker'ı (tur 'sekundery') bekleme=true ile başlatır; iş rastgele bir süre bekler.
+# Toplayıcı kod private mecmua deposundadır (sekundery/); MECMUA_OKUMA ile salt-okur çekilir ve bu depoya yalnız nötr
+# veri yazar (src/data/sekundery/). Kaynağın adı ve adresi bu depoda ve loglarda yer almaz.
+# Hata alınca yeniden denenmez, o tur atlanır.
+# ILAN_OTURUM (Secret): sahibinin oturum anahtarı; süresi dolarsa iş kırmızı olur, sahip yeniler.
+# EVDS_ANAHTARI (Secret): TCMB EVDS anahtarı (finfolis'teki ile aynı); İTO enflasyonu, kurlar ve altın için.
+# Site ayrıca yayınlanmaz: veri, sitenin bir sonraki olağan derlemesinde görünür.
+name: Sekundery (veri)
+
+on:
+  workflow_dispatch:
+    inputs:
+      bekleme:
+        description: 'Rastgele bekleme yapılsın mı'
+        type: boolean
+        default: false
+      kart:
+        description: "Paylaşım kartları saatten bağımsız Telegram'a gönderilsin mi"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sekundery
+  cancel-in-progress: false
+
+jobs:
+  tara:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Rastgele bekle
+        if: inputs.bekleme
+        run: sleep $(( RANDOM % 1500 ))
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .node-version
+
+      - name: Toplayıcıyı getir
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: senoldak/mecmua
+          ssh-key: '${{ secrets.MECMUA_OKUMA }}'
+          path: .mecmua
+          sparse-checkout: |
+            sekundery
+          persist-credentials: false
+
+      - name: Veriyi topla
+        id: tara
+        env:
+          ILAN_OTURUM: ${{ secrets.ILAN_OTURUM }}
+        run: node .mecmua/sekundery/topla.mjs
+
+      # İTO aylık enflasyonu, kurlar ve altın (TCMB EVDS). Toplama başarısız olsa da çalışır; kendi hatası toplamayı bozmaz.
+      - name: EVDS (İTO, USD/TRY, EUR/TRY, altın)
+        id: evds
+        if: always()
+        continue-on-error: true
+        env:
+          EVDS_ANAHTARI: ${{ secrets.EVDS_ANAHTARI }}
+        run: node scripts/sekundery/evds.mjs
+
+      - name: Commit
+        if: always() && (steps.tara.outputs.yazildi == '1' || steps.evds.outputs.evdsDosyalar != '')
+        env:
+          DOSYALAR: ${{ steps.tara.outputs.dosyalar }} ${{ steps.evds.outputs.evdsDosyalar }}
+        run: |
+          git config user.name "kifobu-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # yalnız betiğin yazdığı (var olan) dosyalar eklenir; .mecmua/ gitignore'dadır
+          for f in $DOSYALAR; do case "$f" in src/data/sekundery/*) [ -f "$f" ] && git add "$f";; esac; done
+          git diff --cached --quiet && exit 0
+          git commit -m "Bot: sekundery verisi [skip ci]"
+          for i in 1 2 3 4 5; do
+            git pull --rebase -X theirs && git push && exit 0
+            git rebase --abort 2>/dev/null || true
+            sleep $((i * 5))
+          done
+          exit 1
+
+      # Paylaşım kartları (/sekundery/kartlar/ ile aynı çizim): günde bir kez, akşam turunda (İstanbul 18–19) ya da elle.
+      # TELEGRAM_BOT_TOKEN: kifobu botu. SEKUNDERY_TG_HEDEF (Secret): hedef sohbet; yoksa adım bir şey göndermeden geçer.
+      # Toplama başarısızsa çalışmaz (eski kart gitmesin); betik ayrıca son verinin bugüne ait olduğunu denetler.
+      - name: Kart saati mi
+        id: kartsaati
+        if: always() && steps.tara.outcome == 'success'
+        run: |
+          s=$(TZ=Europe/Istanbul date +%H)
+          if [ "${{ inputs.kart }}" = "true" ] || [ "$s" = "18" ] || [ "$s" = "19" ]; then echo "gonder=1" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Bağımlılıklar (kartlar için)
+        if: always() && steps.kartsaati.outputs.gonder == '1'
+        run: npm ci || npm install
+
+      - name: Acil durdurma kontrolü
+        id: dur
+        if: always() && steps.kartsaati.outputs.gonder == '1'
+        env:
+          MOTOR_URL: ${{ vars.MOTOR_URL }}
+          MOTOR_ANAHTARI: ${{ secrets.MOTOR_ANAHTARI }}
+        run: node scripts/bot/durdu.mjs
+
+      - name: Kartları Telegram'a gönder
+        if: always() && steps.kartsaati.outputs.gonder == '1' && steps.dur.outputs.durdu != '1'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          SEKUNDERY_TG_HEDEF: ${{ secrets.SEKUNDERY_TG_HEDEF }}
+        run: node scripts/sekundery/kart-gonder.mjs

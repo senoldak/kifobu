@@ -1,0 +1,10286 @@
+{
+"tarih": "2026-11-10",
+"kaynak": "excel-yapistirma",
+"ilanlar": [
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "satis",
+"adet": 500.0,
+"birimFiyat": 3.99,
+"tutar": 1995.0
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 16600.0,
+"birimFiyat": 3.59,
+"tutar": 59594.0
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "satis",
+"adet": 3500.0,
+"birimFiyat": 4.0,
+"tutar": 14000.0
+},
+{
+"kod": "SECUR",
+"grup": "B",
+"tur": "alis",
+"adet": 5000.0,
+"birimFiyat": 26.0,
+"tutar": 130000.0
+},
+{
+"kod": "ONIMA",
+"grup": "B",
+"tur": "satis",
+"adet": 756.343,
+"birimFiyat": 9.0,
+"tutar": 6807.09
+},
+{
+"kod": "ANCYR",
+"grup": "B",
+"tur": "alis",
+"adet": 5000.0,
+"birimFiyat": 2.1,
+"tutar": 10500.0
+},
+{
+"kod": "RTNOW",
+"grup": "B",
+"tur": "alis",
+"adet": 2000.0,
+"birimFiyat": 2.1,
+"tutar": 4200.0
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "alis",
+"adet": 20000.0,
+"birimFiyat": 2.86,
+"tutar": 57200.0
+},
+{
+"kod": "RTNOW",
+"grup": "B",
+"tur": "alis",
+"adet": 10000.0,
+"birimFiyat": 2.0,
+"tutar": 20000.0
+},
+{
+"kod": "SCOLI",
+"grup": "D",
+"tur": "alis",
+"adet": 10000.0,
+"birimFiyat": 1.5,
+"tutar": 15000.0
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "satis",
+"adet": 3000.0,
+"birimFiyat": 4.06,
+"tutar": 12180.0
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "alis",
+"adet": 10000.0,
+"birimFiyat": 2.85,
+"tutar": 28500.0
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "alis",
+"adet": 10000.0,
+"birimFiyat": 2.84,
+"tutar": 28400.0
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "alis",
+"adet": 5000.0,
+"birimFiyat": 3.01,
+"tutar": 15050.0
+},
+{
+"kod": "ESGEL",
+"grup": "B",
+"tur": "satis",
+"adet": 508.204,
+"birimFiyat": 4.94,
+"tutar": 2510.53
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "alis",
+"adet": 15000.0,
+"birimFiyat": 3.06,
+"tutar": 45900.0
+},
+{
+"kod": "TYORE",
+"grup": "C",
+"tur": "satis",
+"adet": 706.657,
+"birimFiyat": 3.8,
+"tutar": 2685.3
+},
+{
+"kod": "ONIMA",
+"grup": "B",
+"tur": "satis",
+"adet": 165.231,
+"birimFiyat": 9.0,
+"tutar": 1487.08
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "satis",
+"adet": 82.805,
+"birimFiyat": 10.0,
+"tutar": 828.05
+},
+{
+"kod": "ATECH",
+"grup": "B",
+"tur": "satis",
+"adet": 1000.0,
+"birimFiyat": 5.55,
+"tutar": 5550.0
+},
+{
+"kod": "EVBEE",
+"grup": "B",
+"tur": "satis",
+"adet": 1500.0,
+"birimFiyat": 5.55,
+"tutar": 8325.0
+},
+{
+"kod": "KABIP",
+"grup": "C",
+"tur": "satis",
+"adet": 875.855,
+"birimFiyat": 3.55,
+"tutar": 3109.29
+},
+{
+"kod": "PROMO",
+"grup": "D",
+"tur": "satis",
+"adet": 1500.0,
+"birimFiyat": 2.55,
+"tutar": 3825.0
+},
+{
+"kod": "RTNOW",
+"grup": "B",
+"tur": "satis",
+"adet": 900.0,
+"birimFiyat": 6.0,
+"tutar": 5400.0
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 7000.0,
+"birimFiyat": 6.0,
+"tutar": 42000.0
+},
+{
+"kod": "EVBEE",
+"grup": "B",
+"tur": "satis",
+"adet": 2000.0,
+"birimFiyat": 7.7,
+"tutar": 15400.0
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 150000.0,
+"birimFiyat": 3.5,
+"tutar": 525000.0
+},
+{
+"kod": "OLEAG",
+"grup": "C",
+"tur": "satis",
+"adet": 1984.273,
+"birimFiyat": 18.0,
+"tutar": 35716.91
+},
+{
+"kod": "SPRG1",
+"grup": "B",
+"tur": "alis",
+"adet": 50000.0,
+"birimFiyat": 2.0,
+"tutar": 100000.0
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 500.0,
+"birimFiyat": 4.5,
+"tutar": 2250.0
+},
+{
+"kod": "NTRGA",
+"grup": "B",
+"tur": "alis",
+"adet": 2500.0,
+"birimFiyat": 9.31,
+"tutar": 23275.0
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "alis",
+"adet": 500.0,
+"birimFiyat": 3.4,
+"tutar": 1700.0
+},
+{
+"kod": "CLASS",
+"grup": "B",
+"tur": "satis",
+"adet": 570.0,
+"birimFiyat": 11.9,
+"tutar": 6783.0
+},
+{
+"kod": "OLEAG",
+"grup": "C",
+"tur": "alis",
+"adet": 500.0,
+"birimFiyat": 10.25,
+"tutar": 5125.0
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "alis",
+"adet": 5000.0,
+"birimFiyat": 3.05,
+"tutar": 15250.0
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "alis",
+"adet": 75000.0,
+"birimFiyat": 2.75,
+"tutar": 206250.0
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "alis",
+"adet": 12222.0,
+"birimFiyat": 1.0,
+"tutar": 12222.0
+},
+{
+"kod": "OLEAG",
+"grup": "C",
+"tur": "alis",
+"adet": 50.0,
+"birimFiyat": 12.0,
+"tutar": 600.0
+},
+{
+"kod": "NEVAS",
+"grup": "B",
+"tur": "satis",
+"adet": 1000.0,
+"birimFiyat": 11.0,
+"tutar": 11000.0
+},
+{
+"kod": "TCHNO",
+"grup": "B",
+"tur": "satis",
+"adet": 19000.63,
+"birimFiyat": 9.0,
+"tutar": 171005.67
+},
+{
+"kod": "PCARD",
+"grup": "B",
+"tur": "alis",
+"adet": 5000.0,
+"birimFiyat": 1.7,
+"tutar": 8500.0
+},
+{
+"kod": "NEVAS",
+"grup": "B",
+"tur": "satis",
+"adet": 120.037,
+"birimFiyat": 12.0,
+"tutar": 1440.44
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "alis",
+"adet": 200.0,
+"birimFiyat": 3.01,
+"tutar": 602.0
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 497.366,
+"birimFiyat": 11.0,
+"tutar": 5471.03
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 150.0,
+"birimFiyat": 5.0,
+"tutar": 750.0
+},
+{
+"kod": "TMZYL",
+"grup": "C",
+"tur": "satis",
+"adet": 271.311,
+"birimFiyat": 20.3,
+"tutar": 5507.61
+},
+{
+"kod": "PACHA",
+"grup": "D",
+"tur": "satis",
+"adet": 120.0,
+"birimFiyat": 7.5,
+"tutar": 900.0
+},
+{
+"kod": "JETCO",
+"grup": "B",
+"tur": "satis",
+"adet": 300.0,
+"birimFiyat": 8.99,
+"tutar": 2697.0
+},
+{
+"kod": "FERNV",
+"grup": "B",
+"tur": "satis",
+"adet": 34.013,
+"birimFiyat": 40.0,
+"tutar": 1360.52
+},
+{
+"kod": "OLEAG",
+"grup": "C",
+"tur": "satis",
+"adet": 100.0,
+"birimFiyat": 99.0,
+"tutar": 9900.0
+},
+{
+"kod": "SECUR",
+"grup": "B",
+"tur": "satis",
+"adet": 200.0,
+"birimFiyat": 51.0,
+"tutar": 10200.0
+},
+{
+"kod": "ATECH",
+"grup": "B",
+"tur": "satis",
+"adet": 100.0,
+"birimFiyat": 99.0,
+"tutar": 9900.0
+},
+{
+"kod": "NTRGA",
+"grup": "B",
+"tur": "alis",
+"adet": 50.0,
+"birimFiyat": 10.0,
+"tutar": 500.0
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "alis",
+"adet": 200.0,
+"birimFiyat": 2.0,
+"tutar": 400.0
+},
+{
+"kod": "KRT3D",
+"grup": "B",
+"tur": "alis",
+"adet": 400.0,
+"birimFiyat": 2.5,
+"tutar": 1000.0
+},
+{
+"kod": "BLCLL",
+"grup": "B",
+"tur": "alis",
+"adet": 175.0,
+"birimFiyat": 2.51,
+"tutar": 439.25
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 1105.5,
+"birimFiyat": 25.0,
+"tutar": 27637.5
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "alis",
+"adet": 500.0,
+"birimFiyat": 1.01,
+"tutar": 505.0
+},
+{
+"kod": "UNIQ2",
+"grup": "B",
+"tur": "satis",
+"adet": 174.139,
+"birimFiyat": 25.0,
+"tutar": 4353.48
+},
+{
+"kod": "SUITE",
+"grup": "B",
+"tur": "satis",
+"adet": 182.52,
+"birimFiyat": 25.0,
+"tutar": 4563.0
+},
+{
+"kod": "SIZEM",
+"grup": "B",
+"tur": "satis",
+"adet": 68.215,
+"birimFiyat": 25.0,
+"tutar": 1705.38
+},
+{
+"kod": "RTNOW",
+"grup": "B",
+"tur": "satis",
+"adet": 162.065,
+"birimFiyat": 25.0,
+"tutar": 4051.63
+},
+{
+"kod": "PROMO",
+"grup": "D",
+"tur": "satis",
+"adet": 282.814,
+"birimFiyat": 25.0,
+"tutar": 7070.35
+},
+{
+"kod": "PCARD",
+"grup": "B",
+"tur": "satis",
+"adet": 187.732,
+"birimFiyat": 25.0,
+"tutar": 4693.3
+},
+{
+"kod": "KRT3D",
+"grup": "B",
+"tur": "satis",
+"adet": 123.03,
+"birimFiyat": 34.0,
+"tutar": 4183.02
+},
+{
+"kod": "CMPTV",
+"grup": "B",
+"tur": "satis",
+"adet": 141.618,
+"birimFiyat": 15.0,
+"tutar": 2124.27
+},
+{
+"kod": "ATECH",
+"grup": "B",
+"tur": "satis",
+"adet": 167.053,
+"birimFiyat": 25.0,
+"tutar": 4176.33
+},
+{
+"kod": "ALPGN",
+"grup": "B",
+"tur": "satis",
+"adet": 25.876,
+"birimFiyat": 150.0,
+"tutar": 3881.4
+},
+{
+"kod": "KABIP",
+"grup": "C",
+"tur": "satis",
+"adet": 3218.0,
+"birimFiyat": 4.0,
+"tutar": 12872.0
+},
+{
+"kod": "TMZYL",
+"grup": "C",
+"tur": "alis",
+"adet": 400.0,
+"birimFiyat": 3.3,
+"tutar": 1320.0
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "alis",
+"adet": 100000.0,
+"birimFiyat": 0.98,
+"tutar": 98000.0
+},
+{
+"kod": "KABIP",
+"grup": "C",
+"tur": "alis",
+"adet": 20000.0,
+"birimFiyat": 1.5,
+"tutar": 30000.0
+},
+{
+"kod": "MKTEK",
+"grup": "B",
+"tur": "satis",
+"adet": 673.941,
+"birimFiyat": 10.0,
+"tutar": 6739.41
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "alis",
+"adet": 2500.0,
+"birimFiyat": 3.46,
+"tutar": 8650.0
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "alis",
+"adet": 2500.0,
+"birimFiyat": 3.46,
+"tutar": 8650.0
+},
+{
+"kod": "BLCLL",
+"grup": "B",
+"tur": "alis",
+"adet": 3000.0,
+"birimFiyat": 11.35,
+"tutar": 34050.0
+},
+{
+"kod": "TMZYL",
+"grup": "C",
+"tur": "satis",
+"adet": 15919.835,
+"birimFiyat": 18.0,
+"tutar": 286557.03
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 70000.0,
+"birimFiyat": 1.6,
+"tutar": 112000.0
+},
+{
+"kod": "ONIMA",
+"grup": "B",
+"tur": "satis",
+"adet": 895.974,
+"birimFiyat": 9.2,
+"tutar": 8242.96
+},
+{
+"kod": "VNDAP",
+"grup": "B",
+"tur": "satis",
+"adet": 67.4,
+"birimFiyat": 33.0,
+"tutar": 2224.2
+},
+{
+"kod": "ORTAK",
+"grup": "B",
+"tur": "satis",
+"adet": 2000.0,
+"birimFiyat": 5.0,
+"tutar": 10000.0
+},
+{
+"kod": "TYORE",
+"grup": "C",
+"tur": "satis",
+"adet": 1396.085,
+"birimFiyat": 3.9,
+"tutar": 5444.73
+},
+{
+"kod": "EVBEE",
+"grup": "B",
+"tur": "satis",
+"adet": 1000.0,
+"birimFiyat": 15.0,
+"tutar": 15000.0
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "satis",
+"adet": 2500.0,
+"birimFiyat": 10.0,
+"tutar": 25000.0
+},
+{
+"kod": "TUNGA",
+"grup": "B",
+"tur": "satis",
+"adet": 500.0,
+"birimFiyat": 50.0,
+"tutar": 25000.0
+},
+{
+"kod": "TUNGA",
+"grup": "A",
+"tur": "satis",
+"adet": 1000.0,
+"birimFiyat": 25.0,
+"tutar": 25000.0
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 35000.0,
+"birimFiyat": 4.75,
+"tutar": 166250.0
+},
+{
+"kod": "BIGET",
+"grup": "B",
+"tur": "alis",
+"adet": 4000.0,
+"birimFiyat": 0.2,
+"tutar": 800.0
+},
+{
+"kod": "PACHA",
+"grup": "D",
+"tur": "alis",
+"adet": 7000.0,
+"birimFiyat": 0.35,
+"tutar": 2450.0
+},
+{
+"kod": "BSCHL",
+"grup": "B",
+"tur": "alis",
+"adet": 3000.0,
+"birimFiyat": 0.3,
+"tutar": 900.0
+},
+{
+"kod": "DLVRY",
+"grup": "C",
+"tur": "alis",
+"adet": 3000.0,
+"birimFiyat": 0.3,
+"tutar": 900.0
+},
+{
+"kod": "NGAYT",
+"grup": "B",
+"tur": "alis",
+"adet": 5000.0,
+"birimFiyat": 0.5,
+"tutar": 2500.0
+},
+{
+"kod": "NTRGA",
+"grup": "B",
+"tur": "alis",
+"adet": 5000.0,
+"birimFiyat": 0.8,
+"tutar": 4000.0
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "alis",
+"adet": 10000.0,
+"birimFiyat": 0.1,
+"tutar": 1000.0
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "alis",
+"adet": 2000.0,
+"birimFiyat": 0.11,
+"tutar": 220.0
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 3000.0,
+"birimFiyat": 9.0,
+"tutar": 27000.0
+},
+{
+"kod": "AUTHT",
+"grup": "B",
+"tur": "satis",
+"adet": 300.0,
+"birimFiyat": 80.0,
+"tutar": 24000.0
+},
+{
+"kod": "KRT3D",
+"grup": "B",
+"tur": "satis",
+"adet": 1566.538,
+"birimFiyat": 27.0,
+"tutar": 42296.53
+},
+{
+"kod": "MKTEK",
+"grup": "B",
+"tur": "satis",
+"adet": 999.996,
+"birimFiyat": 33.0,
+"tutar": 32999.87
+},
+{
+"kod": "MNYOL",
+"grup": "B",
+"tur": "satis",
+"adet": 2764.403,
+"birimFiyat": 21.0,
+"tutar": 58052.46
+},
+{
+"kod": "NEVAS",
+"grup": "B",
+"tur": "satis",
+"adet": 2748.713,
+"birimFiyat": 50.0,
+"tutar": 137435.65
+},
+{
+"kod": "ORTAK",
+"grup": "B",
+"tur": "satis",
+"adet": 3666.743,
+"birimFiyat": 33.33,
+"tutar": 122212.54
+},
+{
+"kod": "PROMO",
+"grup": "D",
+"tur": "satis",
+"adet": 2029.75,
+"birimFiyat": 29.0,
+"tutar": 58862.75
+},
+{
+"kod": "RTNOW",
+"grup": "B",
+"tur": "satis",
+"adet": 1298.47,
+"birimFiyat": 55.0,
+"tutar": 71415.85
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "satis",
+"adet": 1543.37,
+"birimFiyat": 30.0,
+"tutar": 46301.1
+},
+{
+"kod": "SUITE",
+"grup": "B",
+"tur": "satis",
+"adet": 3878.2,
+"birimFiyat": 50.0,
+"tutar": 193910.0
+},
+{
+"kod": "TMZYL",
+"grup": "C",
+"tur": "alis",
+"adet": 5000.0,
+"birimFiyat": 0.11,
+"tutar": 550.0
+},
+{
+"kod": "TUNGA",
+"grup": "B",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 0.04,
+"tutar": 40.0
+},
+{
+"kod": "YPSFT",
+"grup": "B",
+"tur": "satis",
+"adet": 2000.0,
+"birimFiyat": 29.0,
+"tutar": 58000.0
+},
+{
+"kod": "TCHNO",
+"grup": "B",
+"tur": "satis",
+"adet": 350.0,
+"birimFiyat": 90.0,
+"tutar": 31500.0
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "satis",
+"adet": 135.0,
+"birimFiyat": 3.98,
+"tutar": 537.3
+},
+{
+"kod": "IONTK",
+"grup": "B",
+"tur": "satis",
+"adet": 93.176,
+"birimFiyat": 2.19,
+"tutar": 204.06
+},
+{
+"kod": "KABIP",
+"grup": "C",
+"tur": "satis",
+"adet": 100.0,
+"birimFiyat": 3.99,
+"tutar": 399.0
+},
+{
+"kod": "MELOA",
+"grup": "C",
+"tur": "satis",
+"adet": 250.274,
+"birimFiyat": 9.98,
+"tutar": 2497.73
+},
+{
+"kod": "NEVAS",
+"grup": "B",
+"tur": "satis",
+"adet": 200.0,
+"birimFiyat": 11.44,
+"tutar": 2288.0
+},
+{
+"kod": "NTDRY",
+"grup": "B",
+"tur": "satis",
+"adet": 485.719,
+"birimFiyat": 2.69,
+"tutar": 1306.58
+},
+{
+"kod": "PROMO",
+"grup": "D",
+"tur": "satis",
+"adet": 983.0,
+"birimFiyat": 2.89,
+"tutar": 2840.87
+},
+{
+"kod": "SIZEM",
+"grup": "B",
+"tur": "satis",
+"adet": 624.191,
+"birimFiyat": 3.49,
+"tutar": 2178.43
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "satis",
+"adet": 179.627,
+"birimFiyat": 7.48,
+"tutar": 1343.61
+},
+{
+"kod": "BIGET",
+"grup": "B",
+"tur": "alis",
+"adet": 500.0,
+"birimFiyat": 5.0,
+"tutar": 2500.0
+},
+{
+"kod": "BSCHL",
+"grup": "B",
+"tur": "alis",
+"adet": 100.0,
+"birimFiyat": 4.01,
+"tutar": 401.0
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "alis",
+"adet": 200.0,
+"birimFiyat": 2.0,
+"tutar": 400.0
+},
+{
+"kod": "KRT3D",
+"grup": "B",
+"tur": "alis",
+"adet": 200.0,
+"birimFiyat": 2.08,
+"tutar": 416.0
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 3.34,
+"tutar": 3340.0
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 3.21,
+"tutar": 3210.0
+},
+{
+"kod": "ORTAK",
+"grup": "B",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 0.7,
+"tutar": 700.0
+},
+{
+"kod": "PCARD",
+"grup": "B",
+"tur": "alis",
+"adet": 700.0,
+"birimFiyat": 1.66,
+"tutar": 1162.0
+},
+{
+"kod": "ESGEL",
+"grup": "B",
+"tur": "alis",
+"adet": 300.0,
+"birimFiyat": 3.31,
+"tutar": 993.0
+},
+{
+"kod": "PACHA",
+"grup": "B",
+"tur": "alis",
+"adet": 500.0,
+"birimFiyat": 3.03,
+"tutar": 1515.0
+},
+{
+"kod": "PROMO",
+"grup": "D",
+"tur": "alis",
+"adet": 50000.0,
+"birimFiyat": 1.0,
+"tutar": 50000.0
+},
+{
+"kod": "UNIQ2",
+"grup": "B",
+"tur": "alis",
+"adet": 200.0,
+"birimFiyat": 8.01,
+"tutar": 1602.0
+},
+{
+"kod": "CMPTV",
+"grup": "B",
+"tur": "alis",
+"adet": 1800.0,
+"birimFiyat": 0.57,
+"tutar": 1026.0
+},
+{
+"kod": "MNYOL",
+"grup": "B",
+"tur": "alis",
+"adet": 1200.0,
+"birimFiyat": 0.5,
+"tutar": 600.0
+},
+{
+"kod": "PACHA",
+"grup": "D",
+"tur": "alis",
+"adet": 500.0,
+"birimFiyat": 3.71,
+"tutar": 1855.0
+},
+{
+"kod": "NGAYT",
+"grup": "B",
+"tur": "alis",
+"adet": 657.0,
+"birimFiyat": 5.0,
+"tutar": 3285.0
+},
+{
+"kod": "CLASS",
+"grup": "B",
+"tur": "alis",
+"adet": 6000.0,
+"birimFiyat": 3.0,
+"tutar": 18000.0
+},
+{
+"kod": "TUNGA",
+"grup": "B",
+"tur": "satis",
+"adet": 61.979,
+"birimFiyat": 40.0,
+"tutar": 2479.16
+},
+{
+"kod": "KRT3D",
+"grup": "B",
+"tur": "alis",
+"adet": 20000.0,
+"birimFiyat": 2.07,
+"tutar": 41400.0
+},
+{
+"kod": "VNDAP",
+"grup": "B",
+"tur": "satis",
+"adet": 4493.321,
+"birimFiyat": 29.0,
+"tutar": 130306.31
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "satis",
+"adet": 165.607,
+"birimFiyat": 165.61,
+"tutar": 27426.18
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "satis",
+"adet": 1267.42,
+"birimFiyat": 1267.42,
+"tutar": 1606353.46
+},
+{
+"kod": "EVBEE",
+"grup": "B",
+"tur": "satis",
+"adet": 542.0,
+"birimFiyat": 50.0,
+"tutar": 27100.0
+},
+{
+"kod": "MELOA",
+"grup": "C",
+"tur": "satis",
+"adet": 1900.0,
+"birimFiyat": 14.0,
+"tutar": 26600.0
+},
+{
+"kod": "BLCLL",
+"grup": "B",
+"tur": "alis",
+"adet": 2000.0,
+"birimFiyat": 11.3,
+"tutar": 22600.0
+},
+{
+"kod": "SECUR",
+"grup": "B",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 39.5,
+"tutar": 39500.0
+},
+{
+"kod": "ALPGN",
+"grup": "B",
+"tur": "satis",
+"adet": 40.772,
+"birimFiyat": 70.0,
+"tutar": 2854.04
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "satis",
+"adet": 95.84,
+"birimFiyat": 10.0,
+"tutar": 958.4
+},
+{
+"kod": "MKTEK",
+"grup": "B",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 4.0,
+"tutar": 4000.0
+},
+{
+"kod": "NGAYT",
+"grup": "B",
+"tur": "alis",
+"adet": 300.0,
+"birimFiyat": 5.2,
+"tutar": 1560.0
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "satis",
+"adet": 100.0,
+"birimFiyat": 7.99,
+"tutar": 799.0
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 250.0,
+"birimFiyat": 1.52,
+"tutar": 380.0
+},
+{
+"kod": "SUITE",
+"grup": "B",
+"tur": "satis",
+"adet": 155.28,
+"birimFiyat": 2.5,
+"tutar": 388.2
+},
+{
+"kod": "PCARD",
+"grup": "B",
+"tur": "satis",
+"adet": 1000.0,
+"birimFiyat": 2.4,
+"tutar": 2400.0
+},
+{
+"kod": "AUTHT",
+"grup": "B",
+"tur": "alis",
+"adet": 10.0,
+"birimFiyat": 40.0,
+"tutar": 400.0
+},
+{
+"kod": "NTDRY",
+"grup": "B",
+"tur": "satis",
+"adet": 22.264,
+"birimFiyat": 50.0,
+"tutar": 1113.2
+},
+{
+"kod": "MNYOL",
+"grup": "B",
+"tur": "satis",
+"adet": 93.488,
+"birimFiyat": 22.0,
+"tutar": 2056.74
+},
+{
+"kod": "SECUR",
+"grup": "B",
+"tur": "satis",
+"adet": 200.0,
+"birimFiyat": 47.0,
+"tutar": 9400.0
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 5.0,
+"birimFiyat": 15.0,
+"tutar": 75.0
+},
+{
+"kod": "MEDIB",
+"grup": "B",
+"tur": "satis",
+"adet": 2.0,
+"birimFiyat": 15.0,
+"tutar": 30.0
+},
+{
+"kod": "PROMO",
+"grup": "D",
+"tur": "satis",
+"adet": 3535.17,
+"birimFiyat": 2.85,
+"tutar": 10075.23
+},
+{
+"kod": "ESGEL",
+"grup": "B",
+"tur": "satis",
+"adet": 1016.407,
+"birimFiyat": 4.95,
+"tutar": 5031.21
+},
+{
+"kod": "RTNOW",
+"grup": "B",
+"tur": "satis",
+"adet": 607.739,
+"birimFiyat": 6.4,
+"tutar": 3889.53
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "satis",
+"adet": 828.038,
+"birimFiyat": 7.0,
+"tutar": 5796.27
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "satis",
+"adet": 15181.817,
+"birimFiyat": 40.0,
+"tutar": 607272.68
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "alis",
+"adet": 200000.0,
+"birimFiyat": 2.58,
+"tutar": 516000.0
+},
+{
+"kod": "MELOA",
+"grup": "C",
+"tur": "satis",
+"adet": 3000.0,
+"birimFiyat": 7.5,
+"tutar": 22500.0
+},
+{
+"kod": "BLCLL",
+"grup": "B",
+"tur": "satis",
+"adet": 500.0,
+"birimFiyat": 199.0,
+"tutar": 99500.0
+},
+{
+"kod": "BLCLL",
+"grup": "B",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 11.02,
+"tutar": 11020.0
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "satis",
+"adet": 2732.647,
+"birimFiyat": 1.0,
+"tutar": 2732.65
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 15000.0,
+"birimFiyat": 3.4,
+"tutar": 51000.0
+},
+{
+"kod": "TUNGA",
+"grup": "B",
+"tur": "satis",
+"adet": 400.0,
+"birimFiyat": 45.0,
+"tutar": 18000.0
+},
+{
+"kod": "ALPGN",
+"grup": "B",
+"tur": "satis",
+"adet": 134.077,
+"birimFiyat": 170.0,
+"tutar": 22793.09
+},
+{
+"kod": "ATECH",
+"grup": "B",
+"tur": "satis",
+"adet": 334.102,
+"birimFiyat": 70.0,
+"tutar": 23387.14
+},
+{
+"kod": "AUTHT",
+"grup": "B",
+"tur": "satis",
+"adet": 111.529,
+"birimFiyat": 170.0,
+"tutar": 18959.93
+},
+{
+"kod": "CLASS",
+"grup": "B",
+"tur": "satis",
+"adet": 28.5,
+"birimFiyat": 100.0,
+"tutar": 2850.0
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "alis",
+"adet": 50000.0,
+"birimFiyat": 0.75,
+"tutar": 37500.0
+},
+{
+"kod": "TMZYL",
+"grup": "C",
+"tur": "satis",
+"adet": 440.878,
+"birimFiyat": 15.0,
+"tutar": 6613.17
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "satis",
+"adet": 2748.328,
+"birimFiyat": 20.0,
+"tutar": 54966.56
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 700.799,
+"birimFiyat": 24.0,
+"tutar": 16819.18
+},
+{
+"kod": "MEDIB",
+"grup": "B",
+"tur": "satis",
+"adet": 102.428,
+"birimFiyat": 100.0,
+"tutar": 10242.8
+},
+{
+"kod": "MELOA",
+"grup": "C",
+"tur": "satis",
+"adet": 257.493,
+"birimFiyat": 20.0,
+"tutar": 5149.86
+},
+{
+"kod": "MKTEK",
+"grup": "B",
+"tur": "satis",
+"adet": 84.241,
+"birimFiyat": 100.0,
+"tutar": 8424.1
+},
+{
+"kod": "SECUR",
+"grup": "B",
+"tur": "satis",
+"adet": 33.154,
+"birimFiyat": 120.0,
+"tutar": 3978.48
+},
+{
+"kod": "SHOPL",
+"grup": "B",
+"tur": "satis",
+"adet": 120.799,
+"birimFiyat": 90.0,
+"tutar": 10871.91
+},
+{
+"kod": "SUITE",
+"grup": "B",
+"tur": "satis",
+"adet": 21.6,
+"birimFiyat": 60.0,
+"tutar": 1296.0
+},
+{
+"kod": "TUNGA",
+"grup": "B",
+"tur": "satis",
+"adet": 30.989,
+"birimFiyat": 150.0,
+"tutar": 4648.35
+},
+{
+"kod": "SIZEM",
+"grup": "B",
+"tur": "satis",
+"adet": 341.071,
+"birimFiyat": 3.0,
+"tutar": 1023.21
+},
+{
+"kod": "SHIFT",
+"grup": "C",
+"tur": "satis",
+"adet": 694.686,
+"birimFiyat": 4.5,
+"tutar": 3126.09
+},
+{
+"kod": "IONTK",
+"grup": "B",
+"tur": "satis",
+"adet": 838.587,
+"birimFiyat": 2.0,
+"tutar": 1677.17
+},
+{
+"kod": "NTRGA",
+"grup": "B",
+"tur": "alis",
+"adet": 110.0,
+"birimFiyat": 9.5,
+"tutar": 1045.0
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 42504.31,
+"birimFiyat": 5.0,
+"tutar": 212521.55
+},
+{
+"kod": "BIGET",
+"grup": "B",
+"tur": "alis",
+"adet": 15000.0,
+"birimFiyat": 3.5,
+"tutar": 52500.0
+},
+{
+"kod": "TCHNO",
+"grup": "B",
+"tur": "alis",
+"adet": 20000.0,
+"birimFiyat": 3.0,
+"tutar": 60000.0
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "alis",
+"adet": 100000.0,
+"birimFiyat": 2.64,
+"tutar": 264000.0
+},
+{
+"kod": "ONIMA",
+"grup": "B",
+"tur": "alis",
+"adet": 35000.0,
+"birimFiyat": 2.0,
+"tutar": 70000.0
+},
+{
+"kod": "FERNV",
+"grup": "B",
+"tur": "alis",
+"adet": 5000.0,
+"birimFiyat": 5.0,
+"tutar": 25000.0
+},
+{
+"kod": "AUTHT",
+"grup": "B",
+"tur": "satis",
+"adet": 1508.986,
+"birimFiyat": 75.0,
+"tutar": 113173.95
+},
+{
+"kod": "TMZYL",
+"grup": "C",
+"tur": "satis",
+"adet": 271.0,
+"birimFiyat": 1250.0,
+"tutar": 338750.0
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "alis",
+"adet": 50000.0,
+"birimFiyat": 0.31,
+"tutar": 15500.0
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "satis",
+"adet": 775.918,
+"birimFiyat": 3.99,
+"tutar": 3095.91
+},
+{
+"kod": "ORTAK",
+"grup": "B",
+"tur": "alis",
+"adet": 25000.0,
+"birimFiyat": 0.55,
+"tutar": 13750.0
+},
+{
+"kod": "PACHA",
+"grup": "B",
+"tur": "satis",
+"adet": 18.914,
+"birimFiyat": 18.3,
+"tutar": 346.13
+},
+{
+"kod": "PACHA",
+"grup": "D",
+"tur": "satis",
+"adet": 134.832,
+"birimFiyat": 18.3,
+"tutar": 2467.43
+},
+{
+"kod": "SUITE",
+"grup": "B",
+"tur": "satis",
+"adet": 50.0,
+"birimFiyat": 4.2,
+"tutar": 210.0
+},
+{
+"kod": "PACHA",
+"grup": "D",
+"tur": "alis",
+"adet": 100.0,
+"birimFiyat": 3.7,
+"tutar": 370.0
+},
+{
+"kod": "SCOLI",
+"grup": "D",
+"tur": "alis",
+"adet": 200.0,
+"birimFiyat": 1.2,
+"tutar": 240.0
+},
+{
+"kod": "BIGET",
+"grup": "B",
+"tur": "satis",
+"adet": 448.896,
+"birimFiyat": 21.5,
+"tutar": 9651.26
+},
+{
+"kod": "NTRGA",
+"grup": "B",
+"tur": "satis",
+"adet": 100.0,
+"birimFiyat": 14.25,
+"tutar": 1425.0
+},
+{
+"kod": "PACHA",
+"grup": "D",
+"tur": "alis",
+"adet": 100.0,
+"birimFiyat": 3.35,
+"tutar": 335.0
+},
+{
+"kod": "UNIQ2",
+"grup": "B",
+"tur": "satis",
+"adet": 50.0,
+"birimFiyat": 25.0,
+"tutar": 1250.0
+},
+{
+"kod": "SUITE",
+"grup": "B",
+"tur": "satis",
+"adet": 432.0,
+"birimFiyat": 20.0,
+"tutar": 8640.0
+},
+{
+"kod": "SECUR",
+"grup": "B",
+"tur": "alis",
+"adet": 50.0,
+"birimFiyat": 26.0,
+"tutar": 1300.0
+},
+{
+"kod": "SPRG1",
+"grup": "B",
+"tur": "satis",
+"adet": 290.0,
+"birimFiyat": 100.0,
+"tutar": 29000.0
+},
+{
+"kod": "NTDRY",
+"grup": "B",
+"tur": "satis",
+"adet": 227.0,
+"birimFiyat": 115.0,
+"tutar": 26105.0
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "alis",
+"adet": 200.0,
+"birimFiyat": 3.15,
+"tutar": 630.0
+},
+{
+"kod": "SIZEM",
+"grup": "B",
+"tur": "satis",
+"adet": 100.0,
+"birimFiyat": 9.0,
+"tutar": 900.0
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "alis",
+"adet": 10000.0,
+"birimFiyat": 2.0,
+"tutar": 20000.0
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "satis",
+"adet": 273.0,
+"birimFiyat": 5.0,
+"tutar": 1365.0
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "satis",
+"adet": 383.216,
+"birimFiyat": 11.15,
+"tutar": 4272.86
+},
+{
+"kod": "BSCHL",
+"grup": "B",
+"tur": "satis",
+"adet": 169.0,
+"birimFiyat": 9.99,
+"tutar": 1688.31
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 949.689,
+"birimFiyat": 2.1,
+"tutar": 1994.35
+},
+{
+"kod": "NGAYT",
+"grup": "B",
+"tur": "satis",
+"adet": 14000.0,
+"birimFiyat": 7.15,
+"tutar": 100100.0
+},
+{
+"kod": "ALPGN",
+"grup": "B",
+"tur": "satis",
+"adet": 200.0,
+"birimFiyat": 49.0,
+"tutar": 9800.0
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "satis",
+"adet": 161.264,
+"birimFiyat": 19.0,
+"tutar": 3064.02
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 2500.0,
+"birimFiyat": 4.0,
+"tutar": 10000.0
+},
+{
+"kod": "MKTEK",
+"grup": "B",
+"tur": "alis",
+"adet": 2000.0,
+"birimFiyat": 1.5,
+"tutar": 3000.0
+},
+{
+"kod": "PROMO",
+"grup": "D",
+"tur": "alis",
+"adet": 800.0,
+"birimFiyat": 1.25,
+"tutar": 1000.0
+},
+{
+"kod": "PCARD",
+"grup": "B",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 1.65,
+"tutar": 1650.0
+},
+{
+"kod": "RTNOW",
+"grup": "B",
+"tur": "alis",
+"adet": 200.0,
+"birimFiyat": 3.5,
+"tutar": 700.0
+},
+{
+"kod": "TCHNO",
+"grup": "B",
+"tur": "satis",
+"adet": 500.0,
+"birimFiyat": 10.0,
+"tutar": 5000.0
+},
+{
+"kod": "NTRGA",
+"grup": "B",
+"tur": "satis",
+"adet": 744.624,
+"birimFiyat": 10.08,
+"tutar": 7505.81
+},
+{
+"kod": "EVBEE",
+"grup": "B",
+"tur": "satis",
+"adet": 1463.0,
+"birimFiyat": 5.9,
+"tutar": 8631.7
+},
+{
+"kod": "PCARD",
+"grup": "B",
+"tur": "satis",
+"adet": 521.475,
+"birimFiyat": 5.0,
+"tutar": 2607.38
+},
+{
+"kod": "PACHA",
+"grup": "D",
+"tur": "satis",
+"adet": 544.348,
+"birimFiyat": 20.0,
+"tutar": 10886.96
+},
+{
+"kod": "MNYOL",
+"grup": "B",
+"tur": "satis",
+"adet": 934.884,
+"birimFiyat": 5.0,
+"tutar": 4674.42
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "satis",
+"adet": 171.071,
+"birimFiyat": 15.0,
+"tutar": 2566.07
+},
+{
+"kod": "DLVRY",
+"grup": "C",
+"tur": "satis",
+"adet": 87.644,
+"birimFiyat": 10.0,
+"tutar": 876.44
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 1714.02,
+"birimFiyat": 15.0,
+"tutar": 25710.3
+},
+{
+"kod": "ORTAK",
+"grup": "B",
+"tur": "satis",
+"adet": 1985.702,
+"birimFiyat": 5.0,
+"tutar": 9928.51
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "satis",
+"adet": 2534.84,
+"birimFiyat": 10.0,
+"tutar": 25348.4
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "satis",
+"adet": 21982.26,
+"birimFiyat": 4.8,
+"tutar": 105514.85
+},
+{
+"kod": "NTDRY",
+"grup": "B",
+"tur": "alis",
+"adet": 15000.0,
+"birimFiyat": 0.55,
+"tutar": 8250.0
+},
+{
+"kod": "SCOLI",
+"grup": "D",
+"tur": "satis",
+"adet": 57.753,
+"birimFiyat": 1111.0,
+"tutar": 64163.58
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "satis",
+"adet": 41.403,
+"birimFiyat": 1234.0,
+"tutar": 51091.3
+},
+{
+"kod": "TMZYL",
+"grup": "C",
+"tur": "satis",
+"adet": 73.477,
+"birimFiyat": 1234.0,
+"tutar": 90670.62
+},
+{
+"kod": "UNIQ2",
+"grup": "B",
+"tur": "satis",
+"adet": 87.031,
+"birimFiyat": 1111.0,
+"tutar": 96691.44
+},
+{
+"kod": "PCARD",
+"grup": "B",
+"tur": "satis",
+"adet": 52.149,
+"birimFiyat": 1111.0,
+"tutar": 57937.54
+},
+{
+"kod": "PACHA",
+"grup": "B",
+"tur": "satis",
+"adet": 18.912,
+"birimFiyat": 11111.0,
+"tutar": 210131.23
+},
+{
+"kod": "ORTAK",
+"grup": "B",
+"tur": "satis",
+"adet": 229.182,
+"birimFiyat": 11111.0,
+"tutar": 2546441.2
+},
+{
+"kod": "ONIMA",
+"grup": "B",
+"tur": "satis",
+"adet": 69.816,
+"birimFiyat": 1111.0,
+"tutar": 77565.58
+},
+{
+"kod": "NTDRY",
+"grup": "B",
+"tur": "satis",
+"adet": 22.264,
+"birimFiyat": 1111.0,
+"tutar": 24735.3
+},
+{
+"kod": "NEVAS",
+"grup": "B",
+"tur": "satis",
+"adet": 80.025,
+"birimFiyat": 1111.0,
+"tutar": 88907.78
+},
+{
+"kod": "MNYOL",
+"grup": "B",
+"tur": "satis",
+"adet": 46.744,
+"birimFiyat": 2222.0,
+"tutar": 103865.17
+},
+{
+"kod": "KRT3D",
+"grup": "B",
+"tur": "satis",
+"adet": 34.175,
+"birimFiyat": 6532.0,
+"tutar": 223231.1
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 175.715,
+"birimFiyat": 3333.0,
+"tutar": 585658.1
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "satis",
+"adet": 232.361,
+"birimFiyat": 1234.0,
+"tutar": 286733.47
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 108.515,
+"birimFiyat": 1111.0,
+"tutar": 120560.17
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "satis",
+"adet": 422.011,
+"birimFiyat": 4.07,
+"tutar": 1717.58
+},
+{
+"kod": "MKTEK",
+"grup": "B",
+"tur": "satis",
+"adet": 4884.57,
+"birimFiyat": 7.8,
+"tutar": 38099.65
+},
+{
+"kod": "CMPTV",
+"grup": "B",
+"tur": "satis",
+"adet": 167.976,
+"birimFiyat": 2.99,
+"tutar": 502.25
+},
+{
+"kod": "OLEAG",
+"grup": "C",
+"tur": "alis",
+"adet": 200.0,
+"birimFiyat": 10.2,
+"tutar": 2040.0
+},
+{
+"kod": "UNIQ2",
+"grup": "B",
+"tur": "alis",
+"adet": 25.937,
+"birimFiyat": 9.0,
+"tutar": 233.43
+},
+{
+"kod": "OLEAG",
+"grup": "C",
+"tur": "satis",
+"adet": 4500.0,
+"birimFiyat": 36.0,
+"tutar": 162000.0
+},
+{
+"kod": "AUTHT",
+"grup": "B",
+"tur": "satis",
+"adet": 200.0,
+"birimFiyat": 50.0,
+"tutar": 10000.0
+},
+{
+"kod": "VNDAP",
+"grup": "B",
+"tur": "alis",
+"adet": 100.0,
+"birimFiyat": 22.5,
+"tutar": 2250.0
+},
+{
+"kod": "SCOLI",
+"grup": "D",
+"tur": "satis",
+"adet": 231.0,
+"birimFiyat": 2.17,
+"tutar": 501.27
+},
+{
+"kod": "ORTAK",
+"grup": "B",
+"tur": "satis",
+"adet": 4000.0,
+"birimFiyat": 21.0,
+"tutar": 84000.0
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "satis",
+"adet": 3189.805,
+"birimFiyat": 25.0,
+"tutar": 79745.13
+},
+{
+"kod": "SECUR",
+"grup": "B",
+"tur": "satis",
+"adet": 300.0,
+"birimFiyat": 53.0,
+"tutar": 15900.0
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 1600.0,
+"birimFiyat": 20.0,
+"tutar": 32000.0
+},
+{
+"kod": "SECUR",
+"grup": "B",
+"tur": "satis",
+"adet": 100.0,
+"birimFiyat": 51.7,
+"tutar": 5170.0
+},
+{
+"kod": "YPSFT",
+"grup": "B",
+"tur": "satis",
+"adet": 114.934,
+"birimFiyat": 20.0,
+"tutar": 2298.68
+},
+{
+"kod": "MNYOL",
+"grup": "B",
+"tur": "satis",
+"adet": 186.977,
+"birimFiyat": 20.0,
+"tutar": 3739.54
+},
+{
+"kod": "SCOLI",
+"grup": "D",
+"tur": "satis",
+"adet": 346.511,
+"birimFiyat": 20.0,
+"tutar": 6930.22
+},
+{
+"kod": "MELOA",
+"grup": "C",
+"tur": "satis",
+"adet": 411.988,
+"birimFiyat": 20.0,
+"tutar": 8239.76
+},
+{
+"kod": "CLASS",
+"grup": "B",
+"tur": "satis",
+"adet": 199.9,
+"birimFiyat": 12.0,
+"tutar": 2398.8
+},
+{
+"kod": "ALPGN",
+"grup": "B",
+"tur": "alis",
+"adet": 200.0,
+"birimFiyat": 27.5,
+"tutar": 5500.0
+},
+{
+"kod": "PROMO",
+"grup": "D",
+"tur": "alis",
+"adet": 10000.0,
+"birimFiyat": 1.0,
+"tutar": 10000.0
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 186.449,
+"birimFiyat": 500.0,
+"tutar": 93224.5
+},
+{
+"kod": "ESGEL",
+"grup": "B",
+"tur": "satis",
+"adet": 661.969,
+"birimFiyat": 81.0,
+"tutar": 53619.49
+},
+{
+"kod": "SPRG1",
+"grup": "B",
+"tur": "satis",
+"adet": 8223.935,
+"birimFiyat": 12.5,
+"tutar": 102799.19
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "satis",
+"adet": 300.936,
+"birimFiyat": 28.0,
+"tutar": 8426.21
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "satis",
+"adet": 3743.713,
+"birimFiyat": 14.0,
+"tutar": 52411.98
+},
+{
+"kod": "MELOA",
+"grup": "C",
+"tur": "alis",
+"adet": 10000.0,
+"birimFiyat": 2.01,
+"tutar": 20100.0
+},
+{
+"kod": "ALPGN",
+"grup": "B",
+"tur": "satis",
+"adet": 243.539,
+"birimFiyat": 50.0,
+"tutar": 12176.95
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "alis",
+"adet": 3000.0,
+"birimFiyat": 2.6,
+"tutar": 7800.0
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 53260.67,
+"birimFiyat": 20.0,
+"tutar": 1065213.4
+},
+{
+"kod": "BLCLL",
+"grup": "B",
+"tur": "satis",
+"adet": 3601.625,
+"birimFiyat": 20.0,
+"tutar": 72032.5
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 41688.88,
+"birimFiyat": 5.0,
+"tutar": 208444.4
+},
+{
+"kod": "PROMO",
+"grup": "B",
+"tur": "satis",
+"adet": 50.37,
+"birimFiyat": 85.0,
+"tutar": 4281.45
+},
+{
+"kod": "BLCLL",
+"grup": "B",
+"tur": "alis",
+"adet": 150.0,
+"birimFiyat": 9.8,
+"tutar": 1470.0
+},
+{
+"kod": "PROMO",
+"grup": "D",
+"tur": "satis",
+"adet": 294.642,
+"birimFiyat": 2.9,
+"tutar": 854.46
+},
+{
+"kod": "SHOPL",
+"grup": "B",
+"tur": "satis",
+"adet": 57.523,
+"birimFiyat": 14.0,
+"tutar": 805.32
+},
+{
+"kod": "PROMO",
+"grup": "D",
+"tur": "satis",
+"adet": 215.147,
+"birimFiyat": 2.95,
+"tutar": 634.68
+},
+{
+"kod": "YPSFT",
+"grup": "B",
+"tur": "satis",
+"adet": 246.292,
+"birimFiyat": 3.95,
+"tutar": 972.85
+},
+{
+"kod": "KABIP",
+"grup": "C",
+"tur": "satis",
+"adet": 145.976,
+"birimFiyat": 4.0,
+"tutar": 583.9
+},
+{
+"kod": "YPSFT",
+"grup": "B",
+"tur": "satis",
+"adet": 246.288,
+"birimFiyat": 4.1,
+"tutar": 1009.78
+},
+{
+"kod": "PROMO",
+"grup": "D",
+"tur": "satis",
+"adet": 942.713,
+"birimFiyat": 2.99,
+"tutar": 2818.71
+},
+{
+"kod": "ESGEL",
+"grup": "B",
+"tur": "satis",
+"adet": 3009.005,
+"birimFiyat": 5.0,
+"tutar": 15045.03
+},
+{
+"kod": "IONTK",
+"grup": "B",
+"tur": "satis",
+"adet": 209.857,
+"birimFiyat": 2.2,
+"tutar": 461.69
+},
+{
+"kod": "PROMO",
+"grup": "D",
+"tur": "satis",
+"adet": 634.069,
+"birimFiyat": 3.0,
+"tutar": 1902.21
+},
+{
+"kod": "ESGEL",
+"grup": "B",
+"tur": "satis",
+"adet": 203.281,
+"birimFiyat": 5.3,
+"tutar": 1077.39
+},
+{
+"kod": "SHOPL",
+"grup": "B",
+"tur": "alis",
+"adet": 184.954,
+"birimFiyat": 7.5,
+"tutar": 1387.16
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "satis",
+"adet": 25600.0,
+"birimFiyat": 0.99,
+"tutar": 25344.0
+},
+{
+"kod": "SECUR",
+"grup": "B",
+"tur": "satis",
+"adet": 100.0,
+"birimFiyat": 51.7,
+"tutar": 5170.0
+},
+{
+"kod": "NGAYT",
+"grup": "B",
+"tur": "satis",
+"adet": 500.0,
+"birimFiyat": 6.79,
+"tutar": 3395.0
+},
+{
+"kod": "BLCLL",
+"grup": "B",
+"tur": "satis",
+"adet": 348.823,
+"birimFiyat": 30.0,
+"tutar": 10464.69
+},
+{
+"kod": "KABIP",
+"grup": "C",
+"tur": "satis",
+"adet": 29.195,
+"birimFiyat": 4.0,
+"tutar": 116.78
+},
+{
+"kod": "PROMO",
+"grup": "D",
+"tur": "satis",
+"adet": 21.515,
+"birimFiyat": 3.0,
+"tutar": 64.55
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "alis",
+"adet": 5000.0,
+"birimFiyat": 2.61,
+"tutar": 13050.0
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "alis",
+"adet": 10000.0,
+"birimFiyat": 2.8,
+"tutar": 28000.0
+},
+{
+"kod": "UNIQ2",
+"grup": "B",
+"tur": "alis",
+"adet": 12.969,
+"birimFiyat": 8.0,
+"tutar": 103.75
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "alis",
+"adet": 10000.0,
+"birimFiyat": 3.0,
+"tutar": 30000.0
+},
+{
+"kod": "TCHNO",
+"grup": "B",
+"tur": "satis",
+"adet": 145.542,
+"birimFiyat": 38.0,
+"tutar": 5530.6
+},
+{
+"kod": "TMZYL",
+"grup": "C",
+"tur": "satis",
+"adet": 581.051,
+"birimFiyat": 29.0,
+"tutar": 16850.48
+},
+{
+"kod": "TUNGA",
+"grup": "B",
+"tur": "satis",
+"adet": 30.989,
+"birimFiyat": 65.0,
+"tutar": 2014.29
+},
+{
+"kod": "TYORE",
+"grup": "C",
+"tur": "satis",
+"adet": 81.265,
+"birimFiyat": 28.0,
+"tutar": 2275.42
+},
+{
+"kod": "UNIQ2",
+"grup": "B",
+"tur": "satis",
+"adet": 299.387,
+"birimFiyat": 28.0,
+"tutar": 8382.84
+},
+{
+"kod": "SCOLI",
+"grup": "D",
+"tur": "satis",
+"adet": 427.365,
+"birimFiyat": 19.0,
+"tutar": 8119.94
+},
+{
+"kod": "RTNOW",
+"grup": "B",
+"tur": "satis",
+"adet": 101.29,
+"birimFiyat": 33.0,
+"tutar": 3342.57
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 2036.8,
+"birimFiyat": 33.0,
+"tutar": 67214.4
+},
+{
+"kod": "PROMO",
+"grup": "D",
+"tur": "satis",
+"adet": 820.734,
+"birimFiyat": 58.0,
+"tutar": 47602.57
+},
+{
+"kod": "PROMO",
+"grup": "B",
+"tur": "satis",
+"adet": 12.593,
+"birimFiyat": 100.0,
+"tutar": 1259.3
+},
+{
+"kod": "PCARD",
+"grup": "B",
+"tur": "satis",
+"adet": 1157.67,
+"birimFiyat": 25.0,
+"tutar": 28941.75
+},
+{
+"kod": "PACHA",
+"grup": "D",
+"tur": "satis",
+"adet": 765.209,
+"birimFiyat": 25.0,
+"tutar": 19130.22
+},
+{
+"kod": "PACHA",
+"grup": "B",
+"tur": "satis",
+"adet": 491.747,
+"birimFiyat": 25.0,
+"tutar": 12293.68
+},
+{
+"kod": "ORTAK",
+"grup": "B",
+"tur": "satis",
+"adet": 2167.375,
+"birimFiyat": 21.0,
+"tutar": 45514.88
+},
+{
+"kod": "ONIMA",
+"grup": "B",
+"tur": "satis",
+"adet": 453.805,
+"birimFiyat": 29.0,
+"tutar": 13160.35
+},
+{
+"kod": "OLEAG",
+"grup": "C",
+"tur": "satis",
+"adet": 191.077,
+"birimFiyat": 42.0,
+"tutar": 8025.23
+},
+{
+"kod": "NTRGA",
+"grup": "B",
+"tur": "satis",
+"adet": 496.438,
+"birimFiyat": 30.0,
+"tutar": 14893.14
+},
+{
+"kod": "NTDRY",
+"grup": "B",
+"tur": "satis",
+"adet": 545.836,
+"birimFiyat": 30.0,
+"tutar": 16375.08
+},
+{
+"kod": "NGAYT",
+"grup": "B",
+"tur": "satis",
+"adet": 4508.25,
+"birimFiyat": 36.0,
+"tutar": 162297.0
+},
+{
+"kod": "NEVAS",
+"grup": "B",
+"tur": "satis",
+"adet": 272.085,
+"birimFiyat": 19.0,
+"tutar": 5169.62
+},
+{
+"kod": "MNYOL",
+"grup": "B",
+"tur": "satis",
+"adet": 1149.907,
+"birimFiyat": 23.0,
+"tutar": 26447.86
+},
+{
+"kod": "MKTEK",
+"grup": "B",
+"tur": "satis",
+"adet": 539.152,
+"birimFiyat": 23.0,
+"tutar": 12400.5
+},
+{
+"kod": "MELOA",
+"grup": "C",
+"tur": "satis",
+"adet": 102.998,
+"birimFiyat": 22.0,
+"tutar": 2265.96
+},
+{
+"kod": "KRT3D",
+"grup": "B",
+"tur": "satis",
+"adet": 291.171,
+"birimFiyat": 38.0,
+"tutar": 11064.5
+},
+{
+"kod": "KABIP",
+"grup": "C",
+"tur": "satis",
+"adet": 29.195,
+"birimFiyat": 48.0,
+"tutar": 1401.36
+},
+{
+"kod": "JETCO",
+"grup": "B",
+"tur": "satis",
+"adet": 161.045,
+"birimFiyat": 48.0,
+"tutar": 7730.16
+},
+{
+"kod": "IONTK",
+"grup": "B",
+"tur": "satis",
+"adet": 438.86,
+"birimFiyat": 23.0,
+"tutar": 10093.78
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 4182.76,
+"birimFiyat": 28.0,
+"tutar": 117117.28
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 542.58,
+"birimFiyat": 36.0,
+"tutar": 19532.88
+},
+{
+"kod": "ESGEL",
+"grup": "B",
+"tur": "satis",
+"adet": 370.989,
+"birimFiyat": 36.0,
+"tutar": 13355.6
+},
+{
+"kod": "DLVRY",
+"grup": "C",
+"tur": "satis",
+"adet": 197.199,
+"birimFiyat": 22.0,
+"tutar": 4338.38
+},
+{
+"kod": "CLASS",
+"grup": "B",
+"tur": "satis",
+"adet": 34.2,
+"birimFiyat": 45.0,
+"tutar": 1539.0
+},
+{
+"kod": "BSCHL",
+"grup": "B",
+"tur": "satis",
+"adet": 30.484,
+"birimFiyat": 40.0,
+"tutar": 1219.36
+},
+{
+"kod": "BLCLL",
+"grup": "B",
+"tur": "satis",
+"adet": 781.555,
+"birimFiyat": 22.0,
+"tutar": 17194.21
+},
+{
+"kod": "BIGET",
+"grup": "B",
+"tur": "satis",
+"adet": 690.736,
+"birimFiyat": 22.0,
+"tutar": 15196.19
+},
+{
+"kod": "ALPGN",
+"grup": "B",
+"tur": "satis",
+"adet": 18.266,
+"birimFiyat": 85.0,
+"tutar": 1552.61
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "satis",
+"adet": 344.964,
+"birimFiyat": 20.0,
+"tutar": 6899.28
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 3798.52,
+"birimFiyat": 20.0,
+"tutar": 75970.4
+},
+{
+"kod": "ATECH",
+"grup": "B",
+"tur": "satis",
+"adet": 116.937,
+"birimFiyat": 38.0,
+"tutar": 4443.61
+},
+{
+"kod": "YPSFT",
+"grup": "B",
+"tur": "satis",
+"adet": 98.515,
+"birimFiyat": 38.0,
+"tutar": 3743.57
+},
+{
+"kod": "ONIMA",
+"grup": "B",
+"tur": "alis",
+"adet": 700.0,
+"birimFiyat": 3.0,
+"tutar": 2100.0
+},
+{
+"kod": "OLEAG",
+"grup": "C",
+"tur": "alis",
+"adet": 5232.657,
+"birimFiyat": 9.18,
+"tutar": 48035.79
+},
+{
+"kod": "ONIMA",
+"grup": "B",
+"tur": "alis",
+"adet": 5304.497,
+"birimFiyat": 4.05,
+"tutar": 21483.21
+},
+{
+"kod": "ANCYR",
+"grup": "B",
+"tur": "satis",
+"adet": 5000.0,
+"birimFiyat": 8.99,
+"tutar": 44950.0
+},
+{
+"kod": "SPRG1",
+"grup": "B",
+"tur": "satis",
+"adet": 18956.559,
+"birimFiyat": 2.43,
+"tutar": 46064.44
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 15000.0,
+"birimFiyat": 3.7,
+"tutar": 55500.0
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 304.188,
+"birimFiyat": 5.0,
+"tutar": 1520.94
+},
+{
+"kod": "TMZYL",
+"grup": "C",
+"tur": "satis",
+"adet": 146.957,
+"birimFiyat": 20.5,
+"tutar": 3012.62
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "satis",
+"adet": 66.059,
+"birimFiyat": 24.5,
+"tutar": 1618.45
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 156.333,
+"birimFiyat": 34.5,
+"tutar": 5393.49
+},
+{
+"kod": "NEVAS",
+"grup": "B",
+"tur": "satis",
+"adet": 80.025,
+"birimFiyat": 26.5,
+"tutar": 2120.66
+},
+{
+"kod": "MELOA",
+"grup": "C",
+"tur": "satis",
+"adet": 102.995,
+"birimFiyat": 24.5,
+"tutar": 2523.38
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "satis",
+"adet": 232.361,
+"birimFiyat": 18.5,
+"tutar": 4298.68
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 104.492,
+"birimFiyat": 17.5,
+"tutar": 1828.61
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "satis",
+"adet": 124.048,
+"birimFiyat": 16.5,
+"tutar": 2046.79
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "satis",
+"adet": 546.525,
+"birimFiyat": 3.5,
+"tutar": 1912.84
+},
+{
+"kod": "MKTEK",
+"grup": "B",
+"tur": "satis",
+"adet": 235.877,
+"birimFiyat": 32.5,
+"tutar": 7666.0
+},
+{
+"kod": "BLCLL",
+"grup": "B",
+"tur": "satis",
+"adet": 200.0,
+"birimFiyat": 14.95,
+"tutar": 2990.0
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "satis",
+"adet": 146.798,
+"birimFiyat": 75.0,
+"tutar": 11009.85
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "satis",
+"adet": 499.1,
+"birimFiyat": 7.15,
+"tutar": 3568.57
+},
+{
+"kod": "PACHA",
+"grup": "D",
+"tur": "satis",
+"adet": 114.183,
+"birimFiyat": 90.0,
+"tutar": 10276.47
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 175.715,
+"birimFiyat": 70.0,
+"tutar": 12300.05
+},
+{
+"kod": "BLCLL",
+"grup": "B",
+"tur": "satis",
+"adet": 3901.154,
+"birimFiyat": 25.0,
+"tutar": 97528.85
+},
+{
+"kod": "KRT3D",
+"grup": "B",
+"tur": "satis",
+"adet": 135.174,
+"birimFiyat": 4.0,
+"tutar": 540.7
+},
+{
+"kod": "PACHA",
+"grup": "D",
+"tur": "alis",
+"adet": 1500.0,
+"birimFiyat": 3.2,
+"tutar": 4800.0
+},
+{
+"kod": "BLCLL",
+"grup": "B",
+"tur": "satis",
+"adet": 100.0,
+"birimFiyat": 15.0,
+"tutar": 1500.0
+},
+{
+"kod": "TCHNO",
+"grup": "B",
+"tur": "satis",
+"adet": 100.0,
+"birimFiyat": 13.98,
+"tutar": 1398.0
+},
+{
+"kod": "ORTAK",
+"grup": "B",
+"tur": "satis",
+"adet": 1011.122,
+"birimFiyat": 2.0,
+"tutar": 2022.24
+},
+{
+"kod": "MKTEK",
+"grup": "B",
+"tur": "satis",
+"adet": 868.408,
+"birimFiyat": 8.0,
+"tutar": 6947.26
+},
+{
+"kod": "KRT3D",
+"grup": "B",
+"tur": "satis",
+"adet": 126.699,
+"birimFiyat": 5.9,
+"tutar": 747.52
+},
+{
+"kod": "ATECH",
+"grup": "B",
+"tur": "satis",
+"adet": 167.049,
+"birimFiyat": 7.0,
+"tutar": 1169.34
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 200000.0,
+"birimFiyat": 13.5,
+"tutar": 2700000.0
+},
+{
+"kod": "MELOA",
+"grup": "C",
+"tur": "alis",
+"adet": 3000.0,
+"birimFiyat": 3.5,
+"tutar": 10500.0
+},
+{
+"kod": "MELOA",
+"grup": "C",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 2.0,
+"tutar": 2000.0
+},
+{
+"kod": "BLCLL",
+"grup": "B",
+"tur": "satis",
+"adet": 160.0,
+"birimFiyat": 16.5,
+"tutar": 2640.0
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "satis",
+"adet": 3493.18,
+"birimFiyat": 4.08,
+"tutar": 14252.17
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 808.994,
+"birimFiyat": 10.0,
+"tutar": 8089.94
+},
+{
+"kod": "PCARD",
+"grup": "B",
+"tur": "alis",
+"adet": 74.232,
+"birimFiyat": 1.5,
+"tutar": 111.35
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "alis",
+"adet": 93.032,
+"birimFiyat": 3.4,
+"tutar": 316.31
+},
+{
+"kod": "ESGEL",
+"grup": "B",
+"tur": "alis",
+"adet": 48.36,
+"birimFiyat": 3.3,
+"tutar": 159.59
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "satis",
+"adet": 165.607,
+"birimFiyat": 9.67,
+"tutar": 1601.42
+},
+{
+"kod": "MELOA",
+"grup": "C",
+"tur": "alis",
+"adet": 2000.0,
+"birimFiyat": 1.11,
+"tutar": 2220.0
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "alis",
+"adet": 2000.0,
+"birimFiyat": 2.71,
+"tutar": 5420.0
+},
+{
+"kod": "BLCLL",
+"grup": "B",
+"tur": "alis",
+"adet": 10000.0,
+"birimFiyat": 8.0,
+"tutar": 80000.0
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 2969.64,
+"birimFiyat": 4.41,
+"tutar": 13096.11
+},
+{
+"kod": "DLVRY",
+"grup": "C",
+"tur": "satis",
+"adet": 1502.0,
+"birimFiyat": 12.0,
+"tutar": 18024.0
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 108.515,
+"birimFiyat": 4.44,
+"tutar": 481.81
+},
+{
+"kod": "KABIP",
+"grup": "C",
+"tur": "satis",
+"adet": 68.122,
+"birimFiyat": 4.49,
+"tutar": 305.87
+},
+{
+"kod": "MELOA",
+"grup": "C",
+"tur": "satis",
+"adet": 61.797,
+"birimFiyat": 9.99,
+"tutar": 617.35
+},
+{
+"kod": "RTNOW",
+"grup": "B",
+"tur": "satis",
+"adet": 50.644,
+"birimFiyat": 6.49,
+"tutar": 328.68
+},
+{
+"kod": "TCHNO",
+"grup": "B",
+"tur": "satis",
+"adet": 36.386,
+"birimFiyat": 13.99,
+"tutar": 509.04
+},
+{
+"kod": "VNDAP",
+"grup": "B",
+"tur": "satis",
+"adet": 20.424,
+"birimFiyat": 29.49,
+"tutar": 602.3
+},
+{
+"kod": "ONIMA",
+"grup": "B",
+"tur": "satis",
+"adet": 756.343,
+"birimFiyat": 12.99,
+"tutar": 9824.9
+},
+{
+"kod": "ANCYR",
+"grup": "B",
+"tur": "satis",
+"adet": 1356.021,
+"birimFiyat": 11.75,
+"tutar": 15933.25
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "alis",
+"adet": 2000.0,
+"birimFiyat": 2.82,
+"tutar": 5640.0
+},
+{
+"kod": "ORTAK",
+"grup": "B",
+"tur": "satis",
+"adet": 709.086,
+"birimFiyat": 3.5,
+"tutar": 2481.8
+},
+{
+"kod": "BLCLL",
+"grup": "B",
+"tur": "satis",
+"adet": 180.08,
+"birimFiyat": 18.0,
+"tutar": 3241.44
+},
+{
+"kod": "SECUR",
+"grup": "B",
+"tur": "alis",
+"adet": 100.0,
+"birimFiyat": 43.0,
+"tutar": 4300.0
+},
+{
+"kod": "SECUR",
+"grup": "B",
+"tur": "satis",
+"adet": 10077.182,
+"birimFiyat": 55.0,
+"tutar": 554245.01
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "satis",
+"adet": 9541.873,
+"birimFiyat": 2.5,
+"tutar": 23854.68
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "alis",
+"adet": 14000.0,
+"birimFiyat": 3.0,
+"tutar": 42000.0
+},
+{
+"kod": "MEDIB",
+"grup": "B",
+"tur": "satis",
+"adet": 71.15,
+"birimFiyat": 4.0,
+"tutar": 284.6
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 2000.0,
+"birimFiyat": 20.0,
+"tutar": 40000.0
+},
+{
+"kod": "VNDAP",
+"grup": "B",
+"tur": "satis",
+"adet": 816.967,
+"birimFiyat": 29.5,
+"tutar": 24100.53
+},
+{
+"kod": "UNIQ2",
+"grup": "B",
+"tur": "alis",
+"adet": 300.0,
+"birimFiyat": 8.0,
+"tutar": 2400.0
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "satis",
+"adet": 2732.647,
+"birimFiyat": 4.0,
+"tutar": 10930.59
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "satis",
+"adet": 344.965,
+"birimFiyat": 5.0,
+"tutar": 1724.82
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "alis",
+"adet": 15000.0,
+"birimFiyat": 2.7,
+"tutar": 40500.0
+},
+{
+"kod": "TCHNO",
+"grup": "B",
+"tur": "alis",
+"adet": 1600.0,
+"birimFiyat": 3.5,
+"tutar": 5600.0
+},
+{
+"kod": "ATECH",
+"grup": "B",
+"tur": "satis",
+"adet": 167.051,
+"birimFiyat": 6.0,
+"tutar": 1002.31
+},
+{
+"kod": "OLEAG",
+"grup": "C",
+"tur": "satis",
+"adet": 88.19,
+"birimFiyat": 21.0,
+"tutar": 1851.99
+},
+{
+"kod": "ORTAK",
+"grup": "B",
+"tur": "satis",
+"adet": 70.91,
+"birimFiyat": 6.0,
+"tutar": 425.46
+},
+{
+"kod": "VNDAP",
+"grup": "B",
+"tur": "alis",
+"adet": 47000.0,
+"birimFiyat": 1.25,
+"tutar": 58750.0
+},
+{
+"kod": "MKTEK",
+"grup": "B",
+"tur": "alis",
+"adet": 80000.0,
+"birimFiyat": 1.25,
+"tutar": 100000.0
+},
+{
+"kod": "VNDAP",
+"grup": "B",
+"tur": "satis",
+"adet": 496.661,
+"birimFiyat": 31.0,
+"tutar": 15396.49
+},
+{
+"kod": "SUITE",
+"grup": "B",
+"tur": "alis",
+"adet": 75000.0,
+"birimFiyat": 0.35,
+"tutar": 26250.0
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "alis",
+"adet": 100000.0,
+"birimFiyat": 0.3,
+"tutar": 30000.0
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 1323.6,
+"birimFiyat": 2.5,
+"tutar": 3309.0
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 15422.2,
+"birimFiyat": 3.2,
+"tutar": 49351.04
+},
+{
+"kod": "BLCLL",
+"grup": "B",
+"tur": "satis",
+"adet": 240.108,
+"birimFiyat": 16.0,
+"tutar": 3841.73
+},
+{
+"kod": "NGAYT",
+"grup": "B",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 4.9,
+"tutar": 4900.0
+},
+{
+"kod": "TMZYL",
+"grup": "C",
+"tur": "alis",
+"adet": 500.0,
+"birimFiyat": 3.2,
+"tutar": 1600.0
+},
+{
+"kod": "YPSFT",
+"grup": "B",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 0.52,
+"tutar": 520.0
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "satis",
+"adet": 97642.793,
+"birimFiyat": 20.0,
+"tutar": 1952855.86
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 1240267.95,
+"birimFiyat": 20.0,
+"tutar": 24805359.0
+},
+{
+"kod": "TMZYL",
+"grup": "C",
+"tur": "satis",
+"adet": 376031.983,
+"birimFiyat": 20.0,
+"tutar": 7520639.66
+},
+{
+"kod": "NTDRY",
+"grup": "B",
+"tur": "satis",
+"adet": 990.142,
+"birimFiyat": 2.7,
+"tutar": 2673.38
+},
+{
+"kod": "MKTEK",
+"grup": "B",
+"tur": "satis",
+"adet": 84.241,
+"birimFiyat": 9.5,
+"tutar": 800.29
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "satis",
+"adet": 662.432,
+"birimFiyat": 7.18,
+"tutar": 4756.26
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 12205.26,
+"birimFiyat": 1.6,
+"tutar": 19528.42
+},
+{
+"kod": "PROMO",
+"grup": "D",
+"tur": "alis",
+"adet": 800.0,
+"birimFiyat": 1.4,
+"tutar": 1120.0
+},
+{
+"kod": "RTNOW",
+"grup": "B",
+"tur": "alis",
+"adet": 2000.0,
+"birimFiyat": 1.5,
+"tutar": 3000.0
+},
+{
+"kod": "SECUR",
+"grup": "B",
+"tur": "satis",
+"adet": 395.939,
+"birimFiyat": 52.0,
+"tutar": 20588.83
+},
+{
+"kod": "NTRGA",
+"grup": "B",
+"tur": "alis",
+"adet": 3500.0,
+"birimFiyat": 3.0,
+"tutar": 10500.0
+},
+{
+"kod": "AUTHT",
+"grup": "B",
+"tur": "satis",
+"adet": 227.0,
+"birimFiyat": 80.0,
+"tutar": 18160.0
+},
+{
+"kod": "SECUR",
+"grup": "B",
+"tur": "satis",
+"adet": 366.578,
+"birimFiyat": 90.0,
+"tutar": 32992.02
+},
+{
+"kod": "PACHA",
+"grup": "D",
+"tur": "satis",
+"adet": 570.914,
+"birimFiyat": 15.0,
+"tutar": 8563.71
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "alis",
+"adet": 200.0,
+"birimFiyat": 3.25,
+"tutar": 650.0
+},
+{
+"kod": "SUITE",
+"grup": "B",
+"tur": "satis",
+"adet": 25000.0,
+"birimFiyat": 3.0,
+"tutar": 75000.0
+},
+{
+"kod": "TCHNO",
+"grup": "B",
+"tur": "satis",
+"adet": 18911.77,
+"birimFiyat": 14.0,
+"tutar": 264764.78
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "satis",
+"adet": 45000.0,
+"birimFiyat": 2.0,
+"tutar": 90000.0
+},
+{
+"kod": "SHIFT",
+"grup": "C",
+"tur": "satis",
+"adet": 10000.0,
+"birimFiyat": 4.25,
+"tutar": 42500.0
+},
+{
+"kod": "PROMO",
+"grup": "D",
+"tur": "satis",
+"adet": 39622.95,
+"birimFiyat": 3.15,
+"tutar": 124812.29
+},
+{
+"kod": "MEDIB",
+"grup": "B",
+"tur": "satis",
+"adet": 17249.869,
+"birimFiyat": 4.5,
+"tutar": 77624.41
+},
+{
+"kod": "MKTEK",
+"grup": "B",
+"tur": "satis",
+"adet": 25000.0,
+"birimFiyat": 9.0,
+"tutar": 225000.0
+},
+{
+"kod": "KRT3D",
+"grup": "B",
+"tur": "satis",
+"adet": 17922.836,
+"birimFiyat": 6.0,
+"tutar": 107537.02
+},
+{
+"kod": "KABIP",
+"grup": "C",
+"tur": "satis",
+"adet": 30000.0,
+"birimFiyat": 5.0,
+"tutar": 150000.0
+},
+{
+"kod": "JETCO",
+"grup": "B",
+"tur": "satis",
+"adet": 2941.72,
+"birimFiyat": 9.0,
+"tutar": 26475.48
+},
+{
+"kod": "AUTHT",
+"grup": "B",
+"tur": "satis",
+"adet": 130.118,
+"birimFiyat": 80.0,
+"tutar": 10409.44
+},
+{
+"kod": "NTRGA",
+"grup": "B",
+"tur": "alis",
+"adet": 2000.0,
+"birimFiyat": 9.3,
+"tutar": 18600.0
+},
+{
+"kod": "ONIMA",
+"grup": "B",
+"tur": "satis",
+"adet": 151.268,
+"birimFiyat": 25.0,
+"tutar": 3781.7
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "satis",
+"adet": 165.607,
+"birimFiyat": 20.0,
+"tutar": 3312.14
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 175.868,
+"birimFiyat": 20.0,
+"tutar": 3517.36
+},
+{
+"kod": "FERNV",
+"grup": "B",
+"tur": "satis",
+"adet": 100.0,
+"birimFiyat": 30.0,
+"tutar": 3000.0
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "satis",
+"adet": 5069.69,
+"birimFiyat": 50.0,
+"tutar": 253484.5
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "satis",
+"adet": 1366.316,
+"birimFiyat": 2.2,
+"tutar": 3005.9
+},
+{
+"kod": "MELOA",
+"grup": "C",
+"tur": "satis",
+"adet": 205.995,
+"birimFiyat": 10.0,
+"tutar": 2059.95
+},
+{
+"kod": "PROMO",
+"grup": "B",
+"tur": "satis",
+"adet": 152.267,
+"birimFiyat": 90.0,
+"tutar": 13704.03
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "satis",
+"adet": 8197.926,
+"birimFiyat": 1.2,
+"tutar": 9837.51
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "satis",
+"adet": 886.27,
+"birimFiyat": 20.0,
+"tutar": 17725.4
+},
+{
+"kod": "TUNGA",
+"grup": "B",
+"tur": "satis",
+"adet": 2000.0,
+"birimFiyat": 500.0,
+"tutar": 1000000.0
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 175.715,
+"birimFiyat": 50.0,
+"tutar": 8785.75
+},
+{
+"kod": "MELOA",
+"grup": "C",
+"tur": "satis",
+"adet": 205.993,
+"birimFiyat": 90.0,
+"tutar": 18539.37
+},
+{
+"kod": "NTDRY",
+"grup": "B",
+"tur": "satis",
+"adet": 480.912,
+"birimFiyat": 140.0,
+"tutar": 67327.68
+},
+{
+"kod": "MKTEK",
+"grup": "B",
+"tur": "satis",
+"adet": 859.273,
+"birimFiyat": 8.5,
+"tutar": 7303.82
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 2000.0,
+"birimFiyat": 3.8,
+"tutar": 7600.0
+},
+{
+"kod": "BIGET",
+"grup": "B",
+"tur": "alis",
+"adet": 300.0,
+"birimFiyat": 12.0,
+"tutar": 3600.0
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 5620.0,
+"birimFiyat": 4.5,
+"tutar": 25290.0
+},
+{
+"kod": "SCOLI",
+"grup": "D",
+"tur": "satis",
+"adet": 1155.038,
+"birimFiyat": 3.48,
+"tutar": 4019.53
+},
+{
+"kod": "SPRG1",
+"grup": "B",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 2.01,
+"tutar": 2010.0
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 759.612,
+"birimFiyat": 5.9,
+"tutar": 4481.71
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 3000.0,
+"birimFiyat": 4.0,
+"tutar": 12000.0
+},
+{
+"kod": "DLVRY",
+"grup": "C",
+"tur": "satis",
+"adet": 2718.126,
+"birimFiyat": 5.0,
+"tutar": 13590.63
+},
+{
+"kod": "YPSFT",
+"grup": "B",
+"tur": "satis",
+"adet": 1011.585,
+"birimFiyat": 88.0,
+"tutar": 89019.48
+},
+{
+"kod": "VNDAP",
+"grup": "B",
+"tur": "satis",
+"adet": 49.921,
+"birimFiyat": 51.0,
+"tutar": 2545.97
+},
+{
+"kod": "UNIQ2",
+"grup": "B",
+"tur": "satis",
+"adet": 1013.341,
+"birimFiyat": 62.0,
+"tutar": 62827.14
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "satis",
+"adet": 440.394,
+"birimFiyat": 17.17,
+"tutar": 7561.56
+},
+{
+"kod": "IONTK",
+"grup": "B",
+"tur": "satis",
+"adet": 372.705,
+"birimFiyat": 19.19,
+"tutar": 7152.21
+},
+{
+"kod": "YPSFT",
+"grup": "B",
+"tur": "satis",
+"adet": 92.0,
+"birimFiyat": 4.0,
+"tutar": 368.0
+},
+{
+"kod": "TUNGA",
+"grup": "B",
+"tur": "alis",
+"adet": 6000.0,
+"birimFiyat": 5.0,
+"tutar": 30000.0
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "alis",
+"adet": 1500.0,
+"birimFiyat": 3.0,
+"tutar": 4500.0
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "alis",
+"adet": 2000.0,
+"birimFiyat": 2.45,
+"tutar": 4900.0
+},
+{
+"kod": "ONIMA",
+"grup": "B",
+"tur": "satis",
+"adet": 31259.477,
+"birimFiyat": 9.4,
+"tutar": 293839.08
+},
+{
+"kod": "ONIMA",
+"grup": "B",
+"tur": "satis",
+"adet": 12101.475,
+"birimFiyat": 9.45,
+"tutar": 114358.94
+},
+{
+"kod": "PROMO",
+"grup": "D",
+"tur": "satis",
+"adet": 500.0,
+"birimFiyat": 500.0,
+"tutar": 250000.0
+},
+{
+"kod": "TMZYL",
+"grup": "C",
+"tur": "satis",
+"adet": 578.636,
+"birimFiyat": 28.0,
+"tutar": 16201.81
+},
+{
+"kod": "TCHNO",
+"grup": "B",
+"tur": "satis",
+"adet": 407.961,
+"birimFiyat": 103.0,
+"tutar": 42019.98
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "alis",
+"adet": 300.0,
+"birimFiyat": 3.3,
+"tutar": 990.0
+},
+{
+"kod": "SCOLI",
+"grup": "D",
+"tur": "satis",
+"adet": 693.023,
+"birimFiyat": 30.0,
+"tutar": 20790.69
+},
+{
+"kod": "IONTK",
+"grup": "B",
+"tur": "satis",
+"adet": 186.353,
+"birimFiyat": 30.0,
+"tutar": 5590.59
+},
+{
+"kod": "UNIQ2",
+"grup": "B",
+"tur": "satis",
+"adet": 156.656,
+"birimFiyat": 10.22,
+"tutar": 1601.02
+},
+{
+"kod": "BIGET",
+"grup": "B",
+"tur": "satis",
+"adet": 382.561,
+"birimFiyat": 48.0,
+"tutar": 18362.93
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 324.654,
+"birimFiyat": 25.0,
+"tutar": 8116.35
+},
+{
+"kod": "ONIMA",
+"grup": "B",
+"tur": "satis",
+"adet": 756.343,
+"birimFiyat": 40.0,
+"tutar": 30253.72
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "satis",
+"adet": 1366.316,
+"birimFiyat": 1.0,
+"tutar": 1366.32
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 99.473,
+"birimFiyat": 5.5,
+"tutar": 547.1
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 20844.44,
+"birimFiyat": 8.5,
+"tutar": 177177.74
+},
+{
+"kod": "PACHA",
+"grup": "D",
+"tur": "satis",
+"adet": 3263.707,
+"birimFiyat": 9.5,
+"tutar": 31005.22
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "satis",
+"adet": 3802.26,
+"birimFiyat": 15.5,
+"tutar": 58935.03
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 922.386,
+"birimFiyat": 12.5,
+"tutar": 11529.83
+},
+{
+"kod": "PROMO",
+"grup": "B",
+"tur": "satis",
+"adet": 10.0,
+"birimFiyat": 99.9,
+"tutar": 999.0
+},
+{
+"kod": "UNIQ2",
+"grup": "B",
+"tur": "satis",
+"adet": 174.0,
+"birimFiyat": 12.0,
+"tutar": 2088.0
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 104.222,
+"birimFiyat": 100.0,
+"tutar": 10422.2
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "alis",
+"adet": 7000.0,
+"birimFiyat": 2.11,
+"tutar": 14770.0
+},
+{
+"kod": "SPRG1",
+"grup": "B",
+"tur": "satis",
+"adet": 2843.537,
+"birimFiyat": 2.4,
+"tutar": 6824.49
+},
+{
+"kod": "KABIP",
+"grup": "C",
+"tur": "satis",
+"adet": 47.685,
+"birimFiyat": 10.0,
+"tutar": 476.85
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 2.6,
+"tutar": 2600.0
+},
+{
+"kod": "KRT3D",
+"grup": "B",
+"tur": "alis",
+"adet": 2000.0,
+"birimFiyat": 2.07,
+"tutar": 4140.0
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "alis",
+"adet": 2000.0,
+"birimFiyat": 2.8,
+"tutar": 5600.0
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 10000.0,
+"birimFiyat": 3.45,
+"tutar": 34500.0
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "alis",
+"adet": 2000.0,
+"birimFiyat": 3.01,
+"tutar": 6020.0
+},
+{
+"kod": "MNYOL",
+"grup": "B",
+"tur": "satis",
+"adet": 934.884,
+"birimFiyat": 1.22,
+"tutar": 1140.56
+},
+{
+"kod": "OLEAG",
+"grup": "C",
+"tur": "satis",
+"adet": 71.655,
+"birimFiyat": 22.0,
+"tutar": 1576.41
+},
+{
+"kod": "MNYOL",
+"grup": "B",
+"tur": "alis",
+"adet": 15000.0,
+"birimFiyat": 0.36,
+"tutar": 5400.0
+},
+{
+"kod": "RTNOW",
+"grup": "B",
+"tur": "alis",
+"adet": 5000.0,
+"birimFiyat": 1.0,
+"tutar": 5000.0
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 200.0,
+"birimFiyat": 8.0,
+"tutar": 1600.0
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 214.781,
+"birimFiyat": 20.0,
+"tutar": 4295.62
+},
+{
+"kod": "OLEAG",
+"grup": "C",
+"tur": "satis",
+"adet": 238.848,
+"birimFiyat": 21.9,
+"tutar": 5230.77
+},
+{
+"kod": "ONIMA",
+"grup": "B",
+"tur": "satis",
+"adet": 872.702,
+"birimFiyat": 35.0,
+"tutar": 30544.57
+},
+{
+"kod": "OLEAG",
+"grup": "C",
+"tur": "satis",
+"adet": 80.841,
+"birimFiyat": 125.0,
+"tutar": 10105.13
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 879.342,
+"birimFiyat": 25.0,
+"tutar": 21983.55
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "alis",
+"adet": 500.0,
+"birimFiyat": 3.0,
+"tutar": 1500.0
+},
+{
+"kod": "MEDIB",
+"grup": "B",
+"tur": "satis",
+"adet": 23.226,
+"birimFiyat": 5.0,
+"tutar": 116.13
+},
+{
+"kod": "EVBEE",
+"grup": "B",
+"tur": "satis",
+"adet": 198.907,
+"birimFiyat": 6.4,
+"tutar": 1273.0
+},
+{
+"kod": "SHOPL",
+"grup": "B",
+"tur": "satis",
+"adet": 28.761,
+"birimFiyat": 15.0,
+"tutar": 431.42
+},
+{
+"kod": "SIZEM",
+"grup": "B",
+"tur": "satis",
+"adet": 68.214,
+"birimFiyat": 3.5,
+"tutar": 238.75
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "satis",
+"adet": 379.584,
+"birimFiyat": 2.0,
+"tutar": 759.17
+},
+{
+"kod": "MNYOL",
+"grup": "B",
+"tur": "satis",
+"adet": 443.294,
+"birimFiyat": 1.24,
+"tutar": 549.68
+},
+{
+"kod": "NTRGA",
+"grup": "B",
+"tur": "alis",
+"adet": 45.0,
+"birimFiyat": 9.4,
+"tutar": 423.0
+},
+{
+"kod": "SCOLI",
+"grup": "D",
+"tur": "satis",
+"adet": 8085.263,
+"birimFiyat": 3.0,
+"tutar": 24255.79
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "satis",
+"adet": 59031.352,
+"birimFiyat": 2.99,
+"tutar": 176503.74
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "alis",
+"adet": 2400.0,
+"birimFiyat": 2.92,
+"tutar": 7008.0
+},
+{
+"kod": "YPSFT",
+"grup": "B",
+"tur": "satis",
+"adet": 20000.0,
+"birimFiyat": 4.5,
+"tutar": 90000.0
+},
+{
+"kod": "MKTEK",
+"grup": "B",
+"tur": "satis",
+"adet": 35.59,
+"birimFiyat": 17.0,
+"tutar": 605.03
+},
+{
+"kod": "RTNOW",
+"grup": "B",
+"tur": "satis",
+"adet": 15000.0,
+"birimFiyat": 6.5,
+"tutar": 97500.0
+},
+{
+"kod": "NTRGA",
+"grup": "B",
+"tur": "satis",
+"adet": 28469.089,
+"birimFiyat": 11.0,
+"tutar": 313159.98
+},
+{
+"kod": "CLASS",
+"grup": "B",
+"tur": "satis",
+"adet": 5800.078,
+"birimFiyat": 18.0,
+"tutar": 104401.4
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 428.833,
+"birimFiyat": 50.0,
+"tutar": 21441.65
+},
+{
+"kod": "SPRG1",
+"grup": "B",
+"tur": "satis",
+"adet": 5000.0,
+"birimFiyat": 3.0,
+"tutar": 15000.0
+},
+{
+"kod": "IONTK",
+"grup": "B",
+"tur": "satis",
+"adet": 62.894,
+"birimFiyat": 7.99,
+"tutar": 502.52
+},
+{
+"kod": "YPSFT",
+"grup": "B",
+"tur": "alis",
+"adet": 5000.0,
+"birimFiyat": 0.51,
+"tutar": 2550.0
+},
+{
+"kod": "KRT3D",
+"grup": "B",
+"tur": "satis",
+"adet": 683.498,
+"birimFiyat": 7.32,
+"tutar": 5003.21
+},
+{
+"kod": "EVBEE",
+"grup": "B",
+"tur": "alis",
+"adet": 2000.0,
+"birimFiyat": 4.0,
+"tutar": 8000.0
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "alis",
+"adet": 2000.0,
+"birimFiyat": 2.5,
+"tutar": 5000.0
+},
+{
+"kod": "TUNGA",
+"grup": "A",
+"tur": "satis",
+"adet": 4304.0,
+"birimFiyat": 100.0,
+"tutar": 430400.0
+},
+{
+"kod": "SCOLI",
+"grup": "D",
+"tur": "satis",
+"adet": 2310.073,
+"birimFiyat": 3.35,
+"tutar": 7738.74
+},
+{
+"kod": "RTNOW",
+"grup": "B",
+"tur": "satis",
+"adet": 232.4,
+"birimFiyat": 7.1,
+"tutar": 1650.04
+},
+{
+"kod": "NEVAS",
+"grup": "B",
+"tur": "satis",
+"adet": 402.11,
+"birimFiyat": 11.45,
+"tutar": 4604.16
+},
+{
+"kod": "ONIMA",
+"grup": "B",
+"tur": "satis",
+"adet": 1186.876,
+"birimFiyat": 9.5,
+"tutar": 11275.32
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "satis",
+"adet": 2631.844,
+"birimFiyat": 25.0,
+"tutar": 65796.1
+},
+{
+"kod": "MKTEK",
+"grup": "B",
+"tur": "satis",
+"adet": 5000.0,
+"birimFiyat": 24.0,
+"tutar": 120000.0
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "alis",
+"adet": 251.589,
+"birimFiyat": 6.21,
+"tutar": 1562.37
+},
+{
+"kod": "DLVRY",
+"grup": "C",
+"tur": "satis",
+"adet": 8.765,
+"birimFiyat": 30.0,
+"tutar": 262.95
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "satis",
+"adet": 13.16,
+"birimFiyat": 40.0,
+"tutar": 526.4
+},
+{
+"kod": "ORTAK",
+"grup": "B",
+"tur": "alis",
+"adet": 500000.0,
+"birimFiyat": 0.4,
+"tutar": 200000.0
+},
+{
+"kod": "SPRG1",
+"grup": "B",
+"tur": "alis",
+"adet": 5000.0,
+"birimFiyat": 1.75,
+"tutar": 8750.0
+},
+{
+"kod": "SPRG1",
+"grup": "B",
+"tur": "satis",
+"adet": 1547.901,
+"birimFiyat": 10.0,
+"tutar": 15479.01
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "satis",
+"adet": 299.002,
+"birimFiyat": 75.0,
+"tutar": 22425.15
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "satis",
+"adet": 7518.0,
+"birimFiyat": 3.0,
+"tutar": 22554.0
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "satis",
+"adet": 930.84,
+"birimFiyat": 43.0,
+"tutar": 40026.12
+},
+{
+"kod": "SIZEM",
+"grup": "B",
+"tur": "satis",
+"adet": 34.107,
+"birimFiyat": 1173.0,
+"tutar": 40007.51
+},
+{
+"kod": "SHOPL",
+"grup": "B",
+"tur": "satis",
+"adet": 5.751,
+"birimFiyat": 175.0,
+"tutar": 1006.43
+},
+{
+"kod": "SHIFT",
+"grup": "C",
+"tur": "satis",
+"adet": 104.203,
+"birimFiyat": 65.0,
+"tutar": 6773.2
+},
+{
+"kod": "SECUR",
+"grup": "B",
+"tur": "satis",
+"adet": 139.249,
+"birimFiyat": 150.0,
+"tutar": 20887.35
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "satis",
+"adet": 710.486,
+"birimFiyat": 6.0,
+"tutar": 4262.92
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 43570.44,
+"birimFiyat": 250.0,
+"tutar": 10892610.0
+},
+{
+"kod": "PACHA",
+"grup": "D",
+"tur": "satis",
+"adet": 2816.989,
+"birimFiyat": 58.0,
+"tutar": 163385.36
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "satis",
+"adet": 65500.001,
+"birimFiyat": 45.8,
+"tutar": 2999900.05
+},
+{
+"kod": "PACHA",
+"grup": "B",
+"tur": "satis",
+"adet": 488.531,
+"birimFiyat": 333.0,
+"tutar": 162680.82
+},
+{
+"kod": "ONIMA",
+"grup": "B",
+"tur": "satis",
+"adet": 1680.744,
+"birimFiyat": 37.0,
+"tutar": 62187.53
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 70000.0,
+"birimFiyat": 3.75,
+"tutar": 262500.0
+},
+{
+"kod": "OLEAG",
+"grup": "C",
+"tur": "satis",
+"adet": 208.323,
+"birimFiyat": 120.0,
+"tutar": 24998.76
+},
+{
+"kod": "NTRGA",
+"grup": "B",
+"tur": "satis",
+"adet": 1788.24,
+"birimFiyat": 34.0,
+"tutar": 60800.16
+},
+{
+"kod": "NTDRY",
+"grup": "B",
+"tur": "satis",
+"adet": 264.502,
+"birimFiyat": 76.0,
+"tutar": 20102.15
+},
+{
+"kod": "NGAYT",
+"grup": "B",
+"tur": "satis",
+"adet": 2203.0,
+"birimFiyat": 35.0,
+"tutar": 77105.0
+},
+{
+"kod": "NGAYT",
+"grup": "B",
+"tur": "alis",
+"adet": 10000.0,
+"birimFiyat": 4.5,
+"tutar": 45000.0
+},
+{
+"kod": "NEVAS",
+"grup": "B",
+"tur": "satis",
+"adet": 457.903,
+"birimFiyat": 25.0,
+"tutar": 11447.58
+},
+{
+"kod": "MKTEK",
+"grup": "B",
+"tur": "satis",
+"adet": 84.241,
+"birimFiyat": 20.0,
+"tutar": 1684.82
+},
+{
+"kod": "MELOA",
+"grup": "C",
+"tur": "satis",
+"adet": 228.858,
+"birimFiyat": 17.0,
+"tutar": 3890.59
+},
+{
+"kod": "KRT3D",
+"grup": "B",
+"tur": "satis",
+"adet": 413.105,
+"birimFiyat": 44.0,
+"tutar": 18176.62
+},
+{
+"kod": "JETCO",
+"grup": "B",
+"tur": "satis",
+"adet": 230.293,
+"birimFiyat": 111.0,
+"tutar": 25562.52
+},
+{
+"kod": "PROMO",
+"grup": "D",
+"tur": "satis",
+"adet": 839.251,
+"birimFiyat": 61.0,
+"tutar": 51194.31
+},
+{
+"kod": "PCARD",
+"grup": "B",
+"tur": "satis",
+"adet": 252.393,
+"birimFiyat": 31.0,
+"tutar": 7824.18
+},
+{
+"kod": "CMPTV",
+"grup": "B",
+"tur": "alis",
+"adet": 10000.0,
+"birimFiyat": 0.56,
+"tutar": 5600.0
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 808.994,
+"birimFiyat": 20.0,
+"tutar": 16179.88
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 1000.0,
+"birimFiyat": 4.65,
+"tutar": 4650.0
+},
+{
+"kod": "RTNOW",
+"grup": "B",
+"tur": "satis",
+"adet": 121.551,
+"birimFiyat": 7.89,
+"tutar": 959.04
+},
+{
+"kod": "PROMO",
+"grup": "D",
+"tur": "satis",
+"adet": 271.025,
+"birimFiyat": 3.23,
+"tutar": 875.41
+},
+{
+"kod": "SHIFT",
+"grup": "C",
+"tur": "satis",
+"adet": 138.938,
+"birimFiyat": 4.89,
+"tutar": 679.41
+},
+{
+"kod": "TYORE",
+"grup": "C",
+"tur": "satis",
+"adet": 70.666,
+"birimFiyat": 4.9,
+"tutar": 346.26
+},
+{
+"kod": "YPSFT",
+"grup": "B",
+"tur": "satis",
+"adet": 197.032,
+"birimFiyat": 4.4,
+"tutar": 866.94
+},
+{
+"kod": "SCOLI",
+"grup": "D",
+"tur": "satis",
+"adet": 2310.071,
+"birimFiyat": 3.49,
+"tutar": 8062.15
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "satis",
+"adet": 880.788,
+"birimFiyat": 3.49,
+"tutar": 3073.95
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "satis",
+"adet": 9293.448,
+"birimFiyat": 3.7,
+"tutar": 34385.76
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "alis",
+"adet": 149.216,
+"birimFiyat": 6.55,
+"tutar": 977.36
+},
+{
+"kod": "SUITE",
+"grup": "B",
+"tur": "alis",
+"adet": 5000.0,
+"birimFiyat": 1.0,
+"tutar": 5000.0
+},
+{
+"kod": "MKTEK",
+"grup": "B",
+"tur": "satis",
+"adet": 101.091,
+"birimFiyat": 16.0,
+"tutar": 1617.46
+},
+{
+"kod": "SUITE",
+"grup": "B",
+"tur": "satis",
+"adet": 1250.0,
+"birimFiyat": 5.0,
+"tutar": 6250.0
+},
+{
+"kod": "SPRG1",
+"grup": "B",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 1.74,
+"tutar": 1740.0
+},
+{
+"kod": "NTDRY",
+"grup": "B",
+"tur": "satis",
+"adet": 168.319,
+"birimFiyat": 2.95,
+"tutar": 496.54
+},
+{
+"kod": "RTNOW",
+"grup": "B",
+"tur": "satis",
+"adet": 200.0,
+"birimFiyat": 7.9,
+"tutar": 1580.0
+},
+{
+"kod": "PCARD",
+"grup": "B",
+"tur": "satis",
+"adet": 250.0,
+"birimFiyat": 3.7,
+"tutar": 925.0
+},
+{
+"kod": "SHIFT",
+"grup": "C",
+"tur": "satis",
+"adet": 40.0,
+"birimFiyat": 4.9,
+"tutar": 196.0
+},
+{
+"kod": "KABIP",
+"grup": "C",
+"tur": "satis",
+"adet": 50.0,
+"birimFiyat": 5.0,
+"tutar": 250.0
+},
+{
+"kod": "SCOLI",
+"grup": "D",
+"tur": "satis",
+"adet": 200.0,
+"birimFiyat": 2.9,
+"tutar": 580.0
+},
+{
+"kod": "OLEAG",
+"grup": "C",
+"tur": "satis",
+"adet": 100.0,
+"birimFiyat": 22.5,
+"tutar": 2250.0
+},
+{
+"kod": "KRT3D",
+"grup": "B",
+"tur": "satis",
+"adet": 136.699,
+"birimFiyat": 7.2,
+"tutar": 984.23
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "satis",
+"adet": 106.484,
+"birimFiyat": 9.35,
+"tutar": 995.63
+},
+{
+"kod": "NEVAS",
+"grup": "B",
+"tur": "satis",
+"adet": 250.0,
+"birimFiyat": 12.0,
+"tutar": 3000.0
+},
+{
+"kod": "SUITE",
+"grup": "B",
+"tur": "satis",
+"adet": 250.0,
+"birimFiyat": 6.0,
+"tutar": 1500.0
+},
+{
+"kod": "TCHNO",
+"grup": "B",
+"tur": "satis",
+"adet": 50.0,
+"birimFiyat": 16.0,
+"tutar": 800.0
+},
+{
+"kod": "YPSFT",
+"grup": "B",
+"tur": "satis",
+"adet": 100.0,
+"birimFiyat": 4.5,
+"tutar": 450.0
+},
+{
+"kod": "ORTAK",
+"grup": "B",
+"tur": "alis",
+"adet": 150000.0,
+"birimFiyat": 0.54,
+"tutar": 81000.0
+},
+{
+"kod": "IONTK",
+"grup": "B",
+"tur": "alis",
+"adet": 100000.0,
+"birimFiyat": 0.25,
+"tutar": 25000.0
+},
+{
+"kod": "SCOLI",
+"grup": "D",
+"tur": "alis",
+"adet": 200000.0,
+"birimFiyat": 0.25,
+"tutar": 50000.0
+},
+{
+"kod": "SECUR",
+"grup": "B",
+"tur": "alis",
+"adet": 10000.0,
+"birimFiyat": 30.0,
+"tutar": 300000.0
+},
+{
+"kod": "ORTAK",
+"grup": "B",
+"tur": "satis",
+"adet": 4055.104,
+"birimFiyat": 1.65,
+"tutar": 6690.92
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "satis",
+"adet": 862.424,
+"birimFiyat": 4.6,
+"tutar": 3967.15
+},
+{
+"kod": "PCARD",
+"grup": "B",
+"tur": "satis",
+"adet": 208.589,
+"birimFiyat": 3.75,
+"tutar": 782.21
+},
+{
+"kod": "MNYOL",
+"grup": "B",
+"tur": "satis",
+"adet": 373.954,
+"birimFiyat": 1.3,
+"tutar": 486.14
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "satis",
+"adet": 1248.382,
+"birimFiyat": 9.0,
+"tutar": 11235.44
+},
+{
+"kod": "JETCO",
+"grup": "B",
+"tur": "satis",
+"adet": 250.0,
+"birimFiyat": 12.5,
+"tutar": 3125.0
+},
+{
+"kod": "RTNOW",
+"grup": "B",
+"tur": "satis",
+"adet": 50.646,
+"birimFiyat": 8.0,
+"tutar": 405.17
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "alis",
+"adet": 5000.0,
+"birimFiyat": 2.0,
+"tutar": 10000.0
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 104.493,
+"birimFiyat": 12.0,
+"tutar": 1253.92
+},
+{
+"kod": "NEVAS",
+"grup": "B",
+"tur": "alis",
+"adet": 125.0,
+"birimFiyat": 8.0,
+"tutar": 1000.0
+},
+{
+"kod": "YPSFT",
+"grup": "B",
+"tur": "satis",
+"adet": 361.225,
+"birimFiyat": 4.99,
+"tutar": 1802.51
+},
+{
+"kod": "KRT3D",
+"grup": "B",
+"tur": "satis",
+"adet": 136.699,
+"birimFiyat": 7.25,
+"tutar": 991.07
+},
+{
+"kod": "DLVRY",
+"grup": "C",
+"tur": "satis",
+"adet": 175.288,
+"birimFiyat": 3.5,
+"tutar": 613.51
+},
+{
+"kod": "PROMO",
+"grup": "D",
+"tur": "satis",
+"adet": 1399.75,
+"birimFiyat": 3.5,
+"tutar": 4899.13
+},
+{
+"kod": "IONTK",
+"grup": "B",
+"tur": "satis",
+"adet": 186.353,
+"birimFiyat": 2.5,
+"tutar": 465.88
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "satis",
+"adet": 1315.922,
+"birimFiyat": 3.5,
+"tutar": 4605.73
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "satis",
+"adet": 7639.21,
+"birimFiyat": 11.0,
+"tutar": 84031.31
+},
+{
+"kod": "EVBEE",
+"grup": "B",
+"tur": "satis",
+"adet": 1265.77,
+"birimFiyat": 11.0,
+"tutar": 13923.47
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 12560.64,
+"birimFiyat": 11.5,
+"tutar": 144447.36
+},
+{
+"kod": "SUITE",
+"grup": "B",
+"tur": "alis",
+"adet": 15000.0,
+"birimFiyat": 0.6,
+"tutar": 9000.0
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "alis",
+"adet": 200000.0,
+"birimFiyat": 2.0,
+"tutar": 400000.0
+},
+{
+"kod": "TCHNO",
+"grup": "B",
+"tur": "alis",
+"adet": 200.0,
+"birimFiyat": 3.01,
+"tutar": 602.0
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "alis",
+"adet": 200.0,
+"birimFiyat": 3.13,
+"tutar": 626.0
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 0.91,
+"tutar": 910.0
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "alis",
+"adet": 500.0,
+"birimFiyat": 1.56,
+"tutar": 780.0
+},
+{
+"kod": "JETCO",
+"grup": "B",
+"tur": "alis",
+"adet": 100.0,
+"birimFiyat": 3.16,
+"tutar": 316.0
+},
+{
+"kod": "NGAYT",
+"grup": "B",
+"tur": "alis",
+"adet": 200.0,
+"birimFiyat": 4.52,
+"tutar": 904.0
+},
+{
+"kod": "NTRGA",
+"grup": "B",
+"tur": "alis",
+"adet": 100.0,
+"birimFiyat": 9.11,
+"tutar": 911.0
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 2309.52,
+"birimFiyat": 3.0,
+"tutar": 6928.56
+},
+{
+"kod": "PACHA",
+"grup": "B",
+"tur": "alis",
+"adet": 200.0,
+"birimFiyat": 3.02,
+"tutar": 604.0
+},
+{
+"kod": "ORTAK",
+"grup": "B",
+"tur": "satis",
+"adet": 437.034,
+"birimFiyat": 6.0,
+"tutar": 2622.2
+},
+{
+"kod": "NTRGA",
+"grup": "B",
+"tur": "alis",
+"adet": 2052.406,
+"birimFiyat": 9.09,
+"tutar": 18656.37
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "alis",
+"adet": 6223.18,
+"birimFiyat": 2.97,
+"tutar": 18482.84
+},
+{
+"kod": "PACHA",
+"grup": "B",
+"tur": "alis",
+"adet": 100000.0,
+"birimFiyat": 2.25,
+"tutar": 225000.0
+},
+{
+"kod": "MEDIB",
+"grup": "B",
+"tur": "alis",
+"adet": 30000.0,
+"birimFiyat": 0.5,
+"tutar": 15000.0
+},
+{
+"kod": "MEDIB",
+"grup": "B",
+"tur": "satis",
+"adet": 146.324,
+"birimFiyat": 10.0,
+"tutar": 1463.24
+},
+{
+"kod": "UNIQ2",
+"grup": "B",
+"tur": "satis",
+"adet": 435.155,
+"birimFiyat": 14.0,
+"tutar": 6092.17
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "satis",
+"adet": 1315.922,
+"birimFiyat": 7.0,
+"tutar": 9211.45
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 11516.95,
+"birimFiyat": 3.5,
+"tutar": 40309.33
+},
+{
+"kod": "BSCHL",
+"grup": "B",
+"tur": "satis",
+"adet": 65.844,
+"birimFiyat": 9.99,
+"tutar": 657.78
+},
+{
+"kod": "MEDIB",
+"grup": "B",
+"tur": "satis",
+"adet": 199.974,
+"birimFiyat": 5.5,
+"tutar": 1099.86
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "alis",
+"adet": 2500.0,
+"birimFiyat": 2.4,
+"tutar": 6000.0
+},
+{
+"kod": "PACHA",
+"grup": "D",
+"tur": "satis",
+"adet": 10000.0,
+"birimFiyat": 7.0,
+"tutar": 70000.0
+},
+{
+"kod": "PACHA",
+"grup": "B",
+"tur": "satis",
+"adet": 14445.0,
+"birimFiyat": 6.5,
+"tutar": 93892.5
+},
+{
+"kod": "BSCHL",
+"grup": "B",
+"tur": "satis",
+"adet": 70.73,
+"birimFiyat": 10.0,
+"tutar": 707.3
+},
+{
+"kod": "PROMO",
+"grup": "D",
+"tur": "satis",
+"adet": 214.795,
+"birimFiyat": 7.0,
+"tutar": 1503.56
+},
+{
+"kod": "PACHA",
+"grup": "B",
+"tur": "satis",
+"adet": 34.302,
+"birimFiyat": 6.0,
+"tutar": 205.81
+},
+{
+"kod": "TUNGA",
+"grup": "A",
+"tur": "satis",
+"adet": 240.0,
+"birimFiyat": 15.0,
+"tutar": 3600.0
+},
+{
+"kod": "ALPGN",
+"grup": "B",
+"tur": "satis",
+"adet": 3.52,
+"birimFiyat": 60.0,
+"tutar": 211.2
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 730.063,
+"birimFiyat": 5.0,
+"tutar": 3650.32
+},
+{
+"kod": "PCARD",
+"grup": "B",
+"tur": "satis",
+"adet": 110.0,
+"birimFiyat": 5.0,
+"tutar": 550.0
+},
+{
+"kod": "BSCHL",
+"grup": "B",
+"tur": "satis",
+"adet": 20000.0,
+"birimFiyat": 12.0,
+"tutar": 240000.0
+},
+{
+"kod": "SPRG1",
+"grup": "B",
+"tur": "alis",
+"adet": 500.0,
+"birimFiyat": 1.73,
+"tutar": 865.0
+},
+{
+"kod": "MNYOL",
+"grup": "B",
+"tur": "satis",
+"adet": 280.465,
+"birimFiyat": 10.0,
+"tutar": 2804.65
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "satis",
+"adet": 105.272,
+"birimFiyat": 14.0,
+"tutar": 1473.81
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "satis",
+"adet": 248.1,
+"birimFiyat": 20.0,
+"tutar": 4962.0
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "satis",
+"adet": 2732.647,
+"birimFiyat": 15.0,
+"tutar": 40989.71
+},
+{
+"kod": "RTNOW",
+"grup": "B",
+"tur": "satis",
+"adet": 202.579,
+"birimFiyat": 8.8,
+"tutar": 1782.7
+},
+{
+"kod": "ESGEL",
+"grup": "B",
+"tur": "satis",
+"adet": 101.641,
+"birimFiyat": 10.0,
+"tutar": 1016.41
+},
+{
+"kod": "DLVRY",
+"grup": "C",
+"tur": "satis",
+"adet": 219.111,
+"birimFiyat": 5.0,
+"tutar": 1095.55
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "alis",
+"adet": 22000.0,
+"birimFiyat": 2.28,
+"tutar": 50160.0
+},
+{
+"kod": "RTNOW",
+"grup": "B",
+"tur": "satis",
+"adet": 81.032,
+"birimFiyat": 18.0,
+"tutar": 1458.58
+},
+{
+"kod": "SHIFT",
+"grup": "C",
+"tur": "satis",
+"adet": 41.682,
+"birimFiyat": 18.0,
+"tutar": 750.28
+},
+{
+"kod": "SIZEM",
+"grup": "B",
+"tur": "satis",
+"adet": 40.928,
+"birimFiyat": 23.0,
+"tutar": 941.34
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "satis",
+"adet": 129.508,
+"birimFiyat": 23.0,
+"tutar": 2978.68
+},
+{
+"kod": "SUITE",
+"grup": "B",
+"tur": "satis",
+"adet": 129.6,
+"birimFiyat": 13.0,
+"tutar": 1684.8
+},
+{
+"kod": "TYORE",
+"grup": "C",
+"tur": "satis",
+"adet": 21.2,
+"birimFiyat": 22.0,
+"tutar": 466.4
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "satis",
+"adet": 1341.94,
+"birimFiyat": 15.0,
+"tutar": 20129.1
+},
+{
+"kod": "BSCHL",
+"grup": "B",
+"tur": "satis",
+"adet": 197.532,
+"birimFiyat": 11.7,
+"tutar": 2311.12
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "satis",
+"adet": 800.0,
+"birimFiyat": 4.89,
+"tutar": 3912.0
+},
+{
+"kod": "NEVAS",
+"grup": "B",
+"tur": "satis",
+"adet": 160.05,
+"birimFiyat": 100.0,
+"tutar": 16005.0
+},
+{
+"kod": "TMZYL",
+"grup": "C",
+"tur": "satis",
+"adet": 271.308,
+"birimFiyat": 250.0,
+"tutar": 67827.0
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 108.516,
+"birimFiyat": 500.0,
+"tutar": 54258.0
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 13070.23,
+"birimFiyat": 111.0,
+"tutar": 1450795.53
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "satis",
+"adet": 14737.74,
+"birimFiyat": 30.0,
+"tutar": 442132.2
+},
+{
+"kod": "EVBEE",
+"grup": "B",
+"tur": "satis",
+"adet": 262.919,
+"birimFiyat": 2000.0,
+"tutar": 525838.0
+},
+{
+"kod": "MNYOL",
+"grup": "B",
+"tur": "satis",
+"adet": 233.721,
+"birimFiyat": 25.0,
+"tutar": 5843.03
+},
+{
+"kod": "AUTHT",
+"grup": "B",
+"tur": "satis",
+"adet": 130.0,
+"birimFiyat": 83.0,
+"tutar": 10790.0
+},
+{
+"kod": "KABIP",
+"grup": "C",
+"tur": "satis",
+"adet": 125.39,
+"birimFiyat": 24.0,
+"tutar": 3009.36
+},
+{
+"kod": "DLVRY",
+"grup": "C",
+"tur": "satis",
+"adet": 296.408,
+"birimFiyat": 16.0,
+"tutar": 4742.53
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "satis",
+"adet": 232.899,
+"birimFiyat": 100.0,
+"tutar": 23289.9
+},
+{
+"kod": "RTNOW",
+"grup": "B",
+"tur": "satis",
+"adet": 101.29,
+"birimFiyat": 14.0,
+"tutar": 1418.06
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 175.795,
+"birimFiyat": 50.0,
+"tutar": 8789.75
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "satis",
+"adet": 5000.0,
+"birimFiyat": 1100.0,
+"tutar": 5500000.0
+},
+{
+"kod": "CMPTV",
+"grup": "B",
+"tur": "satis",
+"adet": 396.529,
+"birimFiyat": 2.89,
+"tutar": 1145.97
+},
+{
+"kod": "DLVRY",
+"grup": "C",
+"tur": "satis",
+"adet": 973.815,
+"birimFiyat": 100.0,
+"tutar": 97381.5
+},
+{
+"kod": "CLASS",
+"grup": "B",
+"tur": "satis",
+"adet": 22.8,
+"birimFiyat": 200.0,
+"tutar": 4560.0
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 1000.32,
+"birimFiyat": 1.6,
+"tutar": 1600.51
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "satis",
+"adet": 289.471,
+"birimFiyat": 4.9,
+"tutar": 1418.41
+},
+{
+"kod": "BSCHL",
+"grup": "B",
+"tur": "satis",
+"adet": 73.877,
+"birimFiyat": 50.0,
+"tutar": 3693.85
+},
+{
+"kod": "BLCLL",
+"grup": "B",
+"tur": "satis",
+"adet": 433.514,
+"birimFiyat": 61.0,
+"tutar": 26444.35
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "alis",
+"adet": 10000.0,
+"birimFiyat": 1.5,
+"tutar": 15000.0
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "satis",
+"adet": 263.185,
+"birimFiyat": 4.0,
+"tutar": 1052.74
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 850.0,
+"birimFiyat": 4.99,
+"tutar": 4241.5
+},
+{
+"kod": "BIGET",
+"grup": "B",
+"tur": "satis",
+"adet": 498.849,
+"birimFiyat": 50.0,
+"tutar": 24942.45
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "satis",
+"adet": 5465.287,
+"birimFiyat": 1.0,
+"tutar": 5465.29
+},
+{
+"kod": "MNYOL",
+"grup": "B",
+"tur": "satis",
+"adet": 467.0,
+"birimFiyat": 3.89,
+"tutar": 1816.63
+},
+{
+"kod": "ATECH",
+"grup": "B",
+"tur": "satis",
+"adet": 205.97,
+"birimFiyat": 100.0,
+"tutar": 20597.0
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "satis",
+"adet": 2556.31,
+"birimFiyat": 50.0,
+"tutar": 127815.5
+},
+{
+"kod": "PROMO",
+"grup": "D",
+"tur": "satis",
+"adet": 1.0,
+"birimFiyat": 35.0,
+"tutar": 35.0
+},
+{
+"kod": "NEVAS",
+"grup": "B",
+"tur": "alis",
+"adet": 5000.0,
+"birimFiyat": 7.55,
+"tutar": 37750.0
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "satis",
+"adet": 67.658,
+"birimFiyat": 66.0,
+"tutar": 4465.43
+},
+{
+"kod": "SIZEM",
+"grup": "B",
+"tur": "satis",
+"adet": 34.447,
+"birimFiyat": 55.0,
+"tutar": 1894.59
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "alis",
+"adet": 400.0,
+"birimFiyat": 6.25,
+"tutar": 2500.0
+},
+{
+"kod": "DLVRY",
+"grup": "C",
+"tur": "satis",
+"adet": 109.556,
+"birimFiyat": 11.0,
+"tutar": 1205.12
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 99.473,
+"birimFiyat": 16.0,
+"tutar": 1591.57
+},
+{
+"kod": "NGAYT",
+"grup": "B",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 1.0,
+"tutar": 1000.0
+},
+{
+"kod": "OLEAG",
+"grup": "C",
+"tur": "satis",
+"adet": 88.19,
+"birimFiyat": 75.0,
+"tutar": 6614.25
+},
+{
+"kod": "SCOLI",
+"grup": "D",
+"tur": "satis",
+"adet": 231.008,
+"birimFiyat": 10.0,
+"tutar": 2310.08
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 1939.06,
+"birimFiyat": 80.0,
+"tutar": 155124.8
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "alis",
+"adet": 2000.0,
+"birimFiyat": 0.51,
+"tutar": 1020.0
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "satis",
+"adet": 289.502,
+"birimFiyat": 4.5,
+"tutar": 1302.76
+},
+{
+"kod": "EVBEE",
+"grup": "B",
+"tur": "satis",
+"adet": 1000.0,
+"birimFiyat": 7.0,
+"tutar": 7000.0
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 1.15,
+"tutar": 1150.0
+},
+{
+"kod": "SECUR",
+"grup": "B",
+"tur": "alis",
+"adet": 137.0,
+"birimFiyat": 11.0,
+"tutar": 1507.0
+},
+{
+"kod": "NEVAS",
+"grup": "B",
+"tur": "alis",
+"adet": 500.0,
+"birimFiyat": 7.5,
+"tutar": 3750.0
+},
+{
+"kod": "TUNGA",
+"grup": "A",
+"tur": "satis",
+"adet": 190.0,
+"birimFiyat": 14.95,
+"tutar": 2840.5
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "satis",
+"adet": 1860.137,
+"birimFiyat": 17.5,
+"tutar": 32552.4
+},
+{
+"kod": "ORTAK",
+"grup": "B",
+"tur": "satis",
+"adet": 105.828,
+"birimFiyat": 25.0,
+"tutar": 2645.7
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 1085.0,
+"birimFiyat": 15.0,
+"tutar": 16275.0
+},
+{
+"kod": "TCHNO",
+"grup": "B",
+"tur": "satis",
+"adet": 1000.0,
+"birimFiyat": 21.5,
+"tutar": 21500.0
+},
+{
+"kod": "JETCO",
+"grup": "B",
+"tur": "satis",
+"adet": 43.358,
+"birimFiyat": 60.0,
+"tutar": 2601.48
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 1361.09,
+"birimFiyat": 1000.0,
+"tutar": 1361090.0
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "alis",
+"adet": 15000.0,
+"birimFiyat": 0.5,
+"tutar": 7500.0
+},
+{
+"kod": "IONTK",
+"grup": "B",
+"tur": "satis",
+"adet": 209.856,
+"birimFiyat": 2.39,
+"tutar": 501.56
+},
+{
+"kod": "NGAYT",
+"grup": "B",
+"tur": "satis",
+"adet": 3861.32,
+"birimFiyat": 8.81,
+"tutar": 34018.23
+},
+{
+"kod": "CMPTV",
+"grup": "B",
+"tur": "satis",
+"adet": 84.972,
+"birimFiyat": 29.6,
+"tutar": 2515.17
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 527.714,
+"birimFiyat": 17.98,
+"tutar": 9488.3
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "satis",
+"adet": 80.402,
+"birimFiyat": 8.0,
+"tutar": 643.22
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 5326.08,
+"birimFiyat": 9.21,
+"tutar": 49053.2
+},
+{
+"kod": "SCOLI",
+"grup": "D",
+"tur": "satis",
+"adet": 115.504,
+"birimFiyat": 4.0,
+"tutar": 462.02
+},
+{
+"kod": "PACHA",
+"grup": "D",
+"tur": "satis",
+"adet": 685.098,
+"birimFiyat": 15.0,
+"tutar": 10276.47
+},
+{
+"kod": "NTDRY",
+"grup": "B",
+"tur": "satis",
+"adet": 296.723,
+"birimFiyat": 5.0,
+"tutar": 1483.62
+},
+{
+"kod": "IONTK",
+"grup": "B",
+"tur": "satis",
+"adet": 60.798,
+"birimFiyat": 3.0,
+"tutar": 182.39
+},
+{
+"kod": "ALPGN",
+"grup": "B",
+"tur": "satis",
+"adet": 335.194,
+"birimFiyat": 55.0,
+"tutar": 18435.67
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 386.357,
+"birimFiyat": 26.5,
+"tutar": 10238.46
+},
+{
+"kod": "ESGEL",
+"grup": "B",
+"tur": "satis",
+"adet": 67.083,
+"birimFiyat": 6.5,
+"tutar": 436.04
+},
+{
+"kod": "DLVRY",
+"grup": "C",
+"tur": "satis",
+"adet": 52.589,
+"birimFiyat": 4.0,
+"tutar": 210.36
+},
+{
+"kod": "KRT3D",
+"grup": "B",
+"tur": "satis",
+"adet": 820.197,
+"birimFiyat": 7.5,
+"tutar": 6151.48
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "satis",
+"adet": 517.452,
+"birimFiyat": 35.0,
+"tutar": 18110.82
+},
+{
+"kod": "KRT3D",
+"grup": "B",
+"tur": "satis",
+"adet": 273.401,
+"birimFiyat": 7.32,
+"tutar": 2001.3
+},
+{
+"kod": "ORTAK",
+"grup": "B",
+"tur": "satis",
+"adet": 1011.122,
+"birimFiyat": 1.98,
+"tutar": 2002.02
+},
+{
+"kod": "SIZEM",
+"grup": "B",
+"tur": "satis",
+"adet": 69.73,
+"birimFiyat": 15.0,
+"tutar": 1045.95
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "satis",
+"adet": 153.332,
+"birimFiyat": 9.0,
+"tutar": 1379.99
+},
+{
+"kod": "PROMO",
+"grup": "D",
+"tur": "satis",
+"adet": 377.082,
+"birimFiyat": 15.0,
+"tutar": 5656.23
+},
+{
+"kod": "PCARD",
+"grup": "B",
+"tur": "satis",
+"adet": 229.447,
+"birimFiyat": 5.9,
+"tutar": 1353.74
+},
+{
+"kod": "ORTAK",
+"grup": "B",
+"tur": "satis",
+"adet": 1306.487,
+"birimFiyat": 12.0,
+"tutar": 15677.84
+},
+{
+"kod": "MNYOL",
+"grup": "B",
+"tur": "satis",
+"adet": 343.102,
+"birimFiyat": 6.99,
+"tutar": 2398.28
+},
+{
+"kod": "MEDIB",
+"grup": "B",
+"tur": "satis",
+"adet": 9.29,
+"birimFiyat": 11.0,
+"tutar": 102.19
+},
+{
+"kod": "NEVAS",
+"grup": "B",
+"tur": "satis",
+"adet": 160.05,
+"birimFiyat": 12.5,
+"tutar": 2000.63
+},
+{
+"kod": "KABIP",
+"grup": "C",
+"tur": "satis",
+"adet": 23.356,
+"birimFiyat": 19.9,
+"tutar": 464.78
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "satis",
+"adet": 657.961,
+"birimFiyat": 4.56,
+"tutar": 3000.3
+},
+{
+"kod": "CMPTV",
+"grup": "B",
+"tur": "alis",
+"adet": 75000.0,
+"birimFiyat": 0.55,
+"tutar": 41250.0
+},
+{
+"kod": "SECUR",
+"grup": "B",
+"tur": "satis",
+"adet": 33.155,
+"birimFiyat": 91.0,
+"tutar": 3017.11
+},
+{
+"kod": "NEVAS",
+"grup": "B",
+"tur": "satis",
+"adet": 160.05,
+"birimFiyat": 13.0,
+"tutar": 2080.65
+},
+{
+"kod": "SHIFT",
+"grup": "C",
+"tur": "satis",
+"adet": 41.68,
+"birimFiyat": 5.0,
+"tutar": 208.4
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "satis",
+"adet": 1059.28,
+"birimFiyat": 45.0,
+"tutar": 47667.6
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 789.904,
+"birimFiyat": 99.0,
+"tutar": 78200.5
+},
+{
+"kod": "ONIMA",
+"grup": "B",
+"tur": "alis",
+"adet": 400.0,
+"birimFiyat": 3.0,
+"tutar": 1200.0
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "alis",
+"adet": 1000000.0,
+"birimFiyat": 1.0,
+"tutar": 1000000.0
+},
+{
+"kod": "YPSFT",
+"grup": "B",
+"tur": "satis",
+"adet": 246.29,
+"birimFiyat": 6.0,
+"tutar": 1477.74
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "alis",
+"adet": 100.0,
+"birimFiyat": 6.2,
+"tutar": 620.0
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 20944.83,
+"birimFiyat": 200.0,
+"tutar": 4188966.0
+},
+{
+"kod": "MNYOL",
+"grup": "B",
+"tur": "satis",
+"adet": 3739.535,
+"birimFiyat": 1.75,
+"tutar": 6544.19
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "alis",
+"adet": 5000.0,
+"birimFiyat": 1.55,
+"tutar": 7750.0
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 14797.8,
+"birimFiyat": 4.75,
+"tutar": 70289.55
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "alis",
+"adet": 200.0,
+"birimFiyat": 2.6,
+"tutar": 520.0
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "satis",
+"adet": 229.98,
+"birimFiyat": 5.0,
+"tutar": 1149.9
+},
+{
+"kod": "ONIMA",
+"grup": "B",
+"tur": "satis",
+"adet": 151.268,
+"birimFiyat": 9.9,
+"tutar": 1497.55
+},
+{
+"kod": "ANCYR",
+"grup": "B",
+"tur": "alis",
+"adet": 10000.0,
+"birimFiyat": 2.0,
+"tutar": 20000.0
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "alis",
+"adet": 10000.0,
+"birimFiyat": 2.0,
+"tutar": 20000.0
+},
+{
+"kod": "SCOLI",
+"grup": "D",
+"tur": "satis",
+"adet": 231.008,
+"birimFiyat": 110.0,
+"tutar": 25410.88
+},
+{
+"kod": "KRT3D",
+"grup": "B",
+"tur": "alis",
+"adet": 500.0,
+"birimFiyat": 2.05,
+"tutar": 1025.0
+},
+{
+"kod": "SHIFT",
+"grup": "C",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 0.4,
+"tutar": 400.0
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 949.689,
+"birimFiyat": 6.0,
+"tutar": 5698.13
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "satis",
+"adet": 331.216,
+"birimFiyat": 8.0,
+"tutar": 2649.73
+},
+{
+"kod": "BSCHL",
+"grup": "B",
+"tur": "alis",
+"adet": 16000.0,
+"birimFiyat": 3.0,
+"tutar": 48000.0
+},
+{
+"kod": "NTRGA",
+"grup": "B",
+"tur": "satis",
+"adet": 12650.902,
+"birimFiyat": 10.0,
+"tutar": 126509.02
+},
+{
+"kod": "PCARD",
+"grup": "B",
+"tur": "satis",
+"adet": 22000.0,
+"birimFiyat": 6.0,
+"tutar": 132000.0
+},
+{
+"kod": "ORTAK",
+"grup": "B",
+"tur": "satis",
+"adet": 30000.0,
+"birimFiyat": 3.5,
+"tutar": 105000.0
+},
+{
+"kod": "NTDRY",
+"grup": "B",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 0.7,
+"tutar": 700.0
+},
+{
+"kod": "NGAYT",
+"grup": "B",
+"tur": "satis",
+"adet": 15328.19,
+"birimFiyat": 8.0,
+"tutar": 122625.52
+},
+{
+"kod": "NTDRY",
+"grup": "B",
+"tur": "satis",
+"adet": 30000.0,
+"birimFiyat": 5.0,
+"tutar": 150000.0
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "satis",
+"adet": 30000.0,
+"birimFiyat": 20.0,
+"tutar": 600000.0
+},
+{
+"kod": "EVBEE",
+"grup": "B",
+"tur": "satis",
+"adet": 20000.0,
+"birimFiyat": 20.0,
+"tutar": 400000.0
+},
+{
+"kod": "NGAYT",
+"grup": "B",
+"tur": "satis",
+"adet": 3511.97,
+"birimFiyat": 11.0,
+"tutar": 38631.67
+},
+{
+"kod": "ORTAK",
+"grup": "B",
+"tur": "alis",
+"adet": 20000.0,
+"birimFiyat": 0.5,
+"tutar": 10000.0
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 20000.0,
+"birimFiyat": 5.0,
+"tutar": 100000.0
+},
+{
+"kod": "MELOA",
+"grup": "C",
+"tur": "satis",
+"adet": 205.993,
+"birimFiyat": 20.0,
+"tutar": 4119.86
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "satis",
+"adet": 232.361,
+"birimFiyat": 25.0,
+"tutar": 5809.03
+},
+{
+"kod": "SUITE",
+"grup": "B",
+"tur": "satis",
+"adet": 864.0,
+"birimFiyat": 500.0,
+"tutar": 432000.0
+},
+{
+"kod": "TYORE",
+"grup": "C",
+"tur": "alis",
+"adet": 15000.0,
+"birimFiyat": 0.5,
+"tutar": 7500.0
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "satis",
+"adet": 229.98,
+"birimFiyat": 25.6,
+"tutar": 5887.49
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 219.484,
+"birimFiyat": 15.8,
+"tutar": 3467.85
+},
+{
+"kod": "MELOA",
+"grup": "C",
+"tur": "satis",
+"adet": 102.995,
+"birimFiyat": 20.8,
+"tutar": 2142.3
+},
+{
+"kod": "NEVAS",
+"grup": "B",
+"tur": "satis",
+"adet": 80.025,
+"birimFiyat": 21.7,
+"tutar": 1736.54
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "satis",
+"adet": 49950.0,
+"birimFiyat": 1.9,
+"tutar": 94905.0
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "satis",
+"adet": 1000.0,
+"birimFiyat": 4.7,
+"tutar": 4700.0
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 108.515,
+"birimFiyat": 150.0,
+"tutar": 16277.25
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "satis",
+"adet": 1018.29,
+"birimFiyat": 6.0,
+"tutar": 6109.74
+},
+{
+"kod": "EVBEE",
+"grup": "B",
+"tur": "satis",
+"adet": 90.412,
+"birimFiyat": 20.0,
+"tutar": 1808.24
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 542.58,
+"birimFiyat": 93.0,
+"tutar": 50459.94
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "alis",
+"adet": 347.0,
+"birimFiyat": 0.72,
+"tutar": 249.84
+},
+{
+"kod": "SECUR",
+"grup": "B",
+"tur": "alis",
+"adet": 2000.0,
+"birimFiyat": 39.0,
+"tutar": 78000.0
+},
+{
+"kod": "VNDAP",
+"grup": "B",
+"tur": "satis",
+"adet": 449.332,
+"birimFiyat": 32.0,
+"tutar": 14378.62
+},
+{
+"kod": "MEDIB",
+"grup": "B",
+"tur": "satis",
+"adet": 97.647,
+"birimFiyat": 30.0,
+"tutar": 2929.41
+},
+{
+"kod": "MEDIB",
+"grup": "B",
+"tur": "satis",
+"adet": 1032.167,
+"birimFiyat": 5.8,
+"tutar": 5986.57
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "satis",
+"adet": 1267.0,
+"birimFiyat": 30.0,
+"tutar": 38010.0
+},
+{
+"kod": "RTNOW",
+"grup": "B",
+"tur": "satis",
+"adet": 506.448,
+"birimFiyat": 10.0,
+"tutar": 5064.48
+},
+{
+"kod": "TCHNO",
+"grup": "B",
+"tur": "satis",
+"adet": 291.085,
+"birimFiyat": 25.0,
+"tutar": 7277.12
+},
+{
+"kod": "YPSFT",
+"grup": "B",
+"tur": "satis",
+"adet": 80.0,
+"birimFiyat": 6.25,
+"tutar": 500.0
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "satis",
+"adet": 40.0,
+"birimFiyat": 7.49,
+"tutar": 299.6
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "satis",
+"adet": 80.0,
+"birimFiyat": 6.25,
+"tutar": 500.0
+},
+{
+"kod": "SHOPL",
+"grup": "B",
+"tur": "satis",
+"adet": 30.0,
+"birimFiyat": 33.5,
+"tutar": 1005.0
+},
+{
+"kod": "PROMO",
+"grup": "D",
+"tur": "satis",
+"adet": 50.0,
+"birimFiyat": 9.9,
+"tutar": 495.0
+},
+{
+"kod": "ORTAK",
+"grup": "B",
+"tur": "satis",
+"adet": 120.0,
+"birimFiyat": 4.2,
+"tutar": 504.0
+},
+{
+"kod": "OLEAG",
+"grup": "C",
+"tur": "satis",
+"adet": 45.0,
+"birimFiyat": 22.9,
+"tutar": 1030.5
+},
+{
+"kod": "NTDRY",
+"grup": "B",
+"tur": "satis",
+"adet": 47.0,
+"birimFiyat": 10.9,
+"tutar": 512.3
+},
+{
+"kod": "NEVAS",
+"grup": "B",
+"tur": "satis",
+"adet": 50.0,
+"birimFiyat": 14.9,
+"tutar": 745.0
+},
+{
+"kod": "MNYOL",
+"grup": "B",
+"tur": "satis",
+"adet": 185.0,
+"birimFiyat": 3.9,
+"tutar": 721.5
+},
+{
+"kod": "MKTEK",
+"grup": "B",
+"tur": "satis",
+"adet": 50.0,
+"birimFiyat": 20.0,
+"tutar": 1000.0
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "alis",
+"adet": 8000.0,
+"birimFiyat": 0.56,
+"tutar": 4480.0
+},
+{
+"kod": "NTRGA",
+"grup": "B",
+"tur": "alis",
+"adet": 2000.0,
+"birimFiyat": 7.0,
+"tutar": 14000.0
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 8644.62,
+"birimFiyat": 3.85,
+"tutar": 33281.79
+},
+{
+"kod": "SECUR",
+"grup": "B",
+"tur": "satis",
+"adet": 861.476,
+"birimFiyat": 1000.0,
+"tutar": 861476.0
+},
+{
+"kod": "BLCLL",
+"grup": "B",
+"tur": "satis",
+"adet": 2000.0,
+"birimFiyat": 17.5,
+"tutar": 35000.0
+},
+{
+"kod": "SCOLI",
+"grup": "D",
+"tur": "satis",
+"adet": 1155.038,
+"birimFiyat": 3.5,
+"tutar": 4042.63
+},
+{
+"kod": "AUTHT",
+"grup": "B",
+"tur": "satis",
+"adet": 100.0,
+"birimFiyat": 1000.0,
+"tutar": 100000.0
+},
+{
+"kod": "MNYOL",
+"grup": "B",
+"tur": "satis",
+"adet": 20000.0,
+"birimFiyat": 7.0,
+"tutar": 140000.0
+},
+{
+"kod": "NEVAS",
+"grup": "B",
+"tur": "satis",
+"adet": 160.05,
+"birimFiyat": 13.0,
+"tutar": 2080.65
+},
+{
+"kod": "RTNOW",
+"grup": "B",
+"tur": "satis",
+"adet": 103.517,
+"birimFiyat": 29.0,
+"tutar": 3001.99
+},
+{
+"kod": "DLVRY",
+"grup": "C",
+"tur": "satis",
+"adet": 131.466,
+"birimFiyat": 3.8,
+"tutar": 499.57
+},
+{
+"kod": "PCARD",
+"grup": "B",
+"tur": "satis",
+"adet": 229.45,
+"birimFiyat": 3.8,
+"tutar": 871.91
+},
+{
+"kod": "AUTHT",
+"grup": "B",
+"tur": "satis",
+"adet": 9.294,
+"birimFiyat": 109.0,
+"tutar": 1013.05
+},
+{
+"kod": "MEDIB",
+"grup": "B",
+"tur": "satis",
+"adet": 879.727,
+"birimFiyat": 7.5,
+"tutar": 6597.95
+},
+{
+"kod": "MKTEK",
+"grup": "B",
+"tur": "satis",
+"adet": 336.97,
+"birimFiyat": 29.7,
+"tutar": 10008.01
+},
+{
+"kod": "SECUR",
+"grup": "B",
+"tur": "satis",
+"adet": 46.417,
+"birimFiyat": 90.0,
+"tutar": 4177.53
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "satis",
+"adet": 155.704,
+"birimFiyat": 6.5,
+"tutar": 1012.08
+},
+{
+"kod": "TYORE",
+"grup": "C",
+"tur": "satis",
+"adet": 282.665,
+"birimFiyat": 4.95,
+"tutar": 1399.19
+},
+{
+"kod": "ONIMA",
+"grup": "B",
+"tur": "satis",
+"adet": 100.0,
+"birimFiyat": 20.0,
+"tutar": 2000.0
+},
+{
+"kod": "BIGET",
+"grup": "B",
+"tur": "satis",
+"adet": 100.0,
+"birimFiyat": 25.0,
+"tutar": 2500.0
+},
+{
+"kod": "NGAYT",
+"grup": "B",
+"tur": "alis",
+"adet": 4444.0,
+"birimFiyat": 4.0,
+"tutar": 17776.0
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "satis",
+"adet": 146.798,
+"birimFiyat": 6.99,
+"tutar": 1026.12
+},
+{
+"kod": "PACHA",
+"grup": "D",
+"tur": "satis",
+"adet": 114.184,
+"birimFiyat": 7.99,
+"tutar": 912.33
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "satis",
+"adet": 131.592,
+"birimFiyat": 7.99,
+"tutar": 1051.42
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 108.516,
+"birimFiyat": 9.99,
+"tutar": 1084.07
+},
+{
+"kod": "DLVRY",
+"grup": "C",
+"tur": "satis",
+"adet": 87.644,
+"birimFiyat": 9.99,
+"tutar": 875.56
+},
+{
+"kod": "CMPTV",
+"grup": "B",
+"tur": "satis",
+"adet": 113.294,
+"birimFiyat": 6.99,
+"tutar": 791.93
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "alis",
+"adet": 15000.0,
+"birimFiyat": 2.0,
+"tutar": 30000.0
+},
+{
+"kod": "SUITE",
+"grup": "B",
+"tur": "satis",
+"adet": 453.816,
+"birimFiyat": 28.0,
+"tutar": 12706.85
+},
+{
+"kod": "IONTK",
+"grup": "B",
+"tur": "alis",
+"adet": 500.0,
+"birimFiyat": 0.5,
+"tutar": 250.0
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 1000.0,
+"birimFiyat": 5.8,
+"tutar": 5800.0
+},
+{
+"kod": "IONTK",
+"grup": "B",
+"tur": "satis",
+"adet": 50.0,
+"birimFiyat": 7.0,
+"tutar": 350.0
+},
+{
+"kod": "ESGEL",
+"grup": "B",
+"tur": "satis",
+"adet": 50.0,
+"birimFiyat": 9.9,
+"tutar": 495.0
+},
+{
+"kod": "OLEAG",
+"grup": "C",
+"tur": "alis",
+"adet": 300.0,
+"birimFiyat": 5.0,
+"tutar": 1500.0
+},
+{
+"kod": "ESGEL",
+"grup": "B",
+"tur": "satis",
+"adet": 878.161,
+"birimFiyat": 6.0,
+"tutar": 5268.97
+},
+{
+"kod": "PACHA",
+"grup": "D",
+"tur": "satis",
+"adet": 1111.0,
+"birimFiyat": 5.0,
+"tutar": 5555.0
+},
+{
+"kod": "PACHA",
+"grup": "D",
+"tur": "satis",
+"adet": 228.366,
+"birimFiyat": 9.0,
+"tutar": 2055.29
+},
+{
+"kod": "SCOLI",
+"grup": "D",
+"tur": "satis",
+"adet": 231.008,
+"birimFiyat": 5.0,
+"tutar": 1155.04
+},
+{
+"kod": "MNYOL",
+"grup": "B",
+"tur": "satis",
+"adet": 281.4,
+"birimFiyat": 28.0,
+"tutar": 7879.2
+},
+{
+"kod": "KABIP",
+"grup": "C",
+"tur": "satis",
+"adet": 205.865,
+"birimFiyat": 50.0,
+"tutar": 10293.25
+},
+{
+"kod": "IONTK",
+"grup": "B",
+"tur": "satis",
+"adet": 20.965,
+"birimFiyat": 45.0,
+"tutar": 943.43
+},
+{
+"kod": "ESGEL",
+"grup": "B",
+"tur": "satis",
+"adet": 508.203,
+"birimFiyat": 90.0,
+"tutar": 45738.27
+},
+{
+"kod": "SECUR",
+"grup": "B",
+"tur": "alis",
+"adet": 300.0,
+"birimFiyat": 33.6,
+"tutar": 10080.0
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "satis",
+"adet": 414.018,
+"birimFiyat": 7.6,
+"tutar": 3146.54
+},
+{
+"kod": "MELOA",
+"grup": "C",
+"tur": "satis",
+"adet": 411.99,
+"birimFiyat": 12.0,
+"tutar": 4943.88
+},
+{
+"kod": "PACHA",
+"grup": "B",
+"tur": "satis",
+"adet": 9929.526,
+"birimFiyat": 5.2,
+"tutar": 51633.54
+},
+{
+"kod": "PACHA",
+"grup": "D",
+"tur": "satis",
+"adet": 11011.389,
+"birimFiyat": 5.2,
+"tutar": 57259.22
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "satis",
+"adet": 35524.36,
+"birimFiyat": 0.95,
+"tutar": 33748.14
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "satis",
+"adet": 13527.94,
+"birimFiyat": 4.1,
+"tutar": 55464.55
+},
+{
+"kod": "EVBEE",
+"grup": "B",
+"tur": "satis",
+"adet": 1084.95,
+"birimFiyat": 8.9,
+"tutar": 9656.06
+},
+{
+"kod": "ANCYR",
+"grup": "B",
+"tur": "satis",
+"adet": 271.187,
+"birimFiyat": 13.0,
+"tutar": 3525.43
+},
+{
+"kod": "NEVAS",
+"grup": "B",
+"tur": "alis",
+"adet": 10000.0,
+"birimFiyat": 6.5,
+"tutar": 65000.0
+},
+{
+"kod": "ORTAK",
+"grup": "B",
+"tur": "satis",
+"adet": 21051.965,
+"birimFiyat": 2.5,
+"tutar": 52629.91
+},
+{
+"kod": "ATECH",
+"grup": "B",
+"tur": "alis",
+"adet": 10000.0,
+"birimFiyat": 3.5,
+"tutar": 35000.0
+},
+{
+"kod": "SIZEM",
+"grup": "B",
+"tur": "alis",
+"adet": 10000.0,
+"birimFiyat": 0.65,
+"tutar": 6500.0
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "alis",
+"adet": 10000.0,
+"birimFiyat": 0.35,
+"tutar": 3500.0
+},
+{
+"kod": "CLASS",
+"grup": "B",
+"tur": "alis",
+"adet": 3000.0,
+"birimFiyat": 3.0,
+"tutar": 9000.0
+},
+{
+"kod": "AUTHT",
+"grup": "B",
+"tur": "alis",
+"adet": 5000.0,
+"birimFiyat": 20.0,
+"tutar": 100000.0
+},
+{
+"kod": "TYORE",
+"grup": "C",
+"tur": "satis",
+"adet": 353.328,
+"birimFiyat": 71.0,
+"tutar": 25086.29
+},
+{
+"kod": "SCOLI",
+"grup": "D",
+"tur": "satis",
+"adet": 429.904,
+"birimFiyat": 15.0,
+"tutar": 6448.56
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "alis",
+"adet": 500000.0,
+"birimFiyat": 2.05,
+"tutar": 1025000.0
+},
+{
+"kod": "MKTEK",
+"grup": "B",
+"tur": "alis",
+"adet": 500.0,
+"birimFiyat": 3.0,
+"tutar": 1500.0
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "satis",
+"adet": 546.532,
+"birimFiyat": 40.0,
+"tutar": 21861.28
+},
+{
+"kod": "MKTEK",
+"grup": "B",
+"tur": "satis",
+"adet": 84.241,
+"birimFiyat": 50.0,
+"tutar": 4212.05
+},
+{
+"kod": "TMZYL",
+"grup": "C",
+"tur": "satis",
+"adet": 271.308,
+"birimFiyat": 50.0,
+"tutar": 13565.4
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "satis",
+"adet": 66.059,
+"birimFiyat": 50.0,
+"tutar": 3302.95
+},
+{
+"kod": "ESGEL",
+"grup": "B",
+"tur": "satis",
+"adet": 25.411,
+"birimFiyat": 50.0,
+"tutar": 1270.55
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 2084.44,
+"birimFiyat": 60.0,
+"tutar": 125066.4
+},
+{
+"kod": "SHOPL",
+"grup": "B",
+"tur": "alis",
+"adet": 500.0,
+"birimFiyat": 4.0,
+"tutar": 2000.0
+},
+{
+"kod": "ATECH",
+"grup": "B",
+"tur": "satis",
+"adet": 3000.0,
+"birimFiyat": 8.5,
+"tutar": 25500.0
+},
+{
+"kod": "CMPTV",
+"grup": "B",
+"tur": "satis",
+"adet": 239.163,
+"birimFiyat": 28.0,
+"tutar": 6696.56
+},
+{
+"kod": "SIZEM",
+"grup": "B",
+"tur": "satis",
+"adet": 19160.534,
+"birimFiyat": 8.0,
+"tutar": 153284.27
+},
+{
+"kod": "SCOLI",
+"grup": "D",
+"tur": "alis",
+"adet": 2000.0,
+"birimFiyat": 0.5,
+"tutar": 1000.0
+},
+{
+"kod": "IONTK",
+"grup": "B",
+"tur": "satis",
+"adet": 93.176,
+"birimFiyat": 50.0,
+"tutar": 4658.8
+},
+{
+"kod": "ONIMA",
+"grup": "B",
+"tur": "alis",
+"adet": 500.0,
+"birimFiyat": 2.15,
+"tutar": 1075.0
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 217.033,
+"birimFiyat": 50.0,
+"tutar": 10851.65
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 175.868,
+"birimFiyat": 50.0,
+"tutar": 8793.4
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "satis",
+"adet": 229.98,
+"birimFiyat": 50.0,
+"tutar": 11499.0
+},
+{
+"kod": "PACHA",
+"grup": "D",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 1.55,
+"tutar": 1550.0
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "satis",
+"adet": 13.158,
+"birimFiyat": 25.0,
+"tutar": 328.95
+},
+{
+"kod": "CLASS",
+"grup": "B",
+"tur": "satis",
+"adet": 1057.926,
+"birimFiyat": 19.0,
+"tutar": 20100.59
+},
+{
+"kod": "NEVAS",
+"grup": "B",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 5.0,
+"tutar": 5000.0
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 3095.67,
+"birimFiyat": 22.0,
+"tutar": 68104.74
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "alis",
+"adet": 1100.0,
+"birimFiyat": 2.55,
+"tutar": 2805.0
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 2.15,
+"tutar": 2150.0
+},
+{
+"kod": "ORTAK",
+"grup": "B",
+"tur": "satis",
+"adet": 451.122,
+"birimFiyat": 16.0,
+"tutar": 7217.95
+},
+{
+"kod": "PROMO",
+"grup": "B",
+"tur": "alis",
+"adet": 10000.0,
+"birimFiyat": 0.8,
+"tutar": 8000.0
+},
+{
+"kod": "VNDAP",
+"grup": "B",
+"tur": "satis",
+"adet": 40.848,
+"birimFiyat": 500.0,
+"tutar": 20424.0
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "satis",
+"adet": 800.0,
+"birimFiyat": 4.75,
+"tutar": 3800.0
+},
+{
+"kod": "PACHA",
+"grup": "D",
+"tur": "satis",
+"adet": 176.126,
+"birimFiyat": 30.0,
+"tutar": 5283.78
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "satis",
+"adet": 45965.9,
+"birimFiyat": 1.0,
+"tutar": 45965.9
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 108.516,
+"birimFiyat": 54.0,
+"tutar": 5859.86
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 361.446,
+"birimFiyat": 18.0,
+"tutar": 6506.03
+},
+{
+"kod": "SCOLI",
+"grup": "D",
+"tur": "satis",
+"adet": 231.008,
+"birimFiyat": 24.0,
+"tutar": 5544.19
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "satis",
+"adet": 82.804,
+"birimFiyat": 51.0,
+"tutar": 4223.0
+},
+{
+"kod": "TMZYL",
+"grup": "C",
+"tur": "satis",
+"adet": 271.311,
+"birimFiyat": 21.0,
+"tutar": 5697.53
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "satis",
+"adet": 146.798,
+"birimFiyat": 45.0,
+"tutar": 6605.91
+},
+{
+"kod": "MELOA",
+"grup": "C",
+"tur": "satis",
+"adet": 205.995,
+"birimFiyat": 33.0,
+"tutar": 6797.84
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "satis",
+"adet": 229.98,
+"birimFiyat": 39.0,
+"tutar": 8969.22
+},
+{
+"kod": "MEDIB",
+"grup": "B",
+"tur": "satis",
+"adet": 108.377,
+"birimFiyat": 100.0,
+"tutar": 10837.7
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "satis",
+"adet": 1093.05,
+"birimFiyat": 12.0,
+"tutar": 13116.6
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "satis",
+"adet": 65.796,
+"birimFiyat": 60.0,
+"tutar": 3947.76
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 4260.87,
+"birimFiyat": 12.0,
+"tutar": 51130.44
+},
+{
+"kod": "DLVRY",
+"grup": "C",
+"tur": "satis",
+"adet": 43.822,
+"birimFiyat": 81.0,
+"tutar": 3549.58
+},
+{
+"kod": "NTDRY",
+"grup": "B",
+"tur": "satis",
+"adet": 219.296,
+"birimFiyat": 93.0,
+"tutar": 20394.53
+},
+{
+"kod": "PCARD",
+"grup": "B",
+"tur": "satis",
+"adet": 104.293,
+"birimFiyat": 45.0,
+"tutar": 4693.19
+},
+{
+"kod": "KRT3D",
+"grup": "B",
+"tur": "satis",
+"adet": 68.349,
+"birimFiyat": 63.0,
+"tutar": 4305.99
+},
+{
+"kod": "ORTAK",
+"grup": "B",
+"tur": "satis",
+"adet": 201.432,
+"birimFiyat": 24.0,
+"tutar": 4834.37
+},
+{
+"kod": "MNYOL",
+"grup": "B",
+"tur": "satis",
+"adet": 172.58,
+"birimFiyat": 42.0,
+"tutar": 7248.36
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 314.262,
+"birimFiyat": 21.0,
+"tutar": 6599.5
+},
+{
+"kod": "PACHA",
+"grup": "B",
+"tur": "satis",
+"adet": 56.739,
+"birimFiyat": 51.0,
+"tutar": 2893.69
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 3496.67,
+"birimFiyat": 1.5,
+"tutar": 5245.01
+},
+{
+"kod": "SPRG1",
+"grup": "B",
+"tur": "satis",
+"adet": 2938.224,
+"birimFiyat": 14.4,
+"tutar": 42310.43
+},
+{
+"kod": "JETCO",
+"grup": "B",
+"tur": "satis",
+"adet": 40.261,
+"birimFiyat": 78.0,
+"tutar": 3140.36
+},
+{
+"kod": "PROMO",
+"grup": "D",
+"tur": "satis",
+"adet": 215.147,
+"birimFiyat": 51.0,
+"tutar": 10972.5
+},
+{
+"kod": "EVBEE",
+"grup": "B",
+"tur": "satis",
+"adet": 180.825,
+"birimFiyat": 63.0,
+"tutar": 11391.97
+},
+{
+"kod": "SHIFT",
+"grup": "C",
+"tur": "satis",
+"adet": 138.937,
+"birimFiyat": 84.0,
+"tutar": 11670.71
+},
+{
+"kod": "SECUR",
+"grup": "B",
+"tur": "alis",
+"adet": 1200.0,
+"birimFiyat": 25.0,
+"tutar": 30000.0
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 1042.22,
+"birimFiyat": 145.0,
+"tutar": 151121.9
+},
+{
+"kod": "YPSFT",
+"grup": "B",
+"tur": "satis",
+"adet": 164.191,
+"birimFiyat": 9.0,
+"tutar": 1477.72
+},
+{
+"kod": "TMZYL",
+"grup": "C",
+"tur": "satis",
+"adet": 271.308,
+"birimFiyat": 125.0,
+"tutar": 33913.5
+},
+{
+"kod": "RTNOW",
+"grup": "B",
+"tur": "satis",
+"adet": 149.502,
+"birimFiyat": 9.59,
+"tutar": 1433.72
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "satis",
+"adet": 227.537,
+"birimFiyat": 135.0,
+"tutar": 30717.5
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "satis",
+"adet": 546.525,
+"birimFiyat": 100.0,
+"tutar": 54652.5
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 4295.62,
+"birimFiyat": 150.0,
+"tutar": 644343.0
+},
+{
+"kod": "PCARD",
+"grup": "B",
+"tur": "satis",
+"adet": 104.293,
+"birimFiyat": 300.0,
+"tutar": 31287.9
+},
+{
+"kod": "PACHA",
+"grup": "D",
+"tur": "satis",
+"adet": 342.548,
+"birimFiyat": 350.0,
+"tutar": 119891.8
+},
+{
+"kod": "BLCLL",
+"grup": "B",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 5.0,
+"tutar": 5000.0
+},
+{
+"kod": "NTDRY",
+"grup": "B",
+"tur": "satis",
+"adet": 110.995,
+"birimFiyat": 325.0,
+"tutar": 36073.38
+},
+{
+"kod": "MNYOL",
+"grup": "B",
+"tur": "satis",
+"adet": 373.954,
+"birimFiyat": 115.0,
+"tutar": 43004.71
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "satis",
+"adet": 394.776,
+"birimFiyat": 92.0,
+"tutar": 36319.39
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "satis",
+"adet": 278.83,
+"birimFiyat": 115.0,
+"tutar": 32065.45
+},
+{
+"kod": "SHIFT",
+"grup": "C",
+"tur": "satis",
+"adet": 277.875,
+"birimFiyat": 7.5,
+"tutar": 2084.06
+},
+{
+"kod": "SUITE",
+"grup": "B",
+"tur": "satis",
+"adet": 57.6,
+"birimFiyat": 10.0,
+"tutar": 576.0
+},
+{
+"kod": "TYORE",
+"grup": "C",
+"tur": "satis",
+"adet": 105.998,
+"birimFiyat": 4.98,
+"tutar": 527.87
+},
+{
+"kod": "YPSFT",
+"grup": "B",
+"tur": "satis",
+"adet": 328.387,
+"birimFiyat": 6.99,
+"tutar": 2295.43
+},
+{
+"kod": "DLVRY",
+"grup": "C",
+"tur": "satis",
+"adet": 420.254,
+"birimFiyat": 5.5,
+"tutar": 2311.4
+},
+{
+"kod": "KRT3D",
+"grup": "B",
+"tur": "satis",
+"adet": 683.497,
+"birimFiyat": 8.0,
+"tutar": 5467.98
+},
+{
+"kod": "NTDRY",
+"grup": "B",
+"tur": "satis",
+"adet": 961.825,
+"birimFiyat": 3.98,
+"tutar": 3828.06
+},
+{
+"kod": "YPSFT",
+"grup": "B",
+"tur": "satis",
+"adet": 324.629,
+"birimFiyat": 7.0,
+"tutar": 2272.4
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 2170.32,
+"birimFiyat": 100.0,
+"tutar": 217032.0
+},
+{
+"kod": "TMZYL",
+"grup": "C",
+"tur": "alis",
+"adet": 10000.0,
+"birimFiyat": 3.0,
+"tutar": 30000.0
+},
+{
+"kod": "UNIQ2",
+"grup": "B",
+"tur": "alis",
+"adet": 150000.0,
+"birimFiyat": 0.35,
+"tutar": 52500.0
+},
+{
+"kod": "TUNGA",
+"grup": "B",
+"tur": "alis",
+"adet": 100000.0,
+"birimFiyat": 0.27,
+"tutar": 27000.0
+},
+{
+"kod": "SIZEM",
+"grup": "B",
+"tur": "alis",
+"adet": 50000.0,
+"birimFiyat": 0.35,
+"tutar": 17500.0
+},
+{
+"kod": "SHIFT",
+"grup": "C",
+"tur": "alis",
+"adet": 100000.0,
+"birimFiyat": 0.35,
+"tutar": 35000.0
+},
+{
+"kod": "OLEAG",
+"grup": "C",
+"tur": "alis",
+"adet": 2000.0,
+"birimFiyat": 2.0,
+"tutar": 4000.0
+},
+{
+"kod": "PROMO",
+"grup": "D",
+"tur": "alis",
+"adet": 100000.0,
+"birimFiyat": 0.35,
+"tutar": 35000.0
+},
+{
+"kod": "PROMO",
+"grup": "B",
+"tur": "alis",
+"adet": 50000.0,
+"birimFiyat": 0.75,
+"tutar": 37500.0
+},
+{
+"kod": "PCARD",
+"grup": "B",
+"tur": "alis",
+"adet": 75000.0,
+"birimFiyat": 0.35,
+"tutar": 26250.0
+},
+{
+"kod": "NGAYT",
+"grup": "B",
+"tur": "alis",
+"adet": 50000.0,
+"birimFiyat": 1.25,
+"tutar": 62500.0
+},
+{
+"kod": "KRT3D",
+"grup": "B",
+"tur": "alis",
+"adet": 75000.0,
+"birimFiyat": 1.25,
+"tutar": 93750.0
+},
+{
+"kod": "OLEAG",
+"grup": "C",
+"tur": "alis",
+"adet": 4000.0,
+"birimFiyat": 4.0,
+"tutar": 16000.0
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "alis",
+"adet": 100000.0,
+"birimFiyat": 0.35,
+"tutar": 35000.0
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "alis",
+"adet": 200000.0,
+"birimFiyat": 0.37,
+"tutar": 74000.0
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "satis",
+"adet": 644.803,
+"birimFiyat": 4.8,
+"tutar": 3095.05
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 18519.15,
+"birimFiyat": 2.5,
+"tutar": 46297.88
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 1758.68,
+"birimFiyat": 25.0,
+"tutar": 43967.0
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 94690.0,
+"birimFiyat": 25.0,
+"tutar": 2367250.0
+},
+{
+"kod": "AUTHT",
+"grup": "B",
+"tur": "satis",
+"adet": 83.294,
+"birimFiyat": 90.0,
+"tutar": 7496.46
+},
+{
+"kod": "NGAYT",
+"grup": "B",
+"tur": "satis",
+"adet": 9680.61,
+"birimFiyat": 8.7,
+"tutar": 84221.31
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "satis",
+"adet": 778.571,
+"birimFiyat": 4.76,
+"tutar": 3706.0
+},
+{
+"kod": "SIZEM",
+"grup": "B",
+"tur": "satis",
+"adet": 634.391,
+"birimFiyat": 9.0,
+"tutar": 5709.52
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "satis",
+"adet": 3008.432,
+"birimFiyat": 10.0,
+"tutar": 30084.32
+},
+{
+"kod": "SUITE",
+"grup": "B",
+"tur": "satis",
+"adet": 3240.0,
+"birimFiyat": 15.0,
+"tutar": 48600.0
+},
+{
+"kod": "NTDRY",
+"grup": "B",
+"tur": "satis",
+"adet": 24061.07,
+"birimFiyat": 4.0,
+"tutar": 96244.28
+},
+{
+"kod": "DLVRY",
+"grup": "C",
+"tur": "satis",
+"adet": 87.646,
+"birimFiyat": 4.2,
+"tutar": 368.11
+},
+{
+"kod": "MELOA",
+"grup": "C",
+"tur": "satis",
+"adet": 308.0,
+"birimFiyat": 17.5,
+"tutar": 5390.0
+},
+{
+"kod": "ONIMA",
+"grup": "B",
+"tur": "satis",
+"adet": 139.632,
+"birimFiyat": 13.8,
+"tutar": 1926.92
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "satis",
+"adet": 60000.0,
+"birimFiyat": 9.0,
+"tutar": 540000.0
+},
+{
+"kod": "BLCLL",
+"grup": "B",
+"tur": "satis",
+"adet": 120.055,
+"birimFiyat": 16.66,
+"tutar": 2000.12
+},
+{
+"kod": "TYORE",
+"grup": "C",
+"tur": "satis",
+"adet": 388.66,
+"birimFiyat": 55.0,
+"tutar": 21376.3
+},
+{
+"kod": "YPSFT",
+"grup": "B",
+"tur": "satis",
+"adet": 492.579,
+"birimFiyat": 55.0,
+"tutar": 27091.85
+},
+{
+"kod": "SUITE",
+"grup": "B",
+"tur": "satis",
+"adet": 1296.0,
+"birimFiyat": 55.0,
+"tutar": 71280.0
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "satis",
+"adet": 1488.583,
+"birimFiyat": 55.0,
+"tutar": 81872.07
+},
+{
+"kod": "SIZEM",
+"grup": "B",
+"tur": "satis",
+"adet": 341.07,
+"birimFiyat": 155.0,
+"tutar": 52865.85
+},
+{
+"kod": "SHIFT",
+"grup": "C",
+"tur": "satis",
+"adet": 486.28,
+"birimFiyat": 55.0,
+"tutar": 26745.4
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 2084.44,
+"birimFiyat": 55.0,
+"tutar": 114644.2
+},
+{
+"kod": "PROMO",
+"grup": "D",
+"tur": "satis",
+"adet": 3770.85,
+"birimFiyat": 55.0,
+"tutar": 207396.75
+},
+{
+"kod": "PACHA",
+"grup": "D",
+"tur": "satis",
+"adet": 570.914,
+"birimFiyat": 55.0,
+"tutar": 31400.27
+},
+{
+"kod": "NTDRY",
+"grup": "B",
+"tur": "satis",
+"adet": 1442.74,
+"birimFiyat": 55.0,
+"tutar": 79350.7
+},
+{
+"kod": "EVBEE",
+"grup": "B",
+"tur": "satis",
+"adet": 2350.72,
+"birimFiyat": 55.0,
+"tutar": 129289.6
+},
+{
+"kod": "NGAYT",
+"grup": "B",
+"tur": "satis",
+"adet": 792.513,
+"birimFiyat": 55.0,
+"tutar": 43588.22
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 2089.85,
+"birimFiyat": 55.0,
+"tutar": 114941.75
+},
+{
+"kod": "MNYOL",
+"grup": "B",
+"tur": "satis",
+"adet": 2119.008,
+"birimFiyat": 55.0,
+"tutar": 116545.44
+},
+{
+"kod": "CLASS",
+"grup": "B",
+"tur": "satis",
+"adet": 570.002,
+"birimFiyat": 55.0,
+"tutar": 31350.11
+},
+{
+"kod": "BIGET",
+"grup": "B",
+"tur": "satis",
+"adet": 1381.472,
+"birimFiyat": 20.0,
+"tutar": 27629.44
+},
+{
+"kod": "BSCHL",
+"grup": "B",
+"tur": "satis",
+"adet": 302.885,
+"birimFiyat": 55.0,
+"tutar": 16658.68
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 9701.72,
+"birimFiyat": 55.0,
+"tutar": 533594.6
+},
+{
+"kod": "ATECH",
+"grup": "B",
+"tur": "satis",
+"adet": 877.018,
+"birimFiyat": 55.0,
+"tutar": 48235.99
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "satis",
+"adet": 1149.885,
+"birimFiyat": 55.0,
+"tutar": 63243.68
+},
+{
+"kod": "RTNOW",
+"grup": "B",
+"tur": "satis",
+"adet": 200.0,
+"birimFiyat": 9.5,
+"tutar": 1900.0
+},
+{
+"kod": "NEVAS",
+"grup": "B",
+"tur": "satis",
+"adet": 200.0,
+"birimFiyat": 13.95,
+"tutar": 2790.0
+},
+{
+"kod": "MKTEK",
+"grup": "B",
+"tur": "satis",
+"adet": 673.0,
+"birimFiyat": 50.0,
+"tutar": 33650.0
+},
+{
+"kod": "UNIQ2",
+"grup": "B",
+"tur": "alis",
+"adet": 500.0,
+"birimFiyat": 4.5,
+"tutar": 2250.0
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 1140.0,
+"birimFiyat": 50.0,
+"tutar": 57000.0
+},
+{
+"kod": "TUNGA",
+"grup": "A",
+"tur": "satis",
+"adet": 1100.0,
+"birimFiyat": 180.0,
+"tutar": 198000.0
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 12082.05,
+"birimFiyat": 80.0,
+"tutar": 966564.0
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 141.071,
+"birimFiyat": 15.0,
+"tutar": 2116.07
+},
+{
+"kod": "TCHNO",
+"grup": "B",
+"tur": "satis",
+"adet": 291.085,
+"birimFiyat": 26.0,
+"tutar": 7568.21
+},
+{
+"kod": "ESGEL",
+"grup": "B",
+"tur": "satis",
+"adet": 101.64,
+"birimFiyat": 25.0,
+"tutar": 2541.0
+},
+{
+"kod": "CMPTV",
+"grup": "B",
+"tur": "satis",
+"adet": 113.296,
+"birimFiyat": 7.0,
+"tutar": 793.07
+},
+{
+"kod": "MKTEK",
+"grup": "B",
+"tur": "satis",
+"adet": 124.08,
+"birimFiyat": 15.0,
+"tutar": 1861.2
+},
+{
+"kod": "BSCHL",
+"grup": "B",
+"tur": "alis",
+"adet": 600.0,
+"birimFiyat": 4.0,
+"tutar": 2400.0
+},
+{
+"kod": "OLEAG",
+"grup": "C",
+"tur": "satis",
+"adet": 474.259,
+"birimFiyat": 30.0,
+"tutar": 14227.77
+},
+{
+"kod": "SHOPL",
+"grup": "B",
+"tur": "satis",
+"adet": 2662.762,
+"birimFiyat": 25.0,
+"tutar": 66569.05
+},
+{
+"kod": "NTDRY",
+"grup": "B",
+"tur": "satis",
+"adet": 133.587,
+"birimFiyat": 7.5,
+"tutar": 1001.9
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "satis",
+"adet": 319.915,
+"birimFiyat": 1.55,
+"tutar": 495.87
+},
+{
+"kod": "SIZEM",
+"grup": "B",
+"tur": "satis",
+"adet": 682.14,
+"birimFiyat": 3.55,
+"tutar": 2421.6
+},
+{
+"kod": "JETCO",
+"grup": "B",
+"tur": "satis",
+"adet": 154.85,
+"birimFiyat": 13.55,
+"tutar": 2098.22
+},
+{
+"kod": "ATECH",
+"grup": "B",
+"tur": "satis",
+"adet": 442.0,
+"birimFiyat": 9.8,
+"tutar": 4331.6
+},
+{
+"kod": "TYORE",
+"grup": "C",
+"tur": "satis",
+"adet": 445.186,
+"birimFiyat": 5.98,
+"tutar": 2662.21
+},
+{
+"kod": "NEVAS",
+"grup": "B",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 4.0,
+"tutar": 4000.0
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "alis",
+"adet": 5000.0,
+"birimFiyat": 2.01,
+"tutar": 10050.0
+},
+{
+"kod": "NGAYT",
+"grup": "B",
+"tur": "alis",
+"adet": 2000.0,
+"birimFiyat": 3.0,
+"tutar": 6000.0
+},
+{
+"kod": "PACHA",
+"grup": "B",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 3.0,
+"tutar": 3000.0
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 4.5,
+"tutar": 4500.0
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "alis",
+"adet": 2000.0,
+"birimFiyat": 1.5,
+"tutar": 3000.0
+},
+{
+"kod": "VNDAP",
+"grup": "B",
+"tur": "satis",
+"adet": 81.697,
+"birimFiyat": 500.0,
+"tutar": 40848.5
+},
+{
+"kod": "SPRG1",
+"grup": "B",
+"tur": "alis",
+"adet": 4000.0,
+"birimFiyat": 1.0,
+"tutar": 4000.0
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 1120.0,
+"birimFiyat": 100.0,
+"tutar": 112000.0
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "alis",
+"adet": 10000.0,
+"birimFiyat": 0.35,
+"tutar": 3500.0
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 1085.16,
+"birimFiyat": 8.0,
+"tutar": 8681.28
+},
+{
+"kod": "CMPTV",
+"grup": "B",
+"tur": "satis",
+"adet": 362.545,
+"birimFiyat": 3.0,
+"tutar": 1087.64
+},
+{
+"kod": "NTRGA",
+"grup": "B",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 6.1,
+"tutar": 6100.0
+},
+{
+"kod": "NTDRY",
+"grup": "B",
+"tur": "satis",
+"adet": 21.369,
+"birimFiyat": 3.99,
+"tutar": 85.26
+},
+{
+"kod": "NTRGA",
+"grup": "B",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 6.0,
+"tutar": 6000.0
+},
+{
+"kod": "BLCLL",
+"grup": "B",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 7.0,
+"tutar": 7000.0
+},
+{
+"kod": "ESGEL",
+"grup": "B",
+"tur": "alis",
+"adet": 2000.0,
+"birimFiyat": 3.0,
+"tutar": 6000.0
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 2.1,
+"tutar": 2100.0
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "alis",
+"adet": 100000.0,
+"birimFiyat": 2.44,
+"tutar": 244000.0
+},
+{
+"kod": "FERNV",
+"grup": "A",
+"tur": "alis",
+"adet": 100000.0,
+"birimFiyat": 1.0,
+"tutar": 100000.0
+},
+{
+"kod": "FERNV",
+"grup": "B",
+"tur": "alis",
+"adet": 10000.0,
+"birimFiyat": 0.3,
+"tutar": 3000.0
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "alis",
+"adet": 100000.0,
+"birimFiyat": 0.27,
+"tutar": 27000.0
+},
+{
+"kod": "NTDRY",
+"grup": "B",
+"tur": "satis",
+"adet": 240.456,
+"birimFiyat": 4.0,
+"tutar": 961.82
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "satis",
+"adet": 546.532,
+"birimFiyat": 2.0,
+"tutar": 1093.06
+},
+{
+"kod": "NTDRY",
+"grup": "B",
+"tur": "satis",
+"adet": 178.116,
+"birimFiyat": 4.0,
+"tutar": 712.46
+},
+{
+"kod": "IONTK",
+"grup": "B",
+"tur": "satis",
+"adet": 314.47,
+"birimFiyat": 3.0,
+"tutar": 943.41
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "satis",
+"adet": 131.592,
+"birimFiyat": 5.0,
+"tutar": 657.96
+},
+{
+"kod": "DLVRY",
+"grup": "C",
+"tur": "satis",
+"adet": 87.644,
+"birimFiyat": 5.0,
+"tutar": 438.22
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "satis",
+"adet": 135.619,
+"birimFiyat": 3.45,
+"tutar": 467.89
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 2.01,
+"tutar": 2010.0
+},
+{
+"kod": "IONTK",
+"grup": "B",
+"tur": "satis",
+"adet": 859.551,
+"birimFiyat": 10.0,
+"tutar": 8595.51
+},
+{
+"kod": "KABIP",
+"grup": "C",
+"tur": "satis",
+"adet": 1534.93,
+"birimFiyat": 10.0,
+"tutar": 15349.3
+},
+{
+"kod": "MNYOL",
+"grup": "B",
+"tur": "satis",
+"adet": 373.954,
+"birimFiyat": 10.0,
+"tutar": 3739.54
+},
+{
+"kod": "NTDRY",
+"grup": "B",
+"tur": "satis",
+"adet": 577.095,
+"birimFiyat": 15.0,
+"tutar": 8656.43
+},
+{
+"kod": "ORTAK",
+"grup": "B",
+"tur": "satis",
+"adet": 2185.159,
+"birimFiyat": 5.0,
+"tutar": 10925.8
+},
+{
+"kod": "SHIFT",
+"grup": "C",
+"tur": "satis",
+"adet": 694.686,
+"birimFiyat": 10.0,
+"tutar": 6946.86
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "satis",
+"adet": 1168.511,
+"birimFiyat": 10.0,
+"tutar": 11685.11
+},
+{
+"kod": "SIZEM",
+"grup": "B",
+"tur": "satis",
+"adet": 136.428,
+"birimFiyat": 10.0,
+"tutar": 1364.28
+},
+{
+"kod": "YPSFT",
+"grup": "B",
+"tur": "satis",
+"adet": 164.191,
+"birimFiyat": 9.0,
+"tutar": 1477.72
+},
+{
+"kod": "CLASS",
+"grup": "B",
+"tur": "satis",
+"adet": 8.55,
+"birimFiyat": 87.5,
+"tutar": 748.13
+},
+{
+"kod": "YPSFT",
+"grup": "B",
+"tur": "satis",
+"adet": 82.097,
+"birimFiyat": 12.2,
+"tutar": 1001.58
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "satis",
+"adet": 3142.525,
+"birimFiyat": 1.4,
+"tutar": 4399.54
+},
+{
+"kod": "BSCHL",
+"grup": "B",
+"tur": "satis",
+"adet": 65.844,
+"birimFiyat": 15.2,
+"tutar": 1000.83
+},
+{
+"kod": "TYORE",
+"grup": "C",
+"tur": "satis",
+"adet": 84.799,
+"birimFiyat": 10.0,
+"tutar": 847.99
+},
+{
+"kod": "VNDAP",
+"grup": "B",
+"tur": "satis",
+"adet": 44.933,
+"birimFiyat": 70.0,
+"tutar": 3145.31
+},
+{
+"kod": "OLEAG",
+"grup": "C",
+"tur": "satis",
+"adet": 47.77,
+"birimFiyat": 50.0,
+"tutar": 2388.5
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "alis",
+"adet": 1250.0,
+"birimFiyat": 4.0,
+"tutar": 5000.0
+},
+{
+"kod": "NTRGA",
+"grup": "B",
+"tur": "satis",
+"adet": 113.946,
+"birimFiyat": 30.0,
+"tutar": 3418.38
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 161.799,
+"birimFiyat": 25.0,
+"tutar": 4044.98
+},
+{
+"kod": "PROMO",
+"grup": "D",
+"tur": "satis",
+"adet": 753.017,
+"birimFiyat": 14.89,
+"tutar": 11212.42
+},
+{
+"kod": "NTRGA",
+"grup": "B",
+"tur": "satis",
+"adet": 6148.593,
+"birimFiyat": 74.11,
+"tutar": 455672.23
+},
+{
+"kod": "TYORE",
+"grup": "C",
+"tur": "satis",
+"adet": 706.657,
+"birimFiyat": 6.0,
+"tutar": 4239.94
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "satis",
+"adet": 744.29,
+"birimFiyat": 2.0,
+"tutar": 1488.58
+},
+{
+"kod": "SIZEM",
+"grup": "B",
+"tur": "satis",
+"adet": 170.534,
+"birimFiyat": 4.0,
+"tutar": 682.14
+},
+{
+"kod": "SPRG1",
+"grup": "B",
+"tur": "satis",
+"adet": 64275.152,
+"birimFiyat": 2.5,
+"tutar": 160687.88
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "satis",
+"adet": 69187.552,
+"birimFiyat": 2.5,
+"tutar": 172968.88
+},
+{
+"kod": "YPSFT",
+"grup": "B",
+"tur": "satis",
+"adet": 82.096,
+"birimFiyat": 15.0,
+"tutar": 1231.44
+},
+{
+"kod": "TYORE",
+"grup": "C",
+"tur": "satis",
+"adet": 35.332,
+"birimFiyat": 20.0,
+"tutar": 706.64
+},
+{
+"kod": "TCHNO",
+"grup": "B",
+"tur": "satis",
+"adet": 58.216,
+"birimFiyat": 34.0,
+"tutar": 1979.34
+},
+{
+"kod": "DLVRY",
+"grup": "C",
+"tur": "satis",
+"adet": 21.911,
+"birimFiyat": 15.0,
+"tutar": 328.67
+},
+{
+"kod": "SUITE",
+"grup": "B",
+"tur": "satis",
+"adet": 75.6,
+"birimFiyat": 40.0,
+"tutar": 3024.0
+},
+{
+"kod": "TMZYL",
+"grup": "C",
+"tur": "satis",
+"adet": 73.477,
+"birimFiyat": 8.0,
+"tutar": 587.82
+},
+{
+"kod": "IONTK",
+"grup": "B",
+"tur": "satis",
+"adet": 65.223,
+"birimFiyat": 7.0,
+"tutar": 456.56
+},
+{
+"kod": "CLASS",
+"grup": "B",
+"tur": "satis",
+"adet": 114.0,
+"birimFiyat": 75.0,
+"tutar": 8550.0
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "satis",
+"adet": 32.897,
+"birimFiyat": 10.0,
+"tutar": 328.97
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "satis",
+"adet": 82.804,
+"birimFiyat": 12.0,
+"tutar": 993.65
+},
+{
+"kod": "BSCHL",
+"grup": "B",
+"tur": "satis",
+"adet": 243.868,
+"birimFiyat": 15.0,
+"tutar": 3658.02
+},
+{
+"kod": "SHIFT",
+"grup": "C",
+"tur": "satis",
+"adet": 69.468,
+"birimFiyat": 15.0,
+"tutar": 1042.02
+},
+{
+"kod": "SECUR",
+"grup": "B",
+"tur": "satis",
+"adet": 13.262,
+"birimFiyat": 150.0,
+"tutar": 1989.3
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "alis",
+"adet": 650.0,
+"birimFiyat": 4.0,
+"tutar": 2600.0
+},
+{
+"kod": "RTNOW",
+"grup": "B",
+"tur": "satis",
+"adet": 202.581,
+"birimFiyat": 16.0,
+"tutar": 3241.3
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "satis",
+"adet": 73.399,
+"birimFiyat": 9.0,
+"tutar": 660.59
+},
+{
+"kod": "KABIP",
+"grup": "C",
+"tur": "satis",
+"adet": 58.39,
+"birimFiyat": 11.0,
+"tutar": 642.29
+},
+{
+"kod": "MNYOL",
+"grup": "B",
+"tur": "satis",
+"adet": 1430.698,
+"birimFiyat": 5.0,
+"tutar": 7153.49
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "satis",
+"adet": 4676.87,
+"birimFiyat": 11.0,
+"tutar": 51445.57
+},
+{
+"kod": "EVBEE",
+"grup": "B",
+"tur": "satis",
+"adet": 849.877,
+"birimFiyat": 18.0,
+"tutar": 15297.79
+},
+{
+"kod": "TYORE",
+"grup": "C",
+"tur": "satis",
+"adet": 141.331,
+"birimFiyat": 5.0,
+"tutar": 706.66
+},
+{
+"kod": "MKTEK",
+"grup": "B",
+"tur": "satis",
+"adet": 16848.57,
+"birimFiyat": 25.0,
+"tutar": 421214.25
+},
+{
+"kod": "SHIFT",
+"grup": "C",
+"tur": "satis",
+"adet": 277.874,
+"birimFiyat": 5.0,
+"tutar": 1389.37
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 879.342,
+"birimFiyat": 30.0,
+"tutar": 26380.26
+},
+{
+"kod": "TMZYL",
+"grup": "C",
+"tur": "satis",
+"adet": 542.62,
+"birimFiyat": 4.0,
+"tutar": 2170.48
+},
+{
+"kod": "BLCLL",
+"grup": "B",
+"tur": "alis",
+"adet": 2000.0,
+"birimFiyat": 5.0,
+"tutar": 10000.0
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "alis",
+"adet": 100000.0,
+"birimFiyat": 0.25,
+"tutar": 25000.0
+},
+{
+"kod": "ESGEL",
+"grup": "B",
+"tur": "satis",
+"adet": 101.64,
+"birimFiyat": 15.0,
+"tutar": 1524.6
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 6900.45,
+"birimFiyat": 2.17,
+"tutar": 14973.98
+},
+{
+"kod": "ESGEL",
+"grup": "B",
+"tur": "satis",
+"adet": 41.164,
+"birimFiyat": 18.0,
+"tutar": 740.95
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "satis",
+"adet": 1135.763,
+"birimFiyat": 5.0,
+"tutar": 5678.82
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 55.446,
+"birimFiyat": 36.57,
+"tutar": 2027.66
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 604.371,
+"birimFiyat": 20.0,
+"tutar": 12087.42
+},
+{
+"kod": "ATECH",
+"grup": "B",
+"tur": "satis",
+"adet": 16.704,
+"birimFiyat": 30.0,
+"tutar": 501.12
+},
+{
+"kod": "KRT3D",
+"grup": "B",
+"tur": "satis",
+"adet": 54.543,
+"birimFiyat": 9.23,
+"tutar": 503.43
+},
+{
+"kod": "FERNV",
+"grup": "D",
+"tur": "satis",
+"adet": 600.0,
+"birimFiyat": 5.95,
+"tutar": 3570.0
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 1085.16,
+"birimFiyat": 6.0,
+"tutar": 6510.96
+},
+{
+"kod": "NGAYT",
+"grup": "B",
+"tur": "satis",
+"adet": 14430.46,
+"birimFiyat": 19.0,
+"tutar": 274178.74
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "satis",
+"adet": 289.813,
+"birimFiyat": 19.98,
+"tutar": 5790.46
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 527.15,
+"birimFiyat": 18.99,
+"tutar": 10010.58
+},
+{
+"kod": "ONIMA",
+"grup": "B",
+"tur": "satis",
+"adet": 296.719,
+"birimFiyat": 17.95,
+"tutar": 5326.11
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 104.222,
+"birimFiyat": 30.0,
+"tutar": 3126.66
+},
+{
+"kod": "UNIQ2",
+"grup": "B",
+"tur": "satis",
+"adet": 111.063,
+"birimFiyat": 25.95,
+"tutar": 2882.08
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "satis",
+"adet": 13390.947,
+"birimFiyat": 1.99,
+"tutar": 26647.98
+},
+{
+"kod": "PACHA",
+"grup": "D",
+"tur": "alis",
+"adet": 200.0,
+"birimFiyat": 1.5,
+"tutar": 300.0
+},
+{
+"kod": "MKTEK",
+"grup": "B",
+"tur": "satis",
+"adet": 6266.49,
+"birimFiyat": 17.0,
+"tutar": 106530.33
+},
+{
+"kod": "IONTK",
+"grup": "B",
+"tur": "satis",
+"adet": 93.176,
+"birimFiyat": 5.0,
+"tutar": 465.88
+},
+{
+"kod": "RTNOW",
+"grup": "B",
+"tur": "satis",
+"adet": 195.0,
+"birimFiyat": 18.0,
+"tutar": 3510.0
+},
+{
+"kod": "DLVRY",
+"grup": "C",
+"tur": "satis",
+"adet": 964.088,
+"birimFiyat": 6.5,
+"tutar": 6266.57
+},
+{
+"kod": "CLASS",
+"grup": "B",
+"tur": "satis",
+"adet": 50.0,
+"birimFiyat": 90.0,
+"tutar": 4500.0
+},
+{
+"kod": "DLVRY",
+"grup": "C",
+"tur": "satis",
+"adet": 175.288,
+"birimFiyat": 10.0,
+"tutar": 1752.88
+},
+{
+"kod": "TUNGA",
+"grup": "B",
+"tur": "satis",
+"adet": 3.0,
+"birimFiyat": 80.0,
+"tutar": 240.0
+},
+{
+"kod": "SAFON",
+"grup": "B",
+"tur": "alis",
+"adet": 10000.0,
+"birimFiyat": 0.27,
+"tutar": 2700.0
+},
+{
+"kod": "OLEAG",
+"grup": "C",
+"tur": "satis",
+"adet": 166.0,
+"birimFiyat": 48.0,
+"tutar": 7968.0
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "alis",
+"adet": 5000.0,
+"birimFiyat": 2.25,
+"tutar": 11250.0
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 13000.0,
+"birimFiyat": 15.0,
+"tutar": 195000.0
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 135.645,
+"birimFiyat": 12.0,
+"tutar": 1627.74
+},
+{
+"kod": "NTDRY",
+"grup": "B",
+"tur": "satis",
+"adet": 13399.1,
+"birimFiyat": 9.0,
+"tutar": 120591.9
+},
+{
+"kod": "KABIP",
+"grup": "C",
+"tur": "satis",
+"adet": 5582.17,
+"birimFiyat": 10.0,
+"tutar": 55821.7
+},
+{
+"kod": "PCARD",
+"grup": "B",
+"tur": "satis",
+"adet": 709.29,
+"birimFiyat": 10.0,
+"tutar": 7092.9
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 536.952,
+"birimFiyat": 27.0,
+"tutar": 14497.7
+},
+{
+"kod": "ONIMA",
+"grup": "B",
+"tur": "satis",
+"adet": 279.26,
+"birimFiyat": 35.0,
+"tutar": 9774.1
+},
+{
+"kod": "DLVRY",
+"grup": "C",
+"tur": "satis",
+"adet": 525.866,
+"birimFiyat": 6.0,
+"tutar": 3155.2
+},
+{
+"kod": "OLEAG",
+"grup": "C",
+"tur": "satis",
+"adet": 47.77,
+"birimFiyat": 100.0,
+"tutar": 4777.0
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "satis",
+"adet": 297.716,
+"birimFiyat": 3.4,
+"tutar": 1012.23
+},
+{
+"kod": "SIZEM",
+"grup": "B",
+"tur": "satis",
+"adet": 68.214,
+"birimFiyat": 5.0,
+"tutar": 341.07
+},
+{
+"kod": "MNYOL",
+"grup": "B",
+"tur": "satis",
+"adet": 467.442,
+"birimFiyat": 5.0,
+"tutar": 2337.21
+},
+{
+"kod": "NTRGA",
+"grup": "B",
+"tur": "satis",
+"adet": 835.709,
+"birimFiyat": 30.0,
+"tutar": 25071.27
+},
+{
+"kod": "SHOPL",
+"grup": "B",
+"tur": "alis",
+"adet": 5000.0,
+"birimFiyat": 5.0,
+"tutar": 25000.0
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 634.999,
+"birimFiyat": 20.0,
+"tutar": 12699.98
+},
+{
+"kod": "MELOA",
+"grup": "C",
+"tur": "satis",
+"adet": 411.988,
+"birimFiyat": 40.0,
+"tutar": 16479.52
+},
+{
+"kod": "NGAYT",
+"grup": "B",
+"tur": "satis",
+"adet": 166.343,
+"birimFiyat": 45.0,
+"tutar": 7485.44
+},
+{
+"kod": "MNYOL",
+"grup": "B",
+"tur": "satis",
+"adet": 373.954,
+"birimFiyat": 10.0,
+"tutar": 3739.54
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 108.516,
+"birimFiyat": 45.0,
+"tutar": 4883.22
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 833.777,
+"birimFiyat": 18.0,
+"tutar": 15007.99
+},
+{
+"kod": "UNIQ2",
+"grup": "B",
+"tur": "satis",
+"adet": 905.124,
+"birimFiyat": 27.5,
+"tutar": 24890.91
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 527.14,
+"birimFiyat": 25.0,
+"tutar": 13178.5
+},
+{
+"kod": "EVBEE",
+"grup": "B",
+"tur": "satis",
+"adet": 9470.38,
+"birimFiyat": 12.0,
+"tutar": 113644.56
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "satis",
+"adet": 1267.42,
+"birimFiyat": 10.0,
+"tutar": 12674.2
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 634.46,
+"birimFiyat": 12.0,
+"tutar": 7613.52
+},
+{
+"kod": "EVBEE",
+"grup": "B",
+"tur": "satis",
+"adet": 289.32,
+"birimFiyat": 20.0,
+"tutar": 5786.4
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 22083.0,
+"birimFiyat": 8.75,
+"tutar": 193226.25
+},
+{
+"kod": "BLCLL",
+"grup": "B",
+"tur": "satis",
+"adet": 240.109,
+"birimFiyat": 30.0,
+"tutar": 7203.27
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "satis",
+"adet": 460.098,
+"birimFiyat": 20.0,
+"tutar": 9201.96
+},
+{
+"kod": "PACHA",
+"grup": "D",
+"tur": "satis",
+"adet": 2991.321,
+"birimFiyat": 6.75,
+"tutar": 20191.42
+},
+{
+"kod": "NTDRY",
+"grup": "B",
+"tur": "satis",
+"adet": 3391.42,
+"birimFiyat": 4.0,
+"tutar": 13565.68
+},
+{
+"kod": "NGAYT",
+"grup": "B",
+"tur": "satis",
+"adet": 7263.37,
+"birimFiyat": 15.0,
+"tutar": 108950.55
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "alis",
+"adet": 4500.0,
+"birimFiyat": 2.43,
+"tutar": 10935.0
+},
+{
+"kod": "BLCLL",
+"grup": "B",
+"tur": "satis",
+"adet": 600.271,
+"birimFiyat": 75.0,
+"tutar": 45020.33
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 1939.06,
+"birimFiyat": 50.0,
+"tutar": 96953.0
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "satis",
+"adet": 1901.13,
+"birimFiyat": 5.75,
+"tutar": 10931.5
+},
+{
+"kod": "IONTK",
+"grup": "B",
+"tur": "satis",
+"adet": 1164.567,
+"birimFiyat": 4.0,
+"tutar": 4658.27
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 1688.34,
+"birimFiyat": 50.0,
+"tutar": 84417.0
+},
+{
+"kod": "ESGEL",
+"grup": "B",
+"tur": "satis",
+"adet": 800.0,
+"birimFiyat": 12.0,
+"tutar": 9600.0
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "satis",
+"adet": 689.937,
+"birimFiyat": 30.0,
+"tutar": 20698.11
+},
+{
+"kod": "BLCLL",
+"grup": "B",
+"tur": "satis",
+"adet": 2100.0,
+"birimFiyat": 19.75,
+"tutar": 41475.0
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 8000.0,
+"birimFiyat": 2.5,
+"tutar": 20000.0
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "satis",
+"adet": 322.933,
+"birimFiyat": 12.9,
+"tutar": 4165.84
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "satis",
+"adet": 3032.41,
+"birimFiyat": 7.75,
+"tutar": 23501.18
+},
+{
+"kod": "EVBEE",
+"grup": "B",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 4.5,
+"tutar": 4500.0
+},
+{
+"kod": "NGAYT",
+"grup": "B",
+"tur": "satis",
+"adet": 1000.0,
+"birimFiyat": 7.0,
+"tutar": 7000.0
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 2170.32,
+"birimFiyat": 19.98,
+"tutar": 43362.99
+},
+{
+"kod": "SPECH",
+"grup": "B",
+"tur": "satis",
+"adet": 828.036,
+"birimFiyat": 12.5,
+"tutar": 10350.45
+},
+{
+"kod": "NTDRY",
+"grup": "B",
+"tur": "satis",
+"adet": 133.587,
+"birimFiyat": 10.0,
+"tutar": 1335.87
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "satis",
+"adet": 119.832,
+"birimFiyat": 8.7,
+"tutar": 1042.54
+},
+{
+"kod": "KRT3D",
+"grup": "B",
+"tur": "satis",
+"adet": 273.4,
+"birimFiyat": 80.0,
+"tutar": 21872.0
+},
+{
+"kod": "BIGET",
+"grup": "B",
+"tur": "alis",
+"adet": 5000.0,
+"birimFiyat": 3.0,
+"tutar": 15000.0
+},
+{
+"kod": "SCOLI",
+"grup": "D",
+"tur": "satis",
+"adet": 462.015,
+"birimFiyat": 10.0,
+"tutar": 4620.15
+},
+{
+"kod": "ACTVB",
+"grup": "B",
+"tur": "satis",
+"adet": 1149.886,
+"birimFiyat": 18.0,
+"tutar": 20697.95
+},
+{
+"kod": "NGAYT",
+"grup": "B",
+"tur": "satis",
+"adet": 2440.02,
+"birimFiyat": 20.0,
+"tutar": 48800.4
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "satis",
+"adet": 1188.29,
+"birimFiyat": 21.0,
+"tutar": 24954.09
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "alis",
+"adet": 1000.0,
+"birimFiyat": 1.5,
+"tutar": 1500.0
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "alis",
+"adet": 15000.0,
+"birimFiyat": 0.55,
+"tutar": 8250.0
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 5000.0,
+"birimFiyat": 3.7,
+"tutar": 18500.0
+},
+{
+"kod": "VNDAP",
+"grup": "B",
+"tur": "satis",
+"adet": 102.121,
+"birimFiyat": 49.0,
+"tutar": 5003.93
+},
+{
+"kod": "BLCLL",
+"grup": "B",
+"tur": "satis",
+"adet": 2281.031,
+"birimFiyat": 62.0,
+"tutar": 141423.92
+},
+{
+"kod": "RTNOW",
+"grup": "B",
+"tur": "satis",
+"adet": 20.257,
+"birimFiyat": 49.36,
+"tutar": 999.89
+},
+{
+"kod": "BIGET",
+"grup": "B",
+"tur": "alis",
+"adet": 100000.0,
+"birimFiyat": 0.55,
+"tutar": 55000.0
+},
+{
+"kod": "ATECH",
+"grup": "B",
+"tur": "alis",
+"adet": 100000.0,
+"birimFiyat": 0.35,
+"tutar": 35000.0
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 500.0,
+"birimFiyat": 2.95,
+"tutar": 1475.0
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "alis",
+"adet": 100000.0,
+"birimFiyat": 1.1,
+"tutar": 110000.0
+},
+{
+"kod": "ATECH",
+"grup": "B",
+"tur": "satis",
+"adet": 184.1,
+"birimFiyat": 14.85,
+"tutar": 2733.89
+},
+{
+"kod": "NEVAS",
+"grup": "B",
+"tur": "alis",
+"adet": 50000.0,
+"birimFiyat": 3.0,
+"tutar": 150000.0
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 189.938,
+"birimFiyat": 14.85,
+"tutar": 2820.58
+},
+{
+"kod": "KABIP",
+"grup": "C",
+"tur": "alis",
+"adet": 100000.0,
+"birimFiyat": 0.35,
+"tutar": 35000.0
+},
+{
+"kod": "JETCO",
+"grup": "B",
+"tur": "alis",
+"adet": 20000.0,
+"birimFiyat": 3.15,
+"tutar": 63000.0
+},
+{
+"kod": "MNYOL",
+"grup": "B",
+"tur": "satis",
+"adet": 373.954,
+"birimFiyat": 4.0,
+"tutar": 1495.82
+},
+{
+"kod": "ESOKE",
+"grup": "B",
+"tur": "alis",
+"adet": 100000.0,
+"birimFiyat": 0.35,
+"tutar": 35000.0
+},
+{
+"kod": "ESGEL",
+"grup": "B",
+"tur": "alis",
+"adet": 100000.0,
+"birimFiyat": 1.25,
+"tutar": 125000.0
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "alis",
+"adet": 2500000.0,
+"birimFiyat": 0.35,
+"tutar": 875000.0
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 2309.51,
+"birimFiyat": 5.4,
+"tutar": 12471.35
+},
+{
+"kod": "TUNGA",
+"grup": "A",
+"tur": "alis",
+"adet": 50000.0,
+"birimFiyat": 1.1,
+"tutar": 55000.0
+},
+{
+"kod": "TCHNO",
+"grup": "B",
+"tur": "alis",
+"adet": 50000.0,
+"birimFiyat": 1.0,
+"tutar": 50000.0
+},
+{
+"kod": "SPRG1",
+"grup": "B",
+"tur": "alis",
+"adet": 200000.0,
+"birimFiyat": 0.45,
+"tutar": 90000.0
+},
+{
+"kod": "SHOPL",
+"grup": "B",
+"tur": "alis",
+"adet": 50000.0,
+"birimFiyat": 1.25,
+"tutar": 62500.0
+},
+{
+"kod": "PROMO",
+"grup": "B",
+"tur": "satis",
+"adet": 25.185,
+"birimFiyat": 119.12,
+"tutar": 3000.04
+},
+{
+"kod": "SECUR",
+"grup": "B",
+"tur": "alis",
+"adet": 50000.0,
+"birimFiyat": 2.25,
+"tutar": 112500.0
+},
+{
+"kod": "ATECH",
+"grup": "B",
+"tur": "satis",
+"adet": 792.046,
+"birimFiyat": 14.9,
+"tutar": 11801.49
+},
+{
+"kod": "BLCLL",
+"grup": "B",
+"tur": "satis",
+"adet": 19000.0,
+"birimFiyat": 65.0,
+"tutar": 1235000.0
+},
+{
+"kod": "MNYOL",
+"grup": "B",
+"tur": "alis",
+"adet": 300000.0,
+"birimFiyat": 0.35,
+"tutar": 105000.0
+},
+{
+"kod": "MELOA",
+"grup": "C",
+"tur": "alis",
+"adet": 50000.0,
+"birimFiyat": 1.1,
+"tutar": 55000.0
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "alis",
+"adet": 300000.0,
+"birimFiyat": 1.0,
+"tutar": 300000.0
+},
+{
+"kod": "FERNV",
+"grup": "A",
+"tur": "alis",
+"adet": 50000.0,
+"birimFiyat": 1.0,
+"tutar": 50000.0
+},
+{
+"kod": "EVBEE",
+"grup": "B",
+"tur": "alis",
+"adet": 200000.0,
+"birimFiyat": 1.1,
+"tutar": 220000.0
+},
+{
+"kod": "ORTAK",
+"grup": "B",
+"tur": "satis",
+"adet": 685.27,
+"birimFiyat": 1000.0,
+"tutar": 685270.0
+},
+{
+"kod": "DLVRY",
+"grup": "C",
+"tur": "alis",
+"adet": 100000.0,
+"birimFiyat": 0.75,
+"tutar": 75000.0
+},
+{
+"kod": "MNYOL",
+"grup": "B",
+"tur": "satis",
+"adet": 23268.0,
+"birimFiyat": 7.0,
+"tutar": 162876.0
+},
+{
+"kod": "VNDAP",
+"grup": "B",
+"tur": "satis",
+"adet": 81.697,
+"birimFiyat": 1000.0,
+"tutar": 81697.0
+},
+{
+"kod": "BLCLL",
+"grup": "B",
+"tur": "alis",
+"adet": 30000.0,
+"birimFiyat": 3.0,
+"tutar": 90000.0
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "alis",
+"adet": 400000.0,
+"birimFiyat": 0.25,
+"tutar": 100000.0
+},
+{
+"kod": "ANCYR",
+"grup": "B",
+"tur": "alis",
+"adet": 100000.0,
+"birimFiyat": 1.0,
+"tutar": 100000.0
+},
+{
+"kod": "PROMO",
+"grup": "D",
+"tur": "satis",
+"adet": 112.763,
+"birimFiyat": 17.0,
+"tutar": 1916.97
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 4142.33,
+"birimFiyat": 15.0,
+"tutar": 62134.95
+},
+{
+"kod": "SIZEM",
+"grup": "B",
+"tur": "satis",
+"adet": 17.054,
+"birimFiyat": 22.0,
+"tutar": 375.19
+},
+{
+"kod": "SIZEM",
+"grup": "D",
+"tur": "satis",
+"adet": 394.28,
+"birimFiyat": 14.0,
+"tutar": 5519.92
+},
+{
+"kod": "TYORE",
+"grup": "C",
+"tur": "satis",
+"adet": 88.331,
+"birimFiyat": 16.0,
+"tutar": 1413.3
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 3967.85,
+"birimFiyat": 10.0,
+"tutar": 39678.5
+},
+{
+"kod": "CMPTV",
+"grup": "B",
+"tur": "satis",
+"adet": 218.09,
+"birimFiyat": 13.25,
+"tutar": 2889.69
+},
+{
+"kod": "MKTEK",
+"grup": "B",
+"tur": "satis",
+"adet": 800.0,
+"birimFiyat": 18.0,
+"tutar": 14400.0
+},
+{
+"kod": "TUNGA",
+"grup": "A",
+"tur": "alis",
+"adet": 10000.0,
+"birimFiyat": 1.0,
+"tutar": 10000.0
+},
+{
+"kod": "JETCO",
+"grup": "B",
+"tur": "alis",
+"adet": 10000.0,
+"birimFiyat": 3.0,
+"tutar": 30000.0
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 8000.0,
+"birimFiyat": 6.0,
+"tutar": 48000.0
+},
+{
+"kod": "EVBEE",
+"grup": "B",
+"tur": "alis",
+"adet": 100000.0,
+"birimFiyat": 1.0,
+"tutar": 100000.0
+},
+{
+"kod": "EVBEE",
+"grup": "D",
+"tur": "alis",
+"adet": 100000.0,
+"birimFiyat": 1.0,
+"tutar": 100000.0
+},
+{
+"kod": "QCHRG",
+"grup": "B",
+"tur": "satis",
+"adet": 20000.0,
+"birimFiyat": 5.0,
+"tutar": 100000.0
+},
+{
+"kod": "ATRMC",
+"grup": "B",
+"tur": "satis",
+"adet": 503.23,
+"birimFiyat": 12.8,
+"tutar": 6441.34
+},
+{
+"kod": "GURLR",
+"grup": "B",
+"tur": "satis",
+"adet": 10542.83,
+"birimFiyat": 50.0,
+"tutar": 527141.5
+}
+]
+}

@@ -1,0 +1,70 @@
+---
+// Dönem dönem tek değerli sütun grafiği (virman geçmişiyle aynı dil): sarı sütun, sayı üstte, yatay ızgara, yıl ayraçları.
+// son=true ise son sütun koyu sarı vurgulanır. JS gerekmez; her sütunun <title>'ı ayrıntıyı verir.
+interface Nokta { tarih: string; deger: number | null; etiket?: string; baslik?: string }
+interface Props { baslik: string; alt?: string; noktalar: Nokta[]; birim?: string; yaz?: (n: number) => string; son?: boolean }
+const { baslik, alt, noktalar, birim = '', yaz = (n: number) => n.toLocaleString('tr-TR'), son = true } = Astro.props;
+const AY = ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'];
+const dolu = noktalar.map((n) => n.deger).filter((x): x is number => x != null);
+const W = 1000, H = 250, SOL = 56, SAG = 8, ALT = 46, UST = 26;
+const adim = (W - SOL - SAG) / Math.max(noktalar.length, 1);
+const ham = Math.max(...dolu, 0) || 1;
+const us = 10 ** Math.floor(Math.log10(ham));
+const tik = [1, 2, 2.5, 5, 10].map((k) => k * us).find((t) => ham / t <= 4) ?? 10 * us;
+const tavan = Math.ceil(ham / tik) * tik;
+const y = (v: number) => H - ALT - (v / tavan) * (H - ALT - UST);
+const sutunG = Math.min(adim * 0.58, 30);
+const yillar = noktalar.map((n, i) => ({ i, yil: n.tarih.slice(0, 4) })).filter((x, j, a) => j === 0 || x.yil !== a[j - 1].yil);
+---
+
+<figure class="ds">
+  <figcaption><strong>{baslik}</strong>{alt && <span>{alt}</span>}</figcaption>
+  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={baslik}>
+    {Array.from({ length: Math.round(tavan / tik) + 1 }, (_, n) => n * tik).map((v) => (
+      <g><line x1={SOL} x2={W - SAG} y1={y(v)} y2={y(v)} class={v === 0 ? 'taban' : 'izgara'} /><text x={SOL - 8} y={y(v) + 4} text-anchor="end" class="eksen">{yaz(v)}</text></g>
+    ))}
+    {birim && <text x={SOL - 8} y={UST - 12} text-anchor="end" class="eksen">{birim}</text>}
+    {yillar.slice(1).map(({ i }) => <line x1={SOL + i * adim} x2={SOL + i * adim} y1={UST - 6} y2={H - 6} class="ayrac" />)}
+    {noktalar.map((n, i) => {
+      const cx = SOL + i * adim + adim / 2;
+      return (
+        <g class="d">
+          <title>{n.baslik ?? `${n.tarih}: ${n.deger == null ? 'veri yok' : yaz(n.deger)} ${birim}`}</title>
+          <rect x={SOL + i * adim} y={UST - 6} width={adim} height={H - ALT - UST + 6} class="vurgu" />
+          {n.deger == null ? (
+            <text x={cx} y={H - ALT - 6} text-anchor="middle" class="yok">yok</text>
+          ) : (
+            <>
+              <rect x={cx - sutunG / 2} y={y(n.deger)} width={sutunG} height={H - ALT - y(n.deger)} rx="1.5" class={son && i === noktalar.length - 1 ? 'sutun son' : 'sutun'} />
+              <text x={cx} y={y(n.deger) - 7} text-anchor="middle" class="deger">{n.etiket ?? yaz(n.deger)}</text>
+            </>
+          )}
+          <text x={cx} y={H - ALT + 18} text-anchor="middle" class="ay">{AY[Number(n.tarih.slice(5, 7)) - 1]}</text>
+        </g>
+      );
+    })}
+    {yillar.map(({ i, yil }) => <text x={SOL + i * adim + 6} y={H - 8} class="yil">{yil}</text>)}
+  </svg>
+</figure>
+
+<style>
+  .ds { margin: 0 0 24px; background: var(--beyaz); border: 1px solid var(--cizgi); padding: 16px 18px 10px; }
+  .ds figcaption { margin-bottom: 8px; }
+  .ds figcaption strong { display: block; font-size: 1.05rem; letter-spacing: -0.01em; }
+  .ds figcaption span { display: block; font-size: 0.85rem; color: var(--gri); }
+  svg { width: 100%; height: auto; display: block; overflow: visible; font-family: inherit; }
+  svg text { font-family: inherit; }
+  .izgara { stroke: #ece9e1; }
+  .taban { stroke: #141a17; stroke-width: 1.2; }
+  .ayrac { stroke: #dcd9cf; stroke-dasharray: 3 3; }
+  .eksen { font-size: 12px; fill: #8a908b; }
+  .sutun { fill: #e3b23c; }
+  .sutun.son { fill: #b8860b; }
+  .deger { font-size: 12.5px; font-weight: 700; fill: #141a17; }
+  .yok { font-size: 11px; fill: #b3b0a6; }
+  .ay { font-size: 12.5px; fill: #3b413d; }
+  .yil { font-size: 12.5px; font-weight: 700; fill: #141a17; }
+  .vurgu { fill: transparent; }
+  .d:hover .vurgu { fill: #f7f5ef; }
+  @media (max-width: 640px) { .ds { overflow-x: auto; padding: 12px 8px 8px; } svg { min-width: 640px; } }
+</style>

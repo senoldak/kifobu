@@ -1,0 +1,155 @@
+---
+import Base from '../../layouts/Base.astro';
+import SekunderyMenu from '../../components/sekundery/SekunderyMenu.astro';
+import SekunderyUyari from '../../components/sekundery/SekunderyUyari.astro';
+import SekunderyIzah from '../../components/sekundery/SekunderyIzah.astro';
+import Yol from '../../components/Yol.astro';
+import IlanGrafik from '../../components/sekundery/IlanGrafik.astro';
+import VirmanGecmisi from '../../components/sekundery/VirmanGecmisi.astro';
+import BirimSecici from '../../components/sekundery/BirimSecici.astro';
+import GrupDonemleri from '../../components/sekundery/GrupDonemleri.astro';
+import IlanDagilimi from '../../components/sekundery/IlanDagilimi.astro';
+import FiyatPaneli from '../../components/sekundery/FiyatPaneli.astro';
+import { GENEL_NOT } from '../../lib/site';
+import { sonGun, tumAnahtarlar, satir, seri, itoSonAy } from '../../lib/sekundery-veri.mjs';
+import { ayAdi, paraYaz } from '../../lib/sekundery-kur.mjs';
+import { fiyatYaz, medyan } from '../../lib/sekundery.mjs';
+import virman from '../../data/sekundery/virman.json';
+import { tamUnvan } from '../../lib/sekundery-virman.mjs';
+
+export function getStaticPaths() {
+  return tumAnahtarlar().map((k) => ({ params: { kod: k.toLowerCase() }, props: { k } }));
+}
+
+const { k } = Astro.props as { k: string };
+const s = satir(k);
+const gecmis = seri(k);
+const baslik = `${s.kod} ${s.grup} pay ilanları`;
+const aciklama = `${s.kod} ${s.grup} payına verilen satış ve alış ilanları, en düşük ve medyan fiyat geçmişi.`;
+const adimlar = [{ ad: 'Anasayfa', url: '/' }, { ad: 'Sekundery', url: '/sekundery/' }, { ad: `${s.kod} ${s.grup}`, url: `/sekundery/${k.toLowerCase()}/` }];
+const tarihYaz = (t: string) => new Date(`${t}T12:00:00`).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
+const sayfalar = new Set(tumAnahtarlar());
+const kardesler = ((virman as any).sirketler[s.kod]?.gruplar ?? [s.grup]).map((g: string) => ({ g, var: sayfalar.has(`${s.kod}-${g}`), bu: g === s.grup }));
+const vGunler = Object.values((virman as any).sirketler[s.kod]?.virman ?? {}).map((x: any) => x.gun);
+const virmanMedyan = vGunler.length ? medyan(vGunler) : null;
+const K = s.kampanya;
+const gercekler = [
+  K && { ad: 'Kampanya başlangıcı', deger: s.baslangic ? tarihYaz(s.baslangic) : '—' },
+  K && { ad: 'Fon aktarımı', deger: tarihYaz(K.fonAktarim) },
+  K && { ad: 'Yatırımcı', deger: K.yatirimci.toLocaleString('tr-TR') },
+  K && {
+    ad: 'Sermaye',
+    deger: `₺${K.sermaye.toLocaleString('tr-TR', { maximumFractionDigits: 0 })}`,
+    // kampanya başlangıcındaki kurla; seçilen birim fiyat panelinden gelir (<html data-para>)
+    paralar: [
+      { p: 'tl', m: paraYaz(K.sermaye, 'tl', 0) },
+      { p: 'usd', m: s.usd.kurBaslangic ? paraYaz(K.sermaye / s.usd.kurBaslangic, 'usd', 0) : null },
+      { p: 'eur', m: s.eur.kurBaslangic ? paraYaz(K.sermaye / s.eur.kurBaslangic, 'eur', 0) : null },
+      { p: 'xau', m: s.xau.kurBaslangic ? paraYaz(K.sermaye / s.xau.kurBaslangic, 'xau', 2) : null },
+    ].filter((x) => x.m),
+    altPara: 'kampanya günü kuruyla',
+  },
+  K && { ad: 'Toplam dağıtım', deger: `%${K.dagitimOrani.toLocaleString('tr-TR')}` },
+  s.sahip && {
+    ad: 'Pay sahibi',
+    deger: s.sahip.son.n.toLocaleString('tr-TR'),
+    alt: s.sahip.ilk.tarih !== s.sahip.son.tarih
+      ? `${tarihYaz(s.sahip.ilk.tarih)}'ten bu yana ${s.sahip.son.n - s.sahip.ilk.n > 0 ? '+' : s.sahip.son.n - s.sahip.ilk.n < 0 ? '−' : ''}${Math.abs(s.sahip.son.n - s.sahip.ilk.n).toLocaleString('tr-TR')}`
+      : tarihYaz(s.sahip.son.tarih),
+  },
+  s.isin && { ad: 'ISIN', deger: s.isin, alt: 'MKK pay kodu' },
+  virmanMedyan != null && { ad: 'Virman süresi', deger: `${virmanMedyan.toLocaleString('tr-TR')} gün`, alt: `${vGunler.length} dönemin medyanı`, url: '/sekundery/virman/' },
+].filter(Boolean) as { ad: string; deger: string; alt?: string; url?: string; paralar?: { p: string; m: string }[]; altPara?: string }[];
+
+---
+
+<Base title={baslik} description={aciklama} noindex>
+  <Yol adimlar={adimlar} />
+
+  <article class="sk">
+
+    <SekunderyMenu etkin="grup" />
+    <header class="sk-bas">
+      <div class="sk-ust">
+        <p class="sk-etiket">SEKUNDERY · PAY GRUBU</p>
+        {sonGun && <p class="sk-tarih">son güncelleme · {tarihYaz(sonGun.tarih)}</p>}
+      </div>
+      <div class="sk-kimlik">
+        <h1>{s.kod}<span class="sk-grup-b">{s.grup}</span></h1>
+        <div class="sk-sag">
+          {kardesler.length > 1 && (
+            <nav class="sk-gruplar" aria-label="Pay grupları">
+              <span>Pay grupları</span>
+              {kardesler.map((x: any) => x.bu ? <b aria-current="page">{x.g}</b> : x.var ? <a href={`/sekundery/${s.kod.toLowerCase()}-${x.g.toLowerCase()}/`}>{x.g}</a> : <i title="Bu grupta ilan verisi yok">{x.g}</i>)}
+            </nav>
+          )}
+          <BirimSecici />
+        </div>
+      </div>
+      {s.unvan && <p class="sk-unvan"><a href={`/sekundery/sirket/${s.kod.toLowerCase()}/`} title="Girişimin bütün pay grupları">{tamUnvan(s.unvan)}</a></p>}
+      {gercekler.length > 0 && (
+        <dl class="sk-gercek">
+          {gercekler.map((g) => (
+            <div>
+              <dt>{g.ad}</dt>
+              <dd>{g.url ? <a href={g.url}>{g.deger}</a> : g.paralar ? g.paralar.map((x) => <span class={`pv pv-${x.p}`}>{x.m}</span>) : g.deger}</dd>
+              {g.alt && <dd class="sk-g-alt">{g.alt}</dd>}
+              {g.altPara && <dd class="sk-g-alt pv-not">{g.altPara}</dd>}
+            </div>
+          ))}
+        </dl>
+      )}
+    </header>
+
+    <FiyatPaneli s={s} itoSonAy={itoSonAy} />
+
+    <IlanDagilimi s={s} />
+
+    {gecmis.length > 0 && <IlanGrafik kod={k} seri={gecmis} dagitim={s.dagitim} itoEnf={s.itoEnf} baslangic={s.baslangic} unvan={tamUnvan(s.unvan)} />}
+
+    <GrupDonemleri s={s} />
+
+    <VirmanGecmisi kod={s.kod} />
+
+
+    <p><a href="/sekundery/">← Bütün pay grupları</a></p>
+    <SekunderyIzah sayfa="grup" />
+    <SekunderyUyari />
+  </article>
+</Base>
+
+
+<style>
+  .sk { max-width: 1180px; margin: 0 auto; padding: 0 16px 64px; }
+  .sk-bas { border-top: 10px solid var(--marka-sari); padding-top: 18px; margin-bottom: 26px; }
+  .sk-ust { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+  .sk-etiket { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; color: var(--gri); margin: 0; }
+  .sk-tarih { color: var(--gri); margin: 0; font-size: 0.82rem; }
+  .sk-kimlik { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin: 6px 0 4px; }
+  .sk-kimlik h1 { font-size: clamp(2.8rem, 7vw, 4.6rem); letter-spacing: -0.04em; line-height: 0.95; margin: 0; }
+  .sk-grup-b { color: var(--marka-sari); font-weight: 700; margin-left: 0.18em; }
+  .sk-sag { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; padding-bottom: 6px; }
+  .sk-gruplar { display: inline-flex; align-items: center; gap: 6px; }
+  .sk-gruplar span { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gri); margin-right: 4px; }
+  .sk-gruplar a, .sk-gruplar b, .sk-gruplar i { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border: 1.5px solid var(--murekkep); font-style: normal; font-weight: 700; text-decoration: none; color: var(--murekkep); }
+  .sk-gruplar b { background: var(--murekkep); color: var(--kagit); }
+  .sk-gruplar a:hover { background: var(--marka-sari); }
+  .sk-gruplar i { border-color: var(--cizgi); color: #b3b0a6; }
+  .sk-unvan a { color: inherit; text-decoration: none; border-bottom: 2px solid var(--marka-sari); }
+  .sk-unvan { font-size: clamp(0.95rem, 2vw, 1.15rem); font-weight: 600; letter-spacing: 0.02em; color: var(--murekkep); margin: 10px 0 18px; }
+  .sk-gercek { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); margin: 0; border-top: 1.5px solid var(--murekkep); border-bottom: 1px solid var(--cizgi); }
+  .sk-gercek > div { padding: 12px 16px 12px 0; display: flex; flex-direction: column; gap: 3px; }
+  .sk-gercek > div + div { padding-left: 16px; border-left: 1px solid var(--cizgi); }
+  .sk-gercek dt { font-size: 0.66rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gri); }
+  .sk-gercek dd { margin: 0; font-size: 1.12rem; font-weight: 700; letter-spacing: -0.01em; color: var(--murekkep); }
+  .sk-gercek dd a { color: var(--murekkep); text-decoration: none; border-bottom: 2px solid var(--marka-sari); }
+  .sk-gercek dd.sk-g-alt { font-size: 0.75rem; font-weight: 400; color: var(--gri); letter-spacing: 0; }
+  .sk-bolum { margin-bottom: 40px; }
+  .sk-kaynak { color: var(--gri); font-size: 0.9rem; max-width: 72ch; }
+  @media (max-width: 640px) {
+    .sk-gercek { grid-template-columns: 1fr 1fr; }
+    .sk-gercek > div, .sk-gercek > div + div { padding: 10px 10px 10px 0; border-left: 0; border-top: 1px solid var(--cizgi); }
+    .sk-gercek > div:nth-child(-n + 2) { border-top: 0; }
+  }
+</style>
+

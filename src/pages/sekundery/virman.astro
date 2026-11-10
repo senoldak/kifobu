@@ -1,0 +1,211 @@
+---
+import Base from '../../layouts/Base.astro';
+import SekunderyMenu from '../../components/sekundery/SekunderyMenu.astro';
+import SekunderyUyari from '../../components/sekundery/SekunderyUyari.astro';
+import SekunderyIzah from '../../components/sekundery/SekunderyIzah.astro';
+import Yol from '../../components/Yol.astro';
+import DonemSutun from '../../components/sekundery/DonemSutun.astro';
+import virman from '../../data/sekundery/virman.json';
+import { virmanOzeti, virmanRengi, ayKisa, uzunTarih, sayiYaz, tamUnvan } from '../../lib/sekundery-virman.mjs';
+import { medyan } from '../../lib/sekundery.mjs';
+import { tumAnahtarlar } from '../../lib/sekundery-veri.mjs';
+
+const V = virman as any;
+const { donemler, sirketler, donemMedyan, donemSayi, tumMedyan } = virmanOzeti(V, new Date().toISOString().slice(0, 10));
+const son = donemler.length - 1;
+const baslik = 'Virman süreleri';
+const aciklama = 'İlan dönemlerinden sonra girişimlerin pay virmanını tamamladığını kaç günde duyurduğu: dönem dönem medyan ve girişim girişim bütün dönemler.';
+const adimlar = [{ ad: 'Anasayfa', url: '/' }, { ad: 'Sekundery', url: '/sekundery/' }, { ad: 'Virman', url: '/sekundery/virman/' }];
+
+// Girişim → sayfası: o koddaki ilk pay grubu
+// Girişim → sayfası: B grubu varsa o, yoksa sayfası olan ilk grup; sayfası yoksa bağlantı verilmez
+const sayfalar = new Set(tumAnahtarlar());
+const grupSayfasi = (k: string) => {
+  const g = [...V.sirketler[k].gruplar].sort((a: string, b: string) => (a === 'B' ? -1 : b === 'B' ? 1 : a.localeCompare(b))).find((g: string) => sayfalar.has(`${k}-${g}`));
+  return g ? `/sekundery/${k.toLowerCase()}-${g.toLowerCase()}/` : null;
+};
+
+const G = { w: 1000, h: 210, sol: 34, alt: 34, ust: 18 };
+const adim = (G.w - G.sol - 8) / donemler.length;
+const ymaks = Math.ceil(Math.max(...(donemMedyan as number[])) / 10) * 10;
+const y = (v: number) => G.h - G.alt - (v / ymaks) * (G.h - G.alt - G.ust);
+const satirlar = [...sirketler].sort(([a], [b]) => a.localeCompare(b, 'tr')).map(([k, s]: [string, any]) => {
+  const gunler = donemler.map((d: any) => s.virman[d.acilis]?.gun ?? null);
+  // son iki duyurulu dönem arasındaki gün farkı (artı: süre uzadı)
+  const dolu = gunler.filter((x: number | null) => x != null) as number[];
+  const deg = dolu.length >= 2 ? dolu[dolu.length - 1] - dolu[dolu.length - 2] : null;
+  return { k, s, gunler, m: medyan(dolu), deg };
+});
+---
+
+<Base title={baslik} description={aciklama} noindex>
+  <Yol adimlar={adimlar} />
+  <article class="vs">
+    <SekunderyMenu etkin="virman" />
+    <header class="vs-bas">
+      <p class="vs-etiket">SEKUNDERY · VİRMAN</p>
+      <h1>Virman süreleri</h1>
+      <p class="vs-spot">Her ilan döneminden sonra girişimin, el değiştiren payları yatırımcı hesaplarına aktardığını ("Pay Virman Tamamlanma Duyurusu") kaç günde duyurduğu. Temmuz 2024'ten bugüne {donemler.length} dönem, {sirketler.length} girişim.</p>
+    </header>
+
+    <dl class="vs-kartlar">
+      <div><dt>Son dönem</dt><dd class="vs-k">{uzunTarih(donemler[son].acilis)}</dd><dd class="vs-alt">virmanlar sürüyor olabilir</dd></div>
+      <div><dt>Medyan süre</dt><dd>{sayiYaz(donemMedyan[son])} <small>gün</small></dd></div>
+      <div><dt>Duyuru yapan</dt><dd>{donemSayi[son]}</dd></div>
+      <div><dt>Bütün dönemlerin medyanı</dt><dd>{sayiYaz(tumMedyan)} <small>gün</small></dd></div>
+    </dl>
+
+    <h2>Dönem dönem medyan süre</h2>
+    <p class="vs-a">Her sütun bir ilan dönemi (açılış ayı). Sarı: son dönem; virmanları bitmemiş olabilir, sayı artabilir.</p>
+    <figure class="vs-fig">
+      <svg viewBox={`0 0 ${G.w} ${G.h}`} role="img" aria-label="Dönemlere göre medyan virman süresi">
+        {[0, ymaks / 2, ymaks].map((v) => (
+          <g><line x1={G.sol} x2={G.w} y1={y(v)} y2={y(v)} stroke="#e6e2d8" /><text x={G.sol - 6} y={y(v) + 4} text-anchor="end" class="e">{v}</text></g>
+        ))}
+        {donemler.map((d: any, i: number) => {
+          const m = donemMedyan[i] as number, x = G.sol + i * adim;
+          const yeniYil = i === 0 || d.acilis.slice(0, 4) !== donemler[i - 1].acilis.slice(0, 4);
+          return (
+            <g>
+              <title>{`${uzunTarih(d.acilis)} dönemi: medyan ${sayiYaz(m)} gün, ${donemSayi[i]} girişim`}</title>
+              <rect x={x + 3} y={y(m)} width={adim - 6} height={G.h - G.alt - y(m)} fill={i === son ? '#e8b40c' : '#b9bdb6'} />
+              <text x={x + adim / 2} y={y(m) - 5} text-anchor="middle" class="s">{sayiYaz(m)}</text>
+              <text x={x + adim / 2} y={G.h - 18} text-anchor="middle" class="e">{ayKisa(d.acilis)}</text>
+              {yeniYil && <text x={x + 3} y={G.h - 3} class="yil">{d.acilis.slice(0, 4)}</text>}
+            </g>
+          );
+        })}
+      </svg>
+    </figure>
+
+    <DonemSutun
+      baslik="Virman duyurusu yapan girişim"
+      alt="Her ilan döneminden sonra pay virmanını tamamladığını duyuran girişim sayısı"
+      noktalar={donemler.map((d: any, i: number) => ({ tarih: d.acilis, deger: donemSayi[i], baslik: `${uzunTarih(d.acilis)} dönemi: ${donemSayi[i]} girişim` }))}
+      birim="girişim"
+    />
+
+    <h2>Girişim girişim, bütün dönemler</h2>
+    <p class="vs-a">Satır: girişim. Sütun: dönem, en eskiden en yeniye. Hücre: virman duyurusuna kadar geçen gün. Nokta: o dönemde duyuru yok. Başlığa tıklayınca sıralanır.</p>
+    <div class="vs-arac">
+      <label><span class="gorunmez">Girişim ara</span><input type="search" placeholder="Kod ya da unvan ara" data-ara autocomplete="off" /></label>
+      <div class="vs-olcek">kısa <b></b> uzun (45+ gün)</div>
+    </div>
+    <div class="vs-kap">
+      <table data-tablo>
+        <thead>
+          <tr>
+            <th scope="col" tabindex="0">Girişim</th>
+            {donemler.map((d: any) => (
+              <th scope="col" tabindex="0" title={`${uzunTarih(d.acilis)} açılış · kapanış ${uzunTarih(d.kapanis)}${d.kapanisKaynak === 'kural' ? ' (dönemin olağan süresine göre)' : ''}`}>{ayKisa(d.acilis)}<br />{d.acilis.slice(2, 4)}</th>
+            ))}
+            <th scope="col" tabindex="0">Medyan</th>
+            <th scope="col" tabindex="0" title="Son iki duyurulu dönem arasındaki gün farkı">Değişim</th>
+          </tr>
+        </thead>
+        <tbody>
+          {satirlar.map(({ k, s, gunler, m, deg }) => (
+            <tr data-ara={`${k} ${s.unvan}`.toLocaleLowerCase('tr-TR')}>
+              <th scope="row" data-d={k}>{grupSayfasi(k) ? <a href={grupSayfasi(k)!}>{k}</a> : <b>{k}</b>}<span>{tamUnvan(s.unvan)}</span></th>
+              {gunler.map((g: number | null, i: number) =>
+                g == null ? <td class="vs-bos" data-d="">·</td> : <td data-d={g} style={`background:${virmanRengi(g)}`} title={`${k} · ${uzunTarih(donemler[i].acilis)} dönemi · duyuru ${uzunTarih(s.virman[donemler[i].acilis].tarih)} · ${g} gün`}>{g}</td>,
+              )}
+              <td class="md" data-d={m ?? ''}>{sayiYaz(m)}</td>
+              <td class={`vs-deg ${deg == null ? '' : deg > 0 ? 'vs-a' : deg < 0 ? 'vs-e' : ''}`} data-d={deg ?? ''}>{deg == null ? '·' : `${deg > 0 ? '+' : deg < 0 ? '−' : ''}${Math.abs(deg)}`}</td>
+            </tr>
+          ))}
+        </tbody>
+        <tfoot>
+          <tr><th scope="row">Dönem medyanı</th>{donemMedyan.map((m: number) => <td>{sayiYaz(m)}</td>)}<td></td></tr>
+        </tfoot>
+      </table>
+    </div>
+    <p><a href="/sekundery/">← Sekundery</a></p>
+    <SekunderyIzah sayfa="virman" />
+    <SekunderyUyari />
+  </article>
+</Base>
+
+<script>
+  const t = document.querySelector<HTMLTableElement>('[data-tablo]');
+  const ara = document.querySelector<HTMLInputElement>('[data-ara]');
+  if (t && ara) {
+    const g = t.tBodies[0];
+    ara.addEventListener('input', () => {
+      const q = ara.value.trim().toLocaleLowerCase('tr-TR');
+      for (const r of g.rows) r.hidden = !!q && !(r.dataset.ara ?? '').includes(q);
+    });
+    const bas = [...t.tHead!.rows[0].cells];
+    bas.forEach((th, i) => {
+      const sirala = () => {
+        const yon = th.getAttribute('aria-sort') === 'ascending' ? 'descending' : 'ascending';
+        bas.forEach((x) => x.removeAttribute('aria-sort'));
+        th.setAttribute('aria-sort', yon);
+        const k = yon === 'ascending' ? 1 : -1;
+        g.append(...[...g.rows].sort((a, b) => {
+          const x = a.cells[i].dataset.d ?? '', z = b.cells[i].dataset.d ?? '';
+          if (x === '' && z === '') return 0;
+          if (x === '') return 1;
+          if (z === '') return -1;
+          return (i === 0 ? x.localeCompare(z, 'tr') : Number(x) - Number(z)) * k;
+        }));
+      };
+      th.addEventListener('click', sirala);
+      th.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); sirala(); } });
+    });
+  }
+</script>
+
+<style>
+  .vs { max-width: 1280px; margin: 0 auto; padding: 0 16px 64px; }
+  .vs-bas { border-top: 10px solid var(--marka-sari); padding-top: 24px; margin-bottom: 18px; }
+  .vs-etiket { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; color: var(--gri); margin: 0; }
+  .vs-bas h1 { font-size: clamp(2.4rem, 6vw, 4rem); letter-spacing: -0.03em; margin: 4px 0 6px; }
+  .vs-spot { max-width: 66ch; color: var(--murekkep-2); margin: 0; }
+  .vs h2 { font-size: 1.4rem; letter-spacing: -0.01em; margin: 40px 0 4px; }
+  .vs-a { color: var(--gri); font-size: 0.9rem; margin: 0 0 12px; }
+  .vs-kartlar { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--cizgi); border: 1px solid var(--cizgi); margin: 22px 0; }
+  .vs-kartlar > div { background: var(--kagit); padding: 14px 16px; }
+  .vs-kartlar dt { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gri); }
+  .vs-kartlar dd { margin: 4px 0 0; font-size: 1.9rem; font-weight: 600; letter-spacing: -0.03em; }
+  .vs-kartlar dd.vs-k { font-size: 1.25rem; }
+  .vs-kartlar dd.vs-alt { font-size: 0.8rem; font-weight: 400; color: var(--gri); letter-spacing: 0; }
+  .vs-kartlar small { font-size: 0.85rem; font-weight: 400; color: var(--gri); letter-spacing: 0; }
+  .vs-fig { margin: 0; background: var(--beyaz); border: 1px solid var(--cizgi); padding: 16px; }
+  .vs-fig svg { width: 100%; height: auto; max-height: 260px; display: block; }
+  .s { font-size: 12px; font-weight: 600; fill: #141a17; }
+  .e { font-size: 11px; fill: #5d645f; }
+  .yil { font-size: 11px; font-weight: 600; fill: #141a17; }
+  .vs-arac { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin: 0 0 10px; }
+  .vs-arac input { font: inherit; padding: 8px 12px; border: 1.5px solid var(--murekkep); background: var(--beyaz); min-width: 260px; border-radius: 0; }
+  .vs-olcek { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--gri); }
+  .vs-olcek b { display: block; width: 120px; height: 10px; background: linear-gradient(90deg, rgb(252, 249, 238), rgb(246, 222, 140), rgb(214, 160, 40)); }
+  .vs-kap { overflow-x: auto; border: 1px solid var(--cizgi); background: var(--beyaz); } /* sahibi: dikey kaydırma yok, tablo tam görünür */
+  table { border-collapse: separate; border-spacing: 0; font-size: 0.82rem; font-variant-numeric: tabular-nums; width: 100%; }
+  th, td { padding: 0; text-align: center; border-bottom: 1px solid #eeebe3; border-right: 1px solid #eeebe3; }
+  thead th { position: sticky; top: 0; z-index: 2; background: var(--kagit); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.04em; color: var(--gri); padding: 8px 2px; cursor: pointer; min-width: 38px; line-height: 1.2; user-select: none; }
+  thead th:first-child { left: 0; z-index: 3; text-align: left; padding-left: 12px; min-width: 180px; }
+  thead th[aria-sort='ascending']::after { content: ' ↑'; }
+  thead th[aria-sort='descending']::after { content: ' ↓'; }
+  tbody th { position: sticky; left: 0; z-index: 1; background: var(--beyaz); text-align: left; font-weight: 400; padding: 5px 10px 5px 12px; min-width: 180px; max-width: 220px; }
+  tbody th a, tbody th b { font-weight: 700; color: var(--murekkep); text-decoration: none; margin-right: 8px; }
+  tbody th a:hover { text-decoration: underline; }
+  tbody th span { color: var(--gri); font-size: 0.75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: inline-block; max-width: 120px; vertical-align: bottom; }
+  td { height: 30px; min-width: 38px; font-weight: 600; color: var(--murekkep); }
+  td.vs-bos { color: #cfcabd; font-weight: 400; }
+  td.vs-deg { font-weight: 600; }
+  td.vs-a { color: #8a6a00; }
+  td.vs-e { color: #2f4b6e; }
+  td.md { background: var(--kagit); font-weight: 700; border-left: 2px solid var(--murekkep); }
+  tfoot td, tfoot th { position: sticky; bottom: 0; background: var(--kagit); font-weight: 700; border-top: 2px solid var(--murekkep); padding: 6px 0; }
+  tfoot th { left: 0; z-index: 3; text-align: left; padding-left: 12px; }
+  .vs-not { color: var(--gri); font-size: 0.88rem; max-width: 80ch; margin-top: 12px; }
+  .gorunmez { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  @media (max-width: 640px) {
+    .vs-kartlar { grid-template-columns: 1fr 1fr; }
+    .vs-arac input { min-width: 0; width: 100%; }
+    .vs-arac label { flex: 1 1 100%; }
+    thead th:first-child, tbody th { min-width: 150px; }
+    tbody th span { display: none; }
+  }
+</style>

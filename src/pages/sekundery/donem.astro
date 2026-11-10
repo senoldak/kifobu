@@ -1,0 +1,320 @@
+---
+import Base from '../../layouts/Base.astro';
+import SekunderyMenu from '../../components/sekundery/SekunderyMenu.astro';
+import SekunderyUyari from '../../components/sekundery/SekunderyUyari.astro';
+import SekunderyIzah from '../../components/sekundery/SekunderyIzah.astro';
+import Yol from '../../components/Yol.astro';
+import { GENEL_NOT } from '../../lib/site';
+import BirimSecici from '../../components/sekundery/BirimSecici.astro';
+import { sonGun, kapanisKarsilastirma, butunDonemler, kurlar, avroKurlar, altinKurlar } from '../../lib/sekundery-veri.mjs';
+import { yuzdeYaz, degisim } from '../../lib/sekundery.mjs';
+import { kurBul, paraYaz } from '../../lib/sekundery-kur.mjs';
+import { tamUnvan } from '../../lib/sekundery-virman.mjs';
+
+const baslik = 'Dönem karşılaştırması';
+const aciklama = "Pay gruplarının en düşük satış ilanı: son ilan dönemlerinin ortalamaları, geçen kapanış ve bugün.";
+const adimlar = [{ ad: 'Anasayfa', url: '/' }, { ad: 'Sekundery', url: '/sekundery/' }, { ad: 'Dönem karşılaştırması', url: '/sekundery/donem/' }];
+
+const kk = kapanisKarsilastirma(4);
+const gunAy = (t: string, yil = false) => new Date(`${t}T12:00:00`).toLocaleDateString('tr-TR', { day: 'numeric', month: 'short', ...(yil ? { year: 'numeric' } : {}) });
+const aralik = (d: { acilis: string; kapanis: string }) => `${gunAy(d.acilis)} – ${gunAy(d.kapanis, true)}`;
+const uzun = (t: string) => new Date(`${t}T12:00:00`).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
+const yon = (y: number | null) => (y == null ? '' : y > 0 ? 'artı' : y < 0 ? 'eksi' : '');
+
+// Birimler: dağıtım kampanya günü, dönem ortalaması dönemin kapanış günü, geçen kapanış o günün, bugün ve İTO son güncelleme günü kuruyla.
+const P = ['tl', 'usd', 'eur', 'xau'] as const;
+type Para = (typeof P)[number];
+type Deger = Record<Para, number | null>;
+const KUR: Record<Exclude<Para, 'tl'>, Record<string, number>> = { usd: kurlar, eur: avroKurlar, xau: altinKurlar };
+const cevir = (v: number | null | undefined, tarih: string | null | undefined): Deger =>
+  Object.fromEntries(P.map((p) => [p, v == null ? null : p === 'tl' ? v : ((k) => (k ? v / k : null))(kurBul(tarih, KUR[p]))])) as Deger;
+const fark = (a: Deger, b: Deger): Deger => Object.fromEntries(P.map((p) => [p, degisim(a[p] as number, b[p] as number)])) as Deger;
+const veri = (v: Deger) => Object.fromEntries(P.map((p) => [`data-${p}`, v[p] ?? '']));
+const bugun = sonGun?.tarih;
+const satirlar = kk.tablo.map((r) => {
+  const dag: Deger = { tl: r.s.dagitim, usd: r.s.usd.dagitim, eur: r.s.eur.dagitim, xau: r.s.xau.dagitim };
+  const ito = cevir(r.s.itoEnf, bugun);
+  const ort = r.ortalamalar.map((o, i) => cevir(o, kk.donemler[i].kapanis));
+  const onc = cevir(r.onceki?.deger, r.onceki?.tarih);
+  const sim = cevir(r.simdi, bugun);
+  const sonOrt = [...ort].reverse().find((o) => o.tl != null) ?? cevir(null, null);
+  return { r, dag, ito, ort, onc, sim, kapanisa: fark(sim, onc), ortalamaya: fark(sim, sonOrt) };
+});
+// Tam tablo: bütün dönemler (ve dönemlerden önceki aylar); değer o dönemin kapanış günü kuruyla çevrilir.
+const tam = butunDonemler();
+const AYK = ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'];
+const tamBas = tam.donemler.map((d) => ({ ...d, yil: d.acilis.slice(0, 4), etiket: AYK[Number(d.acilis.slice(5, 7)) - 1] }));
+const yillar = [...new Set(tamBas.map((d) => d.yil))].map((y) => ({ y, n: tamBas.filter((d) => d.yil === y).length }));
+const kisa = (v: number | null, p: Para) =>
+  // altın bu dar tabloda 1.000 pay için gram olarak yazılır (0,000795 gr yerine 0,795); öteki birimler basamağa göre kısalır
+  v == null ? '–' : ((x, o) => x.toLocaleString('tr-TR', { minimumFractionDigits: o, maximumFractionDigits: o }))(p === 'xau' ? v * 1000 : v, ((x) => (x >= 1000 ? 0 : x >= 100 ? 1 : p === 'tl' || x >= 10 ? 2 : 3))(p === 'xau' ? v * 1000 : v));
+const tamSatir = tam.satirlar.map((r) => ({
+  s: r.s,
+  h: r.ortalamalar.map((o, i) => cevir(o, tam.donemler[i].kapanis)),
+  m: r.medyanlar.map((o, i) => cevir(o, tam.donemler[i].kapanis)),
+  ic: r.seyir,
+}));
+const say = (alan: 'kapanisa', p: Para, y: string) => satirlar.filter((x) => yon(x[alan][p]) === y).length;
+---
+
+<Base title={baslik} description={aciklama} noindex>
+  <Yol adimlar={adimlar} />
+
+  <article class="dk">
+
+    <SekunderyMenu etkin="donem" />
+    <header class="dk-bas">
+      <p class="dk-etiket">SEKUNDERY · DÖNEMLER</p>
+      <h1>Dönem karşılaştırması</h1>
+      <p class="dk-spot">
+        Her pay grubunun en düşük satış ilanı: son ilan dönemlerindeki günlük değerlerin ortalaması, geçen dönemin
+        kapanışı ve bugün. Değişim, bugünkü ilanın geçen kapanışa göre farkıdır.
+      </p>
+      {sonGun && <p class="dk-tarih">Son güncelleme: <strong>{uzun(sonGun.tarih)}</strong>{kk.donem && <> · geçen kapanış: <strong>{aralik(kk.donem)}</strong></>}</p>}
+      {kk.atlanan.length > 0 && <p class="dk-tarih">{kk.atlanan.map(aralik).join(', ')} dönemine ait veri olmadığı için bir önceki dönem kullanıldı.</p>}
+    </header>
+
+    <div class="dk-birim"><BirimSecici /></div>
+
+    <dl class="dk-kartlar">
+      <div class="dk-k-yuk"><dt>Daha yüksek ilana verilen</dt><dd>{P.map((p) => <span class={`pv pv-${p}`}>{say('kapanisa', p, 'artı')}</span>)}</dd></div>
+      <div class="dk-k-dus"><dt>Daha düşük ilana verilen</dt><dd>{P.map((p) => <span class={`pv pv-${p}`}>{say('kapanisa', p, 'eksi')}</span>)}</dd></div>
+      <div><dt>Değişmeyen</dt><dd>{P.map((p) => <span class={`pv pv-${p}`}>{satirlar.filter((x) => x.kapanisa[p] === 0).length}</span>)}</dd></div>
+    </dl>
+
+    <div class="dk-arac">
+      <label class="dk-ara"><span class="gorunmez">Girişim ara</span><input type="search" placeholder="Kod ya da ad ara" data-dk-ara autocomplete="off" /></label>
+      <div class="dk-suzgec" role="group" aria-label="Süzgeç">
+        <button type="button" aria-pressed="true" data-dk-suz="hepsi">Hepsi</button>
+        <button type="button" aria-pressed="false" data-dk-suz="artı">Daha yüksek</button>
+        <button type="button" aria-pressed="false" data-dk-suz="eksi">Daha düşük</button>
+      </div>
+    </div>
+
+    <div class="dk-tablo-kap">
+      <table class="dk-tablo" data-dk-tablo>
+        <thead>
+          <tr class="dk-ust">
+            <th colspan="3"></th>
+            <th colspan={kk.donemler.length} class="dk-taraf dk-ayrac">En düşük satış ilanı · dönem ortalaması</th>
+            <th colspan="4" class="dk-taraf dk-ayrac">Bugün ve değişim</th>
+          </tr>
+          <tr>
+            <th data-sirala="metin" scope="col">Girişim</th>
+            <th data-sirala="sayi" scope="col">Dağıtım</th>
+            <th data-sirala="sayi" scope="col">İTO enf.</th>
+            {kk.donemler.map((d, i) => <th data-sirala="sayi" scope="col" class={i === 0 ? 'dk-ayrac' : ''}>{aralik(d)}</th>)}
+            <th data-sirala="sayi" scope="col" class="dk-ayrac">Geçen kapanış</th>
+            <th data-sirala="sayi" scope="col">Bugün</th>
+            <th data-sirala="sayi" scope="col" title="Bugünkü ilanın geçen kapanışa göre değişimi">Kapanışa göre</th>
+            <th data-sirala="sayi" scope="col" title="Bugünkü ilanın son dönem ortalamasına göre değişimi (Excel DÖNEM)">Ortalamaya göre</th>
+          </tr>
+        </thead>
+        <tbody>
+          {satirlar.map(({ r, dag, ito, ort, onc, sim, kapanisa, ortalamaya }) => (
+            <tr {...Object.fromEntries(P.map((p) => [`data-yon-${p}`, yon(kapanisa[p])]))} data-ara={`${r.s.kod} ${r.s.grup} ${r.s.unvan ?? ''}`.toLocaleLowerCase('tr-TR')}>
+              <th scope="row" data-tl={r.s.anahtar}>
+                <a href={`/sekundery/${r.s.anahtar.toLowerCase()}/`}><span class="dk-kod">{r.s.kod}</span> <span class="dk-grup">{r.s.grup}</span></a>
+                {r.s.unvan && <span class="dk-ad" title={tamUnvan(r.s.unvan) ?? undefined}>{tamUnvan(r.s.unvan)}</span>}
+              </th>
+              <td {...veri(dag)}>{P.map((p) => <span class={`pv pv-${p}`}>{paraYaz(dag[p], p)}</span>)}</td>
+              <td {...veri(ito)}>{P.map((p) => <span class={`pv pv-${p}`}>{paraYaz(ito[p], p)}</span>)}</td>
+              {ort.map((o, i) => <td {...veri(o)} class={i === 0 ? 'dk-ayrac' : ''}>{P.map((p) => <span class={`pv pv-${p}`}>{paraYaz(o[p], p)}</span>)}</td>)}
+              <td {...veri(onc)} class="dk-ayrac">{P.map((p) => <span class={`pv pv-${p}`}>{paraYaz(onc[p], p)}</span>)}</td>
+              <td {...veri(sim)}><strong>{P.map((p) => <span class={`pv pv-${p}`}>{paraYaz(sim[p], p)}</span>)}</strong></td>
+              <td {...veri(kapanisa)}>{P.map((p) => <span class={`pv pv-${p} ${yon(kapanisa[p])}`}>{kapanisa[p] == null ? '—' : yuzdeYaz(kapanisa[p])}</span>)}</td>
+              <td {...veri(ortalamaya)}>{P.map((p) => <span class={`pv pv-${p} ${yon(ortalamaya[p])}`}>{ortalamaya[p] == null ? '—' : yuzdeYaz(ortalamaya[p])}</span>)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <section class="dk-tam" aria-labelledby="dk-tam-baslik" data-seri="endu">
+      <div class="dk-tam-bas">
+        <h2 id="dk-tam-baslik">Bütün dönemler</h2>
+        <div class="dk-seri" role="group" aria-label="Hangi ilan fiyatı">
+          <button type="button" data-dk-seri="endu" aria-pressed="true">En düşük satış</button>
+          <button type="button" data-dk-seri="med" aria-pressed="false">Medyan satış</button>
+          <button type="button" data-dk-seri="ic" aria-pressed="false">Dönem içi değişim</button>
+        </div>
+      </div>
+      <p class="dk-tam-a">
+        Her hücre <span class="sr-endu">o dönemdeki en düşük satış ilanlarının ortalamasıdır</span><span class="sr-med">o dönemdeki medyan satış ilanlarının ortalamasıdır</span><span class="sr-ic">dönemin ilk ve son gününde en düşük satış ilanı arasındaki farktır (%)</span>; {tamBas[0] && new Date(`${tamBas[0].acilis}T12:00:00`).toLocaleDateString('tr-TR', { month: 'long', year: 'numeric' })}'ten bu yana {tamBas.length} sütun.
+        Temmuz 2024'ten önce ilanlar dönemlere ayrılmadan açıktı; o aylar ay ortalamasıdır (<i>a</i>). Birim:
+        {P.map((p) => <span class={`pv pv-${p}`}>{p === 'tl' ? ' TL' : p === 'usd' ? ' dolar' : p === 'eur' ? ' avro' : ' gram altın (1.000 pay için)'}</span>)}.
+      </p>
+      <div class="dk-tam-kap">
+        <table class="dk-tam-t">
+          <colgroup>
+            <col class="dk-c-ad" />
+            {tamBas.map((d, i) => <col class={[i % 2 ? 'dk-c-cift' : 'dk-c-tek', d.ay ? 'dk-c-ay' : '', i > 0 && tamBas[i - 1].yil !== d.yil ? 'dk-c-yil' : ''].filter(Boolean).join(' ')} />)}
+          </colgroup>
+          <thead>
+            <tr><th rowspan="2" class="dk-tam-sol">Girişim</th>{yillar.map((y) => <th colspan={y.n} class="dk-tam-yil">{y.y}</th>)}</tr>
+            <tr>{tamBas.map((d) => <th title={`${uzun(d.acilis)} – ${uzun(d.kapanis)}${d.ay ? ' (ay ortalaması)' : ''}`}>{d.etiket}{d.ay && <i>a</i>}</th>)}</tr>
+          </thead>
+          <tbody>
+            {tamSatir.map(({ s: g, h, m, ic }) => (
+              <tr>
+                <th scope="row" class="dk-tam-sol"><a href={`/sekundery/${g.anahtar.toLowerCase()}/`}>{g.kod} <small>{g.grup}</small></a></th>
+                {h.map((x, i) => (
+                  <td>
+                    <span class={`sr-endu${x.tl == null ? ' dk-yok' : ''}`}>{P.map((p) => <span class={`pv pv-${p}`}>{kisa(x[p], p)}</span>)}</span>
+                    <span class={`sr-med${m[i].tl == null ? ' dk-yok' : ''}`}>{P.map((p) => <span class={`pv pv-${p}`}>{kisa(m[i][p], p)}</span>)}</span>
+                    <span class={`sr-ic ${ic[i] == null ? 'dk-yok' : ic[i] > 0 ? 'artı' : ic[i] < 0 ? 'eksi' : ''}`}>{ic[i] == null ? '–' : `${ic[i] > 0 ? '+' : ic[i] < 0 ? '−' : ''}${Math.abs(ic[i]).toLocaleString('tr-TR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}`}</span>
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <SekunderyIzah sayfa="donem" />
+    <SekunderyUyari />
+  </article>
+</Base>
+
+<script>
+  {
+    const bolum = document.querySelector<HTMLElement>('.dk-tam');
+    const dugmeler = [...document.querySelectorAll<HTMLButtonElement>('[data-dk-seri]')];
+    for (const d of dugmeler)
+      d.addEventListener('click', () => {
+        if (bolum) bolum.dataset.seri = d.dataset.dkSeri;
+        for (const x of dugmeler) x.setAttribute('aria-pressed', String(x === d));
+      });
+  }
+  const tablo = document.querySelector<HTMLTableElement>('[data-dk-tablo]');
+  const ara = document.querySelector<HTMLInputElement>('[data-dk-ara]');
+  const suzler = [...document.querySelectorAll<HTMLButtonElement>('[data-dk-suz]')];
+  if (tablo && ara) {
+    const govde = tablo.tBodies[0];
+    let suz = 'hepsi';
+    const uygula = () => {
+      const q = ara.value.trim().toLocaleLowerCase('tr-TR');
+      const p = document.documentElement.dataset.para || 'tl';
+      for (const tr of govde.rows) tr.hidden = !((suz === 'hepsi' || tr.getAttribute(`data-yon-${p}`) === suz) && (!q || (tr.dataset.ara ?? '').includes(q)));
+    };
+    ara.addEventListener('input', uygula);
+    document.addEventListener('sekundery-para', uygula);
+    for (const d of suzler)
+      d.addEventListener('click', () => {
+        suz = d.dataset.dkSuz ?? 'hepsi';
+        for (const x of suzler) x.setAttribute('aria-pressed', String(x === d));
+        uygula();
+      });
+    const basliklar = [...tablo.tHead!.rows[1].cells];
+    basliklar.forEach((th, sutun) => {
+      th.tabIndex = 0;
+      const sirala = () => {
+        const y = th.getAttribute('aria-sort') === 'descending' ? 'ascending' : 'descending';
+        for (const b of basliklar) b.removeAttribute('aria-sort');
+        th.setAttribute('aria-sort', y);
+        const sayi = th.dataset.sirala === 'sayi';
+        const k = y === 'ascending' ? 1 : -1;
+        const rows = [...govde.rows].sort((a, b) => {
+          const pr = document.documentElement.dataset.para || 'tl';
+          const al = (c: HTMLTableCellElement) => c.getAttribute(`data-${pr}`) ?? c.getAttribute('data-tl') ?? '';
+          const p = al(a.cells[sutun]), q = al(b.cells[sutun]);
+          if (p === '' && q === '') return 0;
+          if (p === '') return 1;
+          if (q === '') return -1;
+          return (sayi ? Number(p) - Number(q) : p.localeCompare(q, 'tr')) * k;
+        });
+        govde.append(...rows);
+      };
+      th.addEventListener('click', sirala);
+      th.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); sirala(); } });
+    });
+  }
+</script>
+
+<style>
+  .dk { max-width: 1180px; margin: 0 auto; padding: 0 16px 64px; }
+  .dk-bas { border-top: 10px solid var(--marka-sari); padding-top: 24px; margin-bottom: 24px; }
+  .dk-etiket { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; color: var(--gri); margin: 0; }
+  .dk-bas h1 { font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -0.03em; margin: 4px 0 8px; }
+  .dk-spot { max-width: 66ch; color: var(--murekkep-2); margin: 0 0 8px; }
+  .dk-tarih { color: var(--gri); margin: 0 0 2px; font-size: 0.92rem; }
+  .dk-alt-sayfa { margin-top: 10px; display: flex; gap: 18px; flex-wrap: wrap; }
+  .dk-alt-sayfa a { color: var(--murekkep); font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--marka-sari); }
+  .dk-kartlar { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--cizgi); border: 1px solid var(--cizgi); margin: 0 0 24px; }
+  .dk-kartlar > div { background: var(--kagit); padding: 14px 16px; }
+  .dk-kartlar dt { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gri); }
+  .dk-kartlar dd { margin: 4px 0 0; font-size: 1.9rem; font-weight: 600; letter-spacing: -0.03em; }
+  .dk-k-yuk dd { color: #8a6a00; }
+  .dk-k-dus dd { color: #2f4b6e; }
+  .dk-arac { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .dk-ara input { font: inherit; padding: 8px 12px; border: 1.5px solid var(--murekkep); background: var(--beyaz); min-width: 240px; border-radius: 0; }
+  .dk-suzgec { display: flex; }
+  .dk-suzgec button { font: inherit; font-size: 0.9rem; padding: 8px 12px; border: 1.5px solid var(--murekkep); background: transparent; color: var(--murekkep); cursor: pointer; }
+  .dk-suzgec button + button { border-left: 0; }
+  .dk-suzgec button[aria-pressed='true'] { background: var(--murekkep); color: var(--kagit); }
+  .dk-tablo-kap { overflow-x: auto; border: 1px solid var(--cizgi); background: var(--beyaz); }
+  .dk-tablo { border-collapse: collapse; width: 100%; font-size: 0.76rem; font-variant-numeric: tabular-nums; }
+  .dk-tablo th, .dk-tablo td { padding: 8px 5px; text-align: right; white-space: nowrap; border-bottom: 1px solid var(--cizgi); }
+  .dk-tablo thead th { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--gri); background: var(--kagit); position: sticky; top: 0; cursor: pointer; user-select: none; }
+  .dk-tablo thead .dk-ust th { cursor: default; text-align: center; border-bottom: 0; }
+  .dk-tablo thead th[aria-sort='ascending']::after { content: ' ↑'; }
+  .dk-tablo thead th[aria-sort='descending']::after { content: ' ↓'; }
+  .dk-tablo .dk-taraf { color: var(--murekkep); border-bottom: 2px solid var(--marka-sari) !important; }
+  .dk-tablo tbody th { text-align: left; font-weight: 400; position: sticky; left: 0; background: var(--beyaz); z-index: 1; }
+  .dk-tablo thead tr:last-child th:first-child { text-align: left; position: sticky; left: 0; z-index: 2; }
+  .dk-tablo tbody th a { color: var(--murekkep); text-decoration: none; }
+  .dk-tablo tbody th a:hover .dk-kod { text-decoration: underline; }
+  .dk-tablo tbody tr:hover, .dk-tablo tbody tr:hover th { background: var(--kagit); }
+  .dk-kod { font-weight: 600; }
+  .dk-grup { color: var(--gri); font-size: 0.7rem; border: 1px solid var(--cizgi); padding: 0 4px; }
+  .dk-ad { display: -webkit-box; color: var(--gri); font-size: 0.62rem; line-height: 1.3; max-width: 22ch; white-space: normal; margin-top: 2px; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 2.6em; }
+  .dk-ayrac { border-left: 1px solid var(--cizgi); }
+  .dk-tablo .artı { color: #8a6a00; font-weight: 600; }
+  .dk-tablo .eksi { color: #2f4b6e; font-weight: 600; }
+  .dk-tablo thead tr:last-child th { white-space: normal; vertical-align: bottom; line-height: 1.25; }
+  .dk-tablo .pv-xau { font-size: 0.7rem; }
+  .dk-birim { display: flex; justify-content: flex-end; margin: -8px 0 12px; }
+  .dk-tam { margin-top: 36px; }
+  .dk-tam h2 { font-size: 1.25rem; letter-spacing: -0.01em; margin: 0 0 4px; padding-bottom: 6px; border-bottom: 2px solid var(--marka-sari); display: inline-block; }
+  .dk-tam-a { margin: 6px 0 12px; color: var(--gri); font-size: 0.86rem; max-width: 90ch; }
+  .dk-tam-a i, .dk-tam-t thead i { font-style: normal; font-size: 0.7em; color: var(--gri); margin-left: 1px; vertical-align: super; }
+  .dk-tam-kap { border: 1px solid var(--cizgi); background: var(--beyaz); }
+  .dk-tam-t { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 0.66rem; font-variant-numeric: tabular-nums; }
+  .dk-tam-t tbody tr { height: 26px; }
+  .dk-tam-t th, .dk-tam-t td { line-height: 1.2; padding: 5px 2px; text-align: right; white-space: nowrap; overflow: hidden; border-bottom: 1px solid #f0eee8; }
+  .dk-tam-t thead th { font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.02em; color: var(--gri); background: var(--kagit); text-align: center; position: sticky; top: 0; }
+  .dk-tam-t .dk-tam-yil { color: var(--murekkep); border-bottom: 2px solid var(--marka-sari); border-left: 1px solid var(--cizgi); }
+  .dk-tam-t .dk-tam-sol { width: 92px; text-align: left; padding-left: 10px; }
+  .dk-tam-t tbody th { font-weight: 600; font-size: 0.72rem; }
+  .dk-tam-t tbody th a { color: var(--murekkep); text-decoration: none; }
+  .dk-tam-t tbody th small { color: var(--gri); font-weight: 600; }
+  /* sütun bantları: beyaz ve kâğıt sırayla; dönem öncesi aylar sarının çok açık tonu; yıl başında ayraç */
+  .dk-tam-t .dk-c-tek { background: var(--beyaz); }
+  .dk-tam-t .dk-c-cift { background: var(--kagit-2, #efece4); }
+  .dk-tam-t .dk-c-ay.dk-c-tek { background: #fdf6dc; }
+  .dk-tam-t .dk-c-ay.dk-c-cift { background: #f8ecc0; }
+  .dk-tam-t .dk-c-yil { border-left: 2px solid var(--murekkep); }
+  .dk-tam-t thead th { background: transparent; }
+  .dk-tam-t thead tr:first-child th { background: var(--kagit); }
+  .dk-tam-t tbody tr:hover > * { box-shadow: inset 0 0 0 999px rgba(20, 26, 23, 0.05); }
+  .dk-tam-t .dk-yok { color: #c9c6bc; }
+  .dk-tam-bas { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .dk-seri { display: flex; }
+  .dk-seri button { font: inherit; font-size: 0.85rem; padding: 6px 12px; border: 1.5px solid var(--murekkep); background: transparent; color: var(--murekkep); cursor: pointer; }
+  .dk-seri button + button { border-left: 0; }
+  .dk-seri button[aria-pressed='true'] { background: var(--murekkep); color: var(--kagit); }
+  .dk-tam[data-seri='endu'] .sr-med, .dk-tam[data-seri='endu'] .sr-ic, .dk-tam[data-seri='med'] .sr-endu, .dk-tam[data-seri='med'] .sr-ic, .dk-tam[data-seri='ic'] .sr-endu, .dk-tam[data-seri='ic'] .sr-med { display: none; }
+  .dk-tam-t .sr-ic.artı { color: #8a6a00; font-weight: 600; }
+  .dk-tam-t .sr-ic.eksi { color: #2f4b6e; font-weight: 600; }
+  .dk-tam-t td .pv { line-height: inherit; }
+  .dk-not { margin-top: 32px; max-width: 72ch; color: var(--murekkep-2); }
+  .dk-not h2 { font-size: 1.1rem; }
+  .dk-not li { margin-bottom: 6px; }
+  .gorunmez { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  @media (max-width: 640px) {
+    .dk-kartlar { grid-template-columns: 1fr; }
+    .dk-ara input { min-width: 0; width: 100%; }
+    .dk-ara { flex: 1 1 100%; }
+  }
+</style>

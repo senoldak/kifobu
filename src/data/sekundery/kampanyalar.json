@@ -1,0 +1,1973 @@
+{
+ "kaynak": "Girişimlerin kampanya ve hakkında sayfaları",
+ "okundu": "2026-11-10",
+ "sirketler": {
+  "ACTVB": {
+   "kaynakId": 50,
+   "unvan": "ACTV BİYOTEKNOLOJİ LABORATUVAR SANAYİ VE TİCARET ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Prolicell Hücre Fabrikası",
+     "fonAktarim": "2023-08-10",
+     "yatirimci": 3468,
+     "sermaye": 65500000.0,
+     "dagitimOrani": 7.2,
+     "dagitimFiyati": 6.17,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "AHEAR": {
+   "kaynakId": 46,
+   "unvan": "AIHEAR TEKNOLOJİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "A",
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Otonom Odyometre",
+     "fonAktarim": "2021-11-26",
+     "yatirimci": 591,
+     "sermaye": 878000.0,
+     "dagitimOrani": 14.4,
+     "dagitimFiyati": 6.55,
+     "gruplar": [
+      "A",
+      "B"
+     ]
+    }
+   ]
+  },
+  "AIRCR": {
+   "kaynakId": 91,
+   "unvan": "AIRCAR TEKNOLOJİ VE HAVACILIK ANONİM ŞİRKETİ",
+   "gruplar": [
+    "A",
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "AirCar Uçan Araba",
+     "fonAktarim": "2026-01-22",
+     "yatirimci": 1715,
+     "sermaye": 30544574.0,
+     "dagitimOrani": 1.9,
+     "dagitimFiyati": 30.85
+    }
+   ]
+  },
+  "ALPGN": {
+   "kaynakId": 64,
+   "unvan": "ALPGEN ROBOTİCS TEKNOLOJİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "ALPGEN Robotics",
+     "fonAktarim": "2021-12-15",
+     "yatirimci": 666,
+     "sermaye": 800000.0,
+     "dagitimOrani": 6.5,
+     "dagitimFiyati": 16.25,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "ANCYR": {
+   "kaynakId": 88,
+   "unvan": "ANCYRA STÜDYO YAZILIM ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "KurOba Oghuz",
+     "fonAktarim": "2025-06-13",
+     "yatirimci": 351,
+     "sermaye": 3276252.0,
+     "dagitimOrani": 13.6,
+     "dagitimFiyati": 9.15,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "ARKER": {
+   "kaynakId": 83,
+   "unvan": "ARKEROBOX EĞİTİCİ OYUN TEKNOLOJİLERİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B",
+    "D"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Arkerobox Globalleşiyor",
+     "fonAktarim": "2022-12-09",
+     "yatirimci": 1200,
+     "sermaye": 4173183.0,
+     "dagitimOrani": 26.9,
+     "dagitimFiyati": 10.98,
+     "gruplar": [
+      "D"
+     ]
+    },
+    {
+     "ad": "Kültürel Mirası Keşfet",
+     "fonAktarim": "2021-12-23",
+     "yatirimci": 1008,
+     "sermaye": 1249487.0,
+     "dagitimOrani": 12.7,
+     "dagitimFiyati": 9.2,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "ATECH": {
+   "kaynakId": 7,
+   "unvan": "AMAZOİ TEKNİK SİMÜLASYON YAZILIM ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Savity Safe with Virtuality",
+     "fonAktarim": "2022-01-24",
+     "yatirimci": 1154,
+     "sermaye": 2016000.0,
+     "dagitimOrani": 18.0,
+     "dagitimFiyati": 6.67,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "ATRMC": {
+   "kaynakId": 13,
+   "unvan": "ATRONMAC MAKİNE SANAYİ VE TİCARET ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B",
+    "C"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "ATRONMAC",
+     "fonAktarim": "2024-10-24",
+     "yatirimci": 2084,
+     "sermaye": 29800000.0,
+     "dagitimOrani": 29.1,
+     "dagitimFiyati": 7.11,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "AUTHT": {
+   "kaynakId": 33,
+   "unvan": "AUTHTAKE TEKNOLOJİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "AuthTake",
+     "fonAktarim": "2021-11-24",
+     "yatirimci": 696,
+     "sermaye": 960000.0,
+     "dagitimOrani": 6.0,
+     "dagitimFiyati": 16.66,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "BIGET": {
+   "kaynakId": 69,
+   "unvan": "BİGETAŞ BİYOTEKNOLOJİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Plantero",
+     "fonAktarim": "2024-03-29",
+     "yatirimci": 903,
+     "sermaye": 4728884.0,
+     "dagitimOrani": 13.0,
+     "dagitimFiyati": 9.41,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "BLCLL": {
+   "kaynakId": 20,
+   "unvan": "BLOOCELL SAĞLIK TEKNOLOJİLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Yapay Doku Teknolojileri",
+     "fonAktarim": "2023-08-22",
+     "yatirimci": 2603,
+     "sermaye": 17700000.0,
+     "dagitimOrani": 12.0,
+     "dagitimFiyati": 7.91,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "BSCHL": {
+   "kaynakId": 16,
+   "unvan": "BİLİŞİM SCHOOL EĞİTİM TEKNOLOJİLERİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Bilişim School",
+     "fonAktarim": "2022-10-03",
+     "yatirimci": 627,
+     "sermaye": 1511000.0,
+     "dagitimOrani": 9.0,
+     "dagitimFiyati": 10.0,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "BTRYN": {
+   "kaynakId": 17,
+   "unvan": "BATARYASAN ENERJİ SANAYİ VE TİCARET ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Taşınabilir Güç İstasyonu",
+     "fonAktarim": "2023-05-04",
+     "yatirimci": 1924,
+     "sermaye": 5867512.0,
+     "dagitimOrani": 12.0,
+     "dagitimFiyati": 8.01,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "BYQEE": {
+   "kaynakId": 8,
+   "unvan": "BYQEE TEKNOLOJİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "A",
+    "B",
+    "D"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "BYQEE HER ŞEY YENİ BAŞLIYOR",
+     "fonAktarim": "2023-06-19",
+     "yatirimci": 1648,
+     "sermaye": 7370000.0,
+     "dagitimOrani": 27.4,
+     "dagitimFiyati": 7.63,
+     "gruplar": [
+      "A",
+      "D"
+     ]
+    },
+    {
+     "ad": "BYQEE",
+     "fonAktarim": "2022-01-14",
+     "yatirimci": 1066,
+     "sermaye": 1920000.0,
+     "dagitimOrani": 13.0,
+     "dagitimFiyati": 8.12,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "CLASS": {
+   "kaynakId": 15,
+   "unvan": "CLASSEST TEKNOLOJİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Classest",
+     "fonAktarim": "2021-12-01",
+     "yatirimci": 504,
+     "sermaye": 797767.0,
+     "dagitimOrani": 11.4,
+     "dagitimFiyati": 8.77,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "CLKSY": {
+   "kaynakId": 18,
+   "unvan": "CLİCKSY YAZILIM SANAYİ VE TİCARET ANONİM ŞİRKETİ",
+   "gruplar": [
+    "C"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Clicksy Fotoğraflarına Hayat Ver!",
+     "fonAktarim": "2022-12-02",
+     "yatirimci": 675,
+     "sermaye": 3111347.0,
+     "dagitimOrani": 7.9,
+     "dagitimFiyati": 12.43,
+     "gruplar": [
+      "C"
+     ]
+    }
+   ]
+  },
+  "CMPTV": {
+   "kaynakId": 75,
+   "unvan": "COMPACTİVE OYUN YAZILIM VE PAZARLAMA ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Compactive Game Studio",
+     "fonAktarim": "2023-05-30",
+     "yatirimci": 1355,
+     "sermaye": 4130000.0,
+     "dagitimOrani": 14.4,
+     "dagitimFiyati": 8.23,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "CNTRN": {
+   "kaynakId": 48,
+   "unvan": "CONTENTRAIN YAZILIM TEKNOLOJİLERİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Contentrain",
+     "fonAktarim": "2023-02-09",
+     "yatirimci": 2107,
+     "sermaye": 3600000.0,
+     "dagitimOrani": 12.0,
+     "dagitimFiyati": 8.33,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "CORPS": {
+   "kaynakId": 40,
+   "unvan": "CORPUS ENERJİ SOLAR ÜRETİM VE TİCARET ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Fotovoltaik Panel Üretimi",
+     "fonAktarim": "2023-10-12",
+     "yatirimci": 6286,
+     "sermaye": 60000000.0,
+     "dagitimOrani": 12.9,
+     "dagitimFiyati": 5.8,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "CPRNT": {
+   "kaynakId": 9,
+   "unvan": "CO PRİNT MÜHENDİSLİK MAKİNA YAZILIM SANAYİ VE TİCARET ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B",
+    "D"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "CO PRİNT TELAFİ YATIRIM TURU",
+     "fonAktarim": "2023-09-01",
+     "yatirimci": 500,
+     "sermaye": 21000000.0,
+     "dagitimOrani": 4.2,
+     "dagitimFiyati": 5.68
+    },
+    {
+     "ad": "CO PRİNT GLOBALDE BÜYÜYOR",
+     "fonAktarim": "2023-03-15",
+     "yatirimci": 2742,
+     "sermaye": 16000000.0,
+     "dagitimOrani": 13.2,
+     "dagitimFiyati": 5.68,
+     "gruplar": [
+      "D"
+     ]
+    },
+    {
+     "ad": "CO PRİNT 3D YAZICI TEKNOLOJİLERİ",
+     "fonAktarim": "2022-02-03",
+     "yatirimci": 1587,
+     "sermaye": 3000000.0,
+     "dagitimOrani": 12.0,
+     "dagitimFiyati": 8.33,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "CRNCA": {
+   "kaynakId": 65,
+   "unvan": "CRANIOCATCH BİLİŞİM TEKNOLOJİLERİ MEDİKAL DENTAL SANAYİ VE TİCARET ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "CranioCatch",
+     "fonAktarim": "2022-01-27",
+     "yatirimci": 1039,
+     "sermaye": 4122501.0,
+     "dagitimOrani": 10.9,
+     "dagitimFiyati": 10.42,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "CURVE": {
+   "kaynakId": 74,
+   "unvan": "CURVE ANİMASYON PRODÜKSİYON VE YAZILIM ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Curve Animation",
+     "fonAktarim": "2023-12-11",
+     "yatirimci": 1810,
+     "sermaye": 10500000.0,
+     "dagitimOrani": 14.4,
+     "dagitimFiyati": 8.1,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "DKSNA": {
+   "kaynakId": 89,
+   "unvan": "DOKSANALTI DİJİTAL YAYINCILIK ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Heypungi Dünyaya Açılıyor",
+     "fonAktarim": "2025-07-21",
+     "yatirimci": 570,
+     "sermaye": 6706708.0,
+     "dagitimOrani": 8.9,
+     "dagitimFiyati": 9.75
+    }
+   ]
+  },
+  "DLVRY": {
+   "kaynakId": 61,
+   "unvan": "DELIVERY ONE TEKNOLOJİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "C"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Akıllı Teslimat Ağı",
+     "fonAktarim": "2023-06-13",
+     "yatirimci": 2041,
+     "sermaye": 6050000.0,
+     "dagitimOrani": 10.1,
+     "dagitimFiyati": 11.81,
+     "gruplar": [
+      "C"
+     ]
+    }
+   ]
+  },
+  "EGRSM": {
+   "kaynakId": 43,
+   "unvan": "EGİRİŞİM MEDYA HİZMETLERİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "egirişim, Girişimcilik ve Teknoloji odaklı içerik platformudur",
+     "fonAktarim": "2022-04-14",
+     "yatirimci": 1247,
+     "sermaye": 2302500.0,
+     "dagitimOrani": 6.0,
+     "dagitimFiyati": 16.29,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "EHBAT": {
+   "kaynakId": 78,
+   "unvan": "EHBA TEKNOLOJİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B",
+    "D"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Eyes of Solar II",
+     "fonAktarim": "2024-04-01",
+     "yatirimci": 2199,
+     "sermaye": 11556844.0,
+     "dagitimOrani": 10.4,
+     "dagitimFiyati": 7.11,
+     "gruplar": [
+      "D"
+     ]
+    },
+    {
+     "ad": "Eyes of Solar",
+     "fonAktarim": "2023-05-03",
+     "yatirimci": 1981,
+     "sermaye": 11556844.0,
+     "dagitimOrani": 10.1,
+     "dagitimFiyati": 11.9,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "EPTSE": {
+   "kaynakId": 32,
+   "unvan": "EPTS ELEKTRONİK VE BİLİŞİM ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Giyilebilir Fitness Sensörü",
+     "fonAktarim": "2022-10-18",
+     "yatirimci": 1182,
+     "sermaye": 2535590.0,
+     "dagitimOrani": 11.7,
+     "dagitimFiyati": 7.79,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "ESBVR": {
+   "kaynakId": 63,
+   "unvan": "ESB OYUN HİZMETLERİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "PangeaVR",
+     "fonAktarim": "2023-11-13",
+     "yatirimci": 1953,
+     "sermaye": 4860000.0,
+     "dagitimOrani": 16.6,
+     "dagitimFiyati": 6.71,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "ESGEL": {
+   "kaynakId": 49,
+   "unvan": "ESG YAZILIM ELEKTRONİK ARGE HİZMETLERİ VE OTOMASYON SANAYİ TİCARET ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "esular",
+     "fonAktarim": "2023-04-25",
+     "yatirimci": 1655,
+     "sermaye": 4764810.0,
+     "dagitimOrani": 8.4,
+     "dagitimFiyati": 11.59,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "ESOKE": {
+   "kaynakId": 58,
+   "unvan": "ESOK ENERJİ VE TEKNOLOJİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Ionbee",
+     "fonAktarim": "2023-12-05",
+     "yatirimci": 3050,
+     "sermaye": 12500000.0,
+     "dagitimOrani": 10.6,
+     "dagitimFiyati": 10.67,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "ESUIS": {
+   "kaynakId": 71,
+   "unvan": "ESPOİR SUİSSE SAĞLIK ÜRÜNLERİ PAZARLAMA ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "D'Poir Beaute",
+     "fonAktarim": "2024-04-01",
+     "yatirimci": 1243,
+     "sermaye": 4118712.0,
+     "dagitimOrani": 25.9,
+     "dagitimFiyati": 4.72,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "EVBEE": {
+   "kaynakId": 2,
+   "unvan": "EVBEE ELEKTRİKLİ ARAÇ VE ŞARJ SİSTEMLERİ ENERJİ MÜHENDİSLİK ARGE SANAYİ TİCARET ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B",
+    "D"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "EVBEE FİLOSUNU KURUYORUZ",
+     "fonAktarim": "2023-11-20",
+     "yatirimci": 4396,
+     "sermaye": 39349995.0,
+     "dagitimOrani": 18.0,
+     "dagitimFiyati": 4.4,
+     "gruplar": [
+      "D"
+     ]
+    },
+    {
+     "ad": "EVBEE",
+     "fonAktarim": "2022-07-29",
+     "yatirimci": 2440,
+     "sermaye": 7900510.0,
+     "dagitimOrani": 16.6,
+     "dagitimFiyati": 6.91,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "FERNV": {
+   "kaynakId": 1,
+   "unvan": "NEGENTRA YAZILIM VE OYUN TEKNOLOJİLERİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "A",
+    "B",
+    "D"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "RUSHAWAY",
+     "fonAktarim": "2023-08-01",
+     "yatirimci": 2388,
+     "sermaye": 10820000.0,
+     "dagitimOrani": 21.0,
+     "dagitimFiyati": 8.86,
+     "gruplar": [
+      "D"
+     ]
+    },
+    {
+     "ad": "FERNVAILLE",
+     "fonAktarim": "2021-09-29",
+     "yatirimci": 544,
+     "sermaye": 516000.0,
+     "dagitimOrani": 8.4,
+     "dagitimFiyati": 11.9,
+     "gruplar": [
+      "A",
+      "B"
+     ]
+    }
+   ]
+  },
+  "GENOR": {
+   "kaynakId": 51,
+   "unvan": "GENORİDE ELEKTRİKLİ ARAÇLAR ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Genoride",
+     "fonAktarim": "2023-01-23",
+     "yatirimci": 2191,
+     "sermaye": 5579939.0,
+     "dagitimOrani": 11.8,
+     "dagitimFiyati": 10.42,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "GRFON": {
+   "kaynakId": 72,
+   "unvan": "GRİ FİNANSAL TEKNOLOJİLER ANONİM ŞİRKETİ",
+   "gruplar": [
+    "D"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Türkiye'nin Fon Pazarı - FoneriaApp",
+     "fonAktarim": "2024-04-08",
+     "yatirimci": 3813,
+     "sermaye": 28295632.0,
+     "dagitimOrani": 3.6,
+     "dagitimFiyati": 30.36,
+     "gruplar": [
+      "D"
+     ]
+    }
+   ]
+  },
+  "GURLR": {
+   "kaynakId": 77,
+   "unvan": "GÜRLER GLOBAL MAĞAZACILIK SANAYİ VE TİCARET ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Bebehum Köprü Yatırım Turunda",
+     "fonAktarim": "2025-01-21",
+     "yatirimci": 2303,
+     "sermaye": 65039873.0,
+     "dagitimOrani": 34.5,
+     "dagitimFiyati": 5.53
+    },
+    {
+     "ad": "Türkiye'nin Bebek Devam Sütü",
+     "fonAktarim": "2023-11-30",
+     "yatirimci": 3247,
+     "sermaye": 29039873.0,
+     "dagitimOrani": 12.9,
+     "dagitimFiyati": 8.1,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "HRGLE": {
+   "kaynakId": 87,
+   "unvan": "HERGELE TEKNOLOJİ ANONİM ŞİRKETİ ŞUBESİ",
+   "gruplar": [
+    "D"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Depolarda Mikromobilite",
+     "fonAktarim": "2025-04-17",
+     "yatirimci": 930,
+     "sermaye": 9559310.0,
+     "dagitimOrani": 5.1,
+     "dagitimFiyati": 21.78,
+     "gruplar": [
+      "D"
+     ]
+    }
+   ]
+  },
+  "IONTK": {
+   "kaynakId": 24,
+   "unvan": "ION TEKNOLOJİ SANAYİ VE TİCARET ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Taşınabilir Fitness Stüdyosu",
+     "fonAktarim": "2023-07-27",
+     "yatirimci": 851,
+     "sermaye": 3494111.0,
+     "dagitimOrani": 10.7,
+     "dagitimFiyati": 6.44,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "JETCO": {
+   "kaynakId": 30,
+   "unvan": "JETCONNECT PERAKENDE LOJİSTİK ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Jetconnect",
+     "fonAktarim": "2022-11-22",
+     "yatirimci": 945,
+     "sermaye": 2570512.0,
+     "dagitimOrani": 10.1,
+     "dagitimFiyati": 9.69,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "KABIP": {
+   "kaynakId": 66,
+   "unvan": "KABİ PARTNERS BİLİŞİM TEKNOLOJİLERİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "C"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "DüğünBuketi.com",
+     "fonAktarim": "2022-12-05",
+     "yatirimci": 734,
+     "sermaye": 8109768.0,
+     "dagitimOrani": 4.0,
+     "dagitimFiyati": 10.28,
+     "gruplar": [
+      "C"
+     ]
+    }
+   ]
+  },
+  "KRT3D": {
+   "kaynakId": 62,
+   "unvan": "KRATOS 3D TEKNOLOJİLERİ SANAYİ TİCARET ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Kratos",
+     "fonAktarim": "2023-02-10",
+     "yatirimci": 1329,
+     "sermaye": 2570000.0,
+     "dagitimOrani": 14.4,
+     "dagitimFiyati": 8.17,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "LIMBX": {
+   "kaynakId": 94,
+   "unvan": "LIMBIKBOX AI YAZILIM ANONİM ŞİRKETİ (FULLEGAL YAZILIM ANONİM ŞİRKETİ)",
+   "gruplar": [
+    "A",
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Türkiye nin Yapay Zeka Modelleri",
+     "fonAktarim": "2026-01-22",
+     "yatirimci": 316,
+     "sermaye": 1810000.0,
+     "dagitimOrani": 5.0,
+     "dagitimFiyati": 16.57
+    }
+   ]
+  },
+  "MEDIB": {
+   "kaynakId": 52,
+   "unvan": "MEDIBOOTH SAĞLIK YAZILIM VE TEKNOLOJİLERİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "MediboothVR",
+     "fonAktarim": "2022-01-31",
+     "yatirimci": 693,
+     "sermaye": 1210000.0,
+     "dagitimOrani": 9.4,
+     "dagitimFiyati": 10.39,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "MELOA": {
+   "kaynakId": 79,
+   "unvan": "MELOKNOWS BİLGİ TEKNOLOJİLERİ VE REKLAM HİZMETLERİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "C"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Melo App",
+     "fonAktarim": "2023-08-25",
+     "yatirimci": 927,
+     "sermaye": 6193890.0,
+     "dagitimOrani": 12.0,
+     "dagitimFiyati": 5.94,
+     "gruplar": [
+      "C"
+     ]
+    }
+   ]
+  },
+  "MIONT": {
+   "kaynakId": 86,
+   "unvan": "MİONTİ ENERJİ VE TEKNOLOJİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "GELECEĞİ ŞEKİLLENDİREN TEKNOLOJİ",
+     "fonAktarim": "2024-11-01",
+     "yatirimci": 1900,
+     "sermaye": 23850230.0,
+     "dagitimOrani": 10.6,
+     "dagitimFiyati": 8.79,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "MKTEK": {
+   "kaynakId": 6,
+   "unvan": "MAVİKANATLAR TEKNOLOJİ MÜHENDİSLİK VE YAZILIM ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "SEYİR DEFTERİ",
+     "fonAktarim": "2022-03-25",
+     "yatirimci": 1410,
+     "sermaye": 8880992.0,
+     "dagitimOrani": 20.4,
+     "dagitimFiyati": 5.56,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "MNYOL": {
+   "kaynakId": 39,
+   "unvan": "MİNİYOL BİLİŞİM ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Miniyol Mobility Super App",
+     "fonAktarim": "2022-12-30",
+     "yatirimci": 1998,
+     "sermaye": 15700000.0,
+     "dagitimOrani": 12.0,
+     "dagitimFiyati": 5.41,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "MSVRO": {
+   "kaynakId": 92,
+   "unvan": "MEKANDA REKLAM ORGANİZASYON TİCARET LİMİTED ŞİRKETİ",
+   "gruplar": [
+    "A",
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "MSV Deneyimin Akıllı Geleceği",
+     "fonAktarim": "2026-01-28",
+     "yatirimci": 258,
+     "sermaye": 8129928.0,
+     "dagitimOrani": 0.1,
+     "dagitimFiyati": 3.07
+    }
+   ]
+  },
+  "NEVAS": {
+   "kaynakId": 73,
+   "unvan": "NEV YAZILIM SANAYİ VE TİCARET ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Kanseri Veri Gücüyle Önle",
+     "fonAktarim": "2024-02-29",
+     "yatirimci": 2069,
+     "sermaye": 4850000.0,
+     "dagitimOrani": 13.2,
+     "dagitimFiyati": 7.5,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "NEXIT": {
+   "kaynakId": 59,
+   "unvan": "NOEXIT GAMES OYUN BİLİŞİM ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "No Exit Games",
+     "fonAktarim": "2023-08-17",
+     "yatirimci": 1894,
+     "sermaye": 7219008.0,
+     "dagitimOrani": 10.1,
+     "dagitimFiyati": 12.12,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "NGAYT": {
+   "kaynakId": 29,
+   "unvan": "NOGAYT ENDÜSTRİ KİMYA ARGE İÇ VE DIŞ TİCARET ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "SitrettMX",
+     "fonAktarim": "2022-10-17",
+     "yatirimci": 1565,
+     "sermaye": 13302503.0,
+     "dagitimOrani": 11.0,
+     "dagitimFiyati": 9.02,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "NTDRY": {
+   "kaynakId": 26,
+   "unvan": "KURU TAKSİ TEMİZLİK HİZMETLERİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Networkdry",
+     "fonAktarim": "2023-05-24",
+     "yatirimci": 2435,
+     "sermaye": 16624135.0,
+     "dagitimOrani": 6.5,
+     "dagitimFiyati": 14.04,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "NTRGA": {
+   "kaynakId": 81,
+   "unvan": "NATURİGA GIDA ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Naturiga - Plant Based Nutrition",
+     "fonAktarim": "2024-11-13",
+     "yatirimci": 1999,
+     "sermaye": 15067220.0,
+     "dagitimOrani": 23.7,
+     "dagitimFiyati": 9.65,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "OLEAG": {
+   "kaynakId": 85,
+   "unvan": "OLEAGO BİO DERİ VE SÜRDÜRÜLEBİLİRLİK ÜRÜNLERİ SANAYİ TİCARET ANONİM ŞİRKETİ",
+   "gruplar": [
+    "C"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Zeytin Atıklarından Bio Deri",
+     "fonAktarim": "2025-02-10",
+     "yatirimci": 1068,
+     "sermaye": 12248600.0,
+     "dagitimOrani": 4.8,
+     "dagitimFiyati": 27.21,
+     "gruplar": [
+      "C"
+     ]
+    }
+   ]
+  },
+  "ONIMA": {
+   "kaynakId": 76,
+   "unvan": "ONİMA BİYOTEKNOLOJİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Koyun Yününden Amino Asit Üretimi",
+     "fonAktarim": "2024-04-08",
+     "yatirimci": 2639,
+     "sermaye": 14079999.0,
+     "dagitimOrani": 10.8,
+     "dagitimFiyati": 8.59,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "ORTAK": {
+   "kaynakId": 53,
+   "unvan": "ORTAK ONLİNE ELEKTRONİK TİCARET ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Kiralamanın Pazaryerine Ortak Ol",
+     "fonAktarim": "2024-12-03",
+     "yatirimci": 1056,
+     "sermaye": 12290665.0,
+     "dagitimOrani": 26.1,
+     "dagitimFiyati": 10.22
+    },
+    {
+     "ad": "Kiralamanın Pazaryeri Ortak",
+     "fonAktarim": "2023-02-08",
+     "yatirimci": 1494,
+     "sermaye": 4730000.0,
+     "dagitimOrani": 17.3,
+     "dagitimFiyati": 6.87,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "PACHA": {
+   "kaynakId": 68,
+   "unvan": "PACHAMAMA GIDA TARIM TEKSTİL DANIŞMANLIK SANAYİ VE TİCARET ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B",
+    "D"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Rawsome II",
+     "fonAktarim": "2024-03-08",
+     "yatirimci": 1922,
+     "sermaye": 18201983.0,
+     "dagitimOrani": 6.0,
+     "dagitimFiyati": 8.7,
+     "gruplar": [
+      "D"
+     ]
+    },
+    {
+     "ad": "Rawsome",
+     "fonAktarim": "2022-12-02",
+     "yatirimci": 1121,
+     "sermaye": 8701983.0,
+     "dagitimOrani": 15.0,
+     "dagitimFiyati": 6.21,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "PCARD": {
+   "kaynakId": 22,
+   "unvan": "PACKARD KLİMA TEKNOLOJİLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "İklimlendirme Teknolojisi",
+     "fonAktarim": "2023-02-07",
+     "yatirimci": 1437,
+     "sermaye": 2470000.0,
+     "dagitimOrani": 14.4,
+     "dagitimFiyati": 6.07,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "PROMO": {
+   "kaynakId": 5,
+   "unvan": "PROMOSEED BİYOTEKNOLOJİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B",
+    "D"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "PROMOSEED ÜRETİMLE BÜYÜYOR",
+     "fonAktarim": "2022-11-09",
+     "yatirimci": 2227,
+     "sermaye": 7425000.0,
+     "dagitimOrani": 21.7,
+     "dagitimFiyati": 5.14,
+     "gruplar": [
+      "D"
+     ]
+    },
+    {
+     "ad": "AKILLI BAKTERİ TEKNOLOJİSİ",
+     "fonAktarim": "2021-08-02",
+     "yatirimci": 291,
+     "sermaye": 350000.0,
+     "dagitimOrani": 6.0,
+     "dagitimFiyati": 14.29,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "PSTDN": {
+   "kaynakId": 70,
+   "unvan": "PASTACIDAN GIDA SANAYİ VE TİCARET ANONİM ŞİRKETİ",
+   "gruplar": [
+    "D"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Pastacıdan",
+     "fonAktarim": "2022-02-10",
+     "yatirimci": 610,
+     "sermaye": 1060695.0,
+     "dagitimOrani": 11.9,
+     "dagitimFiyati": 8.33,
+     "gruplar": [
+      "D"
+     ]
+    }
+   ]
+  },
+  "PURES": {
+   "kaynakId": 19,
+   "unvan": "PURE SOLUTIONS TEKNOLOJİ VE GIDA ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "MilkApp",
+     "fonAktarim": "2023-04-05",
+     "yatirimci": 1187,
+     "sermaye": 1970000.0,
+     "dagitimOrani": 14.4,
+     "dagitimFiyati": 6.77,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "QCHRG": {
+   "kaynakId": 11,
+   "unvan": "META MOBİLİTE ENERJİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Q CHARGE",
+     "fonAktarim": "2023-06-12",
+     "yatirimci": 6100,
+     "sermaye": 1046887318.0,
+     "dagitimOrani": 8.2,
+     "dagitimFiyati": 10.55,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "RTNOW": {
+   "kaynakId": 23,
+   "unvan": "RETİNOW SAĞLIK TEKNOLOJİLERİ VE ARGE SANAYİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Retinow",
+     "fonAktarim": "2022-09-20",
+     "yatirimci": 1114,
+     "sermaye": 2166600.0,
+     "dagitimOrani": 12.0,
+     "dagitimFiyati": 6.18,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "SAFON": {
+   "kaynakId": 38,
+   "unvan": "SAFFON A TARIM ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Safran ve Ürünleri Üretimi",
+     "fonAktarim": "2023-06-03",
+     "yatirimci": 2111,
+     "sermaye": 15000000.0,
+     "dagitimOrani": 70.0,
+     "dagitimFiyati": 1.43,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "SCOLI": {
+   "kaynakId": 67,
+   "unvan": "SCOUTLİ TEKNOLOJİ VE YAZILIM ANONİM ŞİRKETİ",
+   "gruplar": [
+    "D"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Esporun Veri Noktası",
+     "fonAktarim": "2023-12-13",
+     "yatirimci": 1611,
+     "sermaye": 6992422.0,
+     "dagitimOrani": 16.8,
+     "dagitimFiyati": 4.09,
+     "gruplar": [
+      "D"
+     ]
+    }
+   ]
+  },
+  "SCOUT": {
+   "kaynakId": 42,
+   "unvan": "SCOUTİUM FUTBOL TEKNOLOJİLERİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "E"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Scoutium",
+     "fonAktarim": "2023-10-10",
+     "yatirimci": 1569,
+     "sermaye": 13413383.0,
+     "dagitimOrani": 10.7,
+     "dagitimFiyati": 8.94,
+     "gruplar": [
+      "E"
+     ]
+    }
+   ]
+  },
+  "SECUR": {
+   "kaynakId": 56,
+   "unvan": "SECURİFY BİLİŞİM TEKNOLOJİLERİ VE GÜVENLİĞİ EĞİTİM DANIŞMANLIK SANAYİ VE TİCARET ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "SecurifyID",
+     "fonAktarim": "2022-03-01",
+     "yatirimci": 1716,
+     "sermaye": 6260000.0,
+     "dagitimOrani": 15.6,
+     "dagitimFiyati": 11.08,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "SENSI": {
+   "kaynakId": 36,
+   "unvan": "SENSİBALL VR ARGE ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "SENSIBALL VR",
+     "fonAktarim": "2021-09-28",
+     "yatirimci": 384,
+     "sermaye": 970000.0,
+     "dagitimOrani": 9.6,
+     "dagitimFiyati": 10.31,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "SERAC": {
+   "kaynakId": 25,
+   "unvan": "SERACELL BİLİŞİM VE TARIM TEKNOLOJİLERİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Akıllı Sera Sistemi",
+     "fonAktarim": "2022-05-11",
+     "yatirimci": 1046,
+     "sermaye": 1550000.0,
+     "dagitimOrani": 8.0,
+     "dagitimFiyati": 12.09,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "SHIFT": {
+   "kaynakId": 14,
+   "unvan": "SHİFTPLANNER TEKNOLOJİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "C"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Shiftplanner",
+     "fonAktarim": "2022-06-23",
+     "yatirimci": 1024,
+     "sermaye": 2172000.0,
+     "dagitimOrani": 9.6,
+     "dagitimFiyati": 8.98,
+     "gruplar": [
+      "C"
+     ]
+    }
+   ]
+  },
+  "SHOPL": {
+   "kaynakId": 41,
+   "unvan": "SHOPALM ÖDEME ÇÖZÜMLERİ VE TEKNOLOJİLERİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Shopalm Ödeme Çözümleri ve Teknolojileri",
+     "fonAktarim": "2022-01-12",
+     "yatirimci": 799,
+     "sermaye": 1740000.0,
+     "dagitimOrani": 9.6,
+     "dagitimFiyati": 8.62,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "SHPVR": {
+   "kaynakId": 34,
+   "unvan": "SHOPİVERSE TEKNOLOJİ VE YAZILIM ANONİM ŞİRKETİ",
+   "gruplar": [
+    "C"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "ShopiVerse",
+     "fonAktarim": "2023-09-19",
+     "yatirimci": 2693,
+     "sermaye": 21800000.0,
+     "dagitimOrani": 5.0,
+     "dagitimFiyati": 18.34,
+     "gruplar": [
+      "C"
+     ]
+    }
+   ]
+  },
+  "SIZEM": {
+   "kaynakId": 44,
+   "unvan": "SİZEANDME YAZILIM ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B",
+    "D"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Size&Me II",
+     "fonAktarim": "2023-11-01",
+     "yatirimci": 1540,
+     "sermaye": 8388459.0,
+     "dagitimOrani": 7.5,
+     "dagitimFiyati": 8.86,
+     "gruplar": [
+      "D"
+     ]
+    },
+    {
+     "ad": "SizeandMe",
+     "fonAktarim": "2022-06-10",
+     "yatirimci": 1382,
+     "sermaye": 2830000.0,
+     "dagitimOrani": 6.0,
+     "dagitimFiyati": 15.19,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "SPECH": {
+   "kaynakId": 31,
+   "unvan": "SPECHTLAB YAZILIM İMALAT İTHALAT İHRACAT SANAYİ VE TİCARET ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "SpechtLab",
+     "fonAktarim": "2023-11-03",
+     "yatirimci": 2429,
+     "sermaye": 8400000.0,
+     "dagitimOrani": 9.6,
+     "dagitimFiyati": 9.67,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "SPRG1": {
+   "kaynakId": 3,
+   "unvan": "SPARGA1 TARIM ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "SPARGA 1",
+     "fonAktarim": "2022-12-15",
+     "yatirimci": 1868,
+     "sermaye": 20000000.0,
+     "dagitimOrani": 70.0,
+     "dagitimFiyati": 1.43,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "SPRG2": {
+   "kaynakId": 4,
+   "unvan": "SPARGA2 TARIM ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "SPARGA 2",
+     "fonAktarim": "2023-04-14",
+     "yatirimci": 3684,
+     "sermaye": 39000000.0,
+     "dagitimOrani": 70.0,
+     "dagitimFiyati": 1.43,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "STETO": {
+   "kaynakId": 47,
+   "unvan": "STETO SAĞLIK BİLİŞİM TURİZM SANAYİ VE TİCARET ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Steto",
+     "fonAktarim": "2022-07-04",
+     "yatirimci": 932,
+     "sermaye": 1503375.0,
+     "dagitimOrani": 11.2,
+     "dagitimFiyati": 8.65,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "SUITE": {
+   "kaynakId": 21,
+   "unvan": "TESTSUİTE BİLİŞİM VE DANIŞMANLIK ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Test Otomasyon Platformu",
+     "fonAktarim": "2022-04-29",
+     "yatirimci": 1314,
+     "sermaye": 2559279.0,
+     "dagitimOrani": 17.2,
+     "dagitimFiyati": 5.56,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "TCHNO": {
+   "kaynakId": 10,
+   "unvan": "TECHNOMEDİCARE MEDİKAL TİCARET ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Scoper Video Laringoskop",
+     "fonAktarim": "2022-08-02",
+     "yatirimci": 1320,
+     "sermaye": 4158800.0,
+     "dagitimOrani": 14.4,
+     "dagitimFiyati": 8.23,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "TETOG": {
+   "kaynakId": 93,
+   "unvan": "TETO GAMES BİLİŞİM ELEKTRONİK SPOR ANONİM ŞİRKETİ",
+   "gruplar": [
+    "A",
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "İnovatif Espor Turnuva Platformu",
+     "fonAktarim": "2026-01-22",
+     "yatirimci": 685,
+     "sermaye": 7330485.0,
+     "dagitimOrani": 2.5,
+     "dagitimFiyati": 31.65
+    }
+   ]
+  },
+  "THBIO": {
+   "kaynakId": 57,
+   "unvan": "TECH2BIOLOGY ENDÜSTRİYEL OTOMASYON TEKNOLOJİLERİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Tech2Bio",
+     "fonAktarim": "2023-02-02",
+     "yatirimci": 669,
+     "sermaye": 1020000.0,
+     "dagitimOrani": 14.4,
+     "dagitimFiyati": 8.33,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "TMZYL": {
+   "kaynakId": 27,
+   "unvan": "TEMİZLİKYOLDA İNTERNET HİZMETLERİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "C"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Saastech.Io",
+     "fonAktarim": "2023-12-22",
+     "yatirimci": 2394,
+     "sermaye": 14556157.0,
+     "dagitimOrani": 18.0,
+     "dagitimFiyati": 3.82,
+     "gruplar": [
+      "C"
+     ]
+    }
+   ]
+  },
+  "TREXO": {
+   "kaynakId": 84,
+   "unvan": "TREXO İNOVASYON ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "TREXO İNOVASYON",
+     "fonAktarim": "2024-12-16",
+     "yatirimci": 1724,
+     "sermaye": 12474626.0,
+     "dagitimOrani": 9.2,
+     "dagitimFiyati": 13.66,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "TRIBR": {
+   "kaynakId": 60,
+   "unvan": "TRİBER TEKNOLOJİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "C"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Triber Shop",
+     "fonAktarim": "2023-11-07",
+     "yatirimci": 1234,
+     "sermaye": 4192864.0,
+     "dagitimOrani": 15.6,
+     "dagitimFiyati": 6.68,
+     "gruplar": [
+      "C"
+     ]
+    }
+   ]
+  },
+  "TRIST": {
+   "kaynakId": 54,
+   "unvan": "TOURİST MOBİL YAZILIM ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Tourist",
+     "fonAktarim": "2022-09-06",
+     "yatirimci": 899,
+     "sermaye": 2023565.0,
+     "dagitimOrani": 15.8,
+     "dagitimFiyati": 7.32,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "TRIWI": {
+   "kaynakId": 55,
+   "unvan": "TRİWİ TEKNOLOJİ YAZILIM VE TİCARET ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Triwi",
+     "fonAktarim": "2022-11-07",
+     "yatirimci": 1092,
+     "sermaye": 2607226.0,
+     "dagitimOrani": 17.8,
+     "dagitimFiyati": 8.94,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "TUNGA": {
+   "kaynakId": 45,
+   "unvan": "TUNGASOFT YAZILIM EĞİTİM VE DANIŞMANLIK ANONİM ŞİRKETİ",
+   "gruplar": [
+    "A",
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Bilge Tunga",
+     "fonAktarim": "2021-11-10",
+     "yatirimci": 256,
+     "sermaye": 380000.0,
+     "dagitimOrani": 5.0,
+     "dagitimFiyati": 14.74,
+     "gruplar": [
+      "A",
+      "B"
+     ]
+    }
+   ]
+  },
+  "TYORE": {
+   "kaynakId": 12,
+   "unvan": "YÖRESİ ELEKTRONİK TİCARET PERAKENDE GIDA LOJİSTİK ANONİM ŞİRKETİ",
+   "gruplar": [
+    "C"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Üreticiden Yöresel Lezzetler",
+     "fonAktarim": "2022-06-09",
+     "yatirimci": 793,
+     "sermaye": 1459600.0,
+     "dagitimOrani": 7.2,
+     "dagitimFiyati": 12.94,
+     "gruplar": [
+      "C"
+     ]
+    }
+   ]
+  },
+  "UNIQ2": {
+   "kaynakId": 82,
+   "unvan": "PROTEİN STÜDYO GIDA SANAYİ VE TİCARET ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Sektörün Öncüsü Uniq2go",
+     "fonAktarim": "2024-06-07",
+     "yatirimci": 1515,
+     "sermaye": 11604141.0,
+     "dagitimOrani": 7.2,
+     "dagitimFiyati": 14.36,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "VNDAP": {
+   "kaynakId": 90,
+   "unvan": "VENDAPP BİLİŞİM VE TEKNOLOJİ ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "OTOMATLARDA YENİ NESİL ÖDEME",
+     "fonAktarim": "2025-10-07",
+     "yatirimci": 556,
+     "sermaye": 4145000.0,
+     "dagitimOrani": 3.8,
+     "dagitimFiyati": 24.12
+    }
+   ]
+  },
+  "YPSFT": {
+   "kaynakId": 37,
+   "unvan": "YAPISOFT YAZILIM ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Yapısoft",
+     "fonAktarim": "2022-06-28",
+     "yatirimci": 799,
+     "sermaye": 1920000.0,
+     "dagitimOrani": 17.3,
+     "dagitimFiyati": 6.94,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "ZTECH": {
+   "kaynakId": 28,
+   "unvan": "ZENOTECH YAZILIM VE EĞİTİM TEKNOLOJİLERİ TİCARET ANONİM ŞİRKETİ",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": "Saksı Kampüs",
+     "fonAktarim": "2022-08-29",
+     "yatirimci": 666,
+     "sermaye": 10000000.0,
+     "dagitimOrani": 13.3,
+     "dagitimFiyati": 7.27,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  }
+ }
+}

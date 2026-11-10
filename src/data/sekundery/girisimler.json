@@ -1,0 +1,992 @@
+{
+ "ACTVB-B": {
+  "kod": "ACTVB",
+  "grup": "B",
+  "baslangic": "2023-05-24",
+  "dagitim": 6.17,
+  "itoEnf": 19.01,
+  "ad": "Prolicell Hücre Fabrikası",
+  "fonAktarim": "2023-08-10",
+  "kampanya": "Prolicell Hücre Fabrikası"
+ },
+ "AHEAR-A": {
+  "kod": "AHEAR",
+  "grup": "A",
+  "baslangic": "2021-08-16",
+  "dagitim": 6.55,
+  "itoEnf": 56.82,
+  "ad": null,
+  "fonAktarim": "2021-11-26",
+  "kampanya": "Otonom Odyometre"
+ },
+ "AHEAR-B": {
+  "kod": "AHEAR",
+  "grup": "B",
+  "baslangic": "2021-08-16",
+  "dagitim": 6.55,
+  "itoEnf": 56.82,
+  "ad": null,
+  "fonAktarim": "2021-11-26",
+  "kampanya": "Otonom Odyometre"
+ },
+ "ALPGN-B": {
+  "kod": "ALPGN",
+  "grup": "B",
+  "baslangic": "2021-10-18",
+  "dagitim": 16.25,
+  "itoEnf": 133.51,
+  "ad": "Robotik Kodlama Seti",
+  "fonAktarim": "2021-12-15",
+  "kampanya": "ALPGEN Robotics"
+ },
+ "ANCYR-B": {
+  "kod": "ANCYR",
+  "grup": "B",
+  "baslangic": "2025-06-13",
+  "dagitim": 9.15,
+  "itoEnf": 10.46,
+  "ad": "KurOba Oghuz",
+  "fonAktarim": "2025-06-13",
+  "kampanya": "KurOba Oghuz"
+ },
+ "ARKER-B": {
+  "kod": "ARKER",
+  "grup": "B",
+  "baslangic": "2021-11-08",
+  "dagitim": 9.2,
+  "itoEnf": 72.18,
+  "ad": null,
+  "fonAktarim": "2021-12-23",
+  "kampanya": "Kültürel Mirası Keşfet"
+ },
+ "ARKER-D": {
+  "kod": "ARKER",
+  "grup": "D",
+  "baslangic": "2022-08-08",
+  "dagitim": 10.98,
+  "itoEnf": 47.65,
+  "ad": null,
+  "fonAktarim": "2022-12-09",
+  "kampanya": "Arkerobox Globalleşiyor"
+ },
+ "ATECH-B": {
+  "kod": "ATECH",
+  "grup": "B",
+  "baslangic": "2021-12-20",
+  "dagitim": 6.67,
+  "itoEnf": 47.73,
+  "ad": "Savity Safe with Virtuality",
+  "fonAktarim": "2022-01-24",
+  "kampanya": "Savity Safe with Virtuality"
+ },
+ "ATRMC-B": {
+  "kod": "ATRMC",
+  "grup": "B",
+  "baslangic": "2024-06-04",
+  "dagitim": 7.11,
+  "itoEnf": 11.62,
+  "ad": "Endüstriyel Sanayide kullanılan sac işleme makinalarının, yerli ve milli imkanlarla imalatını hedefleyen bir üretim girişimidir.",
+  "fonAktarim": "2024-10-24",
+  "kampanya": "ATRONMAC"
+ },
+ "AUTHT-B": {
+  "kod": "AUTHT",
+  "grup": "B",
+  "baslangic": "2021-08-26",
+  "dagitim": 16.66,
+  "itoEnf": 144.52,
+  "ad": "Yeni Nesil Kimlik Doğrulama",
+  "fonAktarim": "2021-11-24",
+  "kampanya": "AuthTake"
+ },
+ "BIGET-B": {
+  "kod": "BIGET",
+  "grup": "B",
+  "baslangic": "2024-01-09",
+  "dagitim": 9.41,
+  "itoEnf": 18.7,
+  "ad": "Plantero",
+  "fonAktarim": "2024-03-29",
+  "kampanya": "Plantero"
+ },
+ "BLCLL-B": {
+  "kod": "BLCLL",
+  "grup": "B",
+  "baslangic": "2023-06-19",
+  "dagitim": 7.91,
+  "itoEnf": 23.55,
+  "ad": "Yapay Doku Teknolojileri",
+  "fonAktarim": "2023-08-22",
+  "kampanya": "Yapay Doku Teknolojileri"
+ },
+ "BSCHL-B": {
+  "kod": "BSCHL",
+  "grup": "B",
+  "baslangic": "2022-06-13",
+  "dagitim": 10.0,
+  "itoEnf": 46.21,
+  "ad": "Bilişime İlk Adım",
+  "fonAktarim": "2022-10-03",
+  "kampanya": "Bilişim School"
+ },
+ "BTRYN-B": {
+  "kod": "BTRYN",
+  "grup": "B",
+  "baslangic": "2023-03-13",
+  "dagitim": 8.01,
+  "itoEnf": 26.23,
+  "ad": null,
+  "fonAktarim": "2023-05-04",
+  "kampanya": "Taşınabilir Güç İstasyonu"
+ },
+ "BYQEE-A": {
+  "kod": "BYQEE",
+  "grup": "A",
+  "baslangic": "2023-04-03",
+  "dagitim": 7.63,
+  "itoEnf": 23.89,
+  "ad": null,
+  "fonAktarim": "2023-06-19",
+  "kampanya": "BYQEE HER ŞEY YENİ BAŞLIYOR"
+ },
+ "BYQEE-B": {
+  "kod": "BYQEE",
+  "grup": "B",
+  "baslangic": "2021-12-06",
+  "dagitim": 8.12,
+  "itoEnf": 58.1,
+  "ad": null,
+  "fonAktarim": "2022-01-14",
+  "kampanya": "BYQEE"
+ },
+ "BYQEE-D": {
+  "kod": "BYQEE",
+  "grup": "D",
+  "baslangic": "2023-04-03",
+  "dagitim": 7.63,
+  "itoEnf": 23.89,
+  "ad": null,
+  "fonAktarim": "2023-06-19",
+  "kampanya": "BYQEE HER ŞEY YENİ BAŞLIYOR"
+ },
+ "CLASS-B": {
+  "kod": "CLASS",
+  "grup": "B",
+  "baslangic": "2021-09-01",
+  "dagitim": 8.77,
+  "itoEnf": 74.42,
+  "ad": "Eğitime Dijital Bakış",
+  "fonAktarim": "2021-12-01",
+  "kampanya": "Classest"
+ },
+ "CLKSY-C": {
+  "kod": "CLKSY",
+  "grup": "C",
+  "baslangic": "2022-08-29",
+  "dagitim": 12.43,
+  "itoEnf": 53.94,
+  "ad": null,
+  "fonAktarim": "2022-12-02",
+  "kampanya": "Clicksy Fotoğraflarına Hayat Ver!"
+ },
+ "CMPTV-B": {
+  "kod": "CMPTV",
+  "grup": "B",
+  "baslangic": "2023-04-10",
+  "dagitim": 8.23,
+  "itoEnf": 25.77,
+  "ad": "Compactive Game Studio",
+  "fonAktarim": "2023-05-30",
+  "kampanya": "Compactive Game Studio"
+ },
+ "CNTRN-B": {
+  "kod": "CNTRN",
+  "grup": "B",
+  "baslangic": "2022-12-05",
+  "dagitim": 8.33,
+  "itoEnf": 30.89,
+  "ad": null,
+  "fonAktarim": "2023-02-09",
+  "kampanya": "Contentrain"
+ },
+ "CORPS-B": {
+  "kod": "CORPS",
+  "grup": "B",
+  "baslangic": "2023-09-05",
+  "dagitim": 5.8,
+  "itoEnf": 13.7,
+  "ad": null,
+  "fonAktarim": "2023-10-12",
+  "kampanya": "Fotovoltaik Panel Üretimi"
+ },
+ "CPRNT-B": {
+  "kod": "CPRNT",
+  "grup": "B",
+  "baslangic": "2021-12-27",
+  "dagitim": 8.33,
+  "itoEnf": 59.61,
+  "ad": null,
+  "fonAktarim": "2022-02-03",
+  "kampanya": "CO PRİNT 3D YAZICI TEKNOLOJİLERİ"
+ },
+ "CPRNT-D": {
+  "kod": "CPRNT",
+  "grup": "D",
+  "baslangic": "2023-01-02",
+  "dagitim": 5.68,
+  "itoEnf": 19.88,
+  "ad": null,
+  "fonAktarim": "2023-03-15",
+  "kampanya": "CO PRİNT GLOBALDE BÜYÜYOR"
+ },
+ "CRNCA-B": {
+  "kod": "CRNCA",
+  "grup": "B",
+  "baslangic": "2021-12-13",
+  "dagitim": 10.42,
+  "itoEnf": 74.56,
+  "ad": null,
+  "fonAktarim": "2022-01-27",
+  "kampanya": "CranioCatch"
+ },
+ "CURVE-B": {
+  "kod": "CURVE",
+  "grup": "B",
+  "baslangic": "2023-10-04",
+  "dagitim": 8.1,
+  "itoEnf": 18.45,
+  "ad": null,
+  "fonAktarim": "2023-12-11",
+  "kampanya": "Curve Animation"
+ },
+ "DLVRY-C": {
+  "kod": "DLVRY",
+  "grup": "C",
+  "baslangic": "2023-04-17",
+  "dagitim": 11.81,
+  "itoEnf": 36.98,
+  "ad": "Akıllı Teslimat Ağı",
+  "fonAktarim": "2023-06-13",
+  "kampanya": "Akıllı Teslimat Ağı"
+ },
+ "EGRSM-B": {
+  "kod": "EGRSM",
+  "grup": "B",
+  "baslangic": "2022-03-07",
+  "dagitim": 16.29,
+  "itoEnf": 92.29,
+  "ad": null,
+  "fonAktarim": "2022-04-14",
+  "kampanya": "egirişim, Girişimcilik ve Teknoloji odaklı içerik platformudur"
+ },
+ "EHBAT-B": {
+  "kod": "EHBAT",
+  "grup": "B",
+  "baslangic": "2023-03-28",
+  "dagitim": 11.9,
+  "itoEnf": 38.97,
+  "ad": null,
+  "fonAktarim": "2023-05-03",
+  "kampanya": "Eyes of Solar"
+ },
+ "EHBAT-D": {
+  "kod": "EHBAT",
+  "grup": "D",
+  "baslangic": "2023-11-23",
+  "dagitim": 7.11,
+  "itoEnf": 15.61,
+  "ad": null,
+  "fonAktarim": "2024-04-01",
+  "kampanya": "Eyes of Solar II"
+ },
+ "EPTSE-B": {
+  "kod": "EPTSE",
+  "grup": "B",
+  "baslangic": "2022-08-01",
+  "dagitim": 7.79,
+  "itoEnf": 33.8,
+  "ad": null,
+  "fonAktarim": "2022-10-18",
+  "kampanya": "Giyilebilir Fitness Sensörü"
+ },
+ "ESBVR-B": {
+  "kod": "ESBVR",
+  "grup": "B",
+  "baslangic": "2023-08-15",
+  "dagitim": 6.71,
+  "itoEnf": 16.72,
+  "ad": null,
+  "fonAktarim": "2023-11-13",
+  "kampanya": "PangeaVR"
+ },
+ "ESGEL-B": {
+  "kod": "ESGEL",
+  "grup": "B",
+  "baslangic": "2023-03-20",
+  "dagitim": 11.59,
+  "itoEnf": 37.95,
+  "ad": "esular olarak akıllı sulama ve su yönetim alt yapımız ile çiftçiler, üreticiler ve uygulayıcıları bir araya getiriyor, etkin altyapı çözümleri sunarak tarımı dijitalleştiriyor ve etkin bir platform sunuyoruz.",
+  "fonAktarim": "2023-04-25",
+  "kampanya": "esular"
+ },
+ "ESOKE-B": {
+  "kod": "ESOKE",
+  "grup": "B",
+  "baslangic": "2023-10-31",
+  "dagitim": 10.67,
+  "itoEnf": 24.31,
+  "ad": "Teknoloji ve çevre tutkusunu kazanca dönüştürmenin yolu: IONBEE!",
+  "fonAktarim": "2023-12-05",
+  "kampanya": "Ionbee"
+ },
+ "ESUIS-B": {
+  "kod": "ESUIS",
+  "grup": "B",
+  "baslangic": "2023-12-05",
+  "dagitim": 4.72,
+  "itoEnf": 10.01,
+  "ad": null,
+  "fonAktarim": "2024-04-01",
+  "kampanya": "D'Poir Beaute"
+ },
+ "EVBEE-B": {
+  "kod": "EVBEE",
+  "grup": "B",
+  "baslangic": "2022-05-16",
+  "dagitim": 6.91,
+  "itoEnf": 33.21,
+  "ad": "EVbee, elektrikli araçların şarj edilmesi ile ilgili yenilikçi ve çözüm üreten bir mobil ve hızlı şarj hizmetidir.",
+  "fonAktarim": "2022-07-29",
+  "kampanya": "EVBEE"
+ },
+ "EVBEE-D": {
+  "kod": "EVBEE",
+  "grup": "D",
+  "baslangic": "2023-08-23",
+  "dagitim": 4.4,
+  "itoEnf": 10.96,
+  "ad": "EVbee, elektrikli araçların şarj edilmesi ile ilgili yenilikçi ve çözüm üreten bir mobil ve hızlı şarj hizmetidir.",
+  "fonAktarim": "2023-11-20",
+  "kampanya": "EVBEE FİLOSUNU KURUYORUZ"
+ },
+ "FERNV-A": {
+  "kod": "FERNV",
+  "grup": "A",
+  "baslangic": "2021-06-02",
+  "dagitim": 11.9,
+  "itoEnf": 106.78,
+  "ad": "Yeni oyun tutkusunun bir parçası olun",
+  "fonAktarim": "2021-09-29",
+  "kampanya": "FERNVAILLE"
+ },
+ "FERNV-B": {
+  "kod": "FERNV",
+  "grup": "B",
+  "baslangic": "2021-06-02",
+  "dagitim": 11.9,
+  "itoEnf": 106.78,
+  "ad": "Yeni oyun tutkusunun bir parçası olun",
+  "fonAktarim": "2021-09-29",
+  "kampanya": "FERNVAILLE"
+ },
+ "FERNV-D": {
+  "kod": "FERNV",
+  "grup": "D",
+  "baslangic": "2023-04-17",
+  "dagitim": 8.86,
+  "itoEnf": 27.74,
+  "ad": "Yeni oyun tutkusunun bir parçası olun",
+  "fonAktarim": "2023-08-01",
+  "kampanya": "RUSHAWAY"
+ },
+ "GENOR-B": {
+  "kod": "GENOR",
+  "grup": "B",
+  "baslangic": "2022-11-21",
+  "dagitim": 10.42,
+  "itoEnf": 39.77,
+  "ad": null,
+  "fonAktarim": "2023-01-23",
+  "kampanya": "Genoride"
+ },
+ "GRFON-D": {
+  "kod": "GRFON",
+  "grup": "D",
+  "baslangic": "2024-01-31",
+  "dagitim": 30.36,
+  "itoEnf": 60.32,
+  "ad": null,
+  "fonAktarim": "2024-04-08",
+  "kampanya": "Türkiye'nin Fon Pazarı - FoneriaApp"
+ },
+ "GURLR-B": {
+  "kod": "GURLR",
+  "grup": "B",
+  "baslangic": "2023-10-19",
+  "dagitim": 8.1,
+  "itoEnf": 18.45,
+  "ad": "Bebehum",
+  "fonAktarim": "2023-11-30",
+  "kampanya": "Türkiye'nin Bebek Devam Sütü"
+ },
+ "HRGLE-D": {
+  "kod": "HRGLE",
+  "grup": "D",
+  "baslangic": "2024-12-24",
+  "dagitim": 21.78,
+  "itoEnf": 29.74,
+  "ad": null,
+  "fonAktarim": "2025-04-17",
+  "kampanya": "Depolarda Mikromobilite"
+ },
+ "IONTK-B": {
+  "kod": "IONTK",
+  "grup": "B",
+  "baslangic": "2023-03-27",
+  "dagitim": 6.44,
+  "itoEnf": 21.09,
+  "ad": "Taşınabilir Fitness Stüdyosu",
+  "fonAktarim": "2023-07-27",
+  "kampanya": "Taşınabilir Fitness Stüdyosu"
+ },
+ "JETCO-B": {
+  "kod": "JETCO",
+  "grup": "B",
+  "baslangic": "2022-08-22",
+  "dagitim": 9.69,
+  "itoEnf": 42.05,
+  "ad": "Jetconnect",
+  "fonAktarim": "2022-11-22",
+  "kampanya": "Jetconnect"
+ },
+ "KABIP-C": {
+  "kod": "KABIP",
+  "grup": "C",
+  "baslangic": "2022-06-20",
+  "dagitim": 10.28,
+  "itoEnf": 47.5,
+  "ad": "Düğün Planlama Dijitalde",
+  "fonAktarim": "2022-12-05",
+  "kampanya": "DüğünBuketi.com"
+ },
+ "KRT3D-B": {
+  "kod": "KRT3D",
+  "grup": "B",
+  "baslangic": "2022-12-27",
+  "dagitim": 8.17,
+  "itoEnf": 30.3,
+  "ad": "Kratos3D Kafa Tarama Sistemi",
+  "fonAktarim": "2023-02-10",
+  "kampanya": "Kratos"
+ },
+ "MEDIB-B": {
+  "kod": "MEDIB",
+  "grup": "B",
+  "baslangic": "2021-11-15",
+  "dagitim": 10.39,
+  "itoEnf": 81.52,
+  "ad": "MediboothVR",
+  "fonAktarim": "2022-01-31",
+  "kampanya": "MediboothVR"
+ },
+ "MELOA-C": {
+  "kod": "MELOA",
+  "grup": "C",
+  "baslangic": "2023-07-11",
+  "dagitim": 5.94,
+  "itoEnf": 16.1,
+  "ad": "Melo App",
+  "fonAktarim": "2023-08-25",
+  "kampanya": "Melo App"
+ },
+ "MIONT-B": {
+  "kod": "MIONT",
+  "grup": "B",
+  "baslangic": "2024-07-17",
+  "dagitim": 8.79,
+  "itoEnf": 13.79,
+  "ad": null,
+  "fonAktarim": "2024-11-01",
+  "kampanya": "GELECEĞİ ŞEKİLLENDİREN TEKNOLOJİ"
+ },
+ "MKTEK-B": {
+  "kod": "MKTEK",
+  "grup": "B",
+  "baslangic": "2022-02-07",
+  "dagitim": 5.56,
+  "itoEnf": 33.48,
+  "ad": "Emniyetli, Yasal, Etkin İnsansız Hava Aracı Operasyonları İçin Bilgi ve Teknoloji Çözümleri",
+  "fonAktarim": "2022-03-25",
+  "kampanya": "SEYİR DEFTERİ"
+ },
+ "MNYOL-B": {
+  "kod": "MNYOL",
+  "grup": "B",
+  "baslangic": "2022-12-12",
+  "dagitim": 5.41,
+  "itoEnf": 20.06,
+  "ad": "Miniyol Mobility Super App",
+  "fonAktarim": "2022-12-30",
+  "kampanya": "Miniyol Mobility Super App"
+ },
+ "NEVAS-B": {
+  "kod": "NEVAS",
+  "grup": "B",
+  "baslangic": "2023-10-12",
+  "dagitim": 7.5,
+  "itoEnf": 17.09,
+  "ad": "Kan Analiz Yazılımı",
+  "fonAktarim": "2024-02-29",
+  "kampanya": "Kanseri Veri Gücüyle Önle"
+ },
+ "NEXIT-B": {
+  "kod": "NEXIT",
+  "grup": "B",
+  "baslangic": "2023-05-16",
+  "dagitim": 12.12,
+  "itoEnf": 37.33,
+  "ad": null,
+  "fonAktarim": "2023-08-17",
+  "kampanya": "No Exit Games"
+ },
+ "NGAYT-B": {
+  "kod": "NGAYT",
+  "grup": "B",
+  "baslangic": "2022-07-25",
+  "dagitim": 9.02,
+  "itoEnf": 40.04,
+  "ad": "SitrettMX",
+  "fonAktarim": "2022-10-17",
+  "kampanya": "SitrettMX"
+ },
+ "NTDRY-B": {
+  "kod": "NTDRY",
+  "grup": "B",
+  "baslangic": "2023-01-23",
+  "dagitim": 14.04,
+  "itoEnf": 49.14,
+  "ad": "Online Kuru Temizleme Ağı",
+  "fonAktarim": "2023-05-24",
+  "kampanya": "Networkdry"
+ },
+ "NTRGA-B": {
+  "kod": "NTRGA",
+  "grup": "B",
+  "baslangic": "2024-05-08",
+  "dagitim": 9.65,
+  "itoEnf": 16.31,
+  "ad": "Naturiga - Plant Based Nutrition",
+  "fonAktarim": "2024-11-13",
+  "kampanya": "Naturiga - Plant Based Nutrition"
+ },
+ "OLEAG-C": {
+  "kod": "OLEAG",
+  "grup": "C",
+  "ad": null,
+  "baslangic": "2024-10-03",
+  "dagitim": 27.21,
+  "itoEnf": 38.96,
+  "fonAktarim": "2025-02-10",
+  "kampanya": "Zeytin Atıklarından Bio Deri"
+ },
+ "ONIMA-B": {
+  "kod": "ONIMA",
+  "grup": "B",
+  "baslangic": "2024-01-16",
+  "dagitim": 8.59,
+  "itoEnf": 17.07,
+  "ad": "Koyun Yününden Amino Asit Üretimi",
+  "fonAktarim": "2024-04-08",
+  "kampanya": "Koyun Yününden Amino Asit Üretimi"
+ },
+ "ORTAK-B": {
+  "kod": "ORTAK",
+  "grup": "B",
+  "baslangic": "2022-12-29",
+  "dagitim": 6.87,
+  "itoEnf": 25.47,
+  "ad": "Kiralamanın Pazaryeri Ortak",
+  "fonAktarim": "2023-02-08",
+  "kampanya": "Kiralamanın Pazaryeri Ortak"
+ },
+ "PACHA-B": {
+  "kod": "PACHA",
+  "grup": "B",
+  "baslangic": "2022-10-03",
+  "dagitim": 6.21,
+  "itoEnf": 24.44,
+  "ad": "Sağlıklı Büyüyoruz",
+  "fonAktarim": "2022-12-02",
+  "kampanya": "Rawsome"
+ },
+ "PACHA-D": {
+  "kod": "PACHA",
+  "grup": "D",
+  "baslangic": "2023-10-31",
+  "dagitim": 8.7,
+  "itoEnf": 19.82,
+  "ad": "Sağlıklı Büyüyoruz",
+  "fonAktarim": "2024-03-08",
+  "kampanya": "Rawsome II"
+ },
+ "PCARD-B": {
+  "kod": "PCARD",
+  "grup": "B",
+  "baslangic": "2022-12-23",
+  "dagitim": 6.07,
+  "itoEnf": 22.51,
+  "ad": "İklimlendirme Teknolojisi",
+  "fonAktarim": "2023-02-07",
+  "kampanya": "İklimlendirme Teknolojisi"
+ },
+ "PROMO-B": {
+  "kod": "PROMO",
+  "grup": "B",
+  "baslangic": "2021-05-11",
+  "dagitim": 14.28,
+  "itoEnf": 128.6,
+  "ad": "AKILLI BAKTERİ TEKNOLOJİSİ",
+  "fonAktarim": "2021-08-02",
+  "kampanya": "AKILLI BAKTERİ TEKNOLOJİSİ"
+ },
+ "PROMO-D": {
+  "kod": "PROMO",
+  "grup": "D",
+  "baslangic": "2022-05-11",
+  "dagitim": 5.14,
+  "itoEnf": 24.71,
+  "ad": "AKILLI BAKTERİ TEKNOLOJİSİ",
+  "fonAktarim": "2022-11-09",
+  "kampanya": "PROMOSEED ÜRETİMLE BÜYÜYOR"
+ },
+ "PSTDN-D": {
+  "kod": "PSTDN",
+  "grup": "D",
+  "baslangic": "2021-11-29",
+  "dagitim": 8.33,
+  "itoEnf": 65.36,
+  "ad": null,
+  "fonAktarim": "2022-02-10",
+  "kampanya": "Pastacıdan"
+ },
+ "PURES-B": {
+  "kod": "PURES",
+  "grup": "B",
+  "baslangic": "2023-03-06",
+  "dagitim": 6.77,
+  "itoEnf": 22.17,
+  "ad": null,
+  "fonAktarim": "2023-04-05",
+  "kampanya": "MilkApp"
+ },
+ "QCHRG-B": {
+  "kod": "QCHRG",
+  "grup": "B",
+  "baslangic": "2023-02-27",
+  "dagitim": 10.55,
+  "itoEnf": 35.57,
+  "ad": "Kusursuz Enerji",
+  "fonAktarim": "2023-06-12",
+  "kampanya": "Q CHARGE"
+ },
+ "RTNOW-B": {
+  "kod": "RTNOW",
+  "grup": "B",
+  "baslangic": "2022-06-06",
+  "dagitim": 6.18,
+  "itoEnf": 28.56,
+  "ad": "Görme Kaybında Erken Tanı",
+  "fonAktarim": "2022-09-20",
+  "kampanya": "Retinow"
+ },
+ "SAFON-B": {
+  "kod": "SAFON",
+  "grup": "B",
+  "baslangic": "2023-05-02",
+  "dagitim": 1.43,
+  "itoEnf": 4.4,
+  "ad": "Safran ve Ürünleri Üretimi",
+  "fonAktarim": "2023-06-03",
+  "kampanya": "Safran ve Ürünleri Üretimi"
+ },
+ "SCOLI-D": {
+  "kod": "SCOLI",
+  "grup": "D",
+  "baslangic": "2023-09-26",
+  "dagitim": 4.09,
+  "itoEnf": 9.66,
+  "ad": "Esporun Veri Noktası",
+  "fonAktarim": "2023-12-13",
+  "kampanya": "Esporun Veri Noktası"
+ },
+ "SCOUT-E": {
+  "kod": "SCOUT",
+  "grup": "E",
+  "baslangic": "2023-06-05",
+  "dagitim": 8.94,
+  "itoEnf": 26.62,
+  "ad": null,
+  "fonAktarim": "2023-10-10",
+  "kampanya": "Scoutium"
+ },
+ "SECUR-B": {
+  "kod": "SECUR",
+  "grup": "B",
+  "baslangic": "2022-01-17",
+  "dagitim": 11.08,
+  "itoEnf": 69.68,
+  "ad": "SecurifyID",
+  "fonAktarim": "2022-03-01",
+  "kampanya": "SecurifyID"
+ },
+ "SENSI-B": {
+  "kod": "SENSI",
+  "grup": "B",
+  "baslangic": "2021-05-20",
+  "dagitim": 10.31,
+  "itoEnf": 92.84,
+  "ad": null,
+  "fonAktarim": "2021-09-28",
+  "kampanya": "SENSIBALL VR"
+ },
+ "SERAC-B": {
+  "kod": "SERAC",
+  "grup": "B",
+  "baslangic": "2022-03-28",
+  "dagitim": 12.09,
+  "itoEnf": 68.49,
+  "ad": null,
+  "fonAktarim": "2022-05-11",
+  "kampanya": "Akıllı Sera Sistemi"
+ },
+ "SHIFT-C": {
+  "kod": "SHIFT",
+  "grup": "C",
+  "baslangic": "2022-04-25",
+  "dagitim": 8.98,
+  "itoEnf": 45.69,
+  "ad": "Vardiya Yönetim Yazılımı",
+  "fonAktarim": "2022-06-23",
+  "kampanya": "Shiftplanner"
+ },
+ "SHOPL-B": {
+  "kod": "SHOPL",
+  "grup": "B",
+  "baslangic": "2021-11-22",
+  "dagitim": 8.62,
+  "itoEnf": 67.63,
+  "ad": "Avuç İçindeki Alışveriş",
+  "fonAktarim": "2022-01-12",
+  "kampanya": "Shopalm Ödeme Çözümleri ve Teknolojileri"
+ },
+ "SHPVR-C": {
+  "kod": "SHPVR",
+  "grup": "C",
+  "baslangic": "2023-06-08",
+  "dagitim": 18.34,
+  "itoEnf": 54.61,
+  "ad": null,
+  "fonAktarim": "2023-09-19",
+  "kampanya": "ShopiVerse"
+ },
+ "SIZEM-B": {
+  "kod": "SIZEM",
+  "grup": "B",
+  "baslangic": "2022-04-18",
+  "dagitim": 15.19,
+  "itoEnf": 77.28,
+  "ad": "Dijital Deneme Kabini",
+  "fonAktarim": "2022-06-10",
+  "kampanya": "SizeandMe"
+ },
+ "SIZEM-D": {
+  "kod": "SIZEM",
+  "grup": "D",
+  "baslangic": "2023-07-25",
+  "dagitim": 8.86,
+  "itoEnf": 24.02,
+  "ad": "Dijital Deneme Kabini",
+  "fonAktarim": "2023-11-01",
+  "kampanya": "Size&Me II"
+ },
+ "SPECH-B": {
+  "kod": "SPECH",
+  "grup": "B",
+  "baslangic": "2023-09-12",
+  "dagitim": 9.67,
+  "itoEnf": 22.85,
+  "ad": "Endüstriyel Optik Ölçüm Sensörü",
+  "fonAktarim": "2023-11-03",
+  "kampanya": "SpechtLab"
+ },
+ "SPRG1-B": {
+  "kod": "SPRG1",
+  "grup": "B",
+  "baslangic": "2022-09-03",
+  "dagitim": 1.43,
+  "itoEnf": 5.85,
+  "ad": "Türkiyede İhracat Amaçlı Büyük Ölçekli Kuşkonmaz Üretimi",
+  "fonAktarim": "2022-12-15",
+  "kampanya": "SPARGA 1"
+ },
+ "SPRG2-B": {
+  "kod": "SPRG2",
+  "grup": "B",
+  "baslangic": "2023-03-21",
+  "dagitim": 1.43,
+  "itoEnf": 4.68,
+  "ad": null,
+  "fonAktarim": "2023-04-14",
+  "kampanya": "SPARGA 2"
+ },
+ "STETO-B": {
+  "kod": "STETO",
+  "grup": "B",
+  "baslangic": "2022-03-14",
+  "dagitim": 8.65,
+  "itoEnf": 49.01,
+  "ad": null,
+  "fonAktarim": "2022-07-04",
+  "kampanya": "Steto"
+ },
+ "SUITE-B": {
+  "kod": "SUITE",
+  "grup": "B",
+  "baslangic": "2022-01-31",
+  "dagitim": 5.56,
+  "itoEnf": 34.97,
+  "ad": "Test Otomasyon Platformu",
+  "fonAktarim": "2022-04-29",
+  "kampanya": "Test Otomasyon Platformu"
+ },
+ "TCHNO-B": {
+  "kod": "TCHNO",
+  "grup": "B",
+  "baslangic": "2022-04-04",
+  "dagitim": 8.23,
+  "itoEnf": 41.87,
+  "ad": "Mobil Cihazlarla Kullanılabilen Uygulama Tabanlı Video Laringoskopi Cihazı",
+  "fonAktarim": "2022-08-02",
+  "kampanya": "Scoper Video Laringoskop"
+ },
+ "THBIO-B": {
+  "kod": "THBIO",
+  "grup": "B",
+  "baslangic": "2022-11-28",
+  "dagitim": 8.33,
+  "itoEnf": 31.8,
+  "ad": null,
+  "fonAktarim": "2023-02-02",
+  "kampanya": "Tech2Bio"
+ },
+ "TMZYL-C": {
+  "kod": "TMZYL",
+  "grup": "C",
+  "baslangic": "2023-07-17",
+  "dagitim": 3.82,
+  "itoEnf": 10.35,
+  "ad": "SaaS Yönetim Teknolojileri",
+  "fonAktarim": "2023-12-22",
+  "kampanya": "Saastech.Io"
+ },
+ "TREXO-B": {
+  "kod": "TREXO",
+  "grup": "B",
+  "baslangic": "2024-12-16",
+  "dagitim": 13.66,
+  "itoEnf": 18.65,
+  "ad": null,
+  "fonAktarim": "2024-12-16",
+  "kampanya": "TREXO İNOVASYON"
+ },
+ "TRIBR-C": {
+  "kod": "TRIBR",
+  "grup": "C",
+  "baslangic": "2023-08-08",
+  "dagitim": 6.68,
+  "itoEnf": 16.64,
+  "ad": null,
+  "fonAktarim": "2023-11-07",
+  "kampanya": "Triber Shop"
+ },
+ "TRIST-B": {
+  "kod": "TRIST",
+  "grup": "B",
+  "baslangic": "2022-06-27",
+  "dagitim": 7.32,
+  "itoEnf": 33.82,
+  "ad": null,
+  "fonAktarim": "2022-09-06",
+  "kampanya": "Tourist"
+ },
+ "TRIWI-B": {
+  "kod": "TRIWI",
+  "grup": "B",
+  "baslangic": "2022-06-06",
+  "dagitim": 8.94,
+  "itoEnf": 41.31,
+  "ad": null,
+  "fonAktarim": "2022-11-07",
+  "kampanya": "Triwi"
+ },
+ "TUNGA-A": {
+  "kod": "TUNGA",
+  "grup": "A",
+  "baslangic": "2021-08-02",
+  "dagitim": 14.74,
+  "itoEnf": 127.87,
+  "ad": "Öğrenciler için Mobil Oyun Platformu",
+  "fonAktarim": "2021-11-10",
+  "kampanya": "Bilge Tunga"
+ },
+ "TUNGA-B": {
+  "kod": "TUNGA",
+  "grup": "B",
+  "baslangic": "2021-08-02",
+  "dagitim": 14.74,
+  "itoEnf": 127.87,
+  "ad": "Öğrenciler için Mobil Oyun Platformu",
+  "fonAktarim": "2021-11-10",
+  "kampanya": "Bilge Tunga"
+ },
+ "TYORE-C": {
+  "kod": "TYORE",
+  "grup": "C",
+  "baslangic": "2022-04-25",
+  "dagitim": 12.94,
+  "itoEnf": 65.83,
+  "ad": "Üreticiden Yöresel Lezzetler",
+  "fonAktarim": "2022-06-09",
+  "kampanya": "Üreticiden Yöresel Lezzetler"
+ },
+ "UNIQ2-B": {
+  "kod": "UNIQ2",
+  "grup": "B",
+  "baslangic": "2024-03-12",
+  "dagitim": 14.36,
+  "itoEnf": 26.38,
+  "ad": "Sektörün Öncüsü Uniq2go",
+  "fonAktarim": "2024-06-07",
+  "kampanya": "Sektörün Öncüsü Uniq2go"
+ },
+ "YPSFT-B": {
+  "kod": "YPSFT",
+  "grup": "B",
+  "baslangic": "2022-05-23",
+  "dagitim": 6.94,
+  "itoEnf": 33.36,
+  "ad": "İnşaat Sektörüne Dijital Çözümler",
+  "fonAktarim": "2022-06-28",
+  "kampanya": "Yapısoft"
+ },
+ "ZTECH-B": {
+  "kod": "ZTECH",
+  "grup": "B",
+  "baslangic": "2022-06-13",
+  "dagitim": 7.27,
+  "itoEnf": 33.59,
+  "ad": null,
+  "fonAktarim": "2022-08-29",
+  "kampanya": "Saksı Kampüs"
+ }
+}

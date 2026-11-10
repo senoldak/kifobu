@@ -1,0 +1,84 @@
+---
+// Sayfaların sonundaki izah: rakamın ne olduğu ve nasıl hesaplandığı. Verinin nasıl toplandığı anlatılmaz.
+// Formüller src/lib/sekundery*.mjs ile aynıdır; biri değişirse burası da değişir.
+import { GENEL_NOT } from '../../lib/site';
+import { itoSonAy } from '../../lib/sekundery-veri.mjs';
+import { ayAdi } from '../../lib/sekundery-kur.mjs';
+
+interface Props { sayfa: 'ana' | 'ozet' | 'donem' | 'kur' | 'virman' | 'grup' | 'sirket' }
+const { sayfa } = Astro.props;
+const ito = ayAdi(itoSonAy);
+
+const M: Record<string, [string, string]> = {
+  endu: ['ENDU', 'O gün yayında olan satış ilanlarının en düşük birim fiyatı.'],
+  enyu: ['ENYU', 'O gün yayında olan alış ilanlarının en yüksek birim fiyatı.'],
+  medyan: ['Medyan', 'Bir taraftaki ilan fiyatları küçükten büyüğe sıralandığında ortada kalan fiyat. İlan sayısı çiftse ortadaki iki fiyatın ortalamasıdır.'],
+  dagitim: ['Dağıtım fiyatı', 'Kampanyada payın yatırımcılara dağıtıldığı fiyat.'],
+  ito: ['İTO enflasyonu', `Dağıtım fiyatı, İstanbul Ticaret Odası İstanbul Ücretliler Geçinme İndeksinin kampanya ayından sonraki her aydaki değişimiyle bileşik olarak büyütülür: dağıtım × (1 + aylık değişim) × (1 + aylık değişim) … Son ay ${ito}. Kampanya tarihi bilinmeyen birkaç pay grubunda eski bir değer kullanılır; ana tabloda bu hücre eğik yazılır.`],
+  yuzde: ['Yüzdeler', 'Fark, (ilan fiyatı − karşılaştırılan fiyat) ÷ karşılaştırılan fiyattır. Dağıtıma, İTO\'ya ve kapanışa göre yüzdeler iki ondalıkta kesilir, yuvarlanmaz. Artı yüzdeler hardal, eksi yüzdeler lacivert yazılır; satış payında yarıdan büyükse hardal, küçükse lacivert. Bu renkler kazanç ya da kayıp anlamı taşımaz. Tablolardaki "Dağıtıma göre %" ve "İTO\'ya göre %" sütunları bu değişimi gösterir.'],
+  fark: ['Satış–alış farkı', '(ENDU − ENYU) ÷ ENDU. En düşük satış ilanı ile en yüksek alış ilanı arasındaki açıklığın satış fiyatına oranı.'],
+  tutar: ['İlan tutarı', 'Bir ilandaki pay adedi × birim fiyat. Toplamlar o gün yayında olan bütün ilanların tutarlarının toplamıdır.'],
+  pay: ['Satış payı', 'Satış ilanlarının toplam tutarı ÷ (satış + alış ilanlarının toplam tutarı).'],
+  kapanis: ['Geçen kapanış', 'Verisi olan son kapanmış ilan döneminde, dönem içindeki son günün ENDU\'su. Arada verisi olmayan bir dönem varsa bir önceki dönem kullanılır ve bu sayfada yazılır.'],
+  yil: ['Üç ay, altı ay ve bir yıl önceye göre', 'Bugünden 91, 182 ve 365 gün önceye kapanışı en yakın, verisi olan ilan döneminin son günündeki ENDU ile bugünkü ENDU karşılaştırılır. Seçilen dönem hedef tarihten 45 günden uzaksa o sekme gösterilmez; bu yüzden ilan dönemi olmayan aylar için sekme çıkmaz. Kullanılan dönemin tarihleri sekmenin üstünde yazar.'],
+  kismi: ['Kısmen karşılanan', 'Paylarının bir kısmı el değiştirmiş, kalanı hâlâ yayında olan ilan. Eski günlerde bu bilgi yoktur.'],
+  teklif: ['Tekliflere açık', 'İlan sahibinin fiyat dışında teklif kabul ettiğini belirttiği ilanların sayısı. Eski günlerde bu bilgi yoktur.'],
+  tekil: ['Sayım', 'Aynı ilan bir gün içinde bir kez sayılır.'],
+  birim: ['Birimler', 'Dolar ve avro TCMB satış kuruyla, altın Borsa İstanbul gram altın kapanışıyla çevrilir (TCMB EVDS). Dağıtım fiyatı kampanyanın başladığı günün, ilan fiyatları ve İTO\'lu fiyat son güncelleme gününün kuruyla çevrilir. O gün kur yoksa önceki iş gününün kuru alınır. Dağıtıma göre yüzde bu yüzden birimden birime değişir.'],
+  birimDonem: ['Birimler', 'Dönem ortalamaları ve geçen kapanış o dönemin son gününün, bugünkü ilan son güncelleme gününün, dağıtım fiyatı kampanya gününün kuruyla çevrilir. Dolar ve avro TCMB satış kuru, altın Borsa İstanbul gram altın kapanışıdır (TCMB EVDS).'],
+  donemOrt: ['Dönem ortalaması', 'Bir ilan döneminin her günündeki ENDU (ya da medyan satış) değerlerinin aritmetik ortalaması, iki ondalığa yuvarlanmış. Temmuz 2024\'ten önce ilanlar dönemlere ayrılmadığı için o aylarda takvim ayının ortalaması alınır.'],
+  kapanisa: ['Kapanışa göre', 'Bugünkü ENDU\'nun geçen kapanışa göre farkı.'],
+  ortalamaya: ['Ortalamaya göre', 'Bugünkü ENDU\'nun son dönem ortalamasına göre farkı.'],
+  ortalama: ['Ortalama satış ve alış ilanı', 'Pay adediyle ağırlıklı ortalama: tutarların toplamı ÷ pay adetlerinin toplamı.'],
+  ilkUc: ['İlk ilanların payı', 'En düşük fiyatlı üç satış ilanındaki pay adedinin satış tarafındaki toplam adede oranı. Alışta en yüksek fiyatlı üç ilan alınır.'],
+  enIyi: ['En iyi ilanın payı', 'En düşük fiyatlı satış ilanındaki pay adedinin satış tarafındaki toplam adede oranı; alışta en yüksek fiyatlı ilan.'],
+  adet: ['Pay adedi', 'Satış ilanlarındaki toplam pay adedi ÷ alış ilanlarındaki toplam pay adedi; fark, alıştaki adet ile satıştaki adet arasındaki farktır.'],
+  orta: ['En iyi iki ilanın ağırlıklı fiyatı', '(En düşük satış ilanının tutarı + en yüksek alış ilanının tutarı) ÷ bu iki ilandaki pay adedi.'],
+  sayac: ['Üstünde ve altında', 'Kısa görünümde, bugünkü ENDU\'su karşılaştırılan fiyatın (dağıtım ya da o dönemin kapanışı) üstünde, altında ya da aynı olan pay grubu sayısı. Karşılaştırılamayan: bugün satış ilanı ya da o döneme ait verisi olmayan pay grubu.'],
+  virmanDeg: ['Virman değişimi', 'Bir girişimin son iki duyurulu dönemindeki virman süreleri arasındaki gün farkı. Artı, sürenin uzadığını gösterir.'],
+  sahip: ['Pay sahibi', 'Pay grubunun pay sahibi sayısı ve kaydedildiği tarih. Kişi bilgisi içermez, yalnız sayıdır.'],
+  isin: ['ISIN', 'Pay grubunun Merkezi Kayıt Kuruluşu\'ndaki uluslararası menkul kıymet kodu.'],
+  seyir: ['Dönem içi değişim', 'Bir ilan döneminin ilk ve son gününde en düşük satış ilanı arasındaki fark, yüzde. Dönemde tek gün veri varsa hesaplanmaz.'],
+  virmanSayi: ['Virman duyurusu yapan girişim', 'Bir ilan döneminden sonra pay virmanını tamamladığını duyuran girişim sayısı.'],
+  yeniIlan: ['Bugün yayına giren ve yayında kalma süresi', 'Bugün yayına giren ilan sayısı ve satış ilanlarının yayında kaldığı gün sayısının medyanı. Eski günlerde bu bilgi yoktur.'],
+  sonraki: ['Sonraki dönem', 'Açılış duyurusu yapılmış ama henüz başlamamış ilan döneminin tarihleri.'],
+  dilim: ['Fiyat dilimleri', 'En düşük ilan fiyatından, fiyatların yüzde 95\'inin altında kaldığı fiyata kadar sekiz logaritmik dilim; bunun üstündeki ilanlar en üst dilimde toplanır. Çubuk, dilimdeki ilanların pay adedidir.'],
+  buyuk: ['Tutarı en büyük ilanlar', 'Tek ilanın tutarı ve bu tutarın, pay grubunun aynı taraftaki bütün ilanlarının tutarı içindeki payı. İlanın fiyatı ve adedi verilmez.'],
+  ddg: ['Döviz değişimine göre (DDG)', 'Dağıtım fiyatı × (son güncelleme günündeki kur ÷ kampanyanın başladığı günkü kur). Dolar, avro ve altın için ayrı ayrı hesaplanır. Sonuç bir hesaplamadır; payın değeri ya da fiyatı değildir.'],
+  kurlar: ['Kurlar', 'TCMB dolar ve avro satış kuru, Borsa İstanbul gram altın kapanışı (TCMB EVDS). O gün kur yoksa önceki iş gününün kuru alınır.'],
+  virman: ['Virman süresi', 'İlan döneminin kapanışından sonraki günden girişimin Pay Virman Tamamlanma Duyurusu\'nun yapıldığı güne kadar geçen takvim günü. Kapanış günü dönemin kapanış duyurusundan alınır; duyuru yoksa dönemin olağan süresi kullanılır (Cuma açılan dönem ertesi Cuma, Pazartesi açılan dönem Pazar kapanır). Aynı dönemde birden çok duyuru varsa sonuncusu sayılır.'],
+  virmanMedyan: ['Dönem ve girişim medyanı', 'Bir dönemdeki bütün girişimlerin sürelerinin medyanı; girişim sayfasında o girişimin bütün dönemlerdeki sürelerinin medyanı.'],
+  kaynakIlan: ['Kaynak', `Kamuya açık pay ilanları. Rakamlar o gün yayında duran, henüz karşılanmamış ilanlardan hesaplanır; gerçekleşen işlem fiyatı değildir. ${GENEL_NOT}`],
+  kaynakKur: ['Kaynak', `TCMB EVDS (kurlar, altın, İTO indeksi); dağıtım fiyatı ve kampanya tarihleri girişimlerin kampanya sayfalarından. ${GENEL_NOT}`],
+  kaynakVirman: ['Kaynak', `Girişimlerin pay virman duyuruları ve ilan dönemlerinin açılış ve kapanış duyuruları. ${GENEL_NOT}`],
+};
+const SIRA: Record<Props['sayfa'], string[]> = {
+  ana: ['endu', 'enyu', 'medyan', 'dagitim', 'ito', 'yuzde', 'fark', 'tutar', 'pay', 'kapanis', 'yil', 'sayac', 'sonraki', 'yeniIlan', 'kismi', 'tekil', 'birim', 'kaynakIlan'],
+  ozet: ['tutar', 'pay', 'buyuk', 'tekil', 'birim', 'kaynakIlan'],
+  donem: ['endu', 'medyan', 'donemOrt', 'seyir', 'kapanis', 'kapanisa', 'ortalamaya', 'yuzde', 'birimDonem', 'kaynakIlan'],
+  kur: ['dagitim', 'ddg', 'ito', 'kurlar', 'kaynakKur'],
+  virman: ['virman', 'virmanMedyan', 'virmanDeg', 'virmanSayi', 'kaynakVirman'],
+  sirket: ['dagitim', 'ito', 'endu', 'enyu', 'yuzde', 'sahip', 'isin', 'virman', 'birim', 'kaynakIlan'],
+  grup: ['endu', 'enyu', 'medyan', 'dagitim', 'ito', 'sahip', 'isin', 'ddg', 'yuzde', 'fark', 'ortalama', 'ilkUc', 'enIyi', 'adet', 'orta', 'teklif', 'yeniIlan', 'dilim', 'donemOrt', 'virman', 'birim', 'kaynakIlan'],
+};
+const maddeler = SIRA[sayfa].map((k) => M[k]);
+---
+
+<section class="iz" aria-labelledby="iz-baslik">
+  <h2 id="iz-baslik">Rakamlar nasıl hesaplanır</h2>
+  <dl>
+    {maddeler.map(([ad, metin]) => (
+      <div><dt>{ad}</dt><dd>{metin}</dd></div>
+    ))}
+  </dl>
+</section>
+
+<style>
+  .iz { margin: 40px 0 0; padding-top: 18px; border-top: 2px solid var(--marka-sari); }
+  .iz h2 { margin: 0 0 14px; font-size: 1.1rem; letter-spacing: -0.01em; }
+  .iz dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 32px; margin: 0; }
+  .iz dl > div { min-width: 0; }
+  .iz dt { font-size: 0.82rem; font-weight: 700; color: var(--murekkep); margin-bottom: 3px; }
+  .iz dd { margin: 0; font-size: 0.84rem; line-height: 1.55; color: var(--murekkep-2); max-width: 62ch; }
+  @media (max-width: 760px) { .iz dl { grid-template-columns: 1fr; } }
+</style>

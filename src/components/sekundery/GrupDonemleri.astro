@@ -1,0 +1,91 @@
+---
+// Pay grubu sayfası: bütün ilan dönemlerinde en düşük satış ve medyan satış ilanlarının dönem ortalaması, yan yana sütun.
+// Veri renkleri BRAND.md §7 (iki yeşil); kesik çizgi dağıtım fiyatı. Birim düğmesine uyar (dönemin kapanış günü kuruyla).
+import { butunDonemler, kurlar, avroKurlar, altinKurlar } from '../../lib/sekundery-veri.mjs';
+import { kurBul, paraYaz } from '../../lib/sekundery-kur.mjs';
+
+interface Props { s: any }
+const { s } = Astro.props;
+const tam = butunDonemler();
+const satir = tam.satirlar.find((r) => r.s.anahtar === s.anahtar);
+const P = ['tl', 'usd', 'eur', 'xau'] as const;
+type Para = (typeof P)[number];
+const KUR: Record<Exclude<Para, 'tl'>, Record<string, number>> = { usd: kurlar, eur: avroKurlar, xau: altinKurlar };
+const cevir = (v: number | null, t: string, p: Para) => (v == null ? null : p === 'tl' ? v : ((k) => (k ? v / k : null))(kurBul(t, KUR[p])));
+const AY = ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'];
+const uzun = (t: string) => new Date(`${t}T12:00:00`).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
+
+// Yalnız bu pay grubunun verisi olan ilk dönemden başlanır
+const ilk = satir ? satir.ortalamalar.findIndex((x, i) => x != null || satir.medyanlar[i] != null) : -1;
+const donemler = ilk >= 0 ? tam.donemler.slice(ilk) : [];
+const W = 1000, H = 260, SOL = 58, SAG = 10, ALT = 44, UST = 22;
+const grafik = (p: Para) => {
+  const nok = donemler.map((d, j) => ({ d, e: cevir(satir!.ortalamalar[ilk + j], d.kapanis, p), m: cevir(satir!.medyanlar[ilk + j], d.kapanis, p) }));
+  const dag = p === 'tl' ? s.dagitim : s[p]?.dagitim ?? null;
+  const ham = Math.max(...nok.flatMap((n) => [n.e ?? 0, n.m ?? 0]), dag ?? 0) || 1;
+  const us = 10 ** Math.floor(Math.log10(ham));
+  const tik = [1, 2, 2.5, 5, 10].map((k) => k * us).find((t) => ham / t <= 4) ?? 10 * us;
+  const tavan = Math.ceil(ham / tik) * tik;
+  const y = (v: number) => H - ALT - (v / tavan) * (H - ALT - UST);
+  const adim = (W - SOL - SAG) / Math.max(nok.length, 1);
+  const g = Math.min(adim * 0.34, 16);
+  const yillar = nok.map((n, i) => ({ i, yil: n.d.acilis.slice(0, 4) })).filter((x, j, a) => j === 0 || x.yil !== a[j - 1].yil);
+  const ekseni = (v: number) => paraYaz(v, p, p === 'xau' ? undefined : tavan >= 10 ? 0 : 2);
+  return { nok, dag, tavan, tik, y, adim, g, yillar, ekseni };
+};
+const gorunum = P.map((p) => ({ p, ...grafik(p) }));
+---
+
+{satir && donemler.length > 1 && (
+  <section class="gd" aria-labelledby="gd-baslik">
+    <div class="gd-bas">
+      <h2 id="gd-baslik">Dönem dönem ilan fiyatı</h2>
+      <p class="gd-acik"><i class="gd-n gd-n-e"></i>En düşük satış <i class="gd-n gd-n-m"></i>Medyan satış <i class="gd-n gd-n-d"></i>Dağıtım fiyatı</p>
+    </div>
+    <p class="gd-alt">Her sütun, o ilan dönemindeki günlük ilanların ortalamasıdır; Temmuz 2024 öncesi aylar ay ortalamasıdır.</p>
+    {gorunum.map(({ p, nok, dag, tavan, tik, y, adim, g, yillar, ekseni }) => (
+      <svg class={`gd-svg pv pv-${p}`} viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${s.kod} ${s.grup}: dönem ortalamaları`}>
+        {Array.from({ length: Math.round(tavan / tik) + 1 }, (_, n) => n * tik).map((v) => (
+          <g><line x1={SOL} x2={W - SAG} y1={y(v)} y2={y(v)} class={v === 0 ? 'taban' : 'izgara'} /><text x={SOL - 8} y={y(v) + 4} text-anchor="end" class="eksen">{ekseni(v)}</text></g>
+        ))}
+        {yillar.slice(1).map(({ i }) => <line x1={SOL + i * adim} x2={SOL + i * adim} y1={UST - 8} y2={H - 6} class="ayrac" />)}
+        {yillar.map(({ i, yil }) => <text x={SOL + i * adim + 4} y={H - 8} class="yil">{yil}</text>)}
+        {nok.map((n, i) => {
+          const x = SOL + i * adim + adim / 2;
+          return (
+            <g>
+              <title>{`${uzun(n.d.acilis)} – ${uzun(n.d.kapanis)}${n.d.ay ? ' (ay)' : ''}: en düşük ${paraYaz(n.e, p)}, medyan ${paraYaz(n.m, p)}`}</title>
+              {n.e != null && <rect x={x - g - 1} y={y(n.e)} width={g} height={Math.max(0.5, y(0) - y(n.e))} class="sut-e" />}
+              {n.m != null && <rect x={x + 1} y={y(n.m)} width={g} height={Math.max(0.5, y(0) - y(n.m))} class="sut-m" />}
+              <text x={x} y={H - ALT + 16} text-anchor="middle" class="ay">{AY[Number(n.d.acilis.slice(5, 7)) - 1]}</text>
+            </g>
+          );
+        })}
+        {dag != null && dag <= tavan && <line x1={SOL} x2={W - SAG} y1={y(dag)} y2={y(dag)} class="dag" />}
+      </svg>
+    ))}
+  </section>
+)}
+
+<style>
+  .gd { margin: 0 0 40px; padding: 16px 18px 12px; background: var(--beyaz); border: 1px solid var(--cizgi); }
+  .gd-bas { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .gd-bas h2 { margin: 0; font-size: 1.15rem; letter-spacing: -0.01em; }
+  .gd-acik { margin: 0; font-size: 0.78rem; color: var(--murekkep-2); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .gd-n { display: inline-block; width: 11px; height: 11px; margin-left: 8px; }
+  .gd-n-e { background: #10b981; }
+  .gd-n-m { background: #a7e9cf; }
+  .gd-n-d { height: 0; border-top: 2px dashed var(--murekkep); width: 14px; }
+  .gd-alt { margin: 4px 0 6px; font-size: 0.78rem; color: var(--gri); }
+  .gd-svg { width: 100%; height: auto; }
+  .gd :global(.izgara) { stroke: #ece9e1; stroke-width: 1; }
+  .gd :global(.taban) { stroke: var(--murekkep); stroke-width: 1.2; }
+  .gd :global(.ayrac) { stroke: var(--cizgi); stroke-width: 1; }
+  .gd :global(.eksen) { font-size: 12px; fill: var(--gri); }
+  .gd :global(.ay) { font-size: 11px; fill: var(--gri); }
+  .gd :global(.yil) { font-size: 11px; font-weight: 700; fill: var(--murekkep); }
+  .gd :global(.sut-e) { fill: #10b981; }
+  .gd :global(.sut-m) { fill: #a7e9cf; }
+  .gd :global(.dag) { stroke: var(--murekkep); stroke-width: 1.5; stroke-dasharray: 6 4; }
+  .gd :global(g:hover .sut-e), .gd :global(g:hover .sut-m) { opacity: 0.75; }
+</style>

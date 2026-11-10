@@ -1,0 +1,103 @@
+---
+// Girişim sayfasındaki virman geçmişi: her dönemde girişimin süresi (sarı sütun) ve arkasında o dönemdeki bütün girişimlerin
+// medyanı (daha geniş, açık gri gölge sütun; sahibi siyah çizgiyi istemedi). Sayı her zaman ikisinin de üstünde durur.
+// Duyurusu olmayan dönemde medyan çizilmez (yalnız "yok"); yıllar ince ayraçla ayrılır.
+import virman from '../../data/sekundery/virman.json';
+import { virmanOzeti, ayKisa, uzunTarih, sayiYaz, tamUnvan } from '../../lib/sekundery-virman.mjs';
+import { medyan } from '../../lib/sekundery.mjs';
+
+interface Props { kod: string }
+const { kod } = Astro.props;
+const s = (virman as any).sirketler[kod];
+const { donemler, donemMedyan } = virmanOzeti(virman, new Date().toISOString().slice(0, 10));
+const gunler: (number | null)[] = s ? donemler.map((d: any) => s.virman[d.acilis]?.gun ?? null) : [];
+const dolu = gunler.filter((g) => g != null) as number[];
+const sMedyan = medyan(dolu);
+
+const W = 1000, H = 280, SOL = 36, SAG = 8, ALT = 46, UST = 26;
+const adim = (W - SOL - SAG) / Math.max(donemler.length, 1);
+const enCok = Math.max(10, ...dolu, ...gunler.map((g, i) => (g == null ? 0 : donemMedyan[i] ?? 0)));
+const tavan = Math.ceil(enCok / 10) * 10;
+const tik = tavan <= 30 ? 10 : tavan <= 60 ? 20 : 30;
+const y = (v: number) => H - ALT - (v / tavan) * (H - ALT - UST);
+const golgeG = Math.min(adim * 0.82, 44);
+const sutunG = Math.min(adim * 0.46, 24);
+const yillar = donemler.map((d: any, i: number) => ({ i, yil: d.acilis.slice(0, 4) })).filter((x: any, j: number, a: any[]) => j === 0 || x.yil !== a[j - 1].yil);
+---
+
+{s && dolu.length > 0 && (
+  <section class="vg">
+    <h2>Virman geçmişi</h2>
+    <p class="vg-alt">{tamUnvan(s.unvan)} · {dolu.length} dönemde duyuru · kendi medyanı <strong>{sayiYaz(sMedyan)} gün</strong> · <a href="/sekundery/virman/">bütün girişimler</a></p>
+    <figure>
+      <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${kod} virman süreleri, dönem dönem`}>
+        {Array.from({ length: tavan / tik + 1 }, (_, n) => n * tik).map((v) => (
+          <g>
+            <line x1={SOL} x2={W - SAG} y1={y(v)} y2={y(v)} class={v === 0 ? 'taban' : 'izgara'} />
+            <text x={SOL - 8} y={y(v) + 4} text-anchor="end" class="eksen">{v}</text>
+          </g>
+        ))}
+        <text x={SOL - 8} y={UST - 12} text-anchor="end" class="eksen">gün</text>
+        {yillar.slice(1).map(({ i }: any) => <line x1={SOL + i * adim} x2={SOL + i * adim} y1={UST - 6} y2={H - 6} class="yil-ayrac" />)}
+        {donemler.map((d: any, i: number) => {
+          const cx = SOL + i * adim + adim / 2, g = gunler[i], m = donemMedyan[i] as number;
+          const ustNokta = g == null ? null : Math.min(y(g), y(m));
+          return (
+            <g class="donem">
+              <title>{`${uzunTarih(d.acilis)} dönemi: ${g == null ? 'virman duyurusu yok' : `${g} gün`}${g == null ? '' : ` · o dönemde bütün girişimlerin medyanı ${sayiYaz(m)} gün`}`}</title>
+              <rect x={SOL + i * adim} y={UST - 6} width={adim} height={H - ALT - UST + 6} class="vurgu" />
+              {g == null ? (
+                <text x={cx} y={H - ALT - 6} text-anchor="middle" class="yok">yok</text>
+              ) : (
+                <>
+                  <rect x={cx - golgeG / 2} y={y(m)} width={golgeG} height={H - ALT - y(m)} class="golge" rx="2" />
+                  <rect x={cx - sutunG / 2} y={y(g)} width={sutunG} height={H - ALT - y(g)} class="sutun" rx="1.5" />
+                  <text x={cx} y={(ustNokta as number) - 8} text-anchor="middle" class="deger">{g}</text>
+                </>
+              )}
+              <text x={cx} y={H - ALT + 18} text-anchor="middle" class="ay">{ayKisa(d.acilis)}</text>
+            </g>
+          );
+        })}
+        {yillar.map(({ i, yil }: any) => <text x={SOL + i * adim + 6} y={H - 8} class="yil">{yil}</text>)}
+      </svg>
+      <figcaption class="vg-lejant">
+        <span><i class="l-sutun"></i>{kod}: dönem kapanışından virman duyurusuna gün</span>
+        <span><i class="l-medyan"></i>Arkadaki gri: o dönemde bütün girişimlerin medyanı</span>
+      </figcaption>
+    </figure>
+    <p class="vg-not">Süre: ilan döneminin kapanışından sonraki günden girişimin "Pay Virman Tamamlanma Duyurusu"na kadar geçen takvim günü. Kaynak: girişimlerin pay virman duyuruları.</p>
+  </section>
+)}
+
+<style>
+  .vg { margin-bottom: 40px; }
+  .vg h2 { font-size: 1.35rem; letter-spacing: -0.01em; margin: 0 0 2px; }
+  .vg-alt { color: var(--gri); font-size: 0.9rem; margin: 0 0 12px; }
+  .vg-alt strong { color: var(--murekkep); }
+  .vg-alt a { color: var(--murekkep); }
+  figure { margin: 0; background: var(--beyaz); border: 1px solid var(--cizgi); padding: 18px 18px 12px; }
+  svg { width: 100%; height: auto; display: block; overflow: visible; }
+  .izgara { stroke: #ece9e1; stroke-width: 1; }
+  .taban { stroke: #141a17; stroke-width: 1.2; }
+  .yil-ayrac { stroke: #dcd9cf; stroke-width: 1; stroke-dasharray: 3 3; }
+  .eksen { font-size: 12px; fill: #8a908b; }
+  .sutun { fill: #e3b23c; }
+  .golge { fill: #e7e4da; }
+  .deger { font-size: 15px; font-weight: 700; fill: #141a17; }
+  .yok { font-size: 11px; fill: #b3b0a6; }
+  .ay { font-size: 12.5px; fill: #3b413d; }
+  .yil { font-size: 12.5px; font-weight: 700; fill: #141a17; }
+  .vurgu { fill: transparent; }
+  .donem:hover .vurgu { fill: #f7f5ef; }
+  .vg-lejant { display: flex; gap: 22px; flex-wrap: wrap; font-size: 0.85rem; color: var(--murekkep-2); margin-top: 8px; padding-top: 10px; border-top: 1px solid var(--cizgi); }
+  .vg-lejant span { display: inline-flex; align-items: center; gap: 8px; }
+  .vg-lejant i { display: inline-block; }
+  .l-sutun { width: 12px; height: 12px; background: #e3b23c; border-radius: 1.5px; }
+  .l-medyan { width: 14px; height: 12px; background: #e7e4da; border-radius: 2px; }
+  .vg-not { color: var(--gri); font-size: 0.85rem; max-width: 72ch; }
+  @media (max-width: 640px) {
+    figure { padding: 10px 6px 8px; overflow-x: auto; }
+    svg { min-width: 640px; }
+  }
+</style>

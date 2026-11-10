@@ -1,0 +1,43 @@
+---
+// Sekundery sayfalarının ortak birim düğmesi (₺ $ € Altın). Seçim <html data-para> olarak yazılır,
+// 'sekundery-para' olayıyla duyurulur ve tarayıcıda saklanır; bütün sekundery sayfaları aynı seçimle açılır.
+// Fiyatı birime göre değişen öğeler .pv .pv-tl / .pv-usd / .pv-eur / .pv-xau sınıflarını taşır.
+---
+
+<div class="bs" role="group" aria-label="Fiyatları hangi birimle göster">
+  <span>Birim</span>
+  <button type="button" data-sayfa-para="tl" aria-pressed="true" title="Türk lirası">₺</button>
+  <button type="button" data-sayfa-para="usd" aria-pressed="false" title="ABD doları">$</button>
+  <button type="button" data-sayfa-para="eur" aria-pressed="false" title="Avro">€</button>
+  <button type="button" data-sayfa-para="xau" aria-pressed="false" title="Gram altın" class="bs-altin">Altın (gr)</button>
+</div>
+
+<script>
+  const dugmeler = [...document.querySelectorAll<HTMLButtonElement>('[data-sayfa-para]')];
+  const uygula = (p: string) => {
+    if (!['tl', 'usd', 'eur', 'xau'].includes(p)) p = 'tl';
+    for (const d of dugmeler) d.setAttribute('aria-pressed', String(d.dataset.sayfaPara === p));
+    document.documentElement.dataset.para = p;
+    document.dispatchEvent(new CustomEvent('sekundery-para', { detail: p }));
+    try { localStorage.setItem('sekundery-para', p); } catch { /* yok say */ }
+  };
+  for (const d of dugmeler) d.addEventListener('click', () => uygula(d.dataset.sayfaPara ?? 'tl'));
+  try { const p = localStorage.getItem('sekundery-para'); if (p && p !== 'tl') uygula(p); } catch { /* yok say */ }
+</script>
+
+<style>
+  .bs { display: inline-flex; align-items: center; }
+  .bs span { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gri); margin-right: 10px; }
+  .bs button { font: inherit; font-size: 0.95rem; font-weight: 700; min-width: 34px; height: 32px; padding: 0 8px; border: 1.5px solid var(--murekkep); background: transparent; color: var(--murekkep); cursor: pointer; }
+  .bs button + button { border-left: 0; }
+  .bs button[aria-pressed='true'] { background: var(--murekkep); color: var(--kagit); }
+  .bs button.bs-altin { font-size: 0.82rem; color: #8a6a00; }
+  .bs button.bs-altin[aria-pressed='true'] { background: #b8860b; color: var(--beyaz); }
+</style>
+
+<style is:global>
+  /* Seçilen birim; seçim yoksa ₺ */
+  .pv { display: none; }
+  html:not([data-para]) .pv-tl, html[data-para='tl'] .pv-tl, html[data-para='usd'] .pv-usd, html[data-para='eur'] .pv-eur, html[data-para='xau'] .pv-xau { display: inline; }
+  html:not([data-para]) .pv-not, html[data-para='tl'] .pv-not { display: none; }
+</style>

@@ -1,0 +1,186 @@
+---
+import Base from '../../layouts/Base.astro';
+import SekunderyMenu from '../../components/sekundery/SekunderyMenu.astro';
+import SekunderyUyari from '../../components/sekundery/SekunderyUyari.astro';
+import SekunderyIzah from '../../components/sekundery/SekunderyIzah.astro';
+import Yol from '../../components/Yol.astro';
+import { GENEL_NOT } from '../../lib/site';
+import { sonGun, tumAnahtarlar, satir, itoSonAy } from '../../lib/sekundery-veri.mjs';
+import { ayAdi } from '../../lib/sekundery-kur.mjs';
+import { fiyatYaz } from '../../lib/sekundery.mjs';
+import { tamUnvan } from '../../lib/sekundery-virman.mjs';
+
+const baslik = 'Kur ve enflasyon karşılaştırması';
+const aciklama = "Girişimlerin dağıtım fiyatının döviz değişimine ve İTO enflasyon verilerine göre hesabı.";
+const adimlar = [{ ad: 'Anasayfa', url: '/' }, { ad: 'Sekundery', url: '/sekundery/' }, { ad: 'Kur ve enflasyon', url: '/sekundery/kur-enflasyon/' }];
+
+const satirlar = tumAnahtarlar()
+  .map((k) => satir(k))
+  .filter((s) => s.dagitim != null)
+  .map((s) => {
+    const olc = (v: number | null) => ({ v });
+    return { s, usd: olc(s.usd.guncel), eur: olc(s.eur.guncel), xau: olc(s.xau.guncel), ito: olc(s.itoEnf) };
+  });
+
+const SUTUN = [
+  { a: 'usd', ad: 'Dolar', not: 'TCMB dolar satış kuru' },
+  { a: 'eur', ad: 'Avro', not: 'TCMB avro satış kuru' },
+  { a: 'xau', ad: 'Altın', not: 'Borsa İstanbul gram altın' },
+  { a: 'ito', ad: 'İTO enflasyonu', not: `İTO, ${ayAdi(itoSonAy)} sonuna kadar` },
+] as const;
+const tarihYaz = (t: string | null | undefined) => (t ? new Date(`${t}T12:00:00`).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' }) : '—');
+const kisaTarih = (t: string | null | undefined) => (t ? new Date(`${t}T12:00:00`).toLocaleDateString('tr-TR', { day: '2-digit', month: '2-digit', year: 'numeric' }) : '—');
+const ornek = satirlar.find((r) => r.s.usd.kurBugun)?.s;
+const kurTarih = ornek?.usd.kurBugunTarih;
+const kurYaz = (n: number | null | undefined, d = 4) => (n == null ? '—' : `₺${n.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: d })}`);
+const KART = [
+  { ad: '1 dolar', deger: kurYaz(ornek?.usd.kurBugun), alt: 'TCMB satış kuru' },
+  { ad: '1 avro', deger: kurYaz(ornek?.eur.kurBugun), alt: 'TCMB satış kuru' },
+  { ad: '1 gram altın', deger: kurYaz(ornek?.xau.kurBugun, 2), alt: 'Borsa İstanbul kapanış' },
+  { ad: 'İTO enflasyonu', deger: ayAdi(itoSonAy), alt: 'son veri, TCMB EVDS' },
+];
+---
+
+<Base title={baslik} description={aciklama} noindex>
+  <Yol adimlar={adimlar} />
+
+  <article class="gf">
+
+    <SekunderyMenu etkin="kur" />
+    <header class="gf-bas">
+      <p class="gf-etiket">SEKUNDERY · KUR VE ENFLASYON</p>
+      <h1>Kur ve enflasyon karşılaştırması</h1>
+      <p class="gf-spot">
+        Her girişimin dağıtım fiyatı; kampanyanın başladığı günden bu yana dolar, avro ve altındaki değişime ve İTO enflasyon
+        verilerine göre hesaplandı. Bu yalnızca bir hesaplamadır: payın değeri, fiyatı ya da beklentisi değildir,
+        ilanlarla da ilgisi yoktur.
+      </p>
+      {kurTarih && <p class="gf-tarih">Kurlar: <strong>{tarihYaz(kurTarih)}</strong> · İTO: <strong>{ayAdi(itoSonAy)}</strong></p>}
+    </header>
+
+    <dl class="gf-kartlar">
+      {KART.map((k) => <div><dt>{k.ad}</dt><dd>{k.deger}</dd><dd class="gf-alt">{k.alt}</dd></div>)}
+    </dl>
+
+    <div class="gf-arac">
+      <label class="gf-ara">
+        <span class="gorunmez">Girişim ara</span>
+        <input type="search" placeholder="Kod ya da ad ara" data-gf-ara autocomplete="off" />
+      </label>
+    </div>
+
+    <div class="gf-tablo-kap">
+      <table class="gf-tablo" data-gf-tablo>
+        <thead>
+          <tr class="gf-ust">
+            <th colspan="3" class="gf-taraf">Kampanya</th>
+            <th colspan="4" class="gf-taraf gf-ayrac">Döviz değişimine ve İTO enflasyonuna göre</th>
+          </tr>
+          <tr>
+            <th data-sirala="metin" scope="col">Girişim</th>
+            <th data-sirala="metin" scope="col">Başlangıç</th>
+            <th data-sirala="sayi" scope="col" title="Kampanyadaki pay fiyatı">Dağıtım</th>
+            {SUTUN.map((c, i) => <th data-sirala="sayi" scope="col" class={i === 0 ? 'gf-ayrac' : ''} title={c.not}>{c.ad}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {satirlar.map(({ s, ...r }) => (
+            <tr data-ara={`${s.kod} ${s.grup} ${s.unvan ?? ''}`.toLocaleLowerCase('tr-TR')}>
+              <th scope="row" data-d={s.anahtar}>
+                <a href={`/sekundery/${s.anahtar.toLowerCase()}/`}><span class="gf-kod">{s.kod}</span> <span class="gf-grup">{s.grup}</span></a>
+                {s.unvan && <span class="gf-ad" title={tamUnvan(s.unvan) ?? undefined}>{tamUnvan(s.unvan)}</span>}
+              </th>
+              <td data-d={s.baslangic ?? ''}>{kisaTarih(s.baslangic)}</td>
+              <td data-d={s.dagitim}>₺{fiyatYaz(s.dagitim)}</td>
+              {SUTUN.map((c, i) => {
+                const h = r[c.a];
+                return (
+                  <td data-d={h.v ?? ''} class={i === 0 ? 'gf-ayrac' : ''}>{h.v == null ? '—' : `₺${fiyatYaz(h.v)}`}</td>
+                );
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <SekunderyIzah sayfa="kur" />
+    <SekunderyUyari />
+  </article>
+</Base>
+
+<script>
+  const tablo = document.querySelector<HTMLTableElement>('[data-gf-tablo]');
+  const ara = document.querySelector<HTMLInputElement>('[data-gf-ara]');
+  if (tablo && ara) {
+    const govde = tablo.tBodies[0];
+    ara.addEventListener('input', () => {
+      const q = ara.value.trim().toLocaleLowerCase('tr-TR');
+      for (const tr of govde.rows) tr.hidden = !!q && !(tr.dataset.ara ?? '').includes(q);
+    });
+    const basliklar = [...tablo.tHead!.rows[1].cells];
+    basliklar.forEach((th, sutun) => {
+      th.tabIndex = 0;
+      const sirala = () => {
+        const yon = th.getAttribute('aria-sort') === 'descending' ? 'ascending' : 'descending';
+        for (const b of basliklar) b.removeAttribute('aria-sort');
+        th.setAttribute('aria-sort', yon);
+        const sayi = th.dataset.sirala === 'sayi';
+        const k = yon === 'ascending' ? 1 : -1;
+        const rows = [...govde.rows].sort((a, b) => {
+          const x = a.cells[sutun].dataset.d ?? '', y = b.cells[sutun].dataset.d ?? '';
+          if (x === '' && y === '') return 0;
+          if (x === '') return 1;
+          if (y === '') return -1;
+          return (sayi ? Number(x) - Number(y) : x.localeCompare(y, 'tr')) * k;
+        });
+        govde.append(...rows);
+      };
+      th.addEventListener('click', sirala);
+      th.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); sirala(); } });
+    });
+  }
+</script>
+
+<style>
+  .gf { max-width: 1180px; margin: 0 auto; padding: 0 16px 64px; }
+  .gf-bas { border-top: 10px solid var(--marka-sari); padding-top: 24px; margin-bottom: 24px; }
+  .gf-etiket { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; color: var(--gri); margin: 0; }
+  .gf-bas h1 { font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -0.03em; margin: 4px 0 8px; }
+  .gf-spot { max-width: 64ch; color: var(--murekkep-2); margin: 0 0 8px; }
+  .gf-tarih { color: var(--gri); margin: 0; }
+  .gf-alt-sayfa { margin-top: 10px; display: flex; gap: 18px; flex-wrap: wrap; }
+  .gf-alt-sayfa a { color: var(--murekkep); font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--marka-sari); }
+  .gf-kartlar { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--cizgi); border: 1px solid var(--cizgi); margin: 0 0 24px; }
+  .gf-kartlar > div { background: var(--kagit); padding: 14px 16px; }
+  .gf-kartlar dt { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gri); }
+  .gf-kartlar dd { margin: 4px 0 0; font-size: 1.7rem; font-weight: 600; letter-spacing: -0.03em; }
+  .gf-kartlar dd.gf-alt { font-size: 0.85rem; font-weight: 400; color: var(--gri); letter-spacing: 0; }
+  .gf-arac { margin-bottom: 12px; }
+  .gf-ara input { font: inherit; padding: 8px 12px; border: 1.5px solid var(--murekkep); background: var(--beyaz); min-width: 240px; border-radius: 0; }
+  .gf-tablo-kap { overflow-x: auto; border: 1px solid var(--cizgi); background: var(--beyaz); }
+  .gf-tablo { border-collapse: collapse; width: 100%; font-size: 0.82rem; font-variant-numeric: tabular-nums; }
+  .gf-tablo th, .gf-tablo td { padding: 8px 10px; text-align: right; white-space: nowrap; border-bottom: 1px solid var(--cizgi); }
+  .gf-tablo thead th { font-size: 0.66rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--gri); background: var(--kagit); position: sticky; top: 0; cursor: pointer; user-select: none; }
+  .gf-tablo thead .gf-ust th { cursor: default; text-align: center; border-bottom: 0; }
+  .gf-tablo thead th[aria-sort='ascending']::after { content: ' ↑'; }
+  .gf-tablo thead th[aria-sort='descending']::after { content: ' ↓'; }
+  .gf-tablo .gf-taraf { color: var(--murekkep); border-bottom: 2px solid var(--marka-sari) !important; }
+  .gf-tablo tbody th { text-align: left; font-weight: 400; position: sticky; left: 0; background: var(--beyaz); z-index: 1; }
+  .gf-tablo thead tr:last-child th:first-child { text-align: left; position: sticky; left: 0; z-index: 2; }
+  .gf-tablo tbody th a { color: var(--murekkep); text-decoration: none; }
+  .gf-tablo tbody th a:hover .gf-kod { text-decoration: underline; }
+  .gf-tablo tbody tr:hover { background: var(--kagit); }
+  .gf-kod { font-weight: 600; }
+  .gf-grup { color: var(--gri); font-size: 0.7rem; border: 1px solid var(--cizgi); padding: 0 4px; }
+  .gf-ad { display: -webkit-box; color: var(--gri); font-size: 0.64rem; letter-spacing: 0.01em; line-height: 1.3; max-width: 44ch; white-space: normal; margin-top: 2px; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 2.6em; }
+  .gf-ayrac { border-left: 1px solid var(--cizgi); }
+  .gf-not { margin-top: 32px; max-width: 72ch; color: var(--murekkep-2); }
+  .gf-not h2 { font-size: 1.1rem; }
+  .gf-not li { margin-bottom: 6px; }
+  .gorunmez { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  @media (max-width: 760px) {
+    .gf-kartlar { grid-template-columns: 1fr 1fr; }
+    .gf-ara input { min-width: 0; width: 100%; }
+  }
+</style>

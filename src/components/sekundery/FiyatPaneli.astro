@@ -1,0 +1,236 @@
+---
+// Pay grubu sayfasının fiyat paneli: dağıtım, İTO'lu fiyat, ENDU, ENYU tek panelde; ₺ | $ | € | altın düğmesi bütün rakamları değiştirir.
+// Seçim <html data-para> ve 'sekundery-para' olayıyla sayfanın öteki parçalarına (başlıktaki sermaye, grafik) da yayılır.
+// Altta fiyat cetveli: ENYU, ENDU, dağıtım, İTO enf. ve DDG aynı çizgide, aradaki mesafe görünür. JS kapalıyken ₺ görünümü tam okunur.
+import { yuzdeYaz } from '../../lib/sekundery.mjs';
+import { ayAdi, paraYaz } from '../../lib/sekundery-kur.mjs';
+
+interface Props { s: any; itoSonAy: { yil: number; ay: number } | null; sonTarih?: string | null }
+const { s, itoSonAy, sonTarih = null } = Astro.props;
+const uzun = (t?: string | null) => (t ? new Date(`${t}T12:00:00`).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' }) : null);
+
+type P = 'tl' | 'usd' | 'eur' | 'xau';
+const ISARET: Record<P, string> = { tl: '₺', usd: '$', eur: '€', xau: 'Altın' };
+const AD: Record<P, string> = { tl: 'Türk lirası', usd: 'ABD doları', eur: 'Avro', xau: 'Gram altın' };
+const yaz = (n: number | null | undefined, p: P) => paraYaz(n, p);
+
+const degerler = (p: P) => {
+  const d = p === 'tl' ? null : s[p];
+  return {
+    dagitim: p === 'tl' ? s.dagitim : d.dagitim,
+    ito: p === 'tl' ? s.itoEnf : d.itoEnf,
+    endu: p === 'tl' ? s.satis?.enIyi : d.satis,
+    enduMed: p === 'tl' ? s.satis?.medyan : d.satisMedyan,
+    enduDag: p === 'tl' ? s.satis?.dagitimaGore : d.satisDagitimaGore,
+    enyu: p === 'tl' ? s.alis?.enIyi : d.alis,
+    enyuMed: p === 'tl' ? s.alis?.medyan : d.alisMedyan,
+    enyuDag: p === 'tl' ? s.alis?.dagitimaGore : d.alisDagitimaGore,
+    kurBas: d?.kurBaslangic ?? null,
+    kurBasTarih: d?.kurBaslangicTarih ?? null,
+    kurBugun: d?.kurBugun ?? null,
+    kurBugunTarih: d?.kurBugunTarih ?? null,
+    // DDG (Excel'deki gibi): dağıtım fiyatı, kampanya gününden son güncellemeye dolardaki değişime göre.
+    // $ görünümünde dağıtımla aynı noktaya düşer, orada gösterilmez; € ve altında son günün kuruyla çevrilir.
+    ddg: p === 'usd' || s.usd?.guncel == null ? null : p === 'tl' ? s.usd.guncel : d?.kurBugun ? s.usd.guncel / d.kurBugun : null,
+  };
+};
+const gorunumler = (['tl', 'usd', 'eur', 'xau'] as P[]).filter((p) => p === 'tl' || (s[p]?.dagitim != null && (s[p]?.satis != null || s[p]?.alis != null)));
+
+const yon = (y: number | null | undefined) => (y == null ? '' : y > 0 ? 'arti' : y < 0 ? 'eksi' : '');
+
+// Fiyat cetveli: değerler 0'dan en büyüğe doğrusal; etiketler çakışmasın diye üst/alt sırayla dağıtılır.
+const cetvel = (p: P) => {
+  const v = degerler(p);
+  const isaretler = [
+    { k: 'enyu', ad: 'ENYU', d: v.enyu, sinif: 'm-enyu' },
+    { k: 'endu', ad: 'ENDU', d: v.endu, sinif: 'm-endu' },
+    { k: 'dagitim', ad: 'Dağıtım', d: v.dagitim, sinif: 'm-dag' },
+    { k: 'ito', ad: 'İTO enf.', d: v.ito, sinif: 'm-ito' },
+    { k: 'ddg', ad: 'DDG', d: v.ddg, sinif: 'm-ddg' },
+  ].filter((x) => x.d != null && Number.isFinite(x.d)) as { k: string; ad: string; d: number; sinif: string }[];
+  const enCok = Math.max(...isaretler.map((x) => x.d), 0) * 1.04 || 1;
+  const W = 1000, SOL = 14, SAG = 14;
+  const x = (d: number) => SOL + (d / enCok) * (W - SOL - SAG);
+  const sirali = [...isaretler].sort((a, b) => a.d - b.d);
+  // Etiketler noktadan ayrı yerleşir: sırayla üst/alt satıra dağıtılır, her satırda genişliklerine göre
+  // çakışmayacak kadar yana itilir ve noktaya ince bir çizgiyle bağlanır.
+  const genislik = (m: { ad: string; d: number }) => Math.max(m.ad.length * 9, yaz(m.d, p).length * 10.5) + 18;
+  const yerlesik = sirali.map((m, i) => ({ ...m, px: x(m.d), sira: i % 2 === 0 ? 'ust' : 'alt', g: genislik(m), lx: 0 }));
+  for (const sira of ['ust', 'alt']) {
+    const l = yerlesik.filter((m) => m.sira === sira);
+    l.forEach((m, i) => { m.lx = Math.max(m.px, m.g / 2, i ? l[i - 1].lx + l[i - 1].g / 2 + m.g / 2 : -1e9); });
+    for (let i = l.length - 1; i >= 0; i--) l[i].lx = Math.min(l[i].lx, i < l.length - 1 ? l[i + 1].lx - l[i + 1].g / 2 - l[i].g / 2 : W - l[i].g / 2);
+  }
+  return { W, yerlesik, x };
+};
+---
+
+<section class="fp" data-fp>
+  <header class="fp-ust">
+    <p class="fp-baslik">Fiyatlar <span>· yayındaki ilanlardan</span></p>
+  </header>
+
+  {gorunumler.map((p) => {
+    const v = degerler(p);
+    const c = cetvel(p);
+    return (
+      <div class="fp-gorunum" data-fp-gorunum={p} hidden={p !== 'tl'}>
+        <dl class="fp-izgara">
+          <div class="fp-kutu">
+            <dt>Dağıtım fiyatı</dt>
+            <dd class="fp-rakam">{yaz(v.dagitim, p)}</dd>
+            <dd class="fp-not">Kampanyadaki pay fiyatı</dd>
+          </div>
+          <div class="fp-kutu">
+            <dt>İTO enflasyonlu</dt>
+            <dd class="fp-rakam">{yaz(v.ito, p)}</dd>
+            <dd class="fp-not">{s.itoKaynak === 'evds' ? `Dağıtım fiyatı, ${ayAdi(itoSonAy)} sonuna kadar` : s.itoKaynak === 'excel' ? 'kifobu arşivi (kampanya tarihi yok)' : '—'}</dd>
+          </div>
+          <div class="fp-kutu fp-satis">
+            <dt>En düşük satış · ENDU</dt>
+            <dd class="fp-rakam">{yaz(v.endu, p)}</dd>
+            {v.endu != null ? (
+              <dd class="fp-etiketler">
+                <span class={`fp-e ${yon(v.enduDag)}`}><b>{yuzdeYaz(v.enduDag)}</b> dağıtıma</span>
+                <span class={`fp-e ${yon(s.satis?.enfaGore)}`}><b>{yuzdeYaz(s.satis?.enfaGore)}</b> İTO'ya</span>
+                <span class="fp-mini"><span class="fp-m"><small>Medyan</small><b>{yaz(v.enduMed, p)}</b></span><span class="fp-m"><small>İlan</small><b>{s.satis.ilanSayisi}</b></span>{s.satis.kismi > 0 && <span class="fp-m" title={`Kısmen karşılanan ilan: bunlardan ${s.satis.islenen.toLocaleString('tr-TR')} pay el değiştirdi`}><small>Kısmi</small><b>{s.satis.kismi}</b></span>}</span>
+              </dd>
+            ) : <dd class="fp-not">Satış ilanı yok</dd>}
+          </div>
+          <div class="fp-kutu fp-alis">
+            <dt>En yüksek alış · ENYU</dt>
+            <dd class="fp-rakam">{yaz(v.enyu, p)}</dd>
+            {v.enyu != null ? (
+              <dd class="fp-etiketler">
+                <span class={`fp-e ${yon(v.enyuDag)}`}><b>{yuzdeYaz(v.enyuDag)}</b> dağıtıma</span>
+                <span class={`fp-e ${yon(s.alis?.enfaGore)}`}><b>{yuzdeYaz(s.alis?.enfaGore)}</b> İTO'ya</span>
+                <span class="fp-mini"><span class="fp-m"><small>Medyan</small><b>{yaz(v.enyuMed, p)}</b></span><span class="fp-m"><small>İlan</small><b>{s.alis.ilanSayisi}</b></span>{s.alis.kismi > 0 && <span class="fp-m" title={`Kısmen karşılanan ilan: bunlardan ${s.alis.islenen.toLocaleString('tr-TR')} pay el değiştirdi`}><small>Kısmi</small><b>{s.alis.kismi}</b></span>}</span>
+              </dd>
+            ) : <dd class="fp-not">Alış ilanı yok</dd>}
+          </div>
+        </dl>
+
+        {c.yerlesik.length >= 2 && (
+          <figure class="fp-cetvel" aria-label="Fiyatların aynı çizgi üzerindeki yeri">
+            <svg viewBox={`0 0 ${c.W} 92`} role="img" aria-label={c.yerlesik.map((m) => `${m.ad} ${yaz(m.d, p)}`).join(', ')}>
+              <line x1="14" x2={c.W - 14} y1="46" y2="46" class="c-cizgi" />
+              <text x="14" y="62" class="c-sifir">0</text>
+              {c.yerlesik.map((m) => (
+                <g class={m.sinif}>
+                  <polyline points={m.sira === 'ust' ? `${m.px},40 ${m.px},36 ${m.lx},32` : `${m.px},52 ${m.px},56 ${m.lx},60`} class="c-cubuk" fill="none" />
+                  <circle cx={m.px} cy="46" r="6.5" class="c-nokta" />
+                  <text x={m.lx} y={m.sira === 'ust' ? 14 : 78} text-anchor="middle" class="c-ad">{m.ad}</text>
+                  <text x={m.lx} y={m.sira === 'ust' ? 28 : 92} text-anchor="middle" class="c-deger">{yaz(m.d, p)}</text>
+                </g>
+              ))}
+            </svg>
+            <figcaption>
+              {c.yerlesik.some((m) => m.k === 'ddg') && <span><b>DDG:</b> dağıtım fiyatı, döviz değişimine göre (kampanya gününden bu yana TCMB dolar satış kuru)</span>}
+              {c.yerlesik.some((m) => m.k === 'ito') && <span><b>İTO enf.:</b> İTO enflasyon verilerine göre</span>}
+            </figcaption>
+          </figure>
+        )}
+
+        {p !== 'tl' && (
+          <aside class="fp-kur" aria-label="Çevirmede kullanılan kurlar">
+            <p class="fp-kur-baslik">Bu rakamlar nasıl çevrildi?</p>
+            <dl>
+              <div>
+                <dt>Dağıtım fiyatı</dt>
+                <dd>
+                  Kampanyanın başladığı günün {p === 'xau' ? 'altın fiyatıyla' : 'kuruyla'}
+                  <span class="fp-kur-deger">{uzun(v.kurBasTarih)} · {p === 'xau' ? '1 gr altın' : `1 ${ISARET[p]}`} = ₺{v.kurBas?.toLocaleString('tr-TR', { maximumFractionDigits: p === 'xau' ? 2 : 4 })}</span>
+                </dd>
+              </div>
+              <div>
+                <dt>İlan fiyatları ve İTO'lu fiyat</dt>
+                <dd>
+                  Son güncellemedeki {p === 'xau' ? 'altın fiyatıyla' : 'kurla'}
+                  <span class="fp-kur-deger">{uzun(v.kurBugunTarih)} · {p === 'xau' ? '1 gr altın' : `1 ${ISARET[p]}`} = ₺{v.kurBugun?.toLocaleString('tr-TR', { maximumFractionDigits: p === 'xau' ? 2 : 4 })}</span>
+                </dd>
+              </div>
+            </dl>
+            <p class="fp-kur-not">
+              {p === 'xau' ? 'Kaynak: Borsa İstanbul altın kapanış fiyatı, TCMB EVDS üzerinden.' : `Kaynak: TCMB ${p === 'usd' ? 'dolar' : 'avro'} satış kuru (EVDS).`}
+              İTO'ya göre değişim her birimde aynıdır, çünkü iki fiyat da aynı günün {p === 'xau' ? 'altın fiyatıyla' : 'kuruyla'} çevrilir.
+            </p>
+          </aside>
+        )}
+      </div>
+    );
+  })}
+</section>
+
+<script>
+  // Birim seçimi sayfa başlığındaki düğmeden gelir (<html data-para> ve 'sekundery-para' olayı).
+  const goster = (p: string) => {
+    for (const kok of document.querySelectorAll<HTMLElement>('[data-fp]')) {
+      const var_ = kok.querySelector(`[data-fp-gorunum="${p}"]`) ? p : 'tl';
+      for (const g of kok.querySelectorAll<HTMLElement>('[data-fp-gorunum]')) g.hidden = g.dataset.fpGorunum !== var_;
+    }
+  };
+  document.addEventListener('sekundery-para', (e) => goster((e as CustomEvent).detail));
+  goster(document.documentElement.dataset.para ?? 'tl');
+</script>
+
+<style>
+  .fp { background: var(--beyaz); border: 1px solid var(--cizgi); margin: 0 0 32px; }
+  .fp-ust { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 18px; border-bottom: 1px solid var(--cizgi); background: var(--kagit); }
+  .fp-baslik { margin: 0; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--murekkep); }
+  .fp-baslik span { color: var(--gri); font-weight: 400; letter-spacing: 0.04em; text-transform: none; font-size: 0.8rem; }
+  .fp-gorunum[hidden] { display: none; }
+  .fp-izgara { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0; }
+  .fp-kutu { padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 6px; }
+  .fp-kutu + .fp-kutu { border-left: 1px solid var(--cizgi); }
+  .fp-kutu dt { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gri); display: flex; align-items: center; gap: 8px; }
+  .fp-kutu dt::before { content: ''; width: 10px; height: 10px; border-radius: 50%; flex: none; }
+  .fp-kutu:nth-child(1) dt::before { background: #e8b40c; }
+  .fp-kutu:nth-child(2) dt::before { background: #9a6b00; }
+  .fp-satis dt::before { background: #141a17; }
+  .fp-alis dt::before { background: #2d4fd6; }
+  .fp-kutu dd { margin: 0; }
+  .fp-rakam { font-size: clamp(1.7rem, 3.2vw, 2.3rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; color: var(--murekkep); }
+  .fp-not { font-size: 0.82rem; color: var(--gri); }
+  .fp-etiketler { display: grid; grid-template-columns: max-content; gap: 5px; justify-items: start; }
+  .fp-e { font-size: 0.78rem; padding: 2px 7px; border: 1px solid var(--cizgi); color: var(--murekkep-2); background: var(--kagit); white-space: nowrap; }
+  .fp-e b { font-weight: 700; }
+  .fp-e.eksi b { color: #2f4b6e; }
+  .fp-e.arti b { color: #8a6a00; }
+  .fp-mini { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+  .fp-m { display: inline-flex; align-items: baseline; gap: 6px; padding: 3px 9px; border: 1px solid var(--cizgi); background: var(--beyaz); white-space: nowrap; }
+  .fp-m small { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gri); }
+  .fp-m b { font-size: 0.86rem; font-weight: 700; color: var(--murekkep); }
+  .fp-cetvel { margin: 0; padding: 10px 18px 14px; border-top: 1px solid var(--cizgi); }
+  .fp-cetvel svg { width: 100%; height: auto; display: block; overflow: visible; }
+  .c-cizgi { stroke: #dcd9cf; stroke-width: 3; stroke-linecap: round; }
+  .c-sifir { font-size: 11px; fill: #a5aaa6; }
+  .c-cubuk { stroke: #c9c6bc; stroke-width: 1; }
+  .c-nokta { stroke: var(--beyaz); stroke-width: 2.5; }
+  .c-ad { font-size: 11.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; fill: #5d645f; }
+  .c-deger { font-size: 13px; font-weight: 700; fill: #141a17; }
+  .m-dag .c-nokta { fill: #e8b40c; }
+  .m-ito .c-nokta { fill: #9a6b00; }
+  .m-ddg .c-nokta { fill: #2f7d5b; }
+  .fp-cetvel figcaption { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 8px; font-size: 0.74rem; color: var(--gri); }
+  .fp-cetvel figcaption b { color: var(--murekkep-2); font-weight: 600; }
+  .m-endu .c-nokta { fill: #141a17; }
+  .m-enyu .c-nokta { fill: #2d4fd6; }
+  .fp-kur { margin: 0; padding: 14px 18px 16px; border-top: 1px solid var(--cizgi); background: var(--kagit); }
+  .fp-kur-baslik { margin: 0 0 10px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--murekkep); }
+  .fp-kur dl { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; margin: 0 0 10px; }
+  .fp-kur dl > div { display: flex; flex-direction: column; gap: 3px; padding-top: 8px; border-top: 1px solid var(--cizgi); }
+  .fp-kur dt { font-size: 0.82rem; font-weight: 700; color: var(--murekkep); }
+  .fp-kur dd { margin: 0; font-size: 0.85rem; color: var(--murekkep-2); line-height: 1.45; }
+  .fp-kur-deger { display: block; font-weight: 600; color: var(--murekkep); }
+  .fp-kur-not { margin: 0; font-size: 0.78rem; color: var(--gri); line-height: 1.5; max-width: 80ch; }
+  @media (max-width: 760px) {
+    .fp-kur dl { grid-template-columns: 1fr; }
+    .fp-izgara { grid-template-columns: 1fr 1fr; }
+    .fp-satis, .fp-alis { grid-column: 1 / -1; border-left: 0 !important; border-top: 1px solid var(--cizgi); }
+    .fp-mini { flex-wrap: wrap; }
+    .fp-ust { flex-wrap: wrap; }
+    .fp-ust { padding: 10px 12px; }
+    .fp-kutu { padding: 14px 12px; }
+    .fp-cetvel { display: none; }
+  }
+</style>
