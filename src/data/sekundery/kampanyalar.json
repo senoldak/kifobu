@@ -63,14 +63,14 @@
    ]
   },
   "ALISVER": {
-   "unvan": "Alışverişlio SuperApp",
+   "unvan": "ALIŞVERİŞLİO FİNANSAL TEKNOLOJİ VE YAZILIM GELİŞTİRME ANONİM ŞİRKETİ",
    "gruplar": [
     "B"
    ],
    "kampanyalar": [
     {
      "ad": null,
-     "fonAktarim": null,
+     "fonAktarim": "2024-06-27",
      "yatirimci": 1001,
      "sermaye": 9064000,
      "dagitimOrani": 7,
@@ -295,18 +295,18 @@
    ]
   },
   "BUKYTALK": {
-   "unvan": "BukyTalk",
+   "unvan": "BUKYTALK BİLGİ TEKNOLOJİLERİ EĞİTİM VE DANIŞMANLIK ANONİM ŞİRKETİ",
    "gruplar": [
     "D"
    ],
    "kampanyalar": [
     {
      "ad": null,
-     "fonAktarim": "2023-04-24",
+     "fonAktarim": "2023-04-21",
      "yatirimci": 641,
      "sermaye": 2989583,
      "dagitimOrani": 10,
-     "dagitimFiyati": 7.02,
+     "dagitimFiyati": 7.35,
      "gruplar": [
       "D"
      ]
@@ -528,14 +528,14 @@
    ]
   },
   "DELSA": {
-   "unvan": "DELSA",
+   "unvan": "DELSA BİLGİ VE SAVUNMA TEKNOLOJİLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ",
    "gruplar": [
     "B"
    ],
    "kampanyalar": [
     {
      "ad": null,
-     "fonAktarim": "2024-04-29",
+     "fonAktarim": "2024-03-29",
      "yatirimci": 1128,
      "sermaye": 11823606,
      "dagitimOrani": 10,
@@ -822,7 +822,7 @@
    ]
   },
   "GEZIBIL": {
-   "unvan": "GeziBilen",
+   "unvan": "BİLEN BİLİŞİM TEKNOLOJİLERİ TİCARET ANONİM ŞİRKETİ",
    "gruplar": [
     "B"
    ],
@@ -889,7 +889,7 @@
    ]
   },
   "HELPSTEP": {
-   "unvan": "Help Steps",
+   "unvan": "PYUA DİJİTAL YAZILIM SANAYİ VE TİCARET ANONİM ŞİRKETİ",
    "gruplar": [
     "C"
    ],
@@ -928,7 +928,7 @@
    ]
   },
   "INNFINIT": {
-   "unvan": "Innfinitive",
+   "unvan": "INNFINITIVE YAZILIM BİLİŞİM VE DANIŞMANLIK TİCARET ANONİM ŞİRKETİ",
    "gruplar": [
     "C"
    ],
@@ -1007,7 +1007,7 @@
    ]
   },
   "KIVIERP": {
-   "unvan": "KiviERP",
+   "unvan": "KİVİ BİLGİ SİSTEMLERİ VE TEKNOLOJİLERİ YAZILIM DANIŞMANLIK HİZMETLERİ TİCARET A.Ş.",
    "gruplar": [
     "B"
    ],
@@ -1018,7 +1018,7 @@
      "yatirimci": 492,
      "sermaye": 4111693,
      "dagitimOrani": 13,
-     "dagitimFiyati": 7.3,
+     "dagitimFiyati": 7.39,
      "gruplar": [
       "B"
      ]
@@ -1046,16 +1046,16 @@
    ]
   },
   "LASTIK": {
-   "unvan": "Lastik Borsası",
+   "unvan": "LB BİLİŞİM TEKNOLOJİLERİ ANONİM ŞİRKETİ",
    "gruplar": [
     "B"
    ],
    "kampanyalar": [
     {
      "ad": null,
-     "fonAktarim": null,
+     "fonAktarim": "2025-12-25",
      "yatirimci": 687,
-     "sermaye": 125329428,
+     "sermaye": 24400000,
      "dagitimOrani": 8.52,
      "dagitimFiyati": 8.78,
      "gruplar": [
@@ -1083,7 +1083,7 @@
    ]
   },
   "MACELLAN": {
-   "unvan": "Macellan SuperApp",
+   "unvan": "MACELLAN İLERİ TEKNOLOJİ ANONİM ŞİRKETİ",
    "gruplar": [
     "B"
    ],
@@ -1092,7 +1092,7 @@
      "ad": null,
      "fonAktarim": "2022-12-14",
      "yatirimci": 1567,
-     "sermaye": 18920955,
+     "sermaye": 20080823,
      "dagitimOrani": 1.48,
      "dagitimFiyati": 59.46,
      "gruplar": [
@@ -1440,14 +1440,14 @@
    ]
   },
   "PHARUS": {
-   "unvan": "Pharus Tech",
+   "unvan": "PHARUS TECH MÜHENDİSLİK VE TEKNOLOJİ ANONİM ŞİRKETİ",
    "gruplar": [
     "B"
    ],
    "kampanyalar": [
     {
      "ad": null,
-     "fonAktarim": "2024-06-21",
+     "fonAktarim": "2024-06-07",
      "yatirimci": 809,
      "sermaye": 5092735,
      "dagitimOrani": 11.88,
@@ -1459,14 +1459,14 @@
    ]
   },
   "POCKET": {
-   "unvan": "Pocket eSIM",
+   "unvan": "PWT TEKNOLOJİ ANONİM ŞİRKETİ",
    "gruplar": [
     "C"
    ],
    "kampanyalar": [
     {
      "ad": null,
-     "fonAktarim": null,
+     "fonAktarim": "2023-12-13",
      "yatirimci": 655,
      "sermaye": 8984431,
      "dagitimOrani": 10,
@@ -1882,14 +1882,14 @@
    ]
   },
   "SUGAR": {
-   "unvan": "Sugar Technology",
+   "unvan": "SUGAR TECHNOLOGY YAZILIM ANONİM ŞİRKETİ",
    "gruplar": [
     "B"
    ],
    "kampanyalar": [
     {
      "ad": null,
-     "fonAktarim": null,
+     "fonAktarim": "2022-07-22",
      "yatirimci": 200,
      "sermaye": 1850000,
      "dagitimOrani": 7,
@@ -2178,14 +2178,14 @@
    ]
   },
   "YUYUTO": {
-   "unvan": "Yuyuto Games",
+   "unvan": "YUYUTO GAMES TEKNOLOJİ ANONİM ŞİRKETİ",
    "gruplar": [
     "B"
    ],
    "kampanyalar": [
     {
      "ad": null,
-     "fonAktarim": null,
+     "fonAktarim": "2024-05-13",
      "yatirimci": 915,
      "sermaye": 9070438,
      "dagitimOrani": 8.5,

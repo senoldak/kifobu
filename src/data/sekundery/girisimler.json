@@ -36,7 +36,7 @@
   "dagitim": 10.59,
   "itoEnf": null,
   "ad": "Alışverişlio SuperApp",
-  "fonAktarim": null,
+  "fonAktarim": "2024-06-27",
   "kampanya": null,
   "surekli": true
  },
@@ -154,10 +154,10 @@
   "kod": "BUKYTALK",
   "grup": "D",
   "baslangic": "2023-01-04",
-  "dagitim": 7.02,
+  "dagitim": 7.35,
   "itoEnf": null,
   "ad": "BukyTalk",
-  "fonAktarim": "2023-04-24",
+  "fonAktarim": "2023-04-21",
   "kampanya": null,
   "surekli": true
  },
@@ -288,7 +288,7 @@
   "dagitim": 8.46,
   "itoEnf": null,
   "ad": "DELSA",
-  "fonAktarim": "2024-04-29",
+  "fonAktarim": "2024-03-29",
   "kampanya": null,
   "surekli": true
  },
@@ -539,7 +539,7 @@
   "kod": "KIVIERP",
   "grup": "B",
   "baslangic": "2022-10-17",
-  "dagitim": 7.3,
+  "dagitim": 7.39,
   "itoEnf": null,
   "ad": "KiviERP",
   "fonAktarim": "2022-12-28",
@@ -563,7 +563,7 @@
   "dagitim": 8.78,
   "itoEnf": null,
   "ad": "Lastik Borsası",
-  "fonAktarim": null,
+  "fonAktarim": "2025-12-25",
   "kampanya": null,
   "surekli": true
  },
@@ -745,7 +745,7 @@
   "dagitim": 8.25,
   "itoEnf": null,
   "ad": "Pharus Tech",
-  "fonAktarim": "2024-06-21",
+  "fonAktarim": "2024-06-07",
   "kampanya": null,
   "surekli": true
  },
@@ -756,7 +756,7 @@
   "dagitim": 8.35,
   "itoEnf": null,
   "ad": "Pocket eSIM",
-  "fonAktarim": null,
+  "fonAktarim": "2023-12-13",
   "kampanya": null,
   "surekli": true
  },
@@ -977,7 +977,7 @@
   "dagitim": 13.51,
   "itoEnf": null,
   "ad": "Sugar Technology",
-  "fonAktarim": null,
+  "fonAktarim": "2022-07-22",
   "kampanya": null,
   "surekli": true
  },
@@ -1118,7 +1118,7 @@
   "dagitim": 9.92,
   "itoEnf": null,
   "ad": "Yuyuto Games",
-  "fonAktarim": null,
+  "fonAktarim": "2024-05-13",
   "kampanya": null,
   "surekli": true
  },
