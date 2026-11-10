@@ -55,7 +55,7 @@ const uzun = (t: string) => new Date(`${t}T12:00:00`).toLocaleDateString('tr-TR'
           <p class="io-t-alt">{tutar(satisT).map((x) => <span class={`pv pv-${x.p}`}>{x.m}</span>)} · {satisIlan.toLocaleString('tr-TR')} ilan</p>
         </div>
         <div class="io-cubuk" role="img" aria-label={`Toplam ilan tutarının ${yuzde(satisPay)} kadarı satış ilanlarında`}>
-          <span class="io-c-s" style={`width:${satisPay ?? 0}%`}></span><span class="io-c-a" style={`width:${100 - (satisPay ?? 0)}%`}></span>
+          <svg class="io-c-s" width={`${satisPay ?? 0}%`} height="100%" aria-hidden="true"></svg><svg class="io-c-a" width={`${100 - (satisPay ?? 0)}%`} height="100%" aria-hidden="true"></svg>
         </div>
         <div class="io-taraf io-t-a">
           <p class="io-t-ad">Alış ilanları</p>
@@ -75,7 +75,7 @@ const uzun = (t: string) => new Date(`${t}T12:00:00`).toLocaleDateString('tr-TR'
               <span class="io-k-kod">{s.kod} <small>{s.grup}</small></span>
               {s.unvan && <span class="io-k-ad" title={tamUnvan(s.unvan) ?? undefined}>{tamUnvan(s.unvan)}</span>}
               <span class="io-k-tutar">{tutar(o.toplamTutar).map((x) => <span class={`pv pv-${x.p}`}>{x.m}</span>)}</span>
-              <span class="io-k-cubuk"><span style={`width:${o.satisPayi ?? 0}%`}></span></span>
+              <span class="io-k-cubuk"><svg width={`${o.satisPayi ?? 0}%`} height="100%" aria-hidden="true"></svg></span>
               <span class="io-k-oran"><span>Satış {yuzde(o.satisPayi)}</span><span>Alış {yuzde(o.satisPayi == null ? null : Math.round((100 - o.satisPayi) * 10) / 10)}</span></span>
             </a>
           </li>
@@ -94,7 +94,7 @@ const uzun = (t: string) => new Date(`${t}T12:00:00`).toLocaleDateString('tr-TR'
               <a class="io-l-ad" href={`/sekundery/${b.s.anahtar.toLowerCase()}/`}><span class="io-k-kod">{b.s.kod} <small>{b.s.grup}</small></span>{b.s.unvan && <span class="io-k-ad">{tamUnvan(b.s.unvan)}</span>}</a>
               <span class={`io-l-taraf io-lt-${b.tur}`}>{b.tur === 'satis' ? 'Satış ilanı' : 'Alış ilanı'}</span>
               <span class="io-l-tutar">{tutar(b.tutar).map((x) => <span class={`pv pv-${x.p}`}>{x.m}</span>)}</span>
-              <span class="io-l-pay"><span class="io-l-pc"><span style={`width:${b.pay}%`}></span></span>{yuzde(b.pay)} <small>{b.tur === 'satis' ? 'satıştakilerin' : 'alıştakilerin'}</small></span>
+              <span class="io-l-pay"><span class="io-l-pc"><svg width={`${b.pay}%`} height="100%" aria-hidden="true"></svg></span>{yuzde(b.pay)} <small>{b.tur === 'satis' ? 'satıştakilerin' : 'alıştakilerin'}</small></span>
             </li>
           ))}
         </ol>
@@ -126,8 +126,8 @@ const uzun = (t: string) => new Date(`${t}T12:00:00`).toLocaleDateString('tr-TR'
   .io-t-yuzde { font-size: 2.6rem; font-weight: 700; letter-spacing: -0.03em; color: var(--murekkep); line-height: 1.05; }
   .io-t-alt { font-size: 0.82rem; color: var(--murekkep-2); }
   .io-cubuk { display: flex; height: 22px; background: var(--cizgi); }
-  .io-c-s { background: #10b981; }
-  .io-c-a { background: #a7e9cf; }
+  .io-c-s { display: block; background: #10b981; }
+  .io-c-a { display: block; background: #a7e9cf; }
   .io-karolar { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
   .io-karolar a { display: flex; flex-direction: column; gap: 4px; height: 100%; padding: 12px 14px; background: var(--beyaz); border: 1px solid var(--cizgi); color: var(--murekkep); text-decoration: none; }
   .io-karolar a:hover { border-color: var(--murekkep); }
@@ -136,7 +136,7 @@ const uzun = (t: string) => new Date(`${t}T12:00:00`).toLocaleDateString('tr-TR'
   .io-k-ad { display: block; font-size: 0.62rem; color: var(--gri); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .io-k-tutar { font-size: 1.05rem; font-weight: 700; margin-top: 4px; font-variant-numeric: tabular-nums; }
   .io-k-cubuk { display: block; height: 8px; background: #a7e9cf; margin-top: 2px; }
-  .io-k-cubuk span { display: block; height: 100%; background: #10b981; }
+  .io-k-cubuk svg { display: block; background: #10b981; }
   .io-k-oran { display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--gri); }
   .io-liste { list-style: none; margin: 0; padding: 0; background: var(--beyaz); border: 1px solid var(--cizgi); }
   .io-liste li { display: grid; grid-template-columns: 34px minmax(0, 1.6fr) 110px minmax(0, 1fr) minmax(0, 1.2fr); gap: 14px; align-items: center; padding: 10px 16px; border-bottom: 1px solid var(--cizgi); }
@@ -150,7 +150,7 @@ const uzun = (t: string) => new Date(`${t}T12:00:00`).toLocaleDateString('tr-TR'
   .io-l-pay { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 600; }
   .io-l-pay small { font-weight: 400; color: var(--gri); }
   .io-l-pc { flex: 0 0 70px; height: 7px; background: var(--cizgi); }
-  .io-l-pc span { display: block; height: 100%; background: #10b981; }
+  .io-l-pc svg { display: block; background: #10b981; }
   .io-not { color: var(--gri); font-size: 0.88rem; max-width: 80ch; }
   @media (max-width: 900px) {
     .io-karolar { grid-template-columns: repeat(2, minmax(0, 1fr)); }

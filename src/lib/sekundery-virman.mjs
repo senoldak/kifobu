@@ -20,6 +20,9 @@ export function virmanOzeti(V, bugun) {
 }
 
 /** Hücre rengi: kısa süre krem, orta ayçiçeği sarısı, uzun hardal; yazı hep mürekkep (sahibi: koyu renk istemedi). */
+/** virmanRengi'nin 10 kovalı hâli (0–9); sayfa satır içi stil kullanamadığı için sınıf adı olarak verilir. */
+export const virmanKova = (g) => Math.min(9, Math.max(0, Math.round(Math.min(g / 45, 1) * 9)));
+
 export function virmanRengi(g) {
   const t = Math.min(g / 45, 1);
   const d = [[252, 249, 238], [246, 222, 140], [214, 160, 40]];

@@ -50,7 +50,7 @@ const teklifSay = tk(satis) != null || tk(alis) != null ? { s: tk(satis) ?? 0, a
       <div class="id-genis">
         <dt>İlan tutarı</dt>
         <dd class="id-oran" aria-label={`Satış ilanları toplam tutarın ${yuzde(o.satisPayi)} kadarı`}>
-          <span class="id-o-s" style={`width:${o.satisPayi ?? 0}%`}></span><span class="id-o-a" style={`width:${100 - (o.satisPayi ?? 0)}%`}></span>
+          <svg class="id-o-s" width={`${o.satisPayi ?? 0}%`} height="100%" aria-hidden="true"></svg><svg class="id-o-a" width={`${100 - (o.satisPayi ?? 0)}%`} height="100%" aria-hidden="true"></svg>
         </dd>
         <dd class="id-alt id-iki">
           <span><i class="id-n id-n-s"></i>Satış {yuzde(o.satisPayi)} · {tutar(o.satis?.tutar ?? 0).map((x) => <span class={`pv pv-${x.p}`}>{x.m}</span>)}</span>
@@ -91,7 +91,7 @@ const teklifSay = tk(satis) != null || tk(alis) != null ? { s: tk(satis) ?? 0, a
           <div class="id-satir">
             <div class="id-sol">
               {d.alisAdet > 0 && <span class="id-say">{sayi(d.alisAdet)}</span>}
-              <span class="id-cubuk id-c-a" style={`width:${(d.alisAdet / enCok) * 100}%`}></span>
+              <svg class="id-cubuk id-c-a" width={`${(d.alisAdet / enCok) * 100}%`} height="14" aria-hidden="true"></svg>
             </div>
             <div class="id-dilim">
               {fiyat(d.alt).map((x, i) => (
@@ -99,7 +99,7 @@ const teklifSay = tk(satis) != null || tk(alis) != null ? { s: tk(satis) ?? 0, a
               ))}
             </div>
             <div class="id-sag">
-              <span class="id-cubuk id-c-s" style={`width:${(d.satisAdet / enCok) * 100}%`}></span>
+              <svg class="id-cubuk id-c-s" width={`${(d.satisAdet / enCok) * 100}%`} height="14" aria-hidden="true"></svg>
               {d.satisAdet > 0 && <span class="id-say">{sayi(d.satisAdet)}</span>}
             </div>
           </div>
@@ -127,8 +127,8 @@ const teklifSay = tk(satis) != null || tk(alis) != null ? { s: tk(satis) ?? 0, a
   .id-alt { font-size: 0.74rem; color: var(--gri); line-height: 1.4; }
   .id-iki { display: flex; flex-direction: column; gap: 2px; }
   .id-oran { display: flex; height: 10px; margin: 8px 0 4px !important; background: var(--cizgi); }
-  .id-o-s { background: #10b981; }
-  .id-o-a { background: #a7e9cf; }
+  .id-o-s { display: block; background: #10b981; }
+  .id-o-a { display: block; background: #a7e9cf; }
   .id-n { display: inline-block; width: 9px; height: 9px; margin-right: 6px; vertical-align: 0; }
   .id-n-s { background: #10b981; }
   .id-n-a { background: #a7e9cf; }
@@ -141,7 +141,7 @@ const teklifSay = tk(satis) != null || tk(alis) != null ? { s: tk(satis) ?? 0, a
   .id-satir { padding: 3px 0; border-bottom: 1px solid #f1efe9; }
   .id-sol, .id-sag { display: flex; align-items: center; gap: 6px; min-width: 0; }
   .id-sol { justify-content: flex-end; }
-  .id-cubuk { display: block; height: 14px; min-width: 0; }
+  .id-cubuk { display: block; height: 14px; min-width: 0; flex-shrink: 1; }
   .id-c-a { background: #a7e9cf; }
   .id-c-s { background: #10b981; }
   .id-say { font-size: 0.72rem; color: var(--murekkep-2); font-variant-numeric: tabular-nums; white-space: nowrap; }

@@ -106,7 +106,7 @@ const altinBugun = satirlar.find((s) => s.xau.kurBugun)?.xau.kurBugun ?? null;
         <div class="sk-serit-oran">
           <p class="sk-serit-baslik">İlan tutarında satış ve alış</p>
           <div class="sk-serit-cubuk" role="img" aria-label={`Toplam ilan tutarının ${yz1(satisPayGenel)} kadarı satış ilanlarında`}>
-            <span class="sk-sc-s" style={`width:${satisPayGenel}%`}></span><span class="sk-sc-a" style={`width:${100 - satisPayGenel}%`}></span>
+            <svg class="sk-sc-s" width={`${satisPayGenel}%`} height="100%" aria-hidden="true"></svg><svg class="sk-sc-a" width={`${100 - satisPayGenel}%`} height="100%" aria-hidden="true"></svg>
           </div>
           <div class="sk-serit-etiket"><span><i class="sk-n sk-n-s"></i>Satış {yz1(satisPayGenel)}</span><span><i class="sk-n sk-n-a"></i>Alış {yz1(Math.round((100 - satisPayGenel) * 10) / 10)}</span></div>
           <a class="sk-serit-git" href="/sekundery/ilan-ozeti/">Pay gruplarına göre ve en büyük ilanlar: İlan özeti →</a>
@@ -178,7 +178,7 @@ const altinBugun = satirlar.find((s) => s.xau.kurBugun)?.xau.kurBugun ?? null;
                   <tr>
                     <th scope="row"><a href={`/sekundery/${s.anahtar.toLowerCase()}/`}><span class="sk-kod">{s.kod}</span> <span class="sk-grup">{s.grup}</span></a>{s.unvan && <span class="sk-kk-ad" title={tamUnvan(s.unvan) ?? undefined}>{tamUnvan(s.unvan)}</span>}</th>
                     <td><strong>{tl(o.toplamTutar)}</strong></td>
-                    <td class="sk-oz-hucre"><span class="sk-oz-oran" title={`Satış ${yz1(o.satisPayi)} · alış ${yz1(o.satisPayi == null ? null : 100 - o.satisPayi)}`}><span style={`width:${o.satisPayi ?? 0}%`}></span></span> <small>{yz1(o.satisPayi)}</small></td>
+                    <td class="sk-oz-hucre"><span class="sk-oz-oran" title={`Satış ${yz1(o.satisPayi)} · alış ${yz1(o.satisPayi == null ? null : 100 - o.satisPayi)}`}><svg width={`${o.satisPayi ?? 0}%`} height="100%" aria-hidden="true"></svg></span> <small>{yz1(o.satisPayi)}</small></td>
                   </tr>
                 ))}
               </tbody>
@@ -363,8 +363,8 @@ const altinBugun = satirlar.find((s) => s.xau.kurBugun)?.xau.kurBugun ?? null;
   .sk-serit-oran { padding: 16px 20px; display: flex; flex-direction: column; justify-content: center; gap: 8px; }
   .sk-serit-baslik { margin: 0; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gri); }
   .sk-serit-cubuk { display: flex; height: 14px; background: var(--cizgi); }
-  .sk-sc-s { background: #10b981; }
-  .sk-sc-a { background: #a7e9cf; }
+  .sk-sc-s { display: block; background: #10b981; }
+  .sk-sc-a { display: block; background: #a7e9cf; }
   .sk-serit-etiket { display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; }
   .sk-n { display: inline-block; width: 9px; height: 9px; margin-right: 6px; }
   .sk-n-s { background: #10b981; }
@@ -431,7 +431,7 @@ const altinBugun = satirlar.find((s) => s.xau.kurBugun)?.xau.kurBugun ?? null;
   .sk-oz-hucre { width: 1%; }
   .sk-oz-hucre small { display: inline-block; min-width: 3.4em; text-align: right; font-variant-numeric: normal; }
   .sk-oz-oran { display: inline-block; width: 64px; height: 7px; background: #a7e9cf; vertical-align: middle; }
-  .sk-oz-oran span { display: block; height: 100%; background: #10b981; }
+  .sk-oz-oran svg { display: block; background: #10b981; }
   .sk-kk-tablo small { color: var(--gri); }
   .sk-kk-alt { margin: 10px 0 0; font-size: 0.9rem; color: var(--gri); }
   .sk-kk-alt a { color: var(--murekkep); font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--marka-sari); }

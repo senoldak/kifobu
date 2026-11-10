@@ -169,9 +169,10 @@ const tarihYaz = (t: string) => new Date(`${t}T12:00:00`).toLocaleDateString('tr
           .map((s) => {
             const v = p ? p[s.a] : s.ort ? ([...gorunen].reverse().find((x) => x[s.a] != null)?.[s.a] ?? null) : sonDeger(s.a)?.[s.a];
             const acik = seriler[s.a].options().visible;
-            return `<div data-s="${s.a}" class="${acik ? '' : 'kapali'}" role="button" tabindex="0" aria-pressed="${acik}"><dt><i style="--r:${s.r}"></i>${s.ad}</dt><dd>${fy(v)}${s.a === 'enDusukSatis' || s.a === 'enYuksekAlis' ? yz(v, dagitimP) : ''}</dd></div>`;
+            return `<div data-s="${s.a}" class="${acik ? '' : 'kapali'}" role="button" tabindex="0" aria-pressed="${acik}"><dt><i data-r="${s.r}"></i>${s.ad}</dt><dd>${fy(v)}${s.a === 'enDusukSatis' || s.a === 'enYuksekAlis' ? yz(v, dagitimP) : ''}</dd></div>`;
           })
           .join('');
+      for (const i of olcu.querySelectorAll<HTMLElement>('i[data-r]')) i.style.setProperty('--r', i.dataset.r!);
     };
     yaz(null, sonTarih);
     g.subscribeCrosshairMove((e) => {

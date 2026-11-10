@@ -6,7 +6,7 @@ import SekunderyIzah from '../../components/sekundery/SekunderyIzah.astro';
 import Yol from '../../components/Yol.astro';
 import DonemSutun from '../../components/sekundery/DonemSutun.astro';
 import virman from '../../data/sekundery/virman.json';
-import { virmanOzeti, virmanRengi, ayKisa, uzunTarih, sayiYaz, tamUnvan } from '../../lib/sekundery-virman.mjs';
+import { virmanOzeti, virmanKova, ayKisa, uzunTarih, sayiYaz, tamUnvan } from '../../lib/sekundery-virman.mjs';
 import { medyan } from '../../lib/sekundery.mjs';
 import { tumAnahtarlar } from '../../lib/sekundery-veri.mjs';
 
@@ -108,7 +108,7 @@ const satirlar = [...sirketler].sort(([a], [b]) => a.localeCompare(b, 'tr')).map
             <tr data-ara={`${k} ${s.unvan}`.toLocaleLowerCase('tr-TR')}>
               <th scope="row" data-d={k}>{grupSayfasi(k) ? <a href={grupSayfasi(k)!}>{k}</a> : <b>{k}</b>}<span>{tamUnvan(s.unvan)}</span></th>
               {gunler.map((g: number | null, i: number) =>
-                g == null ? <td class="vs-bos" data-d="">·</td> : <td data-d={g} style={`background:${virmanRengi(g)}`} title={`${k} · ${uzunTarih(donemler[i].acilis)} dönemi · duyuru ${uzunTarih(s.virman[donemler[i].acilis].tarih)} · ${g} gün`}>{g}</td>,
+                g == null ? <td class="vs-bos" data-d="">·</td> : <td data-d={g} class={`vr-${virmanKova(g)}`} title={`${k} · ${uzunTarih(donemler[i].acilis)} dönemi · duyuru ${uzunTarih(s.virman[donemler[i].acilis].tarih)} · ${g} gün`}>{g}</td>,
               )}
               <td class="md" data-d={m ?? ''}>{sayiYaz(m)}</td>
               <td class={`vs-deg ${deg == null ? '' : deg > 0 ? 'vs-a' : deg < 0 ? 'vs-e' : ''}`} data-d={deg ?? ''}>{deg == null ? '·' : `${deg > 0 ? '+' : deg < 0 ? '−' : ''}${Math.abs(deg)}`}</td>
@@ -193,6 +193,11 @@ const satirlar = [...sirketler].sort(([a], [b]) => a.localeCompare(b, 'tr')).map
   tbody th span { color: var(--gri); font-size: 0.75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: inline-block; max-width: 120px; vertical-align: bottom; }
   td { height: 30px; min-width: 38px; font-weight: 600; color: var(--murekkep); }
   td.vs-bos { color: #cfcabd; font-weight: 400; }
+  /* virman süresi renk kovaları (virmanRengi, 0–45+ gün; CSP satır içi stile izin vermez) */
+  .vr-0 { background: rgb(252,249,238); } .vr-1 { background: rgb(251,243,216); } .vr-2 { background: rgb(249,237,194); }
+  .vr-3 { background: rgb(248,231,173); } .vr-4 { background: rgb(247,225,151); } .vr-5 { background: rgb(242,215,129); }
+  .vr-6 { background: rgb(235,201,107); } .vr-7 { background: rgb(228,188,84); } .vr-8 { background: rgb(221,174,62); }
+  .vr-9 { background: rgb(214,160,40); }
   td.vs-deg { font-weight: 600; }
   td.vs-a { color: #8a6a00; }
   td.vs-e { color: #2f4b6e; }
