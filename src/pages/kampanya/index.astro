@@ -1,15 +1,19 @@
 ---
-// Kampanya veritabanı: günlük bültenin 18:00 kayıtlarındaki bütün kampanyalar (src/lib/kampanya.ts).
+// Kampanya veritabanı: günlük bültenin 18:00 kayıtlarındaki kampanyalar (src/lib/kampanya.ts) ve 2021'den beri kapanmış
+// kampanyaların tamamı (src/lib/kampanya-gecmis.ts).
 import { jsonLdMetni } from '../../lib/json-ld.mjs';
 import Base from '../../layouts/Base.astro';
 import KampanyaTablosu from '../../components/KampanyaTablosu.astro';
+import GecmisKampanyaTablosu from '../../components/GecmisKampanyaTablosu.astro';
+import gecmis from '../../data/kampanya-gecmis.json';
+import type { GecmisKampanya } from '../../lib/kampanya-gecmis';
 import Yol from '../../components/Yol.astro';
 import { dizinVerisi } from '../../lib/dizin';
-import { hedefeUlasti } from '../../lib/kampanya';
 import { sayfaLd } from '../../lib/ld';
 import { RISK_NOTU, formatDate } from '../../lib/site';
 
 const { kampanyalar, kayitlar } = await dizinVerisi();
+const gecmisler = gecmis.kampanyalar as GecmisKampanya[];
 const ilk = kayitlar[0]?.tarih;
 const son = kayitlar[kayitlar.length - 1]?.tarih;
 const gun = (t: string) => formatDate(new Date(`${t}T12:00:00+03:00`));
@@ -19,11 +23,11 @@ const adimlar = [{ ad: 'Anasayfa', url: '/' }, { ad: 'Kampanyalar', url: '/kampa
 const jsonLd = sayfaLd({ site: Astro.site!, yol: '/kampanya/', ad: 'Kitle fonlama kampanyaları', aciklama, ogeler: kampanyalar.map((k) => `/kampanya/${k.slug}/`), adimlar });
 ---
 
-<Base title="Kitle fonlama kampanyaları" description={aciklama} noindex={kampanyalar.length === 0}>
+<Base title="Kitle fonlama kampanyaları" description={aciklama}>
   <script slot="head" type="application/ld+json" set:html={jsonLdMetni(jsonLd)} />
   <div slot="tahta" class="kategori-bas">
     <h1 class="kategori-isim">Kampanyalar</h1>
-    <p class="kategori-sayi">{kampanyalar.length} kampanya · {kampanyalar.filter(hedefeUlasti).length} hedefe ulaştı</p>
+    <p class="kategori-sayi">{gecmisler.length} kapanmış kampanya · {gecmisler.filter((k) => k.durum === 'fonlandi').length} fonlandı</p>
   </div>
 
   <Yol adimlar={adimlar} />
@@ -34,6 +38,10 @@ const jsonLd = sayfaLd({ site: Astro.site!, yol: '/kampanya/', ad: 'Kitle fonlam
       sayfalarından alınır{ilk && son && `; kayıtlar ${gun(ilk)} – ${gun(son)} arasını kapsar`}. Her kampanyanın sayfasında
       günlük seyir yer alır; bütün seri <a href="/arsiv/">arşivde</a> ve CSV olarak indirilebilir.
     </p>
+    <p>
+      Aşağıdaki tabloda 2021’den bu yana kapanan {gecmisler.length} kampanya yer alır. Bir girişimin adına tıklandığında bütün
+      turları, pay arz oranı, değerlemesi ve yatırımcı sayısıyla girişim sayfası açılır.
+    </p>
   </div>
 
   {
@@ -43,5 +51,6 @@ const jsonLd = sayfaLd({ site: Astro.site!, yol: '/kampanya/', ad: 'Kitle fonlam
       <p class="bos">Kampanya kaydı henüz yok.</p>
     )
   }
+  <GecmisKampanyaTablosu kampanyalar={gecmisler} />
   <p class="dizin-not">{RISK_NOTU}</p>
 </Base>

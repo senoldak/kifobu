@@ -1,0 +1,119 @@
+---
+// Kapanmış kampanyaların tamamı (kampanya dizini): platforma, yıla ve sonuca göre süzülür; sütun başlığına tıklanınca sıralanır.
+import { paraTam, yuzdeBicim } from '../lib/arsiv/bicim.ts';
+import { formatNumber } from '../lib/site';
+import { gecmisGirisimler, gerceklesme, kampanyaCapasi, type GecmisKampanya } from '../lib/kampanya-gecmis.ts';
+
+interface Props {
+  kampanyalar: GecmisKampanya[];
+}
+
+const { kampanyalar } = Astro.props;
+const slugu = new Map<GecmisKampanya, string>();
+for (const g of gecmisGirisimler(kampanyalar)) for (const k of g.kampanyalar) slugu.set(k, g.slug);
+const sirali = [...kampanyalar].sort((a, b) => (a.baslangic < b.baslangic ? 1 : a.baslangic > b.baslangic ? -1 : 0));
+const platformlar = [...new Set(kampanyalar.map((k) => k.platform))].sort((a, b) => a.localeCompare(b, 'tr'));
+const yillar = [...new Set(kampanyalar.map((k) => k.baslangic.slice(0, 4)))].sort().reverse();
+const kisaTarih = (t: string) => `${t.slice(8, 10)}.${t.slice(5, 7)}.${t.slice(0, 4)}`;
+---
+
+<section class="bolum gkt" aria-labelledby="gkt-baslik">
+  <div class="bolum-bas">
+    <h2 class="bolum-baslik" id="gkt-baslik">Bütün kampanyalar</h2>
+    <span class="gkt-sayi" data-gkt-sayi>{kampanyalar.length} kampanya</span>
+  </div>
+  <form class="gkt-suzgec" data-gkt-suzgec>
+    <label>Platform
+      <select name="platform"><option value="">Hepsi</option>{platformlar.map((p) => <option value={p}>{p}</option>)}</select>
+    </label>
+    <label>Yıl
+      <select name="yil"><option value="">Hepsi</option>{yillar.map((y) => <option value={y}>{y}</option>)}</select>
+    </label>
+    <label>Sonuç
+      <select name="durum"><option value="">Hepsi</option><option value="fonlandi">Fonlandı</option><option value="fonlanamadi">Fonlanamadı</option></select>
+    </label>
+  </form>
+  <div class="tablo-kap">
+    <table class="veri-tablo gkt-tablo" data-gkt>
+      <caption class="sr-only">Kapanmış paya dayalı kitle fonlama kampanyaları</caption>
+      <thead>
+        <tr>
+          <th scope="col"><button type="button" data-sirala="ad">Girişim</button></th>
+          <th scope="col"><button type="button" data-sirala="platform">Platform</button></th>
+          <th scope="col"><button type="button" data-sirala="baslangic" aria-sort="descending">Başlangıç</button></th>
+          <th scope="col" class="sayi"><button type="button" data-sirala="hedef">Hedef</button></th>
+          <th scope="col" class="sayi"><button type="button" data-sirala="alinan">Toplanan</button></th>
+          <th scope="col" class="sayi"><button type="button" data-sirala="yuzde">Gerçekleşme</button></th>
+          <th scope="col" class="sayi"><button type="button" data-sirala="yatirimci">Yatırımcı</button></th>
+          <th scope="col">Sonuç</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          sirali.map((k) => (
+            <tr data-platform={k.platform} data-yil={k.baslangic.slice(0, 4)} data-durum={k.durum} data-ad={k.ad} data-baslangic={k.baslangic} data-hedef={k.hedef} data-alinan={k.alinan} data-yuzde={gerceklesme(k) ?? 0} data-yatirimci={k.yatirimci ?? -1}>
+              <th scope="row">
+                <a href={`/girisim/${slugu.get(k)}/${kampanyaCapasi(k)}`}>{k.ad}</a>
+                {k.tur && <span class="gkt-tur">{k.tur}. tur</span>}
+              </th>
+              <td>{k.platform}</td>
+              <td><time datetime={k.baslangic}>{kisaTarih(k.baslangic)}</time></td>
+              <td class="sayi">{paraTam(k.hedef)}</td>
+              <td class="sayi">{paraTam(k.alinan)}</td>
+              <td class="sayi">{yuzdeBicim(gerceklesme(k))}</td>
+              <td class="sayi">{k.yatirimci === null ? '—' : formatNumber(k.yatirimci)}</td>
+              <td>{k.durum === 'fonlandi' ? 'Fonlandı' : 'Fonlanamadı'}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<script>
+  const tablo = document.querySelector<HTMLTableElement>('[data-gkt]');
+  const form = document.querySelector<HTMLFormElement>('[data-gkt-suzgec]');
+  const sayiEl = document.querySelector('[data-gkt-sayi]');
+  if (tablo && form) {
+    const govde = tablo.tBodies[0];
+    const satirlar = [...govde.rows];
+    const suz = () => {
+      const f = new FormData(form);
+      let n = 0;
+      for (const r of satirlar) {
+        const gorunur = (['platform', 'yil', 'durum'] as const).every((a) => !f.get(a) || r.dataset[a] === f.get(a));
+        r.hidden = !gorunur;
+        if (gorunur) n++;
+      }
+      if (sayiEl) sayiEl.textContent = `${n} kampanya`;
+    };
+    form.addEventListener('change', suz);
+    const metin = new Set(['ad', 'platform', 'baslangic']);
+    for (const b of tablo.querySelectorAll<HTMLButtonElement>('[data-sirala]')) {
+      b.addEventListener('click', () => {
+        const a = b.dataset.sirala!;
+        const azalan = b.getAttribute('aria-sort') !== 'descending';
+        for (const o of tablo.querySelectorAll('[data-sirala]')) o.removeAttribute('aria-sort');
+        b.setAttribute('aria-sort', azalan ? 'descending' : 'ascending');
+        const k = (r: HTMLTableRowElement) => r.dataset[a] ?? '';
+        satirlar.sort((x, y) => {
+          const s = metin.has(a) ? k(x).localeCompare(k(y), 'tr') : Number(k(x)) - Number(k(y));
+          return azalan ? -s : s;
+        });
+        govde.append(...satirlar);
+      });
+    }
+  }
+</script>
+
+<style>
+  .gkt-sayi { color: var(--gri); font-variant-numeric: tabular-nums; }
+  .gkt-suzgec { display: flex; flex-wrap: wrap; gap: 12px 20px; margin: 0 0 14px; }
+  .gkt-suzgec label { display: flex; flex-direction: column; gap: 4px; font-size: 0.78rem; color: var(--gri); }
+  .gkt-suzgec select { font: inherit; font-size: 0.95rem; color: var(--murekkep); background: var(--zemin); border: 1px solid var(--cizgi-koyu); padding: 6px 8px; min-width: 150px; }
+  .gkt-tablo th button { font: inherit; font-weight: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-align: inherit; }
+  .gkt-tablo th button[aria-sort='descending']::after { content: ' ↓'; }
+  .gkt-tablo th button[aria-sort='ascending']::after { content: ' ↑'; }
+  .gkt-tur { display: block; font-size: 0.75rem; font-weight: 400; color: var(--gri); }
+</style>

@@ -1,0 +1,198 @@
+---
+// Girişim sayfası: girişimin kapanmış kitle fonlama kampanyaları (turları) tek sayfada (src/lib/kampanya-gecmis.ts).
+// Dolar karşılığı kampanyanın başladığı günün TCMB döviz satış kuruyla hesaplanır.
+import { jsonLdMetni } from '../../lib/json-ld.mjs';
+import Base from '../../layouts/Base.astro';
+import Yol from '../../components/Yol.astro';
+import { platformUrl } from '../../lib/dizin';
+import { degerleme, gecmisGirisimler, gerceklesme, ortalamaYatirim, type GecmisGirisim, type GecmisKampanya } from '../../lib/kampanya-gecmis';
+import { kurBulTarihli } from '../../lib/sekundery-kur.mjs';
+import { paraTam, yuzdeBicim } from '../../lib/arsiv/bicim.ts';
+import { sayfaLd } from '../../lib/ld';
+import { RISK_NOTU, formatDate, formatNumber } from '../../lib/site';
+import veri from '../../data/kampanya-gecmis.json';
+import usd from '../../data/sekundery/usd-try.json';
+
+export function getStaticPaths() {
+  return gecmisGirisimler(veri.kampanyalar as GecmisKampanya[]).map((g) => ({ params: { slug: g.slug }, props: { g } }));
+}
+
+interface Props {
+  g: GecmisGirisim;
+}
+
+const { g } = Astro.props;
+const kurlar = usd.kurlar as Record<string, number>;
+const yol = `/girisim/${g.slug}/`;
+const gun = (t: string | null) => (t ? formatDate(new Date(`${t}T12:00:00+03:00`)) : '—');
+const kisa = (t: string) => `${t.slice(8, 10)}.${t.slice(5, 7)}.${t.slice(0, 4)}`;
+const sayi = (n: number | null) => (n === null ? '—' : formatNumber(n));
+const yuzde = (n: number | null) => yuzdeBicim(n);
+const dolar = (tl: number | null, t: string) => {
+  const k = kurBulTarihli(t, kurlar);
+  return tl === null || !k ? null : { tutar: tl / k.kur, kur: k.kur, tarih: k.tarih };
+};
+const dolarYaz = (n: number) => `$${formatNumber(Math.round(n))}`;
+const sonuc = (k: GecmisKampanya) => (k.durum === 'fonlandi' ? 'Fonlandı' : 'Fonlanamadı');
+const turAdi = (k: GecmisKampanya) => (k.tur ? `${k.tur}. tur` : 'Kampanya');
+const ks = g.kampanyalar;
+const cokTurlu = ks.length > 1;
+const fonlanan = ks.filter((k) => k.durum === 'fonlandi');
+const toplamFon = fonlanan.reduce((t, k) => t + k.alinan, 0);
+const platformlar = [...new Set(ks.map((k) => k.platform))];
+const ilk = ks[0];
+const son = ks[ks.length - 1];
+const aciklama = cokTurlu
+  ? `${g.ad} girişiminin ${ks.length} kitle fonlama kampanyası (${platformlar.join(', ')}): hedef, toplanan tutar, pay arz oranı, değerleme ve yatırımcı sayısı.`
+  : `${g.ad} girişiminin ${son.platform} platformundaki kitle fonlama kampanyası: ${gun(son.baslangic)} başladı, hedef ${paraTam(son.hedef)}, toplanan ${paraTam(son.alinan)}.`;
+const adimlar = [{ ad: 'Anasayfa', url: '/' }, { ad: 'Kampanyalar', url: '/kampanya/' }, { ad: g.ad, url: yol }];
+const jsonLd = sayfaLd({ site: Astro.site!, yol, ad: `${g.ad} kitle fonlama kampanyaları`, aciklama, tur: 'WebPage', adimlar, ek: { about: { '@type': 'Organization', name: g.sirket ?? g.ad } } });
+---
+
+<Base title={`${g.ad}: kitle fonlama kampanyaları`} description={aciklama}>
+  <script slot="head" type="application/ld+json" set:html={jsonLdMetni(jsonLd)} />
+  <div slot="tahta" class="kategori-bas">
+    <h1 class="kategori-isim">{g.ad}</h1>
+    <p class="kategori-sayi">{cokTurlu ? `${ks.length} kitle fonlama kampanyası` : 'Kitle fonlama kampanyası'}{g.sirket && ` · ${g.sirket}`}</p>
+  </div>
+
+  <article class="makale gs">
+    <Yol adimlar={adimlar} />
+
+    <section class="kampanya-kunyesi tahta-zemin kampanya-kunyesi-ust" aria-label="Girişim künyesi">
+      <dl>
+        <div class="kk-girisim">
+          <dt>Girişim</dt>
+          <dd>{g.ad}</dd>
+        </div>
+        <div>
+          <dt>{platformlar.length > 1 ? 'Platformlar' : 'Platform'}</dt>
+          <dd class="kk-platform">{platformlar.map((p, i) => <>{i > 0 && ', '}<a href={platformUrl(p)}>{p}</a></>)}</dd>
+        </div>
+        <div class="kk-toplanan">
+          <dt>{cokTurlu ? 'Fonlanan kampanyalarda toplanan' : 'Toplanan'}</dt>
+          <dd>{paraTam(cokTurlu ? toplamFon : son.alinan)}</dd>
+        </div>
+        <div>
+          <dt>Kampanya</dt>
+          <dd>{cokTurlu ? `${ks.length} (${fonlanan.length} fonlandı)` : sonuc(son)}</dd>
+        </div>
+        <div>
+          <dt>{cokTurlu ? 'İlk kampanya' : 'Başlangıç'}</dt>
+          <dd>{gun(ilk.baslangic)}</dd>
+        </div>
+        {
+          g.sirket && (
+            <div class="kk-genis">
+              <dt>Şirket</dt>
+              <dd class="kk-yatirimcilar">{g.sirket}</dd>
+            </div>
+          )
+        }
+      </dl>
+    </section>
+
+    {
+      cokTurlu && (
+        <section class="bolum" aria-labelledby="gs-turlar">
+          <div class="bolum-bas">
+            <h2 class="bolum-baslik" id="gs-turlar">Turlar</h2>
+          </div>
+          <div class="tablo-kap">
+            <table class="veri-tablo">
+              <caption class="sr-only">{g.ad} girişiminin kitle fonlama turları</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Tur</th>
+                  <th scope="col">Başlangıç</th>
+                  <th scope="col">Platform</th>
+                  <th scope="col" class="sayi">Hedef</th>
+                  <th scope="col" class="sayi">Toplanan</th>
+                  <th scope="col" class="sayi">Gerçekleşme</th>
+                  <th scope="col" class="sayi">Pay arz</th>
+                  <th scope="col" class="sayi">Değerleme</th>
+                  <th scope="col" class="sayi">Yatırımcı</th>
+                  <th scope="col">Sonuç</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ks.map((k) => {
+                  const d = degerleme(k);
+                  return (
+                    <tr>
+                      <th scope="row"><a href={`#tur-${k.tur}`}>{k.tur}</a></th>
+                      <td><time datetime={k.baslangic}>{kisa(k.baslangic)}</time></td>
+                      <td>{k.platform}</td>
+                      <td class="sayi">{paraTam(k.hedef)}</td>
+                      <td class="sayi">{paraTam(k.alinan)}</td>
+                      <td class="sayi">{yuzde(gerceklesme(k))}</td>
+                      <td class="sayi">{k.payArz === null ? '—' : yuzde(k.payArz * 100)}</td>
+                      <td class="sayi">{paraTam(d)}</td>
+                      <td class="sayi">{sayi(k.yatirimci)}</td>
+                      <td>{sonuc(k)}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+          <p class="dizin-not">
+            Değerleme, hedeflenen fonun ilan edilen pay arz oranına bölünmesiyle bulunan fonlama sonrası değerdir. Turların
+            dolar karşılığı aşağıda, kampanyanın başladığı günün TCMB döviz satış kuruyla verilir.
+          </p>
+        </section>
+      )
+    }
+
+    {
+      [...ks].reverse().map((k) => {
+        const d = degerleme(k);
+        const dd = dolar(d, k.baslangic);
+        const o = ortalamaYatirim(k);
+        return (
+          <section class="bolum" id={k.tur ? `tur-${k.tur}` : 'kampanya'} aria-labelledby={`gs-${k.tur ?? 0}`}>
+            <div class="bolum-bas">
+              <h2 class="bolum-baslik" id={`gs-${k.tur ?? 0}`}>{turAdi(k)}{cokTurlu && ` · ${k.platform}`}</h2>
+              {k.url && <a href={k.url} rel="noopener noreferrer">Platformdaki sayfası</a>}
+            </div>
+            <dl class="gs-kunye">
+              <div><dt>Platform</dt><dd><a href={platformUrl(k.platform)}>{k.platform}</a></dd></div>
+              <div><dt>Sonuç</dt><dd>{sonuc(k)}</dd></div>
+              <div><dt>Başlangıç</dt><dd>{gun(k.baslangic)}</dd></div>
+              <div><dt>Bitiş</dt><dd>{gun(k.bitis)}</dd></div>
+              <div><dt>Hedef</dt><dd>{paraTam(k.hedef)}</dd></div>
+              <div><dt>Toplanan</dt><dd>{paraTam(k.alinan)}</dd></div>
+              <div><dt>Gerçekleşme</dt><dd>{yuzde(gerceklesme(k))}</dd></div>
+              <div><dt>Pay arz oranı</dt><dd>{k.payArz === null ? '—' : yuzde(k.payArz * 100)}</dd></div>
+              <div><dt>Değerleme</dt><dd>{paraTam(d)}</dd></div>
+              <div><dt>Değerleme ($)</dt><dd>{dd ? dolarYaz(dd.tutar) : '—'}</dd></div>
+              <div><dt>Yatırımcı</dt><dd>{sayi(k.yatirimci)}</dd></div>
+              <div><dt>Nitelikli yatırımcı</dt><dd>{sayi(k.nitelikli)}</dd></div>
+              <div><dt>Ortalama yatırım</dt><dd>{paraTam(o)}</dd></div>
+              {k.sermaye !== null && <div><dt>Fonlama sonrası sermaye</dt><dd>{paraTam(k.sermaye)}</dd></div>}
+              {k.payFiyati !== null && <div><dt>Pay fiyatı</dt><dd>₺{k.payFiyati.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 3 })}</dd></div>}
+              {k.payGrubu && <div><dt>Pay grubu</dt><dd>{k.payGrubu}</dd></div>}
+              {k.fonAktarim && <div><dt>Fon aktarımı</dt><dd>{gun(k.fonAktarim)}</dd></div>}
+            </dl>
+            {!cokTurlu && dd && (
+              <p class="dizin-not">
+                Değerleme, hedeflenen fonun ilan edilen pay arz oranına bölünmesiyle bulunan fonlama sonrası değerdir. Dolar
+                karşılığı {gun(dd.tarih)} günü TCMB döviz satış kuruyla (₺{dd.kur.toLocaleString('tr-TR')}) hesaplanır.
+              </p>
+            )}
+          </section>
+        );
+      })
+    }
+
+    <p class="dizin-not">{RISK_NOTU}</p>
+  </article>
+</Base>
+
+<style>
+  .gs-kunye { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0 12px; margin: 0; border-top: 1px solid var(--cizgi); }
+  .gs-kunye > div { padding: 10px 12px 10px 0; border-bottom: 1px solid var(--cizgi); }
+  .gs-kunye dt { font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gri); margin: 0 0 2px; }
+  .gs-kunye dd { margin: 0; font-variant-numeric: tabular-nums; font-weight: 600; }
+  .gs section[id] { scroll-margin-top: 80px; }
+</style>
