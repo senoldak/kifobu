@@ -13,7 +13,7 @@ const SAYFALAR = [
 ---
 
 <nav class="sm" aria-label="Sekundery sayfaları">
-  <a class="sm-ad" href="/sekundery/">Sekundery</a>
+  <a class="sm-baslik" href="/sekundery/">Sekundery</a>
   <ul>
     {SAYFALAR.map((s) => (
       <li><a href={s.url} aria-current={s.k === etkin || (etkin === 'grup' && s.k === 'ilanlar') ? 'page' : undefined}>{s.ad}</a></li>
@@ -24,7 +24,7 @@ const SAYFALAR = [
 <style>
   .sm { display: flex; align-items: stretch; gap: 22px; margin: 0 0 18px; border-bottom: 1px solid var(--cizgi); overflow-x: auto; scrollbar-width: none; }
   .sm::-webkit-scrollbar { display: none; }
-  .sm-ad { display: flex; align-items: center; font-weight: 800; letter-spacing: -0.02em; color: var(--murekkep); text-decoration: none; padding-right: 18px; border-right: 1px solid var(--cizgi); white-space: nowrap; }
+  .sm-baslik { display: flex; align-items: center; font-weight: 800; letter-spacing: -0.02em; color: var(--murekkep); text-decoration: none; padding-right: 18px; border-right: 1px solid var(--cizgi); white-space: nowrap; }
   .sm ul { display: flex; gap: 4px; margin: 0; padding: 0; list-style: none; }
   .sm li a { display: block; padding: 11px 10px 9px; font-size: 0.88rem; font-weight: 600; color: var(--gri); text-decoration: none; white-space: nowrap; border-bottom: 3px solid transparent; }
   .sm li a:hover { color: var(--murekkep); }

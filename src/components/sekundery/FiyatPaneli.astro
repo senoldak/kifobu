@@ -119,7 +119,7 @@ const cetvel = (p: P) => {
                 <g class={m.sinif}>
                   <polyline points={m.sira === 'ust' ? `${m.px},40 ${m.px},36 ${m.lx},32` : `${m.px},52 ${m.px},56 ${m.lx},60`} class="c-cubuk" fill="none" />
                   <circle cx={m.px} cy="46" r="6.5" class="c-nokta" />
-                  <text x={m.lx} y={m.sira === 'ust' ? 14 : 78} text-anchor="middle" class="c-ad">{m.ad}</text>
+                  <text x={m.lx} y={m.sira === 'ust' ? 14 : 78} text-anchor="middle" class="c-etiket">{m.ad}</text>
                   <text x={m.lx} y={m.sira === 'ust' ? 28 : 92} text-anchor="middle" class="c-deger">{yaz(m.d, p)}</text>
                 </g>
               ))}
@@ -206,7 +206,7 @@ const cetvel = (p: P) => {
   .c-sifir { font-size: 11px; fill: #a5aaa6; }
   .c-cubuk { stroke: #c9c6bc; stroke-width: 1; }
   .c-nokta { stroke: var(--beyaz); stroke-width: 2.5; }
-  .c-ad { font-size: 11.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; fill: #5d645f; }
+  .c-etiket { font-size: 11.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; fill: #5d645f; }
   .c-deger { font-size: 13px; font-weight: 700; fill: #141a17; }
   .m-dag .c-nokta { fill: #e8b40c; }
   .m-ito .c-nokta { fill: #9a6b00; }
