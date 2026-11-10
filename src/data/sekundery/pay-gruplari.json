@@ -1,4 +1,191 @@
 {
- "gruplar": {},
+ "gruplar": {
+  "PACHA-D": {
+   "isin": "TREPCHA00040"
+  },
+  "PACHA-B": {
+   "isin": "TREPCHA00024"
+  },
+  "GURLR-B": {
+   "isin": "TREGURL00021"
+  },
+  "GRFON-D": {
+   "isin": "TREGRIF00044"
+  },
+  "MKTEK-B": {
+   "isin": "TREMVTK00025"
+  },
+  "SPRG2-B": {
+   "isin": "TRESPG200023"
+  },
+  "LIMBX-B": {
+   "isin": "TRELMBK00024"
+  },
+  "BLCLL-B": {
+   "isin": "TREBLOO00022"
+  },
+  "SECUR-B": {
+   "isin": "TRESCRF00026"
+  },
+  "EVBEE-B": {
+   "isin": "TREEVBE00023"
+  },
+  "DLVRY-C": {
+   "isin": "TREDVRY00011"
+  },
+  "TUNGA-A": {
+   "isin": "TRETUNG00015"
+  },
+  "TREXO-B": {
+   "isin": "TRETREX00015"
+  },
+  "TCHNO-B": {
+   "isin": "TRETMMT00025"
+  },
+  "SCOLI-D": {
+   "isin": "TRESCTL00020"
+  },
+  "MIONT-B": {
+   "isin": "TREMNTI00026"
+  },
+  "OLEAG-C": {
+   "isin": "TREOLEA00025"
+  },
+  "NTRGA-B": {
+   "isin": "TRENTRG00029"
+  },
+  "ATRMC-B": {
+   "isin": "TREATRN00014"
+  },
+  "ANCYR-B": {
+   "isin": "TREANCR00028"
+  },
+  "KRT3D-B": {
+   "isin": "TREKRT300022"
+  },
+  "EPTSE-B": {
+   "isin": "TREEPTS00019"
+  },
+  "PROMO-D": {
+   "isin": "TREPRMS00040"
+  },
+  "FERNV-D": {
+   "isin": "TREFERN00049"
+  },
+  "CORPS-B": {
+   "isin": "TRECRPS00025"
+  },
+  "CMPTV-B": {
+   "isin": "TRECMPT00024"
+  },
+  "SPECH-B": {
+   "isin": "TRESPEC00015"
+  },
+  "QCHRG-B": {
+   "isin": "TREMTMB00023"
+  },
+  "CRNCA-B": {
+   "isin": "TRECRNO00029"
+  },
+  "NGAYT-B": {
+   "isin": "TRENGYT00025"
+  },
+  "EVBEE-D": {
+   "isin": "TREEVBE00049"
+  },
+  "VNDAP-B": {
+   "isin": "TREVNDP00026"
+  },
+  "NEVAS-B": {
+   "isin": "TRENEVY00026"
+  },
+  "NEXIT-B": {
+   "isin": "TRENOEX00015"
+  },
+  "SHOPL-B": {
+   "isin": "TRESHOP00021"
+  },
+  "NTDRY-B": {
+   "isin": "TREKRUT00026"
+  },
+  "ACTVB-B": {
+   "isin": "TREACTV00027"
+  },
+  "SIZEM-B": {
+   "isin": "TRESIZE00029"
+  },
+  "SIZEM-D": {
+   "isin": "TRESIZE00045"
+  },
+  "JETCO-B": {
+   "isin": "TREJCON00026"
+  },
+  "ATECH-B": {
+   "isin": "TREAZOI00026"
+  },
+  "SPRG1-B": {
+   "isin": "TRESPG100025"
+  },
+  "AUTHT-B": {
+   "isin": "TREAUTH00028"
+  },
+  "TMZYL-C": {
+   "isin": "TRETMZY00019"
+  },
+  "ONIMA-B": {
+   "isin": "TREONBY00019"
+  },
+  "UNIQ2-B": {
+   "isin": "TREPRTN00012"
+  },
+  "TUNGA-B": {
+   "isin": "TRETUNG00023"
+  },
+  "BSCHL-B": {
+   "isin": "TREBLSS00024"
+  },
+  "TYORE-C": {
+   "isin": "TREYORE00030"
+  },
+  "CLASS-B": {
+   "isin": "TREURAY00027"
+  },
+  "ALPGN-B": {
+   "isin": "TREALPG00027"
+  },
+  "MNYOL-B": {
+   "isin": "TREMINI00029"
+  },
+  "MSVRO-B": {
+   "isin": "TREMKND00026"
+  },
+  "MEDIB-B": {
+   "isin": "TREMDBT00022"
+  },
+  "KABIP-C": {
+   "isin": "TREKBPT00012"
+  },
+  "AHEAR-B": {
+   "isin": "TREAIHR00027"
+  },
+  "PCARD-B": {
+   "isin": "TREPCKR00022"
+  },
+  "SHIFT-C": {
+   "isin": "TRESHFT00039"
+  },
+  "TETOG-B": {
+   "isin": "TRETTGM00027"
+  },
+  "LIMBX-A": {
+   "isin": "TRELMBK00016"
+  },
+  "PROMO-B": {
+   "isin": "TREPRMS00024"
+  },
+  "FERNV-B": {
+   "isin": "TREFERN00023"
+  }
+ },
  "sirketler": {}
 }
