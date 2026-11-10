@@ -1,7 +1,7 @@
 /**
  * Günlük kitle fonlama bülteni verisi ("Bugün" tablosu).
  * Otomatik Bot tarafından oluşturulmuştur.
- * Son güncelleme: 2026-11-10T07:01:11.158Z
+ * Son güncelleme: 2026-11-10T11:01:16.164Z
  */
 export interface Girisim {
   ad: string;
@@ -76,7 +76,7 @@ export const BULTEN = {
         "kalan": 34007400,
         "degerleme": 385038504,
         "yuzde": 2.83,
-        "durum": "son 6 gün",
+        "durum": "son 5 gün",
         "url": "https://ecofolio.com.tr/kampanyalar/loopyon"
     }
 ] as Girisim[],
