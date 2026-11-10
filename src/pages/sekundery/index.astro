@@ -1,7 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
 import SekunderyMenu from '../../components/sekundery/SekunderyMenu.astro';
-import KisaGorunum from '../../components/sekundery/KisaGorunum.astro';
 import SekunderyUyari from '../../components/sekundery/SekunderyUyari.astro';
 import SekunderyIzah from '../../components/sekundery/SekunderyIzah.astro';
 import Yol from '../../components/Yol.astro';
@@ -34,6 +33,9 @@ const avroYaz = dovizYaz('€');
 const xauYaz = (n: number | null | undefined) => (n == null || !Number.isFinite(n) ? '' : altinYaz(n));
 const tlYaz = (n: number | null | undefined) => (n == null || !Number.isFinite(n) ? '' : `₺${fiyatYaz(n)}`);
 const kk = kapanisKarsilastirma();
+// İlan dönemi yalnız dönemli pay gruplarına uyar; ilanları her gün açık olan gruplar ayrı sayılır.
+const surekliSay = satirlar.filter((s) => s.surekli && s.dagitim).length;
+const donemliSay = satirlar.filter((s) => !s.surekli && s.dagitim).length;
 // Üst şerit: ilan dönemi durumu ve bütün ilanların satış/alış tutarı (İlan özeti sayfasındaki ilk bölümün kısası)
 const bugunT = sonGun?.tarih ?? '';
 const acikDonem = virmanVeri.donemler.find((d) => d.acilis <= bugunT && bugunT <= d.kapanis) ?? null;
@@ -87,8 +89,15 @@ const altinBugun = satirlar.find((s) => s.xau.kurBugun)?.xau.kurBugun ?? null;
           {acikDonem
             ? <dd><strong>{aralikYaz(acikDonem)}</strong><span class="sk-rozet">açık</span></dd>
             : <dd><strong>Kapalı</strong></dd>}
-          <dd class="sk-durum-alt">{acikDonem ? (kalanGun! > 0 ? `kapanışa ${kalanGun} gün` : 'bugün kapanıyor') : sonrakiDonem ? `sonraki dönem ${aralikYaz(sonrakiDonem)}` : sonDonem ? `son dönem ${aralikYaz(sonDonem)}` : ''}</dd>
+          <dd class="sk-durum-alt">{acikDonem ? (kalanGun! > 0 ? `kapanışa ${kalanGun} gün` : 'bugün kapanıyor') : sonrakiDonem ? `sonraki dönem ${aralikYaz(sonrakiDonem)}` : sonDonem ? `son dönem ${aralikYaz(sonDonem)}` : ''}{surekliSay > 0 && ` · ${donemliSay} pay grubu`}</dd>
         </div>
+        {surekliSay > 0 && (
+          <div>
+            <dt>Dönemsiz ilanlar</dt>
+            <dd><strong>Her gün açık</strong></dd>
+            <dd class="sk-durum-alt">{surekliSay} pay grubu</dd>
+          </div>
+        )}
         <div>
           <dt>Son güncelleme</dt>
           <dd><strong>{sonGun ? tarihYaz(sonGun.tarih) : '—'}</strong></dd>
@@ -114,7 +123,7 @@ const altinBugun = satirlar.find((s) => s.xau.kurBugun)?.xau.kurBugun ?? null;
       )}
     </section>
 
-    <KisaGorunum />
+    <p class="sk-tablolar"><a href="/sekundery/tablolar/">Dağıtıma göre, satış ve alış, ilan tutarı ve geçmiş dönemlere göre tablolar →</a></p>
 
     {kk.donem && (
       <section class="sk-kk" aria-labelledby="sk-kk-baslik">
@@ -347,7 +356,7 @@ const altinBugun = satirlar.find((s) => s.xau.kurBugun)?.xau.kurBugun ?? null;
   .sk-etiket { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; color: var(--gri); margin: 0; }
   .sk-bas h1 { font-size: clamp(2.4rem, 6vw, 4rem); letter-spacing: -0.03em; margin: 4px 0 8px; line-height: 1; }
   .sk-spot { max-width: 60ch; color: var(--murekkep-2); margin: 0; }
-  .sk-durum { display: grid; grid-template-columns: auto auto; gap: 0; margin: 0; border: 1px solid var(--cizgi); background: var(--beyaz); }
+  .sk-durum { display: grid; grid-auto-flow: column; grid-auto-columns: auto; gap: 0; margin: 0; border: 1px solid var(--cizgi); background: var(--beyaz); }
   .sk-durum > div { padding: 12px 18px; min-width: 170px; display: flex; flex-direction: column; gap: 3px; }
   .sk-durum > div + div { border-left: 1px solid var(--cizgi); }
   .sk-durum dt { font-size: 0.66rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gri); }
@@ -436,6 +445,9 @@ const altinBugun = satirlar.find((s) => s.xau.kurBugun)?.xau.kurBugun ?? null;
   .sk-kk-alt { margin: 10px 0 0; font-size: 0.9rem; color: var(--gri); }
   .sk-kk-alt a { color: var(--murekkep); font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--marka-sari); }
   .sk-ara-baslik { margin-bottom: 10px; }
+  .sk-tablolar { margin: -8px 0 36px; }
+  .sk-tablolar a { font-weight: 600; color: var(--murekkep); text-decoration: none; border-bottom: 2px solid var(--marka-sari); padding-bottom: 1px; }
+  .sk-tablolar a:hover { border-bottom-color: var(--murekkep); }
   .sk-not { margin-top: 32px; max-width: 72ch; color: var(--murekkep-2); }
   .sk-not h2 { font-size: 1.1rem; }
   .sk-not li { margin-bottom: 6px; }
@@ -444,5 +456,8 @@ const altinBugun = satirlar.find((s) => s.xau.kurBugun)?.xau.kurBugun ?? null;
   @media (max-width: 640px) {
       .sk-ara input { min-width: 0; width: 100%; }
     .sk-ara { flex: 1 1 100%; }
+    .sk-durum { grid-auto-flow: row; grid-template-columns: 1fr 1fr; }
+    .sk-durum > div { min-width: 0; }
+    .sk-durum > div:nth-child(3) { grid-column: 1 / -1; border-left: 0; border-top: 1px solid var(--cizgi); }
   }
 </style>

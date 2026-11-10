@@ -49,6 +49,7 @@ export function kartVerileri() {
   if (!bugun) return { tarih: '', gun: '', kartlar: [] };
   const S = tumAnahtarlar().map((k) => satir(k));
   const ilanli = S.filter((s) => s.satis || s.alis);
+  const surekli = S.filter((s) => s.surekli).length;
 
   // Günün özeti ve dönem durumu
   const acik = virmanVeri.donemler.find((d) => d.acilis <= bugun && bugun <= d.kapanis) ?? null;
@@ -90,6 +91,8 @@ export function kartVerileri() {
       acik
         ? { ad: 'Kapanışa', deger: kalan > 0 ? `${kalan} gün` : 'bugün kapanıyor' }
         : sonraki ? { ad: 'Sonraki dönem', deger: aralik(sonraki) } : son ? { ad: 'Son dönem', deger: aralik(son) } : null,
+      // ilan dönemi her pay grubuna uymaz: ilanları her gün açık olan gruplar ayrıca yazılır
+      surekli ? { ad: 'Her gün açık ilan', deger: `${sayi(surekli)} pay grubu` } : null,
       { ad: 'Satış ilanlarının toplam tutarı', deger: mn(satisT) },
       { ad: 'Alış ilanlarının toplam tutarı', deger: mn(alisT) },
       yeni != null ? { ad: 'Bugün yayına giren ilan', deger: sayi(yeni) } : null,

@@ -5,7 +5,7 @@ import { GENEL_NOT } from '../../lib/site';
 import { itoSonAy } from '../../lib/sekundery-veri.mjs';
 import { ayAdi } from '../../lib/sekundery-kur.mjs';
 
-interface Props { sayfa: 'ana' | 'ozet' | 'donem' | 'kur' | 'virman' | 'grup' | 'sirket' }
+interface Props { sayfa: 'ana' | 'tablolar' | 'ozet' | 'donem' | 'kur' | 'virman' | 'grup' | 'sirket' }
 const { sayfa } = Astro.props;
 const ito = ayAdi(itoSonAy);
 
@@ -54,6 +54,7 @@ const M: Record<string, [string, string]> = {
 };
 const SIRA: Record<Props['sayfa'], string[]> = {
   ana: ['endu', 'enyu', 'medyan', 'dagitim', 'ito', 'yuzde', 'fark', 'tutar', 'pay', 'kapanis', 'yil', 'sayac', 'sonraki', 'yeniIlan', 'kismi', 'tekil', 'birim', 'kaynakIlan'],
+  tablolar: ['endu', 'enyu', 'dagitim', 'yuzde', 'fark', 'tutar', 'pay', 'yil', 'sayac', 'birim', 'kaynakIlan'],
   ozet: ['tutar', 'pay', 'buyuk', 'tekil', 'birim', 'kaynakIlan'],
   donem: ['endu', 'medyan', 'donemOrt', 'seyir', 'kapanis', 'kapanisa', 'ortalamaya', 'yuzde', 'birimDonem', 'kaynakIlan'],
   kur: ['dagitim', 'ddg', 'ito', 'kurlar', 'kaynakKur'],

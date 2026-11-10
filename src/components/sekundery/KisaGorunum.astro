@@ -57,8 +57,13 @@ const sekmeler = [
     satirlar: S.filter((s) => s.satis).map((s) => ({ s, o: kapanisDegeri(seri(s.anahtar), g.d) })).filter((x) => x.o).map(({ s, o }) => ({ s, a: fiyat(o!.deger, o!.tarih), b: fiyat(s.satis.enIyi, bugun), y: degisim(s.satis.enIyi, o!.deger), yp: Object.fromEntries(P.map((p) => [p, degisim(cevir(s.satis.enIyi, bugun, p) as number, cevir(o!.deger, o!.tarih, p) as number)])) })),
   })),
 ];
+// Satırlar farka göre büyükten küçüğe sıralanır (artılar üstte, eksiler altta); ilan tutarı sekmesinde tutara göre.
+for (const t of sekmeler) {
+  const anahtar = (r: any) => (t.k === 'tutar' ? -(((r.s.satis?.tutar ?? 0) + (r.s.alis?.tutar ?? 0))) : r.y == null ? Infinity : -r.y);
+  t.satirlar.sort((a: any, b: any) => anahtar(a) - anahtar(b));
+}
 const yon = (y: number | null | undefined) => (y == null ? '' : y > 0 ? 'kg-a' : y < 0 ? 'kg-e' : '');
-// Satır zemini yön rengiyle çok açık boyanır; seçili birime göre (yüzde birimle değişebilir). İlan tutarı sekmesinde yön yok.
+// Satırın solunda yön rengiyle ince bir çizgi; seçili birime göre (yüzde birimle değişebilir). İlan tutarında satış payı yarıdan büyük/küçük.
 const satirYon = (r: { y: number | null; yp?: Record<string, number | null>; oran?: boolean; renksiz?: boolean }) =>
   r.oran ? Object.fromEntries(P.map((p) => [`data-y-${p}`, r.y == null || r.y === 50 ? '' : r.y > 50 ? 'a' : 'e'])) : r.renksiz ? {} : Object.fromEntries(P.map((p) => { const v = r.yp ? r.yp[p] : r.y; return [`data-y-${p}`, v == null || v === 0 ? '' : v > 0 ? 'a' : 'e']; }));
 const oranYaz = (n: number | null) => (n == null ? '—' : `%${n.toLocaleString('tr-TR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}`);
@@ -161,15 +166,18 @@ const oranYaz = (n: number | null) => (n == null ? '—' : `%${n.toLocaleString(
   .kg-kod { font-weight: 700; white-space: nowrap; }
   .kg-kod small { color: var(--gri); font-weight: 600; }
   .kg-y { font-weight: 600; }
-  /* satır zemini: hardal ve lacivertin çok açık tonu (%7) */
-  :global(html:not([data-para])) .kg-satir[data-y-tl='a'], :global(html[data-para='tl']) .kg-satir[data-y-tl='a'], :global(html[data-para='usd']) .kg-satir[data-y-usd='a'], :global(html[data-para='eur']) .kg-satir[data-y-eur='a'], :global(html[data-para='xau']) .kg-satir[data-y-xau='a'] { background: rgba(138, 106, 0, 0.07); }
-  :global(html:not([data-para])) .kg-satir[data-y-tl='e'], :global(html[data-para='tl']) .kg-satir[data-y-tl='e'], :global(html[data-para='usd']) .kg-satir[data-y-usd='e'], :global(html[data-para='eur']) .kg-satir[data-y-eur='e'], :global(html[data-para='xau']) .kg-satir[data-y-xau='e'] { background: rgba(47, 75, 110, 0.06); }
-  .kg-satir { padding-left: 4px; padding-right: 4px; }
+  /* satırın solunda ince yön çizgisi: artı hardal, eksi lacivert (zemin boyanmaz) */
+  :global(html:not([data-para])) .kg-satir[data-y-tl='a'], :global(html[data-para='tl']) .kg-satir[data-y-tl='a'], :global(html[data-para='usd']) .kg-satir[data-y-usd='a'], :global(html[data-para='eur']) .kg-satir[data-y-eur='a'], :global(html[data-para='xau']) .kg-satir[data-y-xau='a'] { box-shadow: inset 3px 0 0 #8a6a00; }
+  :global(html:not([data-para])) .kg-satir[data-y-tl='e'], :global(html[data-para='tl']) .kg-satir[data-y-tl='e'], :global(html[data-para='usd']) .kg-satir[data-y-usd='e'], :global(html[data-para='eur']) .kg-satir[data-y-eur='e'], :global(html[data-para='xau']) .kg-satir[data-y-xau='e'] { box-shadow: inset 3px 0 0 #2f4b6e; }
+  .kg-satir { padding-left: 10px; padding-right: 4px; }
 
   .kg-y :global(.kg-a) { color: #8a6a00; }
   .kg-y :global(.kg-e) { color: #2f4b6e; }
   @media (max-width: 900px) {
     .kg-izgara { grid-template-columns: 1fr; }
     .kg-sutun + .kg-sutun { border-left: 0; }
+    /* alt alta dizilince tek liste olur: başlık satırı yalnız en üstte, ilk sütunda kalır */
+    .kg-sutun + .kg-sutun .kg-ust { display: none; }
+    .kg-izgara { padding-bottom: 4px; }
   }
 </style>

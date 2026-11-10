@@ -1,6 +1,6 @@
 ---
 // Bütün sekundery sayfalarının ortak alt menüsü. Etkin sayfa sarı alt çizgiyle işaretlenir.
-interface Props { etkin: 'ilanlar' | 'ozet' | 'donem' | 'kur' | 'virman' | 'grup' | 'kartlar' }
+interface Props { etkin: 'ilanlar' | 'ozet' | 'donem' | 'kur' | 'virman' | 'grup' | 'tablolar' | 'kartlar' }
 const { etkin } = Astro.props;
 const SAYFALAR = [
   { k: 'ilanlar', ad: 'İlanlar', url: '/sekundery/' },
@@ -8,6 +8,7 @@ const SAYFALAR = [
   { k: 'donem', ad: 'Dönem karşılaştırması', url: '/sekundery/donem/' },
   { k: 'kur', ad: 'Kur ve enflasyon', url: '/sekundery/kur-enflasyon/' },
   { k: 'virman', ad: 'Virman süreleri', url: '/sekundery/virman/' },
+  { k: 'tablolar', ad: 'Tablolar', url: '/sekundery/tablolar/' },
   { k: 'kartlar', ad: 'Kartlar', url: '/sekundery/kartlar/' },
 ] as const;
 ---

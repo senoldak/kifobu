@@ -1,0 +1,51 @@
+---
+// Sekmeli kısa tablolar (Excel GUN, GUN2, GUN3, GUN4): dağıtıma göre, satış ve alış, ilan tutarı, geri dönemler.
+// Ana sayfadan buraya taşındı; ana sayfada bağlantısı durur.
+import Base from '../../layouts/Base.astro';
+import SekunderyMenu from '../../components/sekundery/SekunderyMenu.astro';
+import SekunderyUyari from '../../components/sekundery/SekunderyUyari.astro';
+import SekunderyIzah from '../../components/sekundery/SekunderyIzah.astro';
+import BirimSecici from '../../components/sekundery/BirimSecici.astro';
+import KisaGorunum from '../../components/sekundery/KisaGorunum.astro';
+import Yol from '../../components/Yol.astro';
+import { sonGun } from '../../lib/sekundery-veri.mjs';
+
+const baslik = 'Sekundery tabloları';
+const aciklama = 'Pay gruplarının en düşük satış ilanı; dağıtım fiyatına, en yüksek alış ilanına ve geçmiş ilan dönemlerine göre.';
+const adimlar = [{ ad: 'Anasayfa', url: '/' }, { ad: 'Sekundery', url: '/sekundery/' }, { ad: 'Tablolar', url: '/sekundery/tablolar/' }];
+const tarihYaz = (t: string) => new Date(`${t}T12:00:00`).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<Base title={baslik} description={aciklama} noindex>
+  <Yol adimlar={adimlar} />
+
+  <article class="tb">
+    <SekunderyMenu etkin="tablolar" />
+    <header class="tb-bas">
+      <div>
+        <p class="tb-etiket">SEKUNDERY · TABLOLAR</p>
+        <h1>Tablolar</h1>
+        <p class="tb-spot">
+          Her pay grubunun bugünkü en düşük satış ilanı; dağıtım fiyatına, en yüksek alış ilanına ve geçmiş ilan dönemlerinin
+          kapanışına göre. Satırlar farka göre büyükten küçüğe dizilir; bir satıra tıklayınca pay grubunun sayfası açılır.
+        </p>
+        {sonGun && <p class="tb-tarih">Son güncelleme: <strong>{tarihYaz(sonGun.tarih)}</strong></p>}
+      </div>
+      <BirimSecici />
+    </header>
+
+    <KisaGorunum />
+
+    <SekunderyIzah sayfa="tablolar" />
+    <SekunderyUyari />
+  </article>
+</Base>
+
+<style>
+  .tb { max-width: 1180px; margin: 0 auto; padding: 0 16px 64px; }
+  .tb-bas { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; border-top: 10px solid var(--marka-sari); padding-top: 24px; margin-bottom: 24px; }
+  .tb-etiket { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; color: var(--gri); margin: 0; }
+  .tb-bas h1 { font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -0.03em; margin: 4px 0 8px; }
+  .tb-spot { max-width: 64ch; color: var(--murekkep-2); margin: 0 0 8px; }
+  .tb-tarih { color: var(--gri); margin: 0; }
+</style>
