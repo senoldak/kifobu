@@ -58,7 +58,10 @@
    "isin": "TREATRN00014"
   },
   "ANCYR-B": {
-   "isin": "TREANCR00028"
+   "isin": "TREANCR00028",
+   "sahip": {
+    "2026-11-10": 0
+   }
   },
   "KRT3D-B": {
    "isin": "TREKRT300022"
@@ -151,7 +154,10 @@
    "isin": "TREURAY00027"
   },
   "ALPGN-B": {
-   "isin": "TREALPG00027"
+   "isin": "TREALPG00027",
+   "sahip": {
+    "2026-11-10": 0
+   }
   },
   "MNYOL-B": {
    "isin": "TREMINI00029"
@@ -185,7 +191,52 @@
   },
   "FERNV-B": {
    "isin": "TREFERN00023"
+  },
+  "AHEAR-A": {
+   "sahip": {
+    "2026-11-10": 0
+   }
+  },
+  "AIRCR-A": {
+   "sahip": {
+    "2026-11-10": 0
+   }
+  },
+  "AIRCR-B": {
+   "sahip": {
+    "2026-11-10": 0
+   }
+  },
+  "ATRMC-C": {
+   "sahip": {
+    "2026-11-10": 0
+   }
   }
  },
- "sirketler": {}
+ "sirketler": {
+  "ACTVB": {
+   "soruldu": "2026-11-10"
+  },
+  "AHEAR": {
+   "soruldu": "2026-11-10"
+  },
+  "AIRCR": {
+   "soruldu": "2026-11-10"
+  },
+  "ALPGN": {
+   "soruldu": "2026-11-10"
+  },
+  "ANCYR": {
+   "soruldu": "2026-11-10"
+  },
+  "ARKER": {
+   "soruldu": "2026-11-10"
+  },
+  "ATECH": {
+   "soruldu": "2026-11-10"
+  },
+  "ATRMC": {
+   "soruldu": "2026-11-10"
+  }
+ }
 }
