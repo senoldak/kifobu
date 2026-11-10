@@ -4,6 +4,7 @@
 # veri yazar (src/data/sekundery/). Kaynağın adı ve adresi bu depoda ve loglarda yer almaz.
 # Hata alınca yeniden denenmez, o tur atlanır.
 # ILAN_OTURUM (Secret): sahibinin oturum anahtarı; süresi dolarsa iş kırmızı olur, sahip yeniler.
+# ILAN_CEREZ (Secret): ikinci ilan kaynağındaki oturum çerezi; düşerse ilk kaynağın verisi yine yazılır, iş sonda kırmızı olur.
 # EVDS_ANAHTARI (Secret): TCMB EVDS anahtarı (finfolis'teki ile aynı); İTO enflasyonu, kurlar ve altın için.
 # Site ayrıca yayınlanmaz: veri, sitenin bir sonraki olağan derlemesinde görünür.
 name: Sekundery (veri)
@@ -56,6 +57,7 @@ jobs:
         id: tara
         env:
           ILAN_OTURUM: ${{ secrets.ILAN_OTURUM }}
+          ILAN_CEREZ: ${{ secrets.ILAN_CEREZ }}
         run: node .mecmua/sekundery/topla.mjs
 
       # İTO aylık enflasyonu, kurlar ve altın (TCMB EVDS). Toplama başarısız olsa da çalışır; kendi hatası toplamayı bozmaz.
@@ -113,3 +115,10 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           SEKUNDERY_TG_HEDEF: ${{ secrets.SEKUNDERY_TG_HEDEF }}
         run: node scripts/sekundery/kart-gonder.mjs
+
+      # İkinci kaynağın oturumu düştüyse iş en sonda kırmızı olur (GitHub sahibine bildirir); öteki adımlar etkilenmez.
+      - name: İkinci oturum
+        if: always() && steps.tara.outputs.ikinciHata == '1'
+        run: |
+          echo "::error::İkinci kaynağın verisi alınamadı; ILAN_CEREZ yenilenmeli olabilir."
+          exit 1

@@ -28,24 +28,24 @@ const teklifSay = tk(satis) != null || tk(alis) != null ? { s: tk(satis) ?? 0, a
   <section class="id" aria-labelledby="id-baslik">
     <div class="id-bas">
       <h2 id="id-baslik">İlanların dağılımı</h2>
-      <p>Yayında olan {sayi((o.satis?.ilan ?? 0) + (o.alis?.ilan ?? 0))} ilanın özeti; tek tek ilan gösterilmez.{teklifSay != null && ` Tekliflere açık: satışta ${sayi(teklifSay.s)}, alışta ${sayi(teklifSay.a)} ilan.`}{(s.satis?.yeni != null || s.alis?.yeni != null) && ` Bugün yayına giren: ${sayi((s.satis?.yeni ?? 0) + (s.alis?.yeni ?? 0))} ilan.`}{s.satis?.yasMedyan != null && ` Satış ilanlarının yayında kalma süresi medyanı ${sayi(s.satis.yasMedyan)} gün.`}</p>
+      <p>Yayında olan {sayi((o.satis?.ilan ?? 0) + (o.alis?.ilan ?? 0))} ilanın özeti; tek tek ilan gösterilmez.{teklifSay != null && ` Tekliflere açık: ${[o.satis && `satışta ${sayi(teklifSay.s)}`, o.alis && `alışta ${sayi(teklifSay.a)}`].filter(Boolean).join(', ')} ilan.`}{(s.satis?.yeni != null || s.alis?.yeni != null) && ` Bugün yayına giren: ${sayi((s.satis?.yeni ?? 0) + (s.alis?.yeni ?? 0))} ilan.`}{s.satis?.yasMedyan != null && ` Satış ilanlarının yayında kalma süresi medyanı ${sayi(s.satis.yasMedyan)} gün.`}</p>
     </div>
 
     <dl class="id-kartlar">
       <div>
         <dt>Satış–alış farkı</dt>
         <dd class={`id-buyuk ${o.fark == null ? '' : o.fark > 0 ? 'id-a' : o.fark < 0 ? 'id-e' : ''}`}>{yuzde(o.fark)}</dd>
-        <dd class="id-alt">en düşük satış ile en yüksek alış ilanı arasında</dd>
+        <dd class="id-alt">{o.satis && o.alis ? 'en düşük satış ile en yüksek alış ilanı arasında' : `${o.alis ? 'satış' : 'alış'} ilanı olmadığı için hesaplanmaz`}</dd>
       </div>
       <div>
         <dt>Ortalama satış ilanı</dt>
         <dd class="id-buyuk">{o.satis ? fiyat(o.satis.ortalama).map((x) => <span class={`pv pv-${x.p}`}>{x.m}</span>) : '—'}</dd>
-        <dd class="id-alt">pay adediyle ağırlıklı · {sayi(o.satis?.ilan)} ilan</dd>
+        <dd class="id-alt">{o.satis ? `pay adediyle ağırlıklı · ${sayi(o.satis.ilan)} ilan` : 'satış ilanı yok'}</dd>
       </div>
       <div>
         <dt>Ortalama alış ilanı</dt>
         <dd class="id-buyuk">{o.alis ? fiyat(o.alis.ortalama).map((x) => <span class={`pv pv-${x.p}`}>{x.m}</span>) : '—'}</dd>
-        <dd class="id-alt">pay adediyle ağırlıklı · {sayi(o.alis?.ilan)} ilan</dd>
+        <dd class="id-alt">{o.alis ? `pay adediyle ağırlıklı · ${sayi(o.alis.ilan)} ilan` : 'alış ilanı yok'}</dd>
       </div>
       <div class="id-genis">
         <dt>İlan tutarı</dt>
@@ -54,13 +54,13 @@ const teklifSay = tk(satis) != null || tk(alis) != null ? { s: tk(satis) ?? 0, a
         </dd>
         <dd class="id-alt id-iki">
           <span><i class="id-n id-n-s"></i>Satış {yuzde(o.satisPayi)} · {tutar(o.satis?.tutar ?? 0).map((x) => <span class={`pv pv-${x.p}`}>{x.m}</span>)}</span>
-          <span><i class="id-n id-n-a"></i>Alış {yuzde(o.satisPayi == null ? null : Math.round((100 - o.satisPayi) * 10) / 10)} · {tutar(o.alis?.tutar ?? 0).map((x) => <span class={`pv pv-${x.p}`}>{x.m}</span>)}</span>
+          {o.alis && <span><i class="id-n id-n-a"></i>Alış {yuzde(o.satisPayi == null ? null : Math.round((100 - o.satisPayi) * 10) / 10)} · {tutar(o.alis?.tutar ?? 0).map((x) => <span class={`pv pv-${x.p}`}>{x.m}</span>)}</span>}
         </dd>
       </div>
       <div>
         <dt>İlk ilanların payı</dt>
         <dd class="id-buyuk">{yuzde(o.satis?.ilkUcPay)}</dd>
-        <dd class="id-alt">en düşük fiyatlı üç satış ilanındaki pay, satıştakilerin içinde · alışta en yüksek üç: {yuzde(o.alis?.ilkUcPay)}</dd>
+        <dd class="id-alt">en düşük fiyatlı üç satış ilanındaki pay, satıştakilerin içinde{o.alis && ` · alışta en yüksek üç: ${yuzde(o.alis.ilkUcPay)}`}</dd>
       </div>
     </dl>
     {o.satis && o.alis && (

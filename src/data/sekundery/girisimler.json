@@ -29,6 +29,17 @@
   "fonAktarim": "2021-11-26",
   "kampanya": "Otonom Odyometre"
  },
+ "ALISVER-B": {
+  "kod": "ALISVER",
+  "grup": "B",
+  "baslangic": "2024-04-03",
+  "dagitim": 10.59,
+  "itoEnf": null,
+  "ad": "Alışverişlio SuperApp",
+  "fonAktarim": null,
+  "kampanya": null,
+  "surekli": true
+ },
  "ALPGN-B": {
   "kod": "ALPGN",
   "grup": "B",
@@ -123,7 +134,7 @@
   "kod": "BSCHL",
   "grup": "B",
   "baslangic": "2022-06-13",
-  "dagitim": 10.0,
+  "dagitim": 10,
   "itoEnf": 46.21,
   "ad": "Bilişime İlk Adım",
   "fonAktarim": "2022-10-03",
@@ -138,6 +149,17 @@
   "ad": null,
   "fonAktarim": "2023-05-04",
   "kampanya": "Taşınabilir Güç İstasyonu"
+ },
+ "BUKYTALK-D": {
+  "kod": "BUKYTALK",
+  "grup": "D",
+  "baslangic": "2023-01-04",
+  "dagitim": 7.02,
+  "itoEnf": null,
+  "ad": "BukyTalk",
+  "fonAktarim": "2023-04-24",
+  "kampanya": null,
+  "surekli": true
  },
  "BYQEE-A": {
   "kod": "BYQEE",
@@ -258,6 +280,17 @@
   "ad": null,
   "fonAktarim": "2023-12-11",
   "kampanya": "Curve Animation"
+ },
+ "DELSA-B": {
+  "kod": "DELSA",
+  "grup": "B",
+  "baslangic": "2023-12-20",
+  "dagitim": 8.46,
+  "itoEnf": null,
+  "ad": "DELSA",
+  "fonAktarim": "2024-04-29",
+  "kampanya": null,
+  "surekli": true
  },
  "DLVRY-C": {
   "kod": "DLVRY",
@@ -409,6 +442,17 @@
   "fonAktarim": "2023-01-23",
   "kampanya": "Genoride"
  },
+ "GEZIBIL-B": {
+  "kod": "GEZIBIL",
+  "grup": "B",
+  "baslangic": "2023-08-07",
+  "dagitim": 8,
+  "itoEnf": null,
+  "ad": "GeziBilen",
+  "fonAktarim": "2023-10-27",
+  "kampanya": null,
+  "surekli": true
+ },
  "GRFON-D": {
   "kod": "GRFON",
   "grup": "D",
@@ -429,6 +473,17 @@
   "fonAktarim": "2023-11-30",
   "kampanya": "Türkiye'nin Bebek Devam Sütü"
  },
+ "HELPSTEP-C": {
+  "kod": "HELPSTEP",
+  "grup": "C",
+  "baslangic": "2023-01-30",
+  "dagitim": 31.96,
+  "itoEnf": null,
+  "ad": "Help Steps",
+  "fonAktarim": "2023-04-28",
+  "kampanya": null,
+  "surekli": true
+ },
  "HRGLE-D": {
   "kod": "HRGLE",
   "grup": "D",
@@ -438,6 +493,17 @@
   "ad": null,
   "fonAktarim": "2025-04-17",
   "kampanya": "Depolarda Mikromobilite"
+ },
+ "INNFINIT-C": {
+  "kod": "INNFINIT",
+  "grup": "C",
+  "baslangic": "2023-06-01",
+  "dagitim": 11.59,
+  "itoEnf": null,
+  "ad": "Innfinitive",
+  "fonAktarim": "2023-07-28",
+  "kampanya": null,
+  "surekli": true
  },
  "IONTK-B": {
   "kod": "IONTK",
@@ -469,6 +535,17 @@
   "fonAktarim": "2022-12-05",
   "kampanya": "DüğünBuketi.com"
  },
+ "KIVIERP-B": {
+  "kod": "KIVIERP",
+  "grup": "B",
+  "baslangic": "2022-10-17",
+  "dagitim": 7.3,
+  "itoEnf": null,
+  "ad": "KiviERP",
+  "fonAktarim": "2022-12-28",
+  "kampanya": null,
+  "surekli": true
+ },
  "KRT3D-B": {
   "kod": "KRT3D",
   "grup": "B",
@@ -478,6 +555,28 @@
   "ad": "Kratos3D Kafa Tarama Sistemi",
   "fonAktarim": "2023-02-10",
   "kampanya": "Kratos"
+ },
+ "LASTIK-B": {
+  "kod": "LASTIK",
+  "grup": "B",
+  "baslangic": "2025-11-03",
+  "dagitim": 8.78,
+  "itoEnf": null,
+  "ad": "Lastik Borsası",
+  "fonAktarim": null,
+  "kampanya": null,
+  "surekli": true
+ },
+ "MACELLAN-B": {
+  "kod": "MACELLAN",
+  "grup": "B",
+  "baslangic": "2022-09-15",
+  "dagitim": 59.46,
+  "itoEnf": null,
+  "ad": "Macellan SuperApp",
+  "fonAktarim": "2022-12-14",
+  "kampanya": null,
+  "surekli": true
  },
  "MEDIB-B": {
   "kod": "MEDIB",
@@ -638,6 +737,28 @@
   "ad": "İklimlendirme Teknolojisi",
   "fonAktarim": "2023-02-07",
   "kampanya": "İklimlendirme Teknolojisi"
+ },
+ "PHARUS-B": {
+  "kod": "PHARUS",
+  "grup": "B",
+  "baslangic": "2024-03-11",
+  "dagitim": 8.25,
+  "itoEnf": null,
+  "ad": "Pharus Tech",
+  "fonAktarim": "2024-06-21",
+  "kampanya": null,
+  "surekli": true
+ },
+ "POCKET-C": {
+  "kod": "POCKET",
+  "grup": "C",
+  "baslangic": "2023-09-13",
+  "dagitim": 8.35,
+  "itoEnf": null,
+  "ad": "Pocket eSIM",
+  "fonAktarim": null,
+  "kampanya": null,
+  "surekli": true
  },
  "PROMO-B": {
   "kod": "PROMO",
@@ -849,6 +970,17 @@
   "fonAktarim": "2022-07-04",
   "kampanya": "Steto"
  },
+ "SUGAR-B": {
+  "kod": "SUGAR",
+  "grup": "B",
+  "baslangic": "2022-05-18",
+  "dagitim": 13.51,
+  "itoEnf": null,
+  "ad": "Sugar Technology",
+  "fonAktarim": null,
+  "kampanya": null,
+  "surekli": true
+ },
  "SUITE-B": {
   "kod": "SUITE",
   "grup": "B",
@@ -978,6 +1110,17 @@
   "ad": "İnşaat Sektörüne Dijital Çözümler",
   "fonAktarim": "2022-06-28",
   "kampanya": "Yapısoft"
+ },
+ "YUYUTO-B": {
+  "kod": "YUYUTO",
+  "grup": "B",
+  "baslangic": "2024-01-31",
+  "dagitim": 9.92,
+  "itoEnf": null,
+  "ad": "Yuyuto Games",
+  "fonAktarim": null,
+  "kampanya": null,
+  "surekli": true
  },
  "ZTECH-B": {
   "kod": "ZTECH",

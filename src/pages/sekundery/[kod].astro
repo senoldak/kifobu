@@ -35,7 +35,7 @@ const virmanMedyan = vGunler.length ? medyan(vGunler) : null;
 const K = s.kampanya;
 const gercekler = [
   K && { ad: 'Kampanya başlangıcı', deger: s.baslangic ? tarihYaz(s.baslangic) : '—' },
-  K && { ad: 'Fon aktarımı', deger: tarihYaz(K.fonAktarim) },
+  K && { ad: 'Fon aktarımı', deger: K.fonAktarim ? tarihYaz(K.fonAktarim) : '—' },
   K && { ad: 'Yatırımcı', deger: K.yatirimci.toLocaleString('tr-TR') },
   K && {
     ad: 'Sermaye',
@@ -105,9 +105,9 @@ const gercekler = [
 
     <IlanDagilimi s={s} />
 
-    {gecmis.length > 0 && <IlanGrafik kod={k} seri={gecmis} dagitim={s.dagitim} itoEnf={s.itoEnf} baslangic={s.baslangic} unvan={tamUnvan(s.unvan)} />}
+    {gecmis.length > 0 && <IlanGrafik kod={k} seri={gecmis} dagitim={s.dagitim} itoEnf={s.itoEnf} baslangic={s.baslangic} unvan={tamUnvan(s.unvan)} donemsiz={s.surekli} />}
 
-    <GrupDonemleri s={s} />
+    {!s.surekli && <GrupDonemleri s={s} />}
 
     <VirmanGecmisi kod={s.kod} />
 

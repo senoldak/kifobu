@@ -9,8 +9,9 @@ import { kurlar as usdK, avroKurlar as eurK, altinKurlar as xauK } from '../../l
 import virmanVeri from '../../data/sekundery/virman.json';
 
 interface Nokta { tarih: string; enDusukSatis: number | null; medyanSatis: number | null; enYuksekAlis: number | null; medyanAlis: number | null }
-interface Props { kod: string; seri: Nokta[]; dagitim: number | null; itoEnf: number | null; baslangic?: string | null; unvan?: string | null }
-const { kod, seri, dagitim, itoEnf, baslangic = null, unvan = null } = Astro.props;
+// donemsiz: ilanları sürekli açık olan pay grubu (ilan dönemi yok); dönem şeridi ve dönem ortalaması çizilmez.
+interface Props { kod: string; seri: Nokta[]; dagitim: number | null; itoEnf: number | null; baslangic?: string | null; unvan?: string | null; donemsiz?: boolean }
+const { kod, seri, dagitim, itoEnf, baslangic = null, unvan = null, donemsiz = false } = Astro.props;
 // Birim görünümleri: her günün fiyatı o günün kuruyla; dağıtım çizgisi kampanya günü, İTO çizgisi son günün kuruyla.
 const kaynak = { usd: usdK, eur: eurK, xau: xauK } as Record<string, Record<string, number>>;
 const kur = Object.fromEntries(Object.entries(kaynak).map(([p, k]) => [p, {
@@ -20,7 +21,7 @@ const kur = Object.fromEntries(Object.entries(kaynak).map(([p, k]) => [p, {
 }]));
 // İlan dönemleri (dönem duyurularından): grafikte açık şerit ve dönem ortalaması çizgisi için; yalnız seriyle kesişenler.
 const ilk = seri[0]?.tarih ?? '', sonT = seri.at(-1)?.tarih ?? '';
-const donemler = virmanVeri.donemler.filter((d) => d.kapanis >= ilk && d.acilis <= sonT).map((d) => ({ acilis: d.acilis, kapanis: d.kapanis }));
+const donemler = donemsiz ? [] : virmanVeri.donemler.filter((d) => d.kapanis >= ilk && d.acilis <= sonT).map((d) => ({ acilis: d.acilis, kapanis: d.kapanis }));
 const veri = { kod, unvan, seri, dagitim, itoEnf, kur, donemler };
 const tarihYaz = (t: string) => new Date(`${t}T12:00:00`).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
 ---
@@ -48,7 +49,7 @@ const tarihYaz = (t: string) => new Date(`${t}T12:00:00`).toLocaleDateString('tr
     <div class="ig-grafik" data-grafik></div>
     <div class="ig-marka" aria-hidden="true" set:html={tohumIsaretiSvg({ boyut: 180 })} />
   </div>
-  <p class="ig-ipucu" data-ig-js hidden>Fare tekerleği ya da iki parmakla yakınlaştırın; üzerine gelince o günün değerleri yukarıda görünür. Başlıklara tıklayınca seri açılıp kapanır. Kesik çizgiler: dağıtım fiyatı ve İTO enflasyonuna göre fiyat. Açık şeritler ilan dönemleridir; "Dönem ortalaması" çizgileri her dönemdeki en düşük ve medyan satış ilanlarının ortalamasıdır.</p>
+  <p class="ig-ipucu" data-ig-js hidden>Fare tekerleği ya da iki parmakla yakınlaştırın; üzerine gelince o günün değerleri yukarıda görünür. Başlıklara tıklayınca seri açılıp kapanır. Kesik çizgiler: dağıtım fiyatı ve İTO enflasyonuna göre fiyat.{donemler.length > 0 && ' Açık şeritler ilan dönemleridir; "Dönem ortalaması" çizgileri her dönemdeki en düşük ve medyan satış ilanlarının ortalamasıdır.'}</p>
   <details class="ig-tablo">
     <summary>Rakamları göster</summary>
     <div class="ig-tablo-kap">
@@ -306,6 +307,7 @@ const tarihYaz = (t: string) => new Date(`${t}T12:00:00`).toLocaleDateString('tr
   .ig-olcu :global(div.kapali) { opacity: 0.35; }
   .ig-katman { font: inherit; font-size: 0.8rem; font-weight: 600; height: 32px; padding: 0 10px; display: inline-flex; align-items: center; gap: 6px; border: 1.5px solid var(--murekkep); background: transparent; color: var(--murekkep); cursor: pointer; }
   .ig-katman[aria-pressed='false'] { opacity: 0.45; }
+  .ig-katman[hidden] { display: none; }
   .ig-bant-i { width: 12px; height: 12px; background: rgba(232, 180, 12, 0.45); display: inline-block; }
   .ig-olcu :global(dt) { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gri); display: flex; align-items: center; gap: 6px; }
   .ig-olcu :global(dt i) { width: 12px; height: 3px; background: var(--r); display: inline-block; }

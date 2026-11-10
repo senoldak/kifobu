@@ -13,7 +13,7 @@
      "ad": "Prolicell Hücre Fabrikası",
      "fonAktarim": "2023-08-10",
      "yatirimci": 3468,
-     "sermaye": 65500000.0,
+     "sermaye": 65500000,
      "dagitimOrani": 7.2,
      "dagitimFiyati": 6.17,
      "gruplar": [
@@ -34,7 +34,7 @@
      "ad": "Otonom Odyometre",
      "fonAktarim": "2021-11-26",
      "yatirimci": 591,
-     "sermaye": 878000.0,
+     "sermaye": 878000,
      "dagitimOrani": 14.4,
      "dagitimFiyati": 6.55,
      "gruplar": [
@@ -56,9 +56,28 @@
      "ad": "AirCar Uçan Araba",
      "fonAktarim": "2026-01-22",
      "yatirimci": 1715,
-     "sermaye": 30544574.0,
+     "sermaye": 30544574,
      "dagitimOrani": 1.9,
      "dagitimFiyati": 30.85
+    }
+   ]
+  },
+  "ALISVER": {
+   "unvan": "Alışverişlio SuperApp",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": null,
+     "fonAktarim": null,
+     "yatirimci": 1001,
+     "sermaye": 9064000,
+     "dagitimOrani": 7,
+     "dagitimFiyati": 10.59,
+     "gruplar": [
+      "B"
+     ]
     }
    ]
   },
@@ -73,7 +92,7 @@
      "ad": "ALPGEN Robotics",
      "fonAktarim": "2021-12-15",
      "yatirimci": 666,
-     "sermaye": 800000.0,
+     "sermaye": 800000,
      "dagitimOrani": 6.5,
      "dagitimFiyati": 16.25,
      "gruplar": [
@@ -93,7 +112,7 @@
      "ad": "KurOba Oghuz",
      "fonAktarim": "2025-06-13",
      "yatirimci": 351,
-     "sermaye": 3276252.0,
+     "sermaye": 3276252,
      "dagitimOrani": 13.6,
      "dagitimFiyati": 9.15,
      "gruplar": [
@@ -114,7 +133,7 @@
      "ad": "Arkerobox Globalleşiyor",
      "fonAktarim": "2022-12-09",
      "yatirimci": 1200,
-     "sermaye": 4173183.0,
+     "sermaye": 4173183,
      "dagitimOrani": 26.9,
      "dagitimFiyati": 10.98,
      "gruplar": [
@@ -125,7 +144,7 @@
      "ad": "Kültürel Mirası Keşfet",
      "fonAktarim": "2021-12-23",
      "yatirimci": 1008,
-     "sermaye": 1249487.0,
+     "sermaye": 1249487,
      "dagitimOrani": 12.7,
      "dagitimFiyati": 9.2,
      "gruplar": [
@@ -145,8 +164,8 @@
      "ad": "Savity Safe with Virtuality",
      "fonAktarim": "2022-01-24",
      "yatirimci": 1154,
-     "sermaye": 2016000.0,
-     "dagitimOrani": 18.0,
+     "sermaye": 2016000,
+     "dagitimOrani": 18,
      "dagitimFiyati": 6.67,
      "gruplar": [
       "B"
@@ -166,7 +185,7 @@
      "ad": "ATRONMAC",
      "fonAktarim": "2024-10-24",
      "yatirimci": 2084,
-     "sermaye": 29800000.0,
+     "sermaye": 29800000,
      "dagitimOrani": 29.1,
      "dagitimFiyati": 7.11,
      "gruplar": [
@@ -186,8 +205,8 @@
      "ad": "AuthTake",
      "fonAktarim": "2021-11-24",
      "yatirimci": 696,
-     "sermaye": 960000.0,
-     "dagitimOrani": 6.0,
+     "sermaye": 960000,
+     "dagitimOrani": 6,
      "dagitimFiyati": 16.66,
      "gruplar": [
       "B"
@@ -206,8 +225,8 @@
      "ad": "Plantero",
      "fonAktarim": "2024-03-29",
      "yatirimci": 903,
-     "sermaye": 4728884.0,
-     "dagitimOrani": 13.0,
+     "sermaye": 4728884,
+     "dagitimOrani": 13,
      "dagitimFiyati": 9.41,
      "gruplar": [
       "B"
@@ -226,8 +245,8 @@
      "ad": "Yapay Doku Teknolojileri",
      "fonAktarim": "2023-08-22",
      "yatirimci": 2603,
-     "sermaye": 17700000.0,
-     "dagitimOrani": 12.0,
+     "sermaye": 17700000,
+     "dagitimOrani": 12,
      "dagitimFiyati": 7.91,
      "gruplar": [
       "B"
@@ -246,9 +265,9 @@
      "ad": "Bilişim School",
      "fonAktarim": "2022-10-03",
      "yatirimci": 627,
-     "sermaye": 1511000.0,
-     "dagitimOrani": 9.0,
-     "dagitimFiyati": 10.0,
+     "sermaye": 1511000,
+     "dagitimOrani": 9,
+     "dagitimFiyati": 10,
      "gruplar": [
       "B"
      ]
@@ -266,11 +285,30 @@
      "ad": "Taşınabilir Güç İstasyonu",
      "fonAktarim": "2023-05-04",
      "yatirimci": 1924,
-     "sermaye": 5867512.0,
-     "dagitimOrani": 12.0,
+     "sermaye": 5867512,
+     "dagitimOrani": 12,
      "dagitimFiyati": 8.01,
      "gruplar": [
       "B"
+     ]
+    }
+   ]
+  },
+  "BUKYTALK": {
+   "unvan": "BukyTalk",
+   "gruplar": [
+    "D"
+   ],
+   "kampanyalar": [
+    {
+     "ad": null,
+     "fonAktarim": "2023-04-24",
+     "yatirimci": 641,
+     "sermaye": 2989583,
+     "dagitimOrani": 10,
+     "dagitimFiyati": 7.02,
+     "gruplar": [
+      "D"
      ]
     }
    ]
@@ -288,7 +326,7 @@
      "ad": "BYQEE HER ŞEY YENİ BAŞLIYOR",
      "fonAktarim": "2023-06-19",
      "yatirimci": 1648,
-     "sermaye": 7370000.0,
+     "sermaye": 7370000,
      "dagitimOrani": 27.4,
      "dagitimFiyati": 7.63,
      "gruplar": [
@@ -300,8 +338,8 @@
      "ad": "BYQEE",
      "fonAktarim": "2022-01-14",
      "yatirimci": 1066,
-     "sermaye": 1920000.0,
-     "dagitimOrani": 13.0,
+     "sermaye": 1920000,
+     "dagitimOrani": 13,
      "dagitimFiyati": 8.12,
      "gruplar": [
       "B"
@@ -320,7 +358,7 @@
      "ad": "Classest",
      "fonAktarim": "2021-12-01",
      "yatirimci": 504,
-     "sermaye": 797767.0,
+     "sermaye": 797767,
      "dagitimOrani": 11.4,
      "dagitimFiyati": 8.77,
      "gruplar": [
@@ -340,7 +378,7 @@
      "ad": "Clicksy Fotoğraflarına Hayat Ver!",
      "fonAktarim": "2022-12-02",
      "yatirimci": 675,
-     "sermaye": 3111347.0,
+     "sermaye": 3111347,
      "dagitimOrani": 7.9,
      "dagitimFiyati": 12.43,
      "gruplar": [
@@ -360,7 +398,7 @@
      "ad": "Compactive Game Studio",
      "fonAktarim": "2023-05-30",
      "yatirimci": 1355,
-     "sermaye": 4130000.0,
+     "sermaye": 4130000,
      "dagitimOrani": 14.4,
      "dagitimFiyati": 8.23,
      "gruplar": [
@@ -380,8 +418,8 @@
      "ad": "Contentrain",
      "fonAktarim": "2023-02-09",
      "yatirimci": 2107,
-     "sermaye": 3600000.0,
-     "dagitimOrani": 12.0,
+     "sermaye": 3600000,
+     "dagitimOrani": 12,
      "dagitimFiyati": 8.33,
      "gruplar": [
       "B"
@@ -400,7 +438,7 @@
      "ad": "Fotovoltaik Panel Üretimi",
      "fonAktarim": "2023-10-12",
      "yatirimci": 6286,
-     "sermaye": 60000000.0,
+     "sermaye": 60000000,
      "dagitimOrani": 12.9,
      "dagitimFiyati": 5.8,
      "gruplar": [
@@ -421,7 +459,7 @@
      "ad": "CO PRİNT TELAFİ YATIRIM TURU",
      "fonAktarim": "2023-09-01",
      "yatirimci": 500,
-     "sermaye": 21000000.0,
+     "sermaye": 21000000,
      "dagitimOrani": 4.2,
      "dagitimFiyati": 5.68
     },
@@ -429,7 +467,7 @@
      "ad": "CO PRİNT GLOBALDE BÜYÜYOR",
      "fonAktarim": "2023-03-15",
      "yatirimci": 2742,
-     "sermaye": 16000000.0,
+     "sermaye": 16000000,
      "dagitimOrani": 13.2,
      "dagitimFiyati": 5.68,
      "gruplar": [
@@ -440,8 +478,8 @@
      "ad": "CO PRİNT 3D YAZICI TEKNOLOJİLERİ",
      "fonAktarim": "2022-02-03",
      "yatirimci": 1587,
-     "sermaye": 3000000.0,
-     "dagitimOrani": 12.0,
+     "sermaye": 3000000,
+     "dagitimOrani": 12,
      "dagitimFiyati": 8.33,
      "gruplar": [
       "B"
@@ -460,7 +498,7 @@
      "ad": "CranioCatch",
      "fonAktarim": "2022-01-27",
      "yatirimci": 1039,
-     "sermaye": 4122501.0,
+     "sermaye": 4122501,
      "dagitimOrani": 10.9,
      "dagitimFiyati": 10.42,
      "gruplar": [
@@ -480,9 +518,28 @@
      "ad": "Curve Animation",
      "fonAktarim": "2023-12-11",
      "yatirimci": 1810,
-     "sermaye": 10500000.0,
+     "sermaye": 10500000,
      "dagitimOrani": 14.4,
      "dagitimFiyati": 8.1,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "DELSA": {
+   "unvan": "DELSA",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": null,
+     "fonAktarim": "2024-04-29",
+     "yatirimci": 1128,
+     "sermaye": 11823606,
+     "dagitimOrani": 10,
+     "dagitimFiyati": 8.46,
      "gruplar": [
       "B"
      ]
@@ -500,7 +557,7 @@
      "ad": "Heypungi Dünyaya Açılıyor",
      "fonAktarim": "2025-07-21",
      "yatirimci": 570,
-     "sermaye": 6706708.0,
+     "sermaye": 6706708,
      "dagitimOrani": 8.9,
      "dagitimFiyati": 9.75
     }
@@ -517,7 +574,7 @@
      "ad": "Akıllı Teslimat Ağı",
      "fonAktarim": "2023-06-13",
      "yatirimci": 2041,
-     "sermaye": 6050000.0,
+     "sermaye": 6050000,
      "dagitimOrani": 10.1,
      "dagitimFiyati": 11.81,
      "gruplar": [
@@ -537,8 +594,8 @@
      "ad": "egirişim, Girişimcilik ve Teknoloji odaklı içerik platformudur",
      "fonAktarim": "2022-04-14",
      "yatirimci": 1247,
-     "sermaye": 2302500.0,
-     "dagitimOrani": 6.0,
+     "sermaye": 2302500,
+     "dagitimOrani": 6,
      "dagitimFiyati": 16.29,
      "gruplar": [
       "B"
@@ -558,7 +615,7 @@
      "ad": "Eyes of Solar II",
      "fonAktarim": "2024-04-01",
      "yatirimci": 2199,
-     "sermaye": 11556844.0,
+     "sermaye": 11556844,
      "dagitimOrani": 10.4,
      "dagitimFiyati": 7.11,
      "gruplar": [
@@ -569,7 +626,7 @@
      "ad": "Eyes of Solar",
      "fonAktarim": "2023-05-03",
      "yatirimci": 1981,
-     "sermaye": 11556844.0,
+     "sermaye": 11556844,
      "dagitimOrani": 10.1,
      "dagitimFiyati": 11.9,
      "gruplar": [
@@ -589,7 +646,7 @@
      "ad": "Giyilebilir Fitness Sensörü",
      "fonAktarim": "2022-10-18",
      "yatirimci": 1182,
-     "sermaye": 2535590.0,
+     "sermaye": 2535590,
      "dagitimOrani": 11.7,
      "dagitimFiyati": 7.79,
      "gruplar": [
@@ -609,7 +666,7 @@
      "ad": "PangeaVR",
      "fonAktarim": "2023-11-13",
      "yatirimci": 1953,
-     "sermaye": 4860000.0,
+     "sermaye": 4860000,
      "dagitimOrani": 16.6,
      "dagitimFiyati": 6.71,
      "gruplar": [
@@ -629,7 +686,7 @@
      "ad": "esular",
      "fonAktarim": "2023-04-25",
      "yatirimci": 1655,
-     "sermaye": 4764810.0,
+     "sermaye": 4764810,
      "dagitimOrani": 8.4,
      "dagitimFiyati": 11.59,
      "gruplar": [
@@ -649,7 +706,7 @@
      "ad": "Ionbee",
      "fonAktarim": "2023-12-05",
      "yatirimci": 3050,
-     "sermaye": 12500000.0,
+     "sermaye": 12500000,
      "dagitimOrani": 10.6,
      "dagitimFiyati": 10.67,
      "gruplar": [
@@ -669,7 +726,7 @@
      "ad": "D'Poir Beaute",
      "fonAktarim": "2024-04-01",
      "yatirimci": 1243,
-     "sermaye": 4118712.0,
+     "sermaye": 4118712,
      "dagitimOrani": 25.9,
      "dagitimFiyati": 4.72,
      "gruplar": [
@@ -690,8 +747,8 @@
      "ad": "EVBEE FİLOSUNU KURUYORUZ",
      "fonAktarim": "2023-11-20",
      "yatirimci": 4396,
-     "sermaye": 39349995.0,
-     "dagitimOrani": 18.0,
+     "sermaye": 39349995,
+     "dagitimOrani": 18,
      "dagitimFiyati": 4.4,
      "gruplar": [
       "D"
@@ -701,7 +758,7 @@
      "ad": "EVBEE",
      "fonAktarim": "2022-07-29",
      "yatirimci": 2440,
-     "sermaye": 7900510.0,
+     "sermaye": 7900510,
      "dagitimOrani": 16.6,
      "dagitimFiyati": 6.91,
      "gruplar": [
@@ -723,8 +780,8 @@
      "ad": "RUSHAWAY",
      "fonAktarim": "2023-08-01",
      "yatirimci": 2388,
-     "sermaye": 10820000.0,
-     "dagitimOrani": 21.0,
+     "sermaye": 10820000,
+     "dagitimOrani": 21,
      "dagitimFiyati": 8.86,
      "gruplar": [
       "D"
@@ -734,7 +791,7 @@
      "ad": "FERNVAILLE",
      "fonAktarim": "2021-09-29",
      "yatirimci": 544,
-     "sermaye": 516000.0,
+     "sermaye": 516000,
      "dagitimOrani": 8.4,
      "dagitimFiyati": 11.9,
      "gruplar": [
@@ -755,9 +812,28 @@
      "ad": "Genoride",
      "fonAktarim": "2023-01-23",
      "yatirimci": 2191,
-     "sermaye": 5579939.0,
+     "sermaye": 5579939,
      "dagitimOrani": 11.8,
      "dagitimFiyati": 10.42,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "GEZIBIL": {
+   "unvan": "GeziBilen",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": null,
+     "fonAktarim": "2023-10-27",
+     "yatirimci": 440,
+     "sermaye": 2500000,
+     "dagitimOrani": 10,
+     "dagitimFiyati": 8,
      "gruplar": [
       "B"
      ]
@@ -775,7 +851,7 @@
      "ad": "Türkiye'nin Fon Pazarı - FoneriaApp",
      "fonAktarim": "2024-04-08",
      "yatirimci": 3813,
-     "sermaye": 28295632.0,
+     "sermaye": 28295632,
      "dagitimOrani": 3.6,
      "dagitimFiyati": 30.36,
      "gruplar": [
@@ -795,7 +871,7 @@
      "ad": "Bebehum Köprü Yatırım Turunda",
      "fonAktarim": "2025-01-21",
      "yatirimci": 2303,
-     "sermaye": 65039873.0,
+     "sermaye": 65039873,
      "dagitimOrani": 34.5,
      "dagitimFiyati": 5.53
     },
@@ -803,11 +879,30 @@
      "ad": "Türkiye'nin Bebek Devam Sütü",
      "fonAktarim": "2023-11-30",
      "yatirimci": 3247,
-     "sermaye": 29039873.0,
+     "sermaye": 29039873,
      "dagitimOrani": 12.9,
      "dagitimFiyati": 8.1,
      "gruplar": [
       "B"
+     ]
+    }
+   ]
+  },
+  "HELPSTEP": {
+   "unvan": "Help Steps",
+   "gruplar": [
+    "C"
+   ],
+   "kampanyalar": [
+    {
+     "ad": null,
+     "fonAktarim": "2023-04-28",
+     "yatirimci": 749,
+     "sermaye": 8916506,
+     "dagitimOrani": 3,
+     "dagitimFiyati": 31.96,
+     "gruplar": [
+      "C"
      ]
     }
    ]
@@ -823,11 +918,30 @@
      "ad": "Depolarda Mikromobilite",
      "fonAktarim": "2025-04-17",
      "yatirimci": 930,
-     "sermaye": 9559310.0,
+     "sermaye": 9559310,
      "dagitimOrani": 5.1,
      "dagitimFiyati": 21.78,
      "gruplar": [
       "D"
+     ]
+    }
+   ]
+  },
+  "INNFINIT": {
+   "unvan": "Innfinitive",
+   "gruplar": [
+    "C"
+   ],
+   "kampanyalar": [
+    {
+     "ad": null,
+     "fonAktarim": "2023-07-28",
+     "yatirimci": 448,
+     "sermaye": 1898000,
+     "dagitimOrani": 7,
+     "dagitimFiyati": 11.59,
+     "gruplar": [
+      "C"
      ]
     }
    ]
@@ -843,7 +957,7 @@
      "ad": "Taşınabilir Fitness Stüdyosu",
      "fonAktarim": "2023-07-27",
      "yatirimci": 851,
-     "sermaye": 3494111.0,
+     "sermaye": 3494111,
      "dagitimOrani": 10.7,
      "dagitimFiyati": 6.44,
      "gruplar": [
@@ -863,7 +977,7 @@
      "ad": "Jetconnect",
      "fonAktarim": "2022-11-22",
      "yatirimci": 945,
-     "sermaye": 2570512.0,
+     "sermaye": 2570512,
      "dagitimOrani": 10.1,
      "dagitimFiyati": 9.69,
      "gruplar": [
@@ -883,11 +997,30 @@
      "ad": "DüğünBuketi.com",
      "fonAktarim": "2022-12-05",
      "yatirimci": 734,
-     "sermaye": 8109768.0,
-     "dagitimOrani": 4.0,
+     "sermaye": 8109768,
+     "dagitimOrani": 4,
      "dagitimFiyati": 10.28,
      "gruplar": [
       "C"
+     ]
+    }
+   ]
+  },
+  "KIVIERP": {
+   "unvan": "KiviERP",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": null,
+     "fonAktarim": "2022-12-28",
+     "yatirimci": 492,
+     "sermaye": 4111693,
+     "dagitimOrani": 13,
+     "dagitimFiyati": 7.3,
+     "gruplar": [
+      "B"
      ]
     }
    ]
@@ -903,9 +1036,28 @@
      "ad": "Kratos",
      "fonAktarim": "2023-02-10",
      "yatirimci": 1329,
-     "sermaye": 2570000.0,
+     "sermaye": 2570000,
      "dagitimOrani": 14.4,
      "dagitimFiyati": 8.17,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "LASTIK": {
+   "unvan": "Lastik Borsası",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": null,
+     "fonAktarim": null,
+     "yatirimci": 687,
+     "sermaye": 125329428,
+     "dagitimOrani": 8.52,
+     "dagitimFiyati": 8.78,
      "gruplar": [
       "B"
      ]
@@ -924,9 +1076,28 @@
      "ad": "Türkiye nin Yapay Zeka Modelleri",
      "fonAktarim": "2026-01-22",
      "yatirimci": 316,
-     "sermaye": 1810000.0,
-     "dagitimOrani": 5.0,
+     "sermaye": 1810000,
+     "dagitimOrani": 5,
      "dagitimFiyati": 16.57
+    }
+   ]
+  },
+  "MACELLAN": {
+   "unvan": "Macellan SuperApp",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": null,
+     "fonAktarim": "2022-12-14",
+     "yatirimci": 1567,
+     "sermaye": 18920955,
+     "dagitimOrani": 1.48,
+     "dagitimFiyati": 59.46,
+     "gruplar": [
+      "B"
+     ]
     }
    ]
   },
@@ -941,7 +1112,7 @@
      "ad": "MediboothVR",
      "fonAktarim": "2022-01-31",
      "yatirimci": 693,
-     "sermaye": 1210000.0,
+     "sermaye": 1210000,
      "dagitimOrani": 9.4,
      "dagitimFiyati": 10.39,
      "gruplar": [
@@ -961,8 +1132,8 @@
      "ad": "Melo App",
      "fonAktarim": "2023-08-25",
      "yatirimci": 927,
-     "sermaye": 6193890.0,
-     "dagitimOrani": 12.0,
+     "sermaye": 6193890,
+     "dagitimOrani": 12,
      "dagitimFiyati": 5.94,
      "gruplar": [
       "C"
@@ -981,7 +1152,7 @@
      "ad": "GELECEĞİ ŞEKİLLENDİREN TEKNOLOJİ",
      "fonAktarim": "2024-11-01",
      "yatirimci": 1900,
-     "sermaye": 23850230.0,
+     "sermaye": 23850230,
      "dagitimOrani": 10.6,
      "dagitimFiyati": 8.79,
      "gruplar": [
@@ -1001,7 +1172,7 @@
      "ad": "SEYİR DEFTERİ",
      "fonAktarim": "2022-03-25",
      "yatirimci": 1410,
-     "sermaye": 8880992.0,
+     "sermaye": 8880992,
      "dagitimOrani": 20.4,
      "dagitimFiyati": 5.56,
      "gruplar": [
@@ -1021,8 +1192,8 @@
      "ad": "Miniyol Mobility Super App",
      "fonAktarim": "2022-12-30",
      "yatirimci": 1998,
-     "sermaye": 15700000.0,
-     "dagitimOrani": 12.0,
+     "sermaye": 15700000,
+     "dagitimOrani": 12,
      "dagitimFiyati": 5.41,
      "gruplar": [
       "B"
@@ -1042,7 +1213,7 @@
      "ad": "MSV Deneyimin Akıllı Geleceği",
      "fonAktarim": "2026-01-28",
      "yatirimci": 258,
-     "sermaye": 8129928.0,
+     "sermaye": 8129928,
      "dagitimOrani": 0.1,
      "dagitimFiyati": 3.07
     }
@@ -1059,7 +1230,7 @@
      "ad": "Kanseri Veri Gücüyle Önle",
      "fonAktarim": "2024-02-29",
      "yatirimci": 2069,
-     "sermaye": 4850000.0,
+     "sermaye": 4850000,
      "dagitimOrani": 13.2,
      "dagitimFiyati": 7.5,
      "gruplar": [
@@ -1079,7 +1250,7 @@
      "ad": "No Exit Games",
      "fonAktarim": "2023-08-17",
      "yatirimci": 1894,
-     "sermaye": 7219008.0,
+     "sermaye": 7219008,
      "dagitimOrani": 10.1,
      "dagitimFiyati": 12.12,
      "gruplar": [
@@ -1099,8 +1270,8 @@
      "ad": "SitrettMX",
      "fonAktarim": "2022-10-17",
      "yatirimci": 1565,
-     "sermaye": 13302503.0,
-     "dagitimOrani": 11.0,
+     "sermaye": 13302503,
+     "dagitimOrani": 11,
      "dagitimFiyati": 9.02,
      "gruplar": [
       "B"
@@ -1119,7 +1290,7 @@
      "ad": "Networkdry",
      "fonAktarim": "2023-05-24",
      "yatirimci": 2435,
-     "sermaye": 16624135.0,
+     "sermaye": 16624135,
      "dagitimOrani": 6.5,
      "dagitimFiyati": 14.04,
      "gruplar": [
@@ -1139,7 +1310,7 @@
      "ad": "Naturiga - Plant Based Nutrition",
      "fonAktarim": "2024-11-13",
      "yatirimci": 1999,
-     "sermaye": 15067220.0,
+     "sermaye": 15067220,
      "dagitimOrani": 23.7,
      "dagitimFiyati": 9.65,
      "gruplar": [
@@ -1159,7 +1330,7 @@
      "ad": "Zeytin Atıklarından Bio Deri",
      "fonAktarim": "2025-02-10",
      "yatirimci": 1068,
-     "sermaye": 12248600.0,
+     "sermaye": 12248600,
      "dagitimOrani": 4.8,
      "dagitimFiyati": 27.21,
      "gruplar": [
@@ -1179,7 +1350,7 @@
      "ad": "Koyun Yününden Amino Asit Üretimi",
      "fonAktarim": "2024-04-08",
      "yatirimci": 2639,
-     "sermaye": 14079999.0,
+     "sermaye": 14079999,
      "dagitimOrani": 10.8,
      "dagitimFiyati": 8.59,
      "gruplar": [
@@ -1199,7 +1370,7 @@
      "ad": "Kiralamanın Pazaryerine Ortak Ol",
      "fonAktarim": "2024-12-03",
      "yatirimci": 1056,
-     "sermaye": 12290665.0,
+     "sermaye": 12290665,
      "dagitimOrani": 26.1,
      "dagitimFiyati": 10.22
     },
@@ -1207,7 +1378,7 @@
      "ad": "Kiralamanın Pazaryeri Ortak",
      "fonAktarim": "2023-02-08",
      "yatirimci": 1494,
-     "sermaye": 4730000.0,
+     "sermaye": 4730000,
      "dagitimOrani": 17.3,
      "dagitimFiyati": 6.87,
      "gruplar": [
@@ -1228,8 +1399,8 @@
      "ad": "Rawsome II",
      "fonAktarim": "2024-03-08",
      "yatirimci": 1922,
-     "sermaye": 18201983.0,
-     "dagitimOrani": 6.0,
+     "sermaye": 18201983,
+     "dagitimOrani": 6,
      "dagitimFiyati": 8.7,
      "gruplar": [
       "D"
@@ -1239,8 +1410,8 @@
      "ad": "Rawsome",
      "fonAktarim": "2022-12-02",
      "yatirimci": 1121,
-     "sermaye": 8701983.0,
-     "dagitimOrani": 15.0,
+     "sermaye": 8701983,
+     "dagitimOrani": 15,
      "dagitimFiyati": 6.21,
      "gruplar": [
       "B"
@@ -1259,11 +1430,49 @@
      "ad": "İklimlendirme Teknolojisi",
      "fonAktarim": "2023-02-07",
      "yatirimci": 1437,
-     "sermaye": 2470000.0,
+     "sermaye": 2470000,
      "dagitimOrani": 14.4,
      "dagitimFiyati": 6.07,
      "gruplar": [
       "B"
+     ]
+    }
+   ]
+  },
+  "PHARUS": {
+   "unvan": "Pharus Tech",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": null,
+     "fonAktarim": "2024-06-21",
+     "yatirimci": 809,
+     "sermaye": 5092735,
+     "dagitimOrani": 11.88,
+     "dagitimFiyati": 8.25,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "POCKET": {
+   "unvan": "Pocket eSIM",
+   "gruplar": [
+    "C"
+   ],
+   "kampanyalar": [
+    {
+     "ad": null,
+     "fonAktarim": null,
+     "yatirimci": 655,
+     "sermaye": 8984431,
+     "dagitimOrani": 10,
+     "dagitimFiyati": 8.35,
+     "gruplar": [
+      "C"
      ]
     }
    ]
@@ -1280,7 +1489,7 @@
      "ad": "PROMOSEED ÜRETİMLE BÜYÜYOR",
      "fonAktarim": "2022-11-09",
      "yatirimci": 2227,
-     "sermaye": 7425000.0,
+     "sermaye": 7425000,
      "dagitimOrani": 21.7,
      "dagitimFiyati": 5.14,
      "gruplar": [
@@ -1291,8 +1500,8 @@
      "ad": "AKILLI BAKTERİ TEKNOLOJİSİ",
      "fonAktarim": "2021-08-02",
      "yatirimci": 291,
-     "sermaye": 350000.0,
-     "dagitimOrani": 6.0,
+     "sermaye": 350000,
+     "dagitimOrani": 6,
      "dagitimFiyati": 14.29,
      "gruplar": [
       "B"
@@ -1311,7 +1520,7 @@
      "ad": "Pastacıdan",
      "fonAktarim": "2022-02-10",
      "yatirimci": 610,
-     "sermaye": 1060695.0,
+     "sermaye": 1060695,
      "dagitimOrani": 11.9,
      "dagitimFiyati": 8.33,
      "gruplar": [
@@ -1331,7 +1540,7 @@
      "ad": "MilkApp",
      "fonAktarim": "2023-04-05",
      "yatirimci": 1187,
-     "sermaye": 1970000.0,
+     "sermaye": 1970000,
      "dagitimOrani": 14.4,
      "dagitimFiyati": 6.77,
      "gruplar": [
@@ -1351,7 +1560,7 @@
      "ad": "Q CHARGE",
      "fonAktarim": "2023-06-12",
      "yatirimci": 6100,
-     "sermaye": 1046887318.0,
+     "sermaye": 1046887318,
      "dagitimOrani": 8.2,
      "dagitimFiyati": 10.55,
      "gruplar": [
@@ -1371,8 +1580,8 @@
      "ad": "Retinow",
      "fonAktarim": "2022-09-20",
      "yatirimci": 1114,
-     "sermaye": 2166600.0,
-     "dagitimOrani": 12.0,
+     "sermaye": 2166600,
+     "dagitimOrani": 12,
      "dagitimFiyati": 6.18,
      "gruplar": [
       "B"
@@ -1391,8 +1600,8 @@
      "ad": "Safran ve Ürünleri Üretimi",
      "fonAktarim": "2023-06-03",
      "yatirimci": 2111,
-     "sermaye": 15000000.0,
-     "dagitimOrani": 70.0,
+     "sermaye": 15000000,
+     "dagitimOrani": 70,
      "dagitimFiyati": 1.43,
      "gruplar": [
       "B"
@@ -1411,7 +1620,7 @@
      "ad": "Esporun Veri Noktası",
      "fonAktarim": "2023-12-13",
      "yatirimci": 1611,
-     "sermaye": 6992422.0,
+     "sermaye": 6992422,
      "dagitimOrani": 16.8,
      "dagitimFiyati": 4.09,
      "gruplar": [
@@ -1431,7 +1640,7 @@
      "ad": "Scoutium",
      "fonAktarim": "2023-10-10",
      "yatirimci": 1569,
-     "sermaye": 13413383.0,
+     "sermaye": 13413383,
      "dagitimOrani": 10.7,
      "dagitimFiyati": 8.94,
      "gruplar": [
@@ -1451,7 +1660,7 @@
      "ad": "SecurifyID",
      "fonAktarim": "2022-03-01",
      "yatirimci": 1716,
-     "sermaye": 6260000.0,
+     "sermaye": 6260000,
      "dagitimOrani": 15.6,
      "dagitimFiyati": 11.08,
      "gruplar": [
@@ -1471,7 +1680,7 @@
      "ad": "SENSIBALL VR",
      "fonAktarim": "2021-09-28",
      "yatirimci": 384,
-     "sermaye": 970000.0,
+     "sermaye": 970000,
      "dagitimOrani": 9.6,
      "dagitimFiyati": 10.31,
      "gruplar": [
@@ -1491,8 +1700,8 @@
      "ad": "Akıllı Sera Sistemi",
      "fonAktarim": "2022-05-11",
      "yatirimci": 1046,
-     "sermaye": 1550000.0,
-     "dagitimOrani": 8.0,
+     "sermaye": 1550000,
+     "dagitimOrani": 8,
      "dagitimFiyati": 12.09,
      "gruplar": [
       "B"
@@ -1511,7 +1720,7 @@
      "ad": "Shiftplanner",
      "fonAktarim": "2022-06-23",
      "yatirimci": 1024,
-     "sermaye": 2172000.0,
+     "sermaye": 2172000,
      "dagitimOrani": 9.6,
      "dagitimFiyati": 8.98,
      "gruplar": [
@@ -1531,7 +1740,7 @@
      "ad": "Shopalm Ödeme Çözümleri ve Teknolojileri",
      "fonAktarim": "2022-01-12",
      "yatirimci": 799,
-     "sermaye": 1740000.0,
+     "sermaye": 1740000,
      "dagitimOrani": 9.6,
      "dagitimFiyati": 8.62,
      "gruplar": [
@@ -1551,8 +1760,8 @@
      "ad": "ShopiVerse",
      "fonAktarim": "2023-09-19",
      "yatirimci": 2693,
-     "sermaye": 21800000.0,
-     "dagitimOrani": 5.0,
+     "sermaye": 21800000,
+     "dagitimOrani": 5,
      "dagitimFiyati": 18.34,
      "gruplar": [
       "C"
@@ -1572,7 +1781,7 @@
      "ad": "Size&Me II",
      "fonAktarim": "2023-11-01",
      "yatirimci": 1540,
-     "sermaye": 8388459.0,
+     "sermaye": 8388459,
      "dagitimOrani": 7.5,
      "dagitimFiyati": 8.86,
      "gruplar": [
@@ -1583,8 +1792,8 @@
      "ad": "SizeandMe",
      "fonAktarim": "2022-06-10",
      "yatirimci": 1382,
-     "sermaye": 2830000.0,
-     "dagitimOrani": 6.0,
+     "sermaye": 2830000,
+     "dagitimOrani": 6,
      "dagitimFiyati": 15.19,
      "gruplar": [
       "B"
@@ -1603,7 +1812,7 @@
      "ad": "SpechtLab",
      "fonAktarim": "2023-11-03",
      "yatirimci": 2429,
-     "sermaye": 8400000.0,
+     "sermaye": 8400000,
      "dagitimOrani": 9.6,
      "dagitimFiyati": 9.67,
      "gruplar": [
@@ -1623,8 +1832,8 @@
      "ad": "SPARGA 1",
      "fonAktarim": "2022-12-15",
      "yatirimci": 1868,
-     "sermaye": 20000000.0,
-     "dagitimOrani": 70.0,
+     "sermaye": 20000000,
+     "dagitimOrani": 70,
      "dagitimFiyati": 1.43,
      "gruplar": [
       "B"
@@ -1643,8 +1852,8 @@
      "ad": "SPARGA 2",
      "fonAktarim": "2023-04-14",
      "yatirimci": 3684,
-     "sermaye": 39000000.0,
-     "dagitimOrani": 70.0,
+     "sermaye": 39000000,
+     "dagitimOrani": 70,
      "dagitimFiyati": 1.43,
      "gruplar": [
       "B"
@@ -1663,9 +1872,28 @@
      "ad": "Steto",
      "fonAktarim": "2022-07-04",
      "yatirimci": 932,
-     "sermaye": 1503375.0,
+     "sermaye": 1503375,
      "dagitimOrani": 11.2,
      "dagitimFiyati": 8.65,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "SUGAR": {
+   "unvan": "Sugar Technology",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": null,
+     "fonAktarim": null,
+     "yatirimci": 200,
+     "sermaye": 1850000,
+     "dagitimOrani": 7,
+     "dagitimFiyati": 13.51,
      "gruplar": [
       "B"
      ]
@@ -1683,7 +1911,7 @@
      "ad": "Test Otomasyon Platformu",
      "fonAktarim": "2022-04-29",
      "yatirimci": 1314,
-     "sermaye": 2559279.0,
+     "sermaye": 2559279,
      "dagitimOrani": 17.2,
      "dagitimFiyati": 5.56,
      "gruplar": [
@@ -1703,7 +1931,7 @@
      "ad": "Scoper Video Laringoskop",
      "fonAktarim": "2022-08-02",
      "yatirimci": 1320,
-     "sermaye": 4158800.0,
+     "sermaye": 4158800,
      "dagitimOrani": 14.4,
      "dagitimFiyati": 8.23,
      "gruplar": [
@@ -1724,7 +1952,7 @@
      "ad": "İnovatif Espor Turnuva Platformu",
      "fonAktarim": "2026-01-22",
      "yatirimci": 685,
-     "sermaye": 7330485.0,
+     "sermaye": 7330485,
      "dagitimOrani": 2.5,
      "dagitimFiyati": 31.65
     }
@@ -1741,7 +1969,7 @@
      "ad": "Tech2Bio",
      "fonAktarim": "2023-02-02",
      "yatirimci": 669,
-     "sermaye": 1020000.0,
+     "sermaye": 1020000,
      "dagitimOrani": 14.4,
      "dagitimFiyati": 8.33,
      "gruplar": [
@@ -1761,8 +1989,8 @@
      "ad": "Saastech.Io",
      "fonAktarim": "2023-12-22",
      "yatirimci": 2394,
-     "sermaye": 14556157.0,
-     "dagitimOrani": 18.0,
+     "sermaye": 14556157,
+     "dagitimOrani": 18,
      "dagitimFiyati": 3.82,
      "gruplar": [
       "C"
@@ -1781,7 +2009,7 @@
      "ad": "TREXO İNOVASYON",
      "fonAktarim": "2024-12-16",
      "yatirimci": 1724,
-     "sermaye": 12474626.0,
+     "sermaye": 12474626,
      "dagitimOrani": 9.2,
      "dagitimFiyati": 13.66,
      "gruplar": [
@@ -1801,7 +2029,7 @@
      "ad": "Triber Shop",
      "fonAktarim": "2023-11-07",
      "yatirimci": 1234,
-     "sermaye": 4192864.0,
+     "sermaye": 4192864,
      "dagitimOrani": 15.6,
      "dagitimFiyati": 6.68,
      "gruplar": [
@@ -1821,7 +2049,7 @@
      "ad": "Tourist",
      "fonAktarim": "2022-09-06",
      "yatirimci": 899,
-     "sermaye": 2023565.0,
+     "sermaye": 2023565,
      "dagitimOrani": 15.8,
      "dagitimFiyati": 7.32,
      "gruplar": [
@@ -1841,7 +2069,7 @@
      "ad": "Triwi",
      "fonAktarim": "2022-11-07",
      "yatirimci": 1092,
-     "sermaye": 2607226.0,
+     "sermaye": 2607226,
      "dagitimOrani": 17.8,
      "dagitimFiyati": 8.94,
      "gruplar": [
@@ -1862,8 +2090,8 @@
      "ad": "Bilge Tunga",
      "fonAktarim": "2021-11-10",
      "yatirimci": 256,
-     "sermaye": 380000.0,
-     "dagitimOrani": 5.0,
+     "sermaye": 380000,
+     "dagitimOrani": 5,
      "dagitimFiyati": 14.74,
      "gruplar": [
       "A",
@@ -1883,7 +2111,7 @@
      "ad": "Üreticiden Yöresel Lezzetler",
      "fonAktarim": "2022-06-09",
      "yatirimci": 793,
-     "sermaye": 1459600.0,
+     "sermaye": 1459600,
      "dagitimOrani": 7.2,
      "dagitimFiyati": 12.94,
      "gruplar": [
@@ -1903,7 +2131,7 @@
      "ad": "Sektörün Öncüsü Uniq2go",
      "fonAktarim": "2024-06-07",
      "yatirimci": 1515,
-     "sermaye": 11604141.0,
+     "sermaye": 11604141,
      "dagitimOrani": 7.2,
      "dagitimFiyati": 14.36,
      "gruplar": [
@@ -1923,7 +2151,7 @@
      "ad": "OTOMATLARDA YENİ NESİL ÖDEME",
      "fonAktarim": "2025-10-07",
      "yatirimci": 556,
-     "sermaye": 4145000.0,
+     "sermaye": 4145000,
      "dagitimOrani": 3.8,
      "dagitimFiyati": 24.12
     }
@@ -1940,9 +2168,28 @@
      "ad": "Yapısoft",
      "fonAktarim": "2022-06-28",
      "yatirimci": 799,
-     "sermaye": 1920000.0,
+     "sermaye": 1920000,
      "dagitimOrani": 17.3,
      "dagitimFiyati": 6.94,
+     "gruplar": [
+      "B"
+     ]
+    }
+   ]
+  },
+  "YUYUTO": {
+   "unvan": "Yuyuto Games",
+   "gruplar": [
+    "B"
+   ],
+   "kampanyalar": [
+    {
+     "ad": null,
+     "fonAktarim": null,
+     "yatirimci": 915,
+     "sermaye": 9070438,
+     "dagitimOrani": 8.5,
+     "dagitimFiyati": 9.92,
      "gruplar": [
       "B"
      ]
@@ -1960,7 +2207,7 @@
      "ad": "Saksı Kampüs",
      "fonAktarim": "2022-08-29",
      "yatirimci": 666,
-     "sermaye": 10000000.0,
+     "sermaye": 10000000,
      "dagitimOrani": 13.3,
      "dagitimFiyati": 7.27,
      "gruplar": [

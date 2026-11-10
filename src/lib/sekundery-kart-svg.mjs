@@ -76,8 +76,10 @@ function izgaraCiz(seri, y0, y1, { tekYon = false } = {}) {
     const taban = tekYon ? R.yesil : r.deger > 0 ? R.a : r.deger < 0 ? R.e : R.g;
     p.push(`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${tw.toFixed(1)}" height="${th.toFixed(1)}" fill="${taban}${hex2(0.1 + t * 0.85)}"/>`);
     const koyu = !tekYon && t > 0.55;
-    p.push(metin(r.kod, x + 12, y + th * 0.42, { boyut: fs, agirlik: 800, renk: koyu ? '#ffffff' : R.m }));
-    p.push(metin(r.yazi, x + 12, y + th * 0.42 + fs * 1.35, { boyut: fs, agirlik: 800, renk: koyu ? '#ffffff' : renkOf(r.deger, tekYon) }));
+    // uzun kod ya da değer kareden taşmasın: sığmayan satır kendi genişliğine göre küçültülür
+    const sigdir = (s) => Math.min(fs, (fs * (tw - 20)) / Math.max(1, genislik(s, { boyut: fs, agirlik: 800 })));
+    p.push(metin(r.kod, x + 12, y + th * 0.42, { boyut: sigdir(r.kod), agirlik: 800, renk: koyu ? '#ffffff' : R.m }));
+    p.push(metin(r.yazi, x + 12, y + th * 0.42 + fs * 1.35, { boyut: sigdir(r.yazi), agirlik: 800, renk: koyu ? '#ffffff' : renkOf(r.deger, tekYon) }));
   });
   return p.join('');
 }

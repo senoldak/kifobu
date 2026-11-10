@@ -77,6 +77,8 @@ export function satir(k, gun = sonGun) {
     ad: b.ad,
     baslangic: b.baslangic,
     fonAktarim: b.fonAktarim ?? null,
+    // ilanları sürekli açık (ilan dönemi olmayan) pay grubu
+    surekli: b.surekli === true,
     kampanya: kampanyalar.sirketler[b.kod]?.kampanyalar.find((c) => c.gruplar?.includes(b.grup)) ?? null,
     unvan: kampanyalar.sirketler[b.kod]?.unvan ?? null,
     dagitim: b.dagitim,
