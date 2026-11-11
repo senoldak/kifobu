@@ -54,7 +54,7 @@ const kisaTarih = (t: string) => `${t.slice(8, 10)}.${t.slice(5, 7)}.${t.slice(0
             <tr data-platform={k.platform} data-yil={k.baslangic.slice(0, 4)} data-durum={k.durum} data-ad={k.ad} data-baslangic={k.baslangic} data-hedef={k.hedef} data-alinan={k.alinan} data-yuzde={gerceklesme(k) ?? 0} data-yatirimci={k.yatirimci ?? -1}>
               <th scope="row">
                 <a href={`/girisim/${slugu.get(k)}/${kampanyaCapasi(k)}`}>{k.ad}</a>
-                {k.tur && <span class="gkt-tur">{k.tur}. tur</span>}
+                {k.tur && <span class="gkt-tur" title={`${k.tur}. tur`}> ({k.tur})</span>}
               </th>
               <td>{k.platform}</td>
               <td><time datetime={k.baslangic}>{kisaTarih(k.baslangic)}</time></td>
@@ -115,5 +115,5 @@ const kisaTarih = (t: string) => `${t.slice(8, 10)}.${t.slice(5, 7)}.${t.slice(0
   .gkt-tablo th button { font: inherit; font-weight: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-align: inherit; }
   .gkt-tablo th button[aria-sort='descending']::after { content: ' ↓'; }
   .gkt-tablo th button[aria-sort='ascending']::after { content: ' ↑'; }
-  .gkt-tur { display: block; font-size: 0.75rem; font-weight: 400; color: var(--gri); }
+  .gkt-tur { font-weight: 400; color: var(--gri); white-space: nowrap; }
 </style>
