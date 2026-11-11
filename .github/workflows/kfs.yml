@@ -1,0 +1,76 @@
+# Kitle fonlaması istatistikleri: /kitle-fonlamasi-istatistikleri/ sayfasının verisini (src/data/kfs/) günceller.
+# Kaynak: Merkezi Kayıt Kuruluşu (MKK), izinle. Kaynak haftada bir güncellenir.
+# Burada cron yok: mecmua-saat Worker'ı (tur 'kfs') her gün bir kez bekleme=true ile başlatır. Toplayıcı önce tek
+# istekle yeni hafta olup olmadığına bakar; yoksa hiçbir şey yazmadan çıkar.
+# Toplayıcı kod private mecmua deposundadır (kfs-veri/); MECMUA_OKUMA ile salt-okur çekilir ve bu depoya yalnız nötr
+# veri yazar. Kaynağın adresi bu depoda ve loglarda yer almaz.
+# Site ayrıca yayınlanmaz: veri, sitenin bir sonraki olağan derlemesinde görünür.
+name: Kitle fonlaması istatistikleri (veri)
+
+on:
+  workflow_dispatch:
+    inputs:
+      bekleme:
+        description: 'Rastgele bekleme yapılsın mı'
+        type: boolean
+        default: false
+      zorla:
+        description: 'Yeni hafta yoksa da toplansın mı'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kfs
+  cancel-in-progress: false
+
+jobs:
+  topla:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Rastgele bekle
+        if: inputs.bekleme
+        run: sleep $(( RANDOM % 900 ))
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .node-version
+
+      - name: Toplayıcıyı getir
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: senoldak/mecmua
+          ssh-key: '${{ secrets.MECMUA_OKUMA }}'
+          path: .mecmua
+          sparse-checkout: |
+            kfs-veri
+          persist-credentials: false
+
+      - name: Veriyi topla
+        id: topla
+        env:
+          ZORLA: ${{ inputs.zorla && '--zorla' || '' }}
+        run: node .mecmua/kfs-veri/topla.mjs $ZORLA
+
+      - name: Commit
+        if: steps.topla.outputs.yazildi == '1'
+        env:
+          DOSYALAR: ${{ steps.topla.outputs.dosyalar }}
+        run: |
+          git config user.name "kifobu-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # yalnız betiğin yazdığı (var olan) dosyalar eklenir; .mecmua/ gitignore'dadır
+          for f in $DOSYALAR; do case "$f" in src/data/kfs/*) [ -f "$f" ] && git add "$f";; esac; done
+          git diff --cached --quiet && exit 0
+          git commit -m "Bot: kitle fonlaması verisi [skip ci]"
+          for i in 1 2 3 4 5; do
+            git pull --rebase -X theirs && git push && exit 0
+            git rebase --abort 2>/dev/null || true
+            sleep $((i * 5))
+          done
+          exit 1

@@ -1,0 +1,8101 @@
+{
+ "guncelleme": "2026-11-10T23:55:06.258Z",
+ "kaynak": "Merkezi Kayıt Kuruluşu (MKK), Kitle Fonlaması Sistemi istatistikleri",
+ "notlar": [
+  "Yatırımcı sayıları kayıtlı girişim şirketlerindeki yatırımcılardır.",
+  "kirilimlar[ad].haftalik / .aylik: tarih -> {kategori: sayı}. Kaynakta değeri olmayan kategori 0 yazılır.",
+  "ulke.DİĞER: Türkiye dışında ikamet eden yatırımcılar.",
+  "nitelik: kaynak 25 Eylül 2026 haftasından beri nitelikli yatırımcıyı ayırmıyor (nitelikli 0, hepsi diğer). Bu tarihten sonraki nitelik verisi kullanılmaz."
+ ],
+ "ulke_dagilimi": {
+  "TÜRKİYE": 46358,
+  "DİĞER": 809
+ },
+ "il_dagilimi": {
+  "ADANA": {
+   "yatirimci": 847,
+   "enlem": 37.186,
+   "boylam": 35.519
+  },
+  "ADIYAMAN": {
+   "yatirimci": 131,
+   "enlem": 37.841,
+   "boylam": 38.421
+  },
+  "AFYONKARAHİSAR": {
+   "yatirimci": 269,
+   "enlem": 38.782,
+   "boylam": 30.795
+  },
+  "AĞRI": {
+   "yatirimci": 61,
+   "enlem": 39.605,
+   "boylam": 43.234
+  },
+  "AKSARAY": {
+   "yatirimci": 100,
+   "enlem": 38.338,
+   "boylam": 33.853
+  },
+  "AMASYA": {
+   "yatirimci": 127,
+   "enlem": 40.654,
+   "boylam": 35.802
+  },
+  "ANKARA": {
+   "yatirimci": 5449,
+   "enlem": 39.717,
+   "boylam": 32.658
+  },
+  "ANTALYA": {
+   "yatirimci": 1351,
+   "enlem": 36.76,
+   "boylam": 30.126
+  },
+  "ARDAHAN": {
+   "yatirimci": 17,
+   "enlem": 41.075,
+   "boylam": 42.698
+  },
+  "ARTVİN": {
+   "yatirimci": 57,
+   "enlem": 41.142,
+   "boylam": 41.864
+  },
+  "AYDIN": {
+   "yatirimci": 376,
+   "enlem": 37.742,
+   "boylam": 28.178
+  },
+  "BALIKESİR": {
+   "yatirimci": 637,
+   "enlem": 39.597,
+   "boylam": 28.083
+  },
+  "BARTIN": {
+   "yatirimci": 62,
+   "enlem": 41.588,
+   "boylam": 32.547
+  },
+  "BATMAN": {
+   "yatirimci": 182,
+   "enlem": 38.195,
+   "boylam": 41.426
+  },
+  "BAYBURT": {
+   "yatirimci": 28,
+   "enlem": 40.318,
+   "boylam": 40.229
+  },
+  "BİLECİK": {
+   "yatirimci": 98,
+   "enlem": 40.037,
+   "boylam": 30.068
+  },
+  "BİNGÖL": {
+   "yatirimci": 51,
+   "enlem": 39.086,
+   "boylam": 40.769
+  },
+  "BİTLİS": {
+   "yatirimci": 35,
+   "enlem": 38.551,
+   "boylam": 42.356
+  },
+  "BOLU": {
+   "yatirimci": 142,
+   "enlem": 40.626,
+   "boylam": 31.791
+  },
+  "BURDUR": {
+   "yatirimci": 154,
+   "enlem": 37.476,
+   "boylam": 30.167
+  },
+  "BURSA": {
+   "yatirimci": 1773,
+   "enlem": 40.065,
+   "boylam": 28.91
+  },
+  "ÇANAKKALE": {
+   "yatirimci": 348,
+   "enlem": 40,
+   "boylam": 26.791
+  },
+  "ÇANKIRI": {
+   "yatirimci": 70,
+   "enlem": 40.641,
+   "boylam": 33.496
+  },
+  "ÇORUM": {
+   "yatirimci": 195,
+   "enlem": 40.646,
+   "boylam": 34.686
+  },
+  "DENİZLİ": {
+   "yatirimci": 552,
+   "enlem": 37.625,
+   "boylam": 29.185
+  },
+  "DİYARBAKIR": {
+   "yatirimci": 289,
+   "enlem": 38.111,
+   "boylam": 40.513
+  },
+  "DÜZCE": {
+   "yatirimci": 189,
+   "enlem": 40.92,
+   "boylam": 31.243
+  },
+  "EDİRNE": {
+   "yatirimci": 192,
+   "enlem": 40.953,
+   "boylam": 26.501
+  },
+  "ELAZIĞ": {
+   "yatirimci": 165,
+   "enlem": 38.614,
+   "boylam": 39.114
+  },
+  "ERZİNCAN": {
+   "yatirimci": 88,
+   "enlem": 39.64,
+   "boylam": 38.778
+  },
+  "ERZURUM": {
+   "yatirimci": 183,
+   "enlem": 39.971,
+   "boylam": 41.406
+  },
+  "ESKİŞEHİR": {
+   "yatirimci": 896,
+   "enlem": 39.575,
+   "boylam": 31.069
+  },
+  "GAZİANTEP": {
+   "yatirimci": 546,
+   "enlem": 37.049,
+   "boylam": 37.533
+  },
+  "GİRESUN": {
+   "yatirimci": 130,
+   "enlem": 40.513,
+   "boylam": 38.514
+  },
+  "GÜMÜŞHANE": {
+   "yatirimci": 40,
+   "enlem": 40.274,
+   "boylam": 39.392
+  },
+  "HAKKARİ": {
+   "yatirimci": 53,
+   "enlem": 37.523,
+   "boylam": 43.976
+  },
+  "HATAY": {
+   "yatirimci": 481,
+   "enlem": 36.404,
+   "boylam": 36.25
+  },
+  "IĞDIR": {
+   "yatirimci": 38,
+   "enlem": 39.861,
+   "boylam": 43.966
+  },
+  "ISPARTA": {
+   "yatirimci": 300,
+   "enlem": 37.885,
+   "boylam": 30.931
+  },
+  "İSTANBUL": {
+   "yatirimci": 15265,
+   "enlem": 41.17,
+   "boylam": 28.617
+  },
+  "İZMİR": {
+   "yatirimci": 2865,
+   "enlem": 38.377,
+   "boylam": 27.269
+  },
+  "KAHRAMANMARAŞ": {
+   "yatirimci": 271,
+   "enlem": 37.872,
+   "boylam": 37.012
+  },
+  "KARABÜK": {
+   "yatirimci": 142,
+   "enlem": 41.151,
+   "boylam": 32.612
+  },
+  "KARAMAN": {
+   "yatirimci": 127,
+   "enlem": 37.175,
+   "boylam": 33.183
+  },
+  "KARS": {
+   "yatirimci": 50,
+   "enlem": 40.475,
+   "boylam": 43.135
+  },
+  "KASTAMONU": {
+   "yatirimci": 129,
+   "enlem": 41.556,
+   "boylam": 33.675
+  },
+  "KAYSERİ": {
+   "yatirimci": 678,
+   "enlem": 38.73,
+   "boylam": 35.822
+  },
+  "KİLİS": {
+   "yatirimci": 27,
+   "enlem": 36.79,
+   "boylam": 37.032
+  },
+  "KIRIKKALE": {
+   "yatirimci": 82,
+   "enlem": 39.814,
+   "boylam": 33.676
+  },
+  "KIRKLARELİ": {
+   "yatirimci": 185,
+   "enlem": 41.688,
+   "boylam": 27.37
+  },
+  "KIRŞEHİR": {
+   "yatirimci": 50,
+   "enlem": 39.359,
+   "boylam": 34.143
+  },
+  "KOCAELİ": {
+   "yatirimci": 1799,
+   "enlem": 40.969,
+   "boylam": 30.065
+  },
+  "KONYA": {
+   "yatirimci": 1292,
+   "enlem": 38.151,
+   "boylam": 32.404
+  },
+  "KÜTAHYA": {
+   "yatirimci": 254,
+   "enlem": 39.201,
+   "boylam": 29.532
+  },
+  "MALATYA": {
+   "yatirimci": 183,
+   "enlem": 38.473,
+   "boylam": 37.961
+  },
+  "MANİSA": {
+   "yatirimci": 550,
+   "enlem": 38.724,
+   "boylam": 28.225
+  },
+  "MARDİN": {
+   "yatirimci": 162,
+   "enlem": 37.421,
+   "boylam": 40.89
+  },
+  "MERSİN": {
+   "yatirimci": 623,
+   "enlem": 36.663,
+   "boylam": 33.745
+  },
+  "MUĞLA": {
+   "yatirimci": 569,
+   "enlem": 37.102,
+   "boylam": 28.453
+  },
+  "MUŞ": {
+   "yatirimci": 60,
+   "enlem": 38.91,
+   "boylam": 41.663
+  },
+  "NEVŞEHİR": {
+   "yatirimci": 96,
+   "enlem": 38.697,
+   "boylam": 34.684
+  },
+  "NİĞDE": {
+   "yatirimci": 123,
+   "enlem": 37.993,
+   "boylam": 34.721
+  },
+  "ORDU": {
+   "yatirimci": 194,
+   "enlem": 40.804,
+   "boylam": 37.706
+  },
+  "OSMANİYE": {
+   "yatirimci": 160,
+   "enlem": 37.215,
+   "boylam": 36.279
+  },
+  "RİZE": {
+   "yatirimci": 136,
+   "enlem": 40.903,
+   "boylam": 40.781
+  },
+  "SAKARYA": {
+   "yatirimci": 500,
+   "enlem": 40.725,
+   "boylam": 30.54
+  },
+  "SAMSUN": {
+   "yatirimci": 508,
+   "enlem": 41.224,
+   "boylam": 35.885
+  },
+  "ŞANLIURFA": {
+   "yatirimci": 306,
+   "enlem": 37.184,
+   "boylam": 39.209
+  },
+  "SİİRT": {
+   "yatirimci": 90,
+   "enlem": 37.934,
+   "boylam": 42.047
+  },
+  "SİNOP": {
+   "yatirimci": 72,
+   "enlem": 41.606,
+   "boylam": 34.883
+  },
+  "ŞIRNAK": {
+   "yatirimci": 98,
+   "enlem": 37.493,
+   "boylam": 42.765
+  },
+  "SİVAS": {
+   "yatirimci": 196,
+   "enlem": 39.679,
+   "boylam": 37.543
+  },
+  "TEKİRDAĞ": {
+   "yatirimci": 448,
+   "enlem": 41.039,
+   "boylam": 27.234
+  },
+  "TOKAT": {
+   "yatirimci": 172,
+   "enlem": 40.408,
+   "boylam": 36.595
+  },
+  "TRABZON": {
+   "yatirimci": 369,
+   "enlem": 40.795,
+   "boylam": 39.812
+  },
+  "TUNCELİ": {
+   "yatirimci": 34,
+   "enlem": 39.13,
+   "boylam": 39.399
+  },
+  "UŞAK": {
+   "yatirimci": 118,
+   "enlem": 38.512,
+   "boylam": 29.299
+  },
+  "VAN": {
+   "yatirimci": 199,
+   "enlem": 38.497,
+   "boylam": 43.589
+  },
+  "YALOVA": {
+   "yatirimci": 184,
+   "enlem": 40.636,
+   "boylam": 29.093
+  },
+  "YOZGAT": {
+   "yatirimci": 89,
+   "enlem": 39.625,
+   "boylam": 35.258
+  },
+  "ZONGULDAK": {
+   "yatirimci": 201,
+   "enlem": 41.267,
+   "boylam": 31.903
+  }
+ },
+ "il_dagilimi_tarihi": "2026-11-06",
+ "kirilimlar": {
+  "genel": {
+   "kisilik": {
+    "haftalik": {
+     "2026-01-02": {
+      "fon": 26,
+      "gercek_kisi": 45649,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 321,
+      "diger": 5
+     },
+     "2026-01-09": {
+      "fon": 26,
+      "gercek_kisi": 45650,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 321,
+      "diger": 5
+     },
+     "2026-01-16": {
+      "fon": 26,
+      "gercek_kisi": 45943,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 326,
+      "diger": 5
+     },
+     "2026-01-23": {
+      "fon": 26,
+      "gercek_kisi": 45942,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 327,
+      "diger": 5
+     },
+     "2026-01-30": {
+      "fon": 26,
+      "gercek_kisi": 46000,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 327,
+      "diger": 5
+     },
+     "2026-02-06": {
+      "fon": 26,
+      "gercek_kisi": 46091,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 336,
+      "diger": 5
+     },
+     "2026-02-13": {
+      "fon": 26,
+      "gercek_kisi": 46082,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 336,
+      "diger": 5
+     },
+     "2026-02-20": {
+      "fon": 26,
+      "gercek_kisi": 46084,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 336,
+      "diger": 5
+     },
+     "2026-02-27": {
+      "fon": 26,
+      "gercek_kisi": 46127,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 338,
+      "diger": 5
+     },
+     "2026-03-06": {
+      "fon": 26,
+      "gercek_kisi": 46127,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 339,
+      "diger": 5
+     },
+     "2026-03-13": {
+      "fon": 26,
+      "gercek_kisi": 46124,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 339,
+      "diger": 5
+     },
+     "2026-03-20": {
+      "fon": 26,
+      "gercek_kisi": 46112,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 339,
+      "diger": 5
+     },
+     "2026-03-27": {
+      "fon": 26,
+      "gercek_kisi": 46149,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 344,
+      "diger": 5
+     },
+     "2026-04-03": {
+      "fon": 27,
+      "gercek_kisi": 46201,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 365,
+      "diger": 5
+     },
+     "2026-04-10": {
+      "fon": 27,
+      "gercek_kisi": 46200,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 365,
+      "diger": 5
+     },
+     "2026-04-17": {
+      "fon": 27,
+      "gercek_kisi": 46200,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 365,
+      "diger": 5
+     },
+     "2026-04-24": {
+      "fon": 27,
+      "gercek_kisi": 46298,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 374,
+      "diger": 5
+     },
+     "2026-05-01": {
+      "fon": 27,
+      "gercek_kisi": 46297,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 374,
+      "diger": 5
+     },
+     "2026-05-08": {
+      "fon": 27,
+      "gercek_kisi": 46294,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 374,
+      "diger": 5
+     },
+     "2026-05-15": {
+      "fon": 27,
+      "gercek_kisi": 46294,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 374,
+      "diger": 5
+     },
+     "2026-05-22": {
+      "fon": 27,
+      "gercek_kisi": 46295,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 374,
+      "diger": 5
+     },
+     "2026-05-29": {
+      "fon": 27,
+      "gercek_kisi": 46295,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 374,
+      "diger": 5
+     },
+     "2026-06-05": {
+      "fon": 27,
+      "gercek_kisi": 46296,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 374,
+      "diger": 5
+     },
+     "2026-06-12": {
+      "fon": 27,
+      "gercek_kisi": 46295,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 374,
+      "diger": 5
+     },
+     "2026-06-19": {
+      "fon": 27,
+      "gercek_kisi": 46296,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 374,
+      "diger": 5
+     },
+     "2026-06-26": {
+      "fon": 27,
+      "gercek_kisi": 46295,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 374,
+      "diger": 5
+     },
+     "2026-07-03": {
+      "fon": 27,
+      "gercek_kisi": 46294,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 374,
+      "diger": 5
+     },
+     "2026-07-10": {
+      "fon": 28,
+      "gercek_kisi": 46508,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 383,
+      "diger": 5
+     },
+     "2026-07-17": {
+      "fon": 28,
+      "gercek_kisi": 46508,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 383,
+      "diger": 5
+     },
+     "2026-07-24": {
+      "fon": 28,
+      "gercek_kisi": 46608,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 386,
+      "diger": 5
+     },
+     "2026-07-31": {
+      "fon": 28,
+      "gercek_kisi": 46601,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 386,
+      "diger": 5
+     },
+     "2026-08-07": {
+      "fon": 28,
+      "gercek_kisi": 46603,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 386,
+      "diger": 5
+     },
+     "2026-08-14": {
+      "fon": 28,
+      "gercek_kisi": 46639,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 387,
+      "diger": 5
+     },
+     "2026-08-21": {
+      "fon": 30,
+      "gercek_kisi": 46665,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 390,
+      "diger": 5
+     },
+     "2026-08-28": {
+      "fon": 30,
+      "gercek_kisi": 46661,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 390,
+      "diger": 5
+     },
+     "2026-09-04": {
+      "fon": 30,
+      "gercek_kisi": 46661,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 390,
+      "diger": 5
+     },
+     "2026-09-11": {
+      "fon": 30,
+      "gercek_kisi": 46661,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 390,
+      "diger": 5
+     },
+     "2026-09-18": {
+      "fon": 30,
+      "gercek_kisi": 46737,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 392,
+      "diger": 5
+     },
+     "2026-09-25": {
+      "fon": 30,
+      "gercek_kisi": 46737,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 393,
+      "diger": 5
+     },
+     "2026-10-02": {
+      "fon": 30,
+      "gercek_kisi": 46736,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 393,
+      "diger": 5
+     },
+     "2026-10-09": {
+      "fon": 30,
+      "gercek_kisi": 46734,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 393,
+      "diger": 5
+     },
+     "2026-10-16": {
+      "fon": 30,
+      "gercek_kisi": 46734,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 393,
+      "diger": 5
+     },
+     "2026-10-23": {
+      "fon": 30,
+      "gercek_kisi": 46739,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 394,
+      "diger": 5
+     },
+     "2026-10-30": {
+      "fon": 30,
+      "gercek_kisi": 46736,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 394,
+      "diger": 5
+     },
+     "2026-11-06": {
+      "fon": 30,
+      "gercek_kisi": 46733,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 394,
+      "diger": 5
+     }
+    },
+    "aylik": {
+     "2021-12-01": {
+      "fon": 1,
+      "gercek_kisi": 2048,
+      "yatirim_ortakligi": 1,
+      "tuzel_kisi": 7,
+      "diger": 1
+     },
+     "2022-01-01": {
+      "fon": 1,
+      "gercek_kisi": 2893,
+      "yatirim_ortakligi": 1,
+      "tuzel_kisi": 9,
+      "diger": 1
+     },
+     "2022-02-01": {
+      "fon": 1,
+      "gercek_kisi": 4138,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 11,
+      "diger": 2
+     },
+     "2022-03-01": {
+      "fon": 1,
+      "gercek_kisi": 4972,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 12,
+      "diger": 2
+     },
+     "2022-04-01": {
+      "fon": 1,
+      "gercek_kisi": 5309,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 16,
+      "diger": 2
+     },
+     "2022-05-01": {
+      "fon": 1,
+      "gercek_kisi": 6069,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 19,
+      "diger": 3
+     },
+     "2022-06-01": {
+      "fon": 1,
+      "gercek_kisi": 6274,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 19,
+      "diger": 3
+     },
+     "2022-07-01": {
+      "fon": 1,
+      "gercek_kisi": 7347,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 39,
+      "diger": 3
+     },
+     "2022-08-01": {
+      "fon": 1,
+      "gercek_kisi": 8508,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 46,
+      "diger": 3
+     },
+     "2022-09-01": {
+      "fon": 1,
+      "gercek_kisi": 8773,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 51,
+      "diger": 3
+     },
+     "2022-10-01": {
+      "fon": 2,
+      "gercek_kisi": 9408,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 58,
+      "diger": 3
+     },
+     "2022-11-01": {
+      "fon": 2,
+      "gercek_kisi": 10523,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 70,
+      "diger": 3
+     },
+     "2022-12-01": {
+      "fon": 2,
+      "gercek_kisi": 11591,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 82,
+      "diger": 3
+     },
+     "2024-01-01": {
+      "fon": 13,
+      "gercek_kisi": 34687,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 211,
+      "diger": 3
+     },
+     "2024-02-01": {
+      "fon": 15,
+      "gercek_kisi": 36219,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 220,
+      "diger": 3
+     },
+     "2024-03-01": {
+      "fon": 16,
+      "gercek_kisi": 36460,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 232,
+      "diger": 3
+     },
+     "2024-04-01": {
+      "fon": 16,
+      "gercek_kisi": 37654,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 241,
+      "diger": 3
+     },
+     "2024-05-01": {
+      "fon": 18,
+      "gercek_kisi": 38615,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 244,
+      "diger": 3
+     },
+     "2024-06-01": {
+      "fon": 18,
+      "gercek_kisi": 39795,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 247,
+      "diger": 4
+     },
+     "2024-07-01": {
+      "fon": 18,
+      "gercek_kisi": 40743,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 250,
+      "diger": 4
+     },
+     "2024-08-01": {
+      "fon": 19,
+      "gercek_kisi": 41210,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 254,
+      "diger": 4
+     },
+     "2024-09-01": {
+      "fon": 19,
+      "gercek_kisi": 41470,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 257,
+      "diger": 4
+     },
+     "2024-10-01": {
+      "fon": 20,
+      "gercek_kisi": 41640,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 257,
+      "diger": 4
+     },
+     "2024-11-01": {
+      "fon": 20,
+      "gercek_kisi": 42421,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 260,
+      "diger": 4
+     },
+     "2024-12-01": {
+      "fon": 20,
+      "gercek_kisi": 42804,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 262,
+      "diger": 4
+     },
+     "2025-01-01": {
+      "fon": 20,
+      "gercek_kisi": 43071,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 265,
+      "diger": 4
+     },
+     "2025-02-01": {
+      "fon": 20,
+      "gercek_kisi": 43330,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 270,
+      "diger": 5
+     },
+     "2025-03-01": {
+      "fon": 24,
+      "gercek_kisi": 43629,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 280,
+      "diger": 5
+     },
+     "2025-04-01": {
+      "fon": 24,
+      "gercek_kisi": 43680,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 286,
+      "diger": 5
+     },
+     "2025-05-01": {
+      "fon": 25,
+      "gercek_kisi": 43761,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 286,
+      "diger": 5
+     },
+     "2025-06-01": {
+      "fon": 25,
+      "gercek_kisi": 43928,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 290,
+      "diger": 5
+     },
+     "2025-07-01": {
+      "fon": 25,
+      "gercek_kisi": 44250,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 292,
+      "diger": 5
+     },
+     "2025-08-01": {
+      "fon": 25,
+      "gercek_kisi": 44319,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 293,
+      "diger": 5
+     },
+     "2025-09-01": {
+      "fon": 25,
+      "gercek_kisi": 44315,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 295,
+      "diger": 5
+     },
+     "2025-10-01": {
+      "fon": 25,
+      "gercek_kisi": 44369,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 299,
+      "diger": 5
+     },
+     "2025-11-01": {
+      "fon": 26,
+      "gercek_kisi": 44617,
+      "yatirim_ortakligi": 0,
+      "tuzel_kisi": 305,
+      "diger": 5
+     },
+     "2025-12-01": {
+      "fon": 26,
+      "gercek_kisi": 44930,
+      "yatirim_ortakligi": 0,
+      "tuzel_kisi": 308,
+      "diger": 5
+     },
+     "2026-01-01": {
+      "fon": 26,
+      "gercek_kisi": 45650,
+      "yatirim_ortakligi": 0,
+      "tuzel_kisi": 321,
+      "diger": 0
+     },
+     "2026-02-01": {
+      "fon": 26,
+      "gercek_kisi": 46000,
+      "yatirim_ortakligi": 0,
+      "tuzel_kisi": 327,
+      "diger": 0
+     },
+     "2026-03-01": {
+      "fon": 26,
+      "gercek_kisi": 46127,
+      "yatirim_ortakligi": 0,
+      "tuzel_kisi": 338,
+      "diger": 0
+     },
+     "2026-04-01": {
+      "fon": 27,
+      "gercek_kisi": 46201,
+      "yatirim_ortakligi": 0,
+      "tuzel_kisi": 365,
+      "diger": 0
+     },
+     "2026-05-01": {
+      "fon": 27,
+      "gercek_kisi": 46297,
+      "yatirim_ortakligi": 0,
+      "tuzel_kisi": 374,
+      "diger": 0
+     },
+     "2026-06-01": {
+      "fon": 27,
+      "gercek_kisi": 46296,
+      "yatirim_ortakligi": 0,
+      "tuzel_kisi": 374,
+      "diger": 0
+     },
+     "2026-07-01": {
+      "fon": 27,
+      "gercek_kisi": 46295,
+      "yatirim_ortakligi": 0,
+      "tuzel_kisi": 374,
+      "diger": 0
+     },
+     "2026-08-01": {
+      "fon": 28,
+      "gercek_kisi": 46601,
+      "yatirim_ortakligi": 0,
+      "tuzel_kisi": 386,
+      "diger": 0
+     },
+     "2026-09-01": {
+      "fon": 30,
+      "gercek_kisi": 46661,
+      "yatirim_ortakligi": 0,
+      "tuzel_kisi": 390,
+      "diger": 0
+     },
+     "2026-10-01": {
+      "fon": 30,
+      "gercek_kisi": 46736,
+      "yatirim_ortakligi": 0,
+      "tuzel_kisi": 393,
+      "diger": 0
+     },
+     "2026-11-01": {
+      "fon": 30,
+      "gercek_kisi": 46736,
+      "yatirim_ortakligi": 0,
+      "tuzel_kisi": 394,
+      "diger": 0
+     }
+    }
+   },
+   "nitelik": {
+    "haftalik": {
+     "2026-01-02": {
+      "diger": 33072,
+      "nitelikli": 12931
+     },
+     "2026-01-09": {
+      "diger": 33035,
+      "nitelikli": 12969
+     },
+     "2026-01-16": {
+      "diger": 33234,
+      "nitelikli": 13068
+     },
+     "2026-01-23": {
+      "diger": 33180,
+      "nitelikli": 13122
+     },
+     "2026-01-30": {
+      "diger": 33146,
+      "nitelikli": 13214
+     },
+     "2026-02-06": {
+      "diger": 33186,
+      "nitelikli": 13274
+     },
+     "2026-02-13": {
+      "diger": 33140,
+      "nitelikli": 13311
+     },
+     "2026-02-20": {
+      "diger": 33094,
+      "nitelikli": 13359
+     },
+     "2026-02-27": {
+      "diger": 33098,
+      "nitelikli": 13400
+     },
+     "2026-03-06": {
+      "diger": 33058,
+      "nitelikli": 13441
+     },
+     "2026-03-13": {
+      "diger": 32999,
+      "nitelikli": 13497
+     },
+     "2026-03-20": {
+      "diger": 32955,
+      "nitelikli": 13529
+     },
+     "2026-03-27": {
+      "diger": 32958,
+      "nitelikli": 13568
+     },
+     "2026-04-03": {
+      "diger": 32977,
+      "nitelikli": 13623
+     },
+     "2026-04-10": {
+      "diger": 32941,
+      "nitelikli": 13658
+     },
+     "2026-04-17": {
+      "diger": 32914,
+      "nitelikli": 13685
+     },
+     "2026-04-24": {
+      "diger": 32977,
+      "nitelikli": 13729
+     },
+     "2026-05-01": {
+      "diger": 32960,
+      "nitelikli": 13745
+     },
+     "2026-05-08": {
+      "diger": 32947,
+      "nitelikli": 13755
+     },
+     "2026-05-15": {
+      "diger": 32939,
+      "nitelikli": 13763
+     },
+     "2026-05-22": {
+      "diger": 32938,
+      "nitelikli": 13765
+     },
+     "2026-05-29": {
+      "diger": 32938,
+      "nitelikli": 13765
+     },
+     "2026-06-05": {
+      "diger": 32928,
+      "nitelikli": 13776
+     },
+     "2026-06-12": {
+      "diger": 32922,
+      "nitelikli": 13781
+     },
+     "2026-06-19": {
+      "diger": 32906,
+      "nitelikli": 13798
+     },
+     "2026-06-26": {
+      "diger": 32897,
+      "nitelikli": 13806
+     },
+     "2026-07-03": {
+      "diger": 32883,
+      "nitelikli": 13819
+     },
+     "2026-07-10": {
+      "diger": 33044,
+      "nitelikli": 13882
+     },
+     "2026-07-17": {
+      "diger": 33023,
+      "nitelikli": 13903
+     },
+     "2026-07-24": {
+      "diger": 33090,
+      "nitelikli": 13939
+     },
+     "2026-07-31": {
+      "diger": 33081,
+      "nitelikli": 13941
+     },
+     "2026-08-07": {
+      "diger": 33105,
+      "nitelikli": 13919
+     },
+     "2026-08-14": {
+      "diger": 33113,
+      "nitelikli": 13948
+     },
+     "2026-08-21": {
+      "diger": 33118,
+      "nitelikli": 13974
+     },
+     "2026-08-28": {
+      "diger": 33103,
+      "nitelikli": 13985
+     },
+     "2026-09-04": {
+      "diger": 33095,
+      "nitelikli": 13993
+     },
+     "2026-09-11": {
+      "diger": 33090,
+      "nitelikli": 13998
+     },
+     "2026-09-18": {
+      "diger": 33149,
+      "nitelikli": 14017
+     },
+     "2026-09-25": {
+      "diger": 47167,
+      "nitelikli": 0
+     },
+     "2026-10-02": {
+      "diger": 47166,
+      "nitelikli": 0
+     },
+     "2026-10-09": {
+      "diger": 47164,
+      "nitelikli": 0
+     },
+     "2026-10-16": {
+      "diger": 47164,
+      "nitelikli": 0
+     },
+     "2026-10-23": {
+      "diger": 47170,
+      "nitelikli": 0
+     },
+     "2026-10-30": {
+      "diger": 47167,
+      "nitelikli": 0
+     },
+     "2026-11-06": {
+      "diger": 47164,
+      "nitelikli": 0
+     }
+    },
+    "aylik": {
+     "2021-12-01": {
+      "diger": 1543,
+      "nitelikli": 513
+     },
+     "2022-01-01": {
+      "diger": 2198,
+      "nitelikli": 705
+     },
+     "2022-02-01": {
+      "diger": 3178,
+      "nitelikli": 972
+     },
+     "2022-03-01": {
+      "diger": 3835,
+      "nitelikli": 1150
+     },
+     "2022-04-01": {
+      "diger": 4110,
+      "nitelikli": 1216
+     },
+     "2022-05-01": {
+      "diger": 4734,
+      "nitelikli": 1355
+     },
+     "2022-06-01": {
+      "diger": 4889,
+      "nitelikli": 1405
+     },
+     "2022-07-01": {
+      "diger": 5731,
+      "nitelikli": 1656
+     },
+     "2022-08-01": {
+      "diger": 6687,
+      "nitelikli": 1868
+     },
+     "2022-09-01": {
+      "diger": 6902,
+      "nitelikli": 1923
+     },
+     "2022-10-01": {
+      "diger": 7406,
+      "nitelikli": 2062
+     },
+     "2022-11-01": {
+      "diger": 8401,
+      "nitelikli": 2195
+     },
+     "2022-12-01": {
+      "diger": 9273,
+      "nitelikli": 2403
+     },
+     "2024-01-01": {
+      "diger": 29237,
+      "nitelikli": 5677
+     },
+     "2024-02-01": {
+      "diger": 30644,
+      "nitelikli": 5813
+     },
+     "2024-03-01": {
+      "diger": 30862,
+      "nitelikli": 5850
+     },
+     "2024-04-01": {
+      "diger": 31750,
+      "nitelikli": 6166
+     },
+     "2024-05-01": {
+      "diger": 32196,
+      "nitelikli": 6686
+     },
+     "2024-06-01": {
+      "diger": 33013,
+      "nitelikli": 7052
+     },
+     "2024-07-01": {
+      "diger": 33690,
+      "nitelikli": 7326
+     },
+     "2024-08-01": {
+      "diger": 33805,
+      "nitelikli": 7683
+     },
+     "2024-09-01": {
+      "diger": 33839,
+      "nitelikli": 7912
+     },
+     "2024-10-01": {
+      "diger": 33720,
+      "nitelikli": 8202
+     },
+     "2024-11-01": {
+      "diger": 34144,
+      "nitelikli": 8562
+     },
+     "2024-12-01": {
+      "diger": 34278,
+      "nitelikli": 8813
+     },
+     "2025-01-01": {
+      "diger": 34287,
+      "nitelikli": 9074
+     },
+     "2025-02-01": {
+      "diger": 34296,
+      "nitelikli": 9329
+     },
+     "2025-03-01": {
+      "diger": 34297,
+      "nitelikli": 9641
+     },
+     "2025-04-01": {
+      "diger": 33985,
+      "nitelikli": 10010
+     },
+     "2025-05-01": {
+      "diger": 33715,
+      "nitelikli": 10363
+     },
+     "2025-06-01": {
+      "diger": 33654,
+      "nitelikli": 10595
+     },
+     "2025-07-01": {
+      "diger": 33711,
+      "nitelikli": 10862
+     },
+     "2025-08-01": {
+      "diger": 33509,
+      "nitelikli": 11134
+     },
+     "2025-09-01": {
+      "diger": 33213,
+      "nitelikli": 11428
+     },
+     "2025-10-01": {
+      "diger": 32994,
+      "nitelikli": 11705
+     },
+     "2025-11-01": {
+      "diger": 32863,
+      "nitelikli": 12091
+     },
+     "2025-12-01": {
+      "diger": 32849,
+      "nitelikli": 12421
+     },
+     "2026-01-01": {
+      "diger": 33082,
+      "nitelikli": 12922
+     },
+     "2026-02-01": {
+      "diger": 33145,
+      "nitelikli": 13215
+     },
+     "2026-03-01": {
+      "diger": 33097,
+      "nitelikli": 13401
+     },
+     "2026-04-01": {
+      "diger": 32994,
+      "nitelikli": 13606
+     },
+     "2026-05-01": {
+      "diger": 32960,
+      "nitelikli": 13745
+     },
+     "2026-06-01": {
+      "diger": 32937,
+      "nitelikli": 13767
+     },
+     "2026-07-01": {
+      "diger": 32885,
+      "nitelikli": 13818
+     },
+     "2026-08-01": {
+      "diger": 33081,
+      "nitelikli": 13941
+     },
+     "2026-09-01": {
+      "diger": 33102,
+      "nitelikli": 13986
+     },
+     "2026-10-01": {
+      "diger": 47166,
+      "nitelikli": 0
+     },
+     "2026-11-01": {
+      "diger": 47167,
+      "nitelikli": 0
+     }
+    }
+   },
+   "uyruk": {
+    "haftalik": {
+     "2026-01-02": {
+      "yerli": 45797,
+      "yabanci": 206
+     },
+     "2026-01-09": {
+      "yerli": 45798,
+      "yabanci": 206
+     },
+     "2026-01-16": {
+      "yerli": 46095,
+      "yabanci": 207
+     },
+     "2026-01-23": {
+      "yerli": 46095,
+      "yabanci": 207
+     },
+     "2026-01-30": {
+      "yerli": 46153,
+      "yabanci": 207
+     },
+     "2026-02-06": {
+      "yerli": 46253,
+      "yabanci": 207
+     },
+     "2026-02-13": {
+      "yerli": 46244,
+      "yabanci": 207
+     },
+     "2026-02-20": {
+      "yerli": 46247,
+      "yabanci": 206
+     },
+     "2026-02-27": {
+      "yerli": 46292,
+      "yabanci": 206
+     },
+     "2026-03-06": {
+      "yerli": 46293,
+      "yabanci": 206
+     },
+     "2026-03-13": {
+      "yerli": 46290,
+      "yabanci": 206
+     },
+     "2026-03-20": {
+      "yerli": 46278,
+      "yabanci": 206
+     },
+     "2026-03-27": {
+      "yerli": 46320,
+      "yabanci": 206
+     },
+     "2026-04-03": {
+      "yerli": 46393,
+      "yabanci": 207
+     },
+     "2026-04-10": {
+      "yerli": 46392,
+      "yabanci": 207
+     },
+     "2026-04-17": {
+      "yerli": 46392,
+      "yabanci": 207
+     },
+     "2026-04-24": {
+      "yerli": 46499,
+      "yabanci": 207
+     },
+     "2026-05-01": {
+      "yerli": 46498,
+      "yabanci": 207
+     },
+     "2026-05-08": {
+      "yerli": 46495,
+      "yabanci": 207
+     },
+     "2026-05-15": {
+      "yerli": 46495,
+      "yabanci": 207
+     },
+     "2026-05-22": {
+      "yerli": 46496,
+      "yabanci": 207
+     },
+     "2026-05-29": {
+      "yerli": 46496,
+      "yabanci": 207
+     },
+     "2026-06-05": {
+      "yerli": 46497,
+      "yabanci": 207
+     },
+     "2026-06-12": {
+      "yerli": 46496,
+      "yabanci": 207
+     },
+     "2026-06-19": {
+      "yerli": 46497,
+      "yabanci": 207
+     },
+     "2026-06-26": {
+      "yerli": 46496,
+      "yabanci": 207
+     },
+     "2026-07-03": {
+      "yerli": 46495,
+      "yabanci": 207
+     },
+     "2026-07-10": {
+      "yerli": 46718,
+      "yabanci": 208
+     },
+     "2026-07-17": {
+      "yerli": 46718,
+      "yabanci": 208
+     },
+     "2026-07-24": {
+      "yerli": 46821,
+      "yabanci": 208
+     },
+     "2026-07-31": {
+      "yerli": 46814,
+      "yabanci": 208
+     },
+     "2026-08-07": {
+      "yerli": 46816,
+      "yabanci": 208
+     },
+     "2026-08-14": {
+      "yerli": 46852,
+      "yabanci": 209
+     },
+     "2026-08-21": {
+      "yerli": 46883,
+      "yabanci": 209
+     },
+     "2026-08-28": {
+      "yerli": 46879,
+      "yabanci": 209
+     },
+     "2026-09-04": {
+      "yerli": 46879,
+      "yabanci": 209
+     },
+     "2026-09-11": {
+      "yerli": 46879,
+      "yabanci": 209
+     },
+     "2026-09-18": {
+      "yerli": 46956,
+      "yabanci": 210
+     },
+     "2026-09-25": {
+      "yerli": 46957,
+      "yabanci": 210
+     },
+     "2026-10-02": {
+      "yerli": 46955,
+      "yabanci": 211
+     },
+     "2026-10-09": {
+      "yerli": 46953,
+      "yabanci": 211
+     },
+     "2026-10-16": {
+      "yerli": 46953,
+      "yabanci": 211
+     },
+     "2026-10-23": {
+      "yerli": 46958,
+      "yabanci": 212
+     },
+     "2026-10-30": {
+      "yerli": 46955,
+      "yabanci": 212
+     },
+     "2026-11-06": {
+      "yerli": 46952,
+      "yabanci": 212
+     }
+    },
+    "aylik": {
+     "2021-12-01": {
+      "yerli": 2053,
+      "yabanci": 3
+     },
+     "2022-01-01": {
+      "yerli": 2899,
+      "yabanci": 4
+     },
+     "2022-02-01": {
+      "yerli": 4143,
+      "yabanci": 7
+     },
+     "2022-03-01": {
+      "yerli": 4974,
+      "yabanci": 11
+     },
+     "2022-04-01": {
+      "yerli": 5314,
+      "yabanci": 12
+     },
+     "2022-05-01": {
+      "yerli": 6075,
+      "yabanci": 14
+     },
+     "2022-06-01": {
+      "yerli": 6278,
+      "yabanci": 16
+     },
+     "2022-07-01": {
+      "yerli": 7365,
+      "yabanci": 22
+     },
+     "2022-08-01": {
+      "yerli": 8529,
+      "yabanci": 26
+     },
+     "2022-09-01": {
+      "yerli": 8799,
+      "yabanci": 26
+     },
+     "2022-10-01": {
+      "yerli": 9439,
+      "yabanci": 29
+     },
+     "2022-11-01": {
+      "yerli": 10563,
+      "yabanci": 33
+     },
+     "2022-12-01": {
+      "yerli": 11638,
+      "yabanci": 38
+     },
+     "2024-01-01": {
+      "yerli": 34766,
+      "yabanci": 148
+     },
+     "2024-02-01": {
+      "yerli": 36302,
+      "yabanci": 155
+     },
+     "2024-03-01": {
+      "yerli": 36553,
+      "yabanci": 159
+     },
+     "2024-04-01": {
+      "yerli": 37753,
+      "yabanci": 163
+     },
+     "2024-05-01": {
+      "yerli": 38715,
+      "yabanci": 167
+     },
+     "2024-06-01": {
+      "yerli": 39893,
+      "yabanci": 172
+     },
+     "2024-07-01": {
+      "yerli": 40837,
+      "yabanci": 179
+     },
+     "2024-08-01": {
+      "yerli": 41309,
+      "yabanci": 179
+     },
+     "2024-09-01": {
+      "yerli": 41571,
+      "yabanci": 180
+     },
+     "2024-10-01": {
+      "yerli": 41742,
+      "yabanci": 180
+     },
+     "2024-11-01": {
+      "yerli": 42517,
+      "yabanci": 189
+     },
+     "2024-12-01": {
+      "yerli": 42900,
+      "yabanci": 191
+     },
+     "2025-01-01": {
+      "yerli": 43167,
+      "yabanci": 194
+     },
+     "2025-02-01": {
+      "yerli": 43429,
+      "yabanci": 196
+     },
+     "2025-03-01": {
+      "yerli": 43741,
+      "yabanci": 197
+     },
+     "2025-04-01": {
+      "yerli": 43798,
+      "yabanci": 197
+     },
+     "2025-05-01": {
+      "yerli": 43878,
+      "yabanci": 200
+     },
+     "2025-06-01": {
+      "yerli": 44049,
+      "yabanci": 200
+     },
+     "2025-07-01": {
+      "yerli": 44372,
+      "yabanci": 201
+     },
+     "2025-08-01": {
+      "yerli": 44443,
+      "yabanci": 200
+     },
+     "2025-09-01": {
+      "yerli": 44442,
+      "yabanci": 199
+     },
+     "2025-10-01": {
+      "yerli": 44498,
+      "yabanci": 201
+     },
+     "2025-11-01": {
+      "yerli": 44749,
+      "yabanci": 205
+     },
+     "2025-12-01": {
+      "yerli": 45063,
+      "yabanci": 207
+     },
+     "2026-01-01": {
+      "yerli": 45798,
+      "yabanci": 206
+     },
+     "2026-02-01": {
+      "yerli": 46153,
+      "yabanci": 207
+     },
+     "2026-03-01": {
+      "yerli": 46292,
+      "yabanci": 206
+     },
+     "2026-04-01": {
+      "yerli": 46393,
+      "yabanci": 207
+     },
+     "2026-05-01": {
+      "yerli": 46498,
+      "yabanci": 207
+     },
+     "2026-06-01": {
+      "yerli": 46497,
+      "yabanci": 207
+     },
+     "2026-07-01": {
+      "yerli": 46496,
+      "yabanci": 207
+     },
+     "2026-08-01": {
+      "yerli": 46814,
+      "yabanci": 208
+     },
+     "2026-09-01": {
+      "yerli": 46879,
+      "yabanci": 209
+     },
+     "2026-10-01": {
+      "yerli": 46956,
+      "yabanci": 210
+     },
+     "2026-11-01": {
+      "yerli": 46955,
+      "yabanci": 212
+     }
+    }
+   },
+   "yas": {
+    "haftalik": {
+     "2026-01-02": {
+      "71+": 91,
+      "61-70": 868,
+      "51-60": 4356,
+      "41-50": 13650,
+      "31-40": 18254,
+      "21-30": 8374,
+      "0-20": 56
+     },
+     "2026-01-09": {
+      "71+": 91,
+      "61-70": 868,
+      "51-60": 4357,
+      "41-50": 13649,
+      "31-40": 18254,
+      "21-30": 8375,
+      "0-20": 56
+     },
+     "2026-01-16": {
+      "71+": 92,
+      "61-70": 876,
+      "51-60": 4395,
+      "41-50": 13733,
+      "31-40": 18344,
+      "21-30": 8439,
+      "0-20": 64
+     },
+     "2026-01-23": {
+      "71+": 92,
+      "61-70": 876,
+      "51-60": 4395,
+      "41-50": 13732,
+      "31-40": 18344,
+      "21-30": 8439,
+      "0-20": 64
+     },
+     "2026-01-30": {
+      "71+": 92,
+      "61-70": 878,
+      "51-60": 4400,
+      "41-50": 13748,
+      "31-40": 18364,
+      "21-30": 8453,
+      "0-20": 65
+     },
+     "2026-02-06": {
+      "71+": 92,
+      "61-70": 880,
+      "51-60": 4404,
+      "41-50": 13761,
+      "31-40": 18396,
+      "21-30": 8490,
+      "0-20": 68
+     },
+     "2026-02-13": {
+      "71+": 92,
+      "61-70": 880,
+      "51-60": 4401,
+      "41-50": 13758,
+      "31-40": 18394,
+      "21-30": 8488,
+      "0-20": 69
+     },
+     "2026-02-20": {
+      "71+": 92,
+      "61-70": 880,
+      "51-60": 4402,
+      "41-50": 13759,
+      "31-40": 18396,
+      "21-30": 8485,
+      "0-20": 70
+     },
+     "2026-02-27": {
+      "71+": 92,
+      "61-70": 883,
+      "51-60": 4405,
+      "41-50": 13762,
+      "31-40": 18403,
+      "21-30": 8511,
+      "0-20": 71
+     },
+     "2026-03-06": {
+      "71+": 92,
+      "61-70": 883,
+      "51-60": 4405,
+      "41-50": 13762,
+      "31-40": 18403,
+      "21-30": 8511,
+      "0-20": 71
+     },
+     "2026-03-13": {
+      "71+": 92,
+      "61-70": 883,
+      "51-60": 4406,
+      "41-50": 13759,
+      "31-40": 18402,
+      "21-30": 8511,
+      "0-20": 71
+     },
+     "2026-03-20": {
+      "71+": 92,
+      "61-70": 883,
+      "51-60": 4401,
+      "41-50": 13753,
+      "31-40": 18401,
+      "21-30": 8511,
+      "0-20": 71
+     },
+     "2026-03-27": {
+      "71+": 93,
+      "61-70": 883,
+      "51-60": 4405,
+      "41-50": 13764,
+      "31-40": 18414,
+      "21-30": 8518,
+      "0-20": 72
+     },
+     "2026-04-03": {
+      "71+": 94,
+      "61-70": 883,
+      "51-60": 4410,
+      "41-50": 13777,
+      "31-40": 18430,
+      "21-30": 8533,
+      "0-20": 74
+     },
+     "2026-04-10": {
+      "71+": 94,
+      "61-70": 883,
+      "51-60": 4410,
+      "41-50": 13777,
+      "31-40": 18429,
+      "21-30": 8533,
+      "0-20": 74
+     },
+     "2026-04-17": {
+      "71+": 94,
+      "61-70": 883,
+      "51-60": 4410,
+      "41-50": 13777,
+      "31-40": 18429,
+      "21-30": 8533,
+      "0-20": 74
+     },
+     "2026-04-24": {
+      "71+": 95,
+      "61-70": 888,
+      "51-60": 4425,
+      "41-50": 13815,
+      "31-40": 18445,
+      "21-30": 8556,
+      "0-20": 74
+     },
+     "2026-05-01": {
+      "71+": 95,
+      "61-70": 888,
+      "51-60": 4425,
+      "41-50": 13814,
+      "31-40": 18445,
+      "21-30": 8556,
+      "0-20": 74
+     },
+     "2026-05-08": {
+      "71+": 95,
+      "61-70": 888,
+      "51-60": 4424,
+      "41-50": 13813,
+      "31-40": 18444,
+      "21-30": 8556,
+      "0-20": 74
+     },
+     "2026-05-15": {
+      "71+": 95,
+      "61-70": 888,
+      "51-60": 4424,
+      "41-50": 13813,
+      "31-40": 18443,
+      "21-30": 8557,
+      "0-20": 74
+     },
+     "2026-05-22": {
+      "71+": 95,
+      "61-70": 887,
+      "51-60": 4424,
+      "41-50": 13814,
+      "31-40": 18444,
+      "21-30": 8557,
+      "0-20": 74
+     },
+     "2026-05-29": {
+      "71+": 95,
+      "61-70": 887,
+      "51-60": 4424,
+      "41-50": 13814,
+      "31-40": 18444,
+      "21-30": 8557,
+      "0-20": 74
+     },
+     "2026-06-05": {
+      "71+": 95,
+      "61-70": 887,
+      "51-60": 4424,
+      "41-50": 13814,
+      "31-40": 18445,
+      "21-30": 8557,
+      "0-20": 74
+     },
+     "2026-06-12": {
+      "71+": 95,
+      "61-70": 887,
+      "51-60": 4424,
+      "41-50": 13813,
+      "31-40": 18445,
+      "21-30": 8557,
+      "0-20": 74
+     },
+     "2026-06-19": {
+      "71+": 95,
+      "61-70": 887,
+      "51-60": 4424,
+      "41-50": 13816,
+      "31-40": 18445,
+      "21-30": 8555,
+      "0-20": 74
+     },
+     "2026-06-26": {
+      "71+": 95,
+      "61-70": 887,
+      "51-60": 4424,
+      "41-50": 13816,
+      "31-40": 18444,
+      "21-30": 8555,
+      "0-20": 74
+     },
+     "2026-07-03": {
+      "71+": 95,
+      "61-70": 887,
+      "51-60": 4424,
+      "41-50": 13815,
+      "31-40": 18444,
+      "21-30": 8555,
+      "0-20": 74
+     },
+     "2026-07-10": {
+      "71+": 96,
+      "61-70": 891,
+      "51-60": 4434,
+      "41-50": 13878,
+      "31-40": 18511,
+      "21-30": 8612,
+      "0-20": 86
+     },
+     "2026-07-17": {
+      "71+": 96,
+      "61-70": 891,
+      "51-60": 4434,
+      "41-50": 13878,
+      "31-40": 18511,
+      "21-30": 8612,
+      "0-20": 86
+     },
+     "2026-07-24": {
+      "71+": 96,
+      "61-70": 899,
+      "51-60": 4461,
+      "41-50": 13907,
+      "31-40": 18535,
+      "21-30": 8622,
+      "0-20": 88
+     },
+     "2026-07-31": {
+      "71+": 96,
+      "61-70": 899,
+      "51-60": 4461,
+      "41-50": 13906,
+      "31-40": 18531,
+      "21-30": 8620,
+      "0-20": 88
+     },
+     "2026-08-07": {
+      "71+": 96,
+      "61-70": 899,
+      "51-60": 4461,
+      "41-50": 13907,
+      "31-40": 18532,
+      "21-30": 8620,
+      "0-20": 88
+     },
+     "2026-08-14": {
+      "71+": 96,
+      "61-70": 899,
+      "51-60": 4467,
+      "41-50": 13916,
+      "31-40": 18541,
+      "21-30": 8631,
+      "0-20": 89
+     },
+     "2026-08-21": {
+      "71+": 97,
+      "61-70": 901,
+      "51-60": 4474,
+      "41-50": 13931,
+      "31-40": 18542,
+      "21-30": 8631,
+      "0-20": 89
+     },
+     "2026-08-28": {
+      "71+": 97,
+      "61-70": 901,
+      "51-60": 4474,
+      "41-50": 13931,
+      "31-40": 18541,
+      "21-30": 8628,
+      "0-20": 89
+     },
+     "2026-09-04": {
+      "71+": 97,
+      "61-70": 901,
+      "51-60": 4474,
+      "41-50": 13931,
+      "31-40": 18541,
+      "21-30": 8628,
+      "0-20": 89
+     },
+     "2026-09-11": {
+      "71+": 97,
+      "61-70": 901,
+      "51-60": 4475,
+      "41-50": 13931,
+      "31-40": 18539,
+      "21-30": 8629,
+      "0-20": 89
+     },
+     "2026-09-18": {
+      "71+": 97,
+      "61-70": 901,
+      "51-60": 4480,
+      "41-50": 13951,
+      "31-40": 18560,
+      "21-30": 8653,
+      "0-20": 95
+     },
+     "2026-09-25": {
+      "71+": 97,
+      "61-70": 901,
+      "51-60": 4480,
+      "41-50": 13951,
+      "31-40": 18560,
+      "21-30": 8653,
+      "0-20": 95
+     },
+     "2026-10-02": {
+      "71+": 97,
+      "61-70": 901,
+      "51-60": 4480,
+      "41-50": 13950,
+      "31-40": 18560,
+      "21-30": 8653,
+      "0-20": 95
+     },
+     "2026-10-09": {
+      "71+": 97,
+      "61-70": 901,
+      "51-60": 4480,
+      "41-50": 13949,
+      "31-40": 18559,
+      "21-30": 8652,
+      "0-20": 96
+     },
+     "2026-10-16": {
+      "71+": 97,
+      "61-70": 901,
+      "51-60": 4480,
+      "41-50": 13949,
+      "31-40": 18559,
+      "21-30": 8652,
+      "0-20": 96
+     },
+     "2026-10-23": {
+      "71+": 97,
+      "61-70": 901,
+      "51-60": 4481,
+      "41-50": 13950,
+      "31-40": 18558,
+      "21-30": 8655,
+      "0-20": 97
+     },
+     "2026-10-30": {
+      "71+": 97,
+      "61-70": 901,
+      "51-60": 4481,
+      "41-50": 13950,
+      "31-40": 18557,
+      "21-30": 8653,
+      "0-20": 97
+     },
+     "2026-11-06": {
+      "71+": 97,
+      "61-70": 902,
+      "51-60": 4481,
+      "41-50": 13948,
+      "31-40": 18555,
+      "21-30": 8653,
+      "0-20": 97
+     }
+    },
+    "aylik": {
+     "2021-12-01": {
+      "71+": 5,
+      "61-70": 18,
+      "51-60": 90,
+      "41-50": 381,
+      "31-40": 916,
+      "21-30": 603,
+      "0-20": 35
+     },
+     "2022-01-01": {
+      "71+": 6,
+      "61-70": 24,
+      "51-60": 125,
+      "41-50": 564,
+      "31-40": 1315,
+      "21-30": 831,
+      "0-20": 28
+     },
+     "2022-02-01": {
+      "71+": 6,
+      "61-70": 31,
+      "51-60": 182,
+      "41-50": 843,
+      "31-40": 1944,
+      "21-30": 1094,
+      "0-20": 38
+     },
+     "2022-03-01": {
+      "71+": 8,
+      "61-70": 38,
+      "51-60": 224,
+      "41-50": 996,
+      "31-40": 2328,
+      "21-30": 1330,
+      "0-20": 48
+     },
+     "2022-04-01": {
+      "71+": 8,
+      "61-70": 42,
+      "51-60": 241,
+      "41-50": 1069,
+      "31-40": 2479,
+      "21-30": 1416,
+      "0-20": 54
+     },
+     "2022-05-01": {
+      "71+": 8,
+      "61-70": 45,
+      "51-60": 258,
+      "41-50": 1181,
+      "31-40": 2810,
+      "21-30": 1697,
+      "0-20": 70
+     },
+     "2022-06-01": {
+      "71+": 8,
+      "61-70": 47,
+      "51-60": 269,
+      "41-50": 1216,
+      "31-40": 2911,
+      "21-30": 1750,
+      "0-20": 73
+     },
+     "2022-07-01": {
+      "71+": 8,
+      "61-70": 54,
+      "51-60": 336,
+      "41-50": 1480,
+      "31-40": 3354,
+      "21-30": 2029,
+      "0-20": 86
+     },
+     "2022-08-01": {
+      "71+": 8,
+      "61-70": 59,
+      "51-60": 391,
+      "41-50": 1761,
+      "31-40": 3865,
+      "21-30": 2324,
+      "0-20": 100
+     },
+     "2022-09-01": {
+      "71+": 8,
+      "61-70": 63,
+      "51-60": 405,
+      "41-50": 1850,
+      "31-40": 3955,
+      "21-30": 2388,
+      "0-20": 104
+     },
+     "2022-10-01": {
+      "71+": 10,
+      "61-70": 72,
+      "51-60": 458,
+      "41-50": 1992,
+      "31-40": 4158,
+      "21-30": 2604,
+      "0-20": 114
+     },
+     "2022-11-01": {
+      "71+": 11,
+      "61-70": 83,
+      "51-60": 527,
+      "41-50": 2281,
+      "31-40": 4604,
+      "21-30": 2879,
+      "0-20": 138
+     },
+     "2022-12-01": {
+      "71+": 13,
+      "61-70": 94,
+      "51-60": 593,
+      "41-50": 2543,
+      "31-40": 5058,
+      "21-30": 3123,
+      "0-20": 167
+     },
+     "2024-01-01": {
+      "71+": 45,
+      "61-70": 405,
+      "51-60": 2384,
+      "41-50": 8861,
+      "31-40": 14659,
+      "21-30": 8018,
+      "0-20": 315
+     },
+     "2024-02-01": {
+      "71+": 46,
+      "61-70": 417,
+      "51-60": 2489,
+      "41-50": 9243,
+      "31-40": 15248,
+      "21-30": 8433,
+      "0-20": 343
+     },
+     "2024-03-01": {
+      "71+": 47,
+      "61-70": 420,
+      "51-60": 2511,
+      "41-50": 9297,
+      "31-40": 15336,
+      "21-30": 8501,
+      "0-20": 348
+     },
+     "2024-04-01": {
+      "71+": 47,
+      "61-70": 429,
+      "51-60": 2589,
+      "41-50": 9543,
+      "31-40": 15785,
+      "21-30": 8889,
+      "0-20": 372
+     },
+     "2024-05-01": {
+      "71+": 47,
+      "61-70": 442,
+      "51-60": 2678,
+      "41-50": 9814,
+      "31-40": 16144,
+      "21-30": 9095,
+      "0-20": 395
+     },
+     "2024-06-01": {
+      "71+": 47,
+      "61-70": 457,
+      "51-60": 2774,
+      "41-50": 10165,
+      "31-40": 16570,
+      "21-30": 9353,
+      "0-20": 429
+     },
+     "2024-07-01": {
+      "71+": 47,
+      "61-70": 485,
+      "51-60": 2897,
+      "41-50": 10393,
+      "31-40": 16867,
+      "21-30": 9594,
+      "0-20": 460
+     },
+     "2024-08-01": {
+      "71+": 47,
+      "61-70": 493,
+      "51-60": 2938,
+      "41-50": 10533,
+      "31-40": 17047,
+      "21-30": 9681,
+      "0-20": 471
+     },
+     "2024-09-01": {
+      "71+": 47,
+      "61-70": 498,
+      "51-60": 2948,
+      "41-50": 10574,
+      "31-40": 17156,
+      "21-30": 9772,
+      "0-20": 475
+     },
+     "2024-10-01": {
+      "71+": 47,
+      "61-70": 502,
+      "51-60": 2959,
+      "41-50": 10600,
+      "31-40": 17210,
+      "21-30": 9838,
+      "0-20": 484
+     },
+     "2024-11-01": {
+      "71+": 47,
+      "61-70": 510,
+      "51-60": 3022,
+      "41-50": 10810,
+      "31-40": 17497,
+      "21-30": 10027,
+      "0-20": 508
+     },
+     "2024-12-01": {
+      "71+": 47,
+      "61-70": 514,
+      "51-60": 3036,
+      "41-50": 10898,
+      "31-40": 17630,
+      "21-30": 10159,
+      "0-20": 520
+     },
+     "2025-01-01": {
+      "71+": 61,
+      "61-70": 636,
+      "51-60": 3554,
+      "41-50": 11975,
+      "31-40": 17580,
+      "21-30": 9095,
+      "0-20": 170
+     },
+     "2025-02-01": {
+      "71+": 61,
+      "61-70": 646,
+      "51-60": 3581,
+      "41-50": 12046,
+      "31-40": 17665,
+      "21-30": 9154,
+      "0-20": 177
+     },
+     "2025-03-01": {
+      "71+": 63,
+      "61-70": 655,
+      "51-60": 3620,
+      "41-50": 12127,
+      "31-40": 17766,
+      "21-30": 9218,
+      "0-20": 180
+     },
+     "2025-04-01": {
+      "71+": 64,
+      "61-70": 658,
+      "51-60": 3629,
+      "41-50": 12141,
+      "31-40": 17774,
+      "21-30": 9232,
+      "0-20": 182
+     },
+     "2025-05-01": {
+      "71+": 64,
+      "61-70": 659,
+      "51-60": 3636,
+      "41-50": 12160,
+      "31-40": 17804,
+      "21-30": 9252,
+      "0-20": 186
+     },
+     "2025-06-01": {
+      "71+": 64,
+      "61-70": 660,
+      "51-60": 3649,
+      "41-50": 12201,
+      "31-40": 17861,
+      "21-30": 9302,
+      "0-20": 191
+     },
+     "2025-07-01": {
+      "71+": 64,
+      "61-70": 661,
+      "51-60": 3668,
+      "41-50": 12261,
+      "31-40": 17987,
+      "21-30": 9411,
+      "0-20": 198
+     },
+     "2025-08-01": {
+      "71+": 65,
+      "61-70": 663,
+      "51-60": 3667,
+      "41-50": 12274,
+      "31-40": 18016,
+      "21-30": 9436,
+      "0-20": 198
+     },
+     "2025-09-01": {
+      "71+": 65,
+      "61-70": 663,
+      "51-60": 3666,
+      "41-50": 12275,
+      "31-40": 18014,
+      "21-30": 9434,
+      "0-20": 198
+     },
+     "2025-10-01": {
+      "71+": 65,
+      "61-70": 668,
+      "51-60": 3683,
+      "41-50": 12296,
+      "31-40": 18020,
+      "21-30": 9439,
+      "0-20": 198
+     },
+     "2025-11-01": {
+      "71+": 65,
+      "61-70": 671,
+      "51-60": 3706,
+      "41-50": 12366,
+      "31-40": 18105,
+      "21-30": 9503,
+      "0-20": 201
+     },
+     "2025-12-01": {
+      "71+": 66,
+      "61-70": 675,
+      "51-60": 3730,
+      "41-50": 12436,
+      "31-40": 18200,
+      "21-30": 9606,
+      "0-20": 217
+     },
+     "2026-01-01": {
+      "71+": 91,
+      "61-70": 868,
+      "51-60": 4356,
+      "41-50": 13651,
+      "31-40": 18254,
+      "21-30": 8374,
+      "0-20": 56
+     },
+     "2026-02-01": {
+      "71+": 92,
+      "61-70": 878,
+      "51-60": 4400,
+      "41-50": 13748,
+      "31-40": 18364,
+      "21-30": 8453,
+      "0-20": 65
+     },
+     "2026-03-01": {
+      "71+": 92,
+      "61-70": 883,
+      "51-60": 4405,
+      "41-50": 13762,
+      "31-40": 18403,
+      "21-30": 8511,
+      "0-20": 71
+     },
+     "2026-04-01": {
+      "71+": 94,
+      "61-70": 883,
+      "51-60": 4410,
+      "41-50": 13777,
+      "31-40": 18430,
+      "21-30": 8533,
+      "0-20": 74
+     },
+     "2026-05-01": {
+      "71+": 95,
+      "61-70": 888,
+      "51-60": 4425,
+      "41-50": 13814,
+      "31-40": 18445,
+      "21-30": 8556,
+      "0-20": 74
+     },
+     "2026-06-01": {
+      "71+": 95,
+      "61-70": 887,
+      "51-60": 4424,
+      "41-50": 13814,
+      "31-40": 18445,
+      "21-30": 8557,
+      "0-20": 74
+     },
+     "2026-07-01": {
+      "71+": 95,
+      "61-70": 887,
+      "51-60": 4424,
+      "41-50": 13816,
+      "31-40": 18444,
+      "21-30": 8555,
+      "0-20": 74
+     },
+     "2026-08-01": {
+      "71+": 96,
+      "61-70": 899,
+      "51-60": 4461,
+      "41-50": 13906,
+      "31-40": 18531,
+      "21-30": 8620,
+      "0-20": 88
+     },
+     "2026-09-01": {
+      "71+": 97,
+      "61-70": 901,
+      "51-60": 4474,
+      "41-50": 13931,
+      "31-40": 18541,
+      "21-30": 8628,
+      "0-20": 89
+     },
+     "2026-10-01": {
+      "71+": 97,
+      "61-70": 901,
+      "51-60": 4480,
+      "41-50": 13950,
+      "31-40": 18560,
+      "21-30": 8653,
+      "0-20": 95
+     },
+     "2026-11-01": {
+      "71+": 97,
+      "61-70": 901,
+      "51-60": 4481,
+      "41-50": 13950,
+      "31-40": 18557,
+      "21-30": 8653,
+      "0-20": 97
+     }
+    }
+   },
+   "cinsiyet": {
+    "haftalik": {
+     "2026-01-02": {
+      "kadin": 5943,
+      "erkek": 39706
+     },
+     "2026-01-09": {
+      "kadin": 5943,
+      "erkek": 39707
+     },
+     "2026-01-16": {
+      "kadin": 5969,
+      "erkek": 39974
+     },
+     "2026-01-23": {
+      "kadin": 5969,
+      "erkek": 39973
+     },
+     "2026-01-30": {
+      "kadin": 5975,
+      "erkek": 40025
+     },
+     "2026-02-06": {
+      "kadin": 5986,
+      "erkek": 40105
+     },
+     "2026-02-13": {
+      "kadin": 5980,
+      "erkek": 40102
+     },
+     "2026-02-20": {
+      "kadin": 5981,
+      "erkek": 40103
+     },
+     "2026-02-27": {
+      "kadin": 5992,
+      "erkek": 40135
+     },
+     "2026-03-06": {
+      "kadin": 5992,
+      "erkek": 40135
+     },
+     "2026-03-13": {
+      "kadin": 5991,
+      "erkek": 40133
+     },
+     "2026-03-20": {
+      "kadin": 5979,
+      "erkek": 40133
+     },
+     "2026-03-27": {
+      "kadin": 5991,
+      "erkek": 40158
+     },
+     "2026-04-03": {
+      "kadin": 6006,
+      "erkek": 40195
+     },
+     "2026-04-10": {
+      "kadin": 6005,
+      "erkek": 40195
+     },
+     "2026-04-17": {
+      "kadin": 6005,
+      "erkek": 40195
+     },
+     "2026-04-24": {
+      "kadin": 6032,
+      "erkek": 40266
+     },
+     "2026-05-01": {
+      "kadin": 6032,
+      "erkek": 40265
+     },
+     "2026-05-08": {
+      "kadin": 6032,
+      "erkek": 40262
+     },
+     "2026-05-15": {
+      "kadin": 6032,
+      "erkek": 40262
+     },
+     "2026-05-22": {
+      "kadin": 6032,
+      "erkek": 40263
+     },
+     "2026-05-29": {
+      "kadin": 6032,
+      "erkek": 40263
+     },
+     "2026-06-05": {
+      "kadin": 6032,
+      "erkek": 40264
+     },
+     "2026-06-12": {
+      "kadin": 6031,
+      "erkek": 40264
+     },
+     "2026-06-19": {
+      "kadin": 6030,
+      "erkek": 40266
+     },
+     "2026-06-26": {
+      "kadin": 6030,
+      "erkek": 40265
+     },
+     "2026-07-03": {
+      "kadin": 6030,
+      "erkek": 40264
+     },
+     "2026-07-10": {
+      "kadin": 6060,
+      "erkek": 40448
+     },
+     "2026-07-17": {
+      "kadin": 6060,
+      "erkek": 40448
+     },
+     "2026-07-24": {
+      "kadin": 6070,
+      "erkek": 40538
+     },
+     "2026-07-31": {
+      "kadin": 6067,
+      "erkek": 40534
+     },
+     "2026-08-07": {
+      "kadin": 6067,
+      "erkek": 40536
+     },
+     "2026-08-14": {
+      "kadin": 6074,
+      "erkek": 40565
+     },
+     "2026-08-21": {
+      "kadin": 6079,
+      "erkek": 40586
+     },
+     "2026-08-28": {
+      "kadin": 6079,
+      "erkek": 40582
+     },
+     "2026-09-04": {
+      "kadin": 6079,
+      "erkek": 40582
+     },
+     "2026-09-11": {
+      "kadin": 6080,
+      "erkek": 40581
+     },
+     "2026-09-18": {
+      "kadin": 6089,
+      "erkek": 40648
+     },
+     "2026-09-25": {
+      "kadin": 6089,
+      "erkek": 40648
+     },
+     "2026-10-02": {
+      "kadin": 6089,
+      "erkek": 40647
+     },
+     "2026-10-09": {
+      "kadin": 6088,
+      "erkek": 40646
+     },
+     "2026-10-16": {
+      "kadin": 6088,
+      "erkek": 40646
+     },
+     "2026-10-23": {
+      "kadin": 6090,
+      "erkek": 40649
+     },
+     "2026-10-30": {
+      "kadin": 6090,
+      "erkek": 40646
+     },
+     "2026-11-06": {
+      "kadin": 6091,
+      "erkek": 40642
+     }
+    },
+    "aylik": {
+     "2021-12-01": {
+      "kadin": 234,
+      "erkek": 1814
+     },
+     "2022-01-01": {
+      "kadin": 308,
+      "erkek": 2585
+     },
+     "2022-02-01": {
+      "kadin": 446,
+      "erkek": 3692
+     },
+     "2022-03-01": {
+      "kadin": 558,
+      "erkek": 4414
+     },
+     "2022-04-01": {
+      "kadin": 590,
+      "erkek": 4719
+     },
+     "2022-05-01": {
+      "kadin": 690,
+      "erkek": 5379
+     },
+     "2022-06-01": {
+      "kadin": 710,
+      "erkek": 5564
+     },
+     "2022-07-01": {
+      "kadin": 847,
+      "erkek": 6500
+     },
+     "2022-08-01": {
+      "kadin": 999,
+      "erkek": 7509
+     },
+     "2022-09-01": {
+      "kadin": 1031,
+      "erkek": 7742
+     },
+     "2022-10-01": {
+      "kadin": 1159,
+      "erkek": 8249
+     },
+     "2022-11-01": {
+      "kadin": 1307,
+      "erkek": 9216
+     },
+     "2022-12-01": {
+      "kadin": 1484,
+      "erkek": 10107
+     },
+     "2024-01-01": {
+      "kadin": 4300,
+      "erkek": 30387
+     },
+     "2024-02-01": {
+      "kadin": 4468,
+      "erkek": 31751
+     },
+     "2024-03-01": {
+      "kadin": 4511,
+      "erkek": 31949
+     },
+     "2024-04-01": {
+      "kadin": 4648,
+      "erkek": 33006
+     },
+     "2024-05-01": {
+      "kadin": 4762,
+      "erkek": 33853
+     },
+     "2024-06-01": {
+      "kadin": 4910,
+      "erkek": 34885
+     },
+     "2024-07-01": {
+      "kadin": 5236,
+      "erkek": 35507
+     },
+     "2024-08-01": {
+      "kadin": 5314,
+      "erkek": 35896
+     },
+     "2024-09-01": {
+      "kadin": 5383,
+      "erkek": 36087
+     },
+     "2024-10-01": {
+      "kadin": 5416,
+      "erkek": 36224
+     },
+     "2024-11-01": {
+      "kadin": 5481,
+      "erkek": 36940
+     },
+     "2024-12-01": {
+      "kadin": 5540,
+      "erkek": 37264
+     },
+     "2025-01-01": {
+      "kadin": 5557,
+      "erkek": 37514
+     },
+     "2025-02-01": {
+      "kadin": 5580,
+      "erkek": 37750
+     },
+     "2025-03-01": {
+      "kadin": 5635,
+      "erkek": 37994
+     },
+     "2025-04-01": {
+      "kadin": 5645,
+      "erkek": 38035
+     },
+     "2025-05-01": {
+      "kadin": 5656,
+      "erkek": 38105
+     },
+     "2025-06-01": {
+      "kadin": 5683,
+      "erkek": 38245
+     },
+     "2025-07-01": {
+      "kadin": 5730,
+      "erkek": 38520
+     },
+     "2025-08-01": {
+      "kadin": 5741,
+      "erkek": 38578
+     },
+     "2025-09-01": {
+      "kadin": 5742,
+      "erkek": 38573
+     },
+     "2025-10-01": {
+      "kadin": 5783,
+      "erkek": 38586
+     },
+     "2025-11-01": {
+      "kadin": 5810,
+      "erkek": 38807
+     },
+     "2025-12-01": {
+      "kadin": 5847,
+      "erkek": 39083
+     },
+     "2026-01-01": {
+      "kadin": 5943,
+      "erkek": 39707
+     },
+     "2026-02-01": {
+      "kadin": 5975,
+      "erkek": 40025
+     },
+     "2026-03-01": {
+      "kadin": 5992,
+      "erkek": 40135
+     },
+     "2026-04-01": {
+      "kadin": 6006,
+      "erkek": 40195
+     },
+     "2026-05-01": {
+      "kadin": 6032,
+      "erkek": 40265
+     },
+     "2026-06-01": {
+      "kadin": 6032,
+      "erkek": 40264
+     },
+     "2026-07-01": {
+      "kadin": 6030,
+      "erkek": 40265
+     },
+     "2026-08-01": {
+      "kadin": 6067,
+      "erkek": 40534
+     },
+     "2026-09-01": {
+      "kadin": 6079,
+      "erkek": 40582
+     },
+     "2026-10-01": {
+      "kadin": 6089,
+      "erkek": 40647
+     },
+     "2026-11-01": {
+      "kadin": 6090,
+      "erkek": 40646
+     }
+    }
+   }
+  },
+  "ulke:TÜRKİYE": {
+   "kisilik": {
+    "haftalik": {
+     "2026-01-02": {
+      "fon": 26,
+      "gercek_kisi": 44902,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 319,
+      "diger": 4
+     },
+     "2026-01-09": {
+      "fon": 26,
+      "gercek_kisi": 44902,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 319,
+      "diger": 4
+     },
+     "2026-01-16": {
+      "fon": 26,
+      "gercek_kisi": 45194,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 324,
+      "diger": 4
+     },
+     "2026-01-23": {
+      "fon": 26,
+      "gercek_kisi": 45192,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 325,
+      "diger": 4
+     },
+     "2026-01-30": {
+      "fon": 26,
+      "gercek_kisi": 45247,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 325,
+      "diger": 4
+     },
+     "2026-02-06": {
+      "fon": 26,
+      "gercek_kisi": 45334,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 334,
+      "diger": 4
+     },
+     "2026-02-13": {
+      "fon": 26,
+      "gercek_kisi": 45324,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 334,
+      "diger": 4
+     },
+     "2026-02-20": {
+      "fon": 26,
+      "gercek_kisi": 45326,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 334,
+      "diger": 4
+     },
+     "2026-02-27": {
+      "fon": 26,
+      "gercek_kisi": 45368,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 336,
+      "diger": 4
+     },
+     "2026-03-06": {
+      "fon": 26,
+      "gercek_kisi": 45366,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 337,
+      "diger": 4
+     },
+     "2026-03-13": {
+      "fon": 26,
+      "gercek_kisi": 45362,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 337,
+      "diger": 4
+     },
+     "2026-03-20": {
+      "fon": 26,
+      "gercek_kisi": 45349,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 337,
+      "diger": 4
+     },
+     "2026-03-27": {
+      "fon": 26,
+      "gercek_kisi": 45384,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 342,
+      "diger": 4
+     },
+     "2026-04-03": {
+      "fon": 27,
+      "gercek_kisi": 45435,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 363,
+      "diger": 4
+     },
+     "2026-04-10": {
+      "fon": 27,
+      "gercek_kisi": 45435,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 363,
+      "diger": 4
+     },
+     "2026-04-17": {
+      "fon": 27,
+      "gercek_kisi": 45433,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 363,
+      "diger": 4
+     },
+     "2026-04-24": {
+      "fon": 27,
+      "gercek_kisi": 45529,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 372,
+      "diger": 4
+     },
+     "2026-05-01": {
+      "fon": 27,
+      "gercek_kisi": 45530,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 372,
+      "diger": 4
+     },
+     "2026-05-08": {
+      "fon": 27,
+      "gercek_kisi": 45527,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 372,
+      "diger": 4
+     },
+     "2026-05-15": {
+      "fon": 27,
+      "gercek_kisi": 45525,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 372,
+      "diger": 4
+     },
+     "2026-05-22": {
+      "fon": 27,
+      "gercek_kisi": 45524,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 372,
+      "diger": 4
+     },
+     "2026-05-29": {
+      "fon": 27,
+      "gercek_kisi": 45524,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 372,
+      "diger": 4
+     },
+     "2026-06-05": {
+      "fon": 27,
+      "gercek_kisi": 45525,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 372,
+      "diger": 4
+     },
+     "2026-06-12": {
+      "fon": 27,
+      "gercek_kisi": 45519,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 372,
+      "diger": 4
+     },
+     "2026-06-19": {
+      "fon": 27,
+      "gercek_kisi": 45518,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 372,
+      "diger": 4
+     },
+     "2026-06-26": {
+      "fon": 27,
+      "gercek_kisi": 45516,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 372,
+      "diger": 4
+     },
+     "2026-07-03": {
+      "fon": 27,
+      "gercek_kisi": 45514,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 372,
+      "diger": 4
+     },
+     "2026-07-10": {
+      "fon": 28,
+      "gercek_kisi": 45724,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 381,
+      "diger": 4
+     },
+     "2026-07-17": {
+      "fon": 28,
+      "gercek_kisi": 45724,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 381,
+      "diger": 4
+     },
+     "2026-07-24": {
+      "fon": 28,
+      "gercek_kisi": 45823,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 384,
+      "diger": 4
+     },
+     "2026-07-31": {
+      "fon": 28,
+      "gercek_kisi": 45815,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 384,
+      "diger": 4
+     },
+     "2026-08-07": {
+      "fon": 28,
+      "gercek_kisi": 45817,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 384,
+      "diger": 4
+     },
+     "2026-08-14": {
+      "fon": 28,
+      "gercek_kisi": 45851,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 385,
+      "diger": 4
+     },
+     "2026-08-21": {
+      "fon": 30,
+      "gercek_kisi": 45874,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 388,
+      "diger": 4
+     },
+     "2026-08-28": {
+      "fon": 30,
+      "gercek_kisi": 45870,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 388,
+      "diger": 4
+     },
+     "2026-09-04": {
+      "fon": 30,
+      "gercek_kisi": 45868,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 388,
+      "diger": 4
+     },
+     "2026-09-11": {
+      "fon": 30,
+      "gercek_kisi": 45866,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 388,
+      "diger": 4
+     },
+     "2026-09-18": {
+      "fon": 30,
+      "gercek_kisi": 45941,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 390,
+      "diger": 4
+     },
+     "2026-09-25": {
+      "fon": 30,
+      "gercek_kisi": 45939,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 391,
+      "diger": 4
+     },
+     "2026-10-02": {
+      "fon": 30,
+      "gercek_kisi": 45937,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 391,
+      "diger": 4
+     },
+     "2026-10-09": {
+      "fon": 30,
+      "gercek_kisi": 45935,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 391,
+      "diger": 4
+     },
+     "2026-10-16": {
+      "fon": 30,
+      "gercek_kisi": 45933,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 391,
+      "diger": 4
+     },
+     "2026-10-23": {
+      "fon": 30,
+      "gercek_kisi": 45935,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 392,
+      "diger": 4
+     },
+     "2026-10-30": {
+      "fon": 30,
+      "gercek_kisi": 45930,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 392,
+      "diger": 4
+     },
+     "2026-11-06": {
+      "fon": 30,
+      "gercek_kisi": 45926,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 392,
+      "diger": 4
+     }
+    },
+    "aylik": {
+     "2021-12-01": {
+      "fon": 1,
+      "gercek_kisi": 2020,
+      "yatirim_ortakligi": 1,
+      "tuzel_kisi": 7,
+      "diger": 1
+     },
+     "2022-01-01": {
+      "fon": 1,
+      "gercek_kisi": 2855,
+      "yatirim_ortakligi": 1,
+      "tuzel_kisi": 9,
+      "diger": 1
+     },
+     "2022-02-01": {
+      "fon": 1,
+      "gercek_kisi": 4079,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 11,
+      "diger": 2
+     },
+     "2022-03-01": {
+      "fon": 1,
+      "gercek_kisi": 4897,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 12,
+      "diger": 2
+     },
+     "2022-04-01": {
+      "fon": 1,
+      "gercek_kisi": 5230,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 16,
+      "diger": 2
+     },
+     "2022-05-01": {
+      "fon": 1,
+      "gercek_kisi": 5971,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 19,
+      "diger": 3
+     },
+     "2022-06-01": {
+      "fon": 1,
+      "gercek_kisi": 6175,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 19,
+      "diger": 3
+     },
+     "2022-07-01": {
+      "fon": 1,
+      "gercek_kisi": 7239,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 39,
+      "diger": 3
+     },
+     "2022-08-01": {
+      "fon": 1,
+      "gercek_kisi": 8388,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 46,
+      "diger": 3
+     },
+     "2022-09-01": {
+      "fon": 1,
+      "gercek_kisi": 8650,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 51,
+      "diger": 3
+     },
+     "2022-10-01": {
+      "fon": 2,
+      "gercek_kisi": 9275,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 58,
+      "diger": 3
+     },
+     "2022-11-01": {
+      "fon": 2,
+      "gercek_kisi": 10376,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 70,
+      "diger": 3
+     },
+     "2022-12-01": {
+      "fon": 2,
+      "gercek_kisi": 11421,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 82,
+      "diger": 3
+     },
+     "2024-01-01": {
+      "fon": 13,
+      "gercek_kisi": 34199,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 210,
+      "diger": 3
+     },
+     "2024-02-01": {
+      "fon": 15,
+      "gercek_kisi": 35710,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 219,
+      "diger": 3
+     },
+     "2024-03-01": {
+      "fon": 16,
+      "gercek_kisi": 35946,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 231,
+      "diger": 3
+     },
+     "2024-04-01": {
+      "fon": 16,
+      "gercek_kisi": 37111,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 240,
+      "diger": 3
+     },
+     "2024-05-01": {
+      "fon": 18,
+      "gercek_kisi": 38055,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 243,
+      "diger": 3
+     },
+     "2024-06-01": {
+      "fon": 18,
+      "gercek_kisi": 39218,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 246,
+      "diger": 3
+     },
+     "2024-07-01": {
+      "fon": 18,
+      "gercek_kisi": 40146,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 249,
+      "diger": 3
+     },
+     "2024-08-01": {
+      "fon": 19,
+      "gercek_kisi": 40612,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 253,
+      "diger": 3
+     },
+     "2024-09-01": {
+      "fon": 19,
+      "gercek_kisi": 40864,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 256,
+      "diger": 3
+     },
+     "2024-10-01": {
+      "fon": 20,
+      "gercek_kisi": 41022,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 256,
+      "diger": 3
+     },
+     "2024-11-01": {
+      "fon": 20,
+      "gercek_kisi": 41796,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 259,
+      "diger": 3
+     },
+     "2024-12-01": {
+      "fon": 20,
+      "gercek_kisi": 42166,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 261,
+      "diger": 3
+     },
+     "2025-01-01": {
+      "fon": 20,
+      "gercek_kisi": 42425,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 264,
+      "diger": 3
+     },
+     "2025-02-01": {
+      "fon": 20,
+      "gercek_kisi": 42674,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 269,
+      "diger": 4
+     },
+     "2025-03-01": {
+      "fon": 24,
+      "gercek_kisi": 42958,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 279,
+      "diger": 4
+     },
+     "2025-04-01": {
+      "fon": 24,
+      "gercek_kisi": 43008,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 285,
+      "diger": 4
+     },
+     "2025-05-01": {
+      "fon": 25,
+      "gercek_kisi": 43088,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 284,
+      "diger": 4
+     },
+     "2025-06-01": {
+      "fon": 25,
+      "gercek_kisi": 43252,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 288,
+      "diger": 4
+     },
+     "2025-07-01": {
+      "fon": 25,
+      "gercek_kisi": 43565,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 290,
+      "diger": 4
+     },
+     "2025-08-01": {
+      "fon": 25,
+      "gercek_kisi": 43633,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 291,
+      "diger": 4
+     },
+     "2025-09-01": {
+      "fon": 25,
+      "gercek_kisi": 43626,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 293,
+      "diger": 4
+     },
+     "2025-10-01": {
+      "fon": 25,
+      "gercek_kisi": 43673,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 297,
+      "diger": 4
+     },
+     "2025-11-01": {
+      "fon": 26,
+      "gercek_kisi": 43912,
+      "yatirim_ortakligi": 0,
+      "tuzel_kisi": 303,
+      "diger": 4
+     },
+     "2025-12-01": {
+      "fon": 26,
+      "gercek_kisi": 44217,
+      "yatirim_ortakligi": 0,
+      "tuzel_kisi": 306,
+      "diger": 4
+     },
+     "2026-01-01": {
+      "fon": 26,
+      "gercek_kisi": 44903,
+      "yatirim_ortakligi": 0,
+      "tuzel_kisi": 319,
+      "diger": 0
+     },
+     "2026-02-01": {
+      "fon": 26,
+      "gercek_kisi": 45247,
+      "yatirim_ortakligi": 0,
+      "tuzel_kisi": 325,
+      "diger": 0
+     },
+     "2026-03-01": {
+      "fon": 26,
+      "gercek_kisi": 45368,
+      "yatirim_ortakligi": 0,
+      "tuzel_kisi": 336,
+      "diger": 0
+     },
+     "2026-04-01": {
+      "fon": 27,
+      "gercek_kisi": 45436,
+      "yatirim_ortakligi": 0,
+      "tuzel_kisi": 363,
+      "diger": 0
+     },
+     "2026-05-01": {
+      "fon": 27,
+      "gercek_kisi": 45530,
+      "yatirim_ortakligi": 0,
+      "tuzel_kisi": 372,
+      "diger": 0
+     },
+     "2026-06-01": {
+      "fon": 27,
+      "gercek_kisi": 45525,
+      "yatirim_ortakligi": 0,
+      "tuzel_kisi": 372,
+      "diger": 0
+     },
+     "2026-07-01": {
+      "fon": 27,
+      "gercek_kisi": 45516,
+      "yatirim_ortakligi": 0,
+      "tuzel_kisi": 372,
+      "diger": 0
+     },
+     "2026-08-01": {
+      "fon": 28,
+      "gercek_kisi": 45815,
+      "yatirim_ortakligi": 0,
+      "tuzel_kisi": 384,
+      "diger": 0
+     },
+     "2026-09-01": {
+      "fon": 30,
+      "gercek_kisi": 45869,
+      "yatirim_ortakligi": 0,
+      "tuzel_kisi": 388,
+      "diger": 0
+     },
+     "2026-10-01": {
+      "fon": 30,
+      "gercek_kisi": 45937,
+      "yatirim_ortakligi": 0,
+      "tuzel_kisi": 391,
+      "diger": 0
+     },
+     "2026-11-01": {
+      "fon": 30,
+      "gercek_kisi": 45930,
+      "yatirim_ortakligi": 0,
+      "tuzel_kisi": 392,
+      "diger": 0
+     }
+    }
+   },
+   "nitelik": {
+    "haftalik": {
+     "2026-01-02": {
+      "diger": 32553,
+      "nitelikli": 12700
+     },
+     "2026-01-09": {
+      "diger": 32518,
+      "nitelikli": 12735
+     },
+     "2026-01-16": {
+      "diger": 32718,
+      "nitelikli": 12832
+     },
+     "2026-01-23": {
+      "diger": 32663,
+      "nitelikli": 12886
+     },
+     "2026-01-30": {
+      "diger": 32629,
+      "nitelikli": 12975
+     },
+     "2026-02-06": {
+      "diger": 32666,
+      "nitelikli": 13034
+     },
+     "2026-02-13": {
+      "diger": 32619,
+      "nitelikli": 13071
+     },
+     "2026-02-20": {
+      "diger": 32573,
+      "nitelikli": 13119
+     },
+     "2026-02-27": {
+      "diger": 32577,
+      "nitelikli": 13159
+     },
+     "2026-03-06": {
+      "diger": 32537,
+      "nitelikli": 13198
+     },
+     "2026-03-13": {
+      "diger": 32479,
+      "nitelikli": 13252
+     },
+     "2026-03-20": {
+      "diger": 32434,
+      "nitelikli": 13284
+     },
+     "2026-03-27": {
+      "diger": 32436,
+      "nitelikli": 13322
+     },
+     "2026-04-03": {
+      "diger": 32455,
+      "nitelikli": 13376
+     },
+     "2026-04-10": {
+      "diger": 32421,
+      "nitelikli": 13410
+     },
+     "2026-04-17": {
+      "diger": 32393,
+      "nitelikli": 13436
+     },
+     "2026-04-24": {
+      "diger": 32455,
+      "nitelikli": 13479
+     },
+     "2026-05-01": {
+      "diger": 32439,
+      "nitelikli": 13496
+     },
+     "2026-05-08": {
+      "diger": 32427,
+      "nitelikli": 13505
+     },
+     "2026-05-15": {
+      "diger": 32417,
+      "nitelikli": 13513
+     },
+     "2026-05-22": {
+      "diger": 32414,
+      "nitelikli": 13515
+     },
+     "2026-05-29": {
+      "diger": 32414,
+      "nitelikli": 13515
+     },
+     "2026-06-05": {
+      "diger": 32405,
+      "nitelikli": 13525
+     },
+     "2026-06-12": {
+      "diger": 32394,
+      "nitelikli": 13530
+     },
+     "2026-06-19": {
+      "diger": 32377,
+      "nitelikli": 13546
+     },
+     "2026-06-26": {
+      "diger": 32368,
+      "nitelikli": 13553
+     },
+     "2026-07-03": {
+      "diger": 32354,
+      "nitelikli": 13565
+     },
+     "2026-07-10": {
+      "diger": 32513,
+      "nitelikli": 13626
+     },
+     "2026-07-17": {
+      "diger": 32493,
+      "nitelikli": 13646
+     },
+     "2026-07-24": {
+      "diger": 32560,
+      "nitelikli": 13681
+     },
+     "2026-07-31": {
+      "diger": 32550,
+      "nitelikli": 13683
+     },
+     "2026-08-07": {
+      "diger": 32574,
+      "nitelikli": 13661
+     },
+     "2026-08-14": {
+      "diger": 32581,
+      "nitelikli": 13689
+     },
+     "2026-08-21": {
+      "diger": 32584,
+      "nitelikli": 13714
+     },
+     "2026-08-28": {
+      "diger": 32569,
+      "nitelikli": 13725
+     },
+     "2026-09-04": {
+      "diger": 32560,
+      "nitelikli": 13732
+     },
+     "2026-09-11": {
+      "diger": 32554,
+      "nitelikli": 13736
+     },
+     "2026-09-18": {
+      "diger": 32611,
+      "nitelikli": 13756
+     },
+     "2026-09-25": {
+      "diger": 46366,
+      "nitelikli": 0
+     },
+     "2026-10-02": {
+      "diger": 46364,
+      "nitelikli": 0
+     },
+     "2026-10-09": {
+      "diger": 46362,
+      "nitelikli": 0
+     },
+     "2026-10-16": {
+      "diger": 46360,
+      "nitelikli": 0
+     },
+     "2026-10-23": {
+      "diger": 46363,
+      "nitelikli": 0
+     },
+     "2026-10-30": {
+      "diger": 46358,
+      "nitelikli": 0
+     },
+     "2026-11-06": {
+      "diger": 46354,
+      "nitelikli": 0
+     }
+    },
+    "aylik": {
+     "2021-12-01": {
+      "diger": 1522,
+      "nitelikli": 506
+     },
+     "2022-01-01": {
+      "diger": 2169,
+      "nitelikli": 696
+     },
+     "2022-02-01": {
+      "diger": 3135,
+      "nitelikli": 956
+     },
+     "2022-03-01": {
+      "diger": 3780,
+      "nitelikli": 1130
+     },
+     "2022-04-01": {
+      "diger": 4051,
+      "nitelikli": 1196
+     },
+     "2022-05-01": {
+      "diger": 4659,
+      "nitelikli": 1332
+     },
+     "2022-06-01": {
+      "diger": 4814,
+      "nitelikli": 1381
+     },
+     "2022-07-01": {
+      "diger": 5649,
+      "nitelikli": 1630
+     },
+     "2022-08-01": {
+      "diger": 6595,
+      "nitelikli": 1840
+     },
+     "2022-09-01": {
+      "diger": 6808,
+      "nitelikli": 1894
+     },
+     "2022-10-01": {
+      "diger": 7303,
+      "nitelikli": 2032
+     },
+     "2022-11-01": {
+      "diger": 8285,
+      "nitelikli": 2164
+     },
+     "2022-12-01": {
+      "diger": 9137,
+      "nitelikli": 2369
+     },
+     "2024-01-01": {
+      "diger": 28853,
+      "nitelikli": 5572
+     },
+     "2024-02-01": {
+      "diger": 30243,
+      "nitelikli": 5704
+     },
+     "2024-03-01": {
+      "diger": 30456,
+      "nitelikli": 5741
+     },
+     "2024-04-01": {
+      "diger": 31318,
+      "nitelikli": 6054
+     },
+     "2024-05-01": {
+      "diger": 31754,
+      "nitelikli": 6567
+     },
+     "2024-06-01": {
+      "diger": 32557,
+      "nitelikli": 6930
+     },
+     "2024-07-01": {
+      "diger": 33222,
+      "nitelikli": 7196
+     },
+     "2024-08-01": {
+      "diger": 33338,
+      "nitelikli": 7551
+     },
+     "2024-09-01": {
+      "diger": 33369,
+      "nitelikli": 7775
+     },
+     "2024-10-01": {
+      "diger": 33242,
+      "nitelikli": 8061
+     },
+     "2024-11-01": {
+      "diger": 33663,
+      "nitelikli": 8417
+     },
+     "2024-12-01": {
+      "diger": 33789,
+      "nitelikli": 8663
+     },
+     "2025-01-01": {
+      "diger": 33795,
+      "nitelikli": 8919
+     },
+     "2025-02-01": {
+      "diger": 33800,
+      "nitelikli": 9168
+     },
+     "2025-03-01": {
+      "diger": 33791,
+      "nitelikli": 9475
+     },
+     "2025-04-01": {
+      "diger": 33482,
+      "nitelikli": 9840
+     },
+     "2025-05-01": {
+      "diger": 33219,
+      "nitelikli": 10183
+     },
+     "2025-06-01": {
+      "diger": 33159,
+      "nitelikli": 10411
+     },
+     "2025-07-01": {
+      "diger": 33215,
+      "nitelikli": 10670
+     },
+     "2025-08-01": {
+      "diger": 33015,
+      "nitelikli": 10939
+     },
+     "2025-09-01": {
+      "diger": 32724,
+      "nitelikli": 11225
+     },
+     "2025-10-01": {
+      "diger": 32501,
+      "nitelikli": 11499
+     },
+     "2025-11-01": {
+      "diger": 32367,
+      "nitelikli": 11879
+     },
+     "2025-12-01": {
+      "diger": 32350,
+      "nitelikli": 12204
+     },
+     "2026-01-01": {
+      "diger": 32563,
+      "nitelikli": 12691
+     },
+     "2026-02-01": {
+      "diger": 32628,
+      "nitelikli": 12976
+     },
+     "2026-03-01": {
+      "diger": 32576,
+      "nitelikli": 13160
+     },
+     "2026-04-01": {
+      "diger": 32473,
+      "nitelikli": 13359
+     },
+     "2026-05-01": {
+      "diger": 32439,
+      "nitelikli": 13496
+     },
+     "2026-06-01": {
+      "diger": 32413,
+      "nitelikli": 13517
+     },
+     "2026-07-01": {
+      "diger": 32357,
+      "nitelikli": 13564
+     },
+     "2026-08-01": {
+      "diger": 32550,
+      "nitelikli": 13683
+     },
+     "2026-09-01": {
+      "diger": 32568,
+      "nitelikli": 13725
+     },
+     "2026-10-01": {
+      "diger": 46364,
+      "nitelikli": 0
+     },
+     "2026-11-01": {
+      "diger": 46358,
+      "nitelikli": 0
+     }
+    }
+   },
+   "uyruk": {
+    "haftalik": {
+     "2026-01-02": {
+      "yerli": 45056,
+      "yabanci": 197
+     },
+     "2026-01-09": {
+      "yerli": 45056,
+      "yabanci": 197
+     },
+     "2026-01-16": {
+      "yerli": 45352,
+      "yabanci": 198
+     },
+     "2026-01-23": {
+      "yerli": 45351,
+      "yabanci": 198
+     },
+     "2026-01-30": {
+      "yerli": 45406,
+      "yabanci": 198
+     },
+     "2026-02-06": {
+      "yerli": 45502,
+      "yabanci": 198
+     },
+     "2026-02-13": {
+      "yerli": 45492,
+      "yabanci": 198
+     },
+     "2026-02-20": {
+      "yerli": 45495,
+      "yabanci": 197
+     },
+     "2026-02-27": {
+      "yerli": 45539,
+      "yabanci": 197
+     },
+     "2026-03-06": {
+      "yerli": 45538,
+      "yabanci": 197
+     },
+     "2026-03-13": {
+      "yerli": 45534,
+      "yabanci": 197
+     },
+     "2026-03-20": {
+      "yerli": 45521,
+      "yabanci": 197
+     },
+     "2026-03-27": {
+      "yerli": 45561,
+      "yabanci": 197
+     },
+     "2026-04-03": {
+      "yerli": 45634,
+      "yabanci": 197
+     },
+     "2026-04-10": {
+      "yerli": 45634,
+      "yabanci": 197
+     },
+     "2026-04-17": {
+      "yerli": 45632,
+      "yabanci": 197
+     },
+     "2026-04-24": {
+      "yerli": 45737,
+      "yabanci": 197
+     },
+     "2026-05-01": {
+      "yerli": 45738,
+      "yabanci": 197
+     },
+     "2026-05-08": {
+      "yerli": 45735,
+      "yabanci": 197
+     },
+     "2026-05-15": {
+      "yerli": 45733,
+      "yabanci": 197
+     },
+     "2026-05-22": {
+      "yerli": 45732,
+      "yabanci": 197
+     },
+     "2026-05-29": {
+      "yerli": 45731,
+      "yabanci": 198
+     },
+     "2026-06-05": {
+      "yerli": 45732,
+      "yabanci": 198
+     },
+     "2026-06-12": {
+      "yerli": 45726,
+      "yabanci": 198
+     },
+     "2026-06-19": {
+      "yerli": 45725,
+      "yabanci": 198
+     },
+     "2026-06-26": {
+      "yerli": 45723,
+      "yabanci": 198
+     },
+     "2026-07-03": {
+      "yerli": 45721,
+      "yabanci": 198
+     },
+     "2026-07-10": {
+      "yerli": 45941,
+      "yabanci": 198
+     },
+     "2026-07-17": {
+      "yerli": 45941,
+      "yabanci": 198
+     },
+     "2026-07-24": {
+      "yerli": 46043,
+      "yabanci": 198
+     },
+     "2026-07-31": {
+      "yerli": 46035,
+      "yabanci": 198
+     },
+     "2026-08-07": {
+      "yerli": 46037,
+      "yabanci": 198
+     },
+     "2026-08-14": {
+      "yerli": 46070,
+      "yabanci": 200
+     },
+     "2026-08-21": {
+      "yerli": 46098,
+      "yabanci": 200
+     },
+     "2026-08-28": {
+      "yerli": 46094,
+      "yabanci": 200
+     },
+     "2026-09-04": {
+      "yerli": 46092,
+      "yabanci": 200
+     },
+     "2026-09-11": {
+      "yerli": 46090,
+      "yabanci": 200
+     },
+     "2026-09-18": {
+      "yerli": 46166,
+      "yabanci": 201
+     },
+     "2026-09-25": {
+      "yerli": 46165,
+      "yabanci": 201
+     },
+     "2026-10-02": {
+      "yerli": 46162,
+      "yabanci": 202
+     },
+     "2026-10-09": {
+      "yerli": 46160,
+      "yabanci": 202
+     },
+     "2026-10-16": {
+      "yerli": 46158,
+      "yabanci": 202
+     },
+     "2026-10-23": {
+      "yerli": 46160,
+      "yabanci": 203
+     },
+     "2026-10-30": {
+      "yerli": 46155,
+      "yabanci": 203
+     },
+     "2026-11-06": {
+      "yerli": 46151,
+      "yabanci": 203
+     }
+    },
+    "aylik": {
+     "2021-12-01": {
+      "yerli": 2025,
+      "yabanci": 3
+     },
+     "2022-01-01": {
+      "yerli": 2861,
+      "yabanci": 4
+     },
+     "2022-02-01": {
+      "yerli": 4084,
+      "yabanci": 7
+     },
+     "2022-03-01": {
+      "yerli": 4899,
+      "yabanci": 11
+     },
+     "2022-04-01": {
+      "yerli": 5235,
+      "yabanci": 12
+     },
+     "2022-05-01": {
+      "yerli": 5977,
+      "yabanci": 14
+     },
+     "2022-06-01": {
+      "yerli": 6179,
+      "yabanci": 16
+     },
+     "2022-07-01": {
+      "yerli": 7258,
+      "yabanci": 21
+     },
+     "2022-08-01": {
+      "yerli": 8410,
+      "yabanci": 25
+     },
+     "2022-09-01": {
+      "yerli": 8677,
+      "yabanci": 25
+     },
+     "2022-10-01": {
+      "yerli": 9308,
+      "yabanci": 27
+     },
+     "2022-11-01": {
+      "yerli": 10418,
+      "yabanci": 31
+     },
+     "2022-12-01": {
+      "yerli": 11470,
+      "yabanci": 36
+     },
+     "2024-01-01": {
+      "yerli": 34282,
+      "yabanci": 143
+     },
+     "2024-02-01": {
+      "yerli": 35797,
+      "yabanci": 150
+     },
+     "2024-03-01": {
+      "yerli": 36043,
+      "yabanci": 154
+     },
+     "2024-04-01": {
+      "yerli": 37214,
+      "yabanci": 158
+     },
+     "2024-05-01": {
+      "yerli": 38161,
+      "yabanci": 160
+     },
+     "2024-06-01": {
+      "yerli": 39323,
+      "yabanci": 164
+     },
+     "2024-07-01": {
+      "yerli": 40245,
+      "yabanci": 173
+     },
+     "2024-08-01": {
+      "yerli": 40715,
+      "yabanci": 174
+     },
+     "2024-09-01": {
+      "yerli": 40969,
+      "yabanci": 175
+     },
+     "2024-10-01": {
+      "yerli": 41128,
+      "yabanci": 175
+     },
+     "2024-11-01": {
+      "yerli": 41896,
+      "yabanci": 184
+     },
+     "2024-12-01": {
+      "yerli": 42265,
+      "yabanci": 187
+     },
+     "2025-01-01": {
+      "yerli": 42524,
+      "yabanci": 190
+     },
+     "2025-02-01": {
+      "yerli": 42776,
+      "yabanci": 192
+     },
+     "2025-03-01": {
+      "yerli": 43073,
+      "yabanci": 193
+     },
+     "2025-04-01": {
+      "yerli": 43129,
+      "yabanci": 193
+     },
+     "2025-05-01": {
+      "yerli": 43208,
+      "yabanci": 194
+     },
+     "2025-06-01": {
+      "yerli": 43377,
+      "yabanci": 193
+     },
+     "2025-07-01": {
+      "yerli": 43691,
+      "yabanci": 194
+     },
+     "2025-08-01": {
+      "yerli": 43761,
+      "yabanci": 193
+     },
+     "2025-09-01": {
+      "yerli": 43758,
+      "yabanci": 191
+     },
+     "2025-10-01": {
+      "yerli": 43807,
+      "yabanci": 193
+     },
+     "2025-11-01": {
+      "yerli": 44049,
+      "yabanci": 197
+     },
+     "2025-12-01": {
+      "yerli": 44355,
+      "yabanci": 199
+     },
+     "2026-01-01": {
+      "yerli": 45057,
+      "yabanci": 197
+     },
+     "2026-02-01": {
+      "yerli": 45406,
+      "yabanci": 198
+     },
+     "2026-03-01": {
+      "yerli": 45539,
+      "yabanci": 197
+     },
+     "2026-04-01": {
+      "yerli": 45635,
+      "yabanci": 197
+     },
+     "2026-05-01": {
+      "yerli": 45738,
+      "yabanci": 197
+     },
+     "2026-06-01": {
+      "yerli": 45732,
+      "yabanci": 198
+     },
+     "2026-07-01": {
+      "yerli": 45723,
+      "yabanci": 198
+     },
+     "2026-08-01": {
+      "yerli": 46035,
+      "yabanci": 198
+     },
+     "2026-09-01": {
+      "yerli": 46093,
+      "yabanci": 200
+     },
+     "2026-10-01": {
+      "yerli": 46163,
+      "yabanci": 201
+     },
+     "2026-11-01": {
+      "yerli": 46155,
+      "yabanci": 203
+     }
+    }
+   },
+   "yas": {
+    "haftalik": {
+     "2026-01-02": {
+      "71+": 89,
+      "61-70": 859,
+      "51-60": 4268,
+      "41-50": 13393,
+      "31-40": 17943,
+      "21-30": 8294,
+      "0-20": 56
+     },
+     "2026-01-09": {
+      "71+": 89,
+      "61-70": 859,
+      "51-60": 4269,
+      "41-50": 13392,
+      "31-40": 17942,
+      "21-30": 8295,
+      "0-20": 56
+     },
+     "2026-01-16": {
+      "71+": 90,
+      "61-70": 867,
+      "51-60": 4307,
+      "41-50": 13475,
+      "31-40": 18032,
+      "21-30": 8359,
+      "0-20": 64
+     },
+     "2026-01-23": {
+      "71+": 90,
+      "61-70": 867,
+      "51-60": 4307,
+      "41-50": 13474,
+      "31-40": 18031,
+      "21-30": 8359,
+      "0-20": 64
+     },
+     "2026-01-30": {
+      "71+": 90,
+      "61-70": 870,
+      "51-60": 4313,
+      "41-50": 13487,
+      "31-40": 18050,
+      "21-30": 8372,
+      "0-20": 65
+     },
+     "2026-02-06": {
+      "71+": 90,
+      "61-70": 872,
+      "51-60": 4317,
+      "41-50": 13500,
+      "31-40": 18079,
+      "21-30": 8408,
+      "0-20": 68
+     },
+     "2026-02-13": {
+      "71+": 90,
+      "61-70": 872,
+      "51-60": 4314,
+      "41-50": 13498,
+      "31-40": 18075,
+      "21-30": 8406,
+      "0-20": 69
+     },
+     "2026-02-20": {
+      "71+": 90,
+      "61-70": 872,
+      "51-60": 4315,
+      "41-50": 13500,
+      "31-40": 18077,
+      "21-30": 8402,
+      "0-20": 70
+     },
+     "2026-02-27": {
+      "71+": 90,
+      "61-70": 875,
+      "51-60": 4317,
+      "41-50": 13504,
+      "31-40": 18084,
+      "21-30": 8427,
+      "0-20": 71
+     },
+     "2026-03-06": {
+      "71+": 90,
+      "61-70": 875,
+      "51-60": 4317,
+      "41-50": 13502,
+      "31-40": 18084,
+      "21-30": 8427,
+      "0-20": 71
+     },
+     "2026-03-13": {
+      "71+": 90,
+      "61-70": 875,
+      "51-60": 4319,
+      "41-50": 13498,
+      "31-40": 18082,
+      "21-30": 8427,
+      "0-20": 71
+     },
+     "2026-03-20": {
+      "71+": 90,
+      "61-70": 875,
+      "51-60": 4314,
+      "41-50": 13492,
+      "31-40": 18080,
+      "21-30": 8427,
+      "0-20": 71
+     },
+     "2026-03-27": {
+      "71+": 91,
+      "61-70": 875,
+      "51-60": 4318,
+      "41-50": 13502,
+      "31-40": 18092,
+      "21-30": 8434,
+      "0-20": 72
+     },
+     "2026-04-03": {
+      "71+": 92,
+      "61-70": 875,
+      "51-60": 4323,
+      "41-50": 13513,
+      "31-40": 18109,
+      "21-30": 8449,
+      "0-20": 74
+     },
+     "2026-04-10": {
+      "71+": 92,
+      "61-70": 875,
+      "51-60": 4323,
+      "41-50": 13514,
+      "31-40": 18108,
+      "21-30": 8449,
+      "0-20": 74
+     },
+     "2026-04-17": {
+      "71+": 92,
+      "61-70": 875,
+      "51-60": 4322,
+      "41-50": 13513,
+      "31-40": 18108,
+      "21-30": 8449,
+      "0-20": 74
+     },
+     "2026-04-24": {
+      "71+": 93,
+      "61-70": 880,
+      "51-60": 4337,
+      "41-50": 13550,
+      "31-40": 18124,
+      "21-30": 8471,
+      "0-20": 74
+     },
+     "2026-05-01": {
+      "71+": 93,
+      "61-70": 880,
+      "51-60": 4337,
+      "41-50": 13551,
+      "31-40": 18124,
+      "21-30": 8471,
+      "0-20": 74
+     },
+     "2026-05-08": {
+      "71+": 93,
+      "61-70": 880,
+      "51-60": 4335,
+      "41-50": 13551,
+      "31-40": 18123,
+      "21-30": 8471,
+      "0-20": 74
+     },
+     "2026-05-15": {
+      "71+": 93,
+      "61-70": 879,
+      "51-60": 4335,
+      "41-50": 13551,
+      "31-40": 18121,
+      "21-30": 8472,
+      "0-20": 74
+     },
+     "2026-05-22": {
+      "71+": 93,
+      "61-70": 878,
+      "51-60": 4335,
+      "41-50": 13551,
+      "31-40": 18121,
+      "21-30": 8472,
+      "0-20": 74
+     },
+     "2026-05-29": {
+      "71+": 93,
+      "61-70": 878,
+      "51-60": 4335,
+      "41-50": 13551,
+      "31-40": 18121,
+      "21-30": 8472,
+      "0-20": 74
+     },
+     "2026-06-05": {
+      "71+": 93,
+      "61-70": 878,
+      "51-60": 4335,
+      "41-50": 13551,
+      "31-40": 18122,
+      "21-30": 8472,
+      "0-20": 74
+     },
+     "2026-06-12": {
+      "71+": 93,
+      "61-70": 878,
+      "51-60": 4335,
+      "41-50": 13549,
+      "31-40": 18119,
+      "21-30": 8471,
+      "0-20": 74
+     },
+     "2026-06-19": {
+      "71+": 93,
+      "61-70": 878,
+      "51-60": 4335,
+      "41-50": 13551,
+      "31-40": 18118,
+      "21-30": 8469,
+      "0-20": 74
+     },
+     "2026-06-26": {
+      "71+": 93,
+      "61-70": 878,
+      "51-60": 4335,
+      "41-50": 13550,
+      "31-40": 18117,
+      "21-30": 8469,
+      "0-20": 74
+     },
+     "2026-07-03": {
+      "71+": 93,
+      "61-70": 878,
+      "51-60": 4335,
+      "41-50": 13549,
+      "31-40": 18116,
+      "21-30": 8469,
+      "0-20": 74
+     },
+     "2026-07-10": {
+      "71+": 94,
+      "61-70": 882,
+      "51-60": 4345,
+      "41-50": 13610,
+      "31-40": 18181,
+      "21-30": 8526,
+      "0-20": 86
+     },
+     "2026-07-17": {
+      "71+": 94,
+      "61-70": 882,
+      "51-60": 4345,
+      "41-50": 13609,
+      "31-40": 18182,
+      "21-30": 8526,
+      "0-20": 86
+     },
+     "2026-07-24": {
+      "71+": 94,
+      "61-70": 890,
+      "51-60": 4372,
+      "41-50": 13637,
+      "31-40": 18205,
+      "21-30": 8537,
+      "0-20": 88
+     },
+     "2026-07-31": {
+      "71+": 94,
+      "61-70": 890,
+      "51-60": 4372,
+      "41-50": 13636,
+      "31-40": 18200,
+      "21-30": 8535,
+      "0-20": 88
+     },
+     "2026-08-07": {
+      "71+": 94,
+      "61-70": 890,
+      "51-60": 4372,
+      "41-50": 13638,
+      "31-40": 18201,
+      "21-30": 8534,
+      "0-20": 88
+     },
+     "2026-08-14": {
+      "71+": 94,
+      "61-70": 890,
+      "51-60": 4377,
+      "41-50": 13647,
+      "31-40": 18209,
+      "21-30": 8545,
+      "0-20": 89
+     },
+     "2026-08-21": {
+      "71+": 95,
+      "61-70": 892,
+      "51-60": 4384,
+      "41-50": 13662,
+      "31-40": 18208,
+      "21-30": 8544,
+      "0-20": 89
+     },
+     "2026-08-28": {
+      "71+": 95,
+      "61-70": 892,
+      "51-60": 4384,
+      "41-50": 13664,
+      "31-40": 18205,
+      "21-30": 8541,
+      "0-20": 89
+     },
+     "2026-09-04": {
+      "71+": 95,
+      "61-70": 892,
+      "51-60": 4384,
+      "41-50": 13664,
+      "31-40": 18203,
+      "21-30": 8541,
+      "0-20": 89
+     },
+     "2026-09-11": {
+      "71+": 95,
+      "61-70": 892,
+      "51-60": 4385,
+      "41-50": 13663,
+      "31-40": 18201,
+      "21-30": 8541,
+      "0-20": 89
+     },
+     "2026-09-18": {
+      "71+": 95,
+      "61-70": 892,
+      "51-60": 4390,
+      "41-50": 13682,
+      "31-40": 18222,
+      "21-30": 8565,
+      "0-20": 95
+     },
+     "2026-09-25": {
+      "71+": 95,
+      "61-70": 892,
+      "51-60": 4390,
+      "41-50": 13681,
+      "31-40": 18221,
+      "21-30": 8565,
+      "0-20": 95
+     },
+     "2026-10-02": {
+      "71+": 95,
+      "61-70": 892,
+      "51-60": 4390,
+      "41-50": 13680,
+      "31-40": 18221,
+      "21-30": 8564,
+      "0-20": 95
+     },
+     "2026-10-09": {
+      "71+": 95,
+      "61-70": 892,
+      "51-60": 4390,
+      "41-50": 13679,
+      "31-40": 18220,
+      "21-30": 8563,
+      "0-20": 96
+     },
+     "2026-10-16": {
+      "71+": 95,
+      "61-70": 892,
+      "51-60": 4390,
+      "41-50": 13679,
+      "31-40": 18219,
+      "21-30": 8562,
+      "0-20": 96
+     },
+     "2026-10-23": {
+      "71+": 95,
+      "61-70": 892,
+      "51-60": 4391,
+      "41-50": 13680,
+      "31-40": 18215,
+      "21-30": 8565,
+      "0-20": 97
+     },
+     "2026-10-30": {
+      "71+": 95,
+      "61-70": 892,
+      "51-60": 4391,
+      "41-50": 13680,
+      "31-40": 18213,
+      "21-30": 8562,
+      "0-20": 97
+     },
+     "2026-11-06": {
+      "71+": 95,
+      "61-70": 893,
+      "51-60": 4391,
+      "41-50": 13678,
+      "31-40": 18209,
+      "21-30": 8563,
+      "0-20": 97
+     }
+    },
+    "aylik": {
+     "2021-12-01": {
+      "71+": 5,
+      "61-70": 15,
+      "51-60": 90,
+      "41-50": 372,
+      "31-40": 905,
+      "21-30": 598,
+      "0-20": 35
+     },
+     "2022-01-01": {
+      "71+": 6,
+      "61-70": 21,
+      "51-60": 125,
+      "41-50": 554,
+      "31-40": 1297,
+      "21-30": 824,
+      "0-20": 28
+     },
+     "2022-02-01": {
+      "71+": 6,
+      "61-70": 28,
+      "51-60": 182,
+      "41-50": 829,
+      "31-40": 1913,
+      "21-30": 1083,
+      "0-20": 38
+     },
+     "2022-03-01": {
+      "71+": 8,
+      "61-70": 35,
+      "51-60": 223,
+      "41-50": 981,
+      "31-40": 2285,
+      "21-30": 1317,
+      "0-20": 48
+     },
+     "2022-04-01": {
+      "71+": 8,
+      "61-70": 39,
+      "51-60": 240,
+      "41-50": 1054,
+      "31-40": 2433,
+      "21-30": 1402,
+      "0-20": 54
+     },
+     "2022-05-01": {
+      "71+": 8,
+      "61-70": 42,
+      "51-60": 257,
+      "41-50": 1166,
+      "31-40": 2752,
+      "21-30": 1676,
+      "0-20": 70
+     },
+     "2022-06-01": {
+      "71+": 8,
+      "61-70": 44,
+      "51-60": 268,
+      "41-50": 1201,
+      "31-40": 2852,
+      "21-30": 1729,
+      "0-20": 73
+     },
+     "2022-07-01": {
+      "71+": 8,
+      "61-70": 51,
+      "51-60": 335,
+      "41-50": 1462,
+      "31-40": 3291,
+      "21-30": 2006,
+      "0-20": 86
+     },
+     "2022-08-01": {
+      "71+": 8,
+      "61-70": 56,
+      "51-60": 389,
+      "41-50": 1738,
+      "31-40": 3797,
+      "21-30": 2301,
+      "0-20": 99
+     },
+     "2022-09-01": {
+      "71+": 8,
+      "61-70": 60,
+      "51-60": 402,
+      "41-50": 1827,
+      "31-40": 3886,
+      "21-30": 2364,
+      "0-20": 103
+     },
+     "2022-10-01": {
+      "71+": 10,
+      "61-70": 69,
+      "51-60": 455,
+      "41-50": 1966,
+      "31-40": 4089,
+      "21-30": 2573,
+      "0-20": 113
+     },
+     "2022-11-01": {
+      "71+": 11,
+      "61-70": 80,
+      "51-60": 523,
+      "41-50": 2249,
+      "31-40": 4530,
+      "21-30": 2846,
+      "0-20": 137
+     },
+     "2022-12-01": {
+      "71+": 13,
+      "61-70": 88,
+      "51-60": 588,
+      "41-50": 2509,
+      "31-40": 4970,
+      "21-30": 3087,
+      "0-20": 166
+     },
+     "2024-01-01": {
+      "71+": 44,
+      "61-70": 397,
+      "51-60": 2344,
+      "41-50": 8712,
+      "31-40": 14446,
+      "21-30": 7941,
+      "0-20": 315
+     },
+     "2024-02-01": {
+      "71+": 45,
+      "61-70": 409,
+      "51-60": 2448,
+      "41-50": 9087,
+      "31-40": 15024,
+      "21-30": 8354,
+      "0-20": 343
+     },
+     "2024-03-01": {
+      "71+": 46,
+      "61-70": 412,
+      "51-60": 2468,
+      "41-50": 9142,
+      "31-40": 15109,
+      "21-30": 8421,
+      "0-20": 348
+     },
+     "2024-04-01": {
+      "71+": 46,
+      "61-70": 421,
+      "51-60": 2544,
+      "41-50": 9381,
+      "31-40": 15543,
+      "21-30": 8804,
+      "0-20": 372
+     },
+     "2024-05-01": {
+      "71+": 46,
+      "61-70": 434,
+      "51-60": 2632,
+      "41-50": 9647,
+      "31-40": 15897,
+      "21-30": 9004,
+      "0-20": 395
+     },
+     "2024-06-01": {
+      "71+": 46,
+      "61-70": 449,
+      "51-60": 2726,
+      "41-50": 9993,
+      "31-40": 16314,
+      "21-30": 9261,
+      "0-20": 429
+     },
+     "2024-07-01": {
+      "71+": 46,
+      "61-70": 477,
+      "51-60": 2848,
+      "41-50": 10215,
+      "31-40": 16601,
+      "21-30": 9499,
+      "0-20": 460
+     },
+     "2024-08-01": {
+      "71+": 46,
+      "61-70": 485,
+      "51-60": 2889,
+      "41-50": 10358,
+      "31-40": 16778,
+      "21-30": 9585,
+      "0-20": 471
+     },
+     "2024-09-01": {
+      "71+": 46,
+      "61-70": 490,
+      "51-60": 2899,
+      "41-50": 10394,
+      "31-40": 16884,
+      "21-30": 9676,
+      "0-20": 475
+     },
+     "2024-10-01": {
+      "71+": 46,
+      "61-70": 494,
+      "51-60": 2908,
+      "41-50": 10418,
+      "31-40": 16934,
+      "21-30": 9738,
+      "0-20": 484
+     },
+     "2024-11-01": {
+      "71+": 46,
+      "61-70": 503,
+      "51-60": 2973,
+      "41-50": 10627,
+      "31-40": 17218,
+      "21-30": 9921,
+      "0-20": 508
+     },
+     "2024-12-01": {
+      "71+": 46,
+      "61-70": 507,
+      "51-60": 2987,
+      "41-50": 10710,
+      "31-40": 17342,
+      "21-30": 10054,
+      "0-20": 520
+     },
+     "2025-01-01": {
+      "71+": 59,
+      "61-70": 629,
+      "51-60": 3496,
+      "41-50": 11766,
+      "31-40": 17290,
+      "21-30": 9015,
+      "0-20": 170
+     },
+     "2025-02-01": {
+      "71+": 59,
+      "61-70": 638,
+      "51-60": 3522,
+      "41-50": 11833,
+      "31-40": 17370,
+      "21-30": 9075,
+      "0-20": 177
+     },
+     "2025-03-01": {
+      "71+": 61,
+      "61-70": 647,
+      "51-60": 3559,
+      "41-50": 11909,
+      "31-40": 17463,
+      "21-30": 9139,
+      "0-20": 180
+     },
+     "2025-04-01": {
+      "71+": 62,
+      "61-70": 650,
+      "51-60": 3569,
+      "41-50": 11921,
+      "31-40": 17474,
+      "21-30": 9150,
+      "0-20": 182
+     },
+     "2025-05-01": {
+      "71+": 62,
+      "61-70": 651,
+      "51-60": 3576,
+      "41-50": 11940,
+      "31-40": 17502,
+      "21-30": 9171,
+      "0-20": 186
+     },
+     "2025-06-01": {
+      "71+": 62,
+      "61-70": 652,
+      "51-60": 3588,
+      "41-50": 11980,
+      "31-40": 17558,
+      "21-30": 9221,
+      "0-20": 191
+     },
+     "2025-07-01": {
+      "71+": 62,
+      "61-70": 654,
+      "51-60": 3604,
+      "41-50": 12040,
+      "31-40": 17678,
+      "21-30": 9329,
+      "0-20": 198
+     },
+     "2025-08-01": {
+      "71+": 63,
+      "61-70": 656,
+      "51-60": 3603,
+      "41-50": 12053,
+      "31-40": 17707,
+      "21-30": 9353,
+      "0-20": 198
+     },
+     "2025-09-01": {
+      "71+": 63,
+      "61-70": 656,
+      "51-60": 3602,
+      "41-50": 12052,
+      "31-40": 17705,
+      "21-30": 9350,
+      "0-20": 198
+     },
+     "2025-10-01": {
+      "71+": 63,
+      "61-70": 661,
+      "51-60": 3617,
+      "41-50": 12072,
+      "31-40": 17710,
+      "21-30": 9352,
+      "0-20": 198
+     },
+     "2025-11-01": {
+      "71+": 63,
+      "61-70": 664,
+      "51-60": 3641,
+      "41-50": 12136,
+      "31-40": 17793,
+      "21-30": 9414,
+      "0-20": 201
+     },
+     "2025-12-01": {
+      "71+": 64,
+      "61-70": 667,
+      "51-60": 3662,
+      "41-50": 12202,
+      "31-40": 17889,
+      "21-30": 9516,
+      "0-20": 217
+     },
+     "2026-01-01": {
+      "71+": 89,
+      "61-70": 859,
+      "51-60": 4268,
+      "41-50": 13394,
+      "31-40": 17943,
+      "21-30": 8294,
+      "0-20": 56
+     },
+     "2026-02-01": {
+      "71+": 90,
+      "61-70": 870,
+      "51-60": 4313,
+      "41-50": 13487,
+      "31-40": 18050,
+      "21-30": 8372,
+      "0-20": 65
+     },
+     "2026-03-01": {
+      "71+": 90,
+      "61-70": 875,
+      "51-60": 4317,
+      "41-50": 13504,
+      "31-40": 18084,
+      "21-30": 8427,
+      "0-20": 71
+     },
+     "2026-04-01": {
+      "71+": 92,
+      "61-70": 875,
+      "51-60": 4323,
+      "41-50": 13514,
+      "31-40": 18109,
+      "21-30": 8449,
+      "0-20": 74
+     },
+     "2026-05-01": {
+      "71+": 93,
+      "61-70": 880,
+      "51-60": 4337,
+      "41-50": 13551,
+      "31-40": 18124,
+      "21-30": 8471,
+      "0-20": 74
+     },
+     "2026-06-01": {
+      "71+": 93,
+      "61-70": 878,
+      "51-60": 4335,
+      "41-50": 13551,
+      "31-40": 18122,
+      "21-30": 8472,
+      "0-20": 74
+     },
+     "2026-07-01": {
+      "71+": 93,
+      "61-70": 878,
+      "51-60": 4335,
+      "41-50": 13551,
+      "31-40": 18116,
+      "21-30": 8469,
+      "0-20": 74
+     },
+     "2026-08-01": {
+      "71+": 94,
+      "61-70": 890,
+      "51-60": 4372,
+      "41-50": 13636,
+      "31-40": 18200,
+      "21-30": 8535,
+      "0-20": 88
+     },
+     "2026-09-01": {
+      "71+": 95,
+      "61-70": 892,
+      "51-60": 4384,
+      "41-50": 13664,
+      "31-40": 18204,
+      "21-30": 8541,
+      "0-20": 89
+     },
+     "2026-10-01": {
+      "71+": 95,
+      "61-70": 892,
+      "51-60": 4390,
+      "41-50": 13680,
+      "31-40": 18221,
+      "21-30": 8564,
+      "0-20": 95
+     },
+     "2026-11-01": {
+      "71+": 95,
+      "61-70": 892,
+      "51-60": 4391,
+      "41-50": 13680,
+      "31-40": 18213,
+      "21-30": 8562,
+      "0-20": 97
+     }
+    }
+   },
+   "cinsiyet": {
+    "haftalik": {
+     "2026-01-02": {
+      "kadin": 5849,
+      "erkek": 39053
+     },
+     "2026-01-09": {
+      "kadin": 5849,
+      "erkek": 39053
+     },
+     "2026-01-16": {
+      "kadin": 5875,
+      "erkek": 39319
+     },
+     "2026-01-23": {
+      "kadin": 5875,
+      "erkek": 39317
+     },
+     "2026-01-30": {
+      "kadin": 5881,
+      "erkek": 39366
+     },
+     "2026-02-06": {
+      "kadin": 5892,
+      "erkek": 39442
+     },
+     "2026-02-13": {
+      "kadin": 5887,
+      "erkek": 39437
+     },
+     "2026-02-20": {
+      "kadin": 5888,
+      "erkek": 39438
+     },
+     "2026-02-27": {
+      "kadin": 5899,
+      "erkek": 39469
+     },
+     "2026-03-06": {
+      "kadin": 5899,
+      "erkek": 39467
+     },
+     "2026-03-13": {
+      "kadin": 5898,
+      "erkek": 39464
+     },
+     "2026-03-20": {
+      "kadin": 5886,
+      "erkek": 39463
+     },
+     "2026-03-27": {
+      "kadin": 5897,
+      "erkek": 39487
+     },
+     "2026-04-03": {
+      "kadin": 5912,
+      "erkek": 39523
+     },
+     "2026-04-10": {
+      "kadin": 5911,
+      "erkek": 39524
+     },
+     "2026-04-17": {
+      "kadin": 5910,
+      "erkek": 39523
+     },
+     "2026-04-24": {
+      "kadin": 5937,
+      "erkek": 39592
+     },
+     "2026-05-01": {
+      "kadin": 5937,
+      "erkek": 39593
+     },
+     "2026-05-08": {
+      "kadin": 5937,
+      "erkek": 39590
+     },
+     "2026-05-15": {
+      "kadin": 5937,
+      "erkek": 39588
+     },
+     "2026-05-22": {
+      "kadin": 5937,
+      "erkek": 39587
+     },
+     "2026-05-29": {
+      "kadin": 5937,
+      "erkek": 39587
+     },
+     "2026-06-05": {
+      "kadin": 5937,
+      "erkek": 39588
+     },
+     "2026-06-12": {
+      "kadin": 5934,
+      "erkek": 39585
+     },
+     "2026-06-19": {
+      "kadin": 5932,
+      "erkek": 39586
+     },
+     "2026-06-26": {
+      "kadin": 5932,
+      "erkek": 39584
+     },
+     "2026-07-03": {
+      "kadin": 5932,
+      "erkek": 39582
+     },
+     "2026-07-10": {
+      "kadin": 5960,
+      "erkek": 39764
+     },
+     "2026-07-17": {
+      "kadin": 5960,
+      "erkek": 39764
+     },
+     "2026-07-24": {
+      "kadin": 5969,
+      "erkek": 39854
+     },
+     "2026-07-31": {
+      "kadin": 5966,
+      "erkek": 39849
+     },
+     "2026-08-07": {
+      "kadin": 5966,
+      "erkek": 39851
+     },
+     "2026-08-14": {
+      "kadin": 5972,
+      "erkek": 39879
+     },
+     "2026-08-21": {
+      "kadin": 5977,
+      "erkek": 39897
+     },
+     "2026-08-28": {
+      "kadin": 5977,
+      "erkek": 39893
+     },
+     "2026-09-04": {
+      "kadin": 5977,
+      "erkek": 39891
+     },
+     "2026-09-11": {
+      "kadin": 5978,
+      "erkek": 39888
+     },
+     "2026-09-18": {
+      "kadin": 5987,
+      "erkek": 39954
+     },
+     "2026-09-25": {
+      "kadin": 5987,
+      "erkek": 39952
+     },
+     "2026-10-02": {
+      "kadin": 5987,
+      "erkek": 39950
+     },
+     "2026-10-09": {
+      "kadin": 5986,
+      "erkek": 39949
+     },
+     "2026-10-16": {
+      "kadin": 5986,
+      "erkek": 39947
+     },
+     "2026-10-23": {
+      "kadin": 5988,
+      "erkek": 39947
+     },
+     "2026-10-30": {
+      "kadin": 5988,
+      "erkek": 39942
+     },
+     "2026-11-06": {
+      "kadin": 5989,
+      "erkek": 39937
+     }
+    },
+    "aylik": {
+     "2021-12-01": {
+      "kadin": 229,
+      "erkek": 1791
+     },
+     "2022-01-01": {
+      "kadin": 303,
+      "erkek": 2552
+     },
+     "2022-02-01": {
+      "kadin": 439,
+      "erkek": 3640
+     },
+     "2022-03-01": {
+      "kadin": 549,
+      "erkek": 4348
+     },
+     "2022-04-01": {
+      "kadin": 581,
+      "erkek": 4649
+     },
+     "2022-05-01": {
+      "kadin": 679,
+      "erkek": 5292
+     },
+     "2022-06-01": {
+      "kadin": 699,
+      "erkek": 5476
+     },
+     "2022-07-01": {
+      "kadin": 836,
+      "erkek": 6403
+     },
+     "2022-08-01": {
+      "kadin": 986,
+      "erkek": 7402
+     },
+     "2022-09-01": {
+      "kadin": 1018,
+      "erkek": 7632
+     },
+     "2022-10-01": {
+      "kadin": 1142,
+      "erkek": 8133
+     },
+     "2022-11-01": {
+      "kadin": 1288,
+      "erkek": 9088
+     },
+     "2022-12-01": {
+      "kadin": 1462,
+      "erkek": 9959
+     },
+     "2024-01-01": {
+      "kadin": 4241,
+      "erkek": 29958
+     },
+     "2024-02-01": {
+      "kadin": 4408,
+      "erkek": 31302
+     },
+     "2024-03-01": {
+      "kadin": 4449,
+      "erkek": 31497
+     },
+     "2024-04-01": {
+      "kadin": 4582,
+      "erkek": 32529
+     },
+     "2024-05-01": {
+      "kadin": 4694,
+      "erkek": 33361
+     },
+     "2024-06-01": {
+      "kadin": 4843,
+      "erkek": 34375
+     },
+     "2024-07-01": {
+      "kadin": 5166,
+      "erkek": 34980
+     },
+     "2024-08-01": {
+      "kadin": 5244,
+      "erkek": 35368
+     },
+     "2024-09-01": {
+      "kadin": 5310,
+      "erkek": 35554
+     },
+     "2024-10-01": {
+      "kadin": 5343,
+      "erkek": 35679
+     },
+     "2024-11-01": {
+      "kadin": 5409,
+      "erkek": 36387
+     },
+     "2024-12-01": {
+      "kadin": 5466,
+      "erkek": 36700
+     },
+     "2025-01-01": {
+      "kadin": 5483,
+      "erkek": 36942
+     },
+     "2025-02-01": {
+      "kadin": 5504,
+      "erkek": 37170
+     },
+     "2025-03-01": {
+      "kadin": 5554,
+      "erkek": 37404
+     },
+     "2025-04-01": {
+      "kadin": 5564,
+      "erkek": 37444
+     },
+     "2025-05-01": {
+      "kadin": 5574,
+      "erkek": 37514
+     },
+     "2025-06-01": {
+      "kadin": 5599,
+      "erkek": 37653
+     },
+     "2025-07-01": {
+      "kadin": 5645,
+      "erkek": 37920
+     },
+     "2025-08-01": {
+      "kadin": 5654,
+      "erkek": 37979
+     },
+     "2025-09-01": {
+      "kadin": 5655,
+      "erkek": 37971
+     },
+     "2025-10-01": {
+      "kadin": 5693,
+      "erkek": 37980
+     },
+     "2025-11-01": {
+      "kadin": 5718,
+      "erkek": 38194
+     },
+     "2025-12-01": {
+      "kadin": 5753,
+      "erkek": 38464
+     },
+     "2026-01-01": {
+      "kadin": 5849,
+      "erkek": 39054
+     },
+     "2026-02-01": {
+      "kadin": 5881,
+      "erkek": 39366
+     },
+     "2026-03-01": {
+      "kadin": 5899,
+      "erkek": 39469
+     },
+     "2026-04-01": {
+      "kadin": 5912,
+      "erkek": 39524
+     },
+     "2026-05-01": {
+      "kadin": 5937,
+      "erkek": 39593
+     },
+     "2026-06-01": {
+      "kadin": 5937,
+      "erkek": 39588
+     },
+     "2026-07-01": {
+      "kadin": 5932,
+      "erkek": 39584
+     },
+     "2026-08-01": {
+      "kadin": 5966,
+      "erkek": 39849
+     },
+     "2026-09-01": {
+      "kadin": 5977,
+      "erkek": 39892
+     },
+     "2026-10-01": {
+      "kadin": 5987,
+      "erkek": 39950
+     },
+     "2026-11-01": {
+      "kadin": 5988,
+      "erkek": 39942
+     }
+    }
+   }
+  },
+  "ulke:DİĞER": {
+   "kisilik": {
+    "haftalik": {
+     "2026-01-02": {
+      "gercek_kisi": 747,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-01-09": {
+      "gercek_kisi": 748,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-01-16": {
+      "gercek_kisi": 749,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-01-23": {
+      "gercek_kisi": 750,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-01-30": {
+      "gercek_kisi": 753,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-02-06": {
+      "gercek_kisi": 757,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-02-13": {
+      "gercek_kisi": 758,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-02-20": {
+      "gercek_kisi": 758,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-02-27": {
+      "gercek_kisi": 759,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-03-06": {
+      "gercek_kisi": 761,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-03-13": {
+      "gercek_kisi": 762,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-03-20": {
+      "gercek_kisi": 763,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-03-27": {
+      "gercek_kisi": 765,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-04-03": {
+      "gercek_kisi": 766,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-04-10": {
+      "gercek_kisi": 765,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-04-17": {
+      "gercek_kisi": 767,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-04-24": {
+      "gercek_kisi": 769,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-05-01": {
+      "gercek_kisi": 767,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-05-08": {
+      "gercek_kisi": 767,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-05-15": {
+      "gercek_kisi": 769,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-05-22": {
+      "gercek_kisi": 771,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-05-29": {
+      "gercek_kisi": 771,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-06-05": {
+      "gercek_kisi": 771,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-06-12": {
+      "gercek_kisi": 776,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-06-19": {
+      "gercek_kisi": 778,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-06-26": {
+      "gercek_kisi": 779,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-07-03": {
+      "gercek_kisi": 780,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-07-10": {
+      "gercek_kisi": 784,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-07-17": {
+      "gercek_kisi": 784,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-07-24": {
+      "gercek_kisi": 785,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-07-31": {
+      "gercek_kisi": 786,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-08-07": {
+      "gercek_kisi": 786,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-08-14": {
+      "gercek_kisi": 788,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-08-21": {
+      "gercek_kisi": 791,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-08-28": {
+      "gercek_kisi": 791,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-09-04": {
+      "gercek_kisi": 793,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-09-11": {
+      "gercek_kisi": 795,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-09-18": {
+      "gercek_kisi": 796,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-09-25": {
+      "gercek_kisi": 798,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-10-02": {
+      "gercek_kisi": 799,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-10-09": {
+      "gercek_kisi": 799,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-10-16": {
+      "gercek_kisi": 801,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-10-23": {
+      "gercek_kisi": 804,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-10-30": {
+      "gercek_kisi": 806,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-11-06": {
+      "gercek_kisi": 807,
+      "tuzel_kisi": 2,
+      "diger": 1
+     }
+    },
+    "aylik": {
+     "2021-12-01": {
+      "gercek_kisi": 28,
+      "tuzel_kisi": 1,
+      "diger": 1
+     },
+     "2022-01-01": {
+      "gercek_kisi": 38,
+      "tuzel_kisi": 1,
+      "diger": 1
+     },
+     "2022-02-01": {
+      "gercek_kisi": 59,
+      "tuzel_kisi": 1,
+      "diger": 1
+     },
+     "2022-03-01": {
+      "gercek_kisi": 75,
+      "tuzel_kisi": 1,
+      "diger": 1
+     },
+     "2022-04-01": {
+      "gercek_kisi": 79,
+      "tuzel_kisi": 1,
+      "diger": 1
+     },
+     "2022-05-01": {
+      "gercek_kisi": 98,
+      "tuzel_kisi": 1,
+      "diger": 1
+     },
+     "2022-06-01": {
+      "gercek_kisi": 99,
+      "tuzel_kisi": 1,
+      "diger": 1
+     },
+     "2022-07-01": {
+      "gercek_kisi": 108,
+      "tuzel_kisi": 1,
+      "diger": 1
+     },
+     "2022-08-01": {
+      "gercek_kisi": 120,
+      "tuzel_kisi": 1,
+      "diger": 1
+     },
+     "2022-09-01": {
+      "gercek_kisi": 123,
+      "tuzel_kisi": 1,
+      "diger": 1
+     },
+     "2022-10-01": {
+      "gercek_kisi": 133,
+      "tuzel_kisi": 1,
+      "diger": 1
+     },
+     "2022-11-01": {
+      "gercek_kisi": 147,
+      "tuzel_kisi": 1,
+      "diger": 1
+     },
+     "2022-12-01": {
+      "gercek_kisi": 170,
+      "tuzel_kisi": 1,
+      "diger": 1
+     },
+     "2024-01-01": {
+      "gercek_kisi": 488,
+      "tuzel_kisi": 1,
+      "diger": 1
+     },
+     "2024-02-01": {
+      "gercek_kisi": 509,
+      "tuzel_kisi": 1,
+      "diger": 1
+     },
+     "2024-03-01": {
+      "gercek_kisi": 514,
+      "tuzel_kisi": 1,
+      "diger": 1
+     },
+     "2024-04-01": {
+      "gercek_kisi": 543,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2024-05-01": {
+      "gercek_kisi": 560,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2024-06-01": {
+      "gercek_kisi": 577,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2024-07-01": {
+      "gercek_kisi": 597,
+      "tuzel_kisi": 2,
+      "diger": 0
+     },
+     "2024-08-01": {
+      "gercek_kisi": 598,
+      "tuzel_kisi": 2,
+      "diger": 0
+     },
+     "2024-09-01": {
+      "gercek_kisi": 606,
+      "tuzel_kisi": 2,
+      "diger": 0
+     },
+     "2024-10-01": {
+      "gercek_kisi": 618,
+      "tuzel_kisi": 2,
+      "diger": 0
+     },
+     "2024-11-01": {
+      "gercek_kisi": 625,
+      "tuzel_kisi": 2,
+      "diger": 0
+     },
+     "2024-12-01": {
+      "gercek_kisi": 638,
+      "tuzel_kisi": 2,
+      "diger": 0
+     },
+     "2025-01-01": {
+      "gercek_kisi": 646,
+      "tuzel_kisi": 2,
+      "diger": 0
+     },
+     "2025-02-01": {
+      "gercek_kisi": 656,
+      "tuzel_kisi": 2,
+      "diger": 0
+     },
+     "2025-03-01": {
+      "gercek_kisi": 671,
+      "tuzel_kisi": 2,
+      "diger": 0
+     },
+     "2025-04-01": {
+      "gercek_kisi": 672,
+      "tuzel_kisi": 2,
+      "diger": 0
+     },
+     "2025-05-01": {
+      "gercek_kisi": 673,
+      "tuzel_kisi": 2,
+      "diger": 0
+     },
+     "2025-06-01": {
+      "gercek_kisi": 676,
+      "tuzel_kisi": 2,
+      "diger": 0
+     },
+     "2025-07-01": {
+      "gercek_kisi": 685,
+      "tuzel_kisi": 2,
+      "diger": 0
+     },
+     "2025-08-01": {
+      "gercek_kisi": 686,
+      "tuzel_kisi": 2,
+      "diger": 0
+     },
+     "2025-09-01": {
+      "gercek_kisi": 689,
+      "tuzel_kisi": 2,
+      "diger": 0
+     },
+     "2025-10-01": {
+      "gercek_kisi": 696,
+      "tuzel_kisi": 2,
+      "diger": 0
+     },
+     "2025-11-01": {
+      "gercek_kisi": 705,
+      "tuzel_kisi": 0,
+      "diger": 0
+     },
+     "2025-12-01": {
+      "gercek_kisi": 713,
+      "tuzel_kisi": 0,
+      "diger": 0
+     },
+     "2026-01-01": {
+      "gercek_kisi": 747,
+      "tuzel_kisi": 0,
+      "diger": 0
+     },
+     "2026-02-01": {
+      "gercek_kisi": 753,
+      "tuzel_kisi": 0,
+      "diger": 0
+     },
+     "2026-03-01": {
+      "gercek_kisi": 759,
+      "tuzel_kisi": 0,
+      "diger": 0
+     },
+     "2026-04-01": {
+      "gercek_kisi": 765,
+      "tuzel_kisi": 0,
+      "diger": 0
+     },
+     "2026-05-01": {
+      "gercek_kisi": 767,
+      "tuzel_kisi": 0,
+      "diger": 0
+     },
+     "2026-06-01": {
+      "gercek_kisi": 771,
+      "tuzel_kisi": 0,
+      "diger": 0
+     },
+     "2026-07-01": {
+      "gercek_kisi": 779,
+      "tuzel_kisi": 0,
+      "diger": 0
+     },
+     "2026-08-01": {
+      "gercek_kisi": 786,
+      "tuzel_kisi": 0,
+      "diger": 0
+     },
+     "2026-09-01": {
+      "gercek_kisi": 792,
+      "tuzel_kisi": 0,
+      "diger": 0
+     },
+     "2026-10-01": {
+      "gercek_kisi": 799,
+      "tuzel_kisi": 0,
+      "diger": 0
+     },
+     "2026-11-01": {
+      "gercek_kisi": 806,
+      "tuzel_kisi": 0,
+      "diger": 0
+     }
+    }
+   },
+   "nitelik": {
+    "haftalik": {
+     "2026-01-02": {
+      "diger": 519,
+      "nitelikli": 231
+     },
+     "2026-01-09": {
+      "diger": 517,
+      "nitelikli": 234
+     },
+     "2026-01-16": {
+      "diger": 516,
+      "nitelikli": 236
+     },
+     "2026-01-23": {
+      "diger": 517,
+      "nitelikli": 236
+     },
+     "2026-01-30": {
+      "diger": 517,
+      "nitelikli": 239
+     },
+     "2026-02-06": {
+      "diger": 520,
+      "nitelikli": 240
+     },
+     "2026-02-13": {
+      "diger": 521,
+      "nitelikli": 240
+     },
+     "2026-02-20": {
+      "diger": 521,
+      "nitelikli": 240
+     },
+     "2026-02-27": {
+      "diger": 521,
+      "nitelikli": 241
+     },
+     "2026-03-06": {
+      "diger": 521,
+      "nitelikli": 243
+     },
+     "2026-03-13": {
+      "diger": 520,
+      "nitelikli": 245
+     },
+     "2026-03-20": {
+      "diger": 521,
+      "nitelikli": 245
+     },
+     "2026-03-27": {
+      "diger": 522,
+      "nitelikli": 246
+     },
+     "2026-04-03": {
+      "diger": 522,
+      "nitelikli": 247
+     },
+     "2026-04-10": {
+      "diger": 520,
+      "nitelikli": 248
+     },
+     "2026-04-17": {
+      "diger": 521,
+      "nitelikli": 249
+     },
+     "2026-04-24": {
+      "diger": 522,
+      "nitelikli": 250
+     },
+     "2026-05-01": {
+      "diger": 521,
+      "nitelikli": 249
+     },
+     "2026-05-08": {
+      "diger": 520,
+      "nitelikli": 250
+     },
+     "2026-05-15": {
+      "diger": 522,
+      "nitelikli": 250
+     },
+     "2026-05-22": {
+      "diger": 524,
+      "nitelikli": 250
+     },
+     "2026-05-29": {
+      "diger": 524,
+      "nitelikli": 250
+     },
+     "2026-06-05": {
+      "diger": 523,
+      "nitelikli": 251
+     },
+     "2026-06-12": {
+      "diger": 528,
+      "nitelikli": 251
+     },
+     "2026-06-19": {
+      "diger": 529,
+      "nitelikli": 252
+     },
+     "2026-06-26": {
+      "diger": 529,
+      "nitelikli": 253
+     },
+     "2026-07-03": {
+      "diger": 529,
+      "nitelikli": 254
+     },
+     "2026-07-10": {
+      "diger": 531,
+      "nitelikli": 256
+     },
+     "2026-07-17": {
+      "diger": 530,
+      "nitelikli": 257
+     },
+     "2026-07-24": {
+      "diger": 530,
+      "nitelikli": 258
+     },
+     "2026-07-31": {
+      "diger": 531,
+      "nitelikli": 258
+     },
+     "2026-08-07": {
+      "diger": 531,
+      "nitelikli": 258
+     },
+     "2026-08-14": {
+      "diger": 532,
+      "nitelikli": 259
+     },
+     "2026-08-21": {
+      "diger": 534,
+      "nitelikli": 260
+     },
+     "2026-08-28": {
+      "diger": 534,
+      "nitelikli": 260
+     },
+     "2026-09-04": {
+      "diger": 535,
+      "nitelikli": 261
+     },
+     "2026-09-11": {
+      "diger": 536,
+      "nitelikli": 262
+     },
+     "2026-09-18": {
+      "diger": 538,
+      "nitelikli": 261
+     },
+     "2026-09-25": {
+      "diger": 801,
+      "nitelikli": 0
+     },
+     "2026-10-02": {
+      "diger": 802,
+      "nitelikli": 0
+     },
+     "2026-10-09": {
+      "diger": 802,
+      "nitelikli": 0
+     },
+     "2026-10-16": {
+      "diger": 804,
+      "nitelikli": 0
+     },
+     "2026-10-23": {
+      "diger": 807,
+      "nitelikli": 0
+     },
+     "2026-10-30": {
+      "diger": 809,
+      "nitelikli": 0
+     },
+     "2026-11-06": {
+      "diger": 810,
+      "nitelikli": 0
+     }
+    },
+    "aylik": {
+     "2021-12-01": {
+      "diger": 21,
+      "nitelikli": 7
+     },
+     "2022-01-01": {
+      "diger": 29,
+      "nitelikli": 9
+     },
+     "2022-02-01": {
+      "diger": 43,
+      "nitelikli": 16
+     },
+     "2022-03-01": {
+      "diger": 55,
+      "nitelikli": 20
+     },
+     "2022-04-01": {
+      "diger": 59,
+      "nitelikli": 20
+     },
+     "2022-05-01": {
+      "diger": 75,
+      "nitelikli": 23
+     },
+     "2022-06-01": {
+      "diger": 75,
+      "nitelikli": 24
+     },
+     "2022-07-01": {
+      "diger": 82,
+      "nitelikli": 26
+     },
+     "2022-08-01": {
+      "diger": 92,
+      "nitelikli": 28
+     },
+     "2022-09-01": {
+      "diger": 94,
+      "nitelikli": 29
+     },
+     "2022-10-01": {
+      "diger": 103,
+      "nitelikli": 30
+     },
+     "2022-11-01": {
+      "diger": 116,
+      "nitelikli": 31
+     },
+     "2022-12-01": {
+      "diger": 136,
+      "nitelikli": 34
+     },
+     "2024-01-01": {
+      "diger": 384,
+      "nitelikli": 105
+     },
+     "2024-02-01": {
+      "diger": 401,
+      "nitelikli": 109
+     },
+     "2024-03-01": {
+      "diger": 406,
+      "nitelikli": 109
+     },
+     "2024-04-01": {
+      "diger": 432,
+      "nitelikli": 112
+     },
+     "2024-05-01": {
+      "diger": 442,
+      "nitelikli": 119
+     },
+     "2024-06-01": {
+      "diger": 456,
+      "nitelikli": 122
+     },
+     "2024-07-01": {
+      "diger": 468,
+      "nitelikli": 130
+     },
+     "2024-08-01": {
+      "diger": 467,
+      "nitelikli": 132
+     },
+     "2024-09-01": {
+      "diger": 470,
+      "nitelikli": 137
+     },
+     "2024-10-01": {
+      "diger": 478,
+      "nitelikli": 141
+     },
+     "2024-11-01": {
+      "diger": 481,
+      "nitelikli": 145
+     },
+     "2024-12-01": {
+      "diger": 489,
+      "nitelikli": 150
+     },
+     "2025-01-01": {
+      "diger": 492,
+      "nitelikli": 155
+     },
+     "2025-02-01": {
+      "diger": 496,
+      "nitelikli": 161
+     },
+     "2025-03-01": {
+      "diger": 506,
+      "nitelikli": 166
+     },
+     "2025-04-01": {
+      "diger": 503,
+      "nitelikli": 170
+     },
+     "2025-05-01": {
+      "diger": 496,
+      "nitelikli": 180
+     },
+     "2025-06-01": {
+      "diger": 495,
+      "nitelikli": 184
+     },
+     "2025-07-01": {
+      "diger": 496,
+      "nitelikli": 192
+     },
+     "2025-08-01": {
+      "diger": 494,
+      "nitelikli": 195
+     },
+     "2025-09-01": {
+      "diger": 489,
+      "nitelikli": 203
+     },
+     "2025-10-01": {
+      "diger": 493,
+      "nitelikli": 206
+     },
+     "2025-11-01": {
+      "diger": 496,
+      "nitelikli": 212
+     },
+     "2025-12-01": {
+      "diger": 499,
+      "nitelikli": 217
+     },
+     "2026-01-01": {
+      "diger": 519,
+      "nitelikli": 231
+     },
+     "2026-02-01": {
+      "diger": 517,
+      "nitelikli": 239
+     },
+     "2026-03-01": {
+      "diger": 521,
+      "nitelikli": 241
+     },
+     "2026-04-01": {
+      "diger": 521,
+      "nitelikli": 247
+     },
+     "2026-05-01": {
+      "diger": 521,
+      "nitelikli": 249
+     },
+     "2026-06-01": {
+      "diger": 524,
+      "nitelikli": 250
+     },
+     "2026-07-01": {
+      "diger": 528,
+      "nitelikli": 254
+     },
+     "2026-08-01": {
+      "diger": 531,
+      "nitelikli": 258
+     },
+     "2026-09-01": {
+      "diger": 534,
+      "nitelikli": 261
+     },
+     "2026-10-01": {
+      "diger": 802,
+      "nitelikli": 0
+     },
+     "2026-11-01": {
+      "diger": 809,
+      "nitelikli": 0
+     }
+    }
+   },
+   "uyruk": {
+    "haftalik": {
+     "2026-01-02": {
+      "yerli": 741,
+      "yabanci": 9
+     },
+     "2026-01-09": {
+      "yerli": 742,
+      "yabanci": 9
+     },
+     "2026-01-16": {
+      "yerli": 743,
+      "yabanci": 9
+     },
+     "2026-01-23": {
+      "yerli": 744,
+      "yabanci": 9
+     },
+     "2026-01-30": {
+      "yerli": 747,
+      "yabanci": 9
+     },
+     "2026-02-06": {
+      "yerli": 751,
+      "yabanci": 9
+     },
+     "2026-02-13": {
+      "yerli": 752,
+      "yabanci": 9
+     },
+     "2026-02-20": {
+      "yerli": 752,
+      "yabanci": 9
+     },
+     "2026-02-27": {
+      "yerli": 753,
+      "yabanci": 9
+     },
+     "2026-03-06": {
+      "yerli": 755,
+      "yabanci": 9
+     },
+     "2026-03-13": {
+      "yerli": 756,
+      "yabanci": 9
+     },
+     "2026-03-20": {
+      "yerli": 757,
+      "yabanci": 9
+     },
+     "2026-03-27": {
+      "yerli": 759,
+      "yabanci": 9
+     },
+     "2026-04-03": {
+      "yerli": 759,
+      "yabanci": 10
+     },
+     "2026-04-10": {
+      "yerli": 758,
+      "yabanci": 10
+     },
+     "2026-04-17": {
+      "yerli": 760,
+      "yabanci": 10
+     },
+     "2026-04-24": {
+      "yerli": 762,
+      "yabanci": 10
+     },
+     "2026-05-01": {
+      "yerli": 760,
+      "yabanci": 10
+     },
+     "2026-05-08": {
+      "yerli": 760,
+      "yabanci": 10
+     },
+     "2026-05-15": {
+      "yerli": 762,
+      "yabanci": 10
+     },
+     "2026-05-22": {
+      "yerli": 764,
+      "yabanci": 10
+     },
+     "2026-05-29": {
+      "yerli": 765,
+      "yabanci": 9
+     },
+     "2026-06-05": {
+      "yerli": 765,
+      "yabanci": 9
+     },
+     "2026-06-12": {
+      "yerli": 770,
+      "yabanci": 9
+     },
+     "2026-06-19": {
+      "yerli": 772,
+      "yabanci": 9
+     },
+     "2026-06-26": {
+      "yerli": 773,
+      "yabanci": 9
+     },
+     "2026-07-03": {
+      "yerli": 774,
+      "yabanci": 9
+     },
+     "2026-07-10": {
+      "yerli": 777,
+      "yabanci": 10
+     },
+     "2026-07-17": {
+      "yerli": 777,
+      "yabanci": 10
+     },
+     "2026-07-24": {
+      "yerli": 778,
+      "yabanci": 10
+     },
+     "2026-07-31": {
+      "yerli": 779,
+      "yabanci": 10
+     },
+     "2026-08-07": {
+      "yerli": 779,
+      "yabanci": 10
+     },
+     "2026-08-14": {
+      "yerli": 782,
+      "yabanci": 9
+     },
+     "2026-08-21": {
+      "yerli": 785,
+      "yabanci": 9
+     },
+     "2026-08-28": {
+      "yerli": 785,
+      "yabanci": 9
+     },
+     "2026-09-04": {
+      "yerli": 787,
+      "yabanci": 9
+     },
+     "2026-09-11": {
+      "yerli": 789,
+      "yabanci": 9
+     },
+     "2026-09-18": {
+      "yerli": 790,
+      "yabanci": 9
+     },
+     "2026-09-25": {
+      "yerli": 792,
+      "yabanci": 9
+     },
+     "2026-10-02": {
+      "yerli": 793,
+      "yabanci": 9
+     },
+     "2026-10-09": {
+      "yerli": 793,
+      "yabanci": 9
+     },
+     "2026-10-16": {
+      "yerli": 795,
+      "yabanci": 9
+     },
+     "2026-10-23": {
+      "yerli": 798,
+      "yabanci": 9
+     },
+     "2026-10-30": {
+      "yerli": 800,
+      "yabanci": 9
+     },
+     "2026-11-06": {
+      "yerli": 801,
+      "yabanci": 9
+     }
+    },
+    "aylik": {
+     "2021-12-01": {
+      "yerli": 28,
+      "yabanci": 1
+     },
+     "2022-01-01": {
+      "yerli": 38,
+      "yabanci": 1
+     },
+     "2022-02-01": {
+      "yerli": 59,
+      "yabanci": 1
+     },
+     "2022-03-01": {
+      "yerli": 75,
+      "yabanci": 2
+     },
+     "2022-04-01": {
+      "yerli": 79,
+      "yabanci": 2
+     },
+     "2022-05-01": {
+      "yerli": 98,
+      "yabanci": 2
+     },
+     "2022-06-01": {
+      "yerli": 99,
+      "yabanci": 5
+     },
+     "2022-07-01": {
+      "yerli": 107,
+      "yabanci": 5
+     },
+     "2022-08-01": {
+      "yerli": 119,
+      "yabanci": 5
+     },
+     "2022-09-01": {
+      "yerli": 122,
+      "yabanci": 5
+     },
+     "2022-10-01": {
+      "yerli": 131,
+      "yabanci": 7
+     },
+     "2022-11-01": {
+      "yerli": 145,
+      "yabanci": 8
+     },
+     "2022-12-01": {
+      "yerli": 168,
+      "yabanci": 6
+     },
+     "2024-01-01": {
+      "yerli": 484,
+      "yabanci": 5
+     },
+     "2024-02-01": {
+      "yerli": 505,
+      "yabanci": 5
+     },
+     "2024-03-01": {
+      "yerli": 510,
+      "yabanci": 5
+     },
+     "2024-04-01": {
+      "yerli": 539,
+      "yabanci": 5
+     },
+     "2024-05-01": {
+      "yerli": 554,
+      "yabanci": 4
+     },
+     "2024-06-01": {
+      "yerli": 570,
+      "yabanci": 4
+     },
+     "2024-07-01": {
+      "yerli": 592,
+      "yabanci": 4
+     },
+     "2024-08-01": {
+      "yerli": 594,
+      "yabanci": 4
+     },
+     "2024-09-01": {
+      "yerli": 602,
+      "yabanci": 4
+     },
+     "2024-10-01": {
+      "yerli": 614,
+      "yabanci": 6
+     },
+     "2024-11-01": {
+      "yerli": 621,
+      "yabanci": 7
+     },
+     "2024-12-01": {
+      "yerli": 635,
+      "yabanci": 7
+     },
+     "2025-01-01": {
+      "yerli": 643,
+      "yabanci": 7
+     },
+     "2025-02-01": {
+      "yerli": 653,
+      "yabanci": 8
+     },
+     "2025-03-01": {
+      "yerli": 668,
+      "yabanci": 8
+     },
+     "2025-04-01": {
+      "yerli": 669,
+      "yabanci": 8
+     },
+     "2025-05-01": {
+      "yerli": 670,
+      "yabanci": 8
+     },
+     "2025-06-01": {
+      "yerli": 672,
+      "yabanci": 9
+     },
+     "2025-07-01": {
+      "yerli": 681,
+      "yabanci": 9
+     },
+     "2025-08-01": {
+      "yerli": 682,
+      "yabanci": 9
+     },
+     "2025-09-01": {
+      "yerli": 684,
+      "yabanci": 10
+     },
+     "2025-10-01": {
+      "yerli": 691,
+      "yabanci": 10
+     },
+     "2025-11-01": {
+      "yerli": 700,
+      "yabanci": 9
+     },
+     "2025-12-01": {
+      "yerli": 708,
+      "yabanci": 9
+     },
+     "2026-01-01": {
+      "yerli": 741,
+      "yabanci": 10
+     },
+     "2026-02-01": {
+      "yerli": 747,
+      "yabanci": 9
+     },
+     "2026-03-01": {
+      "yerli": 753,
+      "yabanci": 9
+     },
+     "2026-04-01": {
+      "yerli": 758,
+      "yabanci": 9
+     },
+     "2026-05-01": {
+      "yerli": 760,
+      "yabanci": 0
+     },
+     "2026-06-01": {
+      "yerli": 765,
+      "yabanci": 0
+     },
+     "2026-07-01": {
+      "yerli": 773,
+      "yabanci": 0
+     },
+     "2026-08-01": {
+      "yerli": 779,
+      "yabanci": 0
+     },
+     "2026-09-01": {
+      "yerli": 786,
+      "yabanci": 0
+     },
+     "2026-10-01": {
+      "yerli": 793,
+      "yabanci": 0
+     },
+     "2026-11-01": {
+      "yerli": 800,
+      "yabanci": 0
+     }
+    }
+   },
+   "yas": {
+    "haftalik": {
+     "2026-01-02": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 88,
+      "41-50": 257,
+      "31-40": 311,
+      "21-30": 80
+     },
+     "2026-01-09": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 88,
+      "41-50": 257,
+      "31-40": 312,
+      "21-30": 80
+     },
+     "2026-01-16": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 88,
+      "41-50": 258,
+      "31-40": 312,
+      "21-30": 80
+     },
+     "2026-01-23": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 88,
+      "41-50": 258,
+      "31-40": 313,
+      "21-30": 80
+     },
+     "2026-01-30": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 87,
+      "41-50": 261,
+      "31-40": 314,
+      "21-30": 81
+     },
+     "2026-02-06": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 87,
+      "41-50": 261,
+      "31-40": 317,
+      "21-30": 82
+     },
+     "2026-02-13": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 87,
+      "41-50": 260,
+      "31-40": 319,
+      "21-30": 82
+     },
+     "2026-02-20": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 87,
+      "41-50": 259,
+      "31-40": 319,
+      "21-30": 83
+     },
+     "2026-02-27": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 88,
+      "41-50": 258,
+      "31-40": 319,
+      "21-30": 84
+     },
+     "2026-03-06": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 88,
+      "41-50": 260,
+      "31-40": 319,
+      "21-30": 84
+     },
+     "2026-03-13": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 87,
+      "41-50": 261,
+      "31-40": 320,
+      "21-30": 84
+     },
+     "2026-03-20": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 87,
+      "41-50": 261,
+      "31-40": 321,
+      "21-30": 84
+     },
+     "2026-03-27": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 87,
+      "41-50": 262,
+      "31-40": 322,
+      "21-30": 84
+     },
+     "2026-04-03": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 87,
+      "41-50": 264,
+      "31-40": 321,
+      "21-30": 84
+     },
+     "2026-04-10": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 87,
+      "41-50": 263,
+      "31-40": 321,
+      "21-30": 84
+     },
+     "2026-04-17": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 88,
+      "41-50": 264,
+      "31-40": 321,
+      "21-30": 84
+     },
+     "2026-04-24": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 88,
+      "41-50": 265,
+      "31-40": 321,
+      "21-30": 85
+     },
+     "2026-05-01": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 88,
+      "41-50": 263,
+      "31-40": 321,
+      "21-30": 85
+     },
+     "2026-05-08": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 89,
+      "41-50": 262,
+      "31-40": 321,
+      "21-30": 85
+     },
+     "2026-05-15": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 89,
+      "41-50": 262,
+      "31-40": 322,
+      "21-30": 85
+     },
+     "2026-05-22": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 89,
+      "41-50": 263,
+      "31-40": 323,
+      "21-30": 85
+     },
+     "2026-05-29": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 89,
+      "41-50": 263,
+      "31-40": 323,
+      "21-30": 85
+     },
+     "2026-06-05": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 89,
+      "41-50": 263,
+      "31-40": 323,
+      "21-30": 85
+     },
+     "2026-06-12": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 89,
+      "41-50": 264,
+      "31-40": 326,
+      "21-30": 86
+     },
+     "2026-06-19": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 89,
+      "41-50": 265,
+      "31-40": 327,
+      "21-30": 86
+     },
+     "2026-06-26": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 89,
+      "41-50": 266,
+      "31-40": 327,
+      "21-30": 86
+     },
+     "2026-07-03": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 89,
+      "41-50": 266,
+      "31-40": 328,
+      "21-30": 86
+     },
+     "2026-07-10": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 89,
+      "41-50": 268,
+      "31-40": 330,
+      "21-30": 86
+     },
+     "2026-07-17": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 89,
+      "41-50": 269,
+      "31-40": 329,
+      "21-30": 86
+     },
+     "2026-07-24": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 89,
+      "41-50": 270,
+      "31-40": 330,
+      "21-30": 85
+     },
+     "2026-07-31": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 89,
+      "41-50": 270,
+      "31-40": 331,
+      "21-30": 85
+     },
+     "2026-08-07": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 89,
+      "41-50": 269,
+      "31-40": 331,
+      "21-30": 86
+     },
+     "2026-08-14": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 90,
+      "41-50": 269,
+      "31-40": 332,
+      "21-30": 86
+     },
+     "2026-08-21": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 90,
+      "41-50": 269,
+      "31-40": 334,
+      "21-30": 87
+     },
+     "2026-08-28": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 90,
+      "41-50": 267,
+      "31-40": 336,
+      "21-30": 87
+     },
+     "2026-09-04": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 90,
+      "41-50": 267,
+      "31-40": 338,
+      "21-30": 87
+     },
+     "2026-09-11": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 90,
+      "41-50": 268,
+      "31-40": 338,
+      "21-30": 88
+     },
+     "2026-09-18": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 90,
+      "41-50": 269,
+      "31-40": 338,
+      "21-30": 88
+     },
+     "2026-09-25": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 90,
+      "41-50": 270,
+      "31-40": 339,
+      "21-30": 88
+     },
+     "2026-10-02": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 90,
+      "41-50": 270,
+      "31-40": 339,
+      "21-30": 89
+     },
+     "2026-10-09": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 90,
+      "41-50": 270,
+      "31-40": 339,
+      "21-30": 89
+     },
+     "2026-10-16": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 90,
+      "41-50": 270,
+      "31-40": 340,
+      "21-30": 90
+     },
+     "2026-10-23": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 90,
+      "41-50": 270,
+      "31-40": 343,
+      "21-30": 90
+     },
+     "2026-10-30": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 90,
+      "41-50": 270,
+      "31-40": 344,
+      "21-30": 91
+     },
+     "2026-11-06": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 90,
+      "41-50": 270,
+      "31-40": 346,
+      "21-30": 90
+     }
+    },
+    "aylik": {
+     "2021-12-01": {
+      "71+": 1,
+      "61-70": 3,
+      "51-60": 1,
+      "41-50": 9,
+      "31-40": 11,
+      "21-30": 5,
+      "0-20": 1
+     },
+     "2022-01-01": {
+      "71+": 1,
+      "61-70": 3,
+      "51-60": 1,
+      "41-50": 10,
+      "31-40": 18,
+      "21-30": 7,
+      "0-20": 1
+     },
+     "2022-02-01": {
+      "71+": 1,
+      "61-70": 3,
+      "51-60": 1,
+      "41-50": 14,
+      "31-40": 31,
+      "21-30": 11,
+      "0-20": 1
+     },
+     "2022-03-01": {
+      "71+": 1,
+      "61-70": 3,
+      "51-60": 1,
+      "41-50": 15,
+      "31-40": 43,
+      "21-30": 13,
+      "0-20": 1
+     },
+     "2022-04-01": {
+      "71+": 1,
+      "61-70": 3,
+      "51-60": 1,
+      "41-50": 15,
+      "31-40": 46,
+      "21-30": 14,
+      "0-20": 1
+     },
+     "2022-05-01": {
+      "71+": 1,
+      "61-70": 3,
+      "51-60": 2,
+      "41-50": 15,
+      "31-40": 58,
+      "21-30": 21,
+      "0-20": 0
+     },
+     "2022-06-01": {
+      "71+": 1,
+      "61-70": 3,
+      "51-60": 3,
+      "41-50": 15,
+      "31-40": 59,
+      "21-30": 21,
+      "0-20": 0
+     },
+     "2022-07-01": {
+      "71+": 1,
+      "61-70": 3,
+      "51-60": 3,
+      "41-50": 18,
+      "31-40": 63,
+      "21-30": 23,
+      "0-20": 0
+     },
+     "2022-08-01": {
+      "71+": 1,
+      "61-70": 3,
+      "51-60": 4,
+      "41-50": 23,
+      "31-40": 68,
+      "21-30": 23,
+      "0-20": 0
+     },
+     "2022-09-01": {
+      "71+": 1,
+      "61-70": 3,
+      "51-60": 5,
+      "41-50": 23,
+      "31-40": 69,
+      "21-30": 24,
+      "0-20": 0
+     },
+     "2022-10-01": {
+      "71+": 1,
+      "61-70": 3,
+      "51-60": 40,
+      "41-50": 26,
+      "31-40": 69,
+      "21-30": 31,
+      "0-20": 0
+     },
+     "2022-11-01": {
+      "71+": 1,
+      "61-70": 3,
+      "51-60": 41,
+      "41-50": 32,
+      "31-40": 74,
+      "21-30": 33,
+      "0-20": 0
+     },
+     "2022-12-01": {
+      "71+": 2,
+      "61-70": 6,
+      "51-60": 43,
+      "41-50": 34,
+      "31-40": 88,
+      "21-30": 36,
+      "0-20": 0
+     },
+     "2024-01-01": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 45,
+      "41-50": 149,
+      "31-40": 213,
+      "21-30": 77,
+      "0-20": 0
+     },
+     "2024-02-01": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 46,
+      "41-50": 156,
+      "31-40": 224,
+      "21-30": 79,
+      "0-20": 0
+     },
+     "2024-03-01": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 48,
+      "41-50": 155,
+      "31-40": 227,
+      "21-30": 80,
+      "0-20": 0
+     },
+     "2024-04-01": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 49,
+      "41-50": 162,
+      "31-40": 242,
+      "21-30": 85,
+      "0-20": 0
+     },
+     "2024-05-01": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 49,
+      "41-50": 167,
+      "31-40": 247,
+      "21-30": 91,
+      "0-20": 0
+     },
+     "2024-06-01": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 49,
+      "41-50": 172,
+      "31-40": 256,
+      "21-30": 92,
+      "0-20": 0
+     },
+     "2024-07-01": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 51,
+      "41-50": 178,
+      "31-40": 266,
+      "21-30": 95,
+      "0-20": 0
+     },
+     "2024-08-01": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 49,
+      "41-50": 175,
+      "31-40": 269,
+      "21-30": 96,
+      "0-20": 0
+     },
+     "2024-09-01": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 49,
+      "41-50": 180,
+      "31-40": 272,
+      "21-30": 96,
+      "0-20": 0
+     },
+     "2024-10-01": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 58,
+      "41-50": 182,
+      "31-40": 276,
+      "21-30": 100,
+      "0-20": 0
+     },
+     "2024-11-01": {
+      "71+": 2,
+      "61-70": 7,
+      "51-60": 59,
+      "41-50": 183,
+      "31-40": 279,
+      "21-30": 106,
+      "0-20": 0
+     },
+     "2024-12-01": {
+      "71+": 2,
+      "61-70": 7,
+      "51-60": 61,
+      "41-50": 188,
+      "31-40": 288,
+      "21-30": 105,
+      "0-20": 0
+     },
+     "2025-01-01": {
+      "71+": 2,
+      "61-70": 7,
+      "51-60": 60,
+      "41-50": 209,
+      "31-40": 290,
+      "21-30": 80,
+      "0-20": 0
+     },
+     "2025-02-01": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 60,
+      "41-50": 213,
+      "31-40": 295,
+      "21-30": 79,
+      "0-20": 0
+     },
+     "2025-03-01": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 61,
+      "41-50": 218,
+      "31-40": 303,
+      "21-30": 79,
+      "0-20": 0
+     },
+     "2025-04-01": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 64,
+      "41-50": 220,
+      "31-40": 300,
+      "21-30": 82,
+      "0-20": 0
+     },
+     "2025-05-01": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 64,
+      "41-50": 220,
+      "31-40": 302,
+      "21-30": 81,
+      "0-20": 0
+     },
+     "2025-06-01": {
+      "71+": 2,
+      "61-70": 8,
+      "51-60": 64,
+      "41-50": 221,
+      "31-40": 303,
+      "21-30": 81,
+      "0-20": 0
+     },
+     "2025-07-01": {
+      "71+": 2,
+      "61-70": 7,
+      "51-60": 66,
+      "41-50": 221,
+      "31-40": 309,
+      "21-30": 82,
+      "0-20": 0
+     },
+     "2025-08-01": {
+      "71+": 2,
+      "61-70": 7,
+      "51-60": 65,
+      "41-50": 221,
+      "31-40": 309,
+      "21-30": 83,
+      "0-20": 0
+     },
+     "2025-09-01": {
+      "71+": 2,
+      "61-70": 7,
+      "51-60": 68,
+      "41-50": 223,
+      "31-40": 309,
+      "21-30": 84,
+      "0-20": 0
+     },
+     "2025-10-01": {
+      "71+": 2,
+      "61-70": 7,
+      "51-60": 88,
+      "41-50": 224,
+      "31-40": 310,
+      "21-30": 87,
+      "0-20": 0
+     },
+     "2025-11-01": {
+      "71+": 7,
+      "61-70": 0,
+      "51-60": 87,
+      "41-50": 230,
+      "31-40": 312,
+      "21-30": 89,
+      "0-20": 0
+     },
+     "2025-12-01": {
+      "71+": 8,
+      "61-70": 0,
+      "51-60": 88,
+      "41-50": 234,
+      "31-40": 311,
+      "21-30": 90,
+      "0-20": 0
+     },
+     "2026-01-01": {
+      "71+": 9,
+      "61-70": 0,
+      "51-60": 87,
+      "41-50": 257,
+      "31-40": 311,
+      "21-30": 80,
+      "0-20": 0
+     },
+     "2026-02-01": {
+      "71+": 8,
+      "61-70": 0,
+      "51-60": 88,
+      "41-50": 261,
+      "31-40": 314,
+      "21-30": 81,
+      "0-20": 0
+     },
+     "2026-03-01": {
+      "71+": 8,
+      "61-70": 0,
+      "51-60": 89,
+      "41-50": 258,
+      "31-40": 319,
+      "21-30": 84,
+      "0-20": 0
+     },
+     "2026-04-01": {
+      "71+": 8,
+      "61-70": 0,
+      "51-60": 89,
+      "41-50": 263,
+      "31-40": 321,
+      "21-30": 84,
+      "0-20": 0
+     },
+     "2026-05-01": {
+      "71+": 8,
+      "61-70": 0,
+      "51-60": 89,
+      "41-50": 263,
+      "31-40": 321,
+      "21-30": 85,
+      "0-20": 0
+     },
+     "2026-06-01": {
+      "71+": 9,
+      "61-70": 0,
+      "51-60": 90,
+      "41-50": 263,
+      "31-40": 323,
+      "21-30": 85,
+      "0-20": 0
+     },
+     "2026-07-01": {
+      "71+": 9,
+      "61-70": 0,
+      "51-60": 90,
+      "41-50": 265,
+      "31-40": 328,
+      "21-30": 86,
+      "0-20": 0
+     },
+     "2026-08-01": {
+      "71+": 9,
+      "61-70": 0,
+      "51-60": 90,
+      "41-50": 270,
+      "31-40": 331,
+      "21-30": 85,
+      "0-20": 0
+     },
+     "2026-09-01": {
+      "71+": 9,
+      "61-70": 0,
+      "51-60": 0,
+      "41-50": 267,
+      "31-40": 337,
+      "21-30": 87,
+      "0-20": 0
+     },
+     "2026-10-01": {
+      "71+": 9,
+      "61-70": 0,
+      "51-60": 0,
+      "41-50": 270,
+      "31-40": 339,
+      "21-30": 89,
+      "0-20": 0
+     },
+     "2026-11-01": {
+      "71+": 9,
+      "61-70": 0,
+      "51-60": 0,
+      "41-50": 270,
+      "31-40": 344,
+      "21-30": 91,
+      "0-20": 0
+     }
+    }
+   },
+   "cinsiyet": {
+    "haftalik": {
+     "2026-01-02": {
+      "kadin": 94,
+      "erkek": 653
+     },
+     "2026-01-09": {
+      "kadin": 94,
+      "erkek": 654
+     },
+     "2026-01-16": {
+      "kadin": 94,
+      "erkek": 655
+     },
+     "2026-01-23": {
+      "kadin": 94,
+      "erkek": 656
+     },
+     "2026-01-30": {
+      "kadin": 94,
+      "erkek": 659
+     },
+     "2026-02-06": {
+      "kadin": 94,
+      "erkek": 663
+     },
+     "2026-02-13": {
+      "kadin": 93,
+      "erkek": 665
+     },
+     "2026-02-20": {
+      "kadin": 93,
+      "erkek": 665
+     },
+     "2026-02-27": {
+      "kadin": 93,
+      "erkek": 666
+     },
+     "2026-03-06": {
+      "kadin": 93,
+      "erkek": 668
+     },
+     "2026-03-13": {
+      "kadin": 93,
+      "erkek": 669
+     },
+     "2026-03-20": {
+      "kadin": 93,
+      "erkek": 670
+     },
+     "2026-03-27": {
+      "kadin": 94,
+      "erkek": 671
+     },
+     "2026-04-03": {
+      "kadin": 94,
+      "erkek": 672
+     },
+     "2026-04-10": {
+      "kadin": 94,
+      "erkek": 671
+     },
+     "2026-04-17": {
+      "kadin": 95,
+      "erkek": 672
+     },
+     "2026-04-24": {
+      "kadin": 95,
+      "erkek": 674
+     },
+     "2026-05-01": {
+      "kadin": 95,
+      "erkek": 672
+     },
+     "2026-05-08": {
+      "kadin": 95,
+      "erkek": 672
+     },
+     "2026-05-15": {
+      "kadin": 95,
+      "erkek": 674
+     },
+     "2026-05-22": {
+      "kadin": 95,
+      "erkek": 676
+     },
+     "2026-05-29": {
+      "kadin": 95,
+      "erkek": 676
+     },
+     "2026-06-05": {
+      "kadin": 95,
+      "erkek": 676
+     },
+     "2026-06-12": {
+      "kadin": 97,
+      "erkek": 679
+     },
+     "2026-06-19": {
+      "kadin": 98,
+      "erkek": 680
+     },
+     "2026-06-26": {
+      "kadin": 98,
+      "erkek": 681
+     },
+     "2026-07-03": {
+      "kadin": 98,
+      "erkek": 682
+     },
+     "2026-07-10": {
+      "kadin": 100,
+      "erkek": 684
+     },
+     "2026-07-17": {
+      "kadin": 100,
+      "erkek": 684
+     },
+     "2026-07-24": {
+      "kadin": 101,
+      "erkek": 684
+     },
+     "2026-07-31": {
+      "kadin": 101,
+      "erkek": 685
+     },
+     "2026-08-07": {
+      "kadin": 101,
+      "erkek": 685
+     },
+     "2026-08-14": {
+      "kadin": 102,
+      "erkek": 686
+     },
+     "2026-08-21": {
+      "kadin": 102,
+      "erkek": 689
+     },
+     "2026-08-28": {
+      "kadin": 102,
+      "erkek": 689
+     },
+     "2026-09-04": {
+      "kadin": 102,
+      "erkek": 691
+     },
+     "2026-09-11": {
+      "kadin": 102,
+      "erkek": 693
+     },
+     "2026-09-18": {
+      "kadin": 102,
+      "erkek": 694
+     },
+     "2026-09-25": {
+      "kadin": 102,
+      "erkek": 696
+     },
+     "2026-10-02": {
+      "kadin": 102,
+      "erkek": 697
+     },
+     "2026-10-09": {
+      "kadin": 102,
+      "erkek": 697
+     },
+     "2026-10-16": {
+      "kadin": 102,
+      "erkek": 699
+     },
+     "2026-10-23": {
+      "kadin": 102,
+      "erkek": 702
+     },
+     "2026-10-30": {
+      "kadin": 102,
+      "erkek": 704
+     },
+     "2026-11-06": {
+      "kadin": 102,
+      "erkek": 705
+     }
+    },
+    "aylik": {
+     "2021-12-01": {
+      "kadin": 5,
+      "erkek": 23
+     },
+     "2022-01-01": {
+      "kadin": 5,
+      "erkek": 33
+     },
+     "2022-02-01": {
+      "kadin": 7,
+      "erkek": 52
+     },
+     "2022-03-01": {
+      "kadin": 9,
+      "erkek": 66
+     },
+     "2022-04-01": {
+      "kadin": 9,
+      "erkek": 70
+     },
+     "2022-05-01": {
+      "kadin": 11,
+      "erkek": 87
+     },
+     "2022-06-01": {
+      "kadin": 11,
+      "erkek": 88
+     },
+     "2022-07-01": {
+      "kadin": 11,
+      "erkek": 97
+     },
+     "2022-08-01": {
+      "kadin": 13,
+      "erkek": 107
+     },
+     "2022-09-01": {
+      "kadin": 13,
+      "erkek": 110
+     },
+     "2022-10-01": {
+      "kadin": 17,
+      "erkek": 116
+     },
+     "2022-11-01": {
+      "kadin": 19,
+      "erkek": 128
+     },
+     "2022-12-01": {
+      "kadin": 22,
+      "erkek": 148
+     },
+     "2024-01-01": {
+      "kadin": 59,
+      "erkek": 429
+     },
+     "2024-02-01": {
+      "kadin": 60,
+      "erkek": 449
+     },
+     "2024-03-01": {
+      "kadin": 62,
+      "erkek": 452
+     },
+     "2024-04-01": {
+      "kadin": 66,
+      "erkek": 477
+     },
+     "2024-05-01": {
+      "kadin": 68,
+      "erkek": 492
+     },
+     "2024-06-01": {
+      "kadin": 67,
+      "erkek": 510
+     },
+     "2024-07-01": {
+      "kadin": 70,
+      "erkek": 527
+     },
+     "2024-08-01": {
+      "kadin": 70,
+      "erkek": 528
+     },
+     "2024-09-01": {
+      "kadin": 73,
+      "erkek": 533
+     },
+     "2024-10-01": {
+      "kadin": 73,
+      "erkek": 545
+     },
+     "2024-11-01": {
+      "kadin": 72,
+      "erkek": 553
+     },
+     "2024-12-01": {
+      "kadin": 74,
+      "erkek": 564
+     },
+     "2025-01-01": {
+      "kadin": 74,
+      "erkek": 572
+     },
+     "2025-02-01": {
+      "kadin": 76,
+      "erkek": 580
+     },
+     "2025-03-01": {
+      "kadin": 81,
+      "erkek": 590
+     },
+     "2025-04-01": {
+      "kadin": 81,
+      "erkek": 591
+     },
+     "2025-05-01": {
+      "kadin": 82,
+      "erkek": 591
+     },
+     "2025-06-01": {
+      "kadin": 84,
+      "erkek": 592
+     },
+     "2025-07-01": {
+      "kadin": 85,
+      "erkek": 600
+     },
+     "2025-08-01": {
+      "kadin": 87,
+      "erkek": 599
+     },
+     "2025-09-01": {
+      "kadin": 87,
+      "erkek": 602
+     },
+     "2025-10-01": {
+      "kadin": 90,
+      "erkek": 606
+     },
+     "2025-11-01": {
+      "kadin": 92,
+      "erkek": 613
+     },
+     "2025-12-01": {
+      "kadin": 94,
+      "erkek": 619
+     },
+     "2026-01-01": {
+      "kadin": 94,
+      "erkek": 653
+     },
+     "2026-02-01": {
+      "kadin": 94,
+      "erkek": 659
+     },
+     "2026-03-01": {
+      "kadin": 93,
+      "erkek": 666
+     },
+     "2026-04-01": {
+      "kadin": 94,
+      "erkek": 671
+     },
+     "2026-05-01": {
+      "kadin": 95,
+      "erkek": 672
+     },
+     "2026-06-01": {
+      "kadin": 95,
+      "erkek": 676
+     },
+     "2026-07-01": {
+      "kadin": 98,
+      "erkek": 681
+     },
+     "2026-08-01": {
+      "kadin": 101,
+      "erkek": 685
+     },
+     "2026-09-01": {
+      "kadin": 102,
+      "erkek": 690
+     },
+     "2026-10-01": {
+      "kadin": 102,
+      "erkek": 697
+     },
+     "2026-11-01": {
+      "kadin": 102,
+      "erkek": 704
+     }
+    }
+   }
+  }
+ }
+}

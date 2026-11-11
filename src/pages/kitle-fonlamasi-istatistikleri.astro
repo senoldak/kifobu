@@ -1,0 +1,474 @@
+---
+// Kitle fonlaması resmî istatistikleri: src/data/kfs/ (kaynak MKK). Grafikler aylık ızgarada; kaynakta olmayan aylar
+// (2023) boşluk olarak kalır. Nitelikli yatırımcı (kaynak 25 Eylül 2026'dan beri ayırmıyor), süren projelerdeki yatırımcı
+// sayısı ve anlamı açıklanmamış seri gösterilmez. CSP satır içi stil yasaklıyor: çubuklar SVG ile çizilir.
+import Base from '../layouts/Base.astro';
+import Yol from '../components/Yol.astro';
+import genel from '../data/kfs/genel.json';
+import yatirimci from '../data/kfs/yatirimci.json';
+import illerVeri from '../data/kfs/iller.json';
+import sinir from '../data/turkiye-sinir.json';
+import { aylikIzgara, profil, PROFIL_KIRILIMLARI, PROFIL_ETIKET, PROFIL_BASLIK, sayi, tutar, yuzde, uzunTarih } from '../lib/kfs.mjs';
+
+const G = genel as any;
+const Y = yatirimci as any;
+const K = G.kartlar;
+const S = G.seriler;
+const baslik = 'Kitle fonlaması istatistikleri';
+const aciklama = 'Türkiye\'de paya dayalı kitle fonlamasının resmî istatistikleri: fonlanan tutar, yatırımcı, kayıtlı girişim şirketi ve proje sayıları, yatırımcıların yaş, cinsiyet ve il dağılımı. Kaynak: MKK.';
+const adimlar = [{ ad: 'Anasayfa', url: '/' }, { ad: baslik, url: '/kitle-fonlamasi-istatistikleri/' }];
+
+const kartlar = [
+  { ad: 'Fonlanan toplam tutar', deger: tutar(K.fonlanan_tutar.son), tam: `₺${sayi(K.fonlanan_tutar.son)}`, fark: K.fonlanan_tutar.yilbasi == null ? null : tutar(K.fonlanan_tutar.son - K.fonlanan_tutar.yilbasi) },
+  { ad: 'Yatırımcı', deger: sayi(K.yatirimci.son), tam: sayi(K.yatirimci.son), fark: K.yatirimci.yilbasi == null ? null : sayi(K.yatirimci.son - K.yatirimci.yilbasi) },
+  { ad: 'Kayıtlı girişim şirketi', deger: sayi(K.kayitli_sirket.son), tam: sayi(K.kayitli_sirket.son), fark: K.kayitli_sirket.yilbasi == null ? null : sayi(K.kayitli_sirket.son - K.kayitli_sirket.yilbasi) },
+  { ad: 'Başarılı proje', deger: sayi(K.basarili_proje.son), tam: sayi(K.basarili_proje.son), fark: K.basarili_proje.yilbasi == null ? null : sayi(K.basarili_proje.son - K.basarili_proje.yilbasi) },
+];
+const fonlandi = K.basarili_proje.son, fonlanamadi = K.basarisiz_proje.son, sonuclanan = fonlandi + fonlanamadi;
+const surenOran = Math.min(1, K.suren_net_fon.son / K.suren_hedef.son);
+
+// Grafik verisi: aylık ızgara
+const grafikler = {
+  fon: { tl: aylikIzgara(S.fonlanan_tutar.aylik), usd: aylikIzgara(S.fonlanan_tutar.aylik_usd) },
+  yat: aylikIzgara(S.yatirimci.aylik),
+  sirket: aylikIzgara(S.kayitli_sirket.aylik),
+  proje: aylikIzgara(S.basarili_proje.aylik),
+  basarisiz: aylikIzgara(S.basarisiz_proje.aylik),
+  hedef: aylikIzgara(S.suren_hedef.aylik),
+  net: aylikIzgara(S.suren_net_fon.aylik),
+};
+
+// Profil: Türkiye geneli + 81 il
+const profiller: Record<string, any> = { 'TÜRKİYE GENELİ': profil(Y.kirilimlar.genel) };
+for (const [il, k] of Object.entries((illerVeri as any).iller)) profiller[il] = profil(k);
+const genelProfil = profiller['TÜRKİYE GENELİ'];
+const profilSatirlari = (P: any, k: string) => {
+  const d = P[k] ?? {};
+  const top = Object.values(d).reduce((a: number, b: any) => a + b, 0) as number;
+  return Object.keys((PROFIL_ETIKET as any)[k]).map((a) => ({ a, ad: (PROFIL_ETIKET as any)[k][a], n: d[a] ?? 0, oran: top ? (d[a] ?? 0) / top : 0, metin: `${sayi(d[a] ?? 0)} · ${yuzde(d[a] ?? 0, top)}` }));
+};
+
+// Harita: eşit dikdörtgen izdüşüm, 39° enlemde
+const trToplam = Y.ulke_dagilimi['TÜRKİYE'];
+const iller = Object.entries(Y.il_dagilimi as Record<string, any>).map(([il, v]) => ({ il, n: v.yatirimci, x: v.boylam, y: v.enlem })).sort((a, b) => b.n - a.n);
+const lon0 = 26, lon1 = 45, lat0 = 35.8, lat1 = 42.2, W = 800, kx = Math.cos((39 * Math.PI) / 180);
+const H = Math.round((W * (lat1 - lat0)) / ((lon1 - lon0) * kx));
+const px = (x: number) => ((x - lon0) / (lon1 - lon0)) * W, py = (y: number) => ((lat1 - y) / (lat1 - lat0)) * H;
+const sinirYolu = (sinir as number[][][]).map((h) => `M${h.map(([x, y]) => `${px(x).toFixed(1)},${py(y).toFixed(1)}`).join('L')}Z`).join('');
+const maks = iller[0]?.n ?? 1;
+
+const istemci = { grafikler, profiller, iller: iller.map((i) => ({ il: i.il, n: i.n })), trToplam };
+const veriTarihi = uzunTarih(G.veri_tarihi);
+---
+
+<Base title={baslik} description={aciklama}>
+  <Yol adimlar={adimlar} />
+  <article class="kfs" data-kfs>
+    <header class="kfs-bas">
+      <p class="kfs-etiket">Veri · Kitle fonlaması</p>
+      <h1>{baslik}</h1>
+      <p class="kfs-kaynak">Kaynak: Merkezi Kayıt Kuruluşu (MKK), Kitle Fonlaması Sistemi istatistikleri · Veri tarihi {veriTarihi} · Haftalık güncellenir</p>
+    </header>
+
+    <dl class="kfs-kartlar">
+      {kartlar.map((k) => (
+        <div class="kfs-kart">
+          <dt>{k.ad}</dt>
+          <dd title={k.tam}>{k.deger}</dd>
+          {k.fark && <dd class="kfs-fark">Yılbaşından beri +{k.fark}</dd>}
+        </div>
+      ))}
+    </dl>
+
+    <section>
+      <h2>Kampanyaların sonucu</h2>
+      <p class="kfs-bolum-alt">Fonlaması tamamlanan ve tamamlanamayan projeler, sistemin başından beri.</p>
+      <div class="kfs-kutu">
+        <dl class="kfs-uc">
+          <div><dt>Sonuçlanan proje</dt><dd>{sayi(sonuclanan)}</dd></div>
+          <div><dt>Fonlandı</dt><dd>{sayi(fonlandi)}</dd><dd class="kfs-kucuk">{yuzde(fonlandi, sonuclanan)}</dd></div>
+          <div><dt>Fonlanamadı</dt><dd>{sayi(fonlanamadi)}</dd><dd class="kfs-kucuk">{yuzde(fonlanamadi, sonuclanan)}</dd></div>
+        </dl>
+        <svg class="kfs-sonuc" viewBox="0 0 1000 34" preserveAspectRatio="none" role="img" aria-label={`Fonlanan ${fonlandi}, fonlanamayan ${fonlanamadi} proje`}>
+          <rect x="0" y="0" width={(fonlandi / sonuclanan) * 1000} height="34" class="f"><title>Fonlandı: {sayi(fonlandi)} proje</title></rect>
+          <rect x={(fonlandi / sonuclanan) * 1000} y="0" width={(fonlanamadi / sonuclanan) * 1000} height="34" class="y"><title>Fonlanamadı: {sayi(fonlanamadi)} proje</title></rect>
+        </svg>
+        <p class="kfs-lejant"><span class="f">FONLANDI</span><span class="y">FONLANAMADI</span></p>
+        <p class="kfs-metin">Fonlanamayan projeler toplam <b>{tutar(K.basarisiz_hedef.son)}</b> hedeflemişti; bu projelerde yatırımcılara <b>{tutar(K.iade.son)}</b> iade edildi.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Şu an fon toplayanlar</h2>
+      <p class="kfs-bolum-alt">Fonlama süreci devam eden projeler; değerler haftalık kesim gününe aittir.</p>
+      <div class="kfs-uclu">
+        <dl class="kfs-kutu"><dt>Fon toplayan proje</dt><dd>{sayi(K.suren_proje.son)}</dd></dl>
+        <dl class="kfs-kutu"><dt>Hedeflenen toplam</dt><dd>{tutar(K.suren_hedef.son)}</dd><dd class="kfs-not">Bu projelerin hedeflerinin toplamı</dd></dl>
+        <dl class="kfs-kutu"><dt>Toplanan net fon</dt><dd>{tutar(K.suren_net_fon.son)}</dd><dd class="kfs-not">Caymalar düşüldükten sonra</dd></dl>
+      </div>
+      <div class="kfs-kutu kfs-hedef">
+        <p class="kfs-hedef-ust"><span>Toplam hedefin {yuzde(K.suren_net_fon.son, K.suren_hedef.son)} toplandı</span><span>{sayi(K.suren_platform.son)} platform</span></p>
+        <svg viewBox="0 0 1000 22" preserveAspectRatio="none" role="img" aria-label={`Toplanan ${tutar(K.suren_net_fon.son)}, hedef ${tutar(K.suren_hedef.son)}`}>
+          <rect x="0" y="0" width="1000" height="22" class="zemin" />
+          <rect x="0" y="0" width={surenOran * 1000} height="22" class="dolu" />
+        </svg>
+        <p class="kfs-hedef-alt"><span>toplanan {tutar(K.suren_net_fon.son)}</span><span>hedef {tutar(K.suren_hedef.son)}</span></p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Zaman içinde</h2>
+      <p class="kfs-bolum-alt">Aylık değerler (ayın ilk günü). Kaynakta olmayan aylar grafikte boşluk olarak kalır.</p>
+      {[
+        { id: 'fon', h: 'Başarıyla fonlanan toplam tutar', alt: 'Birikimli', para: true, not: '2023 yılına ait değer kaynakta yok; grafikte boşluk olarak görünür.' },
+        { id: 'yat', h: 'Yatırımcı sayısı', alt: 'Kayıtlı girişim şirketlerindeki yatırımcılar', not: '2023 yılına ait değer kaynakta yok.' },
+        { id: 'sayi', h: 'Şirket ve proje sayıları', alt: 'Birikimli', not: 'Başarılı proje sayısı kaynakta 2026\'dan beri var. Kayıtlı şirket serisinde 2023 yok.' },
+        { id: 'suren', h: 'Fon toplayan projelerin hedefi ve toplanan', alt: 'Anlık değerler, toplam' },
+      ].map((p) => (
+        <section class="kfs-panel" data-panel={p.id}>
+          <div class="kfs-panel-ust">
+            <div><h3>{p.h}</h3><p class="kfs-panel-alt" data-alt>{p.alt}</p></div>
+            <div class="kfs-dugmeler" data-js hidden>
+              {p.para && (
+                <div class="kfs-tf" role="group" aria-label="Para birimi">
+                  <button type="button" data-para="tl" aria-pressed="true">₺</button>
+                  <button type="button" data-para="usd" aria-pressed="false">$</button>
+                </div>
+              )}
+              <div class="kfs-tf" role="group" aria-label="Zaman aralığı">
+                <button type="button" data-yil="1" aria-pressed="false">1Y</button>
+                <button type="button" data-yil="3" aria-pressed="false">3Y</button>
+                <button type="button" data-yil="0" aria-pressed="true">Tümü</button>
+              </div>
+            </div>
+          </div>
+          <dl class="kfs-olcu" data-olcu></dl>
+          <div class="kfs-grafik" data-grafik></div>
+          {p.not && <p class="kfs-dipnot">{p.not}</p>}
+        </section>
+      ))}
+    </section>
+
+    <section>
+      <h2>Yatırımcılar kim?</h2>
+      <p class="kfs-bolum-alt">Kayıtlı girişim şirketlerindeki yatırımcıların dağılımı. Bir il seçerseniz o ilin dağılımı görünür; haritadan ya da tablodan da seçebilirsiniz.</p>
+      <div class="kfs-profil-ust">
+        <label for="kfs-yer">Yer</label>
+        <select id="kfs-yer" data-yer>
+          {Object.keys(profiller).map((y) => <option>{y}</option>)}
+        </select>
+      </div>
+      <div class="kfs-profil">
+        {PROFIL_KIRILIMLARI.map((k) => (
+          <div class="kfs-kutu" data-kirilim={k}>
+            <h4>{(PROFIL_BASLIK as any)[k]}</h4>
+            {profilSatirlari(genelProfil, k).map((s) => (
+              <div class="kfs-cubuk" data-a={s.a} title={`${s.ad}: ${sayi(s.n)} yatırımcı`}>
+                <span>{s.ad}</span>
+                <svg viewBox="0 0 100 14" preserveAspectRatio="none" aria-hidden="true"><rect class="zemin" width="100" height="14" /><rect class="dolu" width={s.oran * 100} height="14" /></svg>
+                <span class="kfs-d">{s.metin}</span>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2>İllere göre</h2>
+      <p class="kfs-bolum-alt">Türkiye'de ikamet eden yatırımcıların illere dağılımı. Dairenin büyüklüğü yatırımcı sayısıyla orantılı.</p>
+      <div class="kfs-harita-kap">
+        <div class="kfs-kutu">
+          <svg class="kfs-harita" viewBox={`0 0 ${W} ${H}`} role="img" aria-label="İllere göre yatırımcı sayısı haritası" data-harita>
+            <path d={sinirYolu} />
+            {iller.map((i) => (
+              <circle data-il={i.il} cx={px(i.x).toFixed(1)} cy={py(i.y).toFixed(1)} r={(2 + Math.sqrt(i.n / maks) * 30).toFixed(1)}><title>{i.il}: {sayi(i.n)} yatırımcı</title></circle>
+            ))}
+          </svg>
+          <p class="kfs-harita-bilgi" data-harita-bilgi>Bir dairenin üzerine gelin ya da dokunun.</p>
+        </div>
+        <div>
+          <table class="kfs-tablo">
+            <thead><tr><th scope="col" data-sira="il">İl</th><th scope="col" class="s" data-sira="n">Yatırımcı</th><th scope="col" class="s" data-sira="n">Pay</th></tr></thead>
+            <tbody data-tablo>
+              {iller.map((i, x) => (
+                <tr data-il={i.il} data-n={i.n} class={x >= 15 ? 'kfs-gizli' : undefined}><td>{i.il}</td><td class="s">{sayi(i.n)}</td><td class="s">{yuzde(i.n, trToplam)}</td></tr>
+              ))}
+            </tbody>
+          </table>
+          <button type="button" class="kfs-tumu" data-tumu>81 ilin tamamını göster</button>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Notlar</h2>
+      <ul class="kfs-notlar">
+        <li>Yatırımcı ve şirket sayıları, payları kayda alınmış (fonlaması başarılı) girişim şirketlerine aittir.</li>
+        <li>Birikimli serilerde 2023 yılına ait değer kaynakta yoktur.</li>
+        <li>Dolar değerleri kaynağın kendi çevirisidir.</li>
+        <li>İl dağılımı yalnız Türkiye'de ikamet edenleri kapsar; yurt dışında ikamet eden {sayi(Y.ulke_dagilimi['DİĞER'] ?? 0)} yatırımcı ayrıca sayılır.</li>
+        <li>Rakamlar yuvarlanırken aşağı kesilir; tam değer üzerine gelince görünür.</li>
+      </ul>
+    </section>
+
+    <script type="application/json" data-kfs-veri set:html={JSON.stringify(istemci)} />
+  </article>
+</Base>
+
+<script>
+  import { createChart, LineSeries, CrosshairMode } from 'lightweight-charts';
+  import { sayi, tutar, yuzde, ondalik, PROFIL_ETIKET } from '../lib/kfs.mjs';
+
+  const kok = document.querySelector<HTMLElement>('[data-kfs]');
+  const V = kok ? JSON.parse(kok.querySelector('[data-kfs-veri]')!.textContent!) : null;
+
+  type Nokta = [string, number | null];
+  type Tanim = { ad: string; r: string; v: Nokta[] };
+  type Bicim = { eksen: (v: number) => string; kisa: (v: number) => string; tam: (v: number) => string };
+  const para = (s: string): Bicim => ({ eksen: (v) => (Math.abs(v) >= 1e9 ? `${s}${ondalik(v / 1e9)} Mr` : `${s}${sayi(v / 1e6)} Mn`), kisa: (v) => tutar(v, s), tam: (v) => `${s}${sayi(v)}` });
+  const adet: Bicim = { eksen: sayi, kisa: sayi, tam: sayi };
+  const ay = (t: string) => new Date(`${t}T12:00:00`).toLocaleDateString('tr-TR', { month: 'long', year: 'numeric' });
+
+  function grafik(id: string, ilk: Tanim[], ilkBicim: Bicim) {
+    const p = kok!.querySelector<HTMLElement>(`[data-panel="${id}"]`)!;
+    const el = p.querySelector<HTMLElement>('[data-grafik]')!, olcu = p.querySelector<HTMLElement>('[data-olcu]')!;
+    p.querySelector<HTMLElement>('[data-js]')!.hidden = false;
+    let bicim = ilkBicim;
+    const g = createChart(el, {
+      autoSize: true,
+      layout: { background: { color: 'transparent' }, textColor: '#3b413d', fontFamily: "'Schibsted Grotesk', Arial, sans-serif", fontSize: 12, attributionLogo: false },
+      grid: { vertLines: { visible: false }, horzLines: { color: '#ece9e1' } },
+      rightPriceScale: { borderVisible: false, scaleMargins: { top: 0.1, bottom: 0.05 } },
+      timeScale: { borderVisible: false, rightOffset: 3 },
+      crosshair: { mode: CrosshairMode.Magnet, vertLine: { color: '#5d645f', style: 3, labelBackgroundColor: '#141a17' }, horzLine: { color: '#5d645f', style: 3, labelBackgroundColor: '#141a17' } },
+      localization: { locale: 'tr-TR', priceFormatter: (v: number) => bicim.eksen(v), dateFormat: 'dd MMM yyyy' },
+      handleScroll: { vertTouchDrag: false },
+    });
+    let seriler: (Tanim & { xs: any[] })[] = [];
+    let zaman: any = null;
+    function yaz(t: string | null) {
+      const son = seriler[0]?.v.at(-1)?.[0];
+      const baslik = t ? `${ay(t)} başı` : son ? `Son: ${ay(son)} başı` : '';
+      olcu.replaceChildren();
+      const kutu = (dt: string, dd: string, ek?: (d: HTMLElement) => void) => {
+        const d = document.createElement('div'), a = document.createElement('dt'), b = document.createElement('dd');
+        a.textContent = dt; b.textContent = dd; d.append(a, b); ek?.(d); olcu.append(d);
+      };
+      kutu('Tarih', baslik, (d) => d.classList.add('kfs-tarih'));
+      seriler.forEach((s, i) => {
+        const n = t ? s.v.find((x) => x[0] === t) : s.v.at(-1);
+        const bos = !n || n[1] == null;
+        kutu(s.ad, bos ? 'kaynakta yok' : bicim.kisa(n![1]!), (d) => {
+          d.dataset.s = String(i);
+          if (!s.xs[0]?.options().visible) d.classList.add('kapali');
+          if (!bos) d.querySelector('dd')!.title = bicim.tam(n![1]!);
+          const iz = document.createElement('i'); iz.style.setProperty('--r', s.r); d.querySelector('dt')!.prepend(iz);
+        });
+      });
+    }
+    function kur(tn: Tanim[], b?: Bicim) {
+      if (b) bicim = b;
+      seriler.forEach((s) => s.xs.forEach((x) => g.removeSeries(x)));
+      if (zaman) g.removeSeries(zaman);
+      // Görünmez zaman serisi bütün ayları taşır; her seri boş aylarda parçalara bölünür (boşluk çizilmez).
+      const aylar = [...new Set(tn.flatMap((s) => s.v.map((x) => x[0])))].sort();
+      zaman = g.addSeries(LineSeries, { visible: false, lastValueVisible: false, priceLineVisible: false });
+      zaman.setData(aylar.map((t) => ({ time: t })));
+      seriler = tn.map((s) => {
+        const parca: { time: string; value: number }[][] = [[]];
+        for (const [t, v] of s.v) {
+          if (v == null) { if (parca.at(-1)!.length) parca.push([]); } else parca.at(-1)!.push({ time: t, value: v });
+        }
+        const dolu = parca.filter((x) => x.length);
+        const xs = dolu.map((x, i) => {
+          const sr = g.addSeries(LineSeries, { color: s.r, lineWidth: 2, priceLineVisible: false, lastValueVisible: i === dolu.length - 1, crosshairMarkerRadius: 4, pointMarkersVisible: x.length === 1 });
+          sr.setData(x);
+          return sr;
+        });
+        return { ...s, xs };
+      });
+      yaz(null);
+      g.timeScale().fitContent();
+    }
+    g.subscribeCrosshairMove((e: any) => yaz((e.time as string) ?? null));
+    olcu.addEventListener('click', (e) => {
+      const d = (e.target as HTMLElement).closest<HTMLElement>('[data-s]');
+      if (!d || seriler.length < 2) return;
+      const s = seriler[+d.dataset.s!];
+      const ac = !s.xs[0].options().visible;
+      s.xs.forEach((x) => x.applyOptions({ visible: ac }));
+      yaz(null);
+    });
+    const tumuSecili = () => p.querySelector('[data-yil="0"]')!.getAttribute('aria-pressed') === 'true';
+    p.querySelectorAll<HTMLButtonElement>('[data-yil]').forEach((btn) => btn.addEventListener('click', () => {
+      p.querySelectorAll('[data-yil]').forEach((x) => x.setAttribute('aria-pressed', String(x === btn)));
+      const yil = +btn.dataset.yil!;
+      if (!yil) { g.timeScale().fitContent(); return; }
+      const son = seriler[0].v.at(-1)![0];
+      const d = new Date(son); d.setFullYear(d.getFullYear() - yil);
+      g.timeScale().setVisibleRange({ from: d.toISOString().slice(0, 10), to: son } as any);
+    }));
+    new ResizeObserver(() => { if (tumuSecili()) g.timeScale().fitContent(); }).observe(el);
+    kur(ilk);
+    return { kur, p };
+  }
+
+  if (V) {
+    const Gr = V.grafikler;
+    const fon = grafik('fon', [{ ad: 'Fonlanan tutar', r: '#141a17', v: Gr.fon.tl }], para('₺'));
+    fon.p.querySelectorAll<HTMLButtonElement>('[data-para]').forEach((btn) => btn.addEventListener('click', () => {
+      fon.p.querySelectorAll('[data-para]').forEach((x) => x.setAttribute('aria-pressed', String(x === btn)));
+      const usd = btn.dataset.para === 'usd';
+      fon.p.querySelector('[data-alt]')!.textContent = usd ? 'Birikimli, ABD doları (kaynağın çevirisi)' : 'Birikimli';
+      fon.kur([{ ad: 'Fonlanan tutar', r: '#141a17', v: usd ? Gr.fon.usd : Gr.fon.tl }], para(usd ? '$' : '₺'));
+    }));
+    grafik('yat', [{ ad: 'Yatırımcı', r: '#141a17', v: Gr.yat }], adet);
+    grafik('sayi', [{ ad: 'Kayıtlı şirket', r: '#141a17', v: Gr.sirket }, { ad: 'Başarılı proje', r: '#10b981', v: Gr.proje }, { ad: 'Fonlanamayan proje', r: '#9a9f9b', v: Gr.basarisiz }], adet);
+    grafik('suren', [{ ad: 'Hedeflenen', r: '#9a9f9b', v: Gr.hedef }, { ad: 'Toplanan net fon', r: '#141a17', v: Gr.net }], para('₺'));
+
+    // Profil: seçilen yerin dağılımı çubuklara yazılır
+    const sec = kok!.querySelector<HTMLSelectElement>('[data-yer]')!;
+    const harita = kok!.querySelector<SVGElement>('[data-harita]')!;
+    function profilYaz(yer: string) {
+      const P = V.profiller[yer];
+      if (!P) return;
+      sec.value = yer;
+      for (const kutu of kok!.querySelectorAll<HTMLElement>('[data-kirilim]')) {
+        const k = kutu.dataset.kirilim!, d = P[k] ?? {};
+        const top = Object.values(d).reduce((a: number, b: any) => a + b, 0) as number;
+        for (const s of kutu.querySelectorAll<HTMLElement>('[data-a]')) {
+          const n = d[s.dataset.a!] ?? 0;
+          s.querySelector('rect.dolu')!.setAttribute('width', String(top ? (n / top) * 100 : 0));
+          s.querySelector('.kfs-d')!.textContent = `${sayi(n)} · ${yuzde(n, top)}`;
+          s.title = `${(PROFIL_ETIKET as any)[k][s.dataset.a!]}: ${sayi(n)} yatırımcı`;
+        }
+      }
+      harita.querySelectorAll('circle').forEach((c) => c.classList.toggle('secili', c.dataset.il === yer));
+    }
+    sec.addEventListener('change', () => profilYaz(sec.value));
+    const seceGit = (il: string) => { profilYaz(il); sec.scrollIntoView({ behavior: 'smooth', block: 'center' }); };
+
+    // Harita
+    const bilgi = kok!.querySelector<HTMLElement>('[data-harita-bilgi]')!;
+    const ilBul = (il: string) => V.iller.find((i: any) => i.il === il);
+    harita.addEventListener('mouseover', (e) => {
+      const c = (e.target as Element).closest('circle'); if (!c) return;
+      const i = ilBul((c as SVGElement).dataset.il!);
+      bilgi.textContent = `${i.il} · ${sayi(i.n)} yatırımcı · Türkiye'deki yatırımcıların ${yuzde(i.n, V.trToplam)}'i`;
+    });
+    harita.addEventListener('click', (e) => { const c = (e.target as Element).closest('circle'); if (c) seceGit((c as SVGElement).dataset.il!); });
+
+    // Tablo: sıralama, tamamını göster, satırdan il seçme
+    const govde = kok!.querySelector<HTMLElement>('[data-tablo]')!;
+    const tumu = kok!.querySelector<HTMLButtonElement>('[data-tumu]')!;
+    let hepsi = false, sira = { k: 'n', azalan: true };
+    function tabloYaz() {
+      const satirlar = [...govde.querySelectorAll<HTMLElement>('tr')];
+      satirlar.sort((a, b) => {
+        const s = sira.k === 'il' ? a.dataset.il!.localeCompare(b.dataset.il!, 'tr') : +a.dataset.n! - +b.dataset.n!;
+        return sira.azalan ? -s : s;
+      });
+      satirlar.forEach((r, i) => { r.classList.toggle('kfs-gizli', !hepsi && i >= 15); govde.append(r); });
+      tumu.textContent = hepsi ? 'İlk 15 ili göster' : '81 ilin tamamını göster';
+    }
+    kok!.querySelectorAll<HTMLElement>('th[data-sira]').forEach((th) => th.addEventListener('click', () => {
+      const k = th.dataset.sira!;
+      sira = { k, azalan: sira.k === k ? !sira.azalan : k !== 'il' };
+      tabloYaz();
+    }));
+    tumu.addEventListener('click', () => { hepsi = !hepsi; tabloYaz(); });
+    govde.addEventListener('click', (e) => { const r = (e.target as Element).closest<HTMLElement>('tr[data-il]'); if (r) seceGit(r.dataset.il!); });
+  }
+</script>
+
+<style>
+  .kfs { --kagit: #f7f5ef; --beyaz: #fff; --murekkep: #141a17; --murekkep-2: #3b413d; --gri: #5d645f; --cizgi: #dcd9cf; --sari: #e8b40c; --yesil: #10b981; --mavi: #2d4fd6; padding-bottom: 48px; }
+  .kfs-bas { border-top: 10px solid var(--sari); padding-top: 22px; margin-bottom: 8px; }
+  .kfs-etiket { font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gri); margin: 0; }
+  .kfs h1 { font-size: clamp(2.1rem, 5.5vw, 3.6rem); letter-spacing: -.03em; line-height: 1.05; margin: 6px 0 10px; }
+  .kfs-kaynak { color: var(--gri); font-size: .92rem; margin: 0; }
+  .kfs h2 { font-size: 1.45rem; letter-spacing: -.01em; margin: 44px 0 4px; padding-bottom: 6px; border-bottom: 3px solid var(--sari); display: inline-block; }
+  .kfs-bolum-alt { color: var(--gri); margin: 4px 0 16px; font-size: .95rem; max-width: 62ch; }
+  .kfs dt { font-size: .7rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gri); }
+  .kfs dd { margin: 0; }
+  .kfs-kartlar { display: grid; grid-template-columns: repeat(4, 1fr); background: var(--beyaz); border: 1px solid var(--cizgi); margin: 22px 0 0; }
+  .kfs-kart { padding: 18px 18px 16px; }
+  .kfs-kart + .kfs-kart { border-left: 1px solid var(--cizgi); }
+  .kfs-kart dd:first-of-type { margin-top: 6px; font-size: clamp(1.7rem, 3.4vw, 2.4rem); font-weight: 600; letter-spacing: -.03em; line-height: 1.05; }
+  .kfs-kart .kfs-fark { margin-top: 8px; font-size: .85rem; color: var(--murekkep-2); }
+  .kfs-kutu { background: var(--beyaz); border: 1px solid var(--cizgi); padding: 16px 18px; margin: 0; }
+  .kfs-kutu > dd:first-of-type, .kfs-uc dd:first-of-type { margin-top: 6px; font-size: clamp(1.4rem, 4vw, 1.8rem); font-weight: 600; letter-spacing: -.02em; }
+  .kfs-kutu .kfs-not, .kfs-uc .kfs-kucuk { margin-top: 6px; font-size: .88rem; color: var(--gri); }
+  .kfs-uc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 18px; margin: 0; }
+  .kfs-uclu { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .kfs-sonuc { display: block; width: 100%; height: 34px; margin: 14px 0 6px; outline: 1px solid var(--murekkep); }
+  .kfs-sonuc .f, .kfs-lejant .f::before { fill: var(--yesil); background: var(--yesil); }
+  .kfs-sonuc .y, .kfs-lejant .y::before { fill: var(--murekkep); background: var(--murekkep); }
+  .kfs-lejant { display: flex; gap: 18px; margin: 0; font-size: .75rem; font-weight: 600; letter-spacing: .1em; color: var(--murekkep-2); }
+  .kfs-lejant span::before { content: ''; display: inline-block; width: 11px; height: 11px; margin-right: 6px; vertical-align: -1px; }
+  .kfs-metin { margin: 10px 0 0; font-size: .92rem; }
+  .kfs-hedef { margin-top: 14px; }
+  .kfs-hedef svg { display: block; width: 100%; height: 22px; margin: 12px 0 4px; }
+  .kfs-hedef .zemin { fill: #efece4; } .kfs-hedef .dolu { fill: var(--murekkep); }
+  .kfs-hedef-ust, .kfs-hedef-alt { display: flex; justify-content: space-between; gap: 12px; margin: 0; font-size: .9rem; }
+  .kfs-hedef-alt { font-size: .85rem; color: var(--gri); }
+  .kfs-panel { background: var(--beyaz); border: 1px solid var(--cizgi); padding: 18px 18px 12px; margin-bottom: 14px; }
+  .kfs-panel-ust { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
+  .kfs-panel h3 { margin: 0; font-size: 1.2rem; }
+  .kfs-panel-alt { margin: 2px 0 0; color: var(--gri); font-size: .88rem; }
+  .kfs-dugmeler { display: flex; gap: 8px; flex-wrap: wrap; }
+  .kfs-dugmeler[hidden] { display: none; }
+  .kfs-tf { display: inline-flex; border: 1.5px solid var(--murekkep); }
+  .kfs-tf button { font: inherit; font-size: .85rem; padding: 6px 11px; border: 0; background: transparent; color: var(--murekkep); cursor: pointer; }
+  .kfs-tf button + button { border-left: 1.5px solid var(--murekkep); }
+  .kfs-tf button[aria-pressed='true'] { background: var(--murekkep); color: var(--kagit); }
+  .kfs-olcu { display: flex; flex-wrap: wrap; gap: 8px 26px; margin: 0 0 10px; padding: 10px 0; border-top: 1px solid var(--cizgi); border-bottom: 1px solid var(--cizgi); min-height: 58px; }
+  .kfs-olcu :global(div) { display: flex; flex-direction: column; gap: 1px; }
+  .kfs-olcu :global(dt) { display: flex; align-items: center; gap: 6px; font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--gri); }
+  .kfs-olcu :global(dd) { margin: 0; }
+  .kfs-olcu :global(dt i) { width: 12px; height: 3px; background: var(--r); display: inline-block; }
+  .kfs-olcu :global(dd) { font-size: 1.2rem; font-weight: 600; letter-spacing: -.02em; }
+  .kfs-olcu :global(.kfs-tarih dd) { font-size: 1rem; }
+  .kfs-olcu :global([data-s]) { cursor: pointer; }
+  .kfs-olcu :global(.kapali) { opacity: .35; }
+  .kfs-grafik { height: 340px; width: 100%; }
+  .kfs-dipnot { margin: 8px 0 0; font-size: .8rem; color: var(--gri); }
+  .kfs-profil-ust { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
+  .kfs-profil-ust label { font-size: .78rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--gri); }
+  .kfs-profil-ust select { font: inherit; font-size: 1rem; padding: 7px 10px; border: 1.5px solid var(--murekkep); background: var(--beyaz); color: var(--murekkep); min-width: 220px; }
+  .kfs-profil { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .kfs-profil h4 { margin: 0 0 10px; font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gri); }
+  .kfs-cubuk { display: grid; grid-template-columns: 92px 1fr 136px; align-items: center; gap: 10px; font-size: .9rem; padding: 3px 0; }
+  .kfs-cubuk svg { display: block; width: 100%; height: 14px; }
+  .kfs-cubuk .zemin { fill: #efece4; } .kfs-cubuk .dolu { fill: var(--murekkep); }
+  .kfs-cubuk:hover .dolu { fill: var(--mavi); }
+  .kfs-d { text-align: right; white-space: nowrap; font-size: .85rem; font-variant-numeric: tabular-nums; color: var(--murekkep-2); }
+  .kfs-harita-kap { display: grid; grid-template-columns: 1.6fr 1fr; gap: 14px; align-items: start; }
+  .kfs-harita { width: 100%; height: auto; display: block; }
+  .kfs-harita path { fill: #efece4; stroke: #bdb9ad; stroke-width: .6; }
+  .kfs-harita circle { fill: rgba(20, 26, 23, .78); stroke: #fff; stroke-width: .8; cursor: pointer; }
+  .kfs-harita circle:hover, .kfs-harita circle.secili { fill: var(--mavi); }
+  .kfs-harita-bilgi { min-height: 1.6em; font-size: .95rem; margin: 8px 0 0; }
+  .kfs-tablo { width: 100%; border-collapse: collapse; font-size: .92rem; background: var(--beyaz); }
+  .kfs-tablo th { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--gri); text-align: left; padding: 8px 10px; border-bottom: 1.5px solid var(--murekkep); cursor: pointer; white-space: nowrap; }
+  .kfs-tablo .s { text-align: right; font-variant-numeric: tabular-nums; }
+  .kfs-tablo td { padding: 6px 10px; border-bottom: 1px solid var(--cizgi); }
+  .kfs-tablo tr { cursor: pointer; }
+  .kfs-tablo tbody tr:hover td { background: #f3f1ea; }
+  .kfs-tablo :global(.kfs-gizli) { display: none; }
+  .kfs-tumu { margin-top: 10px; font: inherit; font-size: .9rem; padding: 7px 12px; border: 1.5px solid var(--murekkep); background: transparent; color: var(--murekkep); cursor: pointer; }
+  .kfs-notlar { font-size: .88rem; color: var(--murekkep-2); max-width: 72ch; }
+  .kfs-notlar li { margin: 4px 0; }
+  @media (max-width: 860px) {
+    .kfs-kartlar { grid-template-columns: 1fr 1fr; }
+    .kfs-kart:nth-child(3) { border-left: 0; }
+    .kfs-kart:nth-child(n + 3) { border-top: 1px solid var(--cizgi); }
+    .kfs-uclu, .kfs-profil, .kfs-harita-kap { grid-template-columns: 1fr; }
+    .kfs-grafik { height: 280px; }
+  }
+  @media (max-width: 420px) {
+    .kfs-cubuk { grid-template-columns: 68px 1fr 118px; font-size: .82rem; }
+    .kfs-d { font-size: .78rem; }
+  }
+</style>
