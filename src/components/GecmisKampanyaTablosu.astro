@@ -1,20 +1,64 @@
 ---
-// Kapanmış kampanyaların tamamı (kampanya dizini): platforma, yıla ve sonuca göre süzülür; sütun başlığına tıklanınca sıralanır.
+// Kapanmış kampanyaların tamamı (kampanya dizini): platforma, yıla ve sonuca göre süzülür; sütun başlığına tıklanınca
+// sıralanır; "Sütunlar" seçicisiyle okur istediği sütunları açar. Bütün hücreler derlemede yazılır, seçici yalnız gizler.
 import { paraTam, yuzdeBicim } from '../lib/arsiv/bicim.ts';
 import { formatNumber } from '../lib/site';
-import { gecmisGirisimler, gerceklesme, kampanyaCapasi, type GecmisKampanya } from '../lib/kampanya-gecmis.ts';
+import { degerleme, gecmisGirisimler, gerceklesme, kampanyaCapasi, ortalamaYatirim, type GecmisKampanya } from '../lib/kampanya-gecmis.ts';
+import { kurBul } from '../lib/sekundery-kur.mjs';
+import usd from '../data/sekundery/usd-try.json';
+import eur from '../data/sekundery/eur-try.json';
 
 interface Props {
   kampanyalar: GecmisKampanya[];
 }
 
 const { kampanyalar } = Astro.props;
+const kurUsd = usd.kurlar as Record<string, number>;
+const kurEur = eur.kurlar as Record<string, number>;
 const slugu = new Map<GecmisKampanya, string>();
 for (const g of gecmisGirisimler(kampanyalar)) for (const k of g.kampanyalar) slugu.set(k, g.slug);
 const sirali = [...kampanyalar].sort((a, b) => (a.baslangic < b.baslangic ? 1 : a.baslangic > b.baslangic ? -1 : 0));
 const platformlar = [...new Set(kampanyalar.map((k) => k.platform))].sort((a, b) => a.localeCompare(b, 'tr'));
 const yillar = [...new Set(kampanyalar.map((k) => k.baslangic.slice(0, 4)))].sort().reverse();
-const kisaTarih = (t: string) => `${t.slice(8, 10)}.${t.slice(5, 7)}.${t.slice(0, 4)}`;
+const kisaTarih = (t: string | null) => (t ? `${t.slice(8, 10)}.${t.slice(5, 7)}.${t.slice(0, 4)}` : '—');
+const doviz = (tl: number | null, t: string, kurlar: Record<string, number>) => {
+  const kur = kurBul(t, kurlar);
+  return tl === null || !kur ? null : tl / kur;
+};
+const dovizYaz = (n: number | null, simge: string) => (n === null ? '—' : `${simge}${formatNumber(Math.round(n))}`);
+const sayiYaz = (n: number | null) => (n === null ? '—' : formatNumber(n));
+
+type Hucre = { v: string | number; m: string };
+interface Sutun {
+  a: string;
+  ad: string;
+  sayi?: boolean;
+  acik?: boolean;
+  metin?: boolean;
+  h: (k: GecmisKampanya) => Hucre;
+}
+// Girişim sütunu her zaman açık; ötekiler seçiciden. acik: ilk açılıştaki görünüm.
+const SUTUNLAR: Sutun[] = [
+  { a: 'platform', ad: 'Platform', acik: true, metin: true, h: (k) => ({ v: k.platform, m: k.platform }) },
+  { a: 'baslangic', ad: 'Başlangıç', acik: true, metin: true, h: (k) => ({ v: k.baslangic, m: kisaTarih(k.baslangic) }) },
+  { a: 'bitis', ad: 'Bitiş', metin: true, h: (k) => ({ v: k.bitis ?? '', m: kisaTarih(k.bitis) }) },
+  { a: 'hedef', ad: 'Hedef', sayi: true, acik: true, h: (k) => ({ v: k.hedef, m: paraTam(k.hedef) }) },
+  { a: 'alinan', ad: 'Toplanan', sayi: true, acik: true, h: (k) => ({ v: k.alinan, m: paraTam(k.alinan) }) },
+  { a: 'yuzde', ad: 'Gerçekleşme', sayi: true, acik: true, h: (k) => ({ v: gerceklesme(k) ?? -1, m: yuzdeBicim(gerceklesme(k)) }) },
+  { a: 'fark', ad: 'Fazladan / kalan', sayi: true, h: (k) => ({ v: k.alinan - k.hedef, m: paraTam(k.alinan - k.hedef) }) },
+  { a: 'payArz', ad: 'Pay arz', sayi: true, h: (k) => ({ v: k.payArz ?? -1, m: k.payArz === null ? '—' : yuzdeBicim(k.payArz * 100) }) },
+  { a: 'degerleme', ad: 'Değerleme', sayi: true, h: (k) => ({ v: degerleme(k) ?? -1, m: paraTam(degerleme(k)) }) },
+  { a: 'degerlemeUsd', ad: 'Değerleme ($)', sayi: true, h: (k) => { const d = doviz(degerleme(k), k.baslangic, kurUsd); return { v: d ?? -1, m: dovizYaz(d, '$') }; } },
+  { a: 'degerlemeEur', ad: 'Değerleme (€)', sayi: true, h: (k) => { const d = doviz(degerleme(k), k.baslangic, kurEur); return { v: d ?? -1, m: dovizYaz(d, '€') }; } },
+  { a: 'yatirimci', ad: 'Yatırımcı', sayi: true, acik: true, h: (k) => ({ v: k.yatirimci ?? -1, m: sayiYaz(k.yatirimci) }) },
+  { a: 'nitelikli', ad: 'Nitelikli yatırımcı', sayi: true, h: (k) => ({ v: k.nitelikli ?? -1, m: sayiYaz(k.nitelikli) }) },
+  { a: 'ortalama', ad: 'Ortalama yatırım', sayi: true, h: (k) => ({ v: ortalamaYatirim(k) ?? -1, m: paraTam(ortalamaYatirim(k)) }) },
+  { a: 'sermaye', ad: 'Fonlama sonrası sermaye', sayi: true, h: (k) => ({ v: k.sermaye ?? -1, m: paraTam(k.sermaye) }) },
+  { a: 'payFiyati', ad: 'Pay fiyatı', sayi: true, h: (k) => ({ v: k.payFiyati ?? -1, m: k.payFiyati === null ? '—' : `₺${k.payFiyati.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 3 })}` }) },
+  { a: 'payGrubu', ad: 'Pay grubu', metin: true, h: (k) => ({ v: k.payGrubu ?? '', m: k.payGrubu ?? '—' }) },
+  { a: 'fonAktarim', ad: 'Fon aktarımı', metin: true, h: (k) => ({ v: k.fonAktarim ?? '', m: kisaTarih(k.fonAktarim) }) },
+  { a: 'durum', ad: 'Sonuç', acik: true, metin: true, h: (k) => ({ v: k.durum, m: k.durum === 'fonlandi' ? 'Fonlandı' : 'Fonlanamadı' }) },
+];
 ---
 
 <section class="bolum gkt" aria-labelledby="gkt-baslik">
@@ -22,47 +66,67 @@ const kisaTarih = (t: string) => `${t.slice(8, 10)}.${t.slice(5, 7)}.${t.slice(0
     <h2 class="bolum-baslik" id="gkt-baslik">Bütün kampanyalar</h2>
     <span class="gkt-sayi" data-gkt-sayi>{kampanyalar.length} kampanya</span>
   </div>
-  <form class="gkt-suzgec" data-gkt-suzgec>
-    <label>Platform
-      <select name="platform"><option value="">Hepsi</option>{platformlar.map((p) => <option value={p}>{p}</option>)}</select>
-    </label>
-    <label>Yıl
-      <select name="yil"><option value="">Hepsi</option>{yillar.map((y) => <option value={y}>{y}</option>)}</select>
-    </label>
-    <label>Sonuç
-      <select name="durum"><option value="">Hepsi</option><option value="fonlandi">Fonlandı</option><option value="fonlanamadi">Fonlanamadı</option></select>
-    </label>
-  </form>
+  <div class="gkt-araclar">
+    <form class="gkt-suzgec" data-gkt-suzgec>
+      <label>Platform
+        <select name="platform"><option value="">Hepsi</option>{platformlar.map((p) => <option value={p}>{p}</option>)}</select>
+      </label>
+      <label>Yıl
+        <select name="yil"><option value="">Hepsi</option>{yillar.map((y) => <option value={y}>{y}</option>)}</select>
+      </label>
+      <label>Sonuç
+        <select name="durum"><option value="">Hepsi</option><option value="fonlandi">Fonlandı</option><option value="fonlanamadi">Fonlanamadı</option></select>
+      </label>
+    </form>
+    <details class="gkt-secici">
+      <summary>Sütunlar</summary>
+      <fieldset data-gkt-sutunlar>
+        <legend class="sr-only">Tabloda gösterilecek sütunlar</legend>
+        {
+          SUTUNLAR.map((s) => (
+            <label>
+              <input type="checkbox" value={s.a} checked={s.acik} /> {s.ad}
+            </label>
+          ))
+        }
+        <div class="gkt-secici-dugmeler">
+          <button type="button" data-gkt-hepsi>Hepsi</button>
+          <button type="button" data-gkt-varsayilan>Varsayılan</button>
+        </div>
+      </fieldset>
+    </details>
+  </div>
   <div class="tablo-kap">
     <table class="veri-tablo gkt-tablo" data-gkt>
       <caption class="sr-only">Kapanmış paya dayalı kitle fonlama kampanyaları</caption>
       <thead>
         <tr>
-          <th scope="col"><button type="button" data-sirala="ad">Girişim</button></th>
-          <th scope="col"><button type="button" data-sirala="platform">Platform</button></th>
-          <th scope="col"><button type="button" data-sirala="baslangic" aria-sort="descending">Başlangıç</button></th>
-          <th scope="col" class="sayi"><button type="button" data-sirala="hedef">Hedef</button></th>
-          <th scope="col" class="sayi"><button type="button" data-sirala="alinan">Toplanan</button></th>
-          <th scope="col" class="sayi"><button type="button" data-sirala="yuzde">Gerçekleşme</button></th>
-          <th scope="col" class="sayi"><button type="button" data-sirala="yatirimci">Yatırımcı</button></th>
-          <th scope="col">Sonuç</th>
+          <th scope="col"><button type="button" data-sirala="ad" data-metin>Girişim</button></th>
+          {
+            SUTUNLAR.map((s) => (
+              <th scope="col" class={s.sayi ? 'sayi' : undefined} data-sutun={s.a} hidden={!s.acik}>
+                <button type="button" data-sirala={s.a} data-metin={s.metin ? '' : undefined} aria-sort={s.a === 'baslangic' ? 'descending' : undefined}>{s.ad}</button>
+              </th>
+            ))
+          }
         </tr>
       </thead>
       <tbody>
         {
           sirali.map((k) => (
-            <tr data-platform={k.platform} data-yil={k.baslangic.slice(0, 4)} data-durum={k.durum} data-ad={k.ad} data-baslangic={k.baslangic} data-hedef={k.hedef} data-alinan={k.alinan} data-yuzde={gerceklesme(k) ?? 0} data-yatirimci={k.yatirimci ?? -1}>
-              <th scope="row">
+            <tr data-platform={k.platform} data-yil={k.baslangic.slice(0, 4)} data-durum={k.durum}>
+              <th scope="row" data-v={k.ad}>
                 <a href={`/girisim/${slugu.get(k)}/${kampanyaCapasi(k)}`}>{k.ad}</a>
                 {k.tur && <span class="gkt-tur" title={`${k.tur}. tur`}> ({k.tur})</span>}
               </th>
-              <td>{k.platform}</td>
-              <td><time datetime={k.baslangic}>{kisaTarih(k.baslangic)}</time></td>
-              <td class="sayi">{paraTam(k.hedef)}</td>
-              <td class="sayi">{paraTam(k.alinan)}</td>
-              <td class="sayi">{yuzdeBicim(gerceklesme(k))}</td>
-              <td class="sayi">{k.yatirimci === null ? '—' : formatNumber(k.yatirimci)}</td>
-              <td>{k.durum === 'fonlandi' ? 'Fonlandı' : 'Fonlanamadı'}</td>
+              {SUTUNLAR.map((s) => {
+                const c = s.h(k);
+                return (
+                  <td class={s.sayi ? 'sayi' : undefined} data-sutun={s.a} data-v={c.v} hidden={!s.acik}>
+                    {s.a === 'baslangic' ? <time datetime={k.baslangic}>{c.m}</time> : c.m}
+                  </td>
+                );
+              })}
             </tr>
           ))
         }
@@ -74,10 +138,15 @@ const kisaTarih = (t: string) => `${t.slice(8, 10)}.${t.slice(5, 7)}.${t.slice(0
 <script>
   const tablo = document.querySelector<HTMLTableElement>('[data-gkt]');
   const form = document.querySelector<HTMLFormElement>('[data-gkt-suzgec]');
+  const secici = document.querySelector<HTMLFieldSetElement>('[data-gkt-sutunlar]');
   const sayiEl = document.querySelector('[data-gkt-sayi]');
-  if (tablo && form) {
+  const ANAHTAR = 'kifobu-kampanya-sutunlar';
+  if (tablo && form && secici) {
     const govde = tablo.tBodies[0];
     const satirlar = [...govde.rows];
+    const kutular = [...secici.querySelectorAll<HTMLInputElement>('input[type=checkbox]')];
+    const varsayilan = new Set(kutular.filter((k) => k.defaultChecked).map((k) => k.value));
+
     const suz = () => {
       const f = new FormData(form);
       let n = 0;
@@ -89,16 +158,33 @@ const kisaTarih = (t: string) => `${t.slice(8, 10)}.${t.slice(5, 7)}.${t.slice(0
       if (sayiEl) sayiEl.textContent = `${n} kampanya`;
     };
     form.addEventListener('change', suz);
-    const metin = new Set(['ad', 'platform', 'baslangic']);
+
+    const sutunlariUygula = (acik: Set<string>) => {
+      for (const k of kutular) k.checked = acik.has(k.value);
+      for (const h of tablo.querySelectorAll<HTMLElement>('[data-sutun]')) h.hidden = !acik.has(h.dataset.sutun!);
+      try {
+        localStorage.setItem(ANAHTAR, JSON.stringify([...acik]));
+      } catch {}
+    };
+    try {
+      const kayit = JSON.parse(localStorage.getItem(ANAHTAR) ?? 'null');
+      if (Array.isArray(kayit)) sutunlariUygula(new Set(kayit.filter((x) => kutular.some((k) => k.value === x))));
+    } catch {}
+    secici.addEventListener('change', () => sutunlariUygula(new Set(kutular.filter((k) => k.checked).map((k) => k.value))));
+    secici.querySelector('[data-gkt-hepsi]')?.addEventListener('click', () => sutunlariUygula(new Set(kutular.map((k) => k.value))));
+    secici.querySelector('[data-gkt-varsayilan]')?.addEventListener('click', () => sutunlariUygula(new Set(varsayilan)));
+
+    const basliklar = [...tablo.tHead!.rows[0].cells];
     for (const b of tablo.querySelectorAll<HTMLButtonElement>('[data-sirala]')) {
       b.addEventListener('click', () => {
-        const a = b.dataset.sirala!;
+        const sira = basliklar.indexOf(b.closest('th')!);
+        const metin = b.hasAttribute('data-metin');
         const azalan = b.getAttribute('aria-sort') !== 'descending';
         for (const o of tablo.querySelectorAll('[data-sirala]')) o.removeAttribute('aria-sort');
         b.setAttribute('aria-sort', azalan ? 'descending' : 'ascending');
-        const k = (r: HTMLTableRowElement) => r.dataset[a] ?? '';
+        const v = (r: HTMLTableRowElement) => (r.cells[sira] as HTMLElement).dataset.v ?? '';
         satirlar.sort((x, y) => {
-          const s = metin.has(a) ? k(x).localeCompare(k(y), 'tr') : Number(k(x)) - Number(k(y));
+          const s = metin ? v(x).localeCompare(v(y), 'tr') : Number(v(x)) - Number(v(y));
           return azalan ? -s : s;
         });
         govde.append(...satirlar);
@@ -109,11 +195,26 @@ const kisaTarih = (t: string) => `${t.slice(8, 10)}.${t.slice(5, 7)}.${t.slice(0
 
 <style>
   .gkt-sayi { color: var(--gri); font-variant-numeric: tabular-nums; }
-  .gkt-suzgec { display: flex; flex-wrap: wrap; gap: 12px 20px; margin: 0 0 14px; }
+  .gkt-araclar { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 20px; margin: 0 0 14px; }
+  .gkt-suzgec { display: flex; flex-wrap: wrap; gap: 12px 20px; }
   .gkt-suzgec label { display: flex; flex-direction: column; gap: 4px; font-size: 0.78rem; color: var(--gri); }
   .gkt-suzgec select { font: inherit; font-size: 0.95rem; color: var(--murekkep); background: var(--zemin); border: 1px solid var(--cizgi-koyu); padding: 6px 8px; min-width: 150px; }
+  .gkt-secici { position: relative; }
+  .gkt-secici summary { cursor: pointer; list-style: none; font-size: 0.95rem; border: 1px solid var(--cizgi-koyu); padding: 6px 12px; background: var(--zemin); }
+  .gkt-secici summary::-webkit-details-marker { display: none; }
+  .gkt-secici summary::after { content: ' ▾'; }
+  .gkt-secici[open] summary::after { content: ' ▴'; }
+  .gkt-secici fieldset { position: absolute; right: 0; z-index: 5; margin: 6px 0 0; padding: 12px 14px; min-width: 240px; background: var(--zemin); border: 1px solid var(--cizgi-koyu); display: grid; gap: 6px; }
+  .gkt-secici fieldset label { display: flex; gap: 8px; align-items: center; font-size: 0.92rem; cursor: pointer; }
+  .gkt-secici-dugmeler { display: flex; gap: 8px; margin-top: 6px; padding-top: 8px; border-top: 1px solid var(--cizgi); }
+  .gkt-secici-dugmeler button { font: inherit; font-size: 0.85rem; background: none; border: 1px solid var(--cizgi-koyu); padding: 4px 10px; cursor: pointer; color: var(--murekkep); }
   .gkt-tablo th button { font: inherit; font-weight: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-align: inherit; }
   .gkt-tablo th button[aria-sort='descending']::after { content: ' ↓'; }
   .gkt-tablo th button[aria-sort='ascending']::after { content: ' ↑'; }
   .gkt-tur { font-weight: 400; color: var(--gri); white-space: nowrap; }
+  .gkt-tablo [hidden] { display: none; }
+  @media (max-width: 600px) {
+    .gkt-secici { width: 100%; }
+    .gkt-secici fieldset { position: static; min-width: 0; }
+  }
 </style>
