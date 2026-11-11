@@ -1,4 +1,5 @@
 ---
+import payGruplari from '../../data/girisim-pay-gruplari.json';
 import Base from '../../layouts/Base.astro';
 import SekunderyMenu from '../../components/sekundery/SekunderyMenu.astro';
 import SekunderyUyari from '../../components/sekundery/SekunderyUyari.astro';
@@ -61,6 +62,7 @@ const gercekler = [
   virmanMedyan != null && { ad: 'Virman süresi', deger: `${virmanMedyan.toLocaleString('tr-TR')} gün`, alt: `${vGunler.length} dönemin medyanı`, url: '/sekundery/virman/' },
 ].filter(Boolean) as { ad: string; deger: string; alt?: string; url?: string; paralar?: { p: string; m: string }[]; altPara?: string }[];
 
+const girisimSlug = Object.entries(payGruplari as Record<string, string[]>).find(([, k]) => k.includes(s.kod))?.[0] ?? null;
 ---
 
 <Base title={baslik} description={aciklama} noindex>
@@ -86,7 +88,7 @@ const gercekler = [
           <BirimSecici />
         </div>
       </div>
-      {s.unvan && <p class="sk-unvan"><a href={`/sekundery/sirket/${s.kod.toLowerCase()}/`} title="Girişimin bütün pay grupları">{tamUnvan(s.unvan)}</a></p>}
+      {s.unvan && <p class="sk-unvan">{girisimSlug ? <a href={`/girisim/${girisimSlug}/`} title="Girişimin kampanyaları ve bütün pay grupları">{tamUnvan(s.unvan)}</a> : tamUnvan(s.unvan)}</p>}
       {gercekler.length > 0 && (
         <dl class="sk-gercek">
           {gercekler.map((g) => (

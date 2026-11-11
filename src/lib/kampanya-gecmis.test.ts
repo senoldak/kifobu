@@ -46,3 +46,13 @@ test('veri dosyası: zorunlu alanlar dolu, slug\'lar tekil, tarihler geçerli', 
   const g = gecmisGirisimler(ks);
   assert.equal(new Set(g.map((x) => x.slug)).size, g.length);
 });
+
+test('her sekundery şirketi bir girişim sayfasına bağlı, girişim sayfaları var', async () => {
+  const es = (await import('../data/girisim-pay-gruplari.json', { with: { type: 'json' } })).default as Record<string, string[]>;
+  const sek = (await import('../data/sekundery/kampanyalar.json', { with: { type: 'json' } })).default as { sirketler: Record<string, unknown> };
+  const sluglar = new Set(gecmisGirisimler(veri.kampanyalar as GecmisKampanya[]).map((g) => g.slug));
+  const bagli = Object.values(es).flat();
+  for (const kod of Object.keys(sek.sirketler)) assert.ok(bagli.includes(kod), `${kod} bağlı değil`);
+  assert.equal(new Set(bagli).size, bagli.length, 'bir kod iki girişime bağlı');
+  for (const s of Object.keys(es)) assert.ok(sluglar.has(s), `${s} girişim sayfası yok`);
+});
