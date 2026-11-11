@@ -222,6 +222,11 @@
   },
   "ESGEL-B": {
    "isin": "TREESGY00018"
+  },
+  "DKSNA-B": {
+   "sahip": {
+    "2026-11-11": 0
+   }
   }
  },
  "sirketler": {
@@ -271,6 +276,30 @@
    "soruldu": "2026-11-11"
   },
   "CLKSY": {
+   "soruldu": "2026-11-11"
+  },
+  "CMPTV": {
+   "soruldu": "2026-11-11"
+  },
+  "CNTRN": {
+   "soruldu": "2026-11-11"
+  },
+  "CORPS": {
+   "soruldu": "2026-11-11"
+  },
+  "CPRNT": {
+   "soruldu": "2026-11-11"
+  },
+  "CRNCA": {
+   "soruldu": "2026-11-11"
+  },
+  "CURVE": {
+   "soruldu": "2026-11-11"
+  },
+  "DKSNA": {
+   "soruldu": "2026-11-11"
+  },
+  "DLVRY": {
    "soruldu": "2026-11-11"
   }
  }
