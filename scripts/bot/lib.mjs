@@ -159,8 +159,9 @@ export const DENETIM_YEDEK_MODEL = 'gemma-4-26b-a4b-it';
 // Gemini'ye istek atar, JSON şemasına uygun yanıt döner; anahtar yoksa null. Model zinciri, yeniden deneme, bütçe ve
 // gölge ortak çekirdekte (istemci.mjs, yönlendirici Faz 1); burada yalnız bu sitenin imzası ve ayarı.
 // denetim: evet/hayır denetim çağrısı; zincirin son halkası Gemma.
-export function gemini({ prompt, schema, dusunme = 'low', denetim = false, _model = null, _amac = null }) {
-  return geminiCagir({ istem: prompt, sema: schema, dusunme, denetim, _model, _amac }, { sicaklik: 0.3, ayarAlani: 'ayar' });
+// sistem: sistem istemi; sicaklik: varsayılan 0.3.
+export function gemini({ prompt, sistem, schema, dusunme = 'low', denetim = false, sicaklik = 0.3, _model = null, _amac = null }) {
+  return geminiCagir({ sistem, istem: prompt, sema: schema, dusunme, denetim, _model, _amac }, { sicaklik, ayarAlani: 'ayar' });
 }
 
 // YAML'da güvenli çift tırnaklı metin.

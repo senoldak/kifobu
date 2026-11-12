@@ -12,6 +12,7 @@ import { gemini } from './lib.mjs';
 import { YAZIM_KURALLARI } from './yazar.mjs';
 import { ZAMAN, MEDYA, medyaGizle, yerelDuzelt, ilgiliKisim } from './yerel.mjs';
 import { olcekKontrol } from './olcek.mjs';
+import { dilDuzeltTr, dilSorunlariTr, kesinSorunlar, sorunListesi, REDAKSIYON_KURALLARI_TR } from './dil-tr.mjs';
 
 const SON_TUR = 3;
 const CALISMADI = 'Yazı işleri kontrolü çalıştırılamadı';
@@ -342,18 +343,78 @@ Değiştirme:
 - Paragraf yapısı: ${derleme ? 'derlemedeki "## " ara başlıkları ve haber başına bir paragraf düzeni kalır' : 'metin 4-6 paragraf kalır'}; paragrafları tek bir blokta birleştirme. Paragraflar arasında boş satır olur.`;
 }
 
-export async function redakte(h, { derleme = false } = {}) {
-  const r = await gemini({
+// Dil redaksiyonu (12 Kasım): ortak dil masası kuralları sistem istemidir; kaynak ve kodun bulduğu sorun listesi istemle gider.
+// Site biçimi kuralları ortak metindeki "yüzde N" örneklerinin yerine geçer.
+const KIFOBU_DIL_EKI = `Site biçimi (yukarıdaki kurallarla çelişirse bu geçerli):
+- Yüzde işareti önde: %40, %8,6 ("yüzde 40" yazma). Tarih "10 Ekim 2026".
+- "de/da" ve "ki" bağlaçları ayrı, ekler bitişik; "mi" soru eki ayrı; "yapay zekâ".
+- Başlıkta yalnız ilk sözcük ve özel adlar büyük harfle başlar, sonda nokta ve ünlem yok.
+- "bugün", "dün", "yarın" gibi göreli zamanı çıkar ya da tarihle değiştir.`;
+
+const aralikIcinde = (once, yeni) => {
+  const a = kelimeSayisi(once.body);
+  const b = kelimeSayisi(yeni.body);
+  return a === 0 || (b >= a * 0.9 && b <= a * 1.15);
+};
+
+// Güvenli (anlamı değiştirmeyen) düzeltmeler; yüzde kifobu biçimine (%40) çevrilir.
+const DIL_ALANLARI = ['title', 'description', 'body', 'why_matters'];
+export function dilDuzeltHaber(h) {
+  const y = { ...h };
+  for (const a of DIL_ALANLARI) if (typeof y[a] === 'string' && y[a]) y[a] = dilDuzeltTr(y[a], { yuzde: 'isaret' });
+  if (Array.isArray(y.key_points)) y.key_points = y.key_points.map((p) => (typeof p === 'string' ? dilDuzeltTr(p, { yuzde: 'isaret' }) : p));
+  return y;
+}
+
+// Başlık, spot ve gövdedeki dil sorunları. Tek haberde ara başlık yok; derlemede "## " kategori başlıkları meşru.
+export function dilSorunlariHaber(h, { derleme = false } = {}) {
+  return [
+    ...dilSorunlariTr(h.title ?? ''),
+    ...dilSorunlariTr(h.description ?? ''),
+    ...dilSorunlariTr(h.body ?? '', { govde: true, araBaslikYasak: !derleme }),
+  ];
+}
+
+// Tek redaksiyon çağrısı: sorun listesi ve (varsa) önceki denemenin ret nedenleriyle. Yanıt yoksa null.
+async function redakteCagri(h, { derleme, kaynak, sorunlar, retNedenleri }) {
+  const liste = sorunListesi(sorunlar);
+  const yapi = derleme ? 'derlemedeki "## " ara başlıkları ve haber başına bir paragraf düzeni kalır' : 'ara başlık ekleme; paragrafları birleştirme, aralarında boş satır olur';
+  return gemini({
+    sistem: `${REDAKSIYON_KURALLARI_TR}\n\n${KIFOBU_DIL_EKI}\n- Paragraf yapısı: ${yapi}.`,
     schema: METIN_SEMASI,
-    prompt: `Sen kifobu'nun redaktörüsün (son okuma). Aşağıdaki haberin SADECE dilini düzelt, içeriğine asla dokunma.
-
-${redaksiyonKurallari(derleme)}
-
-Metin zaten doğruysa aynen geri ver.
+    dusunme: 'medium',
+    sicaklik: 0.2,
+    prompt: `Aşağıdaki haberin SADECE dilini düzelt. Olgu, rakam, ad, tarih ve alıntı içeriği kaynakla birebir uyumlu kalmalı; metin zaten doğruysa aynen geri ver.
+${liste ? `\nKodun bulduğu dil sorunları (hepsini gider):\n${liste}\n` : ''}${retNedenleri.length ? `\nÖnceki redaksiyon reddedildi; bu sefer şunlara dikkat et:\n${retNedenleri.map((n) => `- ${n}`).join('\n')}\n` : ''}
+KAYNAKLAR (olguları doğrulamak için; metne ekleme yapma):
+${ilgiliKisim(kaynak, tamMetin(h), 6000)}
 
 ${tamMetinKisa(h)}`,
   });
-  return r ? { ...h, ...r } : h;
+}
+
+// Redaksiyon çıktısı kabul edilir: kesin kontrollerde yeni sorun yok ve gövde uzunluğu önceki metnin %90-115'i.
+function redaksiyonRetNedenleri(once, yeni, kaynak, uzunluk) {
+  const eski = new Set(kesinKontroller(once, kaynak, uzunluk));
+  const nedenler = kesinKontroller(yeni, kaynak, uzunluk).filter((x) => !eski.has(x));
+  if (!aralikIcinde(once, yeni)) nedenler.push(`Gövde uzunluğu %90-115 dışında (${kelimeSayisi(once.body)} → ${kelimeSayisi(yeni.body)} kelime)`);
+  return nedenler;
+}
+
+/**
+ * Dil redaksiyonu: kabul koşulu sağlanmazsa nedenlerle bir kez yeniden dener; yine olmazsa önceki metni korur ve
+ * "dil redaksiyonu atıldı: <neden>" yazar. Dönüş: { haber, kabul, nedenler }.
+ */
+export async function redakteDene(h, kaynak, { derleme = false, uzunluk = {}, sorunlar = [] } = {}) {
+  let retNedenleri = [];
+  for (let deneme = 1; deneme <= 2; deneme++) {
+    const r = await redakteCagri(h, { derleme, kaynak, sorunlar, retNedenleri });
+    const yeni = r ? dilDuzeltHaber({ ...h, ...r }) : null;
+    retNedenleri = yeni ? redaksiyonRetNedenleri(h, yeni, kaynak, uzunluk) : ['Redaksiyon yanıtı alınamadı'];
+    if (!retNedenleri.length) return { haber: yeni, kabul: true, nedenler: [] };
+  }
+  console.log(`  dil redaksiyonu atıldı: ${medyaGizle(retNedenleri.join(' | '))}`);
+  return { haber: h, kabul: false, nedenler: retNedenleri };
 }
 
 // ── Tüm süreç ──────────────────────────────────────────────────────────
@@ -390,13 +451,11 @@ export async function denetle(h, kaynak, opts = {}) {
   let taslak = yerelDuzelt(h);
   if (uzat && kisa(taslak)) taslak = await uzatmayi(taslak, 'değerlendirme öncesi');
   const notlar = [];
-  let redaksiyonlu = null;
   // Standartlar: müdür onayı yoksa (iki turda da ret) ya da onaydan sonra metin düzeltme turuyla değiştiyse, son metin müdüre yeniden sorulur.
   let mudurOnayli = false;
   for (let tur = 1; tur <= 2; tur++) {
-    const d = await degerlendir(taslak, kaynak, uzunluk, { redaksiyon: { derleme: Boolean(uzat) } });
+    const d = await degerlendir(taslak, kaynak, uzunluk);
     if (d.onay) {
-      redaksiyonlu = d.duzeltilmis;
       mudurOnayli = true;
       break;
     }
@@ -405,14 +464,16 @@ export async function denetle(h, kaynak, opts = {}) {
     taslak = await duzeltIle(taslak, d.sorunlar);
   }
 
-  // Redaksiyon kesin kontrollerde yeni sorun yarattıysa atılır (alt sınırın altına inen metin de sorun sayılır).
-  const once = taslak;
-  const temiz = redaksiyonlu ? { ...taslak, ...redaksiyonlu } : await redakte(taslak, { derleme: Boolean(uzat) });
-  if (kesinKontroller(temiz, kaynak, uzunluk).length > kesinKontroller(once, kaynak, uzunluk).length) {
-    notlar.push('Redaksiyon olguları değiştirdi, atıldı');
-  } else {
-    taslak = temiz;
-  }
+  // Dil redaksiyonu her haberde ayrı çağrıyla çalışır (müdürün onay yanıtındaki redaksiyon artık kullanılmaz). Kabul
+  // koşulu sağlanmazsa metin redaksiyonsuz kalır (redakteDene günlüğe yazar); dil kapısı bunu aşağıda ayrıca denetler.
+  const derleme = Boolean(uzat);
+  const dilTuru = async (t, sorunlar) => {
+    const duzgun = dilDuzeltHaber(t);
+    const sonuc = await redakteDene(duzgun, kaynak, { derleme, uzunluk, sorunlar: sorunlar ?? dilSorunlariHaber(duzgun, { derleme }) });
+    if (!sonuc.kabul) notlar.push(`dil redaksiyonu atıldı: ${sonuc.nedenler.join('; ')}`);
+    return sonuc.haber;
+  };
+  taslak = await dilTuru(taslak);
 
   // Son kesin kontrol; sorun kalırsa SON_TUR kez daha düzeltme ve redaksiyon.
   let sorunlar = kesinKontroller(taslak, kaynak, uzunluk);
@@ -429,9 +490,24 @@ export async function denetle(h, kaynak, opts = {}) {
     }
     mudurOnayli = false;
     const son = await duzeltIle(taslak, [...sorunlar, ...ek]);
-    const sonTemiz = await redakte(son, { derleme: Boolean(uzat) });
-    taslak = kesinKontroller(sonTemiz, kaynak, uzunluk).length <= kesinKontroller(son, kaynak, uzunluk).length ? sonTemiz : son;
+    taslak = await dilTuru(son);
     sorunlar = kesinKontroller(taslak, kaynak, uzunluk);
+  }
+  // Dil kapısı (yayından önce, kodla): güvenli düzeltmeler uygulanır; kesin sorun kalırsa yalnız onlarla bir redaksiyon
+  // turu daha; yine kalırsa haber yayımlanmaz ("dil:" önekli gerekçe).
+  if (!sorunlar.length) {
+    taslak = dilDuzeltHaber(taslak);
+    let dil = kesinSorunlar(dilSorunlariHaber(taslak, { derleme }));
+    if (dil.length) {
+      console.log(`  dil kapısı: ${medyaGizle(dil.map((x) => x.mesaj).join(' | '))}`);
+      taslak = await dilTuru(taslak, dil);
+      dil = kesinSorunlar(dilSorunlariHaber(taslak, { derleme }));
+    }
+    if (dil.length) {
+      sorunlar = dil.map((x) => `dil: ${x.mesaj}${x.ornek ? ` («${x.ornek}»)` : ''}`);
+      notlar.push(...sorunlar);
+      console.log(`  dil kapısı engelledi: ${medyaGizle(sorunlar.join(' | '))}`);
+    } else sorunlar = kesinKontroller(taslak, kaynak, uzunluk);
   }
   // Fail-closed: müdürün onayı olmayan metin yayımlanmaz (önceden müdürün son itirazı yayını durdurmuyordu).
   if (!sorunlar.length && !mudurOnayli) {
