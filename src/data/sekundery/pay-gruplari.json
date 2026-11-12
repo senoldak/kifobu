@@ -193,7 +193,10 @@
    "isin": "TREPRMS00024"
   },
   "FERNV-B": {
-   "isin": "TREFERN00023"
+   "isin": "TREFERN00023",
+   "sahip": {
+    "2026-11-12": 0
+   }
   },
   "AHEAR-A": {
    "sahip": {
@@ -230,6 +233,16 @@
   },
   "BTRYN-B": {
    "isin": "TREBTRY00027"
+  },
+  "FERNV-A": {
+   "sahip": {
+    "2026-11-12": 0
+   }
+  },
+  "HRGLE-D": {
+   "sahip": {
+    "2026-11-12": 0
+   }
   }
  },
  "sirketler": {
@@ -327,6 +340,30 @@
    "soruldu": "2026-11-12"
   },
   "EVBEE": {
+   "soruldu": "2026-11-12"
+  },
+  "FERNV": {
+   "soruldu": "2026-11-12"
+  },
+  "GENOR": {
+   "soruldu": "2026-11-12"
+  },
+  "GRFON": {
+   "soruldu": "2026-11-12"
+  },
+  "GURLR": {
+   "soruldu": "2026-11-12"
+  },
+  "HRGLE": {
+   "soruldu": "2026-11-12"
+  },
+  "IONTK": {
+   "soruldu": "2026-11-12"
+  },
+  "JETCO": {
+   "soruldu": "2026-11-12"
+  },
+  "KABIP": {
    "soruldu": "2026-11-12"
   }
  }
