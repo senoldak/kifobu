@@ -1,0 +1,78 @@
+# Telegram Günün Özeti: o günün haberlerinden tek paragraf (Gemini + kod denetimi, olmazsa yedek) yazar,
+# src/data/gunun-ozeti/<tarih>.json olarak commit eder, siteyi yayınlar ve gün sayfasını mecmua-saat kuyruğuna bildirir.
+# Zamanlama Cloudflare'deki mecmua-saat Worker'ındadır (Türkiye saatiyle 20:45); kuyruk sayfa yayına girince
+# @kifobu ve @fundov kifobu başlığına gönderir. 18:00 kapanış bülteni bu işten bağımsızdır (bulten-otomasyon.yml).
+name: Günün Özeti (Telegram)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: haber-botu
+  cancel-in-progress: false
+
+jobs:
+  ozet:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .node-version
+
+      # Betik paket kullanmıyor; npm ci gerekmez.
+      - name: Paragrafı yaz
+        id: ozet
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_KULLANIM_DOSYASI: ${{ runner.temp }}/gemini-kullanim.json
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
+          GEMINI_ZINCIR: ${{ vars.GEMINI_ZINCIR }}
+          MOTOR_URL: ${{ vars.MOTOR_URL }}
+          MOTOR_ANAHTARI: ${{ secrets.MOTOR_ANAHTARI }}
+        run: node scripts/bot/gunun-ozeti-is.mjs
+
+      - name: Commit
+        if: steps.ozet.outputs.yazildi == '1'
+        run: |
+          git config user.name "kifobu-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/gunun-ozeti
+          git commit -m "Bot: günün özeti"
+          for i in 1 2 3 4 5; do
+            git pull --rebase -X theirs && git push && exit 0
+            git rebase --abort 2>/dev/null || true
+            sleep $((i * 5))
+          done
+          exit 1
+
+      - name: Siteyi yayınla
+        if: steps.ozet.outputs.yazildi == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run yayinla.yml --ref "${{ github.ref_name }}"
+
+      # Kuyruk, gün sayfası o günün meta etiketiyle yayına girene kadar bekler; erken bildirim sorun değildir.
+      - name: Gün sayfasını kuyruğa bildir
+        if: steps.ozet.outputs.bildir == '1'
+        env:
+          MOTOR_URL: ${{ vars.MOTOR_URL }}
+          MOTOR_ANAHTARI: ${{ secrets.MOTOR_ANAHTARI }}
+        run: node scripts/bot/gunun-ozeti-is.mjs --bildir
+
+      - name: Gemini kullanımını saate bildir
+        if: always()
+        continue-on-error: true
+        env:
+          GEMINI_KULLANIM_DOSYASI: ${{ runner.temp }}/gemini-kullanim.json
+          MOTOR_URL: ${{ vars.MOTOR_URL }}
+          MOTOR_ANAHTARI: ${{ secrets.MOTOR_ANAHTARI }}
+        run: node scripts/bot/gemini-rapor.mjs kifobu
