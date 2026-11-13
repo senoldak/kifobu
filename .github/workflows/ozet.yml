@@ -1,6 +1,6 @@
 # Günün bültenleri: son bültenden bu yana çıkan haberleri "Günlük Bülten" kategorisinde tek yazıda toplar.
-# Zamanlama Cloudflare'deki mecmua-saat Worker'ındadır (Türkiye saatiyle 09:00 sabah, 13:00 öğle, 23:00 gece; 18:00'de tablolu kapanış).
-# Telegram'a Worker'ın kuyruğu gönderir (bülten kapağı + bağlantılı başlık listesi, @kifobu ve @fundov:24358 ayrı takip).
+# Zamanlama Cloudflare'deki mecmua-saat Worker'ındadır (Türkiye saatiyle 10:00 sabah, 14:00 öğle; 18:00'de tablolu kapanış; 23:00 gece bülteni 14 Kasım 2026'da kalktı).
+# Bu bültenler yalnız sitede durur; Telegram'a günde bir kez Günün Özeti gider (gunun-ozeti.yml).
 # Masa görseli yalnız 18:00 kapanışta gider (bulten-otomasyon.yml).
 name: Bülten (sabah/öğle/akşam/gece)
 
