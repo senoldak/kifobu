@@ -13,13 +13,19 @@
    "isin": "TREGRIF00044"
   },
   "MKTEK-B": {
-   "isin": "TREMVTK00025"
+   "isin": "TREMVTK00025",
+   "sahip": {
+    "2026-11-13": 0
+   }
   },
   "SPRG2-B": {
    "isin": "TRESPG200023"
   },
   "LIMBX-B": {
-   "isin": "TRELMBK00024"
+   "isin": "TRELMBK00024",
+   "sahip": {
+    "2026-11-13": 0
+   }
   },
   "BLCLL-B": {
    "isin": "TREBLOO00022"
@@ -46,7 +52,10 @@
    "isin": "TRESCTL00020"
   },
   "MIONT-B": {
-   "isin": "TREMNTI00026"
+   "isin": "TREMNTI00026",
+   "sahip": {
+    "2026-11-13": 0
+   }
   },
   "OLEAG-C": {
    "isin": "TREOLEA00025"
@@ -166,7 +175,10 @@
    "isin": "TREMINI00029"
   },
   "MSVRO-B": {
-   "isin": "TREMKND00026"
+   "isin": "TREMKND00026",
+   "sahip": {
+    "2026-11-13": 0
+   }
   },
   "MEDIB-B": {
    "isin": "TREMDBT00022"
@@ -187,7 +199,10 @@
    "isin": "TRETTGM00027"
   },
   "LIMBX-A": {
-   "isin": "TRELMBK00016"
+   "isin": "TRELMBK00016",
+   "sahip": {
+    "2026-11-13": 0
+   }
   },
   "PROMO-B": {
    "isin": "TREPRMS00024"
@@ -246,6 +261,11 @@
   },
   "RTNOW-B": {
    "isin": "TRERETI00024"
+  },
+  "MSVRO-A": {
+   "sahip": {
+    "2026-11-13": 0
+   }
   }
  },
  "sirketler": {
@@ -368,6 +388,30 @@
   },
   "KABIP": {
    "soruldu": "2026-11-12"
+  },
+  "KRT3D": {
+   "soruldu": "2026-11-13"
+  },
+  "LIMBX": {
+   "soruldu": "2026-11-13"
+  },
+  "MEDIB": {
+   "soruldu": "2026-11-13"
+  },
+  "MELOA": {
+   "soruldu": "2026-11-13"
+  },
+  "MIONT": {
+   "soruldu": "2026-11-13"
+  },
+  "MKTEK": {
+   "soruldu": "2026-11-13"
+  },
+  "MNYOL": {
+   "soruldu": "2026-11-13"
+  },
+  "MSVRO": {
+   "soruldu": "2026-11-13"
   }
  }
 }
