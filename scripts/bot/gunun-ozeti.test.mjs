@@ -44,6 +44,12 @@ test('paragrafDenetle: uydurma özel ad reddedilir', () => {
   assert.equal(r.gecerli, false);
   assert.match(r.sorunlar.join(' '), /ad: Sequoia/);
 });
+test('paragrafDenetle: tümce başındaki karışık büyük harfli ad da denetlenir', () => {
+  const p = 'OpenAI, Seri A turunda 1 milyar dolar yatırım aldı. Q-CTRL 290 milyon dolar topladı ve büyüdü. Mirendil yapay zekâ araştırma araçları geliştiriyor.';
+  const r = paragrafDenetle({ paragraf: p, kimlikler: ['mirendil', 'qctrl'], haberler: H });
+  assert.equal(r.gecerli, false);
+  assert.match(r.sorunlar.join(' '), /ad: OpenAI/);
+});
 test('paragrafDenetle: seçilmeyen haberin rakamı da reddedilir', () => {
   const r = paragrafDenetle({ paragraf: 'Mirendil 1 milyar dolar aldı. Norwest 4 milyar dolarlık fon kurdu. Bu hafta yatırım çoktu.', kimlikler: ['mirendil'], haberler: H });
   assert.equal(r.gecerli, false);

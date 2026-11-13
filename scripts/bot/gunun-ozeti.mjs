@@ -70,8 +70,9 @@ export function paragrafDenetle({ paragraf, kimlikler, haberler }) {
     const sozcukler = tumce.match(SOZCUK) ?? [];
     sozcukler.forEach((w, i) => {
       if (!/^[A-ZÇĞİÖŞÜ]/u.test(w)) return;
-      // Tümce başındaki büyük harf ad olduğunu göstermez; kesme işareti varsa addır.
-      if (i === 0 && !/['’]/.test(w)) return;
+      // Tümce başındaki büyük harf ad olduğunu göstermez; kesme işareti ya da içte ikinci büyük harf (OpenAI, AMD,
+      // Q-CTRL) varsa addır.
+      if (i === 0 && !/['’]/.test(w) && !/^.[\p{L}\d-]*[A-ZÇĞİÖŞÜ]/u.test(w)) return;
       const kok = ekiAt(w);
       if (!kaynakSozcukler.has(kucuk(kok))) sorunlar.push(`ad: ${kok}`);
     });
