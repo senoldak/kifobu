@@ -6,6 +6,7 @@
 import { BUYUK_HARF, genislik, kisalt, logo, metin, satirlar, type MetinAyar } from './ciz.ts';
 import { categoryName, type Durum } from '../lib/site.ts';
 import { KIMLIK, cubukOlcegi, durumEtiketi, tohumIsaretiSvg, tutarKisa, yuzdeKesik } from '../lib/kimlik.ts';
+import { listeSigdir } from '../../scripts/bot/gunun-ozeti.mjs';
 
 export interface KapakVeri {
   baslik: string;
@@ -234,14 +235,6 @@ export function bultenMaddeleri(govde: string | undefined): string[] {
   return [...(govde ?? '').matchAll(/^\s*[-*]\s+\[(.+?)\]\([^)]*\)/gm)].map((m) => m[1].trim());
 }
 
-/** Tek satıra sığmayan başlığı sözcük sınırında keser ("…"); sözcük ortasından bölmez. */
-function sozcukKisalt(s: string, maks: number, ayar: MetinAyar) {
-  if (genislik(s, ayar) <= maks) return s;
-  const soz = s.split(/\s+/);
-  while (soz.length > 1 && genislik(`${soz.join(' ').replace(/[,;:]$/, '')} …`, ayar) > maks) soz.pop();
-  return `${soz.join(' ').replace(/[,;:]$/, '')} …`;
-}
-
 /** Büyük soluk tohum işareti, sağ kenardan taşar; sarı kol tam renk kalır, ucu sağ alttaki tarihten uzakta (yukarıda) durur. */
 function arkaIsaret(o: Olcu) {
   const boy = o.y * 0.86;
@@ -254,13 +247,12 @@ function arkaIsaret(o: Olcu) {
     .replace('<svg ', `<svg x="${x.toFixed(1)}" y="${y.toFixed(1)}" `);
 }
 
-// Bülten kapağı: "Öğle Bülteni", altında en çok üç haber başlığı (birer satır), sağda taşan soluk tohum işareti;
-// sağ altta bültenin tarihi.
-function bultenSvg(v: KapakVeri, o: Olcu) {
+const ozAttr = (s: string) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+
+// Liste kapağı (bülten ve Günün Özeti): büyük başlık, altında haber başlıkları, sağda taşan soluk tohum işareti,
+// sağ altta tarih. Başlık en çok iki satır olur; sığmayan başlık kesilmez, kapağa girmez ve "+N haber daha"ya eklenir.
+function listeSvg(ana: string, etiketYazi: string, maddeler: string[], toplam: number, azamiOge: number, o: Olcu) {
   const k = o.k;
-  const { ana, tarih } = bol(v.baslik, v.kategori);
-  const maddeler = v.maddeler ?? [];
-  const etiketYazi = kunyeEtiketi(v.kategori, tarih);
   const alt = altSatir(o, etiketYazi);
   const x = o.pad;
   const genis = o.g * 0.7 - x;
@@ -269,23 +261,62 @@ function bultenSvg(v: KapakVeri, o: Olcu) {
   const taban = o.ust + 26 * k + bb * BUYUK_HARF;
   svg += metin(ana, x - 2, taban, { yuz: 'kalin', boyut: bb, renk: KIMLIK.murekkep, aralik: -bb * 0.025 });
   const mb = 30 * k;
-  const adim = 62 * k;
+  const adim = 62 * k; // tek satırlık madde yüksekliği
+  const satirAdim = mb * 1.22; // ikinci satır bu kadar aşağıda
+  const dahaPay = 40 * k;
   const ayar: MetinAyar = { yuz: 'orta', boyut: mb, renk: KIMLIK.murekkep, aralik: -mb * 0.01 };
-  let y = taban + 44 * k;
-  for (const m of maddeler.slice(0, BULTEN_MADDE)) {
+  const ilkY = taban + 44 * k;
+  const yukseklik = (n: number) => adim + (n - 1) * satirAdim;
+  const sinir = alt.ust - 24 * k;
+  const { ogeler, kalan } = listeSigdir({
+    basliklar: maddeler,
+    toplam,
+    azamiOge,
+    satirla: (m: string) => satirlar(m, genis - 30 * k, ayar),
+    sigar: (liste: { satirlar: string[] }[]) => {
+      const y = ilkY + liste.reduce((t, l) => t + yukseklik(l.satirlar.length), 0);
+      const kalanVar = toplam > liste.length;
+      return (kalanVar ? y + dahaPay : y) <= sinir;
+    },
+  });
+  let y = ilkY;
+  for (const og of ogeler) {
     svg += `<rect x="${x}" y="${y.toFixed(1)}" width="${genis.toFixed(1)}" height="${(1.5 * k).toFixed(1)}" fill="${KIMLIK.cizgi}"/>`;
     const mt = y + adim / 2 + (mb * BUYUK_HARF) / 2;
     svg += `<rect x="${x}" y="${(mt - mb * BUYUK_HARF * 0.5 - 5 * k).toFixed(1)}" width="${(10 * k).toFixed(1)}" height="${(10 * k).toFixed(1)}" fill="${KIMLIK.sari}"/>`;
-    svg += metin(sozcukKisalt(m, genis - 30 * k, ayar), x + 30 * k, mt, ayar);
-    y += adim;
+    og.satirlar.forEach((satir: string, i: number) => {
+      svg += metin(satir, x + 30 * k, mt + i * satirAdim, ayar);
+    });
+    y += yukseklik(og.satirlar.length);
   }
   svg += `<rect x="${x}" y="${y.toFixed(1)}" width="${genis.toFixed(1)}" height="${(1.5 * k).toFixed(1)}" fill="${KIMLIK.cizgi}"/>`;
   let enAlt = y;
-  if (maddeler.length > BULTEN_MADDE) {
-    enAlt = y + 40 * k;
-    svg += metin(`+${maddeler.length - BULTEN_MADDE} haber daha`, x + 30 * k, enAlt, { yuz: 'normal', boyut: 24 * k, renk: KIMLIK.gri });
+  if (kalan > 0) {
+    enAlt = y + dahaPay;
+    svg += metin(`+${kalan} haber daha`, x + 30 * k, enAlt, { yuz: 'normal', boyut: 24 * k, renk: KIMLIK.gri });
   }
-  return `${ac(o, { 'madde-alt': enAlt.toFixed(1), 'alt-ust': alt.ust.toFixed(1), 'logo-sag': alt.logoSag.toFixed(1), 'kategori-sol': alt.kategoriSol.toFixed(1), kategori: etiketYazi })}${zemin(o)}${svg}${alt.svg}</svg>`;
+  const d = {
+    'madde-alt': enAlt.toFixed(1),
+    'alt-ust': alt.ust.toFixed(1),
+    'logo-sag': alt.logoSag.toFixed(1),
+    'kategori-sol': alt.kategoriSol.toFixed(1),
+    kategori: etiketYazi,
+    kalan,
+    basliklar: ozAttr(JSON.stringify(ogeler.map((og: { baslik: string }) => og.baslik))),
+  };
+  return `${ac(o, d)}${zemin(o)}${svg}${alt.svg}</svg>`;
+}
+
+// Bülten kapağı: "Öğle Bülteni", altında en çok üç haber başlığı, sağ altta bültenin tarihi.
+function bultenSvg(v: KapakVeri, o: Olcu) {
+  const { ana, tarih } = bol(v.baslik, v.kategori);
+  const maddeler = v.maddeler ?? [];
+  return listeSvg(ana, kunyeEtiketi(v.kategori, tarih), maddeler, maddeler.length, BULTEN_MADDE, o);
+}
+
+/** Telegram Günün Özeti kapağı (1200×675): "Günün Özeti", en çok dört haber başlığı, sağ altta tarih. */
+export function ozetKartSvg({ tarih, basliklar, toplam }: { tarih: string; basliklar: string[]; toplam: number }) {
+  return listeSvg('Günün Özeti', tarih.toLocaleUpperCase('tr-TR'), basliklar, toplam, 4, OLCU.kapak);
 }
 
 /** Haber kartı (SVG). Düzen veriden seçilir. */

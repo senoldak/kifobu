@@ -140,3 +140,45 @@ test('bülten kapağı: haber listesinden en çok üç madde, sağ altta tarih, 
   // Maddesiz bülten eski düz kapakla çizilir.
   assert.doesNotMatch(kartSvg({ baslik: 'Gece Bülteni — 17 Ekim 2026', kategori: 'gunluk-bulten' }), /data-madde-alt/);
 });
+
+// --- Günün Özeti ve kesmesiz bülten listesi (2026-11-14) ---
+const GUN = [
+  'Mirendil, Seri A turunda 1 milyar dolar yatırım aldı',
+  'Q-CTRL, Seri C turunda 290 milyon dolar yatırım alarak unicorn unvanı kazandı',
+  'Databento, Seri C turunda 100 milyon dolar yatırım alarak değerlemesini 1,1 milyar dolara çıkardı',
+  'Norwest Venture Partners 4 milyar dolar büyüklüğünde yeni fon oluşturdu',
+  'Bucked Games, Startupfon Tohum GSYF ve Startupfon Co-Invest’ten yatırım aldı',
+  '4Minds, Seri A turunda 15 milyon dolar yatırım aldı',
+];
+const basliklar = (s: string): string[] => JSON.parse(s.match(/data-basliklar="([^"]*)"/)![1].replaceAll('&quot;', '"'));
+
+test('ozetKartSvg: başlık listesi en çok 4, kalan sayılır, hiçbir başlık kesilmez', async () => {
+  const { ozetKartSvg } = await import('./kart.ts');
+  const s = ozetKartSvg({ tarih: '13 Kasım 2026', basliklar: GUN, toplam: 11 });
+  assert.match(s, /width="1200" height="675"/);
+  assert.match(s, /data-kategori="13 KASIM 2026"/);
+  const b = basliklar(s);
+  assert.ok(b.length >= 2 && b.length <= 4, `madde ${b.length}`);
+  for (const x of b) assert.ok(GUN.includes(x), x);
+  assert.equal(oznitelik(s, 'kalan'), 11 - b.length);
+  assert.ok(oznitelik(s, 'madde-alt') + 24 <= oznitelik(s, 'alt-ust'));
+});
+
+test('ozetKartSvg: iki satıra sığmayan başlık kapağa girmez', async () => {
+  const { ozetKartSvg } = await import('./kart.ts');
+  const dev = 'Çok uzun bir başlık '.repeat(10).trim();
+  const s = ozetKartSvg({ tarih: '13 Kasım 2026', basliklar: [dev, GUN[0]], toplam: 2 });
+  assert.deepEqual(basliklar(s), [GUN[0]]);
+  assert.equal(oznitelik(s, 'kalan'), 1);
+});
+
+test('bülten kapağı: uzun madde "…" ile kesilmez, ya tam ya hiç', () => {
+  const uzun = 'Çok uzun bir madde '.repeat(8).trim();
+  for (const b of BICIMLER) {
+    const s = kartSvg({ baslik: 'Öğle Bülteni — 19 Ekim 2026', kategori: 'gunluk-bulten', maddeler: [uzun, ...GUN.slice(0, 3)] }, b);
+    const m = basliklar(s);
+    for (const x of m) assert.ok(x === uzun || GUN.includes(x), x);
+    assert.ok(m.length <= 3, b);
+    assert.equal(oznitelik(s, 'kalan'), 4 - m.length, b);
+  }
+});
