@@ -41,6 +41,7 @@ const kisa = (t: string) => ozetSayfasi({ ...kayit, tarih: t }, undefined).tarih
   imageAlt={`${s.baslik}: günün öne çıkan haber başlıkları`}
   noindex={s.toplam < 3}
 >
+  <meta slot="head" name="linkedin-gorsel" content={new URL(`/kapak/gunun-ozeti/dikey/${kayit.tarih}.png`, Astro.site).href} />
   <Fragment slot="head">
     <meta name="gunun-ozeti" content={kayit.tarih} />
     <meta name="gunun-ozeti-paragraf" content={kayit.paragraf} />

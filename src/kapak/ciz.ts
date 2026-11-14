@@ -116,7 +116,8 @@ export function logo(x: number, alt: number, isaretBoyu: number, renk: string = 
 }
 
 // Haber kapağı: kart.ts (Kimlik v2). Kampanya haberinde künye, yatırım haberinde tur kapağı; rakam yoksa düz haber.
-export function kapakSvg(h: Haber) {
+// bicim 'post' (1080×1350): sabah/öğle bülteninin LinkedIn dikey kartı (src/pages/kapak/dikey/[id].png.ts).
+export function kapakSvg(h: Haber, bicim: 'kapak' | 'post' = 'kapak') {
   const d = h.data;
   return kartSvg(
     {
@@ -132,7 +133,7 @@ export function kapakSvg(h: Haber) {
       tur: d.tur,
       maddeler: d.category === 'gunluk-bulten' ? bultenMaddeleri(h.body) : undefined,
     },
-    'kapak',
+    bicim,
   );
 }
 

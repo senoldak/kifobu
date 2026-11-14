@@ -237,9 +237,11 @@ export function bultenMaddeleri(govde: string | undefined): string[] {
 
 /** Büyük soluk tohum işareti, sağ kenardan taşar; sarı kol tam renk kalır, ucu sağ alttaki tarihten uzakta (yukarıda) durur. */
 function arkaIsaret(o: Olcu) {
-  const boy = o.y * 0.86;
+  // Dikey biçimde (post) işaret sağ altta durur: liste tam genişliği kullanır.
+  const dikey = o.y > o.g;
+  const boy = dikey ? o.g * 0.78 : o.y * 0.86;
   const x = o.g - boy * 0.6;
-  const y = (o.y - boy) / 2 + o.bant / 2;
+  const y = dikey ? o.y - boy * 0.82 : (o.y - boy) / 2 + o.bant / 2;
   return tohumIsaretiSvg({ boyut: boy })
     .replaceAll(`fill="${KIMLIK.murekkep}"`, 'fill="#e6e3da"')
     .replace('aria-hidden="true">', 'aria-hidden="true"><g transform="rotate(-110 100 100)">')
@@ -255,12 +257,13 @@ function listeSvg(ana: string, etiketYazi: string, maddeler: string[], toplam: n
   const k = o.k;
   const alt = altSatir(o, etiketYazi);
   const x = o.pad;
-  const genis = o.g * 0.7 - x;
+  const dikey = o.y > o.g;
+  const genis = dikey ? o.g - 2 * x : o.g * 0.7 - x;
   let svg = arkaIsaret(o);
   const bb = o.baslik[0];
   const taban = o.ust + 26 * k + bb * BUYUK_HARF;
   svg += metin(ana, x - 2, taban, { yuz: 'kalin', boyut: bb, renk: KIMLIK.murekkep, aralik: -bb * 0.025 });
-  const mb = 30 * k;
+  const mb = (dikey ? 34 : 30) * k;
   const adim = 62 * k; // tek satırlık madde yüksekliği
   const satirAdim = mb * 1.22; // ikinci satır bu kadar aşağıda
   const dahaPay = 40 * k;
@@ -311,12 +314,16 @@ function listeSvg(ana: string, etiketYazi: string, maddeler: string[], toplam: n
 function bultenSvg(v: KapakVeri, o: Olcu) {
   const { ana, tarih } = bol(v.baslik, v.kategori);
   const maddeler = v.maddeler ?? [];
-  return listeSvg(ana, kunyeEtiketi(v.kategori, tarih), maddeler, maddeler.length, BULTEN_MADDE, o);
+  // Dikey (LinkedIn) kartta yer daha çok: en çok yedi madde.
+  return listeSvg(ana, kunyeEtiketi(v.kategori, tarih), maddeler, maddeler.length, o.y > o.g ? 7 : BULTEN_MADDE, o);
 }
 
-/** Telegram Günün Özeti kapağı (1200×675): "Günün Özeti", en çok dört haber başlığı, sağ altta tarih. */
-export function ozetKartSvg({ tarih, basliklar, toplam }: { tarih: string; basliklar: string[]; toplam: number }) {
-  return listeSvg('Günün Özeti', tarih.toLocaleUpperCase('tr-TR'), basliklar, toplam, 4, OLCU.kapak);
+/**
+ * Günün Özeti kapağı: "Günün Özeti", haber başlıkları, sağ altta tarih. kapak 1200×675 (site, Telegram; en çok dört
+ * başlık), post 1080×1350 (LinkedIn dikey; en çok yedi başlık).
+ */
+export function ozetKartSvg({ tarih, basliklar, toplam, bicim = 'kapak' }: { tarih: string; basliklar: string[]; toplam: number; bicim?: 'kapak' | 'post' }) {
+  return listeSvg('Günün Özeti', tarih.toLocaleUpperCase('tr-TR'), basliklar, toplam, bicim === 'post' ? 7 : 4, OLCU[bicim]);
 }
 
 /** Haber kartı (SVG). Düzen veriden seçilir. */
