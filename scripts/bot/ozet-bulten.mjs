@@ -132,5 +132,5 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   if (dur.durdu) console.log(`Acil durdurma açık: ${dur.neden}`);
   else console.log(`Acil durdurma kontrolü: ${dur.neden}`);
   const slug = dur.durdu ? null : await calistir({ donem: process.argv[2] || undefined });
-  if (process.env.GITHUB_OUTPUT) await writeFile(process.env.GITHUB_OUTPUT, `yazildi=${slug ? 1 : 0}\n`, { flag: 'a' });
+  if (process.env.GITHUB_OUTPUT) await writeFile(process.env.GITHUB_OUTPUT, `yazildi=${slug ? 1 : 0}\nslug=${slug ?? ''}\n`, { flag: 'a' });
 }

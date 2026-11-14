@@ -241,7 +241,8 @@ function arkaIsaret(o: Olcu) {
   const dikey = o.y > o.g;
   const boy = dikey ? o.g * 0.78 : o.y * 0.86;
   const x = o.g - boy * 0.6;
-  const y = dikey ? o.y - boy * 0.82 : (o.y - boy) / 2 + o.bant / 2;
+  // Story'de (9:16) işaret daha aşağıda: alttaki tarih ve logo satırının üstüne binmesin.
+  const y = dikey ? o.y - boy * (o.y / o.g > 1.6 ? 0.42 : 0.82) : (o.y - boy) / 2 + o.bant / 2;
   return tohumIsaretiSvg({ boyut: boy })
     .replaceAll(`fill="${KIMLIK.murekkep}"`, 'fill="#e6e3da"')
     .replace('aria-hidden="true">', 'aria-hidden="true"><g transform="rotate(-110 100 100)">')
@@ -275,6 +276,7 @@ function listeSvg(ana: string, etiketYazi: string, maddeler: string[], toplam: n
     basliklar: maddeler,
     toplam,
     azamiOge,
+    azamiSatir: dikey ? 3 : 2,
     satirla: (m: string) => satirlar(m, genis - 30 * k, ayar),
     sigar: (liste: { satirlar: string[] }[]) => {
       const y = ilkY + liste.reduce((t, l) => t + yukseklik(l.satirlar.length), 0);
@@ -320,10 +322,10 @@ function bultenSvg(v: KapakVeri, o: Olcu) {
 
 /**
  * Günün Özeti kapağı: "Günün Özeti", haber başlıkları, sağ altta tarih. kapak 1200×675 (site, Telegram; en çok dört
- * başlık), post 1080×1350 (LinkedIn dikey; en çok yedi başlık).
+ * başlık), post 1080×1350 (LinkedIn ve Instagram postu) ve story 1080×1920 (Instagram story); dikeyde en çok yedi başlık.
  */
-export function ozetKartSvg({ tarih, basliklar, toplam, bicim = 'kapak' }: { tarih: string; basliklar: string[]; toplam: number; bicim?: 'kapak' | 'post' }) {
-  return listeSvg('Günün Özeti', tarih.toLocaleUpperCase('tr-TR'), basliklar, toplam, bicim === 'post' ? 7 : 4, OLCU[bicim]);
+export function ozetKartSvg({ tarih, basliklar, toplam, bicim = 'kapak' }: { tarih: string; basliklar: string[]; toplam: number; bicim?: 'kapak' | 'post' | 'story' }) {
+  return listeSvg('Günün Özeti', tarih.toLocaleUpperCase('tr-TR'), basliklar, toplam, bicim === 'kapak' ? 4 : 7, OLCU[bicim]);
 }
 
 /** Haber kartı (SVG). Düzen veriden seçilir. */

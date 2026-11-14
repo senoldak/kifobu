@@ -18,7 +18,7 @@ concurrency:
 jobs:
   ozet:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -67,6 +67,15 @@ jobs:
           MOTOR_URL: ${{ vars.MOTOR_URL }}
           MOTOR_ANAHTARI: ${{ secrets.MOTOR_ANAHTARI }}
         run: node scripts/bot/gunun-ozeti-is.mjs --bildir
+
+      # Instagram post (1080×1350) + story (1080×1920), sahibi 14 Kasım. Sayfa yayına girene kadar bekler (en çok 15 dk).
+      # 18:00 kapanış bülteni bunu kullanmaz: kendi yolundadır (bulten-otomasyon.yml, scripts/bulten-meta-gonder.ts).
+      - name: Instagram'da paylaş
+        if: steps.ozet.outputs.yazildi == '1'
+        env:
+          INSTAGRAM_USER_ID: '17841456470366778'
+          META_TOKEN: ${{ secrets.META_TOKEN }}
+        run: node scripts/instagram-paylas.mjs ozet "$(TZ=Europe/Istanbul date +%F)"
 
       - name: Gemini kullanımını saate bildir
         if: always()
