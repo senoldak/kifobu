@@ -58,7 +58,10 @@
    }
   },
   "OLEAG-C": {
-   "isin": "TREOLEA00025"
+   "isin": "TREOLEA00025",
+   "sahip": {
+    "2026-11-14": 0
+   }
   },
   "NTRGA-B": {
    "isin": "TRENTRG00029"
@@ -412,6 +415,30 @@
   },
   "MSVRO": {
    "soruldu": "2026-11-13"
+  },
+  "NEVAS": {
+   "soruldu": "2026-11-14"
+  },
+  "NEXIT": {
+   "soruldu": "2026-11-14"
+  },
+  "NGAYT": {
+   "soruldu": "2026-11-14"
+  },
+  "NTDRY": {
+   "soruldu": "2026-11-14"
+  },
+  "NTRGA": {
+   "soruldu": "2026-11-14"
+  },
+  "OLEAG": {
+   "soruldu": "2026-11-14"
+  },
+  "ONIMA": {
+   "soruldu": "2026-11-14"
+  },
+  "ORTAK": {
+   "soruldu": "2026-11-14"
   }
  }
 }
