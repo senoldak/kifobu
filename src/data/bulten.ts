@@ -1,7 +1,7 @@
 /**
  * Günlük kitle fonlama bülteni verisi ("Bugün" tablosu).
  * Otomatik Bot tarafından oluşturulmuştur.
- * Son güncelleme: 2026-11-14T11:01:09.981Z
+ * Son güncelleme: 2026-11-15T07:01:10.206Z
  */
 export interface Girisim {
   ad: string;
@@ -32,8 +32,8 @@ export interface Yakinda {
 }
 
 export const BULTEN = {
-  tarih: '14 Kasım 2026',
-  sayi: 1558,
+  tarih: '15 Kasım 2026',
+  sayi: 1559,
   girisimler: [
     {
         "ad": "ATHLETICLABS",
