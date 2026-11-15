@@ -208,7 +208,10 @@
    }
   },
   "PROMO-B": {
-   "isin": "TREPRMS00024"
+   "isin": "TREPRMS00024",
+   "sahip": {
+    "2026-11-15": 0
+   }
   },
   "FERNV-B": {
    "isin": "TREFERN00023",
@@ -439,6 +442,30 @@
   },
   "ORTAK": {
    "soruldu": "2026-11-14"
+  },
+  "PACHA": {
+   "soruldu": "2026-11-15"
+  },
+  "PCARD": {
+   "soruldu": "2026-11-15"
+  },
+  "PROMO": {
+   "soruldu": "2026-11-15"
+  },
+  "PSTDN": {
+   "soruldu": "2026-11-15"
+  },
+  "PURES": {
+   "soruldu": "2026-11-15"
+  },
+  "QCHRG": {
+   "soruldu": "2026-11-15"
+  },
+  "RTNOW": {
+   "soruldu": "2026-11-15"
+  },
+  "SAFON": {
+   "soruldu": "2026-11-15"
   }
  }
 }
