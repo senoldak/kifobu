@@ -1,11 +1,11 @@
 {
-  "tarih": "15 Kasım 2026",
-  "sayi": 1559,
+  "tarih": "16 Kasım 2026",
+  "sayi": 1560,
   "girisimler": {
     "ATHLETICLABS": 7602500,
     "OYLİO": 5135900,
-    "PUPAQ": 121782,
-    "LOOPYON": 1223600
+    "PUPAQ": 0,
+    "LOOPYON": 1279600
   },
   "mkk": {
     "platform": 18,
