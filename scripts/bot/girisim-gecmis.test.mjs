@@ -5,7 +5,7 @@ import { girisimBul, girisimListesi, girisimleriKur, kanitVar, zenginlestir } fr
 
 const rot = path.resolve(import.meta.dirname, '../..');
 
-test('Bebehum: iki tur, kayıttan rakamlar, sayfa bağlantısı, boş künye dolar', async () => {
+test('Bebehum: iki tur, kayıttan rakamlar, sayfa bağlantısı; fonlama künyesi geçmişten dolmaz', async () => {
   const liste = await girisimListesi(rot);
   const haber = { title: 't', body: 'Gürler Global yeni pazarlara açıldı.' };
   const z = zenginlestir(haber, { girisim: 'Bebehum' }, liste, 'Bebehum Köprü Yatırım Turu duyurusu');
@@ -15,14 +15,13 @@ test('Bebehum: iki tur, kayıttan rakamlar, sayfa bağlantısı, boş künye dol
   assert.match(z.haber.body, /3\.247 yatırımcı 32,2 milyon TL yatırdı/);
   assert.match(z.haber.body, /360 milyon TL değer/);
   assert.match(z.haber.body, /\[Bebehum sayfasında\]\(\/girisim\/bebehum\/\)/);
-  assert.deepEqual({ ...z.kunye }, { girisim: 'Bebehum', tur: '2. tur (toplam 2)', platform: 'Fonbulucu', toplanan: 43612637, hedef: 36000000, yatirimci: 2303, durum: 'basarili', paraBirimi: 'TRY' });
+  assert.deepEqual({ ...z.kunye }, { girisim: 'Bebehum', platform: 'Fonbulucu' });
 });
 
 test('haberin kendi künyesi (yeni tur) korunur', async () => {
   const liste = await girisimListesi(rot);
   const z = zenginlestir({ body: 'x kitle fonlaması' }, { girisim: 'Bebehum', toplanan: 5, hedef: 10 }, liste);
   assert.equal(z.kunye.toplanan, 5);
-  assert.equal(z.kunye.platform, undefined);
   assert.equal(z.kunye.tur, '3. tur');
   assert.equal(zenginlestir({ body: 'kitle fonlaması' }, { girisim: 'Bebehum', toplanan: 32153229, tur: 'Köprü Turu' }, liste).kunye.tur, '1. tur (toplam 2)');
 });

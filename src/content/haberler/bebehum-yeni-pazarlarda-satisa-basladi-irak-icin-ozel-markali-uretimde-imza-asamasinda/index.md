@@ -5,11 +5,6 @@ date: 2026-11-16T10:10:00+03:00
 category: girisimler
 girisim: "Bebehum"
 platform: "Fonbulucu"
-tur: "2. tur (toplam 2)"
-toplanan: 43612637
-hedef: 36000000
-yatirimci: 2303
-durum: basarili
 why_matters: "Şirket, kitle fonlaması yatırımcılarına yeni pazarları ve süren görüşmeleri tek tek bildirdi. Bildirilenlerin bir kısmı satışa dönmüş durumda; büyük bölümü ise henüz görüşme ya da imza aşamasında."
 key_points:
   - "Kırgızistan ve Kazakistan'da satış başladı; Brezilya'da ürünler onaylandı, sipariş görüşmeleri sürüyor."

@@ -113,15 +113,13 @@ export function zenginlestir(haber, kunye, liste, kaynakMetni = '') {
   if (!g || /\/girisim\//.test(haber.body ?? '') || !kanitVar(g, `${kaynakMetni}
 ${haber.body ?? ''}`)) return { haber, kunye, girisim: null };
   const { metin, kunye: k } = gecmisBolumu(g, kunye.girisim.trim());
+  // Künyenin tutar alanları "bu haber bir fonlamayı anlatıyor" demektir (kapak, tahta, sayımlar): geçmişten doldurulmaz.
+  // Haber kendi turunu anlatıyorsa (toplanan dolu) tur adı platformun koyduğu ad değil kayıttaki sıradır; eşleşmezse yeni tur.
   const yeniKunye = { ...kunye };
-  // Tur adı platformun koyduğu ad değil (köprü, ön tur …), kayıttaki sıra: haberin tutarı bir kampanyaya uyuyorsa o, uymuyorsa
-  // kayda henüz girmemiş yeni tur; tutar yoksa son kampanya.
-  const ks = g.kampanyalar;
-  const sira = kunye.toplanan > 0 ? ks.findIndex((x) => Math.abs(x.alinan - kunye.toplanan) <= x.alinan * 0.01) : ks.length - 1;
-  yeniKunye.tur = sira >= 0 ? `${sira + 1}. tur (toplam ${ks.length})` : `${ks.length + 1}. tur`;
-  if (!(kunye.toplanan > 0)) {
-    for (const [a, v] of Object.entries(k)) if (v !== undefined && (yeniKunye[a] === undefined || yeniKunye[a] === null)) yeniKunye[a] = v;
-    yeniKunye.paraBirimi = 'TRY';
-  }
+  if (kunye.toplanan > 0) {
+    const ks = g.kampanyalar;
+    const sira = ks.findIndex((x) => Math.abs(x.alinan - kunye.toplanan) <= x.alinan * 0.01);
+    yeniKunye.tur = sira >= 0 ? `${sira + 1}. tur (toplam ${ks.length})` : `${ks.length + 1}. tur`;
+  } else if (!yeniKunye.platform) yeniKunye.platform = k.platform;
   return { haber: { ...haber, body: `${String(haber.body ?? '').trimEnd()}\n\n${metin}` }, kunye: yeniKunye, girisim: g.slug };
 }
