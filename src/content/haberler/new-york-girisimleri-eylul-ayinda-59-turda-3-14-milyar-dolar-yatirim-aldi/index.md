@@ -3,7 +3,7 @@ title: "New York girişimleri eylül ayında 59 turda 3,14 milyar dolar yatırı
 description: "New York merkezli girişimler eylül ayında bir önceki aya göre yüzde 274 artışla 3,14 milyar dolar yatırım topladı."
 date: 2026-10-26T20:21:02+03:00
 category: analiz
-why_matters: "New York ekosisteminin aylık bazda yaşadığı sert yükseliş ve büyük turların yoğunlaşması, küresel girişim sermayesi eğilimleri açısından önemli bir gösterge sunuyor."
+why_matters: "Ağustostaki 837,9 milyon dolarlık durgunluğun ardından eylülde hacmin 3,14 milyar dolara sıçraması, New York'ta büyük turların piyasayı nasıl yukarı çektiğini gösteriyor."
 key_points:
   - "Eylül ayında 59 turda 3,14 milyar dolar yatırım toplandı."
   - "100 milyon dolar üzerindeki 10 tur toplam sermayenin yüzde 69'unu oluşturdu."

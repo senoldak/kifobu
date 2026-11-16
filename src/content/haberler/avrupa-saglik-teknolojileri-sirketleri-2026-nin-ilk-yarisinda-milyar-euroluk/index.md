@@ -3,7 +3,7 @@ title: "Avrupa sağlık teknolojileri şirketleri 2026'nın ilk yarısında mily
 description: "Avrupa sağlık teknolojileri ekosistemi, 2026'nın ilk yarısında biyoteknoloji ve yapay zekâ odaklı çözümlerle milyar euroluk yatırım hacmine ulaştı."
 date: 2026-11-05T16:21:04+03:00
 category: analiz
-why_matters: "Avrupa sağlık teknolojileri ekosistemindeki bu büyük ölçekli yatırımlar, yapay zeka ve biyoteknolojinin sağlık hizmetlerini dönüştürme potansiyeline olan yüksek güveni ve sermayenin bu alanlara yoğunlaştığını gösteriyor."
+why_matters: "Avrupa sağlık teknolojilerinde toplam hacmin yaklaşık yüzde 69'unu tek başına Isomorphic Labs'ın çekmesi, yatırımcı iştahının yapay zekâ tabanlı ilaç keşfinde yoğunlaştığını gösteriyor."
 key_points:
   - "Avrupa'daki en büyük 10 sağlık teknolojisi işlemi toplam 2,59 milyar euroya ulaştı."
   - "Isomorphic Labs, 2,1 milyar dolarlık Seri B yatırımıyla sektördeki en büyük payı aldı."

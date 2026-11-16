@@ -8,7 +8,7 @@ toplanan: 5000000
 paraBirimi: EUR
 tur: "Tohum"
 yatirimcilar: "Market One Capital, Silicon Gardens, FirstPick, Leonis Capital, NGL, Tekton Ventures"
-why_matters: "Yapay zeka tabanlı pazarlama araçlarının küçük işletmeler tarafından erişilebilir kılınmasını hedefleyen Holo'nun aldığı yatırım, pazarlama otomasyonu alanındaki büyüme potansiyelini gösteriyor."
+why_matters: "252 günde 5 milyon dolar yıllık düzenli gelire ulaşan Holo, küçük işletmelere yönelik yapay zekâ pazarlama otomasyonunda hızlı gelir büyümesine örnek oluşturuyor."
 key_points:
   - "Holo, tohum turda 5 milyon euro yatırım aldı."
   - "Tura Market One Capital liderlik etti."

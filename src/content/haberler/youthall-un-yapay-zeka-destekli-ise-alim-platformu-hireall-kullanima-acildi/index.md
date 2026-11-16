@@ -6,8 +6,8 @@ category: girisimler
 uretim: yapay-zeka
 ---
 
-Youthall'un işe alım ve kariyer teknolojileri alanındaki deneyimiyle geliştirilen yapay zekâ destekli işe alım platformu Hireall kullanıma sunuldu. Sistem ilan hazırlama, aday değerlendirme, video mülakat ve teklif yönetimini tek çatı altında buluşturuyor.
+Youthall'un işe alım ve kariyer teknolojilerindeki 12 yıllık deneyimiyle geliştirdiği yapay zeka destekli işe alım platformu Hireall kullanıma açıldı. Sistem; ilan hazırlama, aday değerlendirme, video mülakat ve teklif yönetimini tek çatı altında topluyor.
 
-Platformda aday takip sistemi, markalı kariyer sayfası, ortak puanlama ve teklif yönetimi gibi modüller yer alıyor. Yapay zekâ ilan metni ve ön eleme sorularının hazırlanmasına katkı sağlarken CV'leri yapılandırılmış veriye dönüştürüp AI Fit Score oluşturuyor. Video mülakat yanıtlarını da analiz eden sistem adayların hangi kriterlere göre değerlendirileceği konusunda kontrolü işe alım ekiplerinde bırakıyor.
+Platformda aday takip sistemi, markalı kariyer sayfası, ortak puanlama ve teklif yönetimi modülleri bulunuyor. Yapay zeka ilan metni ile ön eleme sorularının hazırlanmasına destek verirken, CV'leri yapılandırılmış veriye dönüştürüp AI Fit Score üretiyor. Video mülakat yanıtlarını da analiz eden sistemde, adayların hangi kriterlere göre değerlendirileceği kontrolü işe alım ekiplerinde kalıyor.
 
-LinkedIn, takvim, e-posta ve Slack entegrasyonlarının yanı sıra Youthall ile doğrudan entegre çalışan platform şirketlerin Youthall'un aday havuzundan yararlanmasını sağlıyor. Türkiye'de faaliyete başlayan Hireall'un önümüzdeki dönemde Avrupa ve MENA pazarlarına açılması hedefleniyor.
+LinkedIn, takvim, e-posta ve Slack entegrasyonlarının yanı sıra Youthall ile doğrudan bağlantılı çalışan platform, şirketlerin Youthall aday havuzuna erişmesini sağlıyor. Türkiye'de faaliyete geçen Hireall'un önümüzdeki dönemde Avrupa ve MENA pazarlarına açılması planlanıyor.

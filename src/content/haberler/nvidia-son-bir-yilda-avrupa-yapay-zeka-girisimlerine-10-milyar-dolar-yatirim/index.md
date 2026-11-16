@@ -4,7 +4,7 @@ description: "Nvidia, Paris'te yaptığı açıklamada son bir yılda Avrupa bö
 date: 2026-10-21T10:20:55+03:00
 category: analiz
 yatirimcilar: "Nvidia"
-why_matters: "Nvidia'nın Avrupa yapay zekâ ekosistemine milyarlarca dolarlık doğrudan kaynak aktarması, kıtadaki altyapı, model ve uygulama geliştirme süreçlerini doğrudan yönlendirmesi açısından kritik önem taşıyor."
+why_matters: "Nvidia'nın Avrupa'daki toplam teknoloji yatırımlarının %11 ila %16'sına denk gelen 10 milyar dolarlık hamlesi, çip üreticisinin kıtadaki yapay zekâ altyapısını ve model geliştiricilerini doğrudan şekillendirdiğini gösteriyor."
 key_points:
   - "Nvidia son bir yılda Avrupa'ya 10 milyar dolar aktardı"
   - "Yatırımlar bölgedeki teknoloji yatırımlarının yüzde 11 ila 16'sını oluşturuyor"

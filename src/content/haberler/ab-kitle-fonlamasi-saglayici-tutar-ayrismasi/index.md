@@ -2,28 +2,28 @@
 date: 2026-11-12T08:00:00+03:00
 yaziTuru: analiz
 uretim: yazi-isleri
-title: "AB'de tutar, sağlayıcı sayısından hızlı artmış görünüyor"
-description: "ESMA'nın iki pazar raporuna göre sağlayıcı sayısı 98'den 181'e çıkarken tutar en az 1 milyar euro'dan 4,25 milyar euro'ya çıktı; ABD'de ise yarıyıllık yeni teklif sayısı %23,7 azaldı."
+title: "AB kitle fonlamasında toplanan tutar, sağlayıcı sayısını solladı"
+description: "ESMA'nın iki pazar raporuna göre AB'de kitle fonlaması sağlayıcı sayısı 98'den 181'e, toplanan tutar ise en az 1 milyar euro'dan 4,25 milyar euro'ya çıktı; ABD'de ise yarıyıllık yeni teklif sayısı %23,7 geriledi."
 category: kampanyalar
-why_matters: "Kitle fonlamasında lisanslı sağlayıcı sayısı ile toplanan tutarın aynı hızda gidip gitmediği, pazarın büyümesinin nereden geldiğini gösterir. Sağlayıcı sayısındaki artış, tutardaki artışı tek başına açıklamıyor."
+why_matters: "Lisanslı sağlayıcı sayısı ile toplanan tutarın aynı hızda büyüyüp büyümediği, kitle fonlaması pazarının gerçekte nereden beslendiğini gösteriyor."
 key_points:
-  - "ESMA'ya göre 2024 yılında 181 sağlayıcı AB'de 4,25 milyar euro topladı; 2023 yılında raporlanan örneklemde 98 sağlayıcı en az 1 milyar euro topladı."
-  - "Sağlayıcı sayısı %84,7, sicilde yetkili sağlayıcı sayısı %44,0 arttı; tutar ise en çok 4,25 kat arttı."
-  - "Fransa'da sağlayıcı sayısı 30'dan 50'ye, toplanan tutar 292 milyon euro'dan 1.450 milyon euro'ya çıktı."
-  - "İlk beş ülke 2024 yılında toplam tutarın %81,6'sını topladı."
+  - "ESMA verilerine göre 2024'te 181 sağlayıcı AB genelinde 4,25 milyar euro topladı; 2023 örnekleminde 98 sağlayıcı en az 1 milyar euro'ya ulaşmıştı."
+  - "Örneklemdeki sağlayıcı sayısı %84,7, sicilde yetkili sağlayıcı sayısı %44,0 artarken, toplanan tutardaki artış en çok 4,25 katı buldu."
+  - "Fransa'da sağlayıcı sayısı 30'dan 50'ye, toplanan tutar ise 292 milyon euro'dan 1.450 milyon euro'ya yükseldi."
+  - "2024 yılında toplam tutarın %81,6'sı ilk beş ülkede toplandı."
 ---
 
-AB'de kitle fonlaması hizmeti veren şirketlerin sayısı arttığında, toplanan tutar da aynı hızda mı arttı? İlk bakışta evet gibi görünüyor: Avrupa Menkul Kıymetler ve Piyasalar Otoritesi'nin (ESMA) iki ardışık raporunda hem sağlayıcı sayısı hem toplanan tutar yükseliyor. Ama iki sayı aynı hızda gitmiyor.
+AB'de kitle fonlaması hizmeti veren şirketlerin sayısı arttığında, toplanan tutar da aynı hızda mı yükseldi? İlk bakışta öyle görünüyor: Avrupa Menkul Kıymetler ve Piyasalar Otoritesi'nin (ESMA) ardışık iki raporunda hem sağlayıcı sayısı hem de toplanan fon tutarı yukarı yönlü. Ancak bu iki gösterge aynı tempoda ilerlemiyor.
 
-Rakamlar şöyle. ESMA'nın 2023 yılı verisini kapsayan raporu 98 sağlayıcılık bir örneklem için en az 1 milyar euro'luk fon toplandığını yazıyor. 2024 yılı verisini kapsayan ikinci rapor 181 sağlayıcının 4,25 milyar euro topladığını bildiriyor. Sağlayıcı sayısı %84,7 artmış; tutar ise bu artışın çok üstünde, en çok 4,25 kat. Üst sınır diyoruz, çünkü ilk rapor tutar için yalnız bir alt sınır veriyor.
+ESMA'nın 2023 verilerini kapsayan raporu, 98 sağlayıcılık bir örneklemde en az 1 milyar euro fon toplandığını kaydediyor. 2024 verilerini içeren ikinci rapor ise 181 sağlayıcının 4,25 milyar euro topladığını bildiriyor. Sağlayıcı sayısı %84,7 artarken, tutardaki artış en çok 4,25 kat seviyesinde; üst sınır ifadesini kullanmamızın nedeni, ilk raporun tutar için yalnızca bir alt sınır vermesi.
 
-İki sayı aynı yöne gidiyor, ama hızları farklı. Farkın nereden geldiğini birkaç ipucu üzerinden arıyoruz. Önce sağlayıcı sayısının kendisi ne anlatıyor, sonra tutar, ardından ülkeler, fon türleri ve en sonda ABD'deki benzer ölçü. Hepsinde ESMA'nın kendi uyarısını göz önünde tutuyoruz: ikinci raporda ESMA, “year-on-year trends in this Report should be interpreted with caution” diyor; yani yıllar arası eğilimlerin dikkatle yorumlanmasını istiyor.
+Bu hız farkının arkasında ne olduğunu anlamak için önce sağlayıcı sayısına, ardından tutara, ülke dağılımlarına, fon türlerine ve son olarak ABD'deki benzer bir göstergeye bakmak gerekiyor. Tüm bu okumada ESMA'nın ikinci rapordaki şu uyarısını akılda tutmak şart: *“year-on-year trends in this Report should be interpreted with caution”* (yıllar arası eğilimler dikkatle yorumlanmalıdır).
 
-Yazı tek bir sağlayıcıyı, projeyi ya da ülkeyi öne çıkarmıyor; AB düzeyindeki toplu veriyi okuyor.
+Bu analiz tek bir sağlayıcıyı, projeyi ya da ülkeyi öne çıkarmak yerine AB düzeyindeki toplu veriyi inceliyor.
 
 ![Eğim grafiği: Sağlayıcı sayısı üç ölçüde de arttı, artış hızı ölçüye göre değişti: 2023 yılı verisi: Örneklemdeki sağlayıcı: 98, Sicilde yetkili sağlayıcı: 159, Fransa'daki sağlayıcı: 30; 2024 yılı verisi: Örneklemdeki sağlayıcı: 181, Sicilde yetkili sağlayıcı: 229, Fransa'daki sağlayıcı: 50.](./graf-1.svg)
 *ESMA raporlarında sağlayıcı sayısı. Kaynak: ESMA.*
-## İlk ipucu: sağlayıcı sayısı
+## Sağlayıcı sayısındaki artış neyi ölçüyor?
 
 Raporlar iki ayrı sayı veriyor. Birincisi raporun kapsadığı, yani ulusal otoritelerin veri gönderdiği ve o yıl fon toplamış sağlayıcılar. İkincisi ESMA'nın tuttuğu sicilde yetkili görünen sağlayıcılar.
 
@@ -33,7 +33,7 @@ Birinci rapor 17 ülkede 98 sağlayıcıyı kapsıyor. İkinci rapor 21 ülkede 
 
 Başka bir ipucu etkin sağlayıcıların sicildeki payı. ESMA ilk raporda aynı ülkelerden 134 sağlayıcının sicilde yetkili göründüğünü, bunların 98'inin örneklemde yer aldığını yazıyor; pay %73,1. İkinci raporda sicildeki 229 sağlayıcıdan 181'i fon toplamış; pay %79,0. Pay 5,9 puan arttı. Ama bu iki oranın tabanı aynı değil: ilki yalnız örneklemdeki ülkelerin sicilini, ikincisi tüm sicili kullanıyor. Yani 5,9 puanlık fark kaba bir işaret; tam bir ölçü değil.
 
-## İkinci ipucu: toplanan tutar
+## Toplanan tutar ve ortalama büyüklük
 
 İlk rapor için tutar en az 1 milyar euro, ikinci rapor için 4,25 milyar euro. İkinci rakamın birinciye oranı en çok 4,25. Yani tutar sağlayıcı sayısından hızlı arttı; ama tam oranı vermek için ilk yılın gerçek toplamını bilmek gerekirdi. Bir ipucu var: ilk rapor, bir sektöre giden 390 milyon euro'yu toplamın üçte biri olarak tanımlıyor. Bu, 1.170 milyon euro civarında bir toplama işaret ediyor; 4,25 milyar euro'nun buna oranı yaklaşık 3,6.
 
@@ -41,7 +41,7 @@ Sağlayıcı başına ortalamaya bakınca aynı yön çıkıyor. 2024 yılında 
 
 Ortalama bireysel yatırımcının tutarı da 590 euro'dan 660 euro'ya, %11,9 arttı; bireysel yatırımcıların payı %87'den %88'e geldi. Proje başına ortalamayı da ESMA yayımlıyor, ama burada kullanmadık. İkinci raporda krediye dayalı bir projenin ortalaması yaklaşık 240.000 euro; ilk raporda yaklaşık 15.000 euro. Aradaki fark 16 kat. ESMA bunu ikinci raporda şöyle ele alıyor: “a relatively high share of projects may not have completed fundraising by year-end, which may explain why the average amounts raised per project were far higher in this year’s Report than in the previous edition”. ESMA'ya göre tamamlanmamış projeler ortalamayı etkilemiş olabilir; biz de proje başına ortalamayı pazar büyümesi ölçüsü olarak kullanmadık. 
 
-## Ülke düzeyinde iki ipucu birlikte
+## Ülke düzeyinde görünüm
 
 Ülke verisi daha temiz bir karşılaştırma sunuyor, çünkü iki raporda da Fransa ve Hollanda var ve ikisi de tutarını açıkça yazıyor. Fransa'da sağlayıcı sayısı 30'dan 50'ye çıktı; bu %66,7'lik bir artış. Aynı ülkede toplanan tutar 292 milyon euro'dan 1.450 milyon euro'ya çıktı; yani 4,97 katına. Hollanda'da tutar 291 milyon euro'dan 1.000 milyon euro'ya, 3,44 katına çıktı. ESMA ikinci raporda ülke tutarlarını yuvarlak veriyor; bu yüzden ülke oranları yaklaşık değerdir.
 
@@ -83,23 +83,23 @@ Yine de AB ile ABD'yi yan yana koymak bir fikir veriyor: AB'de sağlayıcı say�
 
 ## Karşı okuma
 
-Sağlayıcı sayısı ile tutar arasındaki hız farkını okumanın üç yolu var; üçü de birbirinden bağımsız.
+Sağlayıcı sayısı ile tutar arasındaki hız farkı üç farklı açıdan okunabilir:
 
-Birinci karşı okuma ölçümle ilgili. ESMA yıllar arası eğilimlerin dikkatle yorumlanmasını istiyor ve ilk raporda örneklemin daraldığını belirtiyor; yukarıdaki alıntılar bu çekinceleri gösteriyor.
+İlk olarak ölçüm farkı göze çarpıyor. ESMA yıllar arası eğilimlerin dikkatle yorumlanmasını istiyor ve ilk raporda örneklemin daraldığını belirtiyor; yukarıdaki alıntılar bu çekinceleri açıkça ortaya koyuyor.
 
-İkinci karşı okuma sağlayıcı sayısının zaten bir ölçü olarak zayıf olduğu. Sağlayıcının büyüklüğü, ülkesi ve fon türü sayıda görünmüyor. Bir sağlayıcının eklenmesi ile onlarca sağlayıcının eklenmesi aynı rakamı veriyor.
+İkinci olarak sağlayıcı sayısı tek başına zayıf bir gösterge. Sağlayıcının büyüklüğü, ülkesi ve fon türü bu sayıda görünmüyor; bir küçük sağlayıcının eklenmesiyle onlarca büyük sağlayıcının eklenmesi aynı ağırlıkta sayılıyor.
 
-Üçüncü karşı okuma fiyat etkisi. Tutarlar euro cinsinden ve fiyatlardan arındırılmadı; bu yazıda fiyat etkisi ayrıca hesaplanmadı.
+Üçüncü nokta ise fiyat etkisi. Tutarlar euro cinsinden ve enflasyondan arındırılmadı; bu analizde fiyat etkisi ayrıca hesaplanmadı.
 
 ## Ölçümün ve örneklemin sınırları
 
-Üç sınır öne çıkıyor.
+Veriyi okurken üç temel sınırı göz önünde bulundurmak gerekiyor:
 
-İlki örneklem. İlk rapor 22 ulusal otoritenin verisine, bunlardan 17'sinin ülkesindeki 98 sağlayıcıya dayanıyor; ESMA, veri kalitesi sorunları nedeniyle örneklemin 22 otoriteye dayandığını yazıyor. İkinci rapor 21 ülkedeki 181 sağlayıcıyı kapsıyor. İki raporun kapsamı aynı değil.
+Öncelikle örneklem kapsamı farklı. İlk rapor 22 ulusal otoritenin verisine ve bunlardan 17'sinin ülkesindeki 98 sağlayıcıya dayanıyor; ESMA veri kalitesi sorunları nedeniyle örneklemin daraldığını yazıyor. İkinci rapor ise 21 ülkedeki 181 sağlayıcıyı kapsıyor.
 
-İkincisi alt sınır. 2023 yılı tutarı için ESMA yalnız en az 1 milyar euro diyor. Bu yazıdaki oranlar (en çok 4,25 kat, sağlayıcı başına en az 10,2 milyon euro) bu yüzden bir yöne bağlı.
+İkinci sınır, 2023 yılı tutarının yalnızca en az 1 milyar euro olarak verilmesi. Bu yüzden hesaplanan oranlar (en çok 4,25 kat, sağlayıcı başına en az 10,2 milyon euro) tek yönlü bir alt veya üst sınır niteliğinde.
 
-Üçüncüsü tanım. ESMA yalnız yatırım ve borç verme biçimindeki kitle fonlamasını sayıyor; bağış ve ödül karşılığı kitle fonlaması kapsam dışı. Düzenlemenin kapsamı, on iki aylık dönemde 5 milyon euro'yu aşan teklifleri dışarıda bırakıyor. Bu yüzden rakam, AB'de her türlü kitle fonlamasının toplamı değil.
+Üçüncü olarak tanım farkı var. ESMA yalnızca yatırım ve borç verme biçimindeki kitle fonlamasını sayıyor; bağış ve ödül karşılığı kitle fonlaması kapsam dışında. Düzenleme ayrıca on iki aylık dönemde 5 milyon euro'yu aşan teklifleri dışarıda bırakıyor. Dolayısıyla bu rakamlar, AB'deki her türlü kitle fonlamasının toplamını yansıtmıyor.
 
 ## Nasıl hesapladık
 

@@ -2,22 +2,22 @@
 date: 2026-11-02T08:00:00+03:00
 yaziTuru: analiz
 uretim: yazi-isleri
-title: "OECD girişim sermayesi tablosunda Türkiye'nin satırı yok"
-description: "OECD'nin girişim sermayesi tablosunda Avrupa'daki OECD üyeleri, ABD ve Kanada için 2024 yılı GSYH oranı var; Türkiye bu tabloda değil. Türkiye'nin göründüğü KOBİ kredisi payı ölçüsünde değer grup ortalamasının altında."
+title: "OECD'nin girişim sermayesi tablosunda Türkiye yok, KOBİ kredisinde ise ortalamanın altında"
+description: "OECD'nin 2024 girişim sermayesi GSYH oranı tablosunda 27 ülke yer alırken Türkiye bulunmuyor; Türkiye'nin yer aldığı KOBİ kredisi payı ölçüsünde ise oran grup ortalamasının altında."
 category: yatirimlar
-why_matters: "Bir ülke sıralaması ancak ülkenin tabloda bulunduğu ölçüde konuşur. Bu yazı Türkiye'nin hangi ölçüde sıralandığını, hangisinde sıralanmadığını birbirinden ayırıyor."
+why_matters: "Bir ülkenin uluslararası sıralamadaki yeri, yalnızca hangi verinin yayımlandığı ölçüde anlamlıdır; Türkiye'nin girişim sermayesi tablosunda olmaması, sıralamanın altında olduğu anlamına gelmiyor."
 key_points:
-  - "OECD'nin girişim sermayesi tablosunda 2024 yılı için Avrupa'daki OECD üyeleri, ABD ve Kanada'dan 27 ülkenin GSYH oranı yer alıyor; Türkiye bu tabloda yok."
-  - "Bu 27 ülkenin başındaki ABD'nin oranı GSYH'nin %0,53'ü; ABD'den sonra gelen en yüksek oran Estonya'nın, %0,20. Grubun ortalaması %0,086."
-  - "Türkiye'de KOBİ kredilerinin toplam işletme kredisi içindeki payı 2024 yılında %35,2; 22 ülkelik grubun ortalaması %48,9."
-  - "Girişim sermayesi oranı yüksek altı ülkede KOBİ kredisi payı %11,8 ile %77,5 arasında değişiyor; iki ölçü aynı yöne işaret etmiyor."
+  - "Avrupa'daki OECD üyeleri, ABD ve Kanada'dan oluşan 27 ülkede 2024 girişim sermayesi/GSYH oranı yayımlanırken Türkiye bu tabloda yer almıyor."
+  - "27 ülke arasında ABD %0,53 ile ilk sırada; onu %0,20 ile Estonya izliyor ve grup ortalaması %0,086 düzeyinde."
+  - "Türkiye'de KOBİ kredilerinin toplam işletme kredisi içindeki payı 2024'te %35,2 ile 22 ülkelik grup ortalamasının (%48,9) altında kaldı."
+  - "Girişim sermayesi oranı yüksek altı ülkede KOBİ kredisi payı %11,8 ile %77,5 arasında değişiyor; iki gösterge aynı yönde hareket etmiyor."
 ---
 
-OECD'nin KOBİ finansmanı tablosunda Türkiye'nin 2024 yılı satırı şöyle: KOBİ kredileri, toplam işletme kredilerinin %35,2'si. Aynı kuruluşun girişim sermayesi tablosunda ise Türkiye'nin satırı hiç yok. Bir ülkenin girişim ekosistemi konuşulurken ilk akla gelen soru sıralamadaki yeridir; burada önce sıralamanın kendisine bakmak, sonra Türkiye'nin neden aynı sıralamada bulunmadığını açıkça yazmak gerekiyor.
+OECD'nin KOBİ finansmanı tablosunda Türkiye'nin 2024 yılı satırında KOBİ kredilerinin toplam işletme kredileri içindeki payı %35,2 olarak görünüyor. Aynı kuruluşun girişim sermayesi tablosunda ise Türkiye'ye dair bir satır yok. Bir ülkenin girişim ekosistemi tartışılırken ilk bakılan şey uluslararası sıralamadaki yeri olur; ancak burada önce sıralamanın kendisine bakmak, ardından Türkiye'nin neden o listede yer almadığını netleştirmek gerekiyor.
 
-İki ayrı OECD tablosunu yan yana koyuyoruz. Birincisi, girişim sermayesi yatırımlarının yıllık tutarını ülkenin gayrisafi yurt içi hasılasına (GSYH) bölen piyasa istatistikleri. İkincisi, OECD'nin *Financing SMEs and Entrepreneurs* (KOBİ ve Girişimcilerin Finansmanı) karnesi; bu karnede Türkiye'nin kendi bölümü var. Girişim sermayesi, henüz küçük ve hızlı büyüme hedefi taşıyan şirketlere hisse karşılığı verilen fondur. KOBİ kredisi ise küçük ve orta ölçekli işletmelere verilen borçtur. İkisi girişim finansmanının farklı kapılarıdır ve OECD bunları ayrı tablolarda izliyor.
+Burada iki ayrı OECD veri setini yan yana inceliyoruz. İlki, girişim sermayesi yatırımlarının yıllık tutarını gayrisafi yurt içi hasılaya (GSYH) oranlayan piyasa istatistikleri. İkincisi ise Türkiye'nin kendi ülke bölümünün de bulunduğu *Financing SMEs and Entrepreneurs* (KOBİ ve Girişimcilerin Finansmanı) karnesi. Girişim sermayesi hızlı büyüme hedefleyen genç şirketlere hisse karşılığı sağlanan özkaynak fonunu, KOBİ kredisi ise küçük ve orta ölçekli işletmelere verilen borcu ifade ediyor; OECD bu iki kanalı ayrı tablolarda izliyor.
 
-Karşılaştırma grubunu baştan tanımlıyoruz: Avrupa'daki OECD üyeleri (Türkiye dahil), ABD ve Kanada. Aşağıdaki sıralamalar, ortalamalar ve sayımlar bu gruba aittir; OECD'nin tamamı için bir iddia taşımıyor. Sonuç iki parçalı. 2024 yılı için girişim sermayesi tablosunda bu gruptan 27 ülke var ve Türkiye bunların arasında değil. Türkiye'nin göründüğü KOBİ kredisi tablosunda ise Türkiye'nin değeri, grubun ortalamasının altında. Bu iki cümle Türkiye'nin girişim finansmanı hakkında bir hüküm vermiyor; yalnızca iki ölçünün ne söylediğini ve neyi söyleyemediğini ayırıyor.
+Karşılaştırma grubumuz Avrupa'daki OECD üyeleri (Türkiye dahil), ABD ve Kanada'dan oluşuyor; aktarılan sıralamalar ve ortalamalar yalnızca bu gruba ait. 2024 yılı girişim sermayesi tablosunda bu gruptan 27 ülke yer alırken Türkiye listede bulunmuyor. Türkiye'nin yer aldığı KOBİ kredisi tablosunda ise oran grup ortalamasının altında kalıyor. Bu iki bulgu Türkiye'nin girişim finansmanı hakkında bir değer yargısı üretmiyor; yalnızca iki ölçünün neyi gösterip neyi gösteremediğini ayırıyor.
 
 ## Tablonun ilk satırları
 
@@ -61,7 +61,7 @@ Karne, ülkelerin KOBİ'lere verilen kredilerin toplam işletme kredileri içind
 
 Sıralamanın bu ölçüsünde Türkiye'nin çevresindeki ülkeler şöyle: İrlanda %47,3, İspanya %45,3, Avusturya %44,8, Fransa %39,4, Norveç %38,9; Türkiye'nin ardından Birleşik Krallık %33,3, Hollanda %32,0, Lüksemburg %29,0, Estonya %17,1 ve İtalya %15,4. Slovakya %83,8 ile listenin başında, Kanada %11,8 ile sonunda. Aradaki açıklık geniş; ortalama bu iki uç arasında bir yerde duruyor ve Türkiye'nin değeri aralığın alt yarısında.
 
-![Çubuk grafik: KOBİ kredisi payında Türkiye grubun ortalamasının altında: Pay: İrlanda: %47,3, İspanya: %45,3, Avusturya: %44,8, Fransa: %39,4, Norveç: %38,9, Türkiye: %35,2, Birleşik Krallık: %33,3, Hollanda: %32,0, Lüksemburg: %29,0, Estonya: %17,1, İtalya: %15,4.](./graf-2.svg)
+![Tablo: KOBİ kredisi payında Türkiye grubun ortalamasının altında: Pay: İrlanda: %47,3, İspanya: %45,3, Avusturya: %44,8, Fransa: %39,4, Norveç: %38,9, Türkiye: %35,2, Birleşik Krallık: %33,3, Hollanda: %32,0, Lüksemburg: %29,0, Estonya: %17,1, İtalya: %15,4.](./graf-2.svg)
 *KOBİ kredilerinin toplam işletme kredisi içindeki payı, yüzde, Türkiye'nin çevresindeki on bir ülke. Kaynak: OECD.*
 ![Rakam kutusu: Türkiye'de KOBİ kredilerinin işletme kredisi içindeki payı grup ortalamasının altında: Türkiye: Türkiye: %35,2; Karşılaştırma: Grup ortalaması: %48,9, Slovakya: %83,8, Kanada: %11,8.](./graf-3.svg)
 *KOBİ kredilerinin toplam işletme kredisi içindeki payı, yüzde. Kaynak: OECD.*
@@ -83,15 +83,9 @@ Tablonun yıldan yıla kapsamının değişebilmesi, sıralamanın eksik satırl
 
 ## Sıralamanın okunamayan yanları
 
-Birincisi, kapsam. İki tabloda ülke sayısı farklı; 2024 yılında girişim sermayesinde 27, KOBİ kredisi payında 22 ülke var. Aynı ülkeler iki tabloda aynı sırayla bulunmuyor, bu yüzden iki sıralama arasında ülke bazında doğrudan eşleştirme yapılamıyor.
+İki tablo arasındaki karşılaştırmanın sınırları var. Öncelikle girişim sermayesinde 27, KOBİ kredisi payında ise 22 ülke bulunuyor ve aynı ülkeler iki listede birebir eşleşmiyor. Ayrıca KOBİ tanımları ve faiz hesaplama yöntemleri ülkeden ülkeye değişebiliyor; Türkiye bölümünde de KOBİ ölçütlerinin Resmî Gazete'de yayımlanan bir yönetmelikle güncellendiği not ediliyor. İki göstergenin ortak bir paydası yok: biri GSYH'ye, diğeri toplam işletme kredisine oranlandığı için tek bir finansman endeksine indirgenemiyor.
 
-İkincisi, tanım. Karne, KOBİ faiz oranlarının ülkeler arasında farklı hesaplandığını kendisi belirtiyor; benzer bir dikkat KOBİ tanımı için de geçerli. Türkiye bölümünde KOBİ ölçütlerinin Resmî Gazete'de yayımlanan bir yönetmelikle güncellendiği yazıyor. Tanım değiştiğinde payın ne ölçtüğü de değişebilir.
-
-Üçüncüsü, payda. İki tablonun ortak paydası yok: biri GSYH'ye, öteki toplam işletme kredisine oranlıyor. Bu yüzden iki ölçüyü tek bir finansman düzeyi göstergesine çevirmek mümkün değil.
-
-Dördüncüsü, grubun sınırı. Grup, Avrupa'daki OECD üyeleri, ABD ve Kanada'dan oluşuyor. Avustralya, Japonya, Güney Kore ve Yeni Zelanda gibi başka OECD üyeleri ile üye olmayan ülkeler bu karşılaştırmanın dışında. Bu yüzden sıralamalar bu gruba aittir; OECD'nin tamamı için ya da dünya için bir sıra söylemiyor.
-
-Beşincisi, bu yazının kapsamı. Girişim sermayesi tablosunda Türkiye'nin bulunmayışı bir veri boşluğudur; bu boşluğu tahminle ya da başka bir kaynaktan türetilmiş bir rakamla doldurmuyoruz. Türkiye'nin yerini bu ölçüde söyleyemiyoruz.
+Karşılaştırma grubu Avrupa'daki OECD üyeleri, ABD ve Kanada ile sınırlı; Avustralya, Japonya, Güney Kore ve Yeni Zelanda gibi diğer OECD üyeleri kapsam dışında. Girişim sermayesi tablosunda Türkiye'nin bulunmayışı ise bir veri boşluğu; bu boşluğu tahminle ya da farklı bir kaynaktan türetilmiş rakamlarla doldurmuyoruz.
 
 ## Nasıl hesapladık
 

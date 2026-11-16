@@ -2,54 +2,52 @@
 date: 2026-11-19T08:00:00+03:00
 yaziTuru: analiz
 uretim: yazi-isleri
-title: "Türkiye’de hızlı büyüyenler istihdamda AB’nin iki katını aşıyor"
-description: "Yüksek büyüme gösteren işletmeler sayıca az, ama en az 10 çalışanı olan işletmelerdeki istihdamın dörtte birinden fazlasını taşıyor. Türkiye’de çalışan payı, işletme payından %85,69 yüksek."
+title: "Hızlı büyüyen şirketlerin istihdamdaki payı Türkiye’de AB’nin iki katını aşıyor"
+description: "Yüksek büyüme gösteren işletmeler sayıca az görünse de en az 10 çalışanı olan işletmelerdeki istihdamın dörtte birinden fazlasını taşıyor. Türkiye’de çalışan payı, işletme payının %85,69 üzerinde."
 category: girisimler
-why_matters: "Büyümenin ortalama işletmede değil dağılımın ucunda toplandığını ve bu ucun istihdamdaki ağırlığının ülkeden ülkeye ne kadar değiştiğini gösteriyor."
+why_matters: "Büyümenin ortalama işletmede değil dağılımın ucunda toplandığını ve bu ucun istihdamdaki ağırlığının ülkeden ülkeye nasıl değiştiğini gösteriyor."
 key_points:
-  - "Türkiye’de 2024 yılında 3.451.887 çalışan yüksek büyüme gösteren işletmelerde çalışıyordu; bu, en az 10 çalışanı olan işletmelerin istihdamının %26,87’si."
-  - "AB’de aynı pay %12,84; Türkiye’deki değer AB’dekinden %109,27 yüksek."
-  - "Türkiye’de hızlı büyüyenler işletme sayısında %14,47, istihdamda %26,87 paya sahip; çalışan payı işletme payından %85,69 yüksek."
-  - "Çalışan payı 2014 yılında %30,48’di, 2020 yılında %22,18’e indi, 2023 yılında %29,13’e çıktı, 2024 yılında %26,87 oldu."
+  - "Türkiye’de 2024 yılında 3.451.887 kişi yüksek büyüme gösteren işletmelerde çalışıyordu; bu, en az 10 çalışanı olan işletmelerdeki istihdamın %26,87’sine denk geliyor."
+  - "AB’de aynı oran %12,84; Türkiye’deki çalışan payı AB ortalamasının %109,27 üzerinde."
+  - "Türkiye’de hızlı büyüyenler işletme sayısında %14,47, istihdamda ise %26,87 pay alıyor; çalışan payı işletme payından %85,69 daha yüksek."
+  - "Çalışan payı 2014’te %30,48 iken 2020’de %22,18’e geriledi, 2023’te %29,13’e çıktı ve 2024’te %26,87 oldu."
 ---
 
-Türkiye’de 2024 yılında 3.451.887 çalışan, son üç yılda her yıl ortalama %10’dan fazla büyüyen işletmelerde çalışıyordu. Bu işletmeler, en az 10 çalışanı olan işletmelerin %14,47’sini oluşturuyor. Çalışanların ise %26,87’si onların çatısı altında. İşletme sayısındaki pay ile istihdamdaki pay arasındaki bu açıklık, yazının ilk ipucu.
+Türkiye’de 2024 yılında 3.451.887 çalışan, son üç yılda her yıl ortalama %10’dan fazla büyüyen işletmelerin bünyesinde yer alıyordu. En az 10 çalışanı olan işletmelerin yalnızca %14,47’sini oluşturan bu şirketler, aynı kümedeki toplam istihdamın %26,87’sini tek başına taşıyor. İşletme sayısı ile istihdam payı arasındaki bu belirgin makas, Türkiye’deki büyüme dinamiklerinin ilk ipucu.
 
-AB’de aynı ölçüte göre işletmelerin %10,01’i hızlı büyüyor ve çalışanların %12,84’ü bu işletmelerde yer alıyor. Türkiye’deki çalışan payı AB’dekinden %109,27 yüksek; yani iki katını aşıyor.
+Avrupa Birliği genelinde ise aynı ölçüte göre işletmelerin %10,01’i hızlı büyüyor ve toplam çalışanların %12,84’ü bu işletmelerde bulunuyor. Türkiye’deki %26,87’lik çalışan payı AB’dekinden %109,27 daha yüksek; yani iki katını aşıyor.
 
-Soru basit: büyüme işletmelerin hepsine mi yayılıyor, yoksa küçük bir kesimde mi toplanıyor? Ortalama işletmeye bakmak bu soruyu yanıtlamaz, çünkü ortalama uçları siler. Biz de uçlara baktık. Eurostat’ın işletme demografisi tablosundan Türkiye ve Avrupa ülkeleri için iki ayrı pay çektik, yan yana koyduk ve farkın nereden geldiğini aradık.
+Ortalamalar uçları gizlediği için büyümenin tabana mı yayıldığını yoksa belirli bir kesimde mi toplandığını görmek adına dağılımın ucuna bakmak gerekiyor. Eurostat’ın işletme demografisi tablosundan Türkiye ve Avrupa ülkeleri için çektiğimiz iki ayrı payı yan yana koyduğumuzda, bu farkın nereden kaynaklandığı daha net görünüyor.
 
 ![Rakam kutusu: Türkiye’de hızlı büyüyen işletmelerin çalışan payı AB toplamının iki katından fazla: Türkiye: Türkiye çalışan payı: %26,87; Karşılaştırma: AB toplamı çalışan payı: %12,84, Türkiye işletme payı: %14,47.](./graf-1.svg)
 *En az on çalışanı olan işletmelerde çalışanların payı, yüzde; 2024 yılı. Kaynak: Eurostat.*
+
 ## Hangi işletmeye yüksek büyüme deniyor?
 
-Eurostat tanımı şöyle: yüksek büyüme gösteren işletme, üç yıllık bir dönemde çalışan sayısı yıllık ortalama %10’dan fazla artan ve dönemin başında en az 10 çalışanı bulunan işletmedir. Dönemin başlangıç yılında kurulmuş işletmeler bu sınıfa dahil değil. Tanım yeni doğanları değil, dönem başında var olup büyüyenleri sayıyor.
+Eurostat, yüksek büyüme gösteren işletmeyi üç yıllık bir dönemde çalışan sayısı yıllık ortalama %10’dan fazla artan ve dönemin başında en az 10 çalışanı bulunan işletme olarak tanımlıyor. Dönemin başlangıç yılında kurulan yeni işletmeler bu sınıfa girmiyor; yani tanım yeni doğanları değil, dönem başında hâlihazırda var olup büyüyenleri kapsıyor.
 
-Bu tanımın iki sonucu var. Birincisi, ölçü cirodan değil çalışan sayısından geliyor. İkincisi, paydada yalnızca en az 10 çalışanı olan aktif işletmeler yer alıyor. Daha küçük işletmeler hiçbir pay hesabına girmiyor. Dolayısıyla %26,87 ifadesi tüm çalışanların değil, en az 10 çalışanı olan işletmelerde çalışanların payı.
-
-Eurostat iki ayrı pay yayımlıyor. İlki, hızlı büyüyen işletmelerin, en az 10 çalışanı olan aktif işletmeler içindeki sayı payı. İkincisi, bu işletmelerde çalışanların, aynı grubun toplam çalışanı içindeki payı. İkisi aynı işletme kümesini farklı biçimde tartıyor. Aralarındaki fark, yazının konusu.
+Bu tanım iki önemli sınır çiziyor. Ölçüt ciroya değil çalışan sayısına dayanıyor ve paydada yalnızca en az 10 çalışanı olan aktif işletmeler yer alıyor. Daha küçük işletmeler hesabın dışında kaldığı için %26,87 oranı ekonomideki tüm çalışanların değil, 10 ve üzeri çalışanlı işletmelerdeki istihdamın payını ifade ediyor. Eurostat’ın yayımladığı işletme sayısı payı ile çalışan payı aynı kümeyi farklı biçimlerde tartıyor; aralarındaki ayrışma da asıl resmi veriyor.
 
 ## Sayı payı ile çalışan payı neden ayrışıyor?
 
-Türkiye’de 2024 yılında hızlı büyüyen işletme sayısı 33.168’di. Bu işletmelerde çalışan 3.451.887 kişiyi 33.168’e bölünce işletme başına 104,07 çalışan çıkıyor. Eurostat bu ortalamayı doğrudan yayımlıyor.
+Türkiye’de 2024 yılında hızlı büyüyen işletme sayısı 33.168’di. Bu işletmelerde çalışan 3.451.887 kişiyi işletme sayısına böldüğümüzde, Eurostat’ın da doğrudan yayımladığı üzere, işletme başına ortalama 104,07 çalışan düşüyor.
 
-Aynı bilgiyi iki payın karşılaştırması da verir. Türkiye’de çalışan payı işletme payından %85,69 yüksek. Bu fark, hızlı büyüyen işletmenin ortalama büyüklüğünün, en az 10 çalışanı olan tüm işletmelerin ortalamasından o kadar fazla olduğunu söylüyor. AB’de aynı karşılaştırma %28,27 veriyor.
+Türkiye’de çalışan payının işletme payından %85,69 daha yüksek olması, hızlı büyüyen işletmelerin ortalama ölçeğinin, en az 10 çalışanı olan tüm işletmelerin ortalamasından çok daha büyük olduğunu gösteriyor. AB’de ise bu fark yalnızca %28,27.
 
-İşletme sayısı payında Türkiye ile AB arasında 4,46 puan fark var. Çalışan payında ise fark 14,03 puana çıkıyor. İki taraf arasındaki açıklık, sayıdan istihdama geçerken belirgin biçimde büyüyor. Bu büyümeyi iki karşılaştırmanın ayrışması taşıyor: Türkiye’de çalışan payı işletme payından %85,69 yüksek, AB’de %28,27 yüksek.
-
-Karşılaştırma her ülkede farklı sonuç veriyor. Danimarka’da çalışan payı işletme payından %37,26, Finlandiya’da %28,43, Almanya’da %48,56, İtalya’da %20,73, İspanya’da %2,97 yüksek. Fransa’da ise %28,41 düşük: orada hızlı büyüyenler, işletme sayısında aldıkları paydan daha az istihdam payı taşıyor. Aynı tanım Türkiye’de ortalamadan büyük işletmeleri, Fransa’da ortalamadan küçük işletmeleri öne çıkarıyor.
+İşletme sayısı payında Türkiye ile AB arasında 4,46 puanlık bir fark varken, çalışan payında bu makas 14,03 puana çıkıyor. Sayıdan istihdama geçerken açılan bu fark, ülkeler arasında da keskin biçimde değişiyor. Çalışan payı işletme payından Almanya’da %48,56, Danimarka’da %37,26, Finlandiya’da %28,43, İtalya’da %20,73 ve İspanya’da %2,97 yüksek. Fransa’da ise tablo tersine dönüyor: çalışan payı işletme payından %28,41 daha düşük. Yani aynı tanım Türkiye’de ortalamadan büyük işletmeleri öne çıkarırken, Fransa’da ortalamadan küçük işletmeleri yakalıyor.
 
 ![Sütun grafik: Hızlı büyüyenlerin çalışan payı işletme payından Türkiye’de çok yüksek, Fransa’da düşük: Fark: Türkiye: %85,7, Almanya: %48,6, Danimarka: %37,3, AB: %28,3, Finlandiya: %28,4, İtalya: %20,7, İspanya: %3,0, Fransa: %−28,4.](./graf-2.svg)
 *Çalışan payının işletme payından yüzde farkı, 2024 yılı. Kaynak: Eurostat.*
+
 ## Ülkeler arasında sıra
 
-Çalışan payı verisi bulunan ülkeler arasında, 2024 yılında Türkiye Malta’dan sonra ikinci sırada. Malta’da pay %31,87, Türkiye’de %26,87, Yunanistan’da %26,37. Ardından Portekiz (%21,73), Norveç (%20,43), Danimarka (%20,26), Finlandiya (%18,79) ve İsveç (%17,73) geliyor. AB toplamı %12,84. Almanya %12,39, İtalya %11,59, İspanya %11,09, Fransa %5,67.
+Çalışan payı verisi bulunan ülkeler arasında Türkiye, 2024 yılında Malta’nın (%31,87) ardından %26,87 ile ikinci sırada yer alıyor. Yunanistan %26,37 ile hemen arkada; onu Portekiz (%21,73), Norveç (%20,43), Danimarka (%20,26), Finlandiya (%18,79) ve İsveç (%17,73) izliyor. AB ortalaması %12,84 düzeyinde kalırken Almanya %12,39, İtalya %11,59, İspanya %11,09 ve Fransa %5,67’de.
 
-İrlanda’nın 2024 yılı çalışan payı tabloda yok. 2023’te İrlanda %29,99 ile Türkiye’nin %29,13’ünün 0,86 puan üzerindeydi; Türkiye 2023 yılında da ikinci sıradaydı. İrlanda’nın bu değeri Eurostat’ta tahmin işaretiyle yayımlanıyor.
+İrlanda’nın 2024 yılı çalışan payı tabloda yer almıyor. 2023’te İrlanda, Eurostat’ta tahmin işaretiyle yayımlanan %29,99’luk oranla Türkiye’nin (%29,13) 0,86 puan önündeydi; Türkiye 2023’te de ikinci sıradaydı.
 
-Sıra, işletme sayısı payına bakınca değişiyor. 2024 yılında bu payın en yüksek olduğu ülkeler İrlanda (%19,90), Malta (%16,94), Yunanistan (%15,57), Danimarka (%14,76) ve Finlandiya (%14,63). Türkiye %14,47 ile bu listede altıncı. Aynı ülke sayıda altıncı, istihdamda ikinci. Aradaki fark, yukarıda hesapladığımız ortalama büyüklük farkından geliyor.
+İşletme sayısı payına geçildiğinde ise sıralama değişiyor. 2024’te listenin başında İrlanda (%19,90), Malta (%16,94), Yunanistan (%15,57), Danimarka (%14,76) ve Finlandiya (%14,63) var. Türkiye %14,47 ile altıncı sırada. Sayıda altıncı, istihdamda ikinci olmak, yine hızlı büyüyen işletmelerin ölçek farkından kaynaklanıyor.
 
-Tek yılın sırasını okurken bir uyarı gerekiyor: ülke payları bir yıldan ötekine hızla oynayabiliyor. Aşağıdaki tablo, 2024 yılı sıralamasının üst yarısından beş ülkenin 2023 yılı ve 2024 yılı çalışan paylarını ve aradaki farkı gösteriyor. Malta yukarı çıkarken Finlandiya’nın payı altı puandan fazla geriledi. Bu oynaklık içinde Türkiye’nin ikinci sırası ihtiyatla okunmalı; yine de 2023 yılı değeri de aynı sırayı veriyor.
+Tek yıllık sıralamalara temkinli yaklaşmakta yarar var, çünkü ülke payları yıldan yıla sert oynayabiliyor. Aşağıdaki tablo, üst sıralardaki beş ülkenin 2023 ve 2024 çalışan paylarını gösteriyor: Malta 7,42 puan sıçrarken Finlandiya 6,51 puan geriledi. Bu oynaklığa karşın Türkiye’nin iki yıl üst üste ikinci sırada kalması dikkat çekici.
 
 | Ülke | 2023 yılı çalışan payı | 2024 yılı çalışan payı | Fark (puan) |
 |---|---|---|---|
@@ -63,23 +61,23 @@ Tek yılın sırasını okurken bir uyarı gerekiyor: ülke payları bir yıldan
 
 ![Çubuk grafik: Çalışan payında Türkiye, verisi bulunan ülkeler arasında Malta’dan sonra ikinci: Çalışan payı: Malta: %31,87, Türkiye: %26,87, Yunanistan: %26,37, Portekiz: %21,73, Norveç: %20,43, Danimarka: %20,26, Finlandiya: %18,79, İsveç: %17,73, AB toplamı: %12,84, Almanya: %12,39, İtalya: %11,59, İspanya: %11,09, Fransa: %5,67.](./graf-3.svg)
 *Hızlı büyüyen işletmelerdeki çalışanların payı, yüzde; 2024 yılı. Kaynak: Eurostat.*
+
 ## Zaman içinde: on yıllık seyir
 
-Çalışan payı Türkiye’de 2014 yılında %30,48’di. 2020 yılında %22,18’e düştü; serinin en düşük değeri bu. 2023 yılında %29,13’e kadar çıktı, 2024 yılında %26,87’ye geriledi. Bunlar sırasıyla 8,30 puanlık düşüş, 6,95 puanlık artış, 2,26 puanlık düşüş.
+Türkiye’de çalışan payı 2014’te %30,48 iken 2020’de serinin en düşük noktası olan %22,18’e indi (8,30 puanlık düşüş). Ardından 2023’te %29,13’e yükseldi (6,95 puanlık artış) ve 2024’te %26,87’ye geriledi (2,26 puanlık düşüş).
 
-İşletme sayısı payı da aynı yolu izledi: 2014 yılında %16,66, 2020 yılında %11,91, 2023 yılında %15,49, 2024 yılında %14,47. 2014–2020 arasında 4,75 puan düşmüş, 2020–2023 arasında 3,58 puan artmış.
+İşletme sayısı payı da paralel bir rota izledi: 2014’te %16,66, 2020’de %11,91, 2023’te %15,49 ve 2024’te %14,47. Bu da 2014–2020 arasında 4,75 puanlık düşüş, 2020–2023 arasında ise 3,58 puanlık artış anlamına geliyor.
 
-Sayılarla bakınca hareket daha çıplak. Hızlı büyüyen işletme sayısı 2014 yılında 30.519’du, 2020 yılında 22.114’e indi; bu %27,54’lük bir düşüş. 2023 yılında 34.571’e çıktı; 2020 yılına göre %56,33 artış. 2024 yılında 33.168’e geriledi; bir önceki yıla göre %4,06 azalış.
-
-İki serinin de en düşük değeri 2020 yılında; ikisi de o yıldan 2023 yılına kadar yükseldi, 2024 yılında geriledi. Tek ayrıntı: çalışan payı 2019 yılında %23,72’den %24,29’a küçük bir toparlanma gösterdi, işletme payında böyle bir toparlanma yok. İşletme sayısı payı ile istihdam payı bu on yılda birbirinden kopmadı.
+Mutlak sayılar hareketi daha net ortaya koyuyor. 2014’te 30.519 olan hızlı büyüyen işletme sayısı, 2020’de %27,54 azalarak 22.114’e düştü. 2023’te 2020’ye göre %56,33 artışla 34.571’e çıktıktan sonra 2024’te %4,06 gerileyerek 33.168 oldu. On yıllık dönemde iki seri neredeyse birlikte hareket etti; tek istisna, çalışan payının 2019’da %23,72’den %24,29’a küçük bir yükseliş göstermesi, işletme payında ise bunun görülmemesi.
 
 ![Çizgi grafik: Türkiye’de işletme payı ve çalışan payı 2020 yılında dibe indi, sonra yeniden yükseldi: Çalışan payı: 2014 yılında %30,48, 2015 yılında %27,96, 2016 yılında %25,20, 2017 yılında %24,53, 2018 yılında %23,72, 2019 yılında %24,29, 2020 yılında %22,18, 2021 yılında %23,73, 2022 yılında %27,66, 2023 yılında %29,13, 2024 yılında %26,87; İşletme payı: 2014 yılında %16,66, 2015 yılında %15,13, 2016 yılında %13,52, 2017 yılında %13,29, 2018 yılında %12,61, 2019 yılında %12,32, 2020 yılında %11,91, 2021 yılında %12,99, 2022 yılında %14,79, 2023 yılında %15,49, 2024 yılında %14,47.](./graf-4.svg)
 *Hızlı büyüyen işletmelerin payı, yüzde. Kaynak: Eurostat.*
+
 ## Sektörlere göre uçlar
 
-Aynı pay sektörler arasında da eşit dağılmıyor. 2024 yılında Türkiye’de çalışan payı en yüksek sektör konaklama ve yiyecek hizmeti: %42,37. Ardından eğlence, dinlence ve spor (%34,23), inşaat (%32,15) ve toptan ve perakende ticaret (%32,12) geliyor. En düşük paylar finans ve sigortada (%14,18) ve sağlık ve sosyal hizmette (%15,35). İmalatta %21,02.
+2024’te Türkiye’de çalışan payının en yüksek olduğu sektör %42,37 ile konaklama ve yiyecek hizmeti. Onu eğlence, dinlence ve spor (%34,23), inşaat (%32,15) ile toptan ve perakende ticaret (%32,12) izliyor. En düşük paylar ise finans ve sigortada (%14,18) ve sağlık ve sosyal hizmette (%15,35); imalat %21,02 düzeyinde.
 
-Sayı ve pay aynı şeyi söylemiyor. Hızlı büyüyen işletmelerin sayıca en kalabalık iki kesimi imalat (7.858 işletme) ve toptan ve perakende ticaret (6.831 işletme). Bu iki sektörün ardından inşaat (5.059 işletme) ile konaklama ve yiyecek hizmeti (3.491 işletme) geliyor; dört sektörün toplamı 23.239 işletme, yani Türkiye’deki hızlı büyüyenlerin %70,06’sı.
+İşletme sayısına bakıldığında tablo değişiyor. Hızlı büyüyen işletmelerin sayıca en yoğun olduğu iki sektör imalat (7.858 işletme) ve toptan ve perakende ticaret (6.831 işletme). İnşaat (5.059) ile konaklama ve yiyecek hizmeti (3.491) de eklendiğinde, bu dört sektör 23.239 işletmeyle Türkiye’deki tüm hızlı büyüyenlerin %70,06’sını oluşturuyor.
 
 | Sektör | Hızlı büyüyen işletme | Tüm hızlı büyüyenler içindeki payı | Sektörde işletme payı | Sektörde çalışan payı |
 |---|---|---|---|---|
@@ -90,41 +88,26 @@ Sayı ve pay aynı şeyi söylemiyor. Hızlı büyüyen işletmelerin sayıca en
 
 *Hızlı büyüyen işletme sayısı ve payları, Türkiye, 2024 yılı. Kaynak: Eurostat.*
 
-Tablo iki farklı okuma sunuyor. İmalat sayıca ilk sırada, ama imalatta çalışan payı Türkiye toplamının altında kalıyor: sayı olarak çok, istihdam olarak görece az pay taşıyor. Konaklama ve yiyecek hizmetinde tersi geçerli: sayıca dördüncü, çalışan payında birinci. Aynı sektörde işletme payı %17,80 iken çalışan payı %42,37.
+İmalat sayıca ilk sırada olmasına rağmen çalışan payında Türkiye ortalamasının (%26,87) altında kalıyor. Konaklama ve yiyecek hizmetinde ise tam tersi geçerli: sayıca dördüncü sırada ama işletme payı %17,80 iken çalışan payı %42,37 ile zirvede.
 
 ![Çubuk grafik: Çalışan payı en yüksek sektör konaklama ve yiyecek hizmeti: Çalışan payı: Konaklama ve yiyecek: %42,37, Eğlence, dinlence, spor: %34,23, İnşaat: %32,15, Ticaret: %32,12, İdari ve destek: %28,61, Ulaştırma ve depolama: %26,85, Elektrik ve gaz: %23,06, Mesleki ve teknik: %24,83, Madencilik: %24,67, Eğitim: %22,63, İmalat: %21,02, Gayrimenkul: %22,68, Sağlık ve sosyal hizmet: %15,35, Finans ve sigorta: %14,18, Bilgi ve iletişim: %25,54, Su ve atık yönetimi: %25,22.](./graf-5.svg)
 *Hızlı büyüyen işletmelerdeki çalışanların payı, yüzde; Türkiye, 2024 yılı. Kaynak: Eurostat.*
-## Sonuca varırken: iki ipucu, bir tutarsızlık
 
-Elimizdeki iki ipucu aynı yönü gösteriyor. Birincisi, Türkiye’de hızlı büyüyenlerin istihdamdaki payı AB’dekinden %109,27 yüksek. İkincisi, bu fark işletme sayısına bakınca çok daha küçük: sayı payında Türkiye’nin AB’den farkı %44,56, yani çalışan payındaki farkın yarısından az. Fark, hızlı büyüyen işletmelerin sayısından çok, onların büyüklüğünde birikiyor.
+## Verinin işaret ettiği tablo ve sınırları
 
-Tutarsız görünen tek şey zaman serisi. Pay 2014 yılında yüksekti, 2020 yılında dibe indi, sonra yeniden yükseldi. Bu hareket tanımın kendi pencere yapısından ayrılmadan okunamıyor (aşağıda ayrıntısı var). Sıralamadaki ikinci yer de tek yıla bağlı oynaklık taşıyor. Dolayısıyla veriden çıkarabildiğimiz en sağlam cümle şu: hızlı büyüyenler Türkiye’de sayıca küçük bir kesim, ama istihdamdaki ağırlıkları AB’dekinden belirgin biçimde yüksek ve bu ağırlık ortalamadan büyük işletmelerde toplanıyor.
+Türkiye’de hızlı büyüyenlerin istihdamdaki payı AB’dekinden %109,27 yüksekken, işletme sayısı payındaki fark %44,56 ile bunun yarısından az. Bu durum, AB ile aradaki farkın işletme sayısından çok hızlı büyüyen şirketlerin ölçeğinden kaynaklandığını gösteriyor. Zaman serisindeki 2014–2020 düşüşü ve sonraki yükseliş ise tanımın üç yıllık pencere yapısından bağımsız okunamıyor.
 
-## Karşı okuma: yüksek pay başka nasıl okunabilir?
-
-Dört karşı okuma var.
-
-Birincisi, paydanın dar olması. Tanım en az 10 çalışanı olan işletmeleri kapsıyor; daha küçük işletmeler hem payın hem paydanın dışında kalıyor. Bu yüzden %26,87, ekonominin tamamında hızlı büyüyenlerin ağırlığı değil, eşiğin üstündeki kümedeki ağırlığı. Aynı sınırlama AB için de geçerli, yani karşılaştırma eşit koşulda yapılıyor; ama eşiğin altındaki işletmelerin bu iki ekonomideki ağırlığı bu tablodan okunamıyor.
-
-İkincisi, ölçünün çalışan sayısına dayanması. Eurostat sözlüğü büyümenin ciroyla da ölçülebileceğini ve farklı bir yüzde eşiğinin de uygulanabileceğini not ediyor; bu tablodaki ölçü yalnızca çalışan sayısı ve %10’luk eşik. Ciroya ya da başka bir eşiğe göre kurulan bir tablo, aynı ülkeleri farklı sıralayabilir.
-
-Üçüncüsü, tanımın göreli artışa dayanması. Başlangıçta 10 çalışanı olan bir işletmenin eşiği geçmesi için birkaç çalışan eklemesi yeter. Eşiğe yakın işletmelerde küçük mutlak artışlar da sınıflamayı değiştirebilir. Tablo, çalışan sayısındaki artışın nedenini söylemiyor.
-
-Dördüncüsü, ortalama büyüklüğün tek başına dağılımı anlatmaması. %85,69’luk fark ortalamaya dayanıyor; hızlı büyüyenlerin içinde bir avuç çok büyük işletme bulunuyorsa, farkı onlar yukarı çekebilir. Eurostat tablosu işletme başına çalışan dağılımını vermiyor; bu ayrımı veriden yapamıyoruz.
+Bu yüksek oranı yorumlarken dört noktayı akılda tutmak gerekiyor. İlk olarak, tanım yalnızca en az 10 çalışanı olan işletmeleri kapsadığı için daha küçük işletmeler hem payın hem paydanın dışında kalıyor; dolayısıyla %26,87 ekonominin tamamını değil, eşiğin üzerindeki kümeyi yansıtıyor. İkincisi, büyüme burada yalnızca çalışan sayısı ve %10 eşiğiyle ölçülüyor; ciroya dayalı bir ölçüm ülkeleri farklı sıralayabilir. Üçüncüsü, göreli artışa dayanan tanımda başlangıçta 10 çalışanı olan bir işletme birkaç kişi ekleyerek eşiği geçebiliyor ve tablo bu artışın nedenini açıklamıyor. Son olarak, %85,69’luk fark ortalamaya dayanıyor; Eurostat işletme başına çalışan dağılımını vermediği için birkaç çok büyük işletmenin ortalamayı yukarı çekip çekmediği bu veriden anlaşılamıyor.
 
 ## Tanım ve pencere etkisi
 
-Pay her yıl için üç yıllık pencereyle hesaplanıyor. 2023 yılı değeri 2020–2023 dönemini, 2024 yılı değeri 2021–2024 dönemini ölçüyor. Her iki pencerenin başlangıç noktası, pandemi dönemine (2020–2021) denk geliyor. Veri bu başlangıç etkisini ayırmıyor; biz de ayırmadık. Bu nedenle 2014–2020 arasındaki düşüş ile sonraki artışı aynı ölçekte yorumlamak mümkün değil; yalnızca iki serinin birlikte hareket ettiğini söyleyebiliyoruz.
+Pay her yıl üç yıllık pencerelerle hesaplanıyor: 2023 değeri 2020–2023 dönemini, 2024 değeri ise 2021–2024 dönemini kapsıyor. Her iki pencerenin başlangıcı da pandemi yıllarına (2020–2021) denk geldiği ve veri bu baz etkisini ayrıştırmadığı için 2014–2020 düşüşü ile sonraki artışı aynı ölçekte yorumlamak güç.
 
-Tablodaki bazı değerler Eurostat’ın kendi işaretleriyle yayımlanıyor: AB toplamının 2024 yılı çalışan payı tahmin, Almanya’nın ve Portekiz’in 2024 yılı değerleri seri kırılması işaretli. Karşılaştırmaya bu değerleri işaretleriyle birlikte aldık.
-
-Bir sınır daha: bu tablo tek tek işletmeleri göstermiyor. Kırılım yalnızca sektör düzeyinde var; il, işletme büyüklüğü ya da işletmenin kuruluş yılı bu paylarda ayrıştırılmış değil.
+Tabloda AB toplamının 2024 çalışan payı tahmin, Almanya ve Portekiz’in 2024 değerleri ise seri kırılması işaretli olarak yer alıyor. Ayrıca veri yalnızca sektör düzeyinde kırılım sunuyor; il, işletme büyüklüğü veya kuruluş yılı ayrıştırılmıyor.
 
 ## Nasıl hesapladık
 
-Veri, Eurostat’ın yüksek büyüme gösteren işletmeler ve ilgili istihdam tablosundan (bd_hg) çekildi. Kapsam, kamu yönetimi ve benzeri alanlar dışındaki sanayi, inşaat ve piyasa hizmetleri. İşletme payı ve çalışan payı, Eurostat’ın yayımladığı iki göstergedir; biz bu iki değeri yeniden hesaplamadık.
-
-Kendi hesabımız şunlar: çalışan payının işletme payından yüzde farkı (ikisi aynı yıl, aynı ülke için; iki ondalığa yuvarlandı), iki ülke ya da iki yıl arasındaki yüzde puan farkları ve işletme sayısındaki yüzde değişim. Hızlı büyüyen işletme başına çalışan sayısı Eurostat’ın kendi göstergesidir. Türkiye serisi 2014–2024 arasını, ülke karşılaştırması 2024 yılını kapsıyor; 2023 yılı yalnızca İrlanda ile sıra karşılaştırması ve ülke payı oynaklığı için kullanıldı. Her rakam, kaynak tablodan bu yazı hazırlanırken çekildi ve çekim tarihiyle kanıt dosyasına kaydedildi.
+Veriler Eurostat’ın yüksek büyüme gösteren işletmeler ve ilgili istihdam tablosundan (bd_hg) çekildi; kapsam kamu yönetimi dışındaki sanayi, inşaat ve piyasa hizmetlerini içeriyor. İşletme payı, çalışan payı ve hızlı büyüyen işletme başına çalışan sayısı Eurostat’ın doğrudan yayımladığı göstergeler. Çalışan payının işletme payından yüzde farkı, iki ülke veya yıl arasındaki yüzde puan farkları ve işletme sayısındaki yüzde değişimler tarafımızdan hesaplandı. Türkiye serisi 2014–2024 dönemini, ülke karşılaştırması 2024 yılını kapsıyor; 2023 yılı yalnızca İrlanda karşılaştırması ve oynaklık tablosu için kullanıldı.
 
 ## Kaynaklar
 

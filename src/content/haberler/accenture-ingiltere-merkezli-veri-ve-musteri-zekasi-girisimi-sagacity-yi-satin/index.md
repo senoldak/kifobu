@@ -8,6 +8,6 @@ yatirimcilar: "Accenture"
 uretim: yapay-zeka
 ---
 
-Küresel profesyonel hizmetler şirketi Accenture, yapay zeka ve veri yeteneklerini genişletmek için İngiltere merkezli Sagacity'yi satın aldı. Londra merkezli Sagacity, müşteri verilerini analiz ederek işletmelerin hizmetlerini geliştirmesine odaklanıyor. Satın almayla şirketin 140'tan fazla çalışanı Accenture ekibine katıldı.
+Küresel danışmanlık ve teknoloji şirketi Accenture, yapay zeka ve veri analizindeki kapasitesini genişletmek için İngiltere merkezli Sagacity'yi satın aldı. Londra merkezli şirket, müşteri verilerini analiz ederek kurumların hizmet süreçlerini iyileştirmesine odaklanıyor. Satın almayla birlikte Sagacity'nin 140'tan fazla çalışanı Accenture bünyesine geçti.
 
-2005 yılında kurulan girişim, veri varlıkları ve yapay zeka destekli teknolojileriyle biliniyor. İşlem şartlarına ilişkin finansal detaylar kamuoyuyla paylaşılmadı.
+2005'te kurulan Sagacity, veri varlıkları ve yapay zeka destekli analiz araçlarıyla biliniyor. Taraflar işlemin finansal şartlarını açıklamadı.

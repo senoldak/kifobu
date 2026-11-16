@@ -14,4 +14,4 @@ Yörüngedeki uydulardan toplanan verilerin dünyaya aktarılmasındaki kapasite
 
 Şirket, geliştirdiği özel işlem birimleri, yazılımlar ve yapay zeka algoritmaları sayesinde uydu verilerinin gerçek zamanlı analizini yapıyor. Kurumun müşteri portföyünde çeşitli uzay ajansları ve büyük üreticiler yer alıyor. Şirketin teknolojileri ayrıca yörüngede görev yapan Intuition-1 uydusunda kullanıldı.
 
-Elde edilen fon; şirketin ar-ge yeteneklerini güçlendirmede, ticari ürün portföyünü genişletmede, donanım seri üretimine geçişte ve küresel satış faaliyetlerini ölçeklendirmede kullanılacak.
+Yeni yatırım; şirketin Ar-Ge çalışmalarını güçlendirmek, ticari ürün portföyünü genişletmek, donanım seri üretimine geçmek ve küresel satışları büyütmek için kullanılacak.

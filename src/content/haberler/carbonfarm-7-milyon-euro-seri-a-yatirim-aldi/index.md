@@ -11,8 +11,8 @@ yatirimcilar: "Colam Impact, Proparco, Suma Capital, elea, Working Capital Fund,
 uretim: yapay-zeka
 ---
 
-Paris merkezli iklim teknolojisi girişimi CarbonFarm, çeltik tarımında karbon emisyonlarını azaltmak amacıyla yürüttüğü çalışmalar için Seri A turunu 7 milyon euro ile kapattı. Aşırı talep gören yatırım turuna Colam Impact liderlik etti. Turda Proparco, Suma Capital, elea, Working Capital Fund, Albo ve Bpifrance yer alırken, mevcut yatırımcılar Serena, Racine² üzerinden makesense ve Techmind da desteklerini sürdürdü.
+Paris merkezli iklim teknolojisi girişimi CarbonFarm, çeltik tarımında karbon emisyonlarını azaltmaya yönelik çalışmaları için 7 milyon euroluk Seri A turunu kapattı. Yoğun talep gören tura Colam Impact liderlik etti; Proparco, Suma Capital, elea, Working Capital Fund, Albo ve Bpifrance'ın yanı sıra mevcut yatırımcılar Serena, Racine² üzerinden makesense ve Techmind da tura katıldı.
 
-2021 yılında kurulan şirket, yapay zekâ destekli uydu görüntü analizi ve sera gazı modellemesiyle çeltik üretimindeki çevresel etkileri ölçüyor. Çeltik tarımı, küresel insan kaynaklı metan emisyonlarının yaklaşık %12'sini oluştururken dünya tatlı su kaynaklarının da %28'ine kadarını tüketiyor. Geliştirilmiş su yönetimi uygulamaları, verimi düşürmeden emisyonları %50'ye varan oranlarda azaltabiliyor.
+2021'de kurulan şirket, yapay zekâ destekli uydu görüntü analizi ve sera gazı modellemesiyle çeltik üretimindeki çevresel etkiyi ölçüyor. Çeltik tarımı, küresel insan kaynaklı metan emisyonlarının yaklaşık yüzde 12'sini oluşturuyor ve dünya tatlı su kaynaklarının yüzde 28'ine kadarını tüketiyor. Geliştirilmiş su yönetimi uygulamaları ise verimi düşürmeden emisyonları yüzde 50'ye kadar azaltabiliyor.
 
-Şirket, yeni kaynağı Asya, Afrika ve Avrupa'daki varlığını güçlendirmek ve Latin Amerika'daki büyümesini hızlandırmak için kullanacak. Yatırım ayrıca teknolojinin ve proje geliştirme kapasitesinin artırılmasına aktarılacak.
+CarbonFarm yeni kaynağı Asya, Afrika ve Avrupa'daki varlığını büyütmek, Latin Amerika'da açılmak ve teknoloji ile proje geliştirme kapasitesini artırmak için kullanacak.

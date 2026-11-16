@@ -2,22 +2,22 @@
 date: 2026-11-30T08:00:00+03:00
 yaziTuru: analiz
 uretim: yazi-isleri
-title: "2025'te halka arz sayısı on üç yıllık ortalamanın altında kaldı"
-description: "2026'da Eylül ayına kadar 36 şirket ilk kez işlem gördü; TÜFE'den arındırılan halka arz tutarı ise 2023 yılından 2025 yılına %73,5 azaldı."
+title: "2025'te halka arzlar 13 yıllık ortalamanın altında kaldı"
+description: "2026'da Eylül ayına kadar 36 şirket ilk kez işlem gördü; TÜFE'den arındırılmış halka arz tutarı ise 2023'ten 2025'e %73,5 geriledi."
 category: yatirimlar
 why_matters: "Halka arz sayısı ve tutarı, şirketlerin sermaye piyasasından finansmana ne ölçüde başvurduğunu gösteren resmî bir ölçüdür. TL tutarlar fiyat düzeyinden arındırılmadan yıllar arasında karşılaştırılamaz; sayı ile tutar da ayrı ayrı okunmalıdır."
 key_points:
-  - "Borsa İstanbul Pay Piyasası'nda ilk kez işlem gören şirket sayısı 2016 yılında 2, 2023 yılında 56 oldu; 2025 yılında 18'e indi."
-  - "2013–2025 arasında yılda ortalama 19,0 şirket ilk kez işlem gördü; 2025 yılında 18 şirket, bu ortalamanın altında."
-  - "Satışa sunulan tutar fiyatlardan arındırıldığında 2023 yılında 170,6 milyar TL, 2025 yılında 45,2 milyar TL; iki yıl arasındaki düşüş %73,5."
+  - "Borsa İstanbul Pay Piyasası'nda ilk kez işlem gören şirket sayısı 2016'da 2, 2023'te 56 iken 2025'te 18'e indi."
+  - "2013–2025 döneminde yılda ortalama 19,0 şirket ilk kez işlem gördü; 2025'teki 18 şirket bu ortalamanın altında kaldı."
+  - "Satışa sunulan tutar fiyatlardan arındırıldığında 2023'te 170,6 milyar TL, 2025'te 45,2 milyar TL oldu; iki yıl arasındaki düşüş %73,5."
   - "2026'da Eylül ayına kadar 36 şirket ilk kez işlem gördü; bu sayı 2025'in tamamından 18 fazla."
 ---
 
-Borsa İstanbul Pay Piyasası'nda ilk kez işlem görmeye başlayan şirketlerin sayısı 2016 yılında 2, 2023 yılında 56 oldu. İki yıl arasındaki fark, halka arzın yıldan yıla ne kadar farklı hacimlerde yaşandığını tek bakışta gösteriyor. 2025'te bu sayı 18'e indi. Aynı tabloyu 2013 yılından 2025 yılına topladığımızda yıllık ortalama 19,0 şirket çıkıyor; 2025 yılı bu ortalamanın altında duruyor.
+Borsa İstanbul Pay Piyasası'nda ilk kez işlem görmeye başlayan şirketlerin sayısı 2016'da 2 iken 2023'te 56'ya çıktı. İki yıl arasındaki bu fark, halka arzın yıldan yıla ne kadar farklı hacimlerde yaşandığını tek bakışta gösteriyor. 2025'te ise sayı 18'e indi. 2013'ten 2025'e kadar olan dönemi topladığımızda yıllık ortalama 19,0 şirket çıkıyor; yani 2025 yılı bu ortalamanın altında kalıyor.
 
-Yazının sorusu şu: halka arzlar, kendi geçmişlerine göre şu anda hangi konumda? Soruyu bir iniş çıkış benzetmesiyle değil, ölçülebilir üç şeyle yanıtlıyoruz. Yıllık sayı, 2013–2025 arasındaki ortalamanın üstünde mi altında mı? Toplam tutar fiyatlardan arındırılınca hangi düzeyde? Şirket başına büyüklük ve satışın kaynağı nasıl değişti? Veri, Sermaye Piyasası Kurulu'nun (SPK) ihraç verileri sayfasındaki ilk halka arz tablosundan geliyor.
+Halka arzlar kendi geçmişine göre bugün nerede duruyor? Bu soruyu bir iniş çıkış benzetmesiyle değil, ölçülebilir üç veriyle yanıtlıyoruz: Yıllık şirket sayısı 2013–2025 ortalamasının üstünde mi altında mı? Toplam tutar fiyatlardan arındırıldığında hangi düzeyde? Şirket başına büyüklük ve satışın kaynağı nasıl değişti? Tüm veriler Sermaye Piyasası Kurulu'nun (SPK) ihraç verileri sayfasındaki ilk halka arz tablosundan alındı.
 
-Yazı yalnızca sayıları ve tutarları anlatıyor. Tek bir şirketi, endeks düzeyini ya da herhangi bir halka arzı değerlendirmiyor; hangi şirketin hangi yıl işlem görmeye başladığı buradaki hesabın konusu değil.
+Bu analiz yalnızca sayıları ve tutarları inceliyor; tek bir şirketi, endeks düzeyini ya da herhangi bir halka arzı değerlendirmiyor.
 
 ![Sütun grafik: Halka arz sayısı 2021–2023 arasında yükseldi, sonra geriledi: Şirket sayısı: 2013 yılında 9, 2014 yılında 9, 2015 yılında 4, 2016 yılında 2, 2017 yılında 3, 2018 yılında 9, 2019 yılında 6, 2020 yılında 8, 2021 yılında 52, 2022 yılında 38, 2023 yılında 56, 2024 yılında 33, 2025 yılında 18.](./graf-1.svg)
 *Her yıl Borsa İstanbul Pay Piyasası'nda ilk kez işlem gören şirket sayısı. Kaynak: SPK.*

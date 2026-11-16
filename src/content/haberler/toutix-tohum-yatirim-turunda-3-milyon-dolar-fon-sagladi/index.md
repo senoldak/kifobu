@@ -8,7 +8,7 @@ toplanan: 3000000
 paraBirimi: USD
 tur: "Tohum"
 yatirimcilar: "Evolution Equity Partners"
-why_matters: "Canlı etkinliklerde taraftar verilerinin toplanması ve analiz edilmesi, spor kulüpleri ile mekân işletmecilerinin sponsorluk ve müşteri ilişkileri stratejilerini doğrudan etkileyen bir alan olarak öne çıkıyor."
+why_matters: "Bilet taraması sonrası stadyum içi taraftar davranışını ölçmek, spor kulüpleri ve mekan işletmecileri için sponsorluk fiyatlaması ile müşteri deneyimini doğrudan veriye dayandırma imkanı yaratıyor."
 key_points:
   - "Toutix, tohum turunda 3 milyon dolar yatırım aldı."
   - "Yatırım turuna Evolution Equity Partners liderlik etti."
@@ -18,14 +18,12 @@ haberDegeri: 55
 uretim: yapay-zeka
 ---
 
-Canlı etkinliklerde taraftar verilerini analiz eden Toutix, Evolution Equity Partners tarafından sağlanan 3 milyon dolar tutarındaki tohum yatırımını duyurdu. New York merkezli girişim, elde edilen bu kaynağı satış ve pazarlama faaliyetlerini genişletmek amacıyla kullanmayı planlıyor.
+Canlı etkinliklerde taraftar verilerini analiz eden New York merkezli Toutix, Evolution Equity Partners liderliğindeki tohum turunda 3 milyon dolar yatırım aldı. Girişim, yeni kaynağı satış ve pazarlama ekibini büyütmek için kullanacak.
 
-2024 yılında Durham University Business School'da öğrenci sporcusu olarak tanışan Dillane Wehbe ve Daniel Zhang tarafından kurulan şirket, canlı etkinliklerdeki taraftar verilerini anlamlı hale getirmeyi hedefliyor. Girişimin geliştirdiği Bruno adlı yapay zekâ modeli, bilet taramaları, satın almalar ve stadyum içi hareketleri takip ederek etkinlik düzenleyicilerine müşteri profilleri sunuyor.
+2024 yılında Durham University Business School'da öğrenci sporcuyken tanışan Dillane Wehbe ve Daniel Zhang'ın kurduğu şirket, Bruno adlı yapay zeka modeliyle çalışıyor. Sistem; bilet taramaları, satın almalar ve stadyum içi hareketleri izleyerek etkinlik düzenleyicilerine kapsamlı izleyici profilleri çıkarıyor.
 
-Mevcut biletleme altyapılarıyla entegre çalışan sistem, bilet taramasından sonraki hareketliliği raporlayarak sponsorluk, müşteri ilişkileri ve etkinlik deneyimi kararlarına zemin hazırlıyor. Toutix, biletleme, satın alma ve hareket verilerini birleştirerek işletmecilere taraftarları hakkında daha kapsamlı bir görünüm sunmayı amaçlıyor.
+Mevcut biletleme altyapılarına doğrudan bağlanan platform, bilet taraması sonrasındaki hareketliliği raporlayarak sponsorluk, müşteri ilişkileri ve etkinlik deneyimi kararlarına veri sağlıyor.
 
-Yatırım turundan önce ilk müşterilerinden olan Rhode Island merkezli futbol kulübü AC Newport ile anlaşma sağlayan girişim, maç günü yoğunluk ölçümleri ve sponsorluk fiyatlandırması gibi alanlarda bu verilerden yararlanıyor. AC Newport kurucusu Thomas Loughborough, gerçek trafik ölçümleri sayesinde sponsorluk alanlarını daha doğru fiyatlandırabildiklerini belirtti.
+Yatırım öncesinde Rhode Island merkezli futbol kulübü AC Newport ile anlaşan Toutix, maç günü yoğunluk ölçümleri ve sponsorluk fiyatlamasında aktif olarak kullanılıyor. AC Newport kurucusu Thomas Loughborough, gerçek trafik verileri sayesinde sponsorluk alanlarını daha isabetli fiyatlandırabildiklerini söyledi.
 
-Şirket, veri sahipliğinin platformun temel bir parçası olduğunu vurguluyor. Toutix yöneticisi Dillane Wehbe, spor ve eğlence sektörünün bilet satışlarını yıllardır optimize ettiğini ancak bilet taraması sonrasında taraftarların faaliyetleri konusunda yeterli görünürlüğe sahip olmadığını ifade etti.
-
-Evolution Equity Partners yöneticisi Richard Seewald ise platformun işletmecilere eksik olan veri zekâ katmanını sağladığını belirtti. Girişim, canlı etkinlik operatörlerinin halihazırda kullandığı altyapılara izleyici zekâsı ekleyerek büyüme stratejisini sürdürmeyi hedefliyor.
+Toutix yöneticisi Dillane Wehbe, spor ve eğlence sektörünün bilet satışlarını yıllardır optimize ettiğini ancak kapıdan girildikten sonraki taraftar davranışında görünürlük eksikliği yaşadığını vurguladı. Evolution Equity Partners yöneticisi Richard Seewald ise platformun işletmecilerin mevcut altyapısına eksik olan veri zekası katmanını eklediğini belirtti.

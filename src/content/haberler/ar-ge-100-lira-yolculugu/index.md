@@ -2,15 +2,15 @@
 date: 2026-12-07T08:00:00+03:00
 yaziTuru: analiz
 uretim: yazi-isleri
-title: "Ar-Ge’yi işletmeler hem en çok finanse ediyor hem yürütüyor"
-description: "Türkiye’de Ar-Ge harcamasının yarısından fazlası işletmelerden geliyor ve işletmelerde yürütülüyor. Finansman payı ile yürütme payı iki ayrı ölçü; kamunun finansman payı yürütme payından yüksek."
+title: "Türkiye'de Ar-Ge'nin finansmanında da yürütmesinde de başrol işletmelerin"
+description: "Türkiye'de Ar-Ge harcamasının yarısından fazlası işletmelerden geliyor ve işletmelerde yürütülüyor. Finansman ile yürütme payları birbirinden ayrılıyor; kamunun finansman payı yürütme payının oldukça üzerinde."
 category: analiz
-why_matters: "Ar-Ge harcamasını kimin finanse ettiği ile kimin yürüttüğü ayrı ölçüler; bu yazı iki ölçüyü yan yana koyup paylarını rakamlarla gösteriyor."
+why_matters: "Ar-Ge harcamasını kimin finanse ettiği ile kimin yürüttüğü iki ayrı gösterge; bu analiz iki ölçüyü yan yana koyarak paranın sektörler arasındaki akışını ortaya koyuyor."
 key_points:
-  - "Türkiye’de 2024 yılında 651,82 milyar TL’lik Ar-Ge harcamasının %53,82’si işletmelerden, %30,37’si kamudan, %12,91’i yükseköğretimden, %2,89’u yurt dışından geldi."
-  - "Harcamanın %64,79’unu işletmeler, %30,93’ünü yükseköğretim, %4,28’ini kamu kurumları yürüttü."
-  - "Kamu kaynaklı payın %17,29’u yükseköğretimde, %9,11’i işletmelerde, %3,97’si kamu kurumlarında harcandı."
-  - "İşletmelerin finansman payı 2015 yılında %44,11’di, 2024 yılında %53,82 oldu."
+  - "2024 yılında Türkiye'deki 651,82 milyar TL'lik Ar-Ge harcamasının %53,82'sini işletmeler, %30,37'sini kamu, %12,91'ini yükseköğretim ve %2,89'unu yurt dışı finanse etti."
+  - "Harcamanın %64,79'u işletmelerde, %30,93'ü yükseköğretimde, %4,28'i ise kamu kurumlarında yürütüldü."
+  - "Kamu kaynaklı %30,37'lik payın %17,29'u yükseköğretimde, %9,11'i işletmelerde, %3,97'si kamu kurumlarında harcandı."
+  - "İşletmelerin finansman payı 2015'teki %44,11 seviyesinden 2024'te %53,82'ye yükseldi."
 ---
 
 Markette yüz lira ödeyen kişi parayı kasadaki kişiye verir; ödeyen ile harcayan aynı yerde buluşur. Ar-Ge harcamasında böyle olmuyor. Türkiye’de 2024 yılında Ar-Ge için 651,82 milyar TL harcandı. Bunun %53,82’si işletmelerden geldi, ama harcamanın %64,79’unu işletmeler yürüttü. Kamunun payı finansmanda %30,37, harcamayı yürütmede ise %4,28.
@@ -91,23 +91,23 @@ Yürütme tarafında da benzer bir kayma var. İşletme sektörünün yürütme 
 
 İki taraftaki kayma birbirine benziyor: işletmelerin hem finansman hem yürütme payı arttı; kamunun ve yükseköğretimin payları ise azaldı. Ama yürütmedeki artış (15,51 puan), finansmandaki artıştan (9,71 puan) büyük.
 
-Bir ipucu daha var: kaynak ile yürütme arasındaki fark, iki yılda farklı davranıyor. Kamu tarafında fark 2015 yılında 26,08 puandı, 2024 yılında 26,10 puan; neredeyse hiç değişmedi. İşletme tarafında fark 2015 yılında 5,17 puandı, 2024 yılında 10,97 puana çıktı. Yani kamunun finansman payı ile yürütme payı arasındaki açıklık sabit kaldı; işletmelerin harcadığı ile finanse ettiği arasındaki açıklık ise iki katından fazla büyüdü. Kamunun finansman payı küçülürken yürütme payı da yaklaşık aynı puan kadar küçüldü; işletmelerin yürütme payı ise finansman payından daha çok büyüdü.
+Kaynak ile yürütme arasındaki fark da iki yılda farklı bir seyir izledi. Kamu tarafında fark 2015'te 26,08 puanken 2024'te 26,10 puanla neredeyse sabit kaldı. İşletme tarafında ise fark 2015'teki 5,17 puandan 2024'te 10,97 puana çıktı. Yani kamunun finansman ve yürütme payları arasındaki açıklık değişmezken, işletmelerin harcadığı ile finanse ettiği arasındaki fark iki katından fazla büyüdü. Kamunun finansman payı küçülürken yürütme payı da yaklaşık aynı oranda daraldı; işletmelerin yürütme payı ise finansman payından daha hızlı genişledi.
 
 ![Eğim grafiği: İşletmelerin finansman payı arttı, kamunun ve yükseköğretimin payı geriledi: 2015 yılı: İşletmeler: %44,11, Kamu: %35,45, Yükseköğretim: %19,23, Yurt dışı: %1,18; 2024 yılı: İşletmeler: %53,82, Kamu: %30,37, Yükseköğretim: %12,91, Yurt dışı: %2,89.](./graf-5.svg)
 *Finansman kaynağının toplam harcamadaki payı, yüzde. Kaynak: Eurostat.*
 ![Halter grafik: İşletme sektörünün yürütme payı arttı, yükseköğretiminki ve kamu kurumlarınınki geriledi: 2015 yılı: İşletme sektörü: %49,28, Yükseköğretim: %41,35, Kamu kurumları: %9,37; 2024 yılı: İşletme sektörü: %64,79, Yükseköğretim: %30,93, Kamu kurumları: %4,28.](./graf-6.svg)
 *Yürütücü sektörün toplam harcamadaki payı, yüzde. Kaynak: Eurostat.*
-## Karşı okuma: paylar neyi söylemiyor?
+## Paylar neyi söylemiyor?
 
-Dört karşı okuma var.
+Veriyi okurken dört noktayı gözden kaçırmamak gerekiyor:
 
-Birincisi, payların düşmesinin tutarın düşmesi demek olmaması. Türkiye’nin Ar-Ge harcaması 2015–2024 arasında TL cinsinden %2.766,27 arttı. TL cinsinden nominal artış fiyat ve kur değişimlerini de içerir; bu yazı TL tutarını yıllar arasında karşılaştırmıyor, yalnızca payları karşılaştırıyor. Bir sektörün payı azalırken kendi tutarı artmış olabilir.
+Öncelikle payların düşmesi, harcama tutarının azaldığı anlamına gelmiyor. Türkiye’nin Ar-Ge harcaması 2015–2024 arasında TL cinsinden %2.766,27 arttı. Nominal artış fiyat ve kur değişimlerini de içerdiği için bu analiz TL tutarlarını yıllar arasında değil, yalnızca payları karşılaştırıyor. Bir sektörün toplam içindeki payı gerilerken kendi harcama tutarı büyümüş olabilir.
 
-İkincisi, kamu finansmanının tek tür olmaması. Kamu payı hem doğrudan harcamayı hem de genel üniversite fonlarını içeriyor. Tablo, genel fonun Ar-Ge’ye ayrılan bölümünün nasıl hesaplandığını göstermiyor.
+İkinci olarak kamu finansmanı tek bir kalemden oluşmuyor. Kamu payı hem doğrudan bütçe harcamalarını hem de genel üniversite fonlarını kapsıyor; ancak tablo, genel fonun Ar-Ge’ye ayrılan kısmının nasıl hesaplandığını göstermiyor.
 
-Üçüncüsü, kaynağın karar vericiyle aynı olmaması. Bir harcamanın hangi sektörden finanse edildiği, harcamanın nasıl yönlendirildiğini söylemiyor. Tablo yalnızca paranın hangi sektörden çıkıp hangisinde harcandığını gösteriyor.
+Üçüncüsü, finansman kaynağı karar vericiyle her zaman örtüşmüyor. Bir harcamanın hangi sektörden finanse edildiği, o harcamanın nasıl yönlendirildiğini açıklamıyor; tablo yalnızca paranın hangi sektörden çıkıp hangisinde harcandığını gösteriyor.
 
-Dördüncüsü, yüzde puan ile yüzde değişimin ayrı şeyler olması. Yazıdaki 9,71 puanlık artış, iki payın aritmetik farkı; işletme payının göreli olarak aynı oranda büyüdüğü anlamına gelmiyor. Aynı puan, küçük bir payda büyük, büyük bir payda küçük bir göreli değişim demek. Yurt dışının payındaki 1,71 puan, payı %1,18’den %2,89’a çıkardı; bu, payın göreli olarak katlanması demek ama toplam içindeki yeri hâlâ küçük.
+Son olarak yüzde puan ile yüzde değişimi birbirine karıştırmamak gerekiyor. Örneğin işletme payındaki 9,71 puanlık artış iki payın aritmetik farkını ifade ediyor, göreli büyüme oranını değil. Aynı puan farkı, küçük bir payda büyük, büyük bir payda ise daha sınırlı bir göreli değişime karşılık geliyor. Yurt dışı payındaki 1,71 puanlık artışın payı %1,18’den %2,89’a çıkarması göreli olarak iki kattan fazla büyümeye işaret etse de toplam içindeki yeri hâlâ küçük.
 
 ## Ölçüm sınırları
 

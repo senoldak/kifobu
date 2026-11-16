@@ -3,7 +3,7 @@ title: "Küresel girişim yatırımları ekim ayında 59 milyar dolara ulaştı"
 description: "Küresel girişim finansmanı ekim ayında bir önceki yıla göre %45 artarak 59 milyar dolara ulaştı. Bu büyümede Çin merkezli DeepSeek'in 15,9 milyar dolarlık yatırımı belirleyici oldu."
 date: 2026-11-03T16:20:58+03:00
 category: analiz
-why_matters: "Ekim ayındaki devasa fonlamalar ve milyarlık turlar, yapay zekâ ve sınır teknolojileri alanındaki yoğunlaşmanın küresel girişim ekosistemindeki sermaye hareketlerini nasıl domine ettiğini göstermesi açısından önem taşıyor."
+why_matters: "Ekimdeki 59 milyar dolarlık hacmin %40'ından fazlasının yalnızca yedi şirkette toplanması, küresel sermayenin yapay zekâ ve altyapı devlerinde nasıl yoğunlaştığını gösteriyor."
 key_points:
   - "Küresel girişim yatırımları ekim ayında 59 milyar dolar oldu"
   - "DeepSeek 15,9 milyar dolar yatırım aldı"

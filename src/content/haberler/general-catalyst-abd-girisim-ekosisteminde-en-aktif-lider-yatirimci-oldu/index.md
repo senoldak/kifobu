@@ -3,7 +3,7 @@ title: "General Catalyst, ABD girişim ekosisteminde en aktif lider yatırımcı
 description: "ABD girişim sermayesi piyasasında liderlik edilen yatırım turları ve toplam hacim verileri, General Catalyst'in öne çıktığını gösteriyor."
 date: 2026-11-06T16:20:52+03:00
 category: analiz
-why_matters: "ABD pazarındaki yatırımcı aktivitesi ve hacmi, küresel girişim sermayesi eğilimlerini belirlemesi açısından ekosistem için önemli bir gösterge niteliği taşıyor."
+why_matters: "General Catalyst'in 5,1 milyar dolarlık hacme liderlik etmesi, ABD'de büyük ölçekli turların birkaç dev fonda toplandığını gösteriyor."
 key_points:
   - "General Catalyst, Ekim ayında 5,1 milyar dolarlık yatırım hacmine liderlik etti"
   - "Y Combinator, 5 milyon dolar üzeri turlarda en aktif yatırımcı oldu"
@@ -19,4 +19,4 @@ Yatırım hacmi açısından bakıldığında, General Catalyst liderlik ettiği
 
 Beş milyon dolar ve üzeri büyüklüğe sahip turlarda ise Y Combinator, işlem sayısı bakımından en aktif yatırımcı oldu. Hızlandırıcı programı, genellikle portföyündeki girişimlerin devam turlarında takip eden yatırımcı olarak yer alıyor. Bu kategoride Andreessen Horowitz en az 22, General Catalyst ise 17 turda bulundu.
 
-ABD girişim sermayesi piyasasına dair veriler, yatırımcıların büyük ölçekli finansman sağlama iştahının sürdüğünü gösteriyor. Yılın önceki dönemlerinde gerçekleşen rekor seviyedeki mega finansman turları kadar yüksek olmasa da, piyasada büyük hacimli yatırımlar devam ediyor. Yatırımcılar, farklı sektörlerde ve aşamalarda sermaye aktarmayı sürdürüyor.
+Veriler, yılın önceki dönemlerindeki rekor mega turların gerisinde kalınsa da büyük ölçekli yatırımların sürdüğünü gösteriyor.

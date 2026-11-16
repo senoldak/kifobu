@@ -13,10 +13,10 @@ kaynakIzi: "v1.yada02sB/UqvbcuK.WeiL0ldq1Kzfr9NGF34Upm3av6+5RiFBR4DFLAqEozf2kGsT
 uretim: yapay-zeka
 ---
 
-Abd genelinde seri b aşamasındaki girişim yatırımları bu yıl yaklaşık 48 milyar dolara ulaştı ve son yılların en yüksek seviyesini gördü. Yatırımlar artarken toplam tur sayısı düşüş eğilimi gösterdi. Yatırımların yaklaşık üçte ikisi yapay zekâ odaklı girişimlere aktarıldı ve bu alandaki turlar toplam anlaşmaların yarısından fazlasını oluşturdu.
+ABD genelinde Seri B aşamasındaki girişim yatırımları bu yıl yaklaşık 48 milyar dolara ulaşarak son yılların en yüksek seviyesini gördü. Toplam hacim artarken tur sayısı geriledi. Yatırımların yaklaşık üçte ikisi yapay zekâ girişimlerine gitti; bu alandaki turlar toplam anlaşmaların yarısından fazlasını oluşturdu.
 
-Sermaye dağılımında küçük ve orta ölçekli seri b turlarında belirgin bir azalma kaydedildi. İncelenen örneklem kümesinde 30 milyon doların altındaki anlaşmaların oranı üçte birin altına geriledi. Daha önceki dönemlerde bu ölçekteki turlar anlaşmaların yaklaşık yarısını oluşturuyordu. On milyon doların altındaki en küçük seri b anlaşmalarının sayısı ise yıl boyunca sınırlı düzeyde kalarak yirmi altı adette kaldı.
+Sermaye dağılımında küçük ve orta ölçekli Seri B turları belirgin biçimde azaldı. İncelenen örneklemde 30 milyon doların altındaki anlaşmaların payı üçte birin altına düştü; önceki dönemlerde bu ölçekteki turlar anlaşmaların yaklaşık yarısına denk geliyordu. 10 milyon doların altındaki en küçük Seri B anlaşmaları ise yıl boyunca 26 adette kaldı.
 
-Buna karşılık büyük ölçekli seri b turları güçlü seyrini sürdürdü. Yıl içinde 100 milyon dolar ve üzeri yatırım alan en az 110 şirket kaydedildi ve bu rakam tüm anlaşmaların yaklaşık dörtte birine denk geldi. Bu dönemdeki en büyük yatırım turunu jeff bezos tarafından geçen yıl kurulan fiziksel yapay zekâ girişimi prometheus 12 milyar dolar ile yaptı.
+Buna karşılık büyük ölçekli Seri B turları hız kesmedi. Yıl içinde 100 milyon dolar ve üzeri yatırım alan en az 110 şirket kaydedildi; bu da tüm anlaşmaların yaklaşık dörtte biri demek. Dönemin en büyük turunu Jeff Bezos tarafından geçen yıl kurulan fiziksel yapay zekâ girişimi Prometheus 12 milyar dolarla yaptı.
 
-Fei-fei li liderliğindeki model geliştirici world labs şubat ayında 1 milyar dolar yatırım alırken nükleer enerji girişimi valar atomics de sequoia capital liderliğinde turlar halinde 1 milyar dolarlık seri b finansmanı sağladı. Yapay zekâ alanındaki bu büyük ölçekli turlar, yatırımcıların yüksek değerlemeli şirketlere odaklandığını ve seri b yatırım ikliminin olumlu seyrettiğini ortaya koydu.
+Fei-Fei Li liderliğindeki model geliştirici World Labs şubatta 1 milyar dolar toplarken, nükleer enerji girişimi Valar Atomics de Sequoia Capital liderliğindeki turlarda 1 milyar dolarlık Seri B finansmanı sağladı. Bu işlemler, Seri B sermayesinin az sayıda ancak yüksek değerlemeli yapay zekâ ve derin teknoloji şirketlerinde toplandığını gösteriyor.

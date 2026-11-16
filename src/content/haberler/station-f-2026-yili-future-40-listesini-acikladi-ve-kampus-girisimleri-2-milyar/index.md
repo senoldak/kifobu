@@ -1,9 +1,9 @@
 ---
 title: "STATION F, 2026 yılı Future 40 listesini açıkladı ve kampus girişimleri 2 milyar euro yatırım topladı"
-description: "Dünyanın en büyük girişim kampüsü STATION F, 2026 yılı Future 40 listesini duyururken kampus girişimlerinin bu yıl rekor kırarak 2 milyar euro yatırım elde ettiğini açıkladı."
+description: "STATION F'in 2026 Future 40 listesi açıklanırken, kampüsteki girişimler yıl boyunca toplam 2 milyar euro yatırımla rekor kırdı."
 date: 2026-11-04T14:40:49+03:00
 category: analiz
-why_matters: "STATION F gibi küresel ölçekteki büyük bir girişim kampüsünün açıkladığı veriler ve rekor yatırım rakamları, Avrupa girişim ekosistemindeki sermaye akışının ve teknoloji yatırımlarının genel seyrini göstermesi açısından önem taşıyor."
+why_matters: "Avrupa'nın en büyük girişim kampüsündeki rekor sermaye akışı, kıtadaki teknoloji yatırımlarının ivmesini ve derin teknolojiye yönelen ilgiyi yansıtıyor."
 key_points:
   - "STATION F girişimleri 2026 yılında rekor kırarak 2 milyar euro yatırım topladı."
   - "2026 Future 40 listesindeki girişimler bugüne kadar 110 milyon euro finansman sağladı."
@@ -13,10 +13,10 @@ haberDegeri: 75
 uretim: yapay-zeka
 ---
 
-Dünyanın en büyük girişim kampüsü STATION F, 2026 yılı Future 40 listesini duyururken kampus girişimlerinin bu yıl rekor kırarak 2 milyar euro yatırım elde ettiğini açıkladı. Sekizincisi düzenlenen yıllık liste, yapay zekâ, derin teknoloji, altyapı, iklim teknolojileri ve robotik gibi farklı alanlarda faaliyet gösteren en başarılı girişimleri bir araya getiriyor. Kampüste yer alan binin üzerindeki girişim arasından seçilen Future 40 listesindeki şirketler, güçlü metrikler ve elde ettikleri kilometre taşlarına göre belirleniyor.
+Dünyanın en büyük girişim kampüsü STATION F, 2026 yılı Future 40 listesini duyururken kampüs girişimlerinin yıl boyunca toplam 2 milyar euro yatırımla rekor kırdığını açıkladı. Sekizincisi düzenlenen yıllık liste; yapay zekâ, derin teknoloji, altyapı, iklim teknolojileri ve robotik alanlarında öne çıkan girişimleri bir araya getiriyor. Kampüsteki binin üzerindeki girişim arasından seçilen şirketler, büyüme metrikleri ve yakaladıkları kilometre taşlarına göre belirleniyor.
 
-Açıklanan verilere göre, 2026 Future 40 grubu bugüne kadar toplam 110 milyon euro yatırım topladı. Listede yer alan Arlequin AI 28 milyon euro, CURA 10 milyon dolar, Cleavr 8 milyon euro ve Lemrock ise 7 milyon euro yatırım alan ekipler arasında bulunuyor. Listede yer alan şirketlerin büyük bir bölümünü tohum ve tohum öncesi aşamadaki girişimler oluştururken, iki şirket Seri A aşamasında faaliyet gösteriyor ve beş şirket öz kaynaklarıyla büyüyor.
+2026 Future 40 grubu bugüne kadar toplam 110 milyon euro yatırım topladı. Arlequin AI 28 milyon euro, CURA 10 milyon dolar, Cleavr 8 milyon euro ve Lemrock 7 milyon euro finansmanla öne çıkan ekipler arasında yer aldı. Listenin büyük bölümünü tohum ve tohum öncesi aşamadaki girişimler oluştururken, iki şirket Seri A aşamasında bulunuyor, beş şirket ise öz kaynaklarıyla büyüyor.
 
-Paris merkezli elli bin metrekarelik kampüs, Xavier Niel tarafından 2017 yılında kuruldu ve her yıl kırk farklı destek programıyla binin üzerinde girişime ev sahipliği yapıyor. İki bin on dokuz yılından bu yana kasım aylarında açıklanan Future 40 girişimleri, bugüne kadar kümülatif olarak 1,2 milyar euro finansman sağladı. Kampüs yönetimi ayrıca iki bin yirmi yılından bu yana seçilen bazı takımlara doğrudan yatırımlar da gerçekleştiriyor.
+Xavier Niel tarafından 2017 yılında kurulan Paris merkezli 50 bin metrekarelik kampüs, her yıl 40 farklı destek programıyla binin üzerinde girişime ev sahipliği yapıyor. 2019'dan bu yana kasım aylarında açıklanan Future 40 girişimleri kümülatif olarak 1,2 milyar euro finansmana ulaştı. Kampüs yönetimi, 2020 yılından bu yana seçili takımlara doğrudan yatırım da yapıyor.
 
-STATION F şirketleri, 2026 yılı boyunca elde ettikleri 2 milyar euroluk toplam yatırımla geçen yılın rekorunu geride bıraktı. Kampüs bünyesindeki girişimler iki bin yirmi iki yılından bu yana her yıl 1 milyar euronun üzerinde finansman sağlarken, iki bin yirmi beş yılında bu rakam 1,5 milyar euronun üzerine çıkmıştı. Multiverse Computing firmasının 500 milyon euro tutarındaki Seri C turu ve Alan şirketinin 480 milyon euro büyüklüğündeki turu gibi büyük ölçekli yatırımlar bu rekorun kırılmasında etkili oldu.
+STATION F şirketleri, 2026'da elde ettikleri 2 milyar euroluk toplam yatırımla geçen yılın rekorunu geride bıraktı. 2022'den beri her yıl 1 milyar euronun üzerinde finansman çeken kampüs girişimleri, 2025'te 1,5 milyar euroyu aşmıştı. Bu yılki rekorun arkasında Multiverse Computing'in 500 milyon euroluk Seri C turu ve Alan'ın 480 milyon euroluk yatırım turu gibi büyük ölçekli anlaşmalar yer aldı.

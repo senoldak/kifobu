@@ -11,8 +11,8 @@ yatirimcilar: "Arāya Ventures, Better Ventures, Morgan Stanley Inclusive & Sust
 uretim: yapay-zeka
 ---
 
-Olimpiyat madalyalı atlet Andrew Steele’in kurduğu koruyucu sağlık girişimi Stride, 4,6 milyon sterlin tohum yatırım aldı. Şirket, DNA, kan ve bağırsak örnekleri testleri ile kişiselleştirilmiş analizler sunan bir sağlık üyeliği platformu olarak çalışıyor.
+Olimpiyat madalyalı atlet Andrew Steele’in kurduğu koruyucu sağlık girişimi Stride, 4,6 milyon sterlin tohum yatırım aldı. Şirket, DNA, kan ve bağırsak örnekleri üzerinden kişiselleştirilmiş analizler sunan bir sağlık üyeliği platformu işletiyor.
 
-Alınan finansman, biyolojik yaşı ölçmeye yönelik multiomik bir yöntem ile laboratuvar sonuçlarını, giyilebilir cihaz verilerini ve sağlık kayıtlarını birleştiren yapay zekâ destekli sağlık asistanı projelerinde kullanılacak. Şirket, 2026 sonuna kadar uluslararası pazarlara açılmayı hedefliyor.
+Yeni sermaye, biyolojik yaşı ölçmeye yönelik multiomik bir yöntem ile laboratuvar sonuçlarını, giyilebilir cihaz verilerini ve sağlık kayıtlarını bir araya getiren yapay zekâ destekli sağlık asistanının geliştirilmesinde kullanılacak. Stride, 2026 sonuna kadar uluslararası pazarlara açılmayı planlıyor.
 
-Yatırım turuna Arāya Ventures, Better Ventures, Morgan Stanley Inclusive & Sustainable Ventures, Innovate UK ve a16z Scout Fund fonları ile melek yatırımcılar katıldı. Innovate UK desteği şirketin projelerine aktarılacak.
+Tura Arāya Ventures, Better Ventures, Morgan Stanley Inclusive & Sustainable Ventures, Innovate UK ve a16z Scout Fund'ın yanı sıra melek yatırımcılar katıldı.

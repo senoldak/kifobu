@@ -2,18 +2,18 @@
 date: 2026-12-10T08:00:00+03:00
 yaziTuru: analiz
 uretim: yazi-isleri
-title: "Merkez bankası faizleri ve Türkiye'ye doğrudan yatırım girişleri"
-description: "Türkiye'ye doğrudan yatırım girişleri 2022 yılında arttı, 2023 yılında azaldı, 2024–2025 yıllarında yeniden arttı. ECB ve ABD faizleri ayrıca veriliyor; yazı iki seri arasında ilişki kurmuyor."
+title: "Küresel faizler ile Türkiye'ye doğrudan yatırım girişleri aynı yönde gitmiyor"
+description: "Türkiye'ye doğrudan yatırım girişleri 2022'de arttı, 2023'te geriledi, 2024–2025 döneminde yeniden yükseldi. ECB ve Fed faizleriyle yan yana konduğunda iki seri arasında tek yönlü bir ilişki görünmüyor."
 category: yatirimlar
-why_matters: "Küresel faiz haberleri ile Türkiye'ye gelen doğrudan yatırım aynı sayfaya konunca birbirine bağlıymış gibi okunabilir. Bu yazı iki serinin hangi yıllarda yan yana durduğunu, hangi yıllarda ayrıldığını rakamla gösteriyor."
+why_matters: "Küresel faiz kararları ile Türkiye'ye gelen doğrudan yatırım aynı dönemde okunduğunda doğrudan bir nedensellik varmış gibi algılanabilir; bu analiz iki serinin hangi yıllarda paralel, hangi yıllarda ters yönde hareket ettiğini ortaya koyuyor."
 key_points:
-  - "ECB mevduat kolaylığı faizi 27 Temmuz 2022'de %0'a, 20 Eylül 2023'te %4,00'e çıktı; Türkiye'ye doğrudan yatırım girişleri 2022'de %14,6 arttı, 2023'te %28,1 azaldı."
-  - "ABD'de gecelik faiz 2022'de %4,10, 2023'te %5,33 oldu; girişler 2023 yılında 10,6 milyar dolara indi."
-  - "ABD faizinin en yüksek olduğu altı yılda girişlerin ortalaması 14,9 milyar dolar, en düşük olduğu on yılda 13,4 milyar dolar."
-  - "2006–2025 yıllarında faiz ve giriş değişiminin dört yön birleşiminin her biri tam beş yılda görüldü."
+  - "ECB mevduat kolaylığı faizi 27 Temmuz 2022'de %0'a, 20 Eylül 2023'te %4,00'e yükseldi; Türkiye'ye doğrudan yatırım girişleri 2022'de %14,6 artarken 2023'te %28,1 azaldı."
+  - "ABD'de gecelik faiz 2022'de %4,10, 2023'te %5,33 seviyesine çıkarken, 2023'te doğrudan yatırım girişleri 10,6 milyar dolara indi."
+  - "ABD faizinin en yüksek olduğu altı yılda girişlerin ortalaması 14,9 milyar dolar, en düşük olduğu on yılda ise 13,4 milyar dolar olarak gerçekleşti."
+  - "2006–2025 döneminde faiz ve giriş değişiminin dört olası yön birleşiminin her biri tam beşer yılda görüldü."
 ---
 
-ECB ve Fed faizleri yükselirken Türkiye'ye gelen doğrudan yatırım ne yaptı? Kısa cevap: iki seri her dönemde aynı yöne gitmedi. Avrupa Merkez Bankası (ECB) mevduat kolaylığı faizi 27 Temmuz 2022'de %0'a çıktı ve 20 Eylül 2023'te %4,00'e ulaştı. Aynı dönemde ABD'de gecelik faiz 2021'de %0,08 iken 2023'te %5,33 oldu. Türkiye'ye doğrudan yatırım girişleri ise 2021 yılında 12,9 milyar dolar, 2022 yılında 14,8 milyar dolar, 2023 yılında 10,6 milyar dolar oldu: önce %14,6 arttı, sonra %28,1 azaldı.
+ECB ve Fed faizleri yükselirken Türkiye'ye gelen doğrudan yatırım nasıl bir seyir izledi? Veriler iki serinin her dönemde aynı yönde hareket etmediğini gösteriyor. Avrupa Merkez Bankası (ECB) mevduat kolaylığı faizi 27 Temmuz 2022'de %0'a çıktı ve 20 Eylül 2023'te %4,00'e ulaştı. Aynı dönemde ABD'de gecelik faiz 2021'de %0,08 iken 2023'te %5,33 oldu. Türkiye'ye doğrudan yatırım girişleri ise 2021'de 12,9 milyar dolar, 2022'de 14,8 milyar dolar, 2023'te 10,6 milyar dolar olarak gerçekleşti: önce %14,6 arttı, ardından %28,1 geriledi.
 
 Tabloyu zamanda geriye ve ileriye uzatınca çıkan şey bir ilişki değil, dalgalanma. 2008 yılında 19,9 milyar dolar olan giriş 2009 yılında 8,6 milyar dolara geriledi; 2008 yılına göre %56,8 azaldı, o yıllarda faizler de düşüyordu. 2024–2025 yıllarında ise faizler inerken giriş %9,8 ve %10,8 arttı. Bu yazı bir faiz–yatırım ilişkisi kurmuyor; eriştiğimiz kurum belgelerinde de böyle bir nedensellik anlatımı bulamadık. Yalnızca iki serinin hangi yıllarda aynı, hangi yıllarda farklı yönde hareket ettiğini zaman sırasıyla gösteriyoruz.
 

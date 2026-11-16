@@ -3,7 +3,7 @@ title: "PitchBook, erken aşama girişimler için ücretsiz veri programı ve ye
 description: "PitchBook, erken aşama girişimlerin mali ve şirket detaylarını paylaşması karşılığında platform verilerine ücretsiz erişim sağlayacağı yeni bir program duyurdu."
 date: 2026-11-10T20:20:52+03:00
 category: analiz
-why_matters: "Erken aşama girişimlerin veri şeffaflığını artırırken yatırımcıların henüz kurumsal fon almamış şirketleri keşfetmesini kolaylaştırıyor."
+why_matters: "PitchBook'un erken aşama girişimlere ücretsiz veri karşılığında çeyreklik bilgi paylaşımı şartı koyması, yatırımcıların henüz fon almamış 25 milyon şirketi taramasını kolaylaştırıyor."
 key_points:
   - "PitchBook for Startups erken aşama girişimlere ücretsiz veri erişimi sunuyor."
   - "Origin aracı 25 milyon şirketin verilerini ve eşleştirme skorlarını kapsıyor."

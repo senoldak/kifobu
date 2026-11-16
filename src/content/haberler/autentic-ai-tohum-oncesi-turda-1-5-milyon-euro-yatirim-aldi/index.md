@@ -11,8 +11,8 @@ yatirimcilar: "Baobab Ventures, Lanai Ventures, Acurio Ventures, Masia VC"
 uretim: yapay-zeka
 ---
 
-Dani Diestre, Aniol Carreras ve Jacob Bamio tarafından kurulan Autentic AI, yüzlerce tüketici ve uzmanın katılımıyla eş zamanlı yapay zekâ mülakatları yapan bir pazar araştırması platformu sunuyor. Sistem, klasik yöntemlerde haftalarca süren süreçleri günlere indirerek şirketlerin müşteri geri bildirimlerine daha sık ulaşmasını hedefliyor.
+Dani Diestre, Aniol Carreras ve Jacob Bamio tarafından kurulan Autentic AI, yüzlerce tüketici ve uzmanla eş zamanlı yapay zekâ mülakatları yürüten bir pazar araştırması platformu sunuyor. Sistem, geleneksel yöntemlerde haftalar süren süreçleri günlere indirerek şirketlerin müşteri geri bildirimlerine daha hızlı ulaşmasını sağlıyor.
 
-Girişim, yapay zekâ destekli mülakat süreçlerini otomatikleştirmek ve doğrulanmış tüketici ile uzman ağını genişletmek amacıyla 1,5 milyon euro tutarındaki tohum öncesi fonlamayı kullanacak. Baobab Ventures, Lanai Ventures, Acurio Ventures ve Masia VC katılımıyla yapılan tur, şirketin üçüncü taraf panellerine olan bağımlılığını azaltmayı amaçlıyor.
+Girişim, 1,5 milyon euroluk tohum öncesi fonlamayı mülakat süreçlerini otomatikleştirmek ve doğrulanmış tüketici ile uzman ağını büyütmek için kullanacak. Baobab Ventures, Lanai Ventures, Acurio Ventures ve Masia VC'nin katıldığı tur, şirketin üçüncü taraf panellere bağımlılığını azaltmayı da kapsıyor.
 
-Günlük yaklaşık 1.000 mülakat yürüten platform; hızlı tüketim malları, perakende, ilaç, kozmetik, strateji danışmanlığı ve özel sermaye sektörlerine hizmet veriyor. Elde edilen bulgular, mülakatlara ait video kanıtları ve ayrıntılı analizlerle destekleniyor.
+Günde yaklaşık 1.000 mülakat gerçekleştiren platform; hızlı tüketim malları, perakende, ilaç, kozmetik, strateji danışmanlığı ve özel sermaye sektörlerine hizmet veriyor. Bulgular, mülakatlara ait video kayıtları ve ayrıntılı analizlerle birlikte sunuluyor.

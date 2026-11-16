@@ -3,7 +3,7 @@ date: 2026-10-21T08:00:00+03:00
 yaziTuru: aciklayici
 updated: 2026-10-22
 uretim: yazi-isleri
-title: "Girişim sermayesi yatırım ortaklıklarının piyasa değeri bir yılda %100,5 arttı"
+title: "Borsadaki 8 girişim sermayesi ortaklığının piyasa değeri bir yılda %100,5 arttı"
 description: "Haziran 2026'da borsadaki 8 ortaklığın toplam piyasa değeri 39,47 milyar TL. 2026'nın ikinci çeyreğinde girişim sermayesi yatırımlarının portföydeki payı ortaklık başına %83,00 ile %97,71 arasında."
 category: yatirimlar
 why_matters: "Piyasa değerindeki büyüme ile portföyün girişimlere ayrılan bölümü ayrı ölçülerdir. Piyasa değeri payların borsadaki fiyatını, portföy dağılımı ise portföyün ne kadarının girişimlerde olduğunu gösterir."
@@ -14,16 +14,16 @@ key_points:
   - "Toplu portföy dağılımı Aralık 2013'te bitiyor: o tarihte girişim sermayesi yatırımlarının payı %77,15 idi."
 ---
 
-Borsada işlem gören 8 girişim sermayesi yatırım ortaklığının toplam piyasa değeri Haziran 2026'da 39,47 milyar TL oldu. Bu, Haziran 2025'teki 19,69 milyar TL'ye göre %100,5'lik artış demek. Sermaye Piyasası Kurulu (SPK) verisine göre 2026'nın ikinci çeyreğinde bu ortaklıkların her birinde girişim sermayesi yatırımlarının portföydeki payı %83,00 ile %97,71 arasında.
+Borsada işlem gören 8 girişim sermayesi yatırım ortaklığının toplam piyasa değeri Haziran 2026'da 39,47 milyar TL'ye çıktı. Bir yıl önce, Haziran 2025'te 19,69 milyar TL olan bu tutar, bir yılda %100,5'lik bir artışa işaret ediyor. Sermaye Piyasası Kurulu (SPK) verilerine göre 2026'nın ikinci çeyreğinde bu ortaklıkların her birinde girişim sermayesi yatırımlarının portföydeki payı %83,00 ile %97,71 arasında değişiyor.
 
-Bu yazıdaki bütün rakamlar SPK'nın 6 Ekim 2026'da güncellediği Temmuz 2026 aylık istatistik bülteninden geliyor. Tutarlar bültende yayımlandığı gibi nominal TL'dir.
+Yazıdaki tüm veriler, SPK'nın 6 Ekim 2026'da güncellediği Temmuz 2026 aylık istatistik bültenine dayanıyor ve tutarlar bültendeki gibi nominal TL cinsinden.
 
-## Bir bakışta
+## Öne çıkanlar
 
-- Toplam piyasa değeri Aralık 2024'te 19,50 milyar TL, Aralık 2025'te 32,62 milyar TL, Mart 2026'da 38,64 milyar TL idi.
-- Aralık 2025'ten Haziran 2026'ya artış %21,0. İki yıl sonu arasındaki artış %67,3.
-- Ortaklık sayısı Haziran 2025'ten bu yana 8.
-- İki ortaklık, Bulls ve İş, toplam piyasa değerinin %54'ünü oluşturuyor.
+- Toplam piyasa değeri Aralık 2024'te 19,50 milyar TL, Aralık 2025'te 32,62 milyar TL, Mart 2026'da ise 38,64 milyar TL düzeyindeydi.
+- Aralık 2025'ten Haziran 2026'ya artış %21,0 olurken, iki yıl sonu arasındaki büyüme %67,3'ü buldu.
+- Ortaklık sayısı Haziran 2025'ten bu yana 8 olarak sabit kaldı.
+- Bulls ve İş ortaklıkları tek başlarına toplam piyasa değerinin %54'ünü sırtlıyor.
 
 ## Piyasa değeri 2008'den bu yana
 

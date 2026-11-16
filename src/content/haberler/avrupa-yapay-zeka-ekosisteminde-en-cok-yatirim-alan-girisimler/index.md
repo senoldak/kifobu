@@ -3,10 +3,10 @@ title: "Avrupa yapay zekâ ekosisteminde en çok yatırım alan girişimler"
 description: "Avrupa yapay zekâ ekosisteminde ocak ve haziran döneminde en fazla yatırım alan şirketler ve yatırım detayları."
 date: 2026-10-15T15:21:00+03:00
 category: analiz
-why_matters: "Avrupa yapay zekâ ekosistemindeki sermaye yoğunlaşmasını ve öne çıkan girişimlerin odak alanlarını göstermesi açısından önem taşıyor."
+why_matters: "Büyük turların İngiltere, Fransa ve Almanya'da toplanması, Avrupa yapay zekâ sermayesinin birkaç merkezde yoğunlaştığını gösteriyor."
 key_points:
   - "İngiltere, Fransa ve Almanya Avrupa'daki fonlamaların çoğunluğunu çekti."
-  - "Ineffable Intelligence 1,1 milyar dolarla dönem en yüksek yatırımını aldı."
+  - "Ineffable Intelligence 1,1 milyar dolarla dönemin en yüksek yatırımını aldı."
   - "Mistral AI, Fransa'daki ilk veri merkezi için 830 milyon dolar borç sağladı."
 uretim: yapay-zeka
 ---

@@ -6,7 +6,7 @@ category: girisimler
 girisim: "Hiyd"
 platform: "Kickstarter"
 yatirimci: 16000
-why_matters: "Hiyd, kullanıcıların mevcut saat tasarımlarından vazgeçmeden sağlık takibi yapabilmesini sağlayan görünmez giyilebilir teknoloji yaklaşımıyla dikkat çekiyor."
+why_matters: "Hiyd, kullanıcıların mevcut kol saatlerinden vazgeçmeden sağlık takibi yapabilmesini sağlayan 0,3 mm'lik görünmez sensörüyle giyilebilir teknolojide farklı bir yaklaşım sunuyor."
 key_points:
   - "Cihaz, mikrovakum teknolojisiyle saatlerin arkasına yapışıyor ve 0,3 mm kalınlığında."
   - "Kalp atış hızı, uyku evreleri ve kalori gibi verileri toplayarak iOS ve Android ile senkronize çalışıyor."

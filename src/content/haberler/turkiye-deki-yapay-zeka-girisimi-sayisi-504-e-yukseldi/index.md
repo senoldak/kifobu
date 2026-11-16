@@ -3,7 +3,7 @@ title: "Türkiye'deki yapay zeka girişimi sayısı 504'e yükseldi"
 description: "Türkiye Yapay Zeka İnisiyatifi'nin Ekim 2026 haritasına göre ekosistemdeki toplam girişim sayısı net 22 artışla 504 oldu."
 date: 2026-10-15T17:18:25+03:00
 category: analiz
-why_matters: "TRAI haritası, Türkiye yapay zeka ekosistemindeki büyüme trendlerini, coğrafi dağılımı ve öne çıkan teknoloji dikey ve kategorilerini izlemek için kritik bir referans sunuyor."
+why_matters: "TRAI haritası, Türkiye'deki yapay zeka girişimlerinin sektörel yoğunlaşmasını, erken aşama kuruluş hızını ve yerli kurucuların küresel açılımını izlemek için temel referans niteliği taşıyor."
 key_points:
   - "Toplam yapay zeka girişimi sayısı 504’e yükseldi"
   - "Ekim güncellemesinde 43 yeni girişim haritaya eklendi"
@@ -12,10 +12,10 @@ kaynakIzi: "v1.GL3yMHfpqxdQXy4t.+leLsvamB1HA6EmY7xcd46yASHVsFAhBY0KoFJ/NBmQdaRA+
 uretim: yapay-zeka
 ---
 
-Türkiye Yapay Zeka İnisiyatifi, Ekim 2026 Girişim Haritası sonuçlarını açıkladı. Ülkedeki toplam yapay zeka girişimi sayısı 504'e ulaştı. Nisan ayındaki 482 girişime kıyasla net 22 girişimlik artış oldu. Haritaya 43 yeni girişim eklendi. Faaliyetini sonlandıran 21 girişim listeden çıkarıldı.
+Türkiye Yapay Zeka İnisiyatifi (TRAI), Ekim 2026 Girişim Haritası sonuçlarını paylaştı. Ülkedeki toplam yapay zeka girişimi sayısı, nisan ayındaki 482 seviyesinden net 22 artışla 504'e çıktı. Bu dönemde haritaya 43 yeni şirket eklenirken, faaliyetini sonlandıran 21 girişim listeden çıkarıldı.
 
-Ekim ayında güncellenen haritaya dahil edilen yeni girişimlerin kuruluş yılları ve coğrafi dağılımları dikkat çekti. Kuruluş yılı bilinen 41 girişimin 25'i 2025 veya 2026 yıllarında kuruldu. İstanbul merkezli girişimler çoğunlukta kaldı. Ankara, İzmir, Bursa, Antalya, Samsun, Bolu ve Gebze'den şirketler de haritaya katıldı. Merkezleri yurt dışında bulunan ancak kurucuları arasında Türk girişimciler yer alan New York, Dubai ve Amsterdam merkezli yapay zeka şirketleri de çalışmada yer buldu.
+Yeni eklenen girişimlerde genç şirketlerin ağırlığı göze çarptı; kuruluş yılı bilinen 41 girişimin 25'i 2025 veya 2026'da kuruldu. İstanbul merkezli girişimler çoğunluğu korusa da Ankara, İzmir, Bursa, Antalya, Samsun, Bolu ve Gebze'den de yeni katılımlar oldu. Kurucuları Türk girişimcilerden oluşan New York, Dubai ve Amsterdam merkezli şirketler de haritada yer aldı.
 
-Yeni girişimler toplam 14 farklı kategoriye dağıldı. En fazla yeni girişimin katıldığı alan 10 şirketle Agentic AI kategorisi oldu. Bu kategoriyi beşer yeni girişimle Diyalogsal Yapay Zeka ve LegalTech izledi. HR Tech ile Öngörü ve Veri Analitiği kategorilerine dörder yeni girişim dahil edildi. Akıllı platformlar, altyapı servisleri, sağlık teknolojileri ve otomasyon alanlarında da yeni katılımlar oldu.
+43 yeni girişim 14 farklı kategoriye dağıldı. En çok katılım 10 şirketle Agentic AI alanında gerçekleşti. Bunu beşer girişimle Diyalogsal Yapay Zeka ve LegalTech, dörder girişimle HR Tech ile Öngörü ve Veri Analitiği izledi. Akıllı platformlar, altyapı servisleri, sağlık teknolojileri ve otomasyon alanlarında da yeni şirketler listeye girdi.
 
-Uzmanlaşma eğilimleri özellikle hukuk ve insan kaynakları teknolojilerinde belirginleşti. LegalTech kategorisindeki girişim sayısı arttı. Bu alandaki çözümler içtihat araştırmaları ve sözleşme analizi gibi alanlara odaklandı. İnsan kaynakları teknolojilerinde ise yapay zeka destekli mülakatlar ve işe alım süreçlerini yöneten platformlar öne çıktı. Altyapı ve operasyon kategorisindeki yeni girişimler GPU altyapısı ve kurum içi yapay zeka maliyetlerini izleyen araçlar geliştirdi.
+Dikey uzmanlaşma özellikle hukuk ve insan kaynakları teknolojilerinde belirginleşti. LegalTech girişimleri içtihat tarama ve sözleşme analizine odaklanırken, HR Tech tarafında yapay zeka destekli mülakat ve işe alım platformları öne çıktı. Altyapı ve operasyon kategorisindeki yeni ekipler ise GPU altyapısı ve kurum içi yapay zeka maliyetlerini izleyen araçlar geliştirdi.

@@ -3,7 +3,7 @@ title: "New York ekosistemi ekim ayında 54 turda 4,94 milyar dolar yatırım al
 description: "New York merkezli girişimler ekim ayında 4,94 milyar dolar yatırım toplarken, Ramp'ın 1,85 milyar dolarlık Seri G turu şehir tarihinin en büyük yatırım hamlesi oldu."
 date: 2026-11-02T20:21:00+03:00
 category: analiz
-why_matters: "New York girişim ekosisteminin ekim ayında rekor düzeyde sermaye çekmesi ve büyük ölçekli geç aşama turlarının yoğunlaşması, küresel risk sermayesi piyasalarındaki dönemsel hareketliliği göstermesi açısından önem taşıyor."
+why_matters: "Ekimdeki 4,94 milyar dolarlık hacmin %86,3'ünün yalnızca 10 geç aşama turundan gelmesi, New York'ta sermayenin büyük ölçekli fintek şirketlerinde toplandığını gösteriyor."
 key_points:
   - "New York girişimleri ekim ayında 54 turda 4,94 milyar dolar topladı."
   - "Ramp, 1,85 milyar dolarlık Seri G turuyla şehir tarihinin en büyük yatırımını aldı."

@@ -2,25 +2,25 @@
 date: 2026-12-24T08:00:00+03:00
 yaziTuru: analiz
 uretim: yazi-isleri
-title: "Yenilik karnesinde Türkiye puan kazandı, sırasını korudu"
-description: "Karne verisinin kırk ülkelik tablosunda Türkiye'nin sırası 2019'dan bu yana yerinde; komşu satırlar ise yer değiştirdi."
+title: "İnovasyon karnesinde Türkiye'nin puanı arttı ama 31. sıradaki yeri değişmedi"
+description: "Kırk ülkelik inovasyon karnesinde Türkiye 2019'dan bu yana puanını artırsa da sırası değişmedi; komşu satırlarda ise hareketlilik yaşandı."
 category: "analiz"
-why_matters: "Bir sıralama, puandaki ilerlemeyi ve diğer ülkelerin hareketini tek bir sayıya sıkıştırır. Bu yazı sıra ile puanı ayırarak neyin değiştiğini ve neyin değişmediğini gösteriyor."
+why_matters: "Sıralamalar, hem bir ülkenin kendi ilerlemesini hem de diğer ülkelerin hareketini tek bir sayıya sıkıştırır. Sıra ile puanı birbirinden ayırmak, gerçekte neyin değişip neyin sabit kaldığını gösterir."
 key_points:
-  - "2026 yılı karnesinde Türkiye kırk ülkelik tabloda 31. sırada; özet endeksi AB'nin o yılki değerinin %56,9'u."
-  - "Türkiye 2019 yılında da 31. sıradaydı; aynı dönemde endeksi AB'ye göre 6,0 puan arttı."
-  - "AB'nin 2019 yılında ölçülen değerini 100 puan sayan ölçekte Türkiye 50,9 puandan 63,5 puana, AB 100 puandan 111,6 puana çıktı."
-  - "Boyutlar arasında en büyük artış finans ve destek boyutunda: 55,9 puandan 93,3 puana."
+  - "2026 yılı karnesinde Türkiye kırk ülkelik tabloda 31. sırada; özet endeksi AB'nin o yılki değerinin %56,9'una karşılık geliyor."
+  - "Türkiye 2019 yılında da 31. sıradaydı; aynı dönemde endeksi AB'ye göre 6,0 puan yükseldi."
+  - "AB'nin 2019 değerini 100 kabul eden ölçekte Türkiye 50,9 puandan 63,5 puana, AB ise 100 puandan 111,6 puana çıktı."
+  - "Boyutlar arasında en hızlı yükseliş 55,9 puandan 93,3 puana çıkan finans ve destek alanında gerçekleşti."
 ---
 
-Avrupa Komisyonu'nun 2026 yılı İnovasyon Karnesi tablosunda Türkiye'nin satırı 31. sırada duruyor. Tabloda Avrupa Birliği üyeleri ile komşu ülkelerden oluşan kırk ülke var; Türkiye'nin özet yenilik endeksi, AB'nin aynı yılki değeri 100 puan sayıldığında 56,9 puan. İsviçre 141,3 puanla ilk satırda, Moldova 18,6 puanla son satırda.
+Avrupa Komisyonu'nun 2026 yılı İnovasyon Karnesi'nde Türkiye 31. sırada yer alıyor. Avrupa Birliği üyeleri ile komşu ülkelerden oluşan kırk ülkelik tabloda Türkiye'nin özet yenilik endeksi, AB'nin aynı yılki değeri 100 kabul edildiğinde 56,9 puan. Listenin başında 141,3 puanla İsviçre, sonunda ise 18,6 puanla Moldova bulunuyor.
 
-Veri tabanında 2019 yılı da yer alıyor ve o yıl Türkiye yine 31. sıradaydı. Yani yedi yıllık aralığın iki ucunda sıra aynı. Puan ise aynı kalmadı: Türkiye'nin AB'ye göre endeksi 2019 yılında 50,9 puan iken 2026 yılında 56,9 puan. Sıra ile puan neden farklı bir hikâye anlatıyor? Çünkü sıra yalnızca Türkiye'nin kendisine değil, kırk ülkenin hepsinin hareketine bağlı.
+Veri tabanı 2019 yılına kadar uzanıyor ve Türkiye o yıl da 31. sıradaydı. Yedi yıllık dönemin iki ucunda sıra değişmedi; ancak puan sabit kalmadı. Türkiye'nin AB'ye göre endeksi 2019'da 50,9 iken 2026'da 56,9'a çıktı. Sıra ile puanın farklı hikâyeler anlatmasının nedeni basit: sıra yalnızca Türkiye'nin performansına değil, tablodaki kırk ülkenin tamamının hareketine bağlı.
 
 ![Rakam kutusu: Türkiye'nin AB'ye göre endeksi son yılda yedi yılın en yüksek düzeyinde: Son yıl: 2026 yılında 56,9; Önceki yıllar: 2019 yılında 50,9, 2021 yılında 51,6, 2023 yılında 51,0, 2025 yılında 56,3.](./graf-1.svg)
 *Özet yenilik endeksi, AB'nin aynı yıldaki değeri yüz kabul edilerek. Kaynak: Avrupa Komisyonu (İnovasyon Karnesi).*
 
-Yazı sıralamanın ne söylediğini ve ne söylemediğini ayırmaya çalışıyor. Önce karnenin nasıl okunduğuna, sonra Türkiye'nin satırının ve komşu satırların hareketine, en sonda da hangi boyutlarda hareket olduğuna bakıyoruz. Yazı sıralamayı değerlendirmiyor; yalnız Komisyon'un yayımladığı rakamları yan yana koyuyor.
+Bu analizde sıralamanın neyi gösterip neyi gizlediğini inceliyoruz. Önce karnenin nasıl okunduğuna, ardından Türkiye ve komşu ülkelerin satırlarındaki değişime, son olarak da alt boyutlardaki harekete bakıyoruz. Amacımız sıralamayı yorumlamak değil, Komisyon'un yayımladığı rakamları yan yana koymak.
 
 ## Karnenin nasıl okunduğu
 

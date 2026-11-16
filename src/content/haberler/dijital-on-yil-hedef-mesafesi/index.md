@@ -2,15 +2,15 @@
 date: 2026-12-03T08:00:00+03:00
 yaziTuru: analiz
 uretim: yazi-isleri
-title: "Eurostat verisinde Türkiye'nin hedefe oranı AB'ninkinden düşük"
-description: "Dijital On Yıl hedeflerinin iki işletme ayağında Türkiye ve AB'nin Eurostat verisindeki payları grafiklerde; hedefe oran ve puan farkı metinde."
+title: "Dijital On Yıl hedeflerinde Türkiye, AB ortalamasının gerisinde"
+description: "Dijital On Yıl hedeflerinin iki işletme ayağında Türkiye ve AB'nin Eurostat verisindeki payları, hedefe oranları ve puan farkları."
 category: "analiz"
-why_matters: "Bir hedefe mesafe tek bir rakamla anlatılınca ölçünün ayrıntısı kaybolur. Bu yazı hedefe mesafeyi metinde puan ve oran olarak, grafiklerde ise gerçekleşen payları, ölçü sürümüyle birlikte gösteriyor."
+why_matters: "Bir hedefe olan mesafe tek bir rakamla anlatıldığında ölçümün ayrıntısı kaybolur; bu analiz hedefe uzaklığı hem puan hem oran olarak, gerçekleşen payları ise ölçü sürümüyle birlikte ortaya koyuyor."
 key_points:
-  - "AB'nin 2030 yılı hedefi, KOBİ'lerin %90'ından fazlasının en az temel dijital yoğunluğa ulaşması; Türkiye'de Eurostat'ın son değeri %42,7; yazı bunu hedefle karşılaştırınca hedefin %47,4'ü ediyor."
-  - "AB'nin aynı ölçüdeki ortalaması %71,4; Türkiye ile arasındaki fark 28,7 puan."
-  - "Bulut, yapay zekâ ya da veri analitiği kullanan işletme payı Türkiye'de %28,95, AB'de %63,2; hedef %75."
-  - "Yapay zekâ kullanan işletme payı Türkiye'de %7,4, AB'de %20,0; fark 12,5 puan."
+  - "AB'nin 2030 hedefi KOBİ'lerin %90'ından fazlasının en az temel dijital yoğunluğa ulaşması; Türkiye'nin Eurostat'taki son değeri %42,7 ile hedefin %47,4'üne karşılık geliyor."
+  - "Aynı ölçüde AB ortalaması %71,4 seviyesinde; Türkiye ile arasındaki fark 28,7 puan."
+  - "Bulut, yapay zekâ ya da veri analitiği kullanan işletme payı Türkiye'de %28,95, AB'de %63,2 (hedef %75)."
+  - "Yapay zekâ kullanan işletme payı Türkiye'de %7,4, AB'de %20,0; iki taraf arasındaki fark 12,5 puan."
 ---
 
 Avrupa Birliği, 2030 yılına kadar Birlik KOBİ'lerinin %90'ından fazlasının en az temel düzeyde dijital yoğunluğa ulaşmasını hedefliyor. Eurostat'ın Türkiye için yayımladığı en son değer %42,7. Hedef ile bu değer arasında 47,3 puan var; Türkiye hedefin %47,4'üne ulaşmış durumda. AB'nin kendi ortalaması aynı ölçüde %71,4: hedefin 18,6 puan altında.
@@ -99,9 +99,9 @@ Dördüncü okuma ölçünün zamanıyla ilgili. Türkiye'nin değeri 2025 yıl�
 
 ## Ölçümün sınırları: sürüm, sıklık ve kapsam
 
-Dört sınır var. Birincisi, dijital yoğunluk endeksinin sürümü. Eurostat 2022 yılı ve 2024 yılı verilerini dördüncü sürümle; 2021 yılı, 2023 yılı ve 2025 yılı verilerini üçüncü sürümle yayımlıyor. AB'nin resmî raporlamasında dördüncü sürüm kullanılıyor. Türkiye için yalnız 2025 yılında üçüncü sürüm ölçümü var; dördüncü sürüm değeri yok. Bu yüzden Türkiye'yi AB'nin üçüncü sürüm değeriyle (%71,4) karşılaştırdık; hedefe oran hesabında ise Türkiye'nin üçüncü sürüm değeri hedefe bölündü. İki sürüm doğrudan karşılaştırılamaz; Türkiye'nin dördüncü sürüm değerinin hedefe oranı farklı çıkabilir.
+Karşılaştırmayı sınırlayan beş teknik nokta bulunuyor. İlk olarak dijital yoğunluk endeksinin sürümü farklılaşıyor: Eurostat 2022 ve 2024 verilerini dördüncü sürümle; 2021, 2023 ve 2025 verilerini üçüncü sürümle yayımlıyor. AB'nin resmî raporlamasında dördüncü sürüm kullanılıyor. Türkiye için yalnızca 2025 yılında üçüncü sürüm ölçümü bulunduğundan, Türkiye'yi AB'nin üçüncü sürüm değeriyle (%71,4) karşılaştırdık; hedefe oran hesabında da Türkiye'nin üçüncü sürüm değeri hedefe bölündü. İki sürüm doğrudan karşılaştırılamayacağı için Türkiye'nin dördüncü sürüm değerinin hedefe oranı farklı çıkabilir.
 
-İkincisi, ölçüm sıklığı. Dijital yoğunluk iki yılda bir sürüm değiştirerek ölçülüyor. Türkiye için tek nokta olduğu için bir seyir gösteremiyoruz. Üçüncüsü, kapsam: bileşik gösterge Eurostat'ın kendi hesabı ve hedefteki ifadeyle bire bir aynı olmayabilir; hedef üç alanı ayrı sayıyor, Eurostat bulutta yalnız orta ve ileri düzey hizmetleri sayıyor. Dördüncüsü, örneklem: bu veriler işletme anketlerine dayanıyor ve küçük farklar örnekleme hatasıyla açıklanabilir. Beşincisi, yuvarlama: yazıdaki oranlar gösterildikleri basamağa yuvarlanmış değerlerdir; 47,3 puan ile %47,4 birbirinin yuvarlaması değil, iki ayrı ölçüdür (biri hedef ile değerin farkı, öteki değerin hedefe oranı).
+İkinci olarak ölçüm iki yılda bir sürüm değiştirerek yapılıyor ve Türkiye için tek gözlem noktası olduğundan bir zaman serisi kurulamıyor. Üçüncü olarak bileşik gösterge Eurostat'ın kendi hesabı olduğu için hedefteki ifadeyle bire bir örtüşmeyebilir; hedef üç alanı ayrı sayarken Eurostat bulutta yalnızca orta ve ileri düzey hizmetleri kapsıyor. Dördüncü olarak veriler işletme anketlerine dayandığından küçük farklar örnekleme hatasından kaynaklanabilir. Son olarak yazıdaki oranlar gösterildikleri basamağa yuvarlanmıştır; 47,3 puan ile %47,4 birbirinin yuvarlaması değil, biri hedef ile değerin farkını diğeri değerin hedefe oranını ifade eden iki ayrı ölçüdür.
 
 ## Nasıl hesapladık
 

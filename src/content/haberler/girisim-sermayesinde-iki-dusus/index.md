@@ -2,24 +2,24 @@
 date: 2026-11-16T08:00:00+03:00
 yaziTuru: analiz
 uretim: yazi-isleri
-title: "Girişim sermayesinde iki düşüş: 2007–2009 ve 2021–2023"
-description: "Aynı OECD serisinde iki düşüş var: küresel finans krizi dönemi ve pandemi sonrası dönem. Düşüşlerin yaygınlığı benzer; derinliği ve faiz yönü farklı."
+title: "Girişim sermayesinde 2007–2009 ve 2021–2023 düşüşleri: Aynı yaygınlık, farklı derinlik"
+description: "Aynı OECD serisi küresel finans krizi ve pandemi sonrası olmak üzere iki ayrı düşüşü kaydediyor. İki dönemde de gerileme benzer yaygınlıkta; ancak derinlik ve faizlerin yönü birbirinden ayrılıyor."
 category: yatirimlar
-why_matters: "Bir düşüşü ilk kez görmüyorsak, onu öncekiyle ölçülebilir biçimde karşılaştırabiliriz. Bu yazı iki düşüşün neyi paylaştığını ve nerede ayrıldığını yalnızca rakamla koyuyor."
+why_matters: "Bir düşüşle ilk kez karşılaşmıyorsak, eldeki veriyi önceki dönemle yan yana koyup ölçebiliriz. Bu analiz, iki gerilemenin ortak noktalarını ve ayrıştığı yerleri yalnızca veriler üzerinden ortaya koyuyor."
 key_points:
-  - "ABD'de girişim sermayesi oranı 2007–2009 döneminde %29 azaldı, 2021–2023 döneminde %58 azaldı."
-  - "Avrupa'daki OECD üyeleri, ABD ve Kanada'dan oluşan 27 ülkenin 23'ünde oran 2007–2009 döneminde, 23'ünde 2021–2023 döneminde düştü."
-  - "ABD'de gecelik faiz 2007–2009 döneminde %4,24'ten %0,12'ye indi, 2021–2023 döneminde %0,08'den %5,33'e çıktı."
-  - "2023 yılında bu 27 ülkenin 17'sinde oran 2007 yılı oranının üzerinde kaldı."
+  - "ABD'de girişim sermayesi oranı 2007–2009 döneminde %29, 2021–2023 döneminde ise %58 geriledi."
+  - "Avrupa'daki OECD üyeleri, ABD ve Kanada'dan oluşan 27 ülkenin 23'ünde oran 2007–2009'da, yine 23'ünde 2021–2023'te düştü."
+  - "ABD'de gecelik faiz 2007–2009 döneminde %4,24'ten %0,12'ye inerken, 2021–2023 döneminde %0,08'den %5,33'e yükseldi."
+  - "2023 yılında 27 ülkenin 17'sinde girişim sermayesi oranı 2007 seviyesinin üzerinde kaldı."
 ---
 
-27 Temmuz 2022'de Avrupa Merkez Bankası (ECB) mevduat kolaylığı faizini %−0,5'ten %0'a çıkardı. Faizin eksi bölgeden çıktığı bu tarihten bir yıl önce, 2021'de, ABD'de girişim sermayesi yatırımı gayrisafi yurt içi hasılanın (GSYH) %1,13'üne ulaşmıştı. 2023'te oran %0,47'ye indi: iki yılda %58 azaldı.
+27 Temmuz 2022'de Avrupa Merkez Bankası (ECB) mevduat kolaylığı faizini %−0,5'ten %0'a çekti. Faizin eksi bölgeden çıktığı bu tarihten bir yıl önce, 2021'de ABD'de girişim sermayesi yatırımları gayrisafi yurt içi hasılanın (GSYH) %1,13'üne ulaşmıştı. 2023'e gelindiğinde oran %0,47'ye indi; yani iki yılda %58'lik bir daralma yaşandı.
 
-Düşüş ilk kez yaşanmıyor. Aynı OECD veri seti küresel finans krizi dönemini (2007–2009) de kapsıyor ve orada da bir gerileme var: ABD'de oran 2007'de %0,26 iken 2009'da %0,18'e indi, yani %29 azaldı. Biz iki düşüşü yan yana koyuyoruz. Soru üç parçalı: düşüş ne kadar yaygındı, ne kadar derindi ve aynı yıllarda faizler ne yaptı.
+Bu ilk düşüş değil. Aynı OECD veri seti küresel finans krizi dönemini (2007–2009) de kapsıyor ve orada da benzer bir kırılma görülüyor: ABD'de oran 2007'de %0,26 iken 2009'da %0,18'e gerileyerek %29 düşmüştü. İki dönemi yan yana koyduğumuzda üç soru öne çıkıyor: düşüş ne kadar yaygındı, ne kadar derindi ve aynı yıllarda faizler nasıl hareket etti?
 
-Kısa cevap şöyle. Yaygınlık benzer: 27 ülkenin 23'ünde oran 2007–2009 döneminde, 23'ünde 2021–2023 döneminde geriledi. Derinlik farklı: ABD'de ilk düşüşte oran %29 azaldı, ikincisinde %58 azaldı. Faiz ise iki dönemde ters yönde hareket etti: ABD'de gecelik faiz birinci dönemde %4,24'ten %0,12'ye indi, ikinci dönemde %0,08'den %5,33'e çıktı. Aynı sonuç, birbirine zıt iki faiz hareketinde görüldü. Bu yazı bundan nedensellik çıkarmıyor; yalnızca iki zaman çizgisinin ne zaman, nerede ve hangi büyüklükte örtüştüğünü sıralıyor. Gelecek hakkında da bir şey söylemiyoruz.
+Verilerin özeti net. Yaygınlık neredeyse aynı: 27 ülkenin 23'ünde oran 2007–2009 döneminde, yine 23'ünde 2021–2023 döneminde geriledi. Derinlikte ise fark büyük: ABD'de ilk düşüş %29 iken ikincisi %58'i buldu. Faizler ise iki dönemde tamamen zıt yönde ilerledi: ABD'de gecelik faiz birinci dönemde %4,24'ten %0,12'ye inerken, ikinci dönemde %0,08'den %5,33'e tırmandı. Birbirine zıt iki faiz hareketinde aynı sonuç ortaya çıktı. Burada bir nedensellik iddiası kurmuyor, yalnızca iki zaman çizgisinin nerede kesişip nerede ayrıldığını ortaya koyuyoruz.
 
-Girişim sermayesi, henüz küçük ve hızlı büyüme hedefi taşıyan şirketlere hisse karşılığı verilen fondur. OECD bu yatırımları ülke ve yıl bazında, GSYH'ye oranlayarak yayımlıyor. Sayımlar ve karşılaştırmalar, Avrupa'daki OECD üyeleri, ABD ve Kanada'dan oluşan gruba aittir. Aşağıda zamanı baştan sona izleyerek ilerliyoruz.
+Girişim sermayesi, henüz küçük ölçekli ve hızlı büyüme hedefi taşıyan şirketlere hisse karşılığı sağlanan sermayedir. OECD bu yatırımları ülke ve yıl bazında GSYH'ye oranlayarak yayımlıyor. Aşağıdaki sayımlar ve karşılaştırmalar Avrupa'daki OECD üyeleri, ABD ve Kanada'dan oluşan gruba dayanıyor.
 
 ## 2007–2009: kayıtların ilk düşüşü
 

@@ -8,7 +8,7 @@ toplanan: 8000000
 paraBirimi: USD
 tur: "Tohum"
 yatirimcilar: "Andreessen Horowitz Speedrun, Owl Capital, Long Journey Ventures, Stratus Ventures"
-why_matters: "Othello, satış görüşmelerini sonradan analiz eden geleneksel araçların aksine, anlık yapay zekâ koçluğu sunarak B2B satış süreçlerinde yeni bir yaklaşım getiriyor ve önemli fonlardan yatırım almayı başarıyor."
+why_matters: "Othello, satış görüşmelerini sonradan analiz eden araçların aksine görüşme sırasında anlık yapay zekâ koçluğu sunarak Andreessen Horowitz Speedrun ve Owl Capital'dan tohum yatırım aldı."
 key_points:
   - "Othello, tohum turunda 8 milyon dolar yatırım aldı."
   - "Yatırım turuna Andreessen Horowitz Speedrun ve Owl Capital liderlik etti."

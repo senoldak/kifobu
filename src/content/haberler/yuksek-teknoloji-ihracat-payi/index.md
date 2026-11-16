@@ -2,60 +2,52 @@
 date: 2026-12-14T08:00:00+03:00
 yaziTuru: analiz
 uretim: yazi-isleri
-title: "Türkiye’de yüksek teknolojili ihracat payı iki kattan fazla arttı"
-description: "Yüksek teknolojili ürünlerin imalat ihracatındaki payı 2007–2024 arasında %2,17’den %5,14’e çıktı. Türkiye’nin OECD ortalamasına olan uzaklığı ise 2007 yılında 16,89 puan, 2024 yılında 17,17 puandı."
+title: "Türkiye’nin yüksek teknolojili ihracat payı 17 yılda iki kattan fazla arttı"
+description: "Yüksek teknolojili ürünlerin imalat ihracatındaki payı 2007–2024 arasında %2,17’den %5,14’e yükseldi. Türkiye’nin OECD ortalamasına uzaklığı ise 2007’de 16,89 puan iken 2024’te 17,17 puan oldu."
 category: analiz
-why_matters: "Payın on yedi yılda nasıl kaydığını ve karşılaştırma ülkelerinin payları yanında ne ifade ettiğini gösteriyor; payın artması ile ülkeler arasındaki mesafenin değişmesi ayrı şeyler."
+why_matters: "Payın 17 yılda nasıl değiştiğini ve karşılaştırma ülkeleriyle arasındaki mesafenin neden kapanmadığını ortaya koyuyor."
 key_points:
-  - "Türkiye’de yüksek teknolojili ürünlerin imalat ihracatındaki payı 2007 yılında %2,17, 2024 yılında %5,14."
-  - "Pay 2012 yılında %2,15’ten 2013 yılında %3,13’e çıktı; tek yılda 0,98 puanlık sıçrama."
-  - "Yüksek teknolojili ürün ihracatı 2007 yılında 1,88 milyar dolardı, 2024 yılında 9,90 milyar dolar."
-  - "OECD ortalamasına uzaklık 2007 yılında 16,89 puan, 2024 yılında 17,17 puan."
+  - "Türkiye’de yüksek teknolojili ürünlerin imalat ihracatındaki payı 2007’de %2,17 iken 2024’te %5,14’e çıktı."
+  - "Pay 2012’de %2,15’ten 2013’te %3,13’e sıçrayarak tek yılda 0,98 puan arttı."
+  - "Yüksek teknolojili ürün ihracatı 2007’de 1,88 milyar dolarken 2024’te 9,90 milyar dolara ulaştı."
+  - "OECD ortalamasına uzaklık 2007’de 16,89 puan, 2024’te ise 17,17 puan olarak kaydedildi."
 ---
 
-2008 yılında, küresel finans krizinin yılında, Türkiye’nin imalat ihracatının %1,89’u yüksek teknolojili ürünlerden oluşuyordu. Bu, Dünya Bankası’nın seride kaydettiği en düşük değer. 2024 yılında aynı pay %5,14; serinin en yüksek değeri. İki nokta arasında 3,25 puan ve %172,08’lik bir artış var.
+Küresel finans krizinin yaşandığı 2008 yılında Türkiye’nin imalat ihracatının yalnızca %1,89’u yüksek teknolojili ürünlerden oluşuyordu. Dünya Bankası’nın seride kaydettiği bu en düşük değerin ardından, 2024 yılında pay %5,14 ile zirveye ulaştı. İki uç arasında 3,25 puan ve %172,08’lik bir artış var.
 
-Yazı, o iki nokta arasındaki yolu yıl yıl izliyor. Seri 2007 yılında başlıyor, 2024 yılında bitiyor; yani on yedi yıllık bir akış. Önce Türkiye’nin kendi serisine, sonra karşılaştırma ülkelerine bakıyoruz. Amaç, payın nerede kırıldığını, nerede düzleştiğini ve ülkeler arasındaki mesafenin bu hareketle ne kadar değiştiğini göstermek.
-
-Ölçü Dünya Bankası’nın Dünya Kalkınma Göstergeleri serisi: yüksek teknolojili ürünlerin imalat ihracatı içindeki payı. Dünya Bankası yüksek teknolojili ürünleri, Ar-Ge yoğunluğu yüksek ürünler olarak tanımlıyor; havacılık, bilgisayar, ilaç, bilimsel aletler ve elektrikli makineler bu gruba giriyor.
+2007’den 2024’e uzanan 17 yıllık bu seri, payın nerede kırıldığını, nerede yatay seyrettiğini ve karşılaştırma ülkeleriyle aradaki mesafenin nasıl şekillendiğini gösteriyor. Dünya Bankası’nın Dünya Kalkınma Göstergeleri serisi, yüksek teknolojili ürünleri havacılık, bilgisayar, ilaç, bilimsel aletler ve elektrikli makineler gibi Ar-Ge yoğunluğu yüksek kalemler üzerinden tanımlıyor.
 
 ![Çizgi grafik: Türkiye’de yüksek teknolojili ürünlerin imalat ihracatındaki payı 2013 yılında sıçradı, 2024 yılında en yüksek değere ulaştı: Türkiye: 2007 yılında %2,17, 2008 yılında %1,89, 2009 yılında %2,03, 2010 yılında %2,19, 2011 yılında %2,11, 2012 yılında %2,15, 2013 yılında %3,13, 2014 yılında %3,38, 2015 yılında %3,44, 2016 yılında %3,04, 2017 yılında %3,23, 2018 yılında %2,67, 2019 yılında %3,03, 2020 yılında %3,15, 2021 yılında %3,28, 2022 yılında %3,66, 2023 yılında %4,52, 2024 yılında %5,14.](./graf-1.svg)
 *Yüksek teknolojili ürünlerin imalat ihracatı içindeki payı, yüzde. Kaynak: Dünya Bankası.*
-## 2007–2012: yüzde ikinin çevresinde
 
-Seri 2007 yılında %2,17 ile başlıyor. 2008 yılında %1,89’a iniyor; bu, serinin en düşük noktası. 2009 yılında %2,03, 2010 yılında %2,19, 2011 yılında %2,11, 2012 yılında %2,15. Altı yıl boyunca değer %1,89 ile %2,19 arasında kalıyor.
+## 2007–2012: Yüzde ikinin çevresinde
 
-Dolar cinsinden hareket biraz daha belirgin. Yüksek teknolojili ürün ihracatı 2007 yılında 1,88 milyar dolardı. 2009 yılında 1,59 milyar dolara geriledi; 2012 yılında 2,33 milyar dolara çıktı. Pay ile tutar bu dönemde aynı yöne gitmedi: 2012 yılı tutarı 2007 yılı tutarının üzerinde, ama 2012 yılı payı 2007 yılı payıyla neredeyse aynı.
+Seri 2007’de %2,17 ile başlıyor ve 2008’de %1,89 ile dip yapıyor. Ardından 2009’da %2,03, 2010’da %2,19, 2011’de %2,11 ve 2012’de %2,15 geliyor. Altı yıl boyunca oran %1,89 ile %2,19 arasındaki dar bantta kalıyor.
 
-Krizin hemen sonrası bu ayrışmanın küçük bir örneğini veriyor. 2008–2009 arasında yüksek teknolojili ihracatın dolar tutarı %19,14 azaldı; pay ise 0,14 puan arttı. Payın artması, tutarın azalmasıyla çelişmiyor: pay bir oran, ve imalat ihracatının geri kalanı o yıl yüksek teknolojili kesimden daha fazla azalmış olmalı. 2007–2012 arasında tutar %23,58 arttı; pay ise 0,01 puan azaldı. Yani bu dönemde tutar büyüdü, pay yerinde saydı.
+Dolar cinsinden ihracat tutarı ise aynı dönemde daha hareketliydi: 2007’de 1,88 milyar dolar olan yüksek teknolojili ihracat, 2009’da 1,59 milyar dolara geriledikten sonra 2012’de 2,33 milyar dolara çıktı. 2008–2009 arasında dolar tutarı %19,14 azalırken payın 0,14 puan artması, imalat ihracatının geri kalanının o yıl daha sert daralmasından kaynaklanıyor. 2007–2012 arasında tutar toplamda %23,58 büyürken pay 0,01 puan geriledi; yani ihracat hacmi arttı ama bileşim değişmedi.
 
-## 2013 yılı: tek yılda bir puan
+## 2013: Tek yılda bir puanlık sıçrama
 
-2012 yılında %2,15 olan pay, 2013 yılında %3,13’e çıktı. Fark 0,98 puan; bu, serinin tek yıllık en büyük sıçraması. Aynı yıl dolar cinsinden yüksek teknolojili ihracat 2,33 milyar dolardan 3,78 milyar dolara çıktı; yani %62,54 arttı.
+2012’de %2,15 olan pay, 2013’te %3,13’e yükseldi. 0,98 puanlık bu fark, serinin tek yıllık en büyük sıçraması. Aynı yıl yüksek teknolojili ihracat tutarı da %62,54 artışla 2,33 milyar dolardan 3,78 milyar dolara çıktı.
 
-Veri, sıçramanın sebebini söylemiyor. Serinin kaynağı Birleşmiş Milletler’in dış ticaret veri tabanı; bu yazı o veri tabanındaki ürün sınıflamasını ya da bir sınıflama değişikliğini incelemedi. Bu yüzden 2013 yılı sıçramasının ne kadarının ihracatın bileşiminden, ne kadarının ölçüm biçiminden geldiğini söyleyemiyoruz; yalnızca serinin 2012 yılından sonra daha yüksek bir düzeye geçtiğini görüyoruz.
+Veri bu sıçramanın nedenini açıklamıyor. Serinin kaynağı Birleşmiş Milletler dış ticaret veri tabanı; ürün sınıflamasında bir değişiklik olup olmadığı bu çalışmada incelenmediği için artışın ne kadarının ihracat bileşiminden, ne kadarının ölçüm yönteminden geldiğini ayırmak mümkün değil. Görünen o ki seri 2012 sonrası daha yüksek bir basamağa taşındı.
 
-## 2013–2020: yüzde üç civarı
+## 2013–2020: Yüzde üç civarı
 
-2013 yılından 2020 yılına kadar pay %2,67 ile %3,44 arasında hareket etti. 2014 yılında %3,38, 2015 yılında %3,44, 2016 yılında %3,04, 2017 yılında %3,23. 2018 yılında %2,67’ye indi; bu, 2013 yılı sonrasının en düşük değeri. 2019 yılında %3,03, 2020 yılında %3,15.
+2013–2020 arasında pay %2,67 ile %3,44 aralığında dalgalandı. 2014’te %3,38 ve 2015’te %3,44’e çıkan oran, 2016’da %3,04’e, 2017’deki %3,23’ün ardından 2018’de %2,67’ye geriledi; sonra 2019’da %3,03 ve 2020’de %3,15 oldu.
 
-Yedi yıllık bu dönemin belirgin özelliği, tek bir yönün olmaması. 2015 yılından 2018 yılına pay 0,76 puan düştü. Aynı dönemde dolar cinsinden ihracat 2015 yılında 3,87 milyar dolar, 2018 yılında 3,74 milyar dolardı: tutar yataya yakın kalırken pay geriledi. 2020 yılında, pandemi döneminin (2020–2021) ilk yılında pay %3,15; yani pandemi yılında seri belirgin bir kırılma göstermiyor.
+Bu yedi yılda belirgin bir yön yok. 2015–2018 arasında dolar tutarı 3,87 milyar dolardan 3,74 milyar dolara yatay seyrederken pay 0,76 puan düştü. Pandeminin ilk yılı olan 2020’de de (%3,15) sert bir kırılma yaşanmadı. Dönemin bütününe bakıldığında, 2013–2020 arasında dolar tutarı %10,31 artarken pay yalnızca 0,02 puan değişti.
 
-2013–2020 arasında yedi yıl geçti. Bu sürede dolar tutarı %10,31 arttı; pay ise yalnızca 0,02 puan değişti. Yani sıçramanın ardından seri yeni düzeyinde durdu: pay 2013 yılında %3,13, 2020 yılında %3,15.
+## 2021–2024: Dört yılda kesintisiz artış
 
-## 2021–2024: dört yılda artış
-
-Pay 2021 yılında %3,28’e çıktı, 2022 yılında %3,66, 2023 yılında %4,52, 2024 yılında %5,14. Artış 2021–2022 arasında 0,38 puan, 2022–2023 arasında 0,85 puan, 2023–2024 arasında 0,62 puan. 2022 yılından 2024 yılına toplam artış 1,47 puan.
-
-Dolar cinsinden yüksek teknolojili ihracat bu dönemde 4,17 milyar dolardan (2020 yılı) 9,90 milyar dolara (2024 yılı) çıktı; yani %137,35 arttı. 2007–2024 arasında tutar 5,26 katına, yıllık bileşik %10,26’lık bir büyümeyle çıkmış durumda.
-
-Bu dönemin özelliği, iki ölçünün dört yıl boyunca her yıl birlikte artması: hem pay hem tutar 2020 yılından 2024 yılına kadar her yıl bir önceki yılın üzerinde.
+Pay 2021’de %3,28, 2022’de %3,66, 2023’te %4,52 ve 2024’te %5,14 oldu. 2022–2024 arasındaki iki yılda 1,47 puanlık bir artış gerçekleşti. Dolar bazında ise yüksek teknolojili ihracat 2020’deki 4,17 milyar dolardan 2024’te 9,90 milyar dolara çıkarak %137,35 büyüdü. 2007–2024 genelinde tutar 5,26 katına, yani yıllık bileşik %10,26’lık bir artış hızına ulaştı. Bu son dört yılın ayırt edici özelliği, hem payın hem de dolar tutarının her yıl birlikte yükselmesi oldu.
 
 ![Çubuk grafik: Türkiye’nin yüksek teknolojili ürün ihracatı dolar cinsinden beş katından fazla büyüdü: İhracat: 2007 yılında 1.883.247.744,0, 2012 yılında 2.327.323.000,0, 2013 yılında 3.782.775.017,0, 2018 yılında 3.735.743.019,0, 2022 yılında 6.906.506.415,0, 2024 yılında 9.903.861.226,0.](./graf-2.svg)
 *Yüksek teknolojili ürün ihracatı, cari dolar. Kaynak: Dünya Bankası.*
+
 ## Payın artışı nerede toplandı?
 
-Seriyi dört parçaya ayırınca payın artışının nerede biriktiği görülüyor.
+Seriyi dört döneme ayırdığımızda, 2007–2024 arasındaki 2,97 puanlık toplam artışın neredeyse tamamının iki dilimde biriktiği görülüyor: 2012–2013 arasındaki tek yıl (0,98 puan) ve 2020–2024 arasındaki dört yıl (1,98 puan). Aradaki 2007–2012 ve 2013–2020 dönemleri ise toplamda neredeyse hiç değişim üretmedi.
 
 | Dönem | Başlangıç payı | Bitiş payı | Fark (puan) |
 |---|---|---|---|
@@ -66,11 +58,9 @@ Seriyi dört parçaya ayırınca payın artışının nerede biriktiği görül�
 
 *Türkiye’de yüksek teknolojili ürünlerin imalat ihracatı içindeki payı, yüzde. Kaynak: Dünya Bankası.*
 
-Tablo, artışın iki yerde toplandığını gösteriyor: 2012–2013 arasındaki tek yıl (0,98 puan) ve 2020–2024 arasındaki dört yıl (1,98 puan). Aradaki iki uzun dönem, 2007–2012 ve 2013–2020, toplamda neredeyse hiç değişim üretmedi. Yani 2007–2024 arasındaki 2,97 puanlık artışın büyük kısmı iki ayrı dilimde gerçekleşti.
-
 ## Aynı yıllarda başka ülkeler
 
-Pay Türkiye’de arttı, ama karşılaştırma ülkelerinde de hareket var. Aşağıdaki tablo, seçilmiş ülkelerin 2007 yılı ve 2024 yılı paylarını ve aradaki farkı gösteriyor.
+Türkiye’de pay artarken karşılaştırma ülkelerinde de önemli kaymalar yaşandı.
 
 | Ülke ya da grup | 2007 yılı payı | 2024 yılı payı | Fark (puan) |
 |---|---|---|---|
@@ -92,13 +82,11 @@ Pay Türkiye’de arttı, ama karşılaştırma ülkelerinde de hareket var. Aş
 | OECD ülkeleri | %19,06 | %22,30 | +3,25 |
 | Dünya | %19,85 | %24,69 | +4,84 |
 
-*Yüksek teknolojili ürünlerin imalat ihracatındaki payı, yüzde. Kaynak: Dünya Bankası.*
+*Yüksek teknolojili ürünlerin imalat ihracatı içindeki payı, yüzde. Kaynak: Dünya Bankası.*
 
-Tablo üç şeyi birlikte gösteriyor. Birincisi, Türkiye’deki 2,97 puanlık artış Almanya’daki 2,51 puanlık artışa yakın, Fransa’daki 2,99 puanlık artışa çok yakın. İkincisi, Polonya (9,63 puan) ve Romanya (9,03 puan) çok daha büyük artış kaydetmiş. Üçüncüsü, Macaristan, Çin, ABD ve Japonya’da pay azalmış. Türkiye’nin 2,97 puanlık artışı OECD’nin 3,25 puanlık, AB’nin 4,95 puanlık ve dünyanın 4,84 puanlık artışının altında.
+Türkiye’nin 2,97 puanlık artışı Almanya (2,51 puan) ve Fransa’ya (2,99 puan) yakın görünse de Polonya (9,63 puan) ve Romanya’nın (9,03 puan) çok gerisinde. Aynı dönemde Macaristan, Çin, ABD ve Japonya’da pay azaldı; Türkiye’nin artışı ise OECD (3,25 puan), AB (4,95 puan) ve dünya (4,84 puan) ortalamalarının altında kaldı.
 
-Sıra açısından Türkiye, tablodaki en düşük paya hem 2007 yılında hem 2024 yılında sahip. Ama aradaki mesafe aynı kalmadı: Polonya 2007 yılında Türkiye’nin 1,71 puan üstündeydi, 2024 yılında 8,37 puan üstünde. Romanya 2007 yılında 2,25 puan üstündeydi, 2024 yılında 8,31 puan üstünde. Türkiye’nin dünya ortalamasına uzaklığı da 2024 yılında 19,55 puan. Yani aynı dönemde Türkiye’nin payı artarken, Türkiye’ye yakın düzeyden başlayan bazı ülkelerin payı daha hızlı arttı.
-
-Türkiye’nin OECD ortalamasına uzaklığı bu yüzden neredeyse sabit kaldı: 2007 yılında 16,89 puan, 2024 yılında 17,17 puan. AB ortalamasına uzaklık 2024 yılında 15,42 puan. Yani pay Türkiye’de iki kattan fazla arttı, ama grupların ortalamaları da aynı dönemde kaydığı için aradaki mesafe kapanmadı.
+Hem 2007’de hem de 2024’te tablonun en altında yer alan Türkiye ile yakın düzeyden başlayan ülkeler arasındaki fark açıldı: Polonya 2007’de Türkiye’nin 1,71 puan üzerindeyken 2024’te 8,37 puan üzerine çıktı; Romanya’da bu fark 2,25 puandan 8,31 puana yükseldi. Türkiye’nin dünya ortalamasına uzaklığı 2024’te 19,55 puan, AB ortalamasına uzaklığı 15,42 puan. OECD ortalamasına olan mesafe ise 2007’deki 16,89 puandan 2024’te 17,17 puana çıkarak neredeyse sabit kaldı. Yani Türkiye payını iki kattan fazla artırsa da küresel ortalamalar da yükseldiği için aradaki makas kapanmadı.
 
 ![Eğim grafiği: Türkiye’nin payı arttı, ama Polonya ve Romanya daha hızlı yükseldi: 2007 yılı: Türkiye: %2,17, Almanya: %15,46, Fransa: %20,14, İtalya: %6,73, İspanya: %5,61, Polonya: %3,88, Romanya: %4,42, Çekya: %15,29; 2024 yılı: Türkiye: %5,14, Almanya: %17,98, Fransa: %23,14, İtalya: %11,89, İspanya: %9,28, Polonya: %13,51, Romanya: %13,45, Çekya: %22,40.](./graf-3.svg)
 *Yüksek teknolojili ürünlerin imalat ihracatı içindeki payı, yüzde. Kaynak: Dünya Bankası.*
@@ -106,33 +94,20 @@ Türkiye’nin OECD ortalamasına uzaklığı bu yüzden neredeyse sabit kaldı:
 *Yüksek teknolojili ürünlerin imalat ihracatı içindeki payı, yüzde; 2024 yılı. Kaynak: Dünya Bankası.*
 ![Halter grafik: Polonya ve Romanya’da pay Türkiye’dekinden çok daha fazla arttı: 2007 yılı: Türkiye: %2,17, Almanya: %15,46, Fransa: %20,14, İtalya: %6,73, İspanya: %5,61, Polonya: %3,88, Romanya: %4,42, Macaristan: %26,09, Çekya: %15,29, Güney Kore: %32,43; 2024 yılı: Türkiye: %5,14, Almanya: %17,98, Fransa: %23,14, İtalya: %11,89, İspanya: %9,28, Polonya: %13,51, Romanya: %13,45, Macaristan: %22,57, Çekya: %22,40, Güney Kore: %36,26.](./graf-5.svg)
 *Yüksek teknolojili ürünlerin imalat ihracatı içindeki payı, yüzde. Kaynak: Dünya Bankası.*
-Zaman yolcusu olarak yolu geriye dönüp bakınca şunu görüyoruz: 2007–2024 arasında Türkiye’nin yüksek teknolojili ürünlerin imalat ihracatındaki payı %2,17’den %5,14’e çıktı. Bu artışın büyük kısmı iki dilimde toplandı: 2013 yılı sıçraması ve 2020–2024 arasındaki dört yıl. Aradaki uzun dönemlerde pay yerinde durdu, tutar ise artmaya devam etti. Karşılaştırma ülkelerinde de pay kaydı; Türkiye bu kaymaların içinde hâlâ listenin en altında, ve OECD ortalamasına uzaklığı 2007 yılı düzeyine çok yakın. Yolun şekli üç ayrı dönemin, üç ayrı hızın toplamı: önce yerinde sayan bir pay, sonra tek yıllık bir sıçrama, sonra yedi yıllık bir yatay seyir ve son olarak dört yıllık bir tırmanış.
 
-## Karşı okuma: pay neyi ölçüyor, neyi ölçmüyor?
+## Pay neyi ölçüyor, neyi ölçmüyor?
 
-Beş karşı okuma var.
+Bu veriyi okurken beş sınırlamayı göz önünde bulundurmak gerekiyor. Ürün sınıflaması Ar-Ge yoğunluğuna göre yapıldığı için yüksek teknoloji gerektiren üretim aşamasının hangi ülkede gerçekleştiğini ölçmüyor. Ayrıca brüt ihracat değeri sayıldığından yurt içi katma değerin ne kadar arttığı buradan anlaşılmıyor.
 
-Birincisi, payın ürün sınıflamasına dayanması. Seri, ürünleri Ar-Ge yoğunluğuna göre sınıflıyor; hangi işletmenin ya da hangi üretim aşamasının yüksek teknolojili olduğunu ölçmüyor. Bir ürün yüksek teknolojili sınıfta olabilir ve onun yapılmasında yüksek teknoloji gerektiren aşama başka ülkede kalmış olabilir.
-
-İkincisi, brüt ihracat değerinin sayılması. Seri, ihracatın tutarını sayıyor; ürünün ne kadarının yurt içinde üretildiğini göstermiyor. Dolayısıyla payın artması, yurt içi katma değerin aynı oranda arttığı anlamına gelmiyor.
-
-Üçüncüsü, payın paydaya bağımlı olması. Payın artması, yüksek teknolojili ihracatın artmasından ya da imalat ihracatının diğer bölümlerinin yavaşlamasından gelebilir. Yüksek teknolojili tutar 2007–2024 arasında 5,26 katına çıktı; bu, payın artışından (iki kattan fazla) daha büyük. Payın tutardan yavaş artması, toplam imalat ihracatının da büyüdüğünü gösteriyor; ama o tutarı bu yazıda çekmedik.
-
-Dördüncüsü, dolar tutarlarının cari fiyatlarla olması. Seri, o yılın fiyatlarıyla ve o yılın kuruyla ifade edilmiş dolar değerini veriyor; fiyat ve kur hareketlerinden arındırılmış değil. Bu yüzden 2007–2024 arasındaki 5,26 katlık artış, hacimdeki artış olarak okunamaz; hacim, fiyat ve ürün bileşimi birlikte bu rakamın içinde. Payın tutardan çok daha az artması bu yüzden şaşırtıcı değil: pay bir oran olduğu için ortak fiyat etkilerini kısmen siler.
-
-Beşincisi, grup satırlarının tanımı. AB, OECD ve dünya satırları Dünya Bankası’nın grup serileri; hangi üye kümesinin kullanıldığı bu tabloda görünmüyor. Bu yüzden grup satırlarını tek tek ülke satırlarından farklı, daha az ayrıntılı bir ölçü olarak okuyoruz.
+Payın paydaya bağımlı olması da önemli: yüksek teknolojili tutar 2007–2024 arasında 5,26 katına çıkarken payın iki kattan biraz fazla artması, toplam imalat ihracatının da aynı dönemde büyüdüğünü gösteriyor. Üstelik dolar tutarları cari fiyatlarla hesaplandığı için 5,26 katlık artış fiyat ve kur hareketlerinden arındırılmış bir hacim artışı değil; pay ise bir oran olduğu için ortak fiyat etkilerini kısmen süzüyor. Son olarak AB, OECD ve dünya satırları Dünya Bankası’nın grup serileri olduğundan hangi üye kümesinin kullanıldığı tabloda görünmüyor.
 
 ## Ölçüm sınırları
 
-Dünya Bankası’nda bu serinin kaydı 2007 yılından başlıyor; daha eski yıllar için değer yok. Bu yüzden on yıllarca öncesine uzanan bir karşılaştırma yapılamıyor; bu seriyle söylenebilecekler yalnızca 2007–2024 arasını kapsıyor. Serinin en son güncellemesi bu yazının hazırlandığı tarihe yakın; son yılların değerleri sonraki güncellemelerde değişebilir.
-
-Karşılaştırma ülkeleri seçilmiş bir liste, bir örneklem. Listeyi biz seçtik: 2007 yılından beri verisi bulunan, Avrupa’nın büyük imalatçıları, orta ve doğu Avrupa’dan dört ülke ve büyük ihracatçı ekonomiler. Meksika’nın verisi 2008 yılında başladığı için tabloda yok. Listeye girmeyen ülkelerde tablo farklı olabilir. Ayrıca ABD’nin ve Çin’in payları bu ülkelerin tüm imalat ihracatına göre; büyüklük farkı payda yansımıyor.
-
-Son olarak, iki yıl arasındaki fark bir eğilim değil, iki nokta arasındaki net değişim. 2007 yılı ile 2024 yılı arasındaki yolun şekli, tablodan değil Türkiye’nin kendi yıllık serisinden okunuyor.
+Dünya Bankası’nda bu seri 2007’den başladığı için daha eski yıllarla kıyaslama yapılamıyor ve son yılların değerleri sonraki güncellemelerde değişebiliyor. Karşılaştırma listesi ise 2007’den beri verisi bulunan Avrupa imalatçıları, Orta ve Doğu Avrupa’dan dört ülke ve büyük ihracatçı ekonomilerden seçildi; verisi 2008’de başlayan Meksika gibi ülkeler dışarıda kaldı. Ayrıca iki yıl arasındaki farkın net bir değişim olduğu, aradaki yolun şeklinin yalnızca yıllık seriden okunabileceği unutulmamalı.
 
 ## Nasıl hesapladık
 
-Veri, Dünya Bankası’nın Dünya Kalkınma Göstergeleri veri tabanından, iki seriyle çekildi: yüksek teknolojili ürünlerin imalat ihracatındaki payı (TX.VAL.TECH.MF.ZS) ve yüksek teknolojili ürün ihracatı, cari dolar (TX.VAL.TECH.CD). Her ikisi de Birleşmiş Milletler’in dış ticaret veri tabanına dayanıyor. Kendi hesabımız: iki yıl arasındaki yüzde puan farkları, pay ve tutardaki yüzde değişimler, 2007–2024 arasındaki yıllık bileşik büyüme (on yedi dönem) ve tutarın iki yıl arasındaki oranı. Her rakam, kaynaktan bu yazı hazırlanırken çekildi ve çekim tarihiyle kanıt dosyasına kaydedildi.
+Veriler Dünya Bankası’nın Dünya Kalkınma Göstergeleri veri tabanından, yüksek teknolojili ürünlerin imalat ihracatındaki payı (TX.VAL.TECH.MF.ZS) ve cari dolar cinsinden yüksek teknolojili ürün ihracatı (TX.VAL.TECH.CD) serileriyle çekildi. İki yıl arasındaki yüzde puan farkları, pay ve tutardaki yüzde değişimler, 2007–2024 arasındaki yıllık bileşik büyüme (17 dönem) ve tutar oranları bu veriler üzerinden hesaplandı.
 
 ## Kaynaklar
 

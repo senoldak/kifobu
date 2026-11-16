@@ -2,15 +2,15 @@
 date: 2026-11-23T08:00:00+03:00
 yaziTuru: analiz
 uretim: yazi-isleri
-title: "Ar-Ge harcamasının yarısından fazlası iki bölgede yapılıyor"
-description: "Kişi başına Ar-Ge harcamasında Ankara, Türkiye ortalamasının 4,09 katı; en alttaki bölgede ortalamanın 0,12 katı. Pay 2021–2024 arasında İstanbul’da arttı."
+title: "Türkiye'deki Ar-Ge harcamasının yarısından fazlası iki bölgede toplanıyor"
+description: "Kişi başına Ar-Ge harcamasında Ankara, Türkiye ortalamasının 4,09 katına çıkarken en alttaki bölge ortalamanın 0,12 katında kalıyor. 2021–2024 arasında İstanbul'un payı artış gösterdi."
 category: analiz
-why_matters: "Ar-Ge harcamasının bölgelere dağılımı, ülke ortalamasının arkasındaki farkı gösteriyor ve yoğunlaşmanın hangi ölçüyle ne kadar göründüğünü ortaya koyuyor."
+why_matters: "Ar-Ge harcamasının bölgelere dağılımı, ülke ortalamasının arkasındaki keskin farkları ve yoğunlaşmanın hangi ölçüde ne kadar belirginleştiğini ortaya koyuyor."
 key_points:
-  - "Türkiye’nin 2024 yılında yaptığı 651,82 milyar TL’lik Ar-Ge harcamasının %33,36’sı İstanbul’da, %27,82’si Ankara’da yapıldı; iki bölgenin toplam payı %61,18."
-  - "Kişi başına Ar-Ge harcaması Ankara’da 878,25 euro, Türkiye ortalaması 214,63 euro, en düşük bölge TRC3’te 24,79 euro."
-  - "İki bölgenin payı 2021 yılında %57,86’ydı; 2024 yılında %61,18’e çıktı, ama 2022 yılında %59,95 ve 2023 yılında %58,61 olduğu için artış tek yönlü olmadı."
-  - "Harcamanın GSYH’ye oranı Ankara’da %3,88, Türkiye’de %1,46."
+  - "2024'te Türkiye'nin 651,82 milyar TL'lik Ar-Ge harcamasının %33,36'sı İstanbul'da, %27,82'si Ankara'da yapıldı; iki bölgenin toplam payı %61,18'e ulaştı."
+  - "Kişi başına Ar-Ge harcaması Ankara'da 878,25 euro, Türkiye ortalamasında 214,63 euro, en düşük bölge olan TRC3'te ise 24,79 euro oldu."
+  - "İki bölgenin toplam payı 2021'deki %57,86 seviyesinden 2024'te %61,18'e çıktı; ancak 2022'de %59,95, 2023'te %58,61 olması nedeniyle artış doğrusal bir seyir izlemedi."
+  - "Ar-Ge harcamasının GSYH'ye oranı Ankara'da %3,88, Türkiye genelinde ise %1,46 olarak gerçekleşti."
 ---
 
 Kişi başına Ar-Ge harcaması sıralamasının ilk satırı Ankara’ya (TR51) ait: 2024 yılında kişi başına 878,25 euro. Son satırda TRC3 var (Mardin, Batman, Şırnak, Siirt): 24,79 euro. Ankara’daki değer, TRC3’tekinin 35,43 katı. Türkiye ortalaması 214,63 euro.
@@ -117,17 +117,17 @@ Dört ölçüye birlikte bakınca Ankara aynı yerde duruyor: toplam harcamada i
 
 Yoğunlaşma dört ölçüde de görünüyor, ama genişliği ölçüye göre değişiyor. Harcama payının %61,18 olduğu iki bölgede nüfus payı %25,14; kişi başına oran Ankara’da Türkiye ortalamasının 4,09 katı; GSYH’ye oran Ankara’da %3,88, Türkiye’de %1,46.
 
-## Karşı okuma: ortalamanın ve payın başka okunuşları
+## Ortalamanın ve payın başka okunuşları
 
-Dört karşı okuma var.
+Veriyi yorumlarken dört noktayı göz önünde bulundurmak gerekiyor:
 
-Birincisi, TL cinsinden toplamın kendisi. Türkiye’nin Ar-Ge harcaması 2021–2024 arasında TL cinsinden %540,69 arttı; euro cinsinden artış %89,33. Euro cinsinden harcama 2021 yılında 9,68 milyar euro, 2024 yılında 18,32 milyar euro. İki rakamın arasındaki fark, TL’nin euro karşısındaki değerinin değişimini de içeriyor. Bu yüzden yazıda TL tutarlarını bölgeler arasında pay olarak, yıllar arasında ise yalnızca pay farkı olarak karşılaştırdık.
+İlk olarak TL cinsinden toplamın kendisine bakıldığında, Türkiye’nin Ar-Ge harcaması 2021–2024 arasında TL bazında %540,69, euro bazında ise %89,33 arttı. Euro cinsinden harcama 2021'de 9,68 milyar euro iken 2024'te 18,32 milyar euro'ya çıktı. İki oran arasındaki fark TL’nin euro karşısındaki değer değişiminden kaynaklanıyor. Bu nedenle analizde TL tutarları bölgeler arasında pay olarak, yıllar arasında ise yalnızca pay farkı olarak karşılaştırıldı.
 
-İkincisi, bölgelerin büyüklüğü. Tek ilden oluşan bölgelerle birkaç ilden oluşan bölgeleri aynı sıralamaya koymak, farklı ölçekleri karıştırmak anlamına geliyor. Kişi başına ölçü bunu kısmen düzeltiyor, ama bölgenin içindeki dağılımı göstermiyor.
+İkinci olarak bölgelerin ölçeği farklı. Tek ilden oluşan bölgelerle birden fazla ili kapsayan bölgeleri aynı sıralamaya koymak farklı büyüklükleri yan yana getiriyor. Kişi başına ölçü bu farkı kısmen dengelese de bölge içi dağılımı yansıtmıyor.
 
-Üçüncüsü, Türkiye ortalamasının ne olduğu. Türkiye ortalaması, ülke toplamının ülke nüfusuna bölünmesiyle bulunur; nüfusu büyük bölgelerin değerleri daha ağır basar. 26 bölgenin kişi başına değerlerinin basit ortalaması 141,92 euro; bu, Türkiye ortalamasından 72,71 euro düşük. Yani ortalama bir bölge, ülke ortalamasının belirgin biçimde gerisinde. Bu, yüksek değerli bölgelerin nüfus ağırlığının büyük olmasıyla uyumlu.
+Üçüncüsü, Türkiye ortalamasının yapısı. Ülke ortalaması toplam harcamanın toplam nüfusa bölünmesiyle hesaplandığı için nüfusu kalabalık bölgelerin ağırlığı daha fazla. 26 bölgenin kişi başına değerlerinin basit ortalaması 141,92 euro; bu da Türkiye ortalamasından 72,71 euro daha düşük. Yani ortalama bir bölge, ülke ortalamasının belirgin şekilde gerisinde kalıyor.
 
-Dördüncüsü, harcamanın nerede kaydedildiği. Tablo, bölge payının harcamanın yapıldığı yere göre mi, yoksa harcamayı yapan kurumun bağlı olduğu yere göre mi hesaplandığını göstermiyor. Bu yazı bu ayrımı veriden yapamıyor.
+Son olarak harcamanın nerede kaydedildiği belirsiz. Tablo, bölge paylarının harcamanın fiilen yapıldığı yere göre mi yoksa harcamayı yapan kurumun merkezine göre mi hesaplandığını göstermiyor.
 
 ## Ölçüm sınırları
 

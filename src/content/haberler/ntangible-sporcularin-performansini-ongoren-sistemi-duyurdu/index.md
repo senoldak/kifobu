@@ -1,6 +1,6 @@
 ---
 title: "Ntangible, sporcuların performansını öngören sistemi duyurdu"
-description: "Ntangible, sporcuların baskı altındaki performansını ölçmeyi hedefleyen değerlendirme sistemini tanıttı."
+description: "Ntangible, sporcuların baskı altındaki zihinsel dayanıklılığını ölçen değerlendirme sistemini tanıttı."
 date: 2026-10-14T17:21:05+03:00
 category: girisimler
 uretim: yapay-zeka

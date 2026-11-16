@@ -3,7 +3,7 @@ title: "Finlandiya, 34,5 milyar dolarlık toplam şirket değeriyle Nordic Unico
 description: "Hurun Research Institute raporuna göre Finlandiya, toplam 34,5 milyar dolarlık unicorn değerlemesiyle bölgede lider konuma yükseldi."
 date: 2026-10-21T18:21:01+03:00
 category: analiz
-why_matters: "Nordik bölgesi girişim ekosisteminin ilk kez tek bir pazar olarak incelendiği bu rapor, yapay zekâ, uydu teknolojileri ve sağlık alanındaki büyüme trendlerini ve bölgenin küresel rekabet gücünü göstermesi açısından önem taşıyor."
+why_matters: "Nordik girişim ekosistemini ilk kez tek pazar olarak ele alan rapor, bölgedeki değerlemenin yapay zekâ, uydu teknolojileri ve sağlık girişimlerinde toplandığını, ancak büyüme sermayesine erişimin hâlâ sorun olduğunu gösteriyor."
 key_points:
   - "Finlandiya 34,5 milyar dolarlık toplam unicorn değerlemesiyle lider konumda"
   - "Nordik ülkelerinde toplam 18 unicorn şirketin değeri 76,1 milyar dolara ulaştı"

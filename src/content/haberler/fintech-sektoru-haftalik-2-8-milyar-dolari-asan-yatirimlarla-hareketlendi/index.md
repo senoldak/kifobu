@@ -4,7 +4,7 @@ description: "Küresel fintech sektörü, Ramp'in 1,85 milyar dolarlık yatırı
 date: 2026-10-17T18:36:52+03:00
 category: analiz
 yatirimcilar: "Ramp, ID Finance, Stand, Archa, Harmonic Security"
-why_matters: "Küresel fintech ekosistemindeki bu büyük hacimli yatırımlar ve yapay zekâ odaklı girişimlerin aldığı fonlar, sektördeki teknolojik dönüşümün yatırımcılar tarafından güçlü bir şekilde desteklendiğini gösteriyor."
+why_matters: "Haftalık 2,8 milyar dolarlık hacmin yarısından fazlasını tek başına Ramp'in alması, fintek yatırımlarının erken aşamadan çok büyük ölçekli geç aşama turlarda yoğunlaştığını gösteriyor."
 key_points:
   - "Küresel fintech fonlamaları haftalık 2,8 milyar doları aştı"
   - "Ramp 60 milyar dolar değerlemeyle 1,85 milyar dolar yatırım aldı"

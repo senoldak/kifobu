@@ -1,10 +1,10 @@
 ---
 title: "Unicorn kurulu ekim ayında otuz dört yeni şirketle bir bin dokuz yüz sınırını aştı"
-description: "Unicorn kurulu, ekim ayında bünyesine kattığı otuz dört yeni şirketle toplamda bir bin dokuz yüz özel şirkete ulaştı."
+description: "Crunchbase Unicorn Kurulu, ekim ayında eklenen 34 yeni şirketle 1.900 özel şirket sınırını aştı; yeni üyelerin yarısı dört yaşından küçük."
 date: 2026-11-10T16:20:50+03:00
 category: analiz
 yatirimcilar: "Andreessen Horowitz, Sequoia Capital, General Catalyst"
-why_matters: "Ekim ayındaki unicorn verileri, yapay zekâ ve ileri teknolojiler alanındaki girişimlerin ne kadar hızlı büyüdüğünü ve milyar dolar değerlemelere ulaştığını göstermesi açısından ekosistem için önem taşıyor."
+why_matters: "Dört yaşından küçük şirketlerin ve tohum/Seri A turlarının milyar dolar değerlemelere ulaşması, yapay zeka ve derin teknoloji girişimlerinde sermaye yoğunlaşmasının hızlandığını gösteriyor."
 key_points:
   - "Crunchbase Unicorn Kurulu ekim ayında 34 yeni şirketle toplam 1.900 şirkete ulaştı."
   - "Ekim ayında eklenen yeni unicornlar kurula 96 milyar doların üzerinde değer ekledi."
@@ -14,4 +14,10 @@ haberDegeri: 70
 uretim: yapay-zeka
 ---
 
-Kurula katılan otuz dört yeni şirketle ekim ayında doksan altı milyar doların üzerinde değer ve on dört virgül sekiz milyar dolarlık toplam fon sağlandı. Bu katılımlarla kurul bir bin dokuz yüz özel şirkete ulaştı ve Amerika Birleşik Devletleri merkezli girişimlerin sayısı bir bin sınırını aştı. Ekim ayında kurula dahil olan şirketlerin yarısı dört yaşından küçük girişimlerden oluştu. Dokuz şirket tohum veya Seri A turlarıyla bu statüyü kazandı. Amerika Birleşik Devletleri, listeye eklenen yirmi üç şirketle coğrafi dağılımda ilk sırada yer aldı. Çin ve Kore listeye üçer şirket kattı. Estonya iki şirket ekleyerek tek ayda kendi rekorunu kırdı. Singapur, Almanya ve Japonya listeye birer yeni şirket dahil etti. En değerli yeni girişimler arasında elektrik altyapısı sağlayıcısı Axiom Solutions International, model geliştiricisi TypeSafe AI ve yapay zekâ asistanı şirketi Manus AI öne çıktı. TypeSafe AI, Andreessen Horowitz liderliğinde yapılan turda sekiz yüz yetmiş milyon dolar Seri A yatırımı aldı. Manus AI ise beş yüz milyon dolarlık finansman sağladı. Öncü laboratuvarlar, yapay zekâ ajanları, havacılık ve yarı iletken teknolojileri ekim ayında unicorn oluşumuna öncülük eden ana sektörler oldu. Yatırımcı tarafında Andreessen Horowitz yedi farklı şirketin turunda yer aldı. Sequoia Capital ile General Catalyst dört şirketin finansmanına katıldı. Eclipse ise üç şirketin yatırım turunda yer alan kurumlar arasında kayıtlara geçti.
+Crunchbase Unicorn Kurulu, ekim ayında katılan 34 yeni şirketle 1.900 özel şirket sınırını aştı. Bu yeni katılımlar kurula 96 milyar doların üzerinde değer ve 14,8 milyar dolarlık toplam fon ekledi. ABD merkezli unicornların sayısı da bu ayla birlikte 1.000'in üzerine çıktı.
+
+Ekim listesine giren şirketlerin yarısı dört yaşından küçük girişimlerden oluştu; dokuz şirket henüz tohum veya Seri A turunda unicorn statüsüne ulaştı. Coğrafi dağılımda ABD 23 şirketle ilk sırada yer alırken, Çin ve Güney Kore üçer şirket ekledi. Estonya iki şirketle tek ayda kendi rekorunu kırdı; Singapur, Almanya ve Japonya da listeye birer şirketle girdi.
+
+En değerli yeni üyeler arasında elektrik altyapısı sağlayıcısı Axiom Solutions International, model geliştiricisi TypeSafe AI ve yapay zeka asistanı şirketi Manus AI öne çıktı. TypeSafe AI, Andreessen Horowitz liderliğindeki Seri A turunda 870 milyon dolar yatırım alırken, Manus AI 500 milyon dolar finansman sağladı. Öncü laboratuvarlar, yapay zeka ajanları, havacılık ve yarı iletken teknolojileri ekim ayındaki unicorn oluşumunun ana motorları oldu.
+
+Yatırımcı cephesinde Andreessen Horowitz yedi farklı şirketin turuna katılarak liderliği aldı. Sequoia Capital ve General Catalyst dörder şirketin finansmanında yer alırken, Eclipse üç yeni unicornun yatırım turuna dahil oldu.

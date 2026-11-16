@@ -2,7 +2,7 @@
 date: 2026-12-17T08:00:00+03:00
 yaziTuru: analiz
 uretim: yazi-isleri
-title: "Beş yılda aynı kimlikle faal kalan işletme payı yarının altında"
+title: "Beş yılın sonunda yeni işletmelerin yarısından azı aynı kimlikle ayakta"
 description: "2019 yılında doğan işletmelerin %80,63'ü bir yıl, %41,27'si beş yıl sonra aynı kimlikle faaldi; 2021 yılında doğanlarda birinci yıl oranı Avrupa Birliği'nde %81,17, Türkiye'de %75,25."
 category: girisimler
 why_matters: "Yeni işletmelerin kısa sürede kapandığı kanısı, hangi süre için ve hangi tanımla sorulduğuna göre bir yerde tutuyor, bir yerde tutmuyor; resmî seri bu ayrımı rakamla gösteriyor."
@@ -15,7 +15,7 @@ key_points:
 
 Yeni kurulan işletmelerin çoğu gerçekten ilk yıllarda kapanıyor mu? Resmî veri iki ayrı cevap veriyor. 2019 yılında Türkiye'de doğan işletmelerin %80,63'ü bir yıl sonra aynı kimlikle faaldi; yani ilk yılı geçemeyen beşte bir civarında. Üç yıl sonra bu oran %54,89'a, beş yıl sonra %41,27'ye indi.
 
-Kanının iki yarısı var: ilk yılda çoğunluk ayakta kalıyor, beş yıllık ufukta ise çoğunluk eksilmiş oluyor. Cevap, sorunun kaç yıllık bir ufuk için sorulduğuna bağlı. Bu yazı o ayrımı rakamla gösteriyor, ardından ilk ipucunun ötesine bakıyor: bu oranlar kuşaktan kuşağa değişiyor mu, Avrupa Birliği'nde nasıl, hangi tür işletmelerde farklılaşıyor?
+Kanının iki yarısı var: ilk yılda çoğunluk ayakta kalıyor, beş yıllık ufukta ise çoğunluk eksilmiş oluyor. Cevap, sorunun kaç yıllık bir ufuk için sorulduğuna bağlı. Bu analiz o ayrımı verilerle ortaya koyduktan sonra oranların kuşaktan kuşağa değişip değişmediğine, Avrupa Birliği'ndeki duruma ve işletme büyüklüğüne göre nasıl farklılaştığına bakıyor.
 
 Bir kuşak, aynı takvim yılında doğan işletmelerin tümüdür. Eurostat her kuşağı doğum yılından sonraki beş yıl boyunca izler ve her yıl sonunda kaçının aynı kimlikle faal olduğunu sayar. Kuşak yöntemi, tek bir yılın kapanma sayısına bakmaktan farklıdır: hangi doğum yılının işletmelerinin ne kadar dayandığını doğrudan gösterir.
 
@@ -35,7 +35,7 @@ Sayılara çevirince tablo daha somut. 2019 yılında doğan işletmelerden 176.
 
 ![Kare grafik: Her yüz işletmeden yaklaşık altmışı beşinci yıl sonunda aynı kimlikle görünmüyor: Durum: Faal: %41,3, Kayıtta aynı kimlikle yok: %58,7.](./graf-2.svg)
 *Doğum yılı 2019 olan işletmelerin beşinci yıl sonundaki durumu. Kaynak: Eurostat.*
-## İkinci ipucu: Oranlar kuşaktan kuşağa dar bir aralıkta kalıyor
+## Kuşaktan kuşağa dar bir aralıkta kalan oranlar
 
 Tek bir kuşağa bakarak genel bir sonuca varmak yanıltıcı olabilir; bu yüzden 2011 yılından 2019 yılına dokuz kuşağı yan yana koyuyoruz. Sonuç dar bir aralıkta: birinci yıl oranı %80,58 ile %81,79 arasında, üçüncü yıl oranı %53,22 ile %54,89 arasında, beşinci yıl oranı %39,32 ile %41,27 arasında kaldı. Dokuz kuşağın ortalamaları sırasıyla %80,95, %53,82 ve %40,25.
 
@@ -85,7 +85,7 @@ Rakamlar kanıyı ikiye bölse de bir kısmını doğruluyor. Beşinci yılın s
 
 Başka bir karşı okuma, oranın düşüklüğünü kötü bir işaret saymanın doğru olup olmadığı. Eksilen işletmelerin tamamı iflas etmiş ya da zarar etmiş olmayabilir; bazıları isteyerek kapatılmış, başka bir işletmeye devredilmiş olabilir. Veri bunu ayırmıyor. Bu yüzden yazı, oranı başarısızlık değil, aynı kimlikle faal kalma olarak adlandırıyor.
 
-Dedektif özetiyle: ilk yıl cümlesi tutmuyor, beş yıl cümlesi tutuyor; oranlar dokuz kuşak boyunca dar bir aralıkta kalmış, 2020 yılından sonraki kuşaklarda birinci yıl değeri daha düşük çıkmış; Avrupa Birliği ortalaması Türkiye'nin üzerinde, ama ülkeler arasındaki aralığın içinde; çalışanı olmayan işletmeler ise oranı aşağı çeken sınıf. Bunların hiçbiri hayatta kalmanın nedenini söylemiyor; yalnız nerede, hangi kuşakta ve hangi büyüklükte eksildiğini gösteriyor.
+Özetle ilk yıl için geçerli olmayan "çoğu kapanır" kanısı, beş yıllık ufukta karşılık buluyor. Oranlar dokuz kuşak boyunca dar bir aralıkta seyrederken 2020 sonrası kuşaklarda birinci yıl değeri daha düşük çıktı; Avrupa Birliği ortalaması Türkiye'nin üzerinde kalsa da Türkiye üye ülkeler arasındaki aralığın içinde yer alıyor; çalışanı olmayan işletmeler ise genel oranı aşağı çeken sınıf. Bu bulgular hayatta kalmanın nedenlerini açıklamıyor; yalnızca eksilmenin nerede, hangi kuşakta ve hangi ölçekte yoğunlaştığını gösteriyor.
 
 ## Hayatta kalmama neyi ölçmüyor?
 

@@ -2,24 +2,22 @@
 date: 2026-12-21T08:00:00+03:00
 yaziTuru: analiz
 uretim: yazi-isleri
-title: "Kitle fonlaması sınırı nominalde on kat, reelde daha az arttı"
-description: "Tebliğ'in yürürlüğe girdiği 27 Ekim 2021 ile 2026 yılı arasında yıllık yatırım sınırı 50.000 TL'den 500.000 TL'ye çıktı; listedeki platform sayısı ise 4'ten 18'e."
+title: "Kitle fonlaması sınırı kağıt üzerinde 10 kat büyüdü, reel artış 1,34 katta kaldı"
+description: "27 Ekim 2021 ile 2026 arasında yıllık kitle fonlaması yatırım sınırı 50.000 TL'den 500.000 TL'ye, listedeki platform sayısı ise 4'ten 18'e yükseldi."
 category: mevzuat
-why_matters: "Kitle fonlamasındaki sınırlar her yıl Kurul bülteniyle yeniden değerleniyor. Nominal tutarlardaki artış, fiyat düzeyindeki artışla birlikte okunmazsa sınırların gerçekte ne kadar genişlediği olduğundan büyük görünür."
+why_matters: "SPK'nın her yıl sonunda güncellediği yatırım ve sermaye sınırları, enflasyonla birlikte okunmadığında gerçek genişleme olduğundan çok daha büyük görünebiliyor."
 key_points:
-  - "Nitelikli yatırımcı olmayan gerçek kişilerin yıllık yatırım sınırı 27 Ekim 2021'de 50.000 TL, 2026 yılında 500.000 TL; nominal artış 10 kat."
-  - "Aynı dönemde fiyat düzeyi 7,5 katına çıktığı için yıllık yatırım sınırının reel artışı 1,34 kat."
-  - "Platformun kuruluşu için aranan asgari sermaye 1.000.000 TL'den 15.000.000 TL'ye çıktı; reel artış 2,01 kat."
-  - "Kampanya süresi 60 gün; on iki aylık dönemde en çok iki kampanya sınırı paya dayalı ve borçlanmaya dayalı kitle fonlamasının ikisinde de var. Bu sayılar Tebliğ'in 27 Ekim 2021 tarihli metninde yer alıyor; SPK'nın güncel Tebliğ metninde aynı."
+  - "Nitelikli yatırımcı olmayanların yıllık yatırım sınırı Ekim 2021'deki 50.000 TL'den 2026'da 500.000 TL'ye çıktı."
+  - "Aynı dönemde TÜFE 7,5 katına yükseldiği için yıllık yatırım sınırının reel genişlemesi 1,34 katta kaldı."
+  - "Platform kuruluşu için asgari sermaye şartı 1.000.000 TL'den 15.000.000 TL'ye çıkarak 2,01 kat reel artış gösterdi."
+  - "60 günlük kampanya süresi ve 12 ayda en fazla iki kampanya kuralı, 2021'deki ilk metinden bu yana değişmeden korundu."
 ---
 
-Kitle Fonlaması Tebliği'nin yürürlüğe girdiği 27 Ekim 2021'de nitelikli yatırımcı olmayan bir gerçek kişi, bir takvim yılında kitle fonlamasına en çok 50.000 TL yatırabiliyordu. 2026 yılında bu sınır 500.000 TL. Nominal olarak tutar 10 katına çıktı. Aynı dönemde fiyat düzeyi 7,5 katına çıktı; bu yüzden sınırın fiyatlardan arındırılmış artışı 1,34 kat.
+Kitle Fonlaması Tebliği'nin yürürlüğe girdiği 27 Ekim 2021'de nitelikli yatırımcı olmayan bir gerçek kişi, bir takvim yılında kitle fonlamasına en fazla 50.000 TL yatırabiliyordu. 2026 yılında bu sınır 500.000 TL'ye çıktı. Nominal olarak on katına ulaşan sınır, aynı dönemde fiyat düzeyi 7,5 katına yükseldiği için reel olarak yalnızca 1,34 kat genişlemiş oldu.
 
-İki rakam arasındaki mesafe, yazının asıl konusu. Tebliğ'deki tutarlar her yıl sonunda Sermaye Piyasası Kurulu'nun (SPK) bülteniyle yeniden değerleniyor. Aynı dönemde tüketici fiyatları da yükseldi; sınırı TÜFE'den arındırdığımızda artış nominaldekinden küçük kalıyor. Hesap aşağıdaki bölümlerde.
+Bu makas, Tebliğ'deki parasal sınırların nasıl çalıştığını anlamak açısından kritik. Sermaye Piyasası Kurulu (SPK) bu tutarları her yıl sonunda yayımladığı bültenle yeniden değerlese de, tüketici fiyatlarındaki yükseliş nominal artışın büyük bölümünü eritiyor. Burada düzenlemenin yerinde olup olmadığını ya da sınırların yeterliliğini tartışmıyoruz; yalnızca iki tarihteki tutarları ve bunların enflasyondan arındırılmış karşılıklarını yan yana koyuyoruz.
 
-Yazı bir düzenleme tartışması değil, bir ölçü karşılaştırması. Kuralın ne dediğini, tutarların iki tarihte ne olduğunu ve bu tutarların fiyatlardan arındırıldığında nasıl göründüğünü yazıyoruz. Kuralın yerinde olup olmadığı, sınırın yüksek ya da düşük olduğu bu yazının konusu değil.
-
-Terimler için kısa bir hatırlatma. Kitle fonlaması, çok sayıda kişinin küçük tutarlarla bir girişime platform aracılığıyla kaynak sağlamasıdır. Paya dayalı kitle fonlamasında kaynak sağlayan kişi girişimin ortağı olur; borçlanmaya dayalı kitle fonlamasında girişim bir borçlanma aracı çıkarır ve parayı vadesinde geri öder. Nitelikli yatırımcı, SPK'nın girişim sermayesi yatırım ortaklıkları düzenlemesinde tanımlanan, belirli koşulları sağlayan yatırımcı grubudur.
+Kısa bir çerçeve: kitle fonlaması, çok sayıda kişinin küçük tutarlarla bir girişime platform üzerinden kaynak sağlamasına dayanıyor. Paya dayalı modelde yatırımcı girişimin ortağı olurken, borçlanmaya dayalı modelde girişim bir borçlanma aracı çıkarıp parayı vadesinde geri öder. Nitelikli yatırımcı ise SPK'nın girişim sermayesi yatırım ortaklıkları düzenlemesinde tanımlanan belirli koşulları sağlayan yatırımcı grubunu ifade ediyor.
 
 ![Sütun grafik: Yıllık yatırım sınırı her yıl yükseldi, artış hızı ikinci yıldan sonra düştü: Yıllık sınır: 2021 yılında 50.000, 2022 yılında 68.100, 2023 yılında 150.000, 2024 yılında 250.000, 2025 yılında 400.000, 2026 yılında 500.000.](./graf-1.svg)
 *Nitelikli yatırımcı olmayan gerçek kişilerin yıllık yatırım sınırı, TL. Kaynak: SPK.*
@@ -68,7 +66,7 @@ Nominal artış tek başına bir şey söylemez, çünkü TL'nin değeri aynı s
 
 Başka kalemlerde reel artış farklı. Nitelikli yatırımcı payının zorunlu olduğu fon talebi eşiği nominal 9 katına, reel 1,20 katına çıktı. Platform için asgari sermaye nominal 15 katına, reel 2,01 katına çıktı; bu, tabloda reel artışın en büyük olduğu kalem. Fon toplama üst sınırı nominal 13,1 katına, reel 1,75 katına çıktı.
 
-![Çubuk grafik: Nominal artış platform sermayesinde en büyük, nitelikli yatırımcı eşiğinde en küçük: Nominal kat: Yıllık yatırım sınırı: 10,0, Gelir beyanıyla yıllık sınır: 10,0, Borçlanmaya dayalı proje sınırı: 10,0, Nitelikli yatırımcı payı eşiği: 9,0, Platform asgari sermayesi: 15,0, Fon toplama üst sınırı: 13,1.](./graf-3.svg)
+![Tablo: Nominal artış platform sermayesinde en büyük, nitelikli yatırımcı eşiğinde en küçük: Nominal kat: Yıllık yatırım sınırı: 10,0, Gelir beyanıyla yıllık sınır: 10,0, Borçlanmaya dayalı proje sınırı: 10,0, Nitelikli yatırımcı payı eşiği: 9,0, Platform asgari sermayesi: 15,0, Fon toplama üst sınırı: 13,1.](./graf-3.svg)
 *Altı tutarın 2026 yılı değerinin Tebliğ yürürlüğündeki değerine oranı. Kaynak: SPK.*
 ![Halter grafik: Altı kalemin hepsinde reel kat, nominal katın altında kaldı: Nominal kat: Yıllık yatırım sınırı: 10,00, Gelir beyanıyla yıllık sınır: 10,00, Borçlanmaya dayalı proje sınırı: 10,00, Nitelikli yatırımcı payı eşiği: 9,00, Platform asgari sermayesi: 15,00, Fon toplama üst sınırı: 13,06; Reel kat: Yıllık yatırım sınırı: 1,34, Gelir beyanıyla yıllık sınır: 1,34, Borçlanmaya dayalı proje sınırı: 1,34, Nitelikli yatırımcı payı eşiği: 1,20, Platform asgari sermayesi: 2,01, Fon toplama üst sınırı: 1,75.](./graf-4.svg)
 *Altı tutarın nominal ve fiyatlardan arındırılmış artışı, kat olarak. Kaynak: SPK, TÜİK (TCMB EVDS).*
@@ -92,23 +90,17 @@ Paya dayalı kitle fonlamasında girişim başarısız olursa yatırılan sermay
 
 ## Karşı okuma: nominal artış ne ölçüyor?
 
-İlk karşı okuma, reel artışın küçük görünmesine itiraz edebilir: 1,34 kat da bir genişleme. Doğru. Sınırların nominal on katı ile reel 1,34 katı arasındaki fark, aynı dönemde TÜFE'nin 7,5 katına çıkmasıyla örtüşüyor; reel olarak bile sınır büyüdü. Yazıdaki ölçü genişlemeyi yadsımıyor, yalnız boyutunu fiyatlarla birlikte gösteriyor.
+Reel 1,34 katlık artış ilk bakışta küçük görünse de, bu yine de bir genişlemeye işaret ediyor. Sınırların nominal on katı ile reel 1,34 katı arasındaki fark, aynı dönemde TÜFE'nin 7,5 katına çıkmasından kaynaklanıyor; yani sınır enflasyonun üzerinde bir miktar büyümüş durumda.
 
-İkinci karşı okuma fiyat endeksinin tercihiyle ilgili. TÜFE, bir tüketim sepetinin fiyatlarını izliyor; bir girişimin ya da yatırımcının maliyet yapısını ya da gelirini değil. Başka bir endeks ya da kişisel gelirdeki değişim, reel artışı başka bir yere koyardı. Örneğin sınırın nominal gelirle ilişkisini ölçmek için hanehalkı gelir verisi gerekirdi; bu yazı o ölçüyü kullanmıyor.
+Öte yandan deflatör olarak TÜFE'nin seçilmesi de bir tercih. TÜFE bir tüketim sepetini izler; bir girişimin maliyet yapısını ya da yatırımcının gelirini değil. Örneğin sınırın hanehalkı geliriyle ilişkisini ölçmek için gelir verisi gerekirdi; bu analiz o ölçüyü kullanmıyor.
 
-Üçüncüsü tarihlerin tercihi. Ekim 2021 ile Eylül 2026 aylık endekslerini kullandık. Yıllık ortalama endekslerle yapılan bir çevirme, iki yılın içindeki aylık oynaklık nedeniyle biraz farklı sonuç verirdi. Eylül 2026 değeri hâlâ yıl içinde olduğundan 2026 yılı bütününü temsil etmez.
+Son olarak, Ekim 2021 ile Eylül 2026 aylık endekslerini baz aldık. Yıllık ortalama endekslerle yapılan bir hesaplama aylık oynaklık nedeniyle küçük farklar yaratabilir; ayrıca Eylül 2026 verisi yılın tamamını temsil etmiyor.
 
 ## Ölçümün sınırları
 
-Bu yazı Tebliğ'in kendi sayısal kurallarını ve SPK'nın yeniden değerleme bültenlerini kullanıyor; her tutar bir bülten satırına ve sütununa bağlı.
+Bu analiz Tebliğ'in sayısal kurallarını ve SPK'nın yeniden değerleme bültenlerini esas alıyor; her tutar doğrudan bir bülten satırına dayanıyor.
 
-En önemli sınır fon toplama üst sınırı satırının okunuşu. Bültende izahname muafiyeti satırı iki değer taşıyor. İzahname Tebliği bu muafiyet sınırını toplam satış bedeli olarak tanımlıyor; bu, satırdaki iki değerden üst olanına karşılık geliyor ve biz de onu aldık. Bu satır, Tebliğ'in paya ve borçlanmaya dayalı bölümlerinde atıf yapılan muafiyet sınırıyla bağlantılı olduğu için kullanıldı.
-
-İkinci sınır, 2021 yılı değerlerinin hangi tarihe ait olduğu. Altı tutarın beşi Tebliğ'in ilk değeri; üst sınır satırının 2021 yılı değeri ise o yılın yeniden değerlenmiş tutarı. Bu yüzden son satırdaki nominal kat, ilk beş satırla birebir karşılaştırılamaz.
-
-Üçüncüsü kapsam. Tabloda yalnız sayısal sınırlar var; platformların kendi iç kuralları, ücretleri ya da yatırımcıya sundukları ek koşullar bu yazının dışında.
-
-Dördüncüsü Tebliğ metninin kaynağı. Süre ve oran gibi değişmeyen sayıları Resmî Gazete'de yayımlanan ilk metinden aldık ve SPK Mevzuat Sistemi'ndeki güncel metinle karşılaştırdık; sayılar aynı.
+En kritik nokta fon toplama üst sınırı satırının okunuşu. Bültende izahname muafiyeti satırı iki değer içeriyor. İzahname Tebliği bu muafiyet sınırını toplam satış bedeli olarak tanımladığı için satırdaki üst değeri aldık. Ayrıca altı tutarın beşi Tebliğ'in ilk değeriyken, üst sınır satırının 2021 değeri o yılın yeniden değerlenmiş tutarıdır; bu nedenle son satırdaki nominal kat ilk beş satırla birebir kıyaslanamaz. Tabloda yalnızca yasal sınırlar yer alıyor; platformların kendi iç kuralları, komisyonları veya ek koşulları kapsam dışında. Süre ve oran gibi değişmeyen sayılar ise Resmî Gazete'deki ilk metinden alınıp SPK Mevzuat Sistemi'ndeki güncel metinle teyit edildi.
 
 ## Nasıl hesapladık
 

@@ -2,22 +2,22 @@
 date: 2026-11-26T08:00:00+03:00
 yaziTuru: analiz
 uretim: yazi-isleri
-title: "Politika faizi ve KOBİ finansmanı: OECD karnesindeki rakamlar"
-description: "Bu yazı politika faizi, KOBİ kredi faizi, yeni KOBİ kredisi ve girişim sermayesi rakamlarını aynı yıllar için OECD verisinden yan yana koyuyor; OECD'nin anlatımı yalnızca karneden alıntıyla aktarılıyor."
+title: "Politika faizi KOBİ kredilerine nasıl yansıdı? 25 OECD ülkesinin karnesi"
+description: "OECD verileriyle politika faizi, KOBİ kredi faizi, yeni KOBİ kredisi ve girişim sermayesi hareketleri aynı dönem için yan yana."
 category: analiz
-why_matters: "Merkez bankası kararlarının küçük işletmelerin finansmanına nasıl yansıdığı sık sorulur. Bu yazı OECD'nin kendi anlatımını ve verisini adım adım yan yana koyuyor; nedensellik OECD'ye ait, biz yalnızca rakamı gösteriyoruz."
+why_matters: "Merkez bankası faiz kararlarının KOBİ finansmanına birebir ve aynı anda yansıyıp yansımadığını görmek için 25 ülkenin verisini yan yana koymak gerekiyor."
 key_points:
-  - "Avrupa'daki OECD üyeleri, ABD ve Kanada'dan 25 ülkenin ortalama KOBİ kredi faizi 2021 yılında %2,84, 2023 yılında %6,48; 25 ülkenin hepsinde faiz yükseldi."
-  - "Euro bölgesi dışında gecelik faizi ve KOBİ faizi bulunan 8 ülkenin 4'ünde KOBİ faizindeki artış gecelik faizdeki artıştan küçük kaldı."
-  - "Gecelik faizi 2024 yılında düşen 7 ülkenin 2'sinde KOBİ faizi yükseldi."
-  - "Yeni KOBİ kredisi 20 ülkenin 12'sinde 2023 yılında azaldı, 13'ünde 2024 yılında arttı."
+  - "Avrupa'daki OECD üyeleri, ABD ve Kanada'dan oluşan 25 ülkede ortalama KOBİ kredi faizi 2021'deki %2,84'ten 2023'te %6,48'e yükseldi."
+  - "Euro bölgesi dışında gecelik faiz ve KOBİ faizi verisi bulunan 8 ülkenin 4'ünde KOBİ faizindeki artış gecelik faizin gerisinde kaldı."
+  - "2024'te gecelik faizi düşen 7 ülkenin 2'sinde KOBİ kredi faizi yükselmeye devam etti."
+  - "Yeni KOBİ kredisi hacmi 20 ülkenin 12'sinde 2023'te daralırken, 13'ünde 2024'te yeniden artışa geçti."
 ---
 
 Bir atölye sahibi yeni bir makine için kredi teklifi aldığında önce faiz oranına bakar. Aynı oran bir yıl önceki teklifte farklıysa, aradaki farkın nereden geldiğini merak eder. OECD'nin karnesindeki bir ülke grubunda bu soruya veriyle bakılabiliyor: Avrupa'daki OECD üyeleri, ABD ve Kanada'dan 25 ülkenin ortalama KOBİ kredi faizi 2021 yılında %2,84 iken 2023 yılında %6,48 oldu. Yani ortalama 3,6 puan yükseldi; 25 ülkenin hepsinde artış var.
 
-Peki aynı yıllarda öteki büyüklükler ne yaptı? OECD'nin 2026 yılı karnesi politika faizini iki yerde başka büyüklüklerle birlikte anıyor; bunları aşağıda kısa alıntılarla aktarıyoruz. Bu yazı karnede adı geçen büyüklüklerin her birinin aynı yıllardaki rakamına bakıyor ve soruyu bir dedektif gibi sırayla soruyor: hangi büyüklük hangi yönde hareket etmiş, hareketler ne kadar benzemiş ve nerede ayrışmış?
+Peki aynı yıllarda diğer finansman göstergeleri nasıl hareket etti? OECD'nin 2026 yılı karnesi politika faizini iki yerde farklı büyüklüklerle birlikte ele alıyor. Bu analizde karnede adı geçen her bir göstergenin aynı yıllardaki verilerini yan yana koyuyor; hangi göstergenin hangi yönde hareket ettiğini, nerede benzeşip nerede ayrıştığını inceliyoruz.
 
-Önemli bir ayrım: nedensellik OECD'nin belgesine ait. Biz yalnızca OECD'nin ne yazdığını aktarıyor ve aynı OECD veri setlerindeki rakamları yan yana koyuyoruz. Hangi büyüklüğün ötekini ne kadar etkilediğini kendi başımıza söylemiyoruz. Karşılaştırma grubunu baştan tanımlıyoruz: Avrupa'daki OECD üyeleri (Türkiye dahil), ABD ve Kanada.
+Burada nedensellik iddiası OECD'nin belgesine ait; biz yalnızca rapordaki anlatımı aktarıp aynı veri setlerindeki rakamları yan yana getiriyoruz. Karşılaştırma grubumuz Avrupa'daki OECD üyeleri (Türkiye dahil), ABD ve Kanada'dan oluşuyor.
 
 ## OECD'nin anlattığı bağlar
 
@@ -54,7 +54,7 @@ Sekiz ülkeden 4'ünde KOBİ faizindeki artış gecelik faizdeki artıştan kü�
 
 Aynı politika faizini paylaşan ülkelere bakmak da öğretici. Euro bölgesinin 16 üyesi için ECB'nin mevduat kolaylığı faizi aynı: 27 Temmuz 2022'de %0 idi, 20 Eylül 2023'te %4,00 oldu; yani 4 puan arttı. Aynı iki yılda bu 16 ülkenin KOBİ faizi İrlanda'da 1,56 puan, İtalya'da 4,20 puan arttı. Politika faizi ortak olduğu hâlde KOBİ faizindeki artış 1,56 puan ile 4,20 puan arasında dağıldı. Bu farkın nedenini bu veri söylemiyor ve biz tahmin etmiyoruz.
 
-![Çubuk grafik: KOBİ faizindeki artış ülkeler arasında farklı büyüklüklerde: Değişim: ABD: 2,93, Birleşik Krallık: 4,56, Kanada: 4,91, Polonya: 5,61, Macaristan: 11,80, Çekya: 4,84, Danimarka: 4,05, İsviçre: 1,56.](./graf-2.svg)
+![Tablo: KOBİ faizindeki artış ülkeler arasında farklı büyüklüklerde: Değişim: ABD: 2,93, Birleşik Krallık: 4,56, Kanada: 4,91, Polonya: 5,61, Macaristan: 11,80, Çekya: 4,84, Danimarka: 4,05, İsviçre: 1,56.](./graf-2.svg)
 *KOBİ kredi faizinde 2021–2023 değişimi, puan. Kaynak: OECD.*
 Tüm gruba bakınca resim şöyle: 25 ülkenin ortalama KOBİ faizi 2021 yılında %2,84, 2023 yılında %6,48; fark 3,6 puan. 2019 yılı ile 2024 yılı arasında değeri bulunan 23 ülkede ortalama %3,13'ten %5,91'e çıktı, yani 2,8 puan; 23 ülkenin hepsinde 2024 yılı faizi 2019 yılı faizinin üzerinde. Karne kendi ülke kümesiyle aynı karşılaştırma için 2,6 puan veriyor ve 39 ülkenin 34'ünde KOBİ faizinin pandemi öncesindeki düzeyinin üzerinde olduğunu yazıyor. Küçük fark, ülke kümelerinin farkından geliyor.
 
@@ -96,13 +96,9 @@ OECD metni, yeni kredi artışının nominal mi gerçek mi olduğunu belirtmiyor
 
 ## Rakamların göstermediği şeyler
 
-Faiz karşılaştırmasında bir sınır var: karne, KOBİ faiz oranlarının ülkeler arasında farklı hesaplandığını kendisi belirtiyor; ücretlerin faize dahil edilip edilmediği ülkeden ülkeye değişiyor. Ülkeler arası faiz karşılaştırması bu yüzden sıralamadan çok genel yön için anlamlı.
+Faiz karşılaştırmasında önemli bir sınır var: karne, KOBİ faiz oranlarının ülkeler arasında farklı hesaplandığını ve ücretlerin faize dahil edilip edilmediğinin ülkeden ülkeye değiştiğini belirtiyor. Bu nedenle ülkeler arası faiz karşılaştırması sıralamadan çok genel yönü görmek açısından anlamlı. Ayrıca burada incelenen ölçüler yıllık ortalamalar; politika faizi de KOBİ faizi de yıl içinde değiştiği için yıllık ortalama yıl içi zamanlamayı göstermiyor.
 
-İkincisi, bu yazıdaki ölçüler yıllık ortalamalar. Politika faizi de KOBİ faizi de yıl içinde değişir; yıllık ortalama yıl içindeki zamanlamayı göstermiyor.
-
-Üçüncüsü, bu yazının ölçtüğü şey. Bu yazı yalnızca faiz oranlarını, yeni KOBİ kredisi tutarını ve girişim sermayesi oranını ölçüyor; kredi talebi ya da teminat koşulları gibi başka büyüklükler ölçülmedi. Karne, 17 ülkenin 10'unda teminat isteyen KOBİ payının arttığını yazıyor; bu bilgi, kredi koşullarının faiz dışındaki bir boyutunu gösteriyor. Biz bu büyüklüklerin hareketlerini bir nedene bağlamıyoruz.
-
-Dördüncüsü, grubun sınırı. Karşılaştırma grubu Avrupa'daki OECD üyeleri, ABD ve Kanada. Başka OECD üyeleri ile üye olmayan ülkeler bu karşılaştırmanın dışında; sayımlar ve ortalamalar bu gruba aittir, OECD'nin tamamı için bir şey söylemez.
+Analiz yalnızca faiz oranlarını, yeni KOBİ kredisi tutarını ve girişim sermayesi oranını kapsıyor; kredi talebi ya da teminat koşulları gibi unsurlar dışarıda bırakıldı. Karne, 17 ülkenin 10'unda teminat isteyen KOBİ payının arttığını yazıyor; bu da kredi koşullarının faiz dışındaki boyutuna işaret ediyor. Son olarak karşılaştırma grubunun Avrupa'daki OECD üyeleri, ABD ve Kanada ile sınırlı olduğunu, diğer OECD üyeleri ile üye olmayan ülkelerin kapsam dışında kaldığını hatırlatmak gerekir.
 
 ## Nasıl hesapladık
 

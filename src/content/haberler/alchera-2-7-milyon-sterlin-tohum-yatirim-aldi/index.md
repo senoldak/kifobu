@@ -11,8 +11,8 @@ yatirimcilar: "Maven Capital Partners, Innovate UK, Bayes Entrepreneurship Fund,
 uretim: yapay-zeka
 ---
 
-Yapay zekâ tabanlı trafik tahmin yazılımı geliştiren Alchera, 2,7 milyon sterlin tutarında tohum yatırım turunu tamamladı. Yatırım turuna Maven Capital Partners önderlik ederken, Innovate UK kamu fonu olarak katkı sağladı.
+Yapay zekâ tabanlı trafik tahmin yazılımı geliştiren Alchera, 2,7 milyon sterlinlik tohum yatırım turunu tamamladı. Tura Maven Capital Partners liderlik ederken, Innovate UK de kamu fonu olarak katıldı.
 
-Girişimin geliştirdiği platform, açık verileri ve üçüncü taraf verilerini bir araya getirerek makine öğrenimi modelleriyle analiz ediyor. Bu sayede otoyol ve yol çalışmalarının etkilerini önceden tahmin ederek planlama süreçlerini hızlandırıyor.
+Girişimin platformu, açık verilerle üçüncü taraf verilerini birleştirip makine öğrenimi modelleriyle işliyor; böylece otoyol ve yol çalışmalarının trafiğe etkisini önceden hesaplayarak planlama süresini kısaltıyor.
 
-Alınan finansman, ürün geliştirme süreçlerini hızlandırmak ve mühendislik ekibini büyüterek müşteri tabanını genişletmek amacıyla kullanılacak. Şirket, önümüzdeki dönemde düzenli müşteri sayısını artırmayı hedefliyor.
+Alchera, yeni sermayeyi ürün geliştirmeyi hızlandırmak, mühendislik ekibini büyütmek ve düzenli müşteri sayısını artırmak için kullanacak.

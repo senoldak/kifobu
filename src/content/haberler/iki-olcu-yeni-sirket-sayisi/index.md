@@ -2,22 +2,22 @@
 date: 2026-12-31T08:00:00+03:00
 yaziTuru: analiz
 uretim: yazi-isleri
-title: "Yeni şirket sayısı iki resmî ölçüde farklı tanımlarla sayılıyor"
-description: "2024 yılında Dünya Bankası 115.401 yeni limited şirket kaydı, Eurostat 628.495 yeni işletme doğumu sayıyor; iki seri son yıllarda zıt yönde de hareket etti."
+title: "Aynı yıl, iki resmî veri: Yeni şirket sayısında 5,45 kat fark"
+description: "2024 yılında Dünya Bankası 115.401 yeni limited şirket kaydı, Eurostat ise 628.495 yeni işletme doğumu sayıyor; iki seri son yıllarda zıt yönde hareket etti."
 category: girisimler
-why_matters: "Aynı soruya iki resmî kaynak iki ayrı büyüklükle yanıt veriyor; farkın nereden geldiğini bilmek, hangi rakamın hangi soruya cevap verdiğini ayırt etmeyi sağlar."
+why_matters: "Aynı soruya iki resmî kaynak farklı büyüklüklerle yanıt veriyor. Farkın nereden geldiğini bilmek, hangi rakamın hangi soruyu karşıladığını ayırt etmeyi sağlar."
 key_points:
-  - "2024 yılında Dünya Bankası'na göre 115.401 yeni limited şirket kaydedildi, Eurostat'a göre 628.495 yeni işletme doğdu; doğum sayısı kayıt sayısının 5,45 katı."
-  - "Aynı oran 2011 yılında 7,09, 2022 yılında 4,26 kattı; kayıtların doğumlara oranı %14,1'den %23,5'e çıktı, 2024 yılında %18,4 oldu."
-  - "On üç yıllık değişimin yedisinde iki seri aynı yönde, altısında zıt yönde hareket etti; 2024 yılında kayıt sayısı %10,2 azalırken doğum sayısı %7,3 arttı."
-  - "2011 yılı değeri yüz alındığında 2024 yılında Dünya Bankası serisi 201,2, Eurostat serisi 154,6 oldu."
+  - "2024'te Dünya Bankası'na göre 115.401 yeni limited şirket kaydedilirken, Eurostat'a göre 628.495 yeni işletme doğdu; doğum sayısı kayıt sayısının 5,45 katı."
+  - "Bu oran 2011'de 7,09, 2022'de 4,26 kattı; kayıtların doğumlara oranı %14,1'den %23,5'e çıktıktan sonra 2024'te %18,4 oldu."
+  - "On üç yıllık değişimin yedisinde iki seri aynı yönde, altısında zıt yönde hareket etti; 2024'te kayıt sayısı %10,2 azalırken doğum sayısı %7,3 arttı."
+  - "2011 yılı 100 kabul edildiğinde 2024'te Dünya Bankası serisi 201,2'ye, Eurostat serisi 154,6'ya ulaştı."
 ---
 
-Bir sokaktan geçerken kepenk kapanan, yerine yeni bir tabela asılan dükkânları sayabilirsiniz. Üç ay sonra aynı sokakta bir kafe, bir bilgisayar tamircisi ve bir muhasebe bürosu açılmış olabilir. Hangisi yeni şirket sayılır? Gündelik gözlem bunu tek bir kelimeyle geçiştirir; resmî istatistik ise iki ayrı cevap veriyor.
+Bir sokaktan geçerken kepenk kapatanların yerine yeni açılan dükkânları sayabilirsiniz. Üç ay sonra aynı sokakta bir kafe, bir bilgisayar tamircisi ve bir muhasebe bürosu açılmış olabilir. Bunların hangisi yeni şirket sayılır? Gündelik gözlem bunu tek bir kelimeyle geçiştirir; resmî istatistik ise iki ayrı cevap verir.
 
-2024 yılında Dünya Bankası, Türkiye için 115.401 yeni limited şirket kaydı sayıyor. Aynı yıl için Eurostat 628.495 yeni işletme doğumu sayıyor. İkisi de resmî, ikisi de herkese açık, ikisi de aynı soruyu, yani Türkiye'de bir yılda kaç yeni iş kurulduğunu yanıtlıyor gibi görünüyor. Aralarındaki fark 5,45 kat.
+2024 yılında Dünya Bankası, Türkiye için 115.401 yeni limited şirket kaydı sayıyor. Aynı yıl için Eurostat ise 628.495 yeni işletme doğumu kaydediyor. İkisi de resmî, ikisi de herkese açık ve ikisi de Türkiye'de bir yılda kaç yeni iş kurulduğu sorusuna yanıt veriyor gibi görünüyor. Aralarındaki fark ise 5,45 kat.
 
-Yazı iki ölçüyü karşı karşıya koyuyor. Önce her ölçünün neyi saydığını, sonra aralarındaki farkın büyüklüğünü ve yılın içinde nasıl değiştiğini, en sonda da iki serinin aynı yönde mi hareket ettiğini soruyoruz. Hangisinin doğru olduğunu sormuyoruz: ikisi de kendi tanımına göre doğru. Soru, hangisinin hangi soruyu yanıtladığı.
+Bu analizde iki ölçüyü yan yana koyuyoruz: Önce her birinin neyi saydığına, sonra aralarındaki farkın nasıl değiştiğine ve son olarak iki serinin aynı yönde hareket edip etmediğine bakıyoruz. Hangisinin doğru olduğunu değil, hangisinin hangi soruyu yanıtladığını araştırıyoruz.
 
 ## Birinci ölçü: Dünya Bankası'nın yeni şirket kaydı
 

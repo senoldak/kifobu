@@ -2,7 +2,7 @@
 date: 2026-11-09T08:00:00+03:00
 yaziTuru: analiz
 uretim: yazi-isleri
-title: "Doğan işletmelerdeki artışın yaklaşık dörtte üçü üç sektörden"
+title: "Yeni işletmelerdeki artışın %73'ü üç sektörden: Kurye faaliyetleri 37,7 katına çıktı"
 description: "Posta ve kurye faaliyetlerinde doğan işletme sayısı 2019 yılında 1.349 iken 2024 yılında 50.905 oldu; bu alt bölümde 2024 yılında doğanların %96,9'unun ücretli çalışanı yok."
 category: girisimler
 why_matters: "Toplam doğum sayısı altındaki sektörel dağılımı gizler; bileşenlere ayırmak, artışın geniş tabanlı mı yoksa birkaç alt bölümde mi yoğunlaştığını gösterir."
@@ -15,11 +15,11 @@ key_points:
 
 2019 yılında Türkiye'de posta ve kurye faaliyetlerinde 1.349 işletme doğdu; 2024 yılında 50.905. Aynı beş yılda yiyecek ve içecek hizmetlerinde doğan işletme sayısı 53.550'den 51.350'ye geriledi. Birinde 37,7 kat artış, ötekinde %4,1 azalış var.
 
-İki rakam aynı ekonomide, aynı beş yılda ve aynı istatistik tablosunda yan yana duruyor. Soru şu: toplam doğum sayısındaki artış nereden geldi, ve hangi sektörler bu artışa hiç katılmadı? Cevabı, toplamı bileşenlerine ayırarak ve her ipucunu bir öncekiyle sınayarak arıyoruz.
+İki rakam aynı ekonomide, aynı beş yılda ve aynı istatistik tablosunda yan yana duruyor. Toplam doğum sayısındaki artışın nereden geldiğini ve hangi sektörlerin bu artışa katılmadığını görmek için toplamı bileşenlerine ayırıp alt bölümlere iniyoruz.
 
 Kullandığımız veri Eurostat'ın işletme demografisi tablosu (bd_size). Tablo, Türkiye için 2011 yılından itibaren yıllık doğum, faal işletme ve doğum oranı sayılarını sektör bölümlerine ve alt bölümlere göre veriyor. Eurostat'a göre doğum, sıfırdan yeni bir faaliyetin başlamasıdır; birleşme, bölünme ya da yeniden yapılanmayla ortaya çıkan tüzel kişilikler ve iki yıl içinde yeniden faaliyete geçen uyuyan işletmeler doğum sayılmaz. Sayılar sektörlerin yalnızca iş ve ticaret alanını kapsıyor; tarım ve kamu yönetimi dışarıda.
 
-## İlk ipucu: Artış sektörlere nasıl dağılıyor?
+## Artış sektörlere nasıl dağılıyor?
 
 Doğan işletme sayısı 2019 yılından 2024 yılına 201.400 arttı. On sekiz sektör bölümünün katkılarını topladığımızda bu rakam tam olarak tutuyor: parçalar toplamı eksiksiz açıklıyor.
 
@@ -29,7 +29,7 @@ Katkıların dağılımı eşit değil. Ulaştırma ve depolama 61.374, toptan v
 *Doğan işletme sayısındaki değişim, sektörlere göre, 2019 yılından 2024 yılına. Kaynak: Eurostat.*
 Üç sektörün ortak noktası bu aşamada yok; yalnızca onların toplamın dörtte üçüne yakınını taşıdığını biliyoruz. Bir sonraki adım, bu üç bölümün içine bakmak.
 
-## İkinci ipucu: Üç sektörün içinde iki alt bölüm
+## Üç sektörün içinde iki alt bölüm
 
 Ulaştırma ve depolamadaki 61.374'lük artışın 49.556'sı tek bir alt bölümden, posta ve kurye faaliyetlerinden geliyor; bu, bölümün artışının %80,7'si. Toptan ve perakende ticarette de benzer bir yığılma var: 45.427'lik artışın 26.662'si, mağaza, tezgâh ve pazar dışındaki perakendeden. Mağaza dışı perakendenin ticaret bölümünün artışındaki payı %58,7. Eurostat'ın kullandığı NACE sınıflamasına göre bu grup posta siparişi ve internet üzerinden yapılan perakende satışı da kapsıyor.
 
@@ -45,13 +45,13 @@ Seri, yükselişin ne zaman olduğunu gösteriyor. 2011–2018 yılları arasın
 
 Eurostat verisi bu yükselişin sebebini söylemiyor. Kaynakta bir neden açıklaması yok; biz de bir neden kurmuyoruz.
 
-## Üçüncü ipucu: Doğanların ücretli çalışanı yok
+## Doğanların ücretli çalışanı yok
 
 İşletmelerin büyüklük sınıfına bakınca tablo daha net. 2024 yılında posta ve kurye faaliyetlerinde doğan 50.905 işletmenin 49.326'sı, yani %96,9'u ücretli çalışanı olmayan işletme. Mağaza dışı perakendede bu oran %91,3: 33.945 doğumun 30.991'i.
 
 Ücretli çalışanın olmaması, işletmede kimsenin çalışmadığı anlamına gelmiyor; sahibi ya da ortakları çalışıyor olabilir. Veri bunu da göstermiyor, yalnızca ücretli çalışan sayısının sıfır olduğunu söylüyor. Yine de iki alt bölümdeki artışın neredeyse bütünü böyle işletmelerden oluşuyor: 2019 yılından 2024 yılına posta ve kurye alt bölümünde doğum artışının %97,6'sı, mağaza dışı perakendede %93,5'i ücretli çalışanı olmayan işletmelerden geldi.
 
-Üçüncü ipucunun öğrettiği şu: iki alt bölümdeki doğum sayısını işletme sayısı olarak okumak gerektiğini, istihdam ya da faaliyet hacmi olarak okumanın veriden çıkmadığını gösteriyor.
+Buradan çıkan sonuç net: iki alt bölümdeki doğum sayısını yalnızca işletme sayısı olarak okumak gerekiyor; istihdam ya da faaliyet hacmi olarak yorumlamak veriden çıkmıyor.
 
 ## Doğum oranı: Pay mı büyüdü, payda mı?
 

@@ -3,7 +3,7 @@ title: "Kolay İK araştırmasına göre şirketlerin ilk gündemi ücret denges
 description: "Kolay İK'nın insan kaynakları profesyonelleriyle yaptığı çalışmaya göre şirketlerin önceliği bütçe ve ücret dengesi oldu."
 date: 2026-10-15T11:20:50+03:00
 category: analiz
-why_matters: "Şirketlerin insan kaynakları ve bütçe önceliklerini ortaya koyan bu tür araştırmalar, ekosistemin gelecek dönemdeki iş gücü ve yetenek yönetimi eğilimlerini anlamak açısından önem taşıyor."
+why_matters: "2027 bütçe dönemine girerken İK ekiplerinin yapay zekâ yerine ücret dengesini öne çekmesi, iş gücü maliyetlerinin şirket gündemindeki ağırlığını gösteriyor."
 key_points:
   - "Araştırmaya 234 İK profesyoneli katıldı."
   - "Şirketlerin %42'sinin gündeminde 2027 bütçesi ve ücret dengesi yer alıyor."

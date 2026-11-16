@@ -8,7 +8,7 @@ toplanan: 7000000
 paraBirimi: USD
 tur: "Tohum"
 yatirimcilar: "Mudita Venture Partners, Silicon Road Ventures"
-why_matters: "Üretken yapay zekâ ile birlikte çevrim içi manipülasyon ve yanlış bilgilerin hızla arttığı bir dönemde, şirketlerin itibar yönetimini proaktif bir şekilde ele almasını sağlayan yapay zekâ çözümlerine olan ilgi artıyor."
+why_matters: "Üretken yapay zekâyla çevrim içi manipülasyonun hızlandığı bir dönemde, yalnızca paylaşım sayısını değil bilginin yayılım yollarını izleyen araçlara talep artıyor."
 key_points:
   - "Gudea, tohum turunda 7 milyon dolar yatırım aldı."
   - "Yatırım turunu Mudita Venture Partners ve Silicon Road Ventures ortaklaşa yürüttü."

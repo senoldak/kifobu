@@ -12,12 +12,12 @@ kaynakIzi: "v1.XKaIVM1C5mPLlyKr.maVjWBDW41FjY2Cw7Fx4+5rYEgUiR27Ce7EBkYiqJ3vnzwkF
 uretim: yapay-zeka
 ---
 
-Asya genelindeki girişimler üçüncü çeyrekte tohum aşamasından büyüme aşamasına kadar toplam 38,5 milyar dolar yatırım elde etti. Bu tutarın yaklaşık %55'ine denk gelen 21 milyar dolarlık kısmı yapay zekâ odaklı şirketlere aktarıldı.
+Asya genelindeki girişimler üçüncü çeyrekte tohumdan büyüme aşamasına kadar toplam 38,5 milyar dolar yatırım aldı. Bu tutarın yaklaşık yüzde 55'ine denk gelen 21 milyar doları yapay zekâ şirketlerine gitti.
 
-Bölgedeki yatırım faaliyetleri önceki çeyreğe kıyasla hafif bir düşüş göstermesine rağmen yıllar bazındaki en yüksek ikinci seviyede kaldı. Anlaşma sayıları ise yatay bir seyir izleyerek sermayenin belirli girişimlerde yoğunlaştığını ortaya koydu. Üçüncü çeyrekteki büyük ölçekli turlar yapay zekâ yatırımlarını doğrudan destekledi.
+Bölgedeki yatırım hacmi bir önceki çeyreğe göre hafifçe gerilese de son yılların en yüksek ikinci seviyesinde kaldı. Anlaşma sayılarının yatay seyretmesi, sermayenin belirli şirketlerde yoğunlaştığını gösterdi; üçüncü çeyrekteki büyük turlar da yapay zekâ yatırımlarını yukarı taşıdı.
 
-Pekin merkezli temel model geliştiricisi Moonshot AI, 35 milyar dolar değerleme üzerinden 3,5 milyar dolar yatırım aldı. Kısa video platformu Kuaishou Technology'nin yapay zekâ spinout'u Kling AI ise Baidu ve Tencent'in katıldığı finansman turunda yaklaşık 3 milyar dolar topladı. Bu büyük turlar dönemin en dikkat çeken işlemleri arasında yer aldı.
+Pekin merkezli temel model geliştiricisi Moonshot AI, 35 milyar dolar değerleme üzerinden 3,5 milyar dolar topladı. Kısa video platformu Kuaishou Technology'nin yapay zekâ iştiraki Kling AI ise Baidu ve Tencent'in katıldığı turda yaklaşık 3 milyar dolarlık finansman sağladı.
 
-Ülke bazındaki dağılımda Çin liderliğini sürdürdü. Çin merkezli şirketler, üçüncü çeyrekte Asya'daki toplam girişim finansmanının %70'ine karşılık gelen yaklaşık 27 milyar dolar çekti. Çin'i 2,9 milyar dolar ile Hindistan ve 2,5 milyar dolar ile Singapur takip etti. Hindistan ve Singapur merkezli girişimlere sağlanan fonlarda çeyreklik bazda önemli düşüşler yaşandı.
+Ülke dağılımında Çin açık ara önde kaldı. Çin merkezli şirketler üçüncü çeyrekte Asya'daki toplam girişim sermayesinin yüzde 70'ine karşılık gelen yaklaşık 27 milyar dolar çekti. Çin'i 2,9 milyar dolarla Hindistan ve 2,5 milyar dolarla Singapur izledi; her iki ülkede de fonlama çeyreklik bazda belirgin biçimde düştü.
 
-Aşamalara göre bakıldığında, sermayenin büyük kısmı geç ve büyüme aşamasındaki turlara gitti. Bu aşamadaki yatırımlar 20 milyar dolar düzeyinde gerçekleşirken, Shenzhen merkezli D-Robotics eylül ayında 400 milyon dolar Seri C yatırımı aldı. Hong Kong merkezli Qupital ise halka arz hedefiyle 300 milyon dolar Seri C finansmanı sağladı. Erken aşama yatırımları 13,6 milyar dolara gerilerken, tohum aşaması fonlamaları yapay zekâya yönelik ilgiyle 4,9 milyar dolara ulaştı.
+Aşamalara bakıldığında sermayenin büyük bölümü geç ve büyüme aşamasındaki turlara aktı. Bu aşamada 20 milyar dolarlık yatırım gerçekleşirken, Shenzhen merkezli D-Robotics eylülde 400 milyon dolar Seri C yatırımı aldı. Hong Kong merkezli Qupital ise halka arz hedefiyle 300 milyon dolar Seri C finansmanı kapattı. Erken aşama yatırımları 13,6 milyar dolara gerilerken, tohum fonlamaları yapay zekâ ilgisiyle 4,9 milyar dolara çıktı.

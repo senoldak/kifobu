@@ -3,7 +3,7 @@ title: "Latin Amerika girişimleri 2026 yılı üçüncü çeyreğinde 1,3 milya
 description: "Latin Amerika'daki girişimler 2026'nın üçüncü çeyreğinde tohum ve büyüme aşamalarındaki turlarda toplam 1,3 milyar dolar topladı."
 date: 2026-10-19T14:20:56+03:00
 category: analiz
-why_matters: "Latin Amerika ekosisteminin küresel yatırımcılardan yeniden ilgi görmesi ve tohum aşamasındaki rekor yatırımlar, gelişmekte olan pazarlardaki sermaye akışının yönünü göstermesi açısından önem taşıyor."
+why_matters: "Meksika'nın Brezilya'yı geçmesi ve tohum yatırımlarının bir çeyrekte iki kattan fazla artması, Latin Amerika'daki sermaye dağılımının değiştiğine işaret ediyor."
 key_points:
   - "Latin Amerika girişimleri 2026 üçüncü çeyreğinde toplam 1,3 milyar dolar yatırım aldı."
   - "Meksika girişimleri ilk üç çeyrekte 1,52 milyar dolar toplayarak Brezilya'yı geçti."

@@ -2,15 +2,15 @@
 date: 2026-12-28T08:00:00+03:00
 yaziTuru: analiz
 uretim: yazi-isleri
-title: "Bilgi ve iletişim payı 2022 yılında düştü, GSYH daha hızlı büyüdü"
-description: "2019–2025 arasında payın yönünü yıl yıl hacim ve fiyat bileşenlerine ayırdık; üç ayrı dönem çıktı."
+title: "Bilgi ve iletişimin payı 2022'de küçülmeden değil, GSYH'nin hızından düştü"
+description: "2019–2025 döneminde bilgi ve iletişim sektörünün GSYH içindeki payı hacim ve fiyat bileşenlerine ayrıştırıldığında üç farklı dönem ortaya çıkıyor."
 category: "analiz"
-why_matters: "Bir oranın düşmesi ya da yükselmesi, payın mı paydanın mı hareket ettiğini kendiliğinden söylemez. Bu yazı ikisini ayırarak sektör payına hangi yılda neyin yön verdiğini gösteriyor."
+why_matters: "Bir oranın düşmesi ya da yükselmesi, tek başına payın mı yoksa paydanın mı hareket ettiğini göstermez; bu analiz ikisini ayırarak sektör payına hangi yılda neyin yön verdiğini ortaya koyuyor."
 key_points:
-  - "Bilgi ve iletişim sektörünün GSYH içindeki payı 2022'de %2,70'ten %2,26'ya indi; fark 0,45 puan."
-  - "Aynı yıl sektörün cari katma değeri %72,2, GSYH ise %106,2 arttı."
-  - "Hacim büyümesi arasındaki fark 0,7 puan kaldı; örtük fiyat göstergeleri arasındaki fark 33,4 puan oldu."
-  - "Pay 2023–2025 aralığında her yıl yükseldi ve 2025'te %2,65'e ulaştı."
+  - "Bilgi ve iletişim sektörünün GSYH içindeki payı 2022'de 0,45 puan düşerek %2,70'ten %2,26'ya geriledi."
+  - "Aynı yıl sektörün cari katma değeri %72,2 artarken, GSYH %106,2 büyüdü."
+  - "2022'de hacim büyümesi farkı yalnızca 0,7 puan kalırken, örtük fiyat göstergeleri arasındaki fark 33,4 puana ulaştı."
+  - "Sektörün payı 2023–2025 döneminde her yıl yükselerek 2025'te %2,65'e çıktı."
 ---
 
 Bilgi ve iletişim sektörünün gayrisafi yurt içi hasıla (GSYH) içindeki payı 2022 yılında bir önceki yıla göre 0,45 puan geriledi: %2,70'ten %2,26'ya. Sektörün o yıl küçüldüğünü düşünmek kolay, ama veri bunu göstermiyor. Cari fiyatlarla katma değeri 2021 yılında 200,9 milyar TL iken 2022'de 346,0 milyar TL'ye çıktı; yani %72,2 arttı. Aynı yıl paydanın, yani GSYH'nin büyümesi daha da hızlıydı: %106,2.
@@ -94,7 +94,7 @@ Bir de şu var: bu yazıdaki örtük fiyat göstergesi, TÜİK'in yayımladığ�
 
 ## Ölçümün sınırları: revizyon, çeyrek toplamı ve kapsam
 
-Üç sınır var. Birincisi, TÜİK geçmiş çeyrekleri revize edebiliyor; bu yazıdaki değerler 23 Ekim 2026'da EVDS'den çekilen sürümdür ve sonraki bir revizyon rakamları değiştirebilir. İkincisi, yıllık değerleri dört çeyreğin toplamı olarak biz kurduk. Zincirlenmiş hacim serilerinde çeyrek toplamı yıllık büyüme için yaklaşık bir ölçüdür; TÜİK'in yıllık tablosundaki büyüme oranı küçük farklarla ayrışabilir. Üçüncüsü, payda GSYH olduğu için ürün vergileri ve sübvansiyonlar da içeride. Payı yalnız faaliyet kollarının toplam katma değerine oranlamak mümkündür, ama bu yazıda yapmadık.
+Veriyi okurken üç sınırı göz önünde bulundurmak gerekiyor. İlk olarak TÜİK geçmiş çeyrekleri revize edebiliyor; buradaki değerler 23 Ekim 2026'da EVDS'den çekilen sürüme ait ve sonraki revizyonlar rakamları değiştirebilir. İkinci olarak yıllık değerler dört çeyreğin toplamıyla oluşturuldu; zincirlenmiş hacim serilerinde çeyrek toplamı yıllık büyüme için yaklaşık bir ölçü sunduğundan, TÜİK'in yıllık tablosundaki büyüme oranı küçük farklarla ayrışabilir. Üçüncüsü, payda GSYH olduğu için ürün vergileri ve sübvansiyonlar da hesapta yer alıyor; payı yalnızca faaliyet kollarının toplam katma değerine oranlamak da mümkün olsa da bu analizde GSYH esas alındı.
 
 2026 yılında ilk iki çeyrek yayımlanmış durumda, fakat yıl tamamlanmadığı için hesaba katılmadı. Çeyrekler arası mevsimsellik güçlü: sektörün cari katma değeri her yılın dördüncü çeyreğinde belirgin biçimde yüksek; bu yüzden tek çeyrek karşılaştırmaları yerine yıllık toplam kullandık.
 

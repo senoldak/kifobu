@@ -15,4 +15,4 @@ uretim: yapay-zeka
 
 Yatırım turuna Beenext Ventures ve Lotus liderlik etti. Sürece İsveçli bir aile ofisinin yanı sıra Stefan Lindeberg, Alex Bouaziz, Thomas Ekman, Hedda Baverud Olsson ve Parham Benisi katıldı.
 
-Generative engine optimisation ve pazarlama analitiğini birleştiren platform, işletmelerin yapay zekâ sistemlerindeki marka sunumlarını analiz etmesine ve organik büyüme stratejileri uygulamasına olanak tanıyor.
+Generative engine optimisation (GEO) ile pazarlama analitiğini birleştiren platform, işletmelerin yapay zekâ sistemlerindeki marka sunumlarını analiz edip organik büyüme stratejileri kurmasına yardımcı oluyor.

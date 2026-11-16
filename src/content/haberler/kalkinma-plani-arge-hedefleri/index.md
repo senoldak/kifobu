@@ -2,25 +2,25 @@
 date: 2027-01-04T08:00:00+03:00
 yaziTuru: analiz
 uretim: yazi-isleri
-title: "2023 yılı Ar-Ge hedefleri ve Eurostat gerçekleşenleri yan yana"
-description: "On Birinci Kalkınma Planı'nın 2023 yılı Ar-Ge hedefleri ile Eurostat'ın Türkiye verisi yan yana; fark yalnızca rakam olarak veriliyor."
+title: "2023 Ar-Ge hedeflerinin ne kadarı tuttu? Plan ve Eurostat verileri yan yana"
+description: "On Birinci Kalkınma Planı'ndaki 2023 Ar-Ge hedefleri, Eurostat'ın Türkiye verileriyle ne kadar örtüşüyor?"
 category: "analiz"
-why_matters: "Bir plan hedefi ile gerçekleşen arasındaki fark, hedefin ve ölçünün türüne göre çok farklı büyüklükte çıkabilir. Bu yazı dört hedefi aynı veri setinde karşılaştırarak farkı her hedef için kendi birimiyle gösteriyor."
+why_matters: "Aynı kalkınma planındaki Ar-Ge hedeflerinden biri gerçekleşmeye çok yaklaşırken diğeri geride kalabiliyor; üstelik başlangıç yılı verileri bile kaynaklara göre farklılık gösteriyor."
 key_points:
-  - "Plan, Ar-Ge harcamasının GSYH'ye oranını 2023 yılı için %1,8 olarak öngörmüştü; Eurostat'ın değeri %1,39, yani hedefin %77,22'si."
-  - "Plan 2023 yılı için 300.000 tam zaman eşdeğer Ar-Ge personeli öngörmüştü; Eurostat'ın değeri 290.850, yani hedefin %96,95'i."
-  - "Özel sektörün Ar-Ge harcamalarındaki payı %65,15; plan hedefi %67."
-  - "Planın 2017 yılı başlangıç değeri ile Eurostat'ın bugünkü 2017 yılı değeri arasında Ar-Ge oranında 0,21 puan fark var."
+  - "Ar-Ge harcamasının GSYH'ye oranı 2023'te %1,39 ile %1,8'lik plan hedefinin %77,22'sinde kaldı."
+  - "Tam zaman eşdeğer Ar-Ge personeli 290.850 kişiye ulaşarak 300.000'lik hedefin %96,95'ini yakaladı."
+  - "Özel sektörün Ar-Ge harcamasındaki payı %65,15 ile %67'lik hedefin 1,85 puan gerisinde."
+  - "Planın 2017 başlangıç verisiyle Eurostat'ın güncel 2017 serisi arasında Ar-Ge oranında 0,21 puan fark bulunuyor."
 ---
 
-On Birinci Kalkınma Planı, Türkiye Büyük Millet Meclisi Genel Kurulu'nun 18 Temmuz 2019 tarihli kararıyla kabul edildi. Plan, Ar-Ge harcamasının GSYH'ye oranının 2023 yılı için %1,8 olmasını, tam zaman eşdeğer Ar-Ge personelinin 300.000'e ulaşmasını hedef olarak yazdı. Eurostat'ın Türkiye için yayımladığı 2023 yılı değerleri ise %1,39 ve 290.850 kişi. Oran hedefin %77,22'sinde, personel sayısı hedefin %96,95'inde.
+On Birinci Kalkınma Planı, Türkiye Büyük Millet Meclisi Genel Kurulu'nun 18 Temmuz 2019 tarihli kararıyla kabul edildi. Plan, 2023 yılı için Ar-Ge harcamasının GSYH'ye oranını %1,8, tam zaman eşdeğer Ar-Ge personelini ise 300.000 kişi olarak hedeflemişti. Eurostat'ın Türkiye için yayımladığı 2023 yılı gerçekleşmeleri ise sırasıyla %1,39 ve 290.850 kişi. Yani harcama oranı hedefin %77,22'sinde kalırken, personel sayısı hedefin %96,95'ine ulaştı.
 
-İki hedef aynı planın aynı tablosunda yer alıyor ve aralarındaki fark çok farklı büyüklükte. Oranda hedef ile gerçekleşen arasında 0,41 puan var. Personel sayısında 9.150 kişi, yani hedefin yaklaşık yüzde üçü.
+Aynı planın aynı tablosunda yer alan bu iki hedefte gerçekleşme düzeyleri birbirinden oldukça farklı. Oranda hedef ile gerçekleşen arasında 0,41 puanlık bir açık varken, personel sayısındaki fark 9.150 kişi, yani hedefin yaklaşık yüzde üçü kadar.
 
 ![Rakam kutusu: Türkiye'nin Ar-Ge harcamasının GSYH'ye oranı, son yıl ve önceki yıllar: Son yıl: 2023 yılında %1,39; Önceki yıllar: 2017 yılında %1,17, 2019 yılında %1,29, 2021 yılında %1,37, 2022 yılında %1,30.](./graf-1.svg)
 *Türkiye, tüm sektörler. Kaynak: Eurostat.*
 
-Yazı hedef ile gerçekleşen arasındaki farkı yalnızca rakam olarak veriyor. Planı ya da planı hazırlayan ve uygulayan kurumları değerlendirmiyor; farkın nedenini plan belgesi kendisi söylemediği için söylemiyor. Yazının işi, dört hedefi tek bir kaynaktan gelen gerçekleşenlerle karşılaştırmak ve her karşılaştırmanın hangi tanıma dayandığını açıkça yazmak.
+Bu analizde hedef ile gerçekleşen arasındaki farkı yalnızca veriler üzerinden ortaya koyuyoruz. Planı ya da uygulayıcı kurumları değerlendirmiyor, dört temel hedefi tek bir kaynaktan gelen gerçekleşmelerle hangi tanımlara dayanarak karşılaştırdığımızı açıkça aktarıyoruz.
 
 ## Plan ne hedefledi?
 
@@ -57,7 +57,7 @@ Aşağıdaki tablo Türkiye'nin Ar-Ge harcamasının GSYH'ye oranını, AB ortal
 
 Cari fiyatlarla Ar-Ge harcaması 2017 yılında 36.862 milyon TL iken 2023 yılında 377.542 milyon TL oldu; yani 10,2 kat. Oran ise 2017–2023 aralığında yalnızca 0,22 puan arttı, çünkü payda olan GSYH de cari fiyatlarla büyüdü. Oran yıllar arasında bir kez, 2022 yılında geriledi. Personel sayısı aynı sürede her yıl arttı: 158.563'ten 290.850'ye, yani %83,4. AB'nin oranı aynı dönemde %2,14 ile %2,28 arasında seyretti. Türkiye'nin 2023 yılı oranı AB'nin değerinin %61,78'i; aradaki fark 0,86 puan.
 
-![Çizgi grafik: Türkiye'nin Ar-Ge oranı arttı, AB'nin oranı daha yüksek bir düzeyde seyretti: Türkiye: 2017 yılında %1,17, 2018 yılında %1,26, 2019 yılında %1,29, 2020 yılında %1,34, 2021 yılında %1,37, 2022 yılında %1,30, 2023 yılında %1,39, 2024 yılında %1,46; AB: 2017 yılında %2,14, 2018 yılında %2,17, 2019 yılında %2,21, 2020 yılında %2,28, 2021 yılında %2,24, 2022 yılında %2,22, 2023 yılında %2,25, 2024 yılında %2,26.](./graf-2.svg)
+![Küçük çoklu grafik: Türkiye'nin Ar-Ge oranı arttı, AB daha yüksek düzeyde seyretti: Türkiye: 2017 yılında %1,17, 2018 yılında %1,26, 2019 yılında %1,29, 2020 yılında %1,34, 2021 yılında %1,37, 2022 yılında %1,30, 2023 yılında %1,39, 2024 yılında %1,46; AB: 2017 yılında %2,14, 2018 yılında %2,17, 2019 yılında %2,21, 2020 yılında %2,28, 2021 yılında %2,24, 2022 yılında %2,22, 2023 yılında %2,25, 2024 yılında %2,26.](./graf-2.svg)
 *Ar-Ge harcamasının GSYH'ye oranı. Kaynak: Eurostat.*
 
 ## 2023 yılı: hedef ve gerçekleşen yan yana
