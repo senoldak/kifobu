@@ -946,14 +946,23 @@ h3 {
 
 .kampanya-kunyesi dl {
   margin: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 18px 0;
 }
 
+/* Hücre en az içeriği kadar geniş (flex-basis: auto): uzun tutar yan hücreye taşmaz, sığmayan hücre alt satıra iner.
+   Telefonda tek hücreden geniş içerik kalırsa satır içinde kırılır. */
 .kampanya-kunyesi dl > div {
+  flex: 1 1 auto;
+  min-width: 140px;
+  max-width: 100%;
   padding: 0 16px;
   border-left: 2px solid var(--tebesir-cizgi);
+}
+
+.kampanya-kunyesi dd {
+  overflow-wrap: anywhere;
 }
 
 .kampanya-kunyesi .kk-girisim,
