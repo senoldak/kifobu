@@ -277,6 +277,7 @@ export async function haberYaz(rot, h) {
     k.tur ? `tur: ${yamlStr(k.tur)}` : null,
     k.yatirimcilar ? `yatirimcilar: ${yamlStr(k.yatirimcilar)}` : null,
     sayi(k.yatirimci) ? `yatirimci: ${sayi(k.yatirimci)}` : null,
+    k.girisim && ['yeni', 'suruyor', 'basarili', 'basarisiz'].includes(k.durum) ? `durum: ${k.durum}` : null,
     h.why_matters?.trim() ? `why_matters: ${yamlStr(h.why_matters.trim())}` : null,
     Array.isArray(h.key_points) && h.key_points.filter(Boolean).length
       ? `key_points:\n${h.key_points.filter(Boolean).map((p) => `  - ${yamlStr(p)}`).join('\n')}`

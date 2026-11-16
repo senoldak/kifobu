@@ -20,6 +20,7 @@ import { medyaGizle } from './yerel.mjs';
 import { standartKapisi } from './standart-kapi.mjs';
 import { havuzOlayi, havuzuIsle, dilimEki } from './havuz.mjs';
 import { motorKimlik } from './motor.mjs';
+import { girisimListesi, zenginlestir } from './girisim-gecmis.mjs';
 
 const EN_FAZLA_HATA = 3;
 // Kaynak metinlerinin toplamı bundan kısaysa olay yazılmaz (en az 200 kelimelik haber çıkmaz).
@@ -86,7 +87,7 @@ export function uyarlayiciKur({ rot, durum, simdi, ayar = {}, bag = {} }) {
   const A = { enFazla: 12, teyit: 1, yasGun: 3, sureMs: 18 * 60_000, baslangic: Date.now(), ...ayar };
   const B = {
     KAYNAKLAR, hentTekst, rssOku, tamMetin, taslakYaz, derlemeYaz, derlemeUzat, denetle, onbellekliPuanla, onbellekliEsle, gommeliEsle, ayniOlayMi,
-    haberYaz, sonHaberler, geminiPayiBitti, standartKapisi,
+    haberYaz, sonHaberler, geminiPayiBitti, standartKapisi, girisimListesi,
     geminiVar: () => Boolean(process.env.GEMINI_API_KEY),
     ...bag,
   };
@@ -422,7 +423,7 @@ export function uyarlayiciKur({ rot, durum, simdi, ayar = {}, bag = {} }) {
         };
         // Denetimde bütün kaynakların başlık ve metinleri birlikte kullanılır.
         const kaynakMetni = kaynaklar.map((k) => `${k.baslik}\n${k.metin}`).join('\n\n');
-        const { haber, sorunlar, belirsiz } = await B.denetle({ title: t.title, description: t.description, body: t.body, kunye, why_matters: t.why_matters, key_points: t.key_points }, kaynakMetni);
+        let { haber, sorunlar, belirsiz } = await B.denetle({ title: t.title, description: t.description, body: t.body, kunye, why_matters: t.why_matters, key_points: t.key_points }, kaynakMetni);
         // Denetim çalıştırılamadıysa (boş yanıt, kota, zaman aşımı) olay görülmedi kalır ve sonraki turda yeniden denenir.
         if (belirsiz) {
           log(`  BEKLİYOR (denetim tamamlanamadı): ${medyaGizle(sorunlar.join(' | '))}`);
@@ -462,6 +463,17 @@ export function uyarlayiciKur({ rot, durum, simdi, ayar = {}, bag = {} }) {
           ozet.hata.push(`${haber.title} — ikinci okuma tamamlanamadı, sonraki turda yeniden denenecek`);
           g.uyeler.forEach((u) => delete durum.gorulen[u.id]); // denetim belirsizinde olduğu gibi görülmedi kalır
           continue;
+        }
+        // Kitle fonlamasına çıkmış girişim: kayıttan kampanya geçmişi bölümü + /girisim/ bağlantısı + boş künye alanları.
+        // Kayıt okunamazsa haber zenginleştirilmeden yazılır.
+        try {
+          const z = zenginlestir(haber, haber.kunye ?? kunye, await B.girisimListesi(rot), kaynakMetni);
+          if (z.girisim) {
+            haber = { ...z.haber, kunye: z.kunye };
+            log(`  girişim kaydı eklendi: /girisim/${z.girisim}/`);
+          }
+        } catch (e) {
+          log(`  girişim kaydı eklenemedi: ${adresiSil(e.message)}`);
         }
         const slug = await B.haberYaz(rot, { ...haber, category: t.category, date: istanbulIso(simdi), draft: false, haberDegeri: puan.get(g), kaynakIzi: kaynakIzi(secilen.slice(0, 3).map((u) => ({ ad: u.kaynak.ad, url: u.link }))), why_matters: haber.why_matters ?? t.why_matters, key_points: haber.key_points ?? t.key_points });
         delete durum.hatalar[hataId];
