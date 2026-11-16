@@ -1,5 +1,5 @@
 ---
-title: "Bebehum Kırgızistan ve Kazakistan'da satışa başladı, Irak'ta özel markalı üretim anlaşması imza aşamasında"
+title: "Bebehum, Kırgızistan ve Kazakistan'da satışa başladı, Irak'ta özel markalı üretim anlaşması imza aşamasında"
 description: "Kitle fonlamasıyla yatırım alan Bebehum'un şirketi Gürler Global, yatırımcılarına yurt dışı satış, distribütörlük ve özel markalı üretim görüşmelerindeki son durumu duyurdu."
 date: 2026-11-16T10:10:00+03:00
 category: girisimler
