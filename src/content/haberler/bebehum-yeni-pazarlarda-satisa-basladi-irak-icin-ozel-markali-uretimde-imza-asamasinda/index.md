@@ -5,7 +5,7 @@ date: 2026-11-16T10:10:00+03:00
 category: girisimler
 girisim: "Bebehum"
 platform: "Fonbulucu"
-tur: "Köprü Turu"
+tur: "2. tur (toplam 2)"
 toplanan: 43612637
 hedef: 36000000
 yatirimci: 2303
@@ -35,6 +35,6 @@ Bebehum, Gürler Global'in bebek devam sütü markası. Şirket kitle fonlaması
 
 İlk tur 19 Ekim–18 Kasım 2023 arasında açık kaldı. 24 milyon TL hedefle çıkan kampanyada 3.247 yatırımcı 32,2 milyon TL yatırdı; bunların 577'si nitelikli yatırımcıydı. Kampanyada şirket sermayesinin yüzde 10,2'si satışa sunuldu, hedef tutar şirkete yaklaşık 235 milyon TL değer biçiyordu. Paylar 8,10 TL'den dağıtıldı, fonlar 30 Kasım 2023'te şirkete aktarıldı.
 
-Bu güncellemenin gönderildiği köprü turu 26 Kasım 2024'te açıldı, 24 Ocak 2025'te kapandı. 36 milyon TL hedefle çıkan kampanyada 2.303 yatırımcı 43,6 milyon TL yatırdı, nitelikli yatırımcı sayısı 783 oldu. Bu turda sermayenin yüzde 10'u 360 milyon TL değer üzerinden satışa sunuldu, pay fiyatı 5,53 TL'ye indi. Şirketin sermayesi ilk turdan sonra 29,0 milyon TL'ydi; köprü turunun ardından 65,0 milyon TL'ye çıktı.
+İkinci tur 26 Kasım 2024'te açıldı, 24 Ocak 2025'te kapandı. 36 milyon TL hedefle çıkan kampanyada 2.303 yatırımcı 43,6 milyon TL yatırdı, nitelikli yatırımcı sayısı 783 oldu. Bu turda sermayenin yüzde 10'u 360 milyon TL değer üzerinden satışa sunuldu, pay fiyatı 5,53 TL'ye indi. Şirketin sermayesi ilk turdan sonra 29,0 milyon TL'ydi; ikinci turun ardından 65,0 milyon TL'ye çıktı.
 
 İki turda toplanan tutar 75,8 milyon TL'yi buldu. Kampanya geçmişi, şirketin faaliyet raporları ve paylara ilişkin bilgiler [Bebehum sayfasında](/girisim/bebehum/) yer alıyor.

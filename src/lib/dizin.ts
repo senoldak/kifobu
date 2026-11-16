@@ -6,11 +6,15 @@ import { kampanyalar, girisimEslesir, type Kampanya } from './kampanya.ts';
 import { platformHaberleri, platformlar, platformSayfasi, platformEslesir, slugTr, yayimlananKonular, type Konu, type Platform } from './konular.ts';
 import { bultenGunleri, istanbulGunu } from './gunler.ts';
 import { ceyrekOzeti, veriliCeyrekler, type CeyrekOzeti } from './rapor.ts';
+import { gecmisGirisimler, type GecmisKampanya } from './kampanya-gecmis.ts';
+import gecmisVeri from '../data/kampanya-gecmis.json';
 
 export interface PlatformSayfasi {
   platform: Platform;
   haberler: Haber[];
   kampanyalar: Kampanya[];
+  /** Kapanmış kampanyalar (src/data/kampanya-gecmis.json); varsa sayfa üretilir, künyedeki platform adı buraya bağlanır. */
+  gecmis: GecmisKampanya[];
   indeks: boolean;
 }
 
@@ -19,12 +23,16 @@ export async function dizinVerisi() {
   const kayitlar = arsivKayitlari();
   const kps = kampanyalar(kayitlar);
   const konular = yayimlananKonular(news);
-  const plats: PlatformSayfasi[] = platformlar(news.map((h) => h.data.platform).filter((x): x is string => Boolean(x)))
+  const gecmisler = gecmisVeri.kampanyalar as GecmisKampanya[];
+  // Kayıttaki platform anahtarları küçük harf (fonbulucu): haberde ya da ayarda adı yoksa baş harfi büyütülür.
+  const gecmisAdlari = [...new Set(gecmisler.map((k) => k.platform))].map((p) => p.charAt(0).toLocaleUpperCase('tr-TR') + p.slice(1));
+  const plats: PlatformSayfasi[] = platformlar([...news.map((h) => h.data.platform).filter((x): x is string => Boolean(x)), ...gecmisAdlari])
     .map((platform) => {
       const haberler = platformHaberleri(platform, news);
       const pk = kps.filter((k) => slugTr(k.platform) === platform.slug);
-      const { uret, indeks } = platformSayfasi(haberler.length, pk.length);
-      return uret ? { platform, haberler, kampanyalar: pk, indeks } : undefined;
+      const gecmis = gecmisler.filter((k) => slugTr(k.platform) === platform.slug);
+      const { uret, indeks } = platformSayfasi(haberler.length, pk.length + gecmis.length);
+      return uret ? { platform, haberler, kampanyalar: pk, gecmis, indeks } : undefined;
     })
     .filter((x): x is PlatformSayfasi => Boolean(x))
     .sort((a, b) => b.haberler.length + b.kampanyalar.length - (a.haberler.length + a.kampanyalar.length) || a.platform.ad.localeCompare(b.platform.ad, 'tr'));
@@ -45,6 +53,35 @@ export function haberBaglantilari(
 }
 
 export const platformUrl = (anahtar: string) => `/platform/${slugTr(anahtar)}/`;
+
+// /girisim/<slug>/ sayfası olan adlar (sayfadaki eşleşmeyle aynı: girişimin slug'ı ve her kampanyasının adı).
+let girisimHaritasi: Map<string, string> | undefined;
+function girisimSayfasi(ad: string): string | undefined {
+  if (!girisimHaritasi) {
+    girisimHaritasi = new Map();
+    for (const g of gecmisGirisimler(gecmisVeri.kampanyalar as GecmisKampanya[]))
+      for (const a of [g.slug, ...g.kampanyalar.map((k) => slugTr(k.ad))]) if (!girisimHaritasi.has(a)) girisimHaritasi.set(a, `/girisim/${g.slug}/`);
+  }
+  return girisimHaritasi.get(slugTr(ad));
+}
+
+/** Künyedeki girişim ve platform adlarının sayfaları; sayfası üretilmeyen ad bağlantısız kalır. */
+export function kunyeBaglantilari(
+  haber: Haber,
+  veri: { platformlar: PlatformSayfasi[]; kampanyalar: Kampanya[] },
+): { girisim?: string; platform?: string } {
+  const { girisim, platform } = haber.data;
+  const out: { girisim?: string; platform?: string } = {};
+  if (girisim) {
+    const canli = veri.kampanyalar.find((k) => girisimEslesir(k, girisim));
+    out.girisim = girisimSayfasi(girisim) ?? (canli ? `/kampanya/${canli.slug}/` : undefined);
+  }
+  if (platform) {
+    const p = veri.platformlar.find((x) => x.platform.slug === slugTr(platform));
+    if (p) out.platform = `/platform/${p.platform.slug}/`;
+  }
+  return out;
+}
 
 /**
  * Yayımlanacak çeyrek raporları (/rapor/, /rapor/YYYY-cN/ ve .png/.csv uçları), en yeni önce.

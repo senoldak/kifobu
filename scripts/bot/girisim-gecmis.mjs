@@ -114,6 +114,11 @@ export function zenginlestir(haber, kunye, liste, kaynakMetni = '') {
 ${haber.body ?? ''}`)) return { haber, kunye, girisim: null };
   const { metin, kunye: k } = gecmisBolumu(g, kunye.girisim.trim());
   const yeniKunye = { ...kunye };
+  // Tur adı platformun koyduğu ad değil (köprü, ön tur …), kayıttaki sıra: haberin tutarı bir kampanyaya uyuyorsa o, uymuyorsa
+  // kayda henüz girmemiş yeni tur; tutar yoksa son kampanya.
+  const ks = g.kampanyalar;
+  const sira = kunye.toplanan > 0 ? ks.findIndex((x) => Math.abs(x.alinan - kunye.toplanan) <= x.alinan * 0.01) : ks.length - 1;
+  yeniKunye.tur = sira >= 0 ? `${sira + 1}. tur (toplam ${ks.length})` : `${ks.length + 1}. tur`;
   if (!(kunye.toplanan > 0)) {
     for (const [a, v] of Object.entries(k)) if (v !== undefined && (yeniKunye[a] === undefined || yeniKunye[a] === null)) yeniKunye[a] = v;
     yeniKunye.paraBirimi = 'TRY';

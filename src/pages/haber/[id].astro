@@ -11,7 +11,7 @@ import { SITE, YAZAR, yazarLd, yazarUrl, kisiYazariMi, DURUMLAR, kunyeNotu, cate
 import { getNews, isFunding, type Haber } from '../../lib/news';
 import { indekslenir } from '../../lib/indeks';
 import { ilgiliHaberler } from '../../lib/ilgili';
-import { dizinVerisi, haberBaglantilari } from '../../lib/dizin';
+import { dizinVerisi, haberBaglantilari, kunyeBaglantilari } from '../../lib/dizin';
 import { gunUrl, istanbulGunu } from '../../lib/gunler';
 import { matchEntities } from '../../lib/entities';
 import { duzeltmeNotu } from '../../lib/duzeltme';
@@ -47,7 +47,7 @@ export async function getStaticPaths() {
       // İlgili haberler: ortak girişim/platform/yatırımcı, yoksa aynı bölüm; bülten ve noindex haberler hariç (src/lib/ilgili.ts).
       // Konular: sayfası üretilmiş kampanya, platform ve konu bağlantıları (src/lib/dizin.ts); günün bülten sayfası.
       // Daha önce bu konuda: aynı girişim, platform ya da ortak özel ad ve anlam benzerliği (src/lib/daha-once.ts).
-      props: { haber, related: ilgiliHaberler(haber, news, 3), konular: haberBaglantilari(haber, veri), bultenGunu: gunler.has(gun) ? gun : undefined, onceki: dahaOnce(haber, news) },
+      props: { haber, related: ilgiliHaberler(haber, news, 3), konular: haberBaglantilari(haber, veri), kunyeLink: kunyeBaglantilari(haber, veri), bultenGunu: gunler.has(gun) ? gun : undefined, onceki: dahaOnce(haber, news) },
     };
   });
 }
@@ -56,11 +56,12 @@ interface Props {
   haber: Haber;
   related: Haber[];
   konular: { ad: string; url: string }[];
+  kunyeLink: { girisim?: string; platform?: string };
   bultenGunu?: string;
   onceki: Haber[];
 }
 
-const { haber, related, konular, bultenGunu, onceki } = Astro.props;
+const { haber, related, konular, kunyeLink, bultenGunu, onceki } = Astro.props;
 const d = haber.data;
 const duzeltme = duzeltmeNotu(d, 'tr');
 const yzNotu = yapayZekaNotu(d, d.title, new URL(Astro.url.pathname, Astro.site).href);
@@ -207,12 +208,12 @@ const jsonLd = {
           <dl>
             <div class="kk-girisim">
               <dt>Girişim</dt>
-              <dd>{d.girisim}</dd>
+              <dd>{kunyeLink.girisim ? <a href={kunyeLink.girisim}>{d.girisim}</a> : d.girisim}</dd>
             </div>
             {d.platform && (
               <div>
                 <dt>Platform</dt>
-                <dd class="kk-platform">{d.platform}</dd>
+                <dd class="kk-platform">{kunyeLink.platform ? <a href={kunyeLink.platform}>{d.platform}</a> : d.platform}</dd>
               </div>
             )}
             <div class="kk-toplanan">

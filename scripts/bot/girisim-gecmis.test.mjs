@@ -15,7 +15,7 @@ test('Bebehum: iki tur, kayıttan rakamlar, sayfa bağlantısı, boş künye dol
   assert.match(z.haber.body, /3\.247 yatırımcı 32,2 milyon TL yatırdı/);
   assert.match(z.haber.body, /360 milyon TL değer/);
   assert.match(z.haber.body, /\[Bebehum sayfasında\]\(\/girisim\/bebehum\/\)/);
-  assert.deepEqual({ ...z.kunye }, { girisim: 'Bebehum', platform: 'Fonbulucu', toplanan: 43612637, hedef: 36000000, yatirimci: 2303, durum: 'basarili', paraBirimi: 'TRY' });
+  assert.deepEqual({ ...z.kunye }, { girisim: 'Bebehum', tur: '2. tur (toplam 2)', platform: 'Fonbulucu', toplanan: 43612637, hedef: 36000000, yatirimci: 2303, durum: 'basarili', paraBirimi: 'TRY' });
 });
 
 test('haberin kendi künyesi (yeni tur) korunur', async () => {
@@ -23,6 +23,8 @@ test('haberin kendi künyesi (yeni tur) korunur', async () => {
   const z = zenginlestir({ body: 'x kitle fonlaması' }, { girisim: 'Bebehum', toplanan: 5, hedef: 10 }, liste);
   assert.equal(z.kunye.toplanan, 5);
   assert.equal(z.kunye.platform, undefined);
+  assert.equal(z.kunye.tur, '3. tur');
+  assert.equal(zenginlestir({ body: 'kitle fonlaması' }, { girisim: 'Bebehum', toplanan: 32153229, tur: 'Köprü Turu' }, liste).kunye.tur, '1. tur (toplam 2)');
 });
 
 test('kanıt yoksa aynı adlı yabancı girişim bağlanmaz', () => {

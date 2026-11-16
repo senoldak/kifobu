@@ -2,6 +2,7 @@
 // Platform sayfası: kifobu'nun kampanya kayıtları ve platformla ilgili haberler. Lisans/yetki durumu gibi bilgiler
 // repoda doğrulanabilir veri olmadığı için yazılmaz; okur SPK'ya yönlendirilir. En az 3 haberi olmayan platform
 // sayfası "noindex, follow" kalır (src/lib/konular.ts → platformSayfasi).
+import GecmisKampanyaTablosu from '../../components/GecmisKampanyaTablosu.astro';
 import { jsonLdMetni } from '../../lib/json-ld.mjs';
 import Base from '../../layouts/Base.astro';
 import HaberSatiri from '../../components/HaberSatiri.astro';
@@ -22,7 +23,7 @@ interface Props {
 }
 
 const { p } = Astro.props;
-const { platform, haberler, kampanyalar, indeks } = p;
+const { platform, haberler, kampanyalar, gecmis, indeks } = p;
 const yol = `/platform/${platform.slug}/`;
 const bultende = kampanyalar.length > 0;
 const aciklama = bultende
@@ -45,7 +46,7 @@ const jsonLd = sayfaLd({
   <div slot="tahta" class="kategori-bas">
     <h1 class="kategori-isim">{platform.ad}</h1>
     <p class="kategori-sayi">
-      {kampanyalar.length > 0 && `${kampanyalar.length} kampanya · `}{haberler.length} haber
+      {kampanyalar.length > 0 && `${kampanyalar.length} kampanya · `}{gecmis.length > 0 && `${gecmis.length} kapanmış kampanya · `}{haberler.length} haber
     </p>
   </div>
 
@@ -59,7 +60,7 @@ const jsonLd = sayfaLd({
           platformdaki kampanyaların kifobu kayıtlarındaki son değerleri ve platformla ilgili haberler yer alır.
         </p>
       ) : (
-        <p>Bu sayfada kifobu’da {platform.ad} ile ilgili yayımlanan haberler yer alır.</p>
+        <p>Bu sayfada {gecmis.length > 0 && <>{platform.ad} üzerinde kapanmış kampanyaların kayıtları ve </>}kifobu’da {platform.ad} ile ilgili yayımlanan haberler yer alır.</p>
       )
     }
     <p>
@@ -82,6 +83,15 @@ const jsonLd = sayfaLd({
         </div>
         <KampanyaTablosu kampanyalar={kampanyalar} platformGoster={false} baslik={`${platform.ad} kampanyaları`} />
         <p class="dizin-not">Rakamlar kifobu’nun her gün 18:00’de aldığı kayıtlardandır. {RISK_NOTU}</p>
+      </section>
+    )
+  }
+
+  {
+    gecmis.length > 0 && (
+      <section class="bolum" aria-label="Kapanmış kampanyalar">
+        <GecmisKampanyaTablosu kampanyalar={gecmis} />
+        <p class="dizin-not">{RISK_NOTU}</p>
       </section>
     )
   }

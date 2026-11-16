@@ -1625,14 +1625,16 @@ h3 {
   overflow-wrap: anywhere;
 }
 
-.kampanya-kunyesi .kk-platform a {
+.kampanya-kunyesi .kk-platform a,
+.kampanya-kunyesi .kk-girisim a {
   color: inherit;
   text-decoration: underline;
   text-decoration-color: var(--tebesir-cizgi);
   text-underline-offset: 4px;
 }
 
-.kampanya-kunyesi .kk-platform a:hover {
+.kampanya-kunyesi .kk-platform a:hover,
+.kampanya-kunyesi .kk-girisim a:hover {
   text-decoration-color: var(--sari);
 }
 
