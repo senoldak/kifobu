@@ -6,7 +6,7 @@ import { kampanyalar, girisimEslesir, type Kampanya } from './kampanya.ts';
 import { platformHaberleri, platformlar, platformSayfasi, platformEslesir, slugTr, yayimlananKonular, type Konu, type Platform } from './konular.ts';
 import { bultenGunleri, istanbulGunu } from './gunler.ts';
 import { ceyrekOzeti, veriliCeyrekler, type CeyrekOzeti } from './rapor.ts';
-import { gecmisGirisimler, type GecmisKampanya } from './kampanya-gecmis.ts';
+import { gecmisGirisimler, type GecmisGirisim, type GecmisKampanya } from './kampanya-gecmis.ts';
 import gecmisVeri from '../data/kampanya-gecmis.json';
 
 export interface PlatformSayfasi {
@@ -55,15 +55,20 @@ export function haberBaglantilari(
 export const platformUrl = (anahtar: string) => `/platform/${slugTr(anahtar)}/`;
 
 // /girisim/<slug>/ sayfası olan adlar (sayfadaki eşleşmeyle aynı: girişimin slug'ı ve her kampanyasının adı).
-let girisimHaritasi: Map<string, string> | undefined;
-function girisimSayfasi(ad: string): string | undefined {
+let girisimHaritasi: Map<string, GecmisGirisim> | undefined;
+/** Adı kampanya kaydındaki bir girişime uyan girişim (sayfası /girisim/<slug>/). */
+export function gecmisGirisim(ad: string): GecmisGirisim | undefined {
   if (!girisimHaritasi) {
     girisimHaritasi = new Map();
     for (const g of gecmisGirisimler(gecmisVeri.kampanyalar as GecmisKampanya[]))
-      for (const a of [g.slug, ...g.kampanyalar.map((k) => slugTr(k.ad))]) if (!girisimHaritasi.has(a)) girisimHaritasi.set(a, `/girisim/${g.slug}/`);
+      for (const a of [g.slug, ...g.kampanyalar.map((k) => slugTr(k.ad))]) if (!girisimHaritasi.has(a)) girisimHaritasi.set(a, g);
   }
   return girisimHaritasi.get(slugTr(ad));
 }
+const girisimSayfasi = (ad: string) => {
+  const g = gecmisGirisim(ad);
+  return g ? `/girisim/${g.slug}/` : undefined;
+};
 
 /** Künyedeki girişim ve platform adlarının sayfaları; sayfası üretilmeyen ad bağlantısız kalır. */
 export function kunyeBaglantilari(
@@ -76,8 +81,9 @@ export function kunyeBaglantilari(
     const canli = veri.kampanyalar.find((k) => girisimEslesir(k, girisim));
     out.girisim = girisimSayfasi(girisim) ?? (canli ? `/kampanya/${canli.slug}/` : undefined);
   }
-  if (platform) {
-    const p = veri.platformlar.find((x) => x.platform.slug === slugTr(platform));
+  const platformAdi = platform ?? (girisim ? gecmisGirisim(girisim)?.kampanyalar.at(-1)?.platform : undefined);
+  if (platformAdi) {
+    const p = veri.platformlar.find((x) => x.platform.slug === slugTr(platformAdi));
     if (p) out.platform = `/platform/${p.platform.slug}/`;
   }
   return out;

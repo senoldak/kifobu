@@ -11,7 +11,7 @@ import { SITE, YAZAR, yazarLd, yazarUrl, kisiYazariMi, DURUMLAR, kunyeNotu, cate
 import { getNews, isFunding, type Haber } from '../../lib/news';
 import { indekslenir } from '../../lib/indeks';
 import { ilgiliHaberler } from '../../lib/ilgili';
-import { dizinVerisi, haberBaglantilari, kunyeBaglantilari } from '../../lib/dizin';
+import { dizinVerisi, gecmisGirisim, haberBaglantilari, kunyeBaglantilari } from '../../lib/dizin';
 import { gunUrl, istanbulGunu } from '../../lib/gunler';
 import { matchEntities } from '../../lib/entities';
 import { duzeltmeNotu } from '../../lib/duzeltme';
@@ -74,6 +74,13 @@ const funding = isFunding(haber);
 // Kapsam dışı ya da 120 kelimeden kısa haber: sayfa kalır, arama motorlarına kapalıdır (noindex, follow).
 const noindex = !indekslenir({ draft: d.draft, noindex: d.noindex, govde: haber.body });
 const pct = percentOf(d.toplanan, d.hedef);
+// Fonlama haberi olmayan girişim haberi (güncelleme, duyuru): künye kampanya kaydından okunur, haberin alanlarına yazılmaz;
+// böylece kapak, tahta ve sayımlar bu haberi fonlama saymaz.
+const gecmis = !funding && d.girisim && d.category !== 'gunluk-bulten' ? gecmisGirisim(d.girisim) : undefined;
+const gecmisFonlanan = gecmis?.kampanyalar.filter((k) => k.durum === 'fonlandi') ?? [];
+const gecmisSon = gecmis?.kampanyalar.at(-1);
+const gecmisPlatform = gecmisSon ? gecmisSon.platform.charAt(0).toLocaleUpperCase('tr-TR') + gecmisSon.platform.slice(1) : undefined;
+const ayYil = (iso: string) => new Date(`${iso}T12:00:00+03:00`).toLocaleDateString('tr-TR', { month: 'long', year: 'numeric' });
 // "Bu haber nasıl hazırlandı" kartı (bot haberi ve sahibin yazısı); kart çıkmayan yazı eski tek satırlık notu korur.
 const kart = (adimlar(d)?.length ?? 0) > 0;
 // Yer haritası: Türkiye'deki girişimin haberi ve metinde "<İl> merkezli" (src/lib/yer.mjs).
@@ -260,6 +267,42 @@ const jsonLd = {
             )}
           </dl>
           <p class="kk-risk">{kunyeNotu(d)}</p>
+        </section>
+      )
+    }
+
+    {
+      gecmis && gecmisSon && (
+        <section class="kampanya-kunyesi tahta-zemin" aria-label="Girişimin kitle fonlaması künyesi">
+          <dl>
+            <div class="kk-girisim">
+              <dt>Girişim</dt>
+              <dd><a href={kunyeLink.girisim}>{d.girisim}</a></dd>
+            </div>
+            <div>
+              <dt>Platform</dt>
+              <dd class="kk-platform">{kunyeLink.platform ? <a href={kunyeLink.platform}>{d.platform ?? gecmisPlatform}</a> : (d.platform ?? gecmisPlatform)}</dd>
+            </div>
+            <div class="kk-toplanan">
+              <dt>{gecmisFonlanan.length > 1 ? `${gecmisFonlanan.length} turda toplanan` : 'Toplanan'}</dt>
+              <dd class="tk-toplanan">{formatMoney(gecmisFonlanan.reduce((t, k) => t + k.alinan, 0))}</dd>
+            </div>
+            <div>
+              <dt>Tur</dt>
+              <dd>{gecmis.kampanyalar.length}</dd>
+            </div>
+            <div>
+              <dt>Son tur</dt>
+              <dd>{ayYil(gecmisSon.bitis ?? gecmisSon.baslangic)}</dd>
+            </div>
+            {gecmisSon.yatirimci && (
+              <div>
+                <dt>Son turda yatırımcı</dt>
+                <dd>{formatNumber(gecmisSon.yatirimci)}</dd>
+              </div>
+            )}
+          </dl>
+          <p class="kk-risk">{kunyeNotu({ platform: gecmisPlatform })}</p>
         </section>
       )
     }
