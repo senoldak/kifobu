@@ -1,7 +1,7 @@
 /**
  * Günlük kitle fonlama bülteni verisi ("Bugün" tablosu).
  * Otomatik Bot tarafından oluşturulmuştur.
- * Son güncelleme: 2026-11-15T15:01:07.969Z
+ * Son güncelleme: 2026-11-16T07:01:14.236Z
  */
 export interface Girisim {
   ad: string;
@@ -32,8 +32,8 @@ export interface Yakinda {
 }
 
 export const BULTEN = {
-  tarih: '15 Kasım 2026',
-  sayi: 1559,
+  tarih: '16 Kasım 2026',
+  sayi: 1560,
   girisimler: [
     {
         "ad": "ATHLETICLABS",
@@ -61,28 +61,28 @@ export const BULTEN = {
         "ad": "PUPAQ",
         "platform": "trinkfon",
         "bugun": 0,
-        "alinan": 121782,
-        "kalan": 878250,
+        "alinan": 0,
+        "kalan": 1000032,
         "degerleme": 25000800,
-        "yuzde": 12.17,
+        "yuzde": 0,
         "durum": "Aktif",
         "url": "https://kfs.trinkfon.com/projeler/pupaq/kampanya/"
     },
     {
         "ad": "LOOPYON",
         "platform": "ecofolio",
-        "bugun": 50400,
-        "alinan": 1223600,
-        "kalan": 33776400,
+        "bugun": 56000,
+        "alinan": 1279600,
+        "kalan": 33720400,
         "degerleme": 385038504,
-        "yuzde": 3.49,
+        "yuzde": 3.65,
         "durum": "Aktif",
         "url": "https://ecofolio.com.tr/kampanyalar/loopyon"
     }
 ] as Girisim[],
   platformlar: {
-    bugun: 50400,
-    toplam: 14083782,
+    bugun: 56000,
+    toplam: 14018000,
     liste: [
     {
         "ad": "fonangels",
@@ -93,14 +93,14 @@ export const BULTEN = {
     },
     {
         "ad": "ecofolio",
-        "toplam": 1223600,
+        "toplam": 1279600,
         "girisim": 1,
         "renk": "#009bae",
         "url": "https://ecofolio.com.tr"
     },
     {
         "ad": "trinkfon",
-        "toplam": 121782,
+        "toplam": 0,
         "girisim": 1,
         "renk": "#7c3aed",
         "url": "https://kfs.trinkfon.com"
