@@ -92,6 +92,28 @@ test('liste: açık ve yakında bölümleri, mutlak url; bitmiş bölümler ve t
   for (const x of k) assert.match(new URL(x.url).pathname, /^\/projeler\/[^/]+\/kampanya\/$/);
 });
 
+test('liste: "Hedefine Ulaşan" gibi bitmiş başlıklar ve bitmiş rozetler atlanır', () => {
+  for (const baslik of ['Hedefine Ulaşan Kampanyalar', 'Fonlanan', 'Sonuçlanan', 'Kapanan', 'Geçmiş', 'Arşiv', 'Reddedilen']) {
+    assert.deepEqual(trinkfon.liste(bolum(1, baslik, kart('/projeler/x/kampanya/', 'Aktif')), LISTE_URL), [], baslik);
+  }
+  for (const rozet of ['Hedefine Ulaşan', 'Kapandı', 'Reddedilen']) {
+    assert.deepEqual(trinkfon.liste(bolum(1, 'Kampanyalar', kart('/projeler/x/kampanya/', rozet)), LISTE_URL), [], rozet);
+  }
+});
+
+test('liste: bilinmeyen başlık bilerek aktif sayılır (fail-open)', () => {
+  const k = trinkfon.liste(bolum(1, 'Öne Çıkanlar', kart('/projeler/yeni/kampanya/', 'Aktif')), LISTE_URL);
+  assert.deepEqual(k, [{ ad: 'yeni', url: 'https://kfs.trinkfon.com/projeler/yeni/kampanya/', bolum: 'aktif' }]);
+});
+
+test('detay: açıklamadaki "son gün" ve "3 gün kaldı" durum sayılmaz', () => {
+  const acik = pupaq.replace(/>\s*Fonlama sona erdi\s*</, '>Yatırım Yap<').replace(/Kampanya\s+Sona Erdi/, 'Devam Ediyor');
+  const d = trinkfon.detay(acik.replace('Pupaq, yaşam', 'Son Gün! 3 gün kaldı. Pupaq, yaşam'));
+  assert.equal(d.bitti, false);
+  assert.equal(d.sonGun, false);
+  assert.equal(d.kalanGun, null);
+});
+
 test('liste: bağlantısız kart atlanır, bozuk yüzde kodlu slug düşürmez', () => {
   const html = bolum(1, 'Aktif Kampanyalar', '<article><span class="rounded-full">Aktif</span>YAKINDA</article>', kart('/projeler/bozuk%E0%A4%A/kampanya/', 'Aktif'));
   const k = trinkfon.liste(html, LISTE_URL);

@@ -26,6 +26,13 @@ function girisimAdi(html: string): string | null {
   return parcalar.length > 1 && parcalar[0].trim() ? parcalar[0].trim() : null;
 }
 
+/** Platformun kendi durum öğeleri: istatistiklerden sonra gelen düğme alanı ve tarih/durum kartı. Açıklama metni dışarıda kalır. */
+function durumAlanlari(html: string): string {
+  const dugme = html.match(/Toplam Yatırımcı:[\s\S]*?(?=Bağlantılar)/i)?.[0] ?? '';
+  const kart = html.match(/Kampanya\s+Başlangıç[\s\S]*?(?=Girişimin Aşaması)/i)?.[0] ?? '';
+  return metne(`${dugme} ${kart}`);
+}
+
 function detay(html: string): KampanyaDetay {
   const t = metne(html);
   // Bitiş yalnız platformun kendi durum öğelerinden okunur (düğme alanı ve durum başlığı), açıklama metninden değil.
@@ -35,8 +42,10 @@ function detay(html: string): KampanyaDetay {
   const hedef = tutar(alan(t, /Hedeflenen:\s*(\d[\d.,]*)\s*₺/));
   const toplanan = tutar(alan(t, /(?:Toplanan|Alınan):\s*(\d[\d.,]*)\s*₺/));
 
-  const sonGun = !bitti && /SON GÜN|Son Gün/.test(t);
-  const gun = bitti ? null : t.match(/(\d+)\s*g[uü]n\s*kald/i);
+  // Kalan gün / son gün de yalnız durum alanlarından okunur: yatırım düğmesi alanı ile "Kampanya Durumu" kartı.
+  const durumMetni = durumAlanlari(html);
+  const sonGun = !bitti && /SON GÜN|Son Gün/.test(durumMetni);
+  const gun = bitti ? null : durumMetni.match(/(\d+)\s*g[uü]n\s*kald/i);
   const kalanGun = bitti ? null : gun ? Number(gun[1]) : sonGun ? 0 : null;
 
   return {
@@ -66,7 +75,7 @@ function kartAdi(href: string): string {
   }
 }
 
-const BITMIS = /tamamlanan|tamamlandı|ulaşamay|[iİ]ptal|başarılı|başarısız|sona er|biten/i;
+const BITMIS = /tamamlanan|tamamlandı|ulaşamay|ulaşan|[iİ]ptal|başarılı|başarısız|sona er|biten|fonlanan|sonuçlanan|kapanan|kapandı|geçmiş|arşiv|reddedilen/i;
 const YAKINDA = /yakında|ön talep|başlayacak/i;
 
 /** Liste sayfası bölümlere (`grid-heading-N`) ayrılır; bölüm başlığı kampanyanın durumunu söyler.
@@ -77,6 +86,8 @@ function liste(html: string, listeUrl: string): ListeKaydi[] {
   for (const bolumHtml of html.split(/<section\s+aria-labelledby="grid-heading-/).slice(1)) {
     const baslik = metne(bolumHtml.match(/<h2\b[^>]*>([\s\S]*?)<\/h2>/i)?.[1] ?? '');
     if (BITMIS.test(baslik)) continue;
+    // Bilinmeyen başlık bilerek 'aktif' sayılır (fail-open): yeni bir kampanyayı sessizce kaçırmak, bitmiş birini
+    // listeye almaktan kötüdür; bitmişleri sonraki adım detay().bitti ile eler.
     const bolum: Bolum = YAKINDA.test(baslik) ? 'yakinda' : 'aktif';
     for (const kart of bolumHtml.split(/<article\b/).slice(1)) {
       // Kartın üstündeki durum rozeti de bitmiş sayılan bir ifade taşıyorsa atlanır.
