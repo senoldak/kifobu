@@ -46,6 +46,8 @@ export const EL_LISTESI: ElListesi = {
   ekle: [
     { ad: 'NARPOS', platform: 'ardventure', url: 'https://ardventure.com', bolum: 'yakinda' },
     { ad: 'NEURATURK', platform: 'ardventure', url: 'https://ardventure.com', bolum: 'yakinda' },
+    // fonangels "Yakında" kartı bağlantısız; ad kart açıklamasından (18 Kasım). Açılınca okuyucu asıl sayfasıyla bulur, bu satır silinir.
+    { ad: 'NEUROX', platform: 'fonangels', url: 'https://fonangels.com/Kampanyalar', bolum: 'yakinda' },
   ],
   // Platformda yıllar önce kalmış ön talep kartları: bültene alınmaz.
   cikar: [
