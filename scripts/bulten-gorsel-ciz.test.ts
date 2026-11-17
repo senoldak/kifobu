@@ -21,3 +21,12 @@ for (const mod of ['post', 'story'] as const) {
     assert.ok(oznitelik(s, 'mkk-alt') + 24 <= oznitelik(s, 'alt-ust'), `${oznitelik(s, 'mkk-alt')} / ${oznitelik(s, 'alt-ust')}`);
   });
 }
+
+test('değerlemesi 0 olan girişimde değerleme yerine "—" çizilir', () => {
+  const g = { ...BULTEN.girisimler[0], degerleme: 0 };
+  const svg = bultenSvgCiz('post', { ...BULTEN, girisimler: [g] });
+  assert.match(svg, /data-degerleme="—"/);
+  assert.doesNotMatch(svg, /data-degerleme="0"/);
+  const dolu = bultenSvgCiz('post', { ...BULTEN, girisimler: [{ ...BULTEN.girisimler[0], degerleme: 50_000_000 }] });
+  assert.match(dolu, /data-degerleme="50000000"/);
+});

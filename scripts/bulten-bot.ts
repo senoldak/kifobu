@@ -29,75 +29,10 @@ import { arsivKaydiOlustur } from '../src/lib/arsiv/kayit.ts';
 import type { TaramaSonucu } from '../src/lib/arsiv/kayit.ts';
 import { sonKaydiBul, kaydiYaz } from '../src/lib/arsiv/dosya.ts';
 import { yayinDurduMu } from './bot/standart.mjs';
-import { fetchHtml, rastgeleBekle } from './kampanya-kesfi/getir.ts';
-
-/** Sayı temizleme: "2.532.200 TL" -> 2532200 */
-function temizleSayi(str: string): number {
-  if (!str) return 0;
-  const temiz = str.replace(/[^\d]/g, '');
-  return parseInt(temiz, 10) || 0;
-}
-
-/** Ecofolio kampanya verisi */
-async function scrapeEcofolio(url: string) {
-  const html = await fetchHtml(url);
-  const toplananMatch = html.match(/Toplanan Talep<\/div><div[^>]*>([0-9.,]+)<!-- -->\s*TL/i);
-  const gunMatch = html.match(/Son\s*(\d+)\s*G[uü]n/i);
-  const durum = gunMatch ? `son ${gunMatch[1]} gün` : 'Aktif';
-  const toplanan = toplananMatch ? temizleSayi(toplananMatch[1]) : 0;
-  return { toplanan, durum };
-}
-
-/** Fonangels kampanya verisi */
-async function scrapeFonangels(url: string, pid?: string) {
-  const html = await fetchHtml(url);
-  // Toplam Yatırım: &#x20BA;2.532.200 veya ₺2.532.200
-  const yatirimMatch = html.match(/Toplam Yat[^<]*:<\/th>\s*<th[^>]*>[\s\S]*?(?:&#x20BA;|₺|\b)\s*([\d\.,]+)/i);
-  let durum = 'Aktif';
-
-  // Kalan süre için ana sayfadaki kartlara da bakabiliriz
-  try {
-    const listHtml = await fetchHtml('https://fonangels.com/kampanyalar');
-    const paramPid = pid || (url.match(/pid=(\d+)/) ? url.match(/pid=(\d+)/)![1] : '');
-    if (paramPid) {
-      const idx = listHtml.indexOf(`pid=${paramPid}`);
-      if (idx !== -1) {
-        const snippet = listHtml.substring(Math.max(0, idx - 1200), idx);
-        const dayMatch = snippet.match(/Kalan S[^\s:]+:\s*(\d+)\s*G[^\s<]+/i);
-        if (dayMatch) {
-          durum = `son ${dayMatch[1]} gün`;
-        }
-      }
-    }
-  } catch (e) {
-    // Liste taranamadıysa varsayılan kalsın
-  }
-
-  const toplanan = yatirimMatch ? temizleSayi(yatirimMatch[1]) : 0;
-  return { toplanan, durum };
-}
-
-/** Trinkfon kampanya verisi */
-async function scrapeTrinkfon(url: string) {
-  const html = await fetchHtml(url);
-  // "Toplanan: 121.782 ₺" (eski sayfalarda "Alınan:")
-  const alinanMatch = html.match(/(?:Toplanan|Alınan):\s*<\/span>\s*<span[^>]*>\s*([0-9.,]+)\s*₺/i)
-    ?? html.match(/(?:Toplanan|Alınan):\s*([0-9.,]+)\s*₺/i);
-  // Etiket bulunamazsa 0 yazmak yerine hata ver: bot dünkü değeri korur.
-  if (!alinanMatch) throw new Error('trinkfon: toplanan tutar sayfada bulunamadı');
-  // Kalan gün veya SON GÜN
-  let durum = 'Aktif';
-  if (/Fonlama sona erdi|Kampanya Sona Erdi/i.test(html)) {
-    durum = 'SONA ERDİ';
-  } else if (html.includes('SON GÜN') || html.includes('Son Gün')) {
-    durum = 'SON GÜN';
-  } else {
-    const gunMatch = html.match(/(\d+)\s*g[uü]n\s*kald/i);
-    if (gunMatch) durum = `son ${gunMatch[1]} gün`;
-  }
-  const toplanan = alinanMatch ? temizleSayi(alinanMatch[1]) : 0;
-  return { toplanan, durum };
-}
+import { fetchHtml, rastgeleBekle, detayGetir } from './kampanya-kesfi/getir.ts';
+import { OKUYUCULAR } from './kampanya-kesfi/platformlar/index.ts';
+import { bultenListesi } from '../src/lib/kampanya-takip.ts';
+import type { TakipDosyasi } from '../src/lib/kampanya-takip.ts';
 
 /** VAP (MKK) istatistikleri. */
 interface Mkk {
@@ -194,7 +129,10 @@ async function main() {
   console.log(`Acil durdurma kontrolü: ${dur.neden}`);
 
   // Kampanyalar ve ayarlar
-  const { AKTIF_KAMPANYALAR, PLATFORM_AYARLARI, YAKINDA_LISTESI } = await import('../src/data/bulten-kaynaklari.ts');
+  const { PLATFORM_AYARLARI, EL_LISTESI } = await import('../src/data/bulten-kaynaklari.ts');
+  const takipYolu = path.join(rootDir, 'src', 'data', 'kampanya-takip.json');
+  const takip: TakipDosyasi = JSON.parse(fs.readFileSync(takipYolu, 'utf8'));
+  const { aktif: AKTIF_KAMPANYALAR, yakinda: YAKINDA_LISTESI } = bultenListesi(takip, EL_LISTESI);
 
   const girisimlerSonuc: any[] = [];
   const bugunkuToplamlar: Record<string, number> = {};
@@ -207,18 +145,14 @@ async function main() {
     let tarandiHata = false;
 
     try {
-      if (k.platform === 'ecofolio') {
-        const res = await scrapeEcofolio(k.url);
-        toplanan = res.toplanan;
-        if (!k.sabitDurum) durum = res.durum;
-      } else if (k.platform === 'fonangels') {
-        const res = await scrapeFonangels(k.url);
-        toplanan = res.toplanan;
-        if (!k.sabitDurum) durum = res.durum;
-      } else if (k.platform === 'trinkfon') {
-        const res = await scrapeTrinkfon(k.url);
-        toplanan = res.toplanan;
-        if (!k.sabitDurum) durum = res.durum;
+      const okuyucu = OKUYUCULAR[k.platform];
+      if (!okuyucu) throw new Error(`${k.platform}: bu platform için okuyucu yok`);
+      const detay = okuyucu.detay(await detayGetir(okuyucu, k.url));
+      // Tutar okunamadıysa 0 yazmak yerine hata ver: bot dünkü değeri korur.
+      if (detay.toplanan === null) throw new Error(`${k.platform}: toplanan tutar sayfada bulunamadı`);
+      toplanan = detay.toplanan;
+      if (!k.sabitDurum) {
+        durum = detay.bitti ? 'SONA ERDİ' : detay.sonGun ? 'SON GÜN' : detay.kalanGun !== null ? `son ${detay.kalanGun} gün` : 'Aktif';
       }
     } catch (err: any) {
       console.warn(`  ! Hata (${k.ad}):`, err.message);

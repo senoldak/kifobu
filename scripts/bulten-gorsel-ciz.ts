@@ -87,17 +87,17 @@ const cubukRengi = (y: number) => {
   return '#6366f1';               // İndigo
 };
 
-export function bultenSvgCiz(mod: GorselModu = 'post'): string {
+export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BULTEN): string {
   const w = 1080;
   const h = mod === 'story' ? 1920 : 1350;
   const paddingX = 56;
   const icGenislik = w - paddingX * 2; // 968 px
 
   const b = {
-    ...BULTEN,
+    ...veri,
     // KURAL: Eğer bir girişim aktif girişimler satırında fonlamadaysa, ön talep / yakında alanından otomatik çıkarılır
-    yakinda: BULTEN.yakinda.filter(
-      (y) => !BULTEN.girisimler.some((g) => g.ad.trim().toLowerCase() === y.ad.trim().toLowerCase())
+    yakinda: veri.yakinda.filter(
+      (y) => !veri.girisimler.some((g) => g.ad.trim().toLowerCase() === y.ad.trim().toLowerCase())
     ),
   };
   const platformToplami = b.platformlar.liste.reduce((s, p) => s + p.toplam, 0) || 1;
@@ -237,7 +237,11 @@ export function bultenSvgCiz(mod: GorselModu = 'post'): string {
     // Sütun 2: [değerleme] | [₺...]  (19px - Tam | eksenine göre hizalı)
     body += metin('değerleme', pipe2X - 10, r2Y, { agirlik: 'orta', boyut: 19, renk: '#64748b', hiza: 'end' });
     body += metin('|', pipe2X, r2Y, { agirlik: 'orta', boyut: 19, renk: '#cbd5e1', hiza: 'middle' });
-    body += paraMetin(g.degerleme, pipe2X + 10, r2Y, { agirlik: 'kalin', boyut: 19, renk: '#09090b' });
+    // Değerleme okunamadıysa 0 yazılır (uydurma sıfır tutar yerine "—").
+    const degerlemeAyar = { agirlik: 'kalin', boyut: 19, renk: '#09090b' } as const;
+    body += `<g data-degerleme="${g.degerleme > 0 ? g.degerleme : '—'}">`;
+    body += g.degerleme > 0 ? paraMetin(g.degerleme, pipe2X + 10, r2Y, degerlemeAyar) : metin('—', pipe2X + 10, r2Y, degerlemeAyar);
+    body += '</g>';
 
     // Sütun 3: [₺... / FONLANDI] | [kalan]  (19px - Tam | eksenine göre hizalı)
     if (g.kalan === null) {

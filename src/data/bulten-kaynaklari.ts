@@ -2,7 +2,7 @@ import type { ElListesi } from '../lib/kampanya-takip.ts';
 
 /**
  * Günlük bülten ve canlı takip için kampanya ve platform kaynakları.
- * Yeni kampanya başladığında veya bittiğinde sadece bu listeyi güncelleyebilirsiniz.
+ * Kampanya listesi artık keşif dosyasından (kampanya-takip.json) gelir; elle müdahale EL_LISTESI ile yapılır.
  */
 
 export interface KampanyaKaynagi {
@@ -31,36 +31,12 @@ export const PLATFORM_AYARLARI: Record<string, PlatformAyar> = {
   ecofolio: { ad: 'ecofolio', renk: '#009bae', url: 'https://ecofolio.com.tr' },
   fonventure: { ad: 'fonventure', renk: '#4f46e5', url: 'https://fonventure.com' },
   ardventure: { ad: 'ardventure', renk: '#e07a5f', url: 'https://ardventure.com' },
+  // Renkler platformun kendi sitesinin stilinden: startupburada .btn-default.primary (--Blue), birikimfon başlık düğmesi
+  // (.header-style-two .btn-style-two), fongogo --ocean değişkeni.
+  startupburada: { ad: 'startupburada', renk: '#2f41d1', url: 'https://www.startupburada.com' },
+  birikimfon: { ad: 'birikimfon', renk: '#499bd4', url: 'https://birikimfon.com' },
+  fongogo: { ad: 'fongogo', renk: '#052d43', url: 'https://yatirim.fongogo.com' },
 };
-
-export const AKTIF_KAMPANYALAR: KampanyaKaynagi[] = [
-  {
-    ad: 'OYLİO',
-    platform: 'fonangels',
-    url: 'https://fonangels.com/kampanyalar/projehakkinda/oylio?pid=1778',
-    hedefFon: 5_000_000,
-    degerleme: 50_000_000,
-  },
-  {
-    ad: 'VISITEXTRA',
-    platform: 'fonangels',
-    url: 'https://fonangels.com/kampanyalar/projehakkinda/visitextra?pid=1803',
-    hedefFon: 5_000_000,
-    degerleme: 50_000_000,
-  },
-  {
-    ad: 'LOOPYON',
-    platform: 'ecofolio',
-    url: 'https://ecofolio.com.tr/kampanyalar/loopyon',
-    hedefFon: 35_000_000,
-    degerleme: 385_038_504,
-  },
-];
-
-export const YAKINDA_LISTESI = [
-  { ad: 'NARPOS', platform: 'ardventure', url: 'https://ardventure.com' },
-  { ad: 'NEURATURK', platform: 'ardventure', url: 'https://ardventure.com' },
-];
 
 /** Otomatik keşfe elle müdahale: ekle (listede görünmeyenler), çıkar (URL), düzelt (URL -> alan değişiklikleri). */
 export const EL_LISTESI: ElListesi = {

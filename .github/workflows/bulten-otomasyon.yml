@@ -59,6 +59,16 @@ jobs:
           META_TOKEN: ${{ secrets.META_TOKEN }}
         run: npm run bulten:meta -- --kontrol
 
+      - name: Kampanya keşfi
+        if: steps.dur.outputs.durdu != '1' && (github.event.inputs.mod == 'canli' || github.event.inputs.mod == 'kapanis' || github.event.inputs.mod == '')
+        continue-on-error: true
+        env:
+          MOD: ${{ github.event.inputs.mod }}
+          MOTOR_URL: ${{ vars.MOTOR_URL }}
+          MOTOR_ANAHTARI: ${{ secrets.MOTOR_ANAHTARI }}
+        run: |
+          if [ "$MOD" = "kapanis" ]; then npm run kesif -- --mod kapanis; else npm run kesif -- --mod canli; fi
+
       - name: Bülten Botunu Çalıştır
         id: bot
         if: github.event.inputs.mod != 'meta-kontrol' && steps.dur.outputs.durdu != '1'
