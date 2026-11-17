@@ -54,5 +54,10 @@ export const EL_LISTESI: ElListesi = {
     'https://yatirim.fongogo.com/ProjectDetail/PreliminaryInformation?URLKey=esebze-2',
     'https://yatirim.fongogo.com/ProjectDetail/PreliminaryInformation?URLKey=BioCoderTeknoloji',
   ],
-  duzelt: {},
+  // fonbulucu "yakında" kartlarında girişim adı yalnız logoda; kart başlığı kategori (18 Kasım, sahibinin ekran görüntüsünden).
+  duzelt: {
+    'https://invest.fonbulucu.com/#yakinda-dijital-ikiz-platformu': { ad: 'TWINUP' },
+    'https://invest.fonbulucu.com/#yakinda-akilli-yuzeyler': { ad: 'DEXCOOK' },
+    'https://invest.fonbulucu.com/#yakinda-giyilebilir-saglik': { ad: 'MEDICALTEX' },
+  },
 };
