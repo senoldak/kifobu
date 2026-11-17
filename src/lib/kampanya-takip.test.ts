@@ -3,12 +3,14 @@ import assert from 'node:assert/strict';
 import {
   urlAnahtari,
   kesfiUygula,
+  arsiveTasi,
   type KampanyaDetay,
   type PlatformTurSonucu,
   type TakipDosyasi,
   type TakipKaydi,
   type ElListesi,
 } from './kampanya-takip.ts';
+import { gecmisGirisimler, type GecmisKampanya } from './kampanya-gecmis.ts';
 
 test('urlAnahtari: büyük/küçük harf ve pid dışındaki parametreler anahtarı değiştirmez', () => {
   assert.equal(
@@ -232,4 +234,120 @@ test('kesfiUygula: mevcut kaydın detayı açılamazsa okuyucu-bozuk, kayıt de�
   const r = uygula(takip([kayit()]), [tekListe('alfa', U1, 'aktif', null)]);
   assert.ok(r.olaylar.some((x) => x.tur === 'okuyucu-bozuk' && x.anahtar === `${P}:okuyucu-bozuk`));
   assert.deepEqual(r.takip.kampanyalar, [kayit({ sonGorulme: GUN })]);
+});
+
+// ---- arsiveTasi ----
+function arsivK(o: Partial<GecmisKampanya> = {}): GecmisKampanya {
+  return {
+    anahtar: 'ESKI', ad: 'ESKİ', tur: null, platform: P, durum: 'fonlandi', baslangic: '2025-01-01', bitis: '2025-02-01',
+    hedef: 1000000, alinan: 1000000, payArz: 0.1, yatirimci: 5, nitelikli: null, sermaye: null, payFiyati: null,
+    payGrubu: null, fonAktarim: null, sirket: null, url: 'https://fonx.example.com/kampanya/eski', ...o,
+  };
+}
+const bitmis = (o: Partial<TakipKaydi> = {}) => kayit({ durum: 'bitti', bittiGorulme: '2026-11-16', ...o });
+function tasi(k: TakipKaydi[], arsiv: GecmisKampanya[] = [], gunluk: Record<string, number> = {}) {
+  return arsiveTasi({ takip: takip(k), arsiv, gun: GUN, gunlukSonAlinan: gunluk });
+}
+
+test('arsiveTasi 1: bittiGorulme bugüne eşitse taşınmaz', () => {
+  const r = tasi([bitmis({ bittiGorulme: GUN })]);
+  assert.equal(r.takip.kampanyalar.length, 1);
+  assert.equal(r.yeniArsiv.length, 0);
+  assert.equal(r.olaylar.length, 0);
+});
+
+test('arsiveTasi 2: önceki günde biten kayıt arşive taşınır, takipten çıkar, olay üretilir', () => {
+  const r = tasi([bitmis({ fonlandi: true, toplanan: 6000000, yatirimci: 40, nitelikli: 3 })]);
+  assert.equal(r.takip.kampanyalar.length, 0);
+  assert.deepEqual(r.yeniArsiv, [{
+    anahtar: 'ALFA', ad: 'ALFA', tur: null, platform: P, durum: 'fonlandi', baslangic: '2026-11-01', bitis: '2026-12-01',
+    hedef: 5000000, alinan: 6000000, payArz: 0.1, yatirimci: 40, nitelikli: 3, sermaye: null, payFiyati: null,
+    payGrubu: null, fonAktarim: null, sirket: null, url: U1,
+  }]);
+  assert.equal(r.olaylar.length, 1);
+  assert.equal(r.olaylar[0].tur, 'arsive-tasindi');
+  assert.match(r.olaylar[0].metin, /ALFA/);
+  assert.match(r.olaylar[0].metin, /fonlandı/);
+  assert.match(r.olaylar[0].metin, /₺6\.000\.000/);
+  assert.doesNotMatch(r.olaylar[0].metin, /günlük kayıttan/);
+});
+
+test('arsiveTasi 3: durum fonlandi alanından, null ise alinan >= hedef', () => {
+  const d = (f: boolean | null, t: number) => tasi([bitmis({ fonlandi: f, toplanan: t })]).yeniArsiv[0].durum;
+  assert.equal(d(true, 1), 'fonlandi');
+  assert.equal(d(false, 9000000), 'fonlanamadi');
+  assert.equal(d(null, 5000000), 'fonlandi');
+  assert.equal(d(null, 4999999), 'fonlanamadi');
+});
+
+test('arsiveTasi 4: payArz arzOrani yoksa hedef/değerlemeden, ikisi de yoksa null', () => {
+  const p = (o: Partial<TakipKaydi>) => tasi([bitmis(o)]).yeniArsiv[0].payArz;
+  assert.equal(p({ arzOrani: null, hedef: 1000032, degerleme: 25000800 }), 0.04);
+  assert.equal(p({ arzOrani: null, degerleme: null }), null);
+  assert.equal(p({ arzOrani: 0.2 }), 0.2);
+});
+
+test('arsiveTasi 5: toplanan yoksa günlük kayıttan alınır; o da yoksa arsivlenemedi', () => {
+  const r = tasi([bitmis({ toplanan: null })], [], { ALFA: 4200000 });
+  assert.equal(r.yeniArsiv[0].alinan, 4200000);
+  assert.match(r.olaylar[0].metin, /günlük kayıttan/);
+  const r2 = tasi([bitmis({ toplanan: null })]);
+  assert.equal(r2.yeniArsiv.length, 0);
+  assert.equal(r2.takip.kampanyalar.length, 1);
+  assert.equal(r2.olaylar[0].tur, 'arsivlenemedi');
+});
+
+test('arsiveTasi 6: hedef ya da başlangıç null ise taşınmaz, arsivlenemedi, kayıt takipte kalır', () => {
+  for (const o of [{ hedef: null }, { baslangic: null }]) {
+    const r = tasi([bitmis(o)]);
+    assert.equal(r.yeniArsiv.length, 0);
+    assert.equal(r.takip.kampanyalar.length, 1);
+    assert.equal(r.olaylar.length, 1);
+    assert.equal(r.olaylar[0].tur, 'arsivlenemedi');
+  }
+});
+
+test('arsiveTasi 7: aynı adlı tek eski kampanya tur 1 olur, yenisi aynı anahtarla tur 2; çok turda max+1', () => {
+  const eski = arsivK({ anahtar: 'ESKIGIRISIM', ad: 'ALFA', url: 'https://fonx.example.com/kampanya/alfa-eski' });
+  const r = tasi([bitmis()], [eski]);
+  const yeni = r.yeniArsiv.find((k) => k.url === U1)!;
+  const eskiSon = r.yeniArsiv.find((k) => k.url === eski.url)!;
+  assert.equal(yeni.anahtar, 'ESKIGIRISIM');
+  assert.equal(yeni.tur, 2);
+  assert.equal(eskiSon.tur, 1);
+  assert.equal(eski.tur, null, 'girdi değişmez');
+
+  const a1 = arsivK({ anahtar: 'X', ad: 'Alfa', tur: 1, url: 'https://fonx.example.com/k/1' });
+  const a2 = arsivK({ anahtar: 'X', ad: 'Alfa', tur: 2, url: 'https://fonx.example.com/k/2', baslangic: '2025-06-01' });
+  const r2 = tasi([bitmis()], [a2, a1]);
+  const y2 = r2.yeniArsiv.find((k) => k.url === U1)!;
+  assert.equal(y2.tur, 3);
+  assert.equal(y2.anahtar, 'X');
+});
+
+test('arsiveTasi 8: eşleşme yoksa anahtar büyük harfli, harf-rakam dışı atılmış addır', () => {
+  const r = tasi([bitmis({ ad: 'Çiğ Köfte-1 A.Ş.' })]);
+  assert.equal(r.yeniArsiv[0].anahtar, 'ÇİĞKÖFTE1AŞ');
+});
+
+test('arsiveTasi 9: arşivde aynı URL varsa yeniden eklenmez, yalnız takipten çıkar', () => {
+  const var_ = arsivK({ ad: 'ALFA', url: `${U1}/?utm=x` });
+  const r = tasi([bitmis()], [var_]);
+  assert.equal(r.takip.kampanyalar.length, 0);
+  assert.equal(r.yeniArsiv.length, 1);
+  assert.equal(r.yeniArsiv[0].tur, null);
+});
+
+test('arsiveTasi 10: çıktı arşivde girişim slugları tekil, başlangıca göre en yeni başta', () => {
+  const eski = arsivK({ anahtar: 'ALFA', ad: 'ALFA', baslangic: '2025-01-01' });
+  const r = tasi([
+    bitmis({ ad: 'ALFA', url: U1, baslangic: '2026-11-01' }),
+    bitmis({ ad: 'BETA', url: U2, baslangic: '2026-09-01' }),
+    bitmis({ ad: 'BETA', url: 'https://fonx.example.com/kampanya/beta2', baslangic: '2026-10-01' }),
+  ], [eski]);
+  const slugs = gecmisGirisimler(r.yeniArsiv).map((g) => g.slug);
+  assert.equal(new Set(slugs).size, slugs.length);
+  const tarihler = r.yeniArsiv.map((k) => k.baslangic);
+  assert.deepEqual(tarihler, [...tarihler].sort().reverse());
+  assert.deepEqual(r.yeniArsiv.filter((k) => k.ad === 'BETA').map((k) => k.tur).sort(), [1, 2]);
 });

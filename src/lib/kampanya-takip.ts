@@ -1,6 +1,7 @@
 /** Kampanya keşfi ve takibi için ortak tipler. */
 
 import { slugTr } from './konular.ts';
+import type { GecmisKampanya } from './kampanya-gecmis.ts';
 
 export type Bolum = 'aktif' | 'yakinda';
 
@@ -336,4 +337,83 @@ export function kesfiUygula(a: {
   // Not: el.ekle ve el.duzelt burada uygulanmaz; okuma anında (bultenListesi) bindirilir. Yalnız el.cikar etkilidir.
 
   return { takip: { sonKesif: gun, kampanyalar, alarmlar: { ...a.takip.alarmlar } }, olaylar };
+}
+
+/** Biten kampanyaları takipten kapanmış kampanyalar arşivine taşır; girdiyi değiştirmez. */
+export function arsiveTasi(a: {
+  takip: TakipDosyasi;
+  arsiv: GecmisKampanya[];
+  gun: string;
+  gunlukSonAlinan: Record<string, number>;
+}): { takip: TakipDosyasi; yeniArsiv: GecmisKampanya[]; olaylar: Olay[] } {
+  const arsiv: GecmisKampanya[] = a.arsiv.map((k) => ({ ...k }));
+  const kalan: TakipKaydi[] = [];
+  const olaylar: Olay[] = [];
+
+  for (const k of a.takip.kampanyalar) {
+    // Bugün biten kayıt, o günün bülteninde "SONA ERDİ" olarak kalsın diye yarına bırakılır.
+    if (k.bittiGorulme === null || k.bittiGorulme >= a.gun) {
+      kalan.push(k);
+      continue;
+    }
+    const an = guvenliAnahtar(k.url);
+    const olayAnahtari = an ?? k.url;
+
+    if (an !== null && arsiv.some((x) => x.url !== null && guvenliAnahtar(x.url) === an)) continue;
+
+    const gunlukten = k.toplanan === null && a.gunlukSonAlinan[k.ad] !== undefined;
+    const alinan = k.toplanan ?? a.gunlukSonAlinan[k.ad] ?? null;
+    if (k.hedef === null || k.baslangic === null || alinan === null) {
+      const eksik = [k.hedef === null ? 'hedef' : null, k.baslangic === null ? 'başlangıç tarihi' : null, alinan === null ? 'toplanan tutar' : null]
+        .filter((x): x is string => x !== null)
+        .join(', ');
+      olaylar.push({
+        tur: 'arsivlenemedi',
+        anahtar: `${k.platform}:arsivlenemedi:${olayAnahtari}`,
+        metin: olayMetni(`Arşive taşınamadı, eksik bilgi: ${eksik}.`, k),
+      });
+      kalan.push(k);
+      continue;
+    }
+
+    const durum: GecmisKampanya['durum'] = k.fonlandi === null ? (alinan >= k.hedef ? 'fonlandi' : 'fonlanamadi') : k.fonlandi ? 'fonlandi' : 'fonlanamadi';
+    const payArz = k.arzOrani ?? (k.hedef && k.degerleme ? Math.round((k.hedef / k.degerleme) * 10000) / 10000 : null);
+
+    const slug = slugTr(k.ad);
+    const ayni = arsiv.filter((x) => slugTr(x.ad) === slug);
+    let anahtar = k.ad.toLocaleUpperCase('tr-TR').replace(/[^A-ZÇĞİÖŞÜ0-9]/g, '');
+    let tur: number | null = null;
+    if (ayni.length > 0) {
+      anahtar = ayni[0].anahtar;
+      if (ayni.length === 1 && ayni[0].tur === null) {
+        ayni[0].tur = 1;
+        tur = 2;
+      } else {
+        tur = Math.max(...ayni.map((x) => x.tur ?? 0)) + 1;
+      }
+    }
+
+    const yeni: GecmisKampanya = {
+      anahtar, ad: k.ad, tur, platform: k.platform, durum, baslangic: k.baslangic, bitis: k.bitis, hedef: k.hedef, alinan,
+      payArz, yatirimci: k.yatirimci, nitelikli: k.nitelikli, sermaye: null, payFiyati: null, payGrubu: null,
+      fonAktarim: null, sirket: null, url: k.url,
+    };
+    arsiv.unshift(yeni);
+    olaylar.push({
+      tur: 'arsive-tasindi',
+      anahtar: `${k.platform}:arsive-tasindi:${olayAnahtari}`,
+      metin:
+        `Kampanya arşive taşındı: ${k.ad} (${k.platform})
+` +
+        `Sonuç: ${durum === 'fonlandi' ? 'fonlandı' : 'fonlanamadı'}
+` +
+        `Hedef: ${tl(k.hedef)}
+Toplanan: ${tl(alinan)}${gunlukten ? ' (günlük kayıttan)' : ''}
+${k.url}`,
+    });
+  }
+
+  // Eşit başlangıçta yeni kayıt eskilerden önce kalır (unshift) ve sıralama kararlıdır.
+  const yeniArsiv = arsiv.sort((x, y) => (x.baslangic < y.baslangic ? 1 : x.baslangic > y.baslangic ? -1 : 0));
+  return { takip: { ...a.takip, kampanyalar: kalan, alarmlar: { ...a.takip.alarmlar } }, yeniArsiv, olaylar };
 }
