@@ -122,9 +122,17 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
   const yakindaH = mod === 'story' ? 82 : 68;
   const mkkKartH = mod === 'story' ? 76 : 64;
 
+  // Yakında: hepsi çizilir. Üç ve azı tek satır; fazlası satırlara bölünür (post 4, story 3 sütun), kutular kısalır.
+  const yakindaSayi = b.yakinda.length;
+  const yakindaSutun = yakindaSayi <= 3 ? Math.max(yakindaSayi, 1) : mod === 'story' ? 3 : 4;
+  const yakindaSatir = Math.max(1, Math.ceil(yakindaSayi / yakindaSutun));
+  const yakindaKutuH = yakindaSatir === 1 ? yakindaH : mod === 'story' ? 76 : 58;
+  const yakindaSatirAralik = 10;
+  const yakindaToplamH = yakindaSatir * yakindaKutuH + (yakindaSatir - 1) * yakindaSatirAralik;
+
   const nGirisim = b.girisimler.length;
   // Kesin Sabitler Toplamı: 4 bölüm başlığı (4 * titleGap), sayaçlar, platform barı, platform kartları, yakında kartları ve MKK kartı
-  const sabitler = (4 * titleGap) + sayacH + (platBarH + 22) + platKartH + yakindaH + mkkKartH;
+  const sabitler = (4 * titleGap) + sayacH + (platBarH + 22) + platKartH + yakindaToplamH + mkkKartH;
   // Dikeyde tam hedefMkkAlt noktasına kadar doldurulacak toplam serbest alan
   const dagitilacakAlan = (hedefMkkAlt - startContentY) - sabitler;
 
@@ -341,18 +349,24 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
 
   currentY += titleGap;
 
-  const yakindaSayi = b.yakinda.length;
-  const yakindaW = (icGenislik - (Math.min(yakindaSayi, 3) - 1) * 14) / Math.min(yakindaSayi, 3);
+  const yakindaW = (icGenislik - (yakindaSutun - 1) * 14) / yakindaSutun;
+  // Kutuya sığmayan ad küçültülerek sığdırılır (kesilmez).
+  const sigdir = (s: string, agirlik: Agirlik) => {
+    const sinir = yakindaW - 16;
+    const gen = genislik(s, { agirlik, boyut: fSize });
+    return gen > sinir ? Math.floor(fSize * (sinir / gen) * 10) / 10 : fSize;
+  };
 
-  b.yakinda.slice(0, 3).forEach((y, idx) => {
-    const yx = paddingX + idx * (yakindaW + 14);
+  b.yakinda.forEach((y, idx) => {
+    const yx = paddingX + (idx % yakindaSutun) * (yakindaW + 14);
+    const yy = currentY + Math.floor(idx / yakindaSutun) * (yakindaKutuH + yakindaSatirAralik);
     const centerX = yx + yakindaW / 2;
-    body += `<rect x="${yx}" y="${currentY}" width="${yakindaW}" height="${yakindaH}" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1" />`;
-    body += metin(y.ad, centerX, currentY + (mod === 'story' ? 35 : 30), { agirlik: 'kalin', boyut: fSize, renk: '#09090b', hiza: 'center' });
-    body += metin(y.platform, centerX, currentY + (mod === 'story' ? 66 : 55), { agirlik: 'orta', boyut: fSize, renk: '#64748b', hiza: 'center' });
+    body += `<rect data-yakinda="${y.ad.replace(/[&"<>]/g, '')}" x="${yx}" y="${yy}" width="${yakindaW}" height="${yakindaKutuH}" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1" />`;
+    body += metin(y.ad, centerX, yy + Math.round(yakindaKutuH * 0.44), { agirlik: 'kalin', boyut: sigdir(y.ad, 'kalin'), renk: '#09090b', hiza: 'center' });
+    body += metin(y.platform, centerX, yy + Math.round(yakindaKutuH * 0.81), { agirlik: 'orta', boyut: sigdir(y.platform, 'orta'), renk: '#64748b', hiza: 'center' });
   });
 
-  currentY += yakindaH;
+  currentY += yakindaToplamH;
 
   // Bölüm Geçişi: Ön Talep & Yakında -> MKK Verileri (Dinamik secGap)
   currentY += secGap;
