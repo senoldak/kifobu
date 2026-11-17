@@ -363,14 +363,20 @@ export function arsiveTasi(a: {
 
     const gunlukten = k.toplanan === null && a.gunlukSonAlinan[k.ad] !== undefined;
     const alinan = k.toplanan ?? a.gunlukSonAlinan[k.ad] ?? null;
-    if (k.hedef === null || k.baslangic === null || alinan === null) {
-      const eksik = [k.hedef === null ? 'hedef' : null, k.baslangic === null ? 'başlangıç tarihi' : null, alinan === null ? 'toplanan tutar' : null]
+    const sorunlar = [
+      k.hedef === null || k.hedef <= 0 ? 'hedef' : null,
+      k.baslangic === null ? 'başlangıç tarihi' : null,
+      alinan === null || alinan < 0 ? 'toplanan tutar' : null,
+    ].filter((x): x is string => x !== null);
+    const bitisErken = k.baslangic !== null && k.bitis !== null && k.bitis < k.baslangic;
+    if (k.hedef === null || k.baslangic === null || alinan === null || sorunlar.length > 0 || bitisErken) {
+      const neden = [sorunlar.length > 0 ? `eksik ya da geçersiz bilgi: ${sorunlar.join(', ')}` : null, bitisErken ? 'bitiş başlangıçtan önce' : null]
         .filter((x): x is string => x !== null)
-        .join(', ');
+        .join('; ');
       olaylar.push({
         tur: 'arsivlenemedi',
         anahtar: `${k.platform}:arsivlenemedi:${olayAnahtari}`,
-        metin: olayMetni(`Arşive taşınamadı, eksik bilgi: ${eksik}.`, k),
+        metin: olayMetni(`Arşive taşınamadı, ${neden}.`, k),
       });
       kalan.push(k);
       continue;
@@ -381,7 +387,7 @@ export function arsiveTasi(a: {
 
     const slug = slugTr(k.ad);
     const ayni = arsiv.filter((x) => slugTr(x.ad) === slug);
-    let anahtar = k.ad.toLocaleUpperCase('tr-TR').replace(/[^A-ZÇĞİÖŞÜ0-9]/g, '');
+    let anahtar = buyukHarf(k.ad).replace(/İ/g, 'I').replace(/[^A-ZÇĞÖŞÜ0-9]/g, '');
     let tur: number | null = null;
     if (ayni.length > 0) {
       anahtar = ayni[0].anahtar;

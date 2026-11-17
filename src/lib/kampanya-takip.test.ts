@@ -327,7 +327,9 @@ test('arsiveTasi 7: aynı adlı tek eski kampanya tur 1 olur, yenisi aynı anaht
 
 test('arsiveTasi 8: eşleşme yoksa anahtar büyük harfli, harf-rakam dışı atılmış addır', () => {
   const r = tasi([bitmis({ ad: 'Çiğ Köfte-1 A.Ş.' })]);
-  assert.equal(r.yeniArsiv[0].anahtar, 'ÇİĞKÖFTE1AŞ');
+  assert.equal(r.yeniArsiv[0].anahtar, 'ÇIĞKÖFTE1AŞ');
+  assert.equal(tasi([bitmis({ ad: 'Visitextra' })]).yeniArsiv[0].anahtar, 'VISITEXTRA');
+  assert.equal(tasi([bitmis({ ad: 'Karma Türkiye' })]).yeniArsiv[0].anahtar, 'KARMATÜRKIYE');
 });
 
 test('arsiveTasi 9: arşivde aynı URL varsa yeniden eklenmez, yalnız takipten çıkar', () => {
@@ -350,4 +352,22 @@ test('arsiveTasi 10: çıktı arşivde girişim slugları tekil, başlangıca g�
   const tarihler = r.yeniArsiv.map((k) => k.baslangic);
   assert.deepEqual(tarihler, [...tarihler].sort().reverse());
   assert.deepEqual(r.yeniArsiv.filter((k) => k.ad === 'BETA').map((k) => k.tur).sort(), [1, 2]);
+});
+
+test('arsiveTasi: hedef <= 0 ya da toplanan < 0 geçersiz sayılır, arsivlenemedi', () => {
+  for (const [o, alan] of [[{ hedef: 0 }, 'hedef'], [{ toplanan: -1 }, 'toplanan tutar']] as const) {
+    const r = tasi([bitmis(o)]);
+    assert.equal(r.yeniArsiv.length, 0);
+    assert.equal(r.takip.kampanyalar.length, 1);
+    assert.equal(r.olaylar[0].tur, 'arsivlenemedi');
+    assert.match(r.olaylar[0].metin, new RegExp(alan));
+  }
+});
+
+test('arsiveTasi: bitiş başlangıçtan önceyse arsivlenemedi', () => {
+  const r = tasi([bitmis({ baslangic: '2026-11-10', bitis: '2026-11-01' })]);
+  assert.equal(r.yeniArsiv.length, 0);
+  assert.equal(r.takip.kampanyalar.length, 1);
+  assert.equal(r.olaylar[0].tur, 'arsivlenemedi');
+  assert.match(r.olaylar[0].metin, /bitiş başlangıçtan önce/);
 });
