@@ -139,8 +139,7 @@ async function main() {
   let gonderilen = 0;
   for (const o of olaylar) {
     if (await bildir(o.metin, { MOTOR_URL: process.env.MOTOR_URL, MOTOR_ANAHTARI: process.env.MOTOR_ANAHTARI })) gonderilen++;
-    else console.log(`GÖNDERİLEMEDİ: [${o.tur}] ${o.metin.replace(/
-/g, ' | ')}`);
+    else console.log(`GÖNDERİLEMEDİ: [${o.tur}] ${o.metin.replace(/\n/g, ' | ')}`);
   }
   console.log(`Bitti: ${gonderilen}/${olaylar.length} bildirim gönderildi.`);
 }
