@@ -436,6 +436,14 @@ ${k.url}`,
   return { takip: { ...a.takip, kampanyalar: kalan, alarmlar: { ...a.takip.alarmlar } }, yeniArsiv, olaylar };
 }
 
+/**
+ * Sayfa okunamayınca bültene yazılacak tutar: dünkü referans, yoksa takip dosyasındaki son okunan; ikisi de yoksa null.
+ * Null dönerse satır bültene alınmaz (uydurma ₺0 yazılmaz).
+ */
+export function yedekToplanan(referansDegeri: number | undefined, sonToplanan: number | undefined): number | null {
+  return referansDegeri ?? sonToplanan ?? null;
+}
+
 /** Bültene girecek kampanyalar. el.ekle ve el.duzelt yalnız burada, okuma anında uygulanır; takip dosyasına yazılmaz. */
 export function bultenListesi(
   takip: TakipDosyasi,
@@ -478,6 +486,7 @@ export function bultenListesi(
     }
     if (hedef === null) continue;
     const kayit: KampanyaKaynagi & { ilk: string } = { ad, platform, url, hedefFon: hedef, degerleme: degerleme ?? 0, ilk: a.ilk };
+    if (a.toplanan !== null) kayit.sonToplanan = a.toplanan;
     if (durum === 'bitti') {
       kayit.sabitDurum = 'SONA ERDİ';
       // Yalnız gerçekten fonlanan kampanya "FONLANDI" sayılır; sona erip hedefe varmayan sayılmaz.

@@ -113,7 +113,7 @@ const slug = (str: string) =>
               <div class="gk-metrik">
                 <span class="gk-etiket">değerleme</span>
                 <span class="ayrac">|</span>
-                <span class="deger">{tl(g.degerleme)}</span>
+                <span class="deger">{g.degerleme > 0 ? tl(g.degerleme) : '—'}</span>
               </div>
               <div class="gk-metrik gk-metrik-sag">
                 {g.kalan === null ? (

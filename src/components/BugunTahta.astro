@@ -75,7 +75,7 @@ const slug = (str: string) =>
                 <strong class="rakam-vurgu">{tl(g.alinan)}</strong>
               </td>
               <td class="kol-rakam kol-degerleme">
-                <span>{tl(g.degerleme)}</span>
+                <span>{g.degerleme > 0 ? tl(g.degerleme) : '—'}</span>
               </td>
               <td class="kol-rakam kol-kalan">
                 {g.kalan === null ? (

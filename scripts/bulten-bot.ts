@@ -31,7 +31,7 @@ import { sonKaydiBul, kaydiYaz } from '../src/lib/arsiv/dosya.ts';
 import { yayinDurduMu } from './bot/standart.mjs';
 import { fetchHtml, rastgeleBekle, detayGetir } from './kampanya-kesfi/getir.ts';
 import { OKUYUCULAR } from './kampanya-kesfi/platformlar/index.ts';
-import { bultenListesi } from '../src/lib/kampanya-takip.ts';
+import { bultenListesi, yedekToplanan } from '../src/lib/kampanya-takip.ts';
 import type { TakipDosyasi } from '../src/lib/kampanya-takip.ts';
 
 /** VAP (MKK) istatistikleri. */
@@ -157,8 +157,13 @@ async function main() {
     } catch (err: any) {
       console.warn(`  ! Hata (${k.ad}):`, err.message);
       tarandiHata = true;
-      // Hata durumunda dünkü referansı koru
-      toplanan = referans.girisimler[k.ad] || 0;
+      // Hata durumunda dünkü referansı, yoksa takip dosyasındaki son değeri koru; ikisi de yoksa satır bugün bültene girmez.
+      const yedek = yedekToplanan(referans.girisimler[k.ad], k.sonToplanan);
+      if (yedek === null) {
+        console.warn(`  ! okunamadı, bültene alınmadı: ${k.ad}`);
+        continue;
+      }
+      toplanan = yedek;
     }
 
     bugunkuToplamlar[k.ad] = toplanan;

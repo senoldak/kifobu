@@ -7,7 +7,8 @@ import type { ElListesi } from '../lib/kampanya-takip.ts';
 
 export interface KampanyaKaynagi {
   ad: string;
-  platform: 'fonangels' | 'trinkfon' | 'ecofolio' | 'fonventure' | 'ardventure' | string;
+  /** Platform anahtarı (PLATFORM_AYARLARI): fonangels, trinkfon, ecofolio, fonventure, startupburada, birikimfon, fongogo, ardventure ... */
+  platform: string;
   url: string;
   /** Kampanya hedeflenen fon tutarı (TL) */
   hedefFon: number;
@@ -17,6 +18,8 @@ export interface KampanyaKaynagi {
   sabitDurum?: string;
   /** Eğer fonlama bittiyse true */
   tamamlandi?: boolean;
+  /** Takip dosyasında en son okunan toplanan tutar; sayfa okunamayınca referansın da yoksa yedek olarak kullanılır. */
+  sonToplanan?: number;
 }
 
 export interface PlatformAyar {

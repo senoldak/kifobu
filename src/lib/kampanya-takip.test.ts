@@ -5,6 +5,7 @@ import {
   kesfiUygula,
   arsiveTasi,
   bultenListesi,
+  yedekToplanan,
   alarmSuz,
   type Olay,
   type KampanyaDetay,
@@ -383,7 +384,7 @@ const bul = (k: TakipKaydi[], el: ElListesi = bosEl) => bultenListesi(takip(k), 
 test('bultenListesi: aktif ve bitti kayıtlar girer, bitti olanda SONA ERDİ ve tamamlandi true', () => {
   const r = bul([kayit(), kayit({ ad: 'BETA', url: U2, durum: 'bitti', bittiGorulme: GUN, fonlandi: true })]);
   assert.equal(r.aktif.length, 2);
-  assert.deepEqual(r.aktif[0], { ad: 'ALFA', platform: P, url: U1, hedefFon: 5000000, degerleme: 50000000 });
+  assert.deepEqual(r.aktif[0], { ad: 'ALFA', platform: P, url: U1, hedefFon: 5000000, degerleme: 50000000, sonToplanan: 100000 });
   assert.equal(r.aktif[1].sabitDurum, 'SONA ERDİ');
   assert.equal(r.aktif[1].tamamlandi, true);
 });
@@ -555,3 +556,20 @@ test('kesfiUygula (karar 14): listede olmayan, detayı bitmemiş kayıt birleşi
   assert.equal(k.kayipTur, 1);
 });
 
+
+test('bultenListesi: sonToplanan takip kaydındaki toplanandan dolar, null ise ve el.ekle girdisinde tanımsız kalır', () => {
+  const r = bul([kayit({ toplanan: 123456 }), kayit({ ad: 'BETA', url: U2, toplanan: null })], {
+    ...bosEl,
+    ekle: [{ ad: 'EL', platform: P, url: EL_U, bolum: 'aktif', hedef: 1000 }],
+  });
+  assert.equal(r.aktif.find((x) => x.ad === 'ALFA')?.sonToplanan, 123456);
+  assert.equal(r.aktif.find((x) => x.ad === 'BETA')?.sonToplanan, undefined);
+  assert.equal(r.aktif.find((x) => x.ad === 'EL')?.sonToplanan, undefined);
+});
+
+test('yedekToplanan: referans önce, sonra son görülen, ikisi de yoksa null (0 uydurulmaz)', () => {
+  assert.equal(yedekToplanan(100, 200), 100);
+  assert.equal(yedekToplanan(0, 200), 0);
+  assert.equal(yedekToplanan(undefined, 200), 200);
+  assert.equal(yedekToplanan(undefined, undefined), null);
+});
