@@ -131,3 +131,21 @@ test('liste: kart kalıbı bulunamazsa bölümdeki proje bağlantıları alını
     '<section class="project-area"><h2>Ödül Bazlı</h2><a href="https://birikimfon.com/proje/c">C</a></section>';
   assert.deepEqual(birikimfon.liste(html, LISTE_URL).map((x) => x.ad), ['a', 'b']);
 });
+
+test('liste: yedek yolda bir kartın açıklamasındaki "bağış"/"iptal" bütün projeleri düşürmez', () => {
+  const html =
+    '<section class="project-area"><h2>Yatırım Yap</h2>' +
+    '<div><a href="https://birikimfon.com/proje/a">A</a><p>Bağış değil, iptal edilmedi, geçmiş yıllar.</p></div>' +
+    '<div><a href="https://birikimfon.com/proje/b">B</a><h2> FONLANDI </h2></div>' +
+    '<div><a href="https://birikimfon.com/proje/c">C</a></div></section>';
+  assert.deepEqual(birikimfon.liste(html, LISTE_URL).map((x) => x.ad), ['a', 'c']);
+});
+
+test('liste: project-item-thumb gibi alt sınıflar kartı bölmez, durum doğru okunur', () => {
+  const html =
+    '<section class="project-area"><h2>Paya Dayalı</h2>' +
+    '<div class="testimonial-item project-item"><div class="project-item-thumb"><a href="https://birikimfon.com/proje/x">i</a></div>' +
+    '<h2> FONLANDI </h2></div>' +
+    '<div class="testimonial-item project-item"><div class="project-item-thumb"><a href="https://birikimfon.com/proje/y">i</a></div></div></section>';
+  assert.deepEqual(birikimfon.liste(html, LISTE_URL).map((x) => x.ad), ['y']);
+});

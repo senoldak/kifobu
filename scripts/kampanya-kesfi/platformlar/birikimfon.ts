@@ -106,15 +106,24 @@ function liste(html: string, listeUrl: string): ListeKaydi[] {
   const goruldu = new Set<string>();
   for (const ham of html.split(/<section\b[^>]*class="[^"]*\bproject-area\b/i).slice(1)) {
     const bolumHtml = ham.split(/<\/section>/i)[0];
-    const parcalar = bolumHtml.split(/class="[^"]*\bproject-item\b/i);
-    const baslik = kucuk(metne(parcalar[0]));
+    const parcalar = bolumHtml.split(/class="[^"]*project-item(?![\w-])/i);
+    const baglanti = /href="(?:https?:\/\/(?:www\.)?birikimfon\.com)?\/?proje\/([^"/?#]+)"/gi;
+    let baslikHtml = parcalar[0];
+    let kartlar = parcalar.slice(1);
+    if (kartlar.length === 0) {
+      // Yedek yol: kart kalıbı yok. Ödül/biten denetimi yalnız bölüm başlığına (ilk bağlantıdan önceki kısım) ve her bağlantının
+      // kendi parçasına (bağlantıdan sonrakine kadar) uygulanır; bütün bölümün metnine bakılmaz.
+      const konumlar = [...bolumHtml.matchAll(baglanti)].map((m) => m.index!);
+      baslikHtml = bolumHtml.slice(0, konumlar[0] ?? bolumHtml.length);
+      kartlar = konumlar.map((k, i) => bolumHtml.slice(k, konumlar[i + 1] ?? bolumHtml.length));
+    }
+    const baslik = kucuk(metne(baslikHtml));
     if (ODUL_BOLUMU.test(baslik) || icerir(baslik, BITTI_DURUMLARI)) continue;
-    const kartlar = parcalar.length > 1 ? parcalar.slice(1) : [bolumHtml];
     for (const kart of kartlar) {
       const durum = durumMetni(kart);
       if (icerir(durum, BITTI_DURUMLARI)) continue;
       const bolum = YAKINDA.test(durum) || YAKINDA.test(baslik) ? 'yakinda' : 'aktif';
-      for (const m of kart.matchAll(/href="(?:https?:\/\/(?:www\.)?birikimfon\.com)?\/?proje\/([^"/?#]+)"/gi)) {
+      for (const m of kart.matchAll(baglanti)) {
         const url = new URL(`/proje/${m[1]}`, listeUrl).href;
         if (goruldu.has(url)) continue;
         goruldu.add(url);
