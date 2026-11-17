@@ -50,6 +50,7 @@ export const EL_LISTESI: ElListesi = {
     { ad: 'NEURATURK', platform: 'ardventure', url: 'https://ardventure.com', bolum: 'yakinda' },
     // Biten kampanyalar bültende "SONA ERDİ" olarak bir süre kalsın (sahibinin isteği, 18 Kasım). Arşiv kaydı ayrı, etkilenmez.
     { ad: 'ATHLETICLABS', platform: 'fonangels', url: 'https://fonangels.com/kampanyalar/projehakkinda/athleticlabs?pid=1689', bolum: 'aktif', hedef: 7_500_000, degerleme: 75_000_000 },
+    { ad: 'OYLİO', platform: 'fonangels', url: 'https://fonangels.com/kampanyalar/projehakkinda/oylio?pid=1778', bolum: 'aktif', hedef: 5_000_000, degerleme: 50_000_000 },
     { ad: 'LOOPYON', platform: 'ecofolio', url: 'https://ecofolio.com.tr/kampanyalar/loopyon', bolum: 'aktif', hedef: 35_000_000, degerleme: 385_000_000 },
   ],
   // Platformda yıllar önce kalmış ön talep kartları: bültene alınmaz.
