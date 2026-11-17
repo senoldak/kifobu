@@ -1,3 +1,5 @@
+import type { ElListesi } from '../lib/kampanya-takip.ts';
+
 /**
  * Günlük bülten ve canlı takip için kampanya ve platform kaynakları.
  * Yeni kampanya başladığında veya bittiğinde sadece bu listeyi güncelleyebilirsiniz.
@@ -59,3 +61,13 @@ export const YAKINDA_LISTESI = [
   { ad: 'NARPOS', platform: 'ardventure', url: 'https://ardventure.com' },
   { ad: 'NEURATURK', platform: 'ardventure', url: 'https://ardventure.com' },
 ];
+
+/** Otomatik keşfe elle müdahale: ekle (listede görünmeyenler), çıkar (URL), düzelt (URL -> alan değişiklikleri). */
+export const EL_LISTESI: ElListesi = {
+  ekle: [
+    { ad: 'NARPOS', platform: 'ardventure', url: 'https://ardventure.com', bolum: 'yakinda' },
+    { ad: 'NEURATURK', platform: 'ardventure', url: 'https://ardventure.com', bolum: 'yakinda' },
+  ],
+  cikar: [],
+  duzelt: {},
+};

@@ -123,3 +123,28 @@ export async function fetchHtml(url: string, retrySayisi = 2): Promise<string> {
   }
   throw new Error(`Sayfa çekilemedi (${url})`);
 }
+
+/**
+ * Bir kampanyanın ana sayfasını ve okuyucunun istediği ek sayfaları sırayla (aralarında rastgele bekleyerek)
+ * getirir; HTML'leri "\n" ile birleştirir. Ek sayfa açılmazsa yalnız ana sayfa döner; ana sayfa açılmazsa fırlatır.
+ */
+export async function detayGetir(
+  okuyucu: { ekSayfalar?(url: string): string[] },
+  url: string,
+  getirFn: (url: string) => Promise<string> = fetchHtml,
+  bekleFn: () => Promise<void> = rastgeleBekle,
+): Promise<string> {
+  const ana = await getirFn(url);
+  const ekler = okuyucu.ekSayfalar?.(url) ?? [];
+  const parcalar = [ana];
+  try {
+    for (const ek of ekler) {
+      await bekleFn();
+      parcalar.push(await getirFn(ek));
+    }
+  } catch (e: any) {
+    console.log(`  ! Ek sayfa getirilemedi (${url}): ${e?.message ?? e}; yalnız ana sayfa kullanılacak.`);
+    return ana;
+  }
+  return parcalar.join('\n');
+}
