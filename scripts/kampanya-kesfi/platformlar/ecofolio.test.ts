@@ -20,8 +20,8 @@ test('detay: LOOPYON (açık kampanya)', () => {
   assert.equal(d.toplanan, 1279600);
   assert.equal(d.yatirimci, 55);
   assert.equal(d.nitelikli, null);
-  // Sayfa verisi: girişim değeri (yatırım öncesi) 350.000.000, pay oranı %9,09.
-  assert.equal(d.degerleme, 350000000);
+  // Yatırım sonrası değer = öncesi 350.000.000 + hedef 35.000.000 (ek fonlu 392.000.000 kullanılmaz).
+  assert.equal(d.degerleme, 385000000);
   assert.equal(d.arzOrani, 0.090909);
   assert.equal(d.baslangic, '2026-09-17');
   assert.equal(d.bitis, '2026-11-15');
@@ -119,4 +119,12 @@ test('liste: bağlantısız kart atlanır, bozuk yüzde kodlu slug düşürmez',
   const k = ecofolio.liste(html, LISTE_URL);
   assert.equal(k.length, 1);
   assert.equal(k[0].ad, 'bozuk%E0%A4%A');
+});
+
+test('liste: fon türü SHRE olmayan kampanya atlanır; türü bilinmeyen korunur', () => {
+  const veri = (tur: string, slug: string) => `\\"fund_collection_type\\":\\"${tur}\\",\\"seo\\":{\\"id\\":1,\\"slug\\":\\"${slug}\\"}`;
+  const html =
+    `<script>${veri('SHRE', 'pay')}${veri('DEBT', 'borc')}</script>` +
+    kart('/kampanyalar/pay', 'Aktif') + kart('/kampanyalar/borc', 'Aktif') + kart('/kampanyalar/bilinmeyen', 'Aktif');
+  assert.deepEqual(ecofolio.liste(html, LISTE_URL).map((k) => k.ad), ['pay', 'bilinmeyen']);
 });

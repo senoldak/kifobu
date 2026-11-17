@@ -61,12 +61,17 @@ function detay(html: string): KampanyaDetay {
   const hedef = tutar(alan(t, /Fonlama Hedefi\s*(\d[\d.,]*)\s*TL/));
   const toplanan = tutar(alan(t, /Toplanan Talep\s*(\d[\d.,]*)\s*TL/));
 
+  // degerleme = bu kampanyanın yatırım sonrası değeri = yatırım öncesi değer + hedef fon (ek fon hariç).
+  // Sayfa yalnız yatırım öncesini (enterprise_amount) söyler; company_value_after_investment ek fon dahildir, kullanılmaz.
+  const onceki = tamSayi(alan(veri, /"enterprise_amount":(\d+)[,}]/));
+  const hedefFon = hedef ?? tamSayi(alan(veri, /"fundable_amount":(\d+)[,}]/));
+  const degerleme = onceki !== null && hedefFon !== null ? onceki + hedefFon : null;
+
   return {
     ad: girisimAdi(html),
     hedef,
     arzOrani: oran(alan(veri, /"supply_rate":(\d+(?:\.\d+)?)/)),
-    // Sayfa verisindeki enterprise_amount (yatırım öncesi girişim değeri); company_value_after_investment ek fon dahil yatırım sonrası değerdir.
-    degerleme: tamSayi(alan(veri, /"enterprise_amount":(\d+)[,}]/)),
+    degerleme,
     baslangic: istanbulGunu(alan(veri, /"start_date":"([^"]+)"/)),
     bitis: istanbulGunu(alan(veri, /"end_date":"([^"]+)"/)),
     toplanan,
@@ -94,6 +99,12 @@ const YAKINDA = /yak[ıI]nda|ön talep|başlayacak/i;
 
 /** Her kart `<article>`; sol üstteki rozet durumu söyler (Aktif, Yakında, Başarılı, Başarısız, İptal...). */
 function liste(html: string, listeUrl: string): ListeKaydi[] {
+  // Liste verisi her kampanya için fon türünü taşır (fund_collection_type, ardından seo.slug); yalnız pay (SHRE) kalır.
+  // Veride görünmeyen kampanya bilerek korunur (fail-open).
+  const turler = new Map<string, string>();
+  for (const m of gomuluVeri(html).matchAll(/"fund_collection_type":"([A-Z_]+)"[\s\S]*?"slug":"([^"]+)"/g)) {
+    turler.set(m[2], m[1]);
+  }
   const sonuc: ListeKaydi[] = [];
   const goruldu = new Set<string>();
   for (const kart of html.split(/<article\b/).slice(1)) {
@@ -104,6 +115,8 @@ function liste(html: string, listeUrl: string): ListeKaydi[] {
     const bolum: Bolum = YAKINDA.test(rozet) ? 'yakinda' : 'aktif';
     const href = kart.match(/href="(\/kampanyalar\/[^"/?#]+)"/i)?.[1];
     if (!href) continue; // bağlantısız kart izlenemez
+    const tur = turler.get(kartAdi(href));
+    if (tur !== undefined && tur !== 'SHRE') continue;
     const url = new URL(href, listeUrl).href;
     if (goruldu.has(url)) continue;
     goruldu.add(url);
