@@ -96,3 +96,14 @@ test('liste: bağlantısı olmayan kart atlanır, bozuk slug düşürmez', () =>
   assert.equal(k.length, 1);
   assert.equal(k[0].ad, 'bozuk%E0%A4%A');
 });
+
+// Ön talep penceresi fonlama penceresi değildir; bitis < bugün kuralı yaklaşan kampanyayı kapatmasın.
+test('detay: Ön Talep Başlangıcı/Bitişi tarihleri baslangic ve bitis olarak okunmaz', () => {
+  const html = quad
+    .replace(/(Ön Talep Başlangıcı[\s\S]*?)-(\s*<\/span>)/, '$101.12.2026$2')
+    .replace(/(Ön Talep Bitişi[\s\S]*?<\/h5>[\s\S]*?)-(\s*<\/span>)/, '$115.12.2026$2');
+  assert.ok(html.includes('01.12.2026') && html.includes('15.12.2026'), 'mutasyon uygulanmalı');
+  const d = fonventure.detay(html);
+  assert.equal(d.baslangic, null);
+  assert.equal(d.bitis, null);
+});

@@ -50,8 +50,8 @@ function detay(html: string): KampanyaDetay {
     hedef,
     arzOrani: oran(alan(t, /Pay Arz Oranı\s*(%\s?[\d.,]+)/)),
     degerleme: null, // sayfa değerleme yazmıyor
-    baslangic: tarih(alan(t, /(?:Fonlama|Ön Talep) Başlangıcı\s*(\d{1,2}\.\d{1,2}\.\d{4})/)),
-    bitis: tarih(alan(t, /(?:Fonlama|Ön Talep) Bitişi\s*(\d{1,2}\.\d{1,2}\.\d{4})/)),
+    baslangic: tarih(alan(t, /Fonlama Başlangıcı\s*(\d{1,2}\.\d{1,2}\.\d{4})/)),
+    bitis: tarih(alan(t, /Fonlama Bitişi\s*(\d{1,2}\.\d{1,2}\.\d{4})/)),
     toplanan, // ön talepte yalnız "Toplam Ön Talep" yazar; etiket eşleşmez, null kalır
     yatirimci: tamSayi(alan(t, /Yatırımcı Sayısı:?\s*([\d.]+)/)),
     nitelikli: tamSayi(alan(t, /Nitelikli Yatırımcı:?\s*([\d.]+)/)),
