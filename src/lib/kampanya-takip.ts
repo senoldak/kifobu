@@ -135,6 +135,11 @@ function guvenliAnahtar(url: string): string | null {
   }
 }
 
+/** Türkçeye özgü harf varsa tr-TR kuralıyla, yoksa düz büyük harfe çevirir (marka adlarında i -> I kalır). */
+function buyukHarf(s: string): string {
+  return /[çğıöşüÇĞİÖŞÜ]/.test(s) ? s.toLocaleUpperCase('tr-TR') : s.toUpperCase();
+}
+
 function tl(n: number | null): string {
   if (n === null) return 'okunamadı';
   return `₺${String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.')}`;
@@ -193,7 +198,7 @@ export function kesfiUygula(a: {
   };
 
   const yeniAd = (liste: ListeKaydi, d: KampanyaDetay): string => {
-    const adi = (d.ad ?? liste.ad).trim().toLocaleUpperCase('tr-TR');
+    const adi = buyukHarf((d.ad ?? liste.ad).trim());
     const eslesen = arsiv.find((x) => x.slug === slugTr(adi));
     return eslesen ? eslesen.ad : adi;
   };
@@ -329,7 +334,7 @@ export function kesfiUygula(a: {
     const an = guvenliAnahtar(e.url);
     if (an === null || dizin.has(an) || cikar.has(an)) continue;
     const k: TakipKaydi = {
-      ad: e.ad.trim().toLocaleUpperCase('tr-TR'),
+      ad: buyukHarf(e.ad.trim()),
       platform: e.platform,
       url: e.url,
       durum: e.bolum,

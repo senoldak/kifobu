@@ -169,7 +169,7 @@ test('kesfiUygula 11: arşivdeki ad birebir eşleşirse arşiv adı kullanılır
 
 test('kesfiUygula 12: arşiv adını içeren ad olası çift sayılır', () => {
   const r = uygula(takip(), [tekListe('Athletic Labs Pro', U1, 'aktif', detay())], { arsivAdlari: ['ATHLETICLABS'] });
-  assert.equal(r.takip.kampanyalar[0].ad, 'ATHLETİC LABS PRO'); // tr-TR büyük harf: i -> İ
+  assert.equal(r.takip.kampanyalar[0].ad, 'ATHLETIC LABS PRO');
   assert.ok(r.olaylar.some((x) => x.tur === 'olasi-cift'));
 });
 
@@ -194,4 +194,11 @@ test('kesfiUygula: URL anahtarı çıkarılamayan liste kaydı atlanır, okuyucu
   const r = uygula(takip(), [s]);
   assert.equal(r.takip.kampanyalar.length, 1);
   assert.ok(r.olaylar.some((x) => x.tur === 'okuyucu-bozuk' && x.anahtar === `${P}:okuyucu-bozuk`));
+});
+
+test('kesfiUygula: ASCII marka adı düz büyük harfe çevrilir, Türkçe ad İ korur', () => {
+  const a = uygula(takip(), [tekListe('VisitExtra', U1, 'aktif', detay())]);
+  assert.equal(a.takip.kampanyalar[0].ad, 'VISITEXTRA');
+  const b = uygula(takip(), [tekListe('Işık Tekstil', U2, 'aktif', detay({ ad: 'Çiçek İnşaat' }))]);
+  assert.equal(b.takip.kampanyalar[0].ad, 'ÇİÇEK İNŞAAT');
 });
