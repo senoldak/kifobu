@@ -1,7 +1,7 @@
 /**
  * Günlük kitle fonlama bülteni verisi ("Bugün" tablosu).
  * Otomatik Bot tarafından oluşturulmuştur.
- * Son güncelleme: 2026-11-16T07:01:14.236Z
+ * Son güncelleme: 2026-11-17T07:01:13.027Z
  */
 export interface Girisim {
   ad: string;
@@ -32,8 +32,8 @@ export interface Yakinda {
 }
 
 export const BULTEN = {
-  tarih: '16 Kasım 2026',
-  sayi: 1560,
+  tarih: '17 Kasım 2026',
+  sayi: 1561,
   girisimler: [
     {
         "ad": "ATHLETICLABS",
@@ -71,7 +71,7 @@ export const BULTEN = {
     {
         "ad": "LOOPYON",
         "platform": "ecofolio",
-        "bugun": 56000,
+        "bugun": 0,
         "alinan": 1279600,
         "kalan": 33720400,
         "degerleme": 385038504,
@@ -81,7 +81,7 @@ export const BULTEN = {
     }
 ] as Girisim[],
   platformlar: {
-    bugun: 56000,
+    bugun: 0,
     toplam: 14018000,
     liste: [
     {
