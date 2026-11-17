@@ -1,0 +1,1983 @@
+
+
+
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/brand/icon-32.409c97a9d8b2.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/brand/icon-16.46a8720ad63e.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/brand/icon-180.eae7dc249472.png">
+    <link rel="manifest" href="/static/site.5961776051ba.webmanifest">
+    <meta name="theme-color" content="#7c3aed">
+    
+    <title>Kampanyalar | Trinkfon</title>
+    <link rel="stylesheet" href="/static/vendor/fontawesome/css/all.min.a224ecd5de38.css">
+    
+    <link rel="stylesheet" href="/static/src/output.c46538b7ea68.css">
+    
+    
+    
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #7e22ce;
+            --primary-dark: #6b21a8;
+            --primary-light: #a855f7;
+            --secondary-color: #4f46e5;
+            --accent-color: #FFC62D;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            max-width: 100%;
+            width: 100%;
+        }
+
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Navbar Animation */
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-item:hover::after {
+            width: 100%;
+        }
+
+        /* Social Icons Animation */
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+        }
+    </style>
+<script defer src="/static/js/mobile-overlays.7efcb251f275.js"></script>
+<link rel="stylesheet" href="/static/mobile-tables.8f5fe13f201a.css">
+<script defer src="/static/js/mobile-tables.cdd944734f64.js"></script>
+<script defer src="/static/js/site-header.1f5a5f153ef1.js"></script>
+</head>
+
+<body class="overflow-x-hidden bg-gray-50 text-slate-800">
+    <input type="hidden" name="csrfmiddlewaretoken" value="SzNcLIKsAESO5l6m7QrdTDU0QHvJX1WniANLBhu4YuosmCb1tYUOJIumGt68BASq">
+    <div class="antialiased overflow-x-hidden">
+        
+        <!-- Modern Responsive Navbar with Gradient Border Bottom -->
+        <nav id="siteHeader" aria-label="Ana gezinme" class="bg-white/95 backdrop-blur-md fixed left-0 right-0 top-0 z-40 border-b border-gray-100 shadow-xs transition-all">
+            <!-- Top Accent Border -->
+            <div class="h-0.5 bg-purple-600"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16 sm:h-20">
+                    <!-- Brand Logo -->
+                    <div class="flex items-center space-x-3 sm:space-x-4">
+                        <a href="/" class="flex items-center space-x-2.5 group">
+                            <img src="/static/brand/logo.5d775c410d4e.webp" class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105" alt="Trinkfon Logo" width="40" height="40">
+                            <span class="text-xl sm:text-2xl font-black tracking-tight text-purple-700">Trinkfon</span>
+                        </a>
+
+                        <!-- Desktop Navigation Links: Only Kampanyalar & İletişim -->
+                        <div class="hidden md:flex items-center space-x-1 sm:space-x-2 ml-4 lg:ml-8">
+                            <a href="/projeler/" class="px-3.5 py-2 rounded-xl text-base font-semibold text-slate-700 hover:text-purple-700 hover:bg-purple-50 transition-colors">Kampanyalar</a>
+                            <a href="/iletisim/" class="px-3.5 py-2 rounded-xl text-base font-semibold text-slate-700 hover:text-purple-700 hover:bg-purple-50 transition-colors">İletişim</a>
+                        </div>
+                    </div>
+
+                    <!-- Right Side Actions & Social Media -->
+                    <div class="flex items-center space-x-2 sm:space-x-3">
+                        <!-- Social Media Icons (Desktop: lg+) -->
+                        <div class="hidden lg:flex items-center space-x-2 text-slate-500 mr-1">
+                            <a href="https://www.linkedin.com/company/trinkfon/" target="_blank" rel="noopener noreferrer" class="p-1.5 hover:text-[#0077b5] transition-all hover:scale-110" title="LinkedIn" aria-label="LinkedIn">
+                                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.69 1.69 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.74v-8.37H5.07v8.37h2.78z"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.facebook.com/TrinkFon" target="_blank" rel="noopener noreferrer" class="p-1.5 hover:text-[#1877f2] transition-all hover:scale-110" title="Facebook" aria-label="Facebook">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2.00195 12.002C2.00312 16.9214 5.58036 21.1101 10.439 21.881V14.892H7.90195V12.002H10.442V9.80204C10.3284 8.75958 10.6845 7.72064 11.4136 6.96698C12.1427 6.21332 13.1693 5.82306 14.215 5.90204C14.9655 5.91417 15.7141 5.98101 16.455 6.10205V8.56104H15.191C14.7558 8.50405 14.3183 8.64777 14.0017 8.95171C13.6851 9.25566 13.5237 9.68693 13.563 10.124V12.002H16.334L15.891 14.893H13.563V21.881C18.8174 21.0506 22.502 16.2518 21.9475 10.9611C21.3929 5.67041 16.7932 1.73997 11.4808 2.01722C6.16831 2.29447 2.0028 6.68235 2.00195 12.002Z"></path>
+                                </svg>
+                            </a>
+                            <a href="https://x.com/trinkfon" target="_blank" rel="noopener noreferrer" class="p-1.5 hover:text-black transition-all hover:scale-110" title="X (Twitter)" aria-label="X">
+                                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M13.795 10.533 20.68 2h-3.073l-5.255 6.517L7.69 2H1l7.806 10.91L1.47 22h3.074l5.705-7.07L15.31 22H22l-8.205-11.467Zm-2.38 2.95L9.97 11.464 4.36 3.627h2.31l4.528 6.317 1.443 2.02 6.018 8.409h-2.31l-4.934-6.89Z"></path>
+                                </svg>
+                            </a>
+                            <a href="https://www.youtube.com/@trinkfon" target="_blank" rel="noopener noreferrer" class="p-1.5 hover:text-[#ff0000] transition-all hover:scale-110" title="YouTube" aria-label="YouTube">
+                                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd" d="M21.7 8.037a4.26 4.26 0 0 0-.789-1.964 2.84 2.84 0 0 0-1.984-.839c-2.767-.2-6.926-.2-6.926-.2s-4.157 0-6.928.2a2.836 2.836 0 0 0-1.983.839 4.225 4.225 0 0 0-.79 1.965 30.146 30.146 0 0 0-.2 3.206v1.5a30.12 30.12 0 0 0 .2 3.206c.094.712.364 1.39.784 1.972.604.536 1.38.837 2.187.848 1.583.151 6.731.2 6.731.2s4.161 0 6.928-.2a2.844 2.844 0 0 0 1.985-.84 4.27 4.27 0 0 0 .787-1.965 30.12 30.12 0 0 0 .2-3.206v-1.516a30.672 30.672 0 0 0-.202-3.206Zm-11.692 6.554v-5.62l5.4 2.819-5.4 2.801Z" clip-rule="evenodd"></path>
+                                </svg>
+                            </a>
+                            <a href="https://www.instagram.com/trinkfon/" target="_blank" rel="noopener noreferrer" class="p-1.5 hover:text-[#e1306c] transition-all hover:scale-110" title="Instagram" aria-label="Instagram">
+                                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.tiktok.com/@trinkfon" target="_blank" rel="noopener noreferrer" class="p-1.5 hover:text-black transition-all hover:scale-110" title="TikTok" aria-label="TikTok">
+                                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 448 512">
+                                    <path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a72.27,72.27,0,1,0,72.15,72.27V0H387.36A122.83,122.83,0,0,0,448,76.91Z"></path>
+                                </svg>
+                            </a>
+                        </div>
+
+                        <!-- Divider between Social and Auth -->
+                        <div class="hidden lg:block h-4 w-px bg-slate-200 mx-1"></div>
+
+                        
+                            <!-- Desktop Guest Buttons -->
+                            <div class="hidden md:flex items-center space-x-2 sm:space-x-3">
+                                <a href="/hesaplar/giris/" class="text-base font-semibold text-slate-700 hover:text-purple-700 px-3 py-2 rounded-xl transition-colors">
+                                    Giriş Yap
+                                </a>
+                                <a href="/hesaplar/register/" class="text-base font-semibold text-white bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-xl shadow-xs hover:shadow transition-all">
+                                    Kayıt Ol
+                                </a>
+                            </div>
+
+                            <!-- Mobile Quick Login (Hidden on MD+) -->
+                            <a href="/hesaplar/giris/" class="md:hidden text-sm font-semibold text-purple-700 bg-purple-50 hover:bg-purple-100 border border-purple-100 px-3 py-1.5 rounded-lg transition-colors">
+                                Giriş Yap
+                            </a>
+                        
+
+                        <!-- Mobile Hamburger Button (< md) -->
+                        <button id="mobileMenuToggleBtn" type="button" class="md:hidden p-2 text-slate-700 hover:text-purple-700 hover:bg-purple-50 rounded-xl focus:outline-none transition-colors" aria-label="Menüyü Aç" aria-controls="drawerPanel" aria-expanded="false">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile Navigation Slide-out Drawer & Overlay -->
+        <div id="drawerBackdrop" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 opacity-0 pointer-events-none transition-opacity duration-300" aria-hidden="true"></div>
+        <div id="drawerPanel" role="dialog" aria-modal="true" class="fixed inset-y-0 right-0 z-50 w-full max-w-xs sm:max-w-sm bg-white shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out hidden" aria-label="Mobil menü" aria-hidden="true">
+            <!-- Drawer Header -->
+            <div class="px-5 py-4 border-b border-gray-100 flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-2">
+                    <img src="/static/brand/logo.5d775c410d4e.webp" class="h-8 w-auto" alt="Trinkfon" width="32" height="32">
+                    <span class="text-xl font-black text-purple-700">Trinkfon</span>
+                </a>
+                <button id="closeDrawerBtn" type="button" class="p-2 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors" aria-label="Menüyü Kapat">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Drawer Content (Scrollable) -->
+            <div class="flex-1 overflow-y-auto px-5 py-4 space-y-5">
+                <!-- User Status Card -->
+                
+                <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200">
+                    <p class="text-xs font-medium text-slate-500 mb-3">Hesabınıza giriş yaparak projeleri keşfedin ve yatırım yapın.</p>
+                    <div class="grid grid-cols-2 gap-2">
+                        <a href="/hesaplar/giris/" class="w-full text-center py-2.5 px-3 text-sm font-semibold text-purple-700 bg-white border border-purple-200 rounded-xl hover:bg-purple-50 transition-colors shadow-xs">Giriş Yap</a>
+                        <a href="/hesaplar/register/" class="w-full text-center py-2.5 px-3 text-sm font-semibold text-white bg-purple-600 hover:bg-purple-700 rounded-xl transition-all shadow-xs">Kayıt Ol</a>
+                    </div>
+                </div>
+                
+
+                <!-- Primary Menu Links -->
+                <div class="space-y-1">
+                    <p class="text-xs font-bold uppercase tracking-wider text-slate-400 px-3 mb-2">Platform</p>
+                    <a href="/" class="flex items-center px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:text-purple-700 hover:bg-purple-50 transition-colors">
+                        <span class="w-7 text-purple-600"><i class="fas fa-home"></i></span> Anasayfa
+                    </a>
+                    <a href="/projeler/" class="flex items-center px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:text-purple-700 hover:bg-purple-50 transition-colors">
+                        <span class="w-7 text-purple-600"><i class="fas fa-rocket"></i></span> Kampanyalar
+                    </a>
+                    <a href="/hakkimizda/" class="flex items-center px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:text-purple-700 hover:bg-purple-50 transition-colors">
+                        <span class="w-7 text-purple-600"><i class="fas fa-info-circle"></i></span> Hakkımızda
+                    </a>
+                    <a href="/yatirim-komitesi/" class="flex items-center px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:text-purple-700 hover:bg-purple-50 transition-colors">
+                        <span class="w-7 text-purple-600"><i class="fas fa-users"></i></span> Yatırım Komitesi
+                    </a>
+                    <a href="/yonetim-kurulu/" class="flex items-center px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:text-purple-700 hover:bg-purple-50 transition-colors">
+                        <span class="w-7 text-purple-600"><i class="fas fa-user-tie"></i></span> Yönetim Kurulu
+                    </a>
+                    <a href="/duyurular/" class="flex items-center px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:text-purple-700 hover:bg-purple-50 transition-colors">
+                        <span class="w-7 text-purple-600"><i class="fas fa-bullhorn"></i></span> Duyurular
+                    </a>
+                    <a href="/forum" class="flex items-center px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:text-purple-700 hover:bg-purple-50 transition-colors">
+                        <span class="w-7 text-purple-600"><i class="fas fa-comments"></i></span> Forum
+                    </a>
+                    <a href="/projeler/hedefine-ulasamayanlar/" class="flex items-center px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:text-purple-700 hover:bg-purple-50 transition-colors">
+                        <span class="w-7 text-purple-600"><i class="fas fa-history"></i></span> Hedefine Ulaşamayanlar
+                    </a>
+                    <a href="/iletisim/" class="flex items-center px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:text-purple-700 hover:bg-purple-50 transition-colors">
+                        <span class="w-7 text-purple-600"><i class="fas fa-envelope"></i></span> İletişim
+                    </a>
+                </div>
+
+                
+
+                <!-- CTA Button -->
+                <div class="pt-2">
+                    <a href="/projeler/yeni-proje-ekle/" class="w-full flex items-center justify-center space-x-2 py-3 px-4 bg-purple-600 hover:bg-purple-700 text-white rounded-xl font-bold shadow-md transition-all">
+                        <span>+ Kampanya Başlat</span>
+                    </a>
+                </div>
+
+                <!-- Social Icons in Drawer -->
+                <div class="border-t border-gray-100 pt-4 pb-2">
+                    <p class="text-xs font-medium text-slate-400 text-center mb-3">Sosyal Medya</p>
+                    <div class="flex items-center justify-center space-x-3">
+                        <a href="https://www.linkedin.com/company/trinkfon/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 hover:text-[#0077B5] hover:bg-blue-50 flex items-center justify-center text-xs transition-colors"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.facebook.com/TrinkFon" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 hover:text-[#1877F2] hover:bg-blue-50 flex items-center justify-center text-xs transition-colors"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://x.com/trinkfon" target="_blank" rel="noopener noreferrer" aria-label="X" class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 hover:text-black hover:bg-slate-200 flex items-center justify-center text-xs transition-colors"><i class="fab fa-x-twitter"></i></a>
+                        <a href="https://www.youtube.com/@trinkfon" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 hover:text-[#FF0000] hover:bg-red-50 flex items-center justify-center text-xs transition-colors"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.instagram.com/trinkfon/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 hover:text-[#E1306C] hover:bg-pink-50 flex items-center justify-center text-xs transition-colors"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@trinkfon" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 hover:text-black hover:bg-slate-200 flex items-center justify-center text-xs transition-colors"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <main class="h-auto pt-16 sm:pt-20">
+          
+          
+            
+<section class="bg-slate-50 min-h-screen py-6 sm:py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+
+    <div class="flex flex-wrap items-center gap-3 sm:gap-5">
+      <h1 class="text-2xl sm:text-3xl font-black text-slate-900">Kampanyalar</h1>
+      <a href="/projeler/yeni-proje-ekle/"
+        class="inline-flex items-center justify-center px-4 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm rounded-xl shadow-xs hover:shadow-md transition-all">
+        Kampanya Başlat <i class="fas fa-arrow-right ml-2 text-xs" aria-hidden="true"></i>
+      </a>
+    </div>
+
+    <!-- Arama & Filtreleme & Görünüm Değiştirici Kartı -->
+    <div
+      class="bg-white rounded-2xl shadow-xs border border-slate-200/80 p-4 sm:p-5 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+      <!-- Arama Formu -->
+      <form method="get" class="flex-1 flex flex-col sm:flex-row items-center gap-3">
+        <div class="relative w-full">
+          <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-400">
+            <i class="fas fa-search text-xs"></i>
+          </div>
+          <input type="text" id="sorgu" name="sorgu"
+            class="w-full pl-10 pr-4 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-purple-600/20 focus:border-purple-600 transition-all text-slate-900 placeholder-slate-400 font-medium"
+            placeholder="Kampanya adı, kategori veya anahtar kelime ile arayın..."
+            value="" />
+        </div>
+        <button type="submit"
+          class="w-full sm:w-auto px-5 py-2.5 !bg-slate-900 hover:!bg-slate-800 text-white rounded-xl text-xs sm:text-sm font-bold transition-all shrink-0">
+          Ara
+        </button>
+      </form>
+
+      <!-- Sıralama ve Görünüm Switcher -->
+      <div
+        class="flex flex-wrap items-center justify-between sm:justify-end gap-2 pt-3 lg:pt-0 border-t lg:border-t-0 border-slate-100">
+        <!-- Hızlı Sıralama Seçimi -->
+        <div class="flex items-center gap-1.5 flex-1 sm:flex-initial">
+          <label for="sort-select" class="text-xs font-semibold text-slate-500 hidden sm:inline">Sırala:</label>
+          <select id="sort-select" onchange="location = this.value;"
+            class="w-full sm:w-auto bg-slate-50 border border-slate-200 text-slate-800 text-xs font-semibold rounded-xl focus:ring-2 focus:ring-purple-600/20 focus:border-purple-600 px-2.5 py-2 transition-all">
+            <option value="?siralama=-created_date" selected>En Yeni</option>
+            <option value="?siralama=title" >Başlık (A-Z)</option>
+            <option value="?siralama=-title" >Başlık (Z-A)</option>
+            <option value="?siralama=-budget" >Bütçe (Yüksekten Düşüğe)</option>
+            <option value="?siralama=budget" >Bütçe (Düşükten Yükseğe)</option>
+          </select>
+        </div>
+
+        <!-- Görünüm Butonları (Kart vs Liste - Tablet ve Desktop) -->
+        <div class="hidden sm:flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200/80 shrink-0">
+          <button id="btn-view-grid" type="button" title="Kart Görünümü"
+            class="px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-white text-purple-700 shadow-2xs">
+            <i class="fas fa-th-large mr-1 text-[11px]"></i> Kartlar
+          </button>
+          <button id="btn-view-table" type="button" title="Tablo Görünümü"
+            class="px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-all text-slate-600 hover:text-slate-900">
+            <i class="fas fa-list mr-1 text-[11px]"></i> Tablo
+          </button>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <!-- 1: KART GÖRÜNÜMÜ -->
+    <div id="view-grid" class="space-y-10">
+      
+      <section aria-labelledby="grid-heading-10">
+        <h2 id="grid-heading-10" class="text-xl sm:text-2xl font-black text-slate-900 mb-4">
+          Tamamlanan Kampanyalar
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+          
+          <article
+            class="bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-lg hover:border-purple-200 transition-all duration-200 flex flex-col overflow-hidden group">
+            <div class="p-5 flex-1 flex flex-col">
+
+              <!-- Üst Etiketler & Durum Rozeti -->
+              <div class="flex items-center justify-between gap-2 mb-3.5">
+                <span
+                  class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-slate-100 text-slate-700 truncate max-w-[170px]">
+                  Teknoloji Girişimi (Yazılım / Mobil Uygulama / Marketplace)
+                </span>
+                <span class="px-2.5 py-0.5 text-[10px] font-bold rounded-full whitespace-nowrap shrink-0
+              
+                bg-slate-100 text-slate-700 border border-slate-200
+              ">
+                  Tamamlandı
+                </span>
+              </div>
+
+              <!-- Logo & Başlık & Girişimci -->
+              <div class="flex items-start space-x-3 mb-3">
+                
+                <div
+                  class="w-20 h-14 rounded-xl bg-purple-600 flex items-center justify-center shrink-0 text-white font-black text-lg shadow-2xs">
+                  T
+                </div>
+                
+
+                <div class="min-w-0 flex-1">
+                  <h3
+                    class="text-base font-black text-slate-900 leading-snug line-clamp-1 group-hover:text-purple-600 transition-colors">
+                    <a href="/projeler/timweb/kampanya/">TimWeb</a>
+                  </h3>
+                  <div class="flex items-center gap-1.5 mt-1 text-[11px] text-slate-500">
+                    <i class="fas fa-building text-[10px] text-purple-600"></i>
+                    <span class="truncate font-medium">
+                      CÜNEYD ALTIPARMAK
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Açıklama -->
+              <p class="text-xs text-slate-600 line-clamp-2 mb-4 leading-relaxed">
+                TimWeb, gazeteci ve içerik üreticileri için blokzincir tabanlı bir platformdur. İçeriğin İlk Kullanım Hakkını tescilleyerek haksız kullanımı engeller ve emeği korur. Dijital kültür endüstrisi için adil bir gelir paylaşım ekosistemi sunar.
+              </p>
+
+              <!-- İlerleme Çubuğu ve Fonlama Durumu -->
+              <div class="mt-auto pt-3 border-t border-slate-100">
+                <div class="flex items-center justify-between mb-1.5 text-xs">
+                  <span class="font-bold text-slate-600">Pay</span>
+                  <span class="font-black text-purple-700">%120,0</span>
+                </div>
+                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                  <div class="bg-purple-600 h-full rounded-full transition-all duration-500"
+                    style="width: 100%;">
+                  </div>
+                </div>
+
+                <!-- Metrikler -->
+                <div class="grid grid-cols-2 gap-2 mt-3 pt-2 text-xs">
+                  <div>
+                    <span class="text-[10px] font-medium text-slate-400 block uppercase">Toplanan</span>
+                    <span class="font-black text-slate-900 block truncate">1.200.000 ₺</span>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-[10px] font-medium text-slate-400 block uppercase">Hedef Bütçe</span>
+                    <span class="font-bold text-slate-600 block truncate">
+                      1.000.000 ₺
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Kart Alt Aksiyonları -->
+            <div class="p-3.5 bg-slate-50/80 border-t border-slate-100 flex items-center justify-between gap-2">
+              <div class="flex items-center gap-2 flex-1">
+                <a href="/projeler/timweb/kampanya/"
+                  class="flex-1 inline-flex items-center justify-center px-3.5 py-2 text-xs font-bold text-white bg-slate-900 hover:bg-slate-800 rounded-xl transition-all">
+                  İncele <i class="fas fa-arrow-right ml-1.5 text-[10px]"></i>
+                </a>
+                
+              </div>
+            </div>
+
+            <!-- Admin Moderasyon Kontrolleri (Kart Altı) -->
+            
+          </article>
+          
+        </div>
+      </section>
+      
+      <section aria-labelledby="grid-heading-3">
+        <h2 id="grid-heading-3" class="text-xl sm:text-2xl font-black text-slate-900 mb-4">
+          Hedefine Ulaşamayan Kampanyalar
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+          
+          <article
+            class="bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-lg hover:border-purple-200 transition-all duration-200 flex flex-col overflow-hidden group">
+            <div class="p-5 flex-1 flex flex-col">
+
+              <!-- Üst Etiketler & Durum Rozeti -->
+              <div class="flex items-center justify-between gap-2 mb-3.5">
+                <span
+                  class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-slate-100 text-slate-700 truncate max-w-[170px]">
+                  Paya Dayalı
+                </span>
+                <span class="px-2.5 py-0.5 text-[10px] font-bold rounded-full whitespace-nowrap shrink-0
+              
+                bg-slate-100 text-slate-700 border border-slate-200
+              ">
+                  Hedefine Ulaşamadı
+                </span>
+              </div>
+
+              <!-- Logo & Başlık & Girişimci -->
+              <div class="flex items-start space-x-3 mb-3">
+                
+                <div
+                  class="w-20 h-14 rounded-xl bg-white border border-slate-100 p-1 flex items-center justify-center shrink-0 shadow-2xs">
+                  <img src="/media/project_logo_previews/1ae6def5079ce537b900259f.webp" alt="Pupaq logosu" class="w-full h-full object-contain" width="80" height="56" loading="lazy" decoding="async">
+                </div>
+                
+
+                <div class="min-w-0 flex-1">
+                  <h3
+                    class="text-base font-black text-slate-900 leading-snug line-clamp-1 group-hover:text-purple-600 transition-colors">
+                    <a href="/projeler/pupaq/kampanya/">Pupaq</a>
+                  </h3>
+                  <div class="flex items-center gap-1.5 mt-1 text-[11px] text-slate-500">
+                    <i class="fas fa-building text-[10px] text-purple-600"></i>
+                    <span class="truncate font-medium">
+                      ENGİN ERDEM
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Açıklama -->
+              <p class="text-xs text-slate-600 line-clamp-2 mb-4 leading-relaxed">
+                Pupaq, yaşam alanları, ticari mekanlar ve projeler için kişiselleştirilebilir neon, lightbox ve dekoratif ürünleri YZ destekli ön izleme, anlık fiyatlandırma ve şeffaf süreçlerle üreten global bir e-ticaret platformudur.
+              </p>
+
+              <!-- İlerleme Çubuğu ve Fonlama Durumu -->
+              <div class="mt-auto pt-3 border-t border-slate-100">
+                <div class="flex items-center justify-between mb-1.5 text-xs">
+                  <span class="font-bold text-slate-600">Pay</span>
+                  <span class="font-black text-purple-700">%12,2</span>
+                </div>
+                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                  <div class="bg-purple-600 h-full rounded-full transition-all duration-500"
+                    style="width: 12%;">
+                  </div>
+                </div>
+
+                <!-- Metrikler -->
+                <div class="grid grid-cols-2 gap-2 mt-3 pt-2 text-xs">
+                  <div>
+                    <span class="text-[10px] font-medium text-slate-400 block uppercase">Toplanan</span>
+                    <span class="font-black text-slate-900 block truncate">121.782 ₺</span>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-[10px] font-medium text-slate-400 block uppercase">Hedef Bütçe</span>
+                    <span class="font-bold text-slate-600 block truncate">
+                      1.000.032 ₺
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Kart Alt Aksiyonları -->
+            <div class="p-3.5 bg-slate-50/80 border-t border-slate-100 flex items-center justify-between gap-2">
+              <div class="flex items-center gap-2 flex-1">
+                <a href="/projeler/pupaq/kampanya/"
+                  class="flex-1 inline-flex items-center justify-center px-3.5 py-2 text-xs font-bold text-white bg-slate-900 hover:bg-slate-800 rounded-xl transition-all">
+                  İncele <i class="fas fa-arrow-right ml-1.5 text-[10px]"></i>
+                </a>
+                
+              </div>
+            </div>
+
+            <!-- Admin Moderasyon Kontrolleri (Kart Altı) -->
+            
+          </article>
+          
+        </div>
+      </section>
+      
+      <section aria-labelledby="grid-heading-4">
+        <h2 id="grid-heading-4" class="text-xl sm:text-2xl font-black text-slate-900 mb-4">
+          İptal Edilen Kampanyalar
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+          
+          <article
+            class="bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-lg hover:border-purple-200 transition-all duration-200 flex flex-col overflow-hidden group">
+            <div class="p-5 flex-1 flex flex-col">
+
+              <!-- Üst Etiketler & Durum Rozeti -->
+              <div class="flex items-center justify-between gap-2 mb-3.5">
+                <span
+                  class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-slate-100 text-slate-700 truncate max-w-[170px]">
+                  Teknoloji Girişimi (Yazılım / Mobil Uygulama / Marketplace)
+                </span>
+                <span class="px-2.5 py-0.5 text-[10px] font-bold rounded-full whitespace-nowrap shrink-0
+              
+                bg-slate-100 text-slate-700 border border-slate-200
+              ">
+                  İptal Edildi
+                </span>
+              </div>
+
+              <!-- Logo & Başlık & Girişimci -->
+              <div class="flex items-start space-x-3 mb-3">
+                
+                <div
+                  class="w-20 h-14 rounded-xl bg-white border border-slate-100 p-1 flex items-center justify-center shrink-0 shadow-2xs">
+                  <img src="/media/project_logo_previews/701922431c020d6fac66dfd0.webp" alt="OmiBuddy logosu" class="w-full h-full object-contain" width="80" height="56" loading="lazy" decoding="async">
+                </div>
+                
+
+                <div class="min-w-0 flex-1">
+                  <h3
+                    class="text-base font-black text-slate-900 leading-snug line-clamp-1 group-hover:text-purple-600 transition-colors">
+                    <a href="/projeler/OmiBuddy/kampanya/">OmiBuddy</a>
+                  </h3>
+                  <div class="flex items-center gap-1.5 mt-1 text-[11px] text-slate-500">
+                    <i class="fas fa-building text-[10px] text-purple-600"></i>
+                    <span class="truncate font-medium">
+                      ÇAĞLA ŞEŞEN
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Açıklama -->
+              <p class="text-xs text-slate-600 line-clamp-2 mb-4 leading-relaxed">
+                OmiBuddy; yaşlı bakımında Sandviç Kuşağının yükünü hafifleten; sağlık takibi, düşme riski yönetimi ve yalnızlıkla mücadeleyi Yapay Zeka (AI) ve IoT teknolojileriyle tek platformda sunan bütünleşik bir Geriatrik Yaşam Asistanıdır.
+              </p>
+
+              <!-- İlerleme Çubuğu ve Fonlama Durumu -->
+              <div class="mt-auto pt-3 border-t border-slate-100">
+                <div class="flex items-center justify-between mb-1.5 text-xs">
+                  <span class="font-bold text-slate-600">Pay</span>
+                  <span class="font-black text-purple-700">%101,1</span>
+                </div>
+                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                  <div class="bg-purple-600 h-full rounded-full transition-all duration-500"
+                    style="width: 100%;">
+                  </div>
+                </div>
+
+                <!-- Metrikler -->
+                <div class="grid grid-cols-2 gap-2 mt-3 pt-2 text-xs">
+                  <div>
+                    <span class="text-[10px] font-medium text-slate-400 block uppercase">Toplanan</span>
+                    <span class="font-black text-slate-900 block truncate">2.526.900 ₺</span>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-[10px] font-medium text-slate-400 block uppercase">Hedef Bütçe</span>
+                    <span class="font-bold text-slate-600 block truncate">
+                      2.500.000 ₺
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Kart Alt Aksiyonları -->
+            <div class="p-3.5 bg-slate-50/80 border-t border-slate-100 flex items-center justify-between gap-2">
+              <div class="flex items-center gap-2 flex-1">
+                <a href="/projeler/OmiBuddy/kampanya/"
+                  class="flex-1 inline-flex items-center justify-center px-3.5 py-2 text-xs font-bold text-white bg-slate-900 hover:bg-slate-800 rounded-xl transition-all">
+                  İncele <i class="fas fa-arrow-right ml-1.5 text-[10px]"></i>
+                </a>
+                
+              </div>
+            </div>
+
+            <!-- Admin Moderasyon Kontrolleri (Kart Altı) -->
+            
+          </article>
+          
+        </div>
+      </section>
+      
+    </div>
+
+    <!-- 2: TABLO GÖRÜNÜMÜ (Gizli, switcher ile açılabilir) -->
+    <div id="view-table" class="hidden space-y-10">
+      
+      <section aria-labelledby="table-heading-10">
+        <h2 id="table-heading-10" class="text-xl sm:text-2xl font-black text-slate-900 mb-4">
+          Tamamlanan Kampanyalar
+        </h2>
+        <div class="bg-white rounded-2xl shadow-xs border border-slate-200/80 overflow-hidden">
+          <div class="overflow-x-auto">
+            <table data-mobile-table="records" data-mobile-primary="0,4,3,5" class="w-full text-left text-xs sm:text-sm">
+              <thead
+                class="text-xs uppercase tracking-wider bg-slate-50 border-b border-slate-200/80 text-slate-600 font-bold">
+                <tr>
+                  <th scope="col" class="px-6 py-4">Proje Adı</th>
+                  <th scope="col" class="px-6 py-4">Kategori</th>
+                  <th scope="col" class="px-6 py-4">Tür</th>
+                  <th scope="col" class="px-6 py-4">Durum</th>
+                  <th scope="col" class="px-6 py-4">Hedef Bütçe</th>
+                  <th scope="col" class="px-6 py-4">Fonlanan</th>
+                  
+                  <th scope="col" class="px-6 py-4 text-right">İşlemler</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                
+                <tr class="hover:bg-slate-50/70 transition-colors">
+                  <td class="px-6 py-4 font-bold text-slate-900">
+                    <a href="/projeler/timweb/kampanya/" class="hover:text-purple-600 transition-colors">
+                      TimWeb
+                    </a>
+                  </td>
+                  <td class="px-6 py-4 text-slate-600">
+                    <span
+                      class="inline-flex px-2.5 py-0.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700">
+                      Teknoloji Girişimi (Yazılım / Mobil Uygulama / Marketplace)
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 text-slate-600 font-medium">
+                    Pay
+                  </td>
+                  <td class="px-6 py-4">
+                    <span class="inline-flex px-2.5 py-1 text-xs font-bold rounded-full whitespace-nowrap
+                  
+                    bg-slate-100 text-slate-700 border border-slate-200
+                  ">
+                      Tamamlandı
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 font-bold text-slate-900">
+                    1.000.000 ₺
+                  </td>
+                  <td class="px-6 py-4 font-black text-purple-700">
+                    %120,0
+                  </td>
+                  
+                  <td class="px-6 py-4 text-right">
+                    <div class="flex items-center justify-end gap-2">
+                      <a href="/projeler/timweb/kampanya/"
+                        class="px-3 py-1.5 text-xs font-bold text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition-all">
+                        İncele
+                      </a>
+                      
+                      
+                    </div>
+                  </td>
+                </tr>
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      
+      <section aria-labelledby="table-heading-3">
+        <h2 id="table-heading-3" class="text-xl sm:text-2xl font-black text-slate-900 mb-4">
+          Hedefine Ulaşamayan Kampanyalar
+        </h2>
+        <div class="bg-white rounded-2xl shadow-xs border border-slate-200/80 overflow-hidden">
+          <div class="overflow-x-auto">
+            <table data-mobile-table="records" data-mobile-primary="0,4,3,5" class="w-full text-left text-xs sm:text-sm">
+              <thead
+                class="text-xs uppercase tracking-wider bg-slate-50 border-b border-slate-200/80 text-slate-600 font-bold">
+                <tr>
+                  <th scope="col" class="px-6 py-4">Proje Adı</th>
+                  <th scope="col" class="px-6 py-4">Kategori</th>
+                  <th scope="col" class="px-6 py-4">Tür</th>
+                  <th scope="col" class="px-6 py-4">Durum</th>
+                  <th scope="col" class="px-6 py-4">Hedef Bütçe</th>
+                  <th scope="col" class="px-6 py-4">Fonlanan</th>
+                  
+                  <th scope="col" class="px-6 py-4 text-right">İşlemler</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                
+                <tr class="hover:bg-slate-50/70 transition-colors">
+                  <td class="px-6 py-4 font-bold text-slate-900">
+                    <a href="/projeler/pupaq/kampanya/" class="hover:text-purple-600 transition-colors">
+                      Pupaq
+                    </a>
+                  </td>
+                  <td class="px-6 py-4 text-slate-600">
+                    <span
+                      class="inline-flex px-2.5 py-0.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700">
+                      Paya Dayalı
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 text-slate-600 font-medium">
+                    Pay
+                  </td>
+                  <td class="px-6 py-4">
+                    <span class="inline-flex px-2.5 py-1 text-xs font-bold rounded-full whitespace-nowrap
+                  
+                    bg-slate-100 text-slate-700 border border-slate-200
+                  ">
+                      Hedefine Ulaşamadı
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 font-bold text-slate-900">
+                    1.000.032 ₺
+                  </td>
+                  <td class="px-6 py-4 font-black text-purple-700">
+                    %12,2
+                  </td>
+                  
+                  <td class="px-6 py-4 text-right">
+                    <div class="flex items-center justify-end gap-2">
+                      <a href="/projeler/pupaq/kampanya/"
+                        class="px-3 py-1.5 text-xs font-bold text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition-all">
+                        İncele
+                      </a>
+                      
+                      
+                    </div>
+                  </td>
+                </tr>
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      
+      <section aria-labelledby="table-heading-4">
+        <h2 id="table-heading-4" class="text-xl sm:text-2xl font-black text-slate-900 mb-4">
+          İptal Edilen Kampanyalar
+        </h2>
+        <div class="bg-white rounded-2xl shadow-xs border border-slate-200/80 overflow-hidden">
+          <div class="overflow-x-auto">
+            <table data-mobile-table="records" data-mobile-primary="0,4,3,5" class="w-full text-left text-xs sm:text-sm">
+              <thead
+                class="text-xs uppercase tracking-wider bg-slate-50 border-b border-slate-200/80 text-slate-600 font-bold">
+                <tr>
+                  <th scope="col" class="px-6 py-4">Proje Adı</th>
+                  <th scope="col" class="px-6 py-4">Kategori</th>
+                  <th scope="col" class="px-6 py-4">Tür</th>
+                  <th scope="col" class="px-6 py-4">Durum</th>
+                  <th scope="col" class="px-6 py-4">Hedef Bütçe</th>
+                  <th scope="col" class="px-6 py-4">Fonlanan</th>
+                  
+                  <th scope="col" class="px-6 py-4 text-right">İşlemler</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                
+                <tr class="hover:bg-slate-50/70 transition-colors">
+                  <td class="px-6 py-4 font-bold text-slate-900">
+                    <a href="/projeler/OmiBuddy/kampanya/" class="hover:text-purple-600 transition-colors">
+                      OmiBuddy
+                    </a>
+                  </td>
+                  <td class="px-6 py-4 text-slate-600">
+                    <span
+                      class="inline-flex px-2.5 py-0.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700">
+                      Teknoloji Girişimi (Yazılım / Mobil Uygulama / Marketplace)
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 text-slate-600 font-medium">
+                    Pay
+                  </td>
+                  <td class="px-6 py-4">
+                    <span class="inline-flex px-2.5 py-1 text-xs font-bold rounded-full whitespace-nowrap
+                  
+                    bg-slate-100 text-slate-700 border border-slate-200
+                  ">
+                      İptal Edildi
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 font-bold text-slate-900">
+                    2.500.000 ₺
+                  </td>
+                  <td class="px-6 py-4 font-black text-purple-700">
+                    %101,1
+                  </td>
+                  
+                  <td class="px-6 py-4 text-right">
+                    <div class="flex items-center justify-end gap-2">
+                      <a href="/projeler/OmiBuddy/kampanya/"
+                        class="px-3 py-1.5 text-xs font-bold text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition-all">
+                        İncele
+                      </a>
+                      
+                      
+                    </div>
+                  </td>
+                </tr>
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      
+    </div>
+
+    <!-- Modallar (Ön Başvuru Detayları) -->
+    
+    <div id="projectModal-15"
+      class="fixed inset-0 z-50 hidden overflow-y-auto overflow-x-hidden flex items-center justify-center bg-slate-950/60 backdrop-blur-xs p-4">
+      <div class="relative w-full max-w-2xl mx-auto my-6">
+        <div class="relative bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden">
+          <div class="flex items-center justify-between p-5 border-b border-slate-100 bg-slate-50/50">
+            <h3 class="text-base font-bold text-slate-900">
+              Ön Başvuru Detayı: TimWeb
+            </h3>
+            <button type="button"
+              class="close-modal text-slate-400 hover:text-slate-600 w-8 h-8 rounded-lg flex items-center justify-center transition-colors"
+              data-target="#projectModal-15">
+              <i class="fas fa-times text-sm"></i>
+            </button>
+          </div>
+
+          <div class="p-6 space-y-4 max-h-[70vh] overflow-y-auto">
+            <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Başvuru
+                Sahibi</span>
+              <p class="text-sm font-bold text-slate-900">
+                
+                CÜNEYD ALTIPARMAK
+                
+              </p>
+              <p class="text-xs text-slate-500 mt-0.5">+905079491313</p>
+            </div>
+
+            <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">İletişim
+                E-Postası</span>
+              <p class="text-sm font-semibold text-slate-900">cuneydaltiparmak@yahoo.com</p>
+            </div>
+
+            <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Girişim ve
+                Aşama</span>
+              <p class="text-sm font-bold text-slate-900">TimWeb</p>
+              <p class="text-xs text-slate-500 mt-0.5"></p>
+            </div>
+
+            <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Şirket Türü</span>
+              <p class="text-sm font-semibold text-slate-900"></p>
+            </div>
+
+            <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Sektör &
+                Kategori</span>
+              <div class="flex items-center gap-2 mt-1">
+                <span class="px-2.5 py-1 text-xs font-semibold bg-purple-50 text-purple-700 rounded-lg">
+                  Teknoloji Girişimi (Yazılım / Mobil Uygulama / Marketplace)
+                </span>
+                
+                <span class="text-slate-400">/</span>
+                <span class="px-2.5 py-1 text-xs font-semibold bg-slate-100 text-slate-700 rounded-lg">
+                  Medya ve İletişim Teknolojileri
+                </span>
+                
+              </div>
+            </div>
+
+            <div class="bg-slate-50 rounded-xl p-4 border border-slate-100 flex items-center justify-between">
+              <span class="text-xs font-medium text-slate-600">Pay Satış Yüzdesi</span>
+              <span class="text-lg font-black text-purple-700">
+                %0
+              </span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-end p-4 border-t border-slate-100 bg-slate-50/50">
+            <button type="button"
+              class="close-modal px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold rounded-xl transition-colors"
+              data-target="#projectModal-15">
+              Kapat
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="projectModal-18"
+      class="fixed inset-0 z-50 hidden overflow-y-auto overflow-x-hidden flex items-center justify-center bg-slate-950/60 backdrop-blur-xs p-4">
+      <div class="relative w-full max-w-2xl mx-auto my-6">
+        <div class="relative bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden">
+          <div class="flex items-center justify-between p-5 border-b border-slate-100 bg-slate-50/50">
+            <h3 class="text-base font-bold text-slate-900">
+              Ön Başvuru Detayı: Pupaq
+            </h3>
+            <button type="button"
+              class="close-modal text-slate-400 hover:text-slate-600 w-8 h-8 rounded-lg flex items-center justify-center transition-colors"
+              data-target="#projectModal-18">
+              <i class="fas fa-times text-sm"></i>
+            </button>
+          </div>
+
+          <div class="p-6 space-y-4 max-h-[70vh] overflow-y-auto">
+            <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Başvuru
+                Sahibi</span>
+              <p class="text-sm font-bold text-slate-900">
+                
+                ENGİN ERDEM
+                
+              </p>
+              <p class="text-xs text-slate-500 mt-0.5">+905332676715</p>
+            </div>
+
+            <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">İletişim
+                E-Postası</span>
+              <p class="text-sm font-semibold text-slate-900">engerdem@gmail.com</p>
+            </div>
+
+            <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Girişim ve
+                Aşama</span>
+              <p class="text-sm font-bold text-slate-900">Pupaq</p>
+              <p class="text-xs text-slate-500 mt-0.5">Pazar Aşaması</p>
+            </div>
+
+            <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Şirket Türü</span>
+              <p class="text-sm font-semibold text-slate-900">Diğer</p>
+            </div>
+
+            <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Sektör &
+                Kategori</span>
+              <div class="flex items-center gap-2 mt-1">
+                <span class="px-2.5 py-1 text-xs font-semibold bg-purple-50 text-purple-700 rounded-lg">
+                  Paya Dayalı
+                </span>
+                
+                <span class="text-slate-400">/</span>
+                <span class="px-2.5 py-1 text-xs font-semibold bg-slate-100 text-slate-700 rounded-lg">
+                  Teknoloji
+                </span>
+                
+              </div>
+            </div>
+
+            <div class="bg-slate-50 rounded-xl p-4 border border-slate-100 flex items-center justify-between">
+              <span class="text-xs font-medium text-slate-600">Pay Satış Yüzdesi</span>
+              <span class="text-lg font-black text-purple-700">
+                %4,00
+              </span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-end p-4 border-t border-slate-100 bg-slate-50/50">
+            <button type="button"
+              class="close-modal px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold rounded-xl transition-colors"
+              data-target="#projectModal-18">
+              Kapat
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="projectModal-16"
+      class="fixed inset-0 z-50 hidden overflow-y-auto overflow-x-hidden flex items-center justify-center bg-slate-950/60 backdrop-blur-xs p-4">
+      <div class="relative w-full max-w-2xl mx-auto my-6">
+        <div class="relative bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden">
+          <div class="flex items-center justify-between p-5 border-b border-slate-100 bg-slate-50/50">
+            <h3 class="text-base font-bold text-slate-900">
+              Ön Başvuru Detayı: OmiBuddy
+            </h3>
+            <button type="button"
+              class="close-modal text-slate-400 hover:text-slate-600 w-8 h-8 rounded-lg flex items-center justify-center transition-colors"
+              data-target="#projectModal-16">
+              <i class="fas fa-times text-sm"></i>
+            </button>
+          </div>
+
+          <div class="p-6 space-y-4 max-h-[70vh] overflow-y-auto">
+            <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Başvuru
+                Sahibi</span>
+              <p class="text-sm font-bold text-slate-900">
+                
+                ÇAĞLA ŞEŞEN
+                
+              </p>
+              <p class="text-xs text-slate-500 mt-0.5">+905453341821</p>
+            </div>
+
+            <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">İletişim
+                E-Postası</span>
+              <p class="text-sm font-semibold text-slate-900">csesen@gmail.com</p>
+            </div>
+
+            <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Girişim ve
+                Aşama</span>
+              <p class="text-sm font-bold text-slate-900">OmiBuddy</p>
+              <p class="text-xs text-slate-500 mt-0.5"></p>
+            </div>
+
+            <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Şirket Türü</span>
+              <p class="text-sm font-semibold text-slate-900"></p>
+            </div>
+
+            <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Sektör &
+                Kategori</span>
+              <div class="flex items-center gap-2 mt-1">
+                <span class="px-2.5 py-1 text-xs font-semibold bg-purple-50 text-purple-700 rounded-lg">
+                  Teknoloji Girişimi (Yazılım / Mobil Uygulama / Marketplace)
+                </span>
+                
+                <span class="text-slate-400">/</span>
+                <span class="px-2.5 py-1 text-xs font-semibold bg-slate-100 text-slate-700 rounded-lg">
+                  HealthTech – SportTech – WellnessTech
+                </span>
+                
+              </div>
+            </div>
+
+            <div class="bg-slate-50 rounded-xl p-4 border border-slate-100 flex items-center justify-between">
+              <span class="text-xs font-medium text-slate-600">Pay Satış Yüzdesi</span>
+              <span class="text-lg font-black text-purple-700">
+                %0
+              </span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-end p-4 border-t border-slate-100 bg-slate-50/50">
+            <button type="button"
+              class="close-modal px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold rounded-xl transition-colors"
+              data-target="#projectModal-16">
+              Kapat
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <!-- Paginator -->
+     
+
+
+    
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // View Switcher (Grid vs Table)
+    const btnGrid = document.getElementById('btn-view-grid');
+    const btnTable = document.getElementById('btn-view-table');
+    const viewGrid = document.getElementById('view-grid');
+    const viewTable = document.getElementById('view-table');
+
+    if (btnGrid && btnTable && viewGrid && viewTable) {
+      btnGrid.addEventListener('click', function () {
+        viewGrid.classList.remove('hidden');
+        viewTable.classList.add('hidden');
+        btnGrid.className = 'px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-white text-purple-700 shadow-2xs';
+        btnTable.className = 'px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-all text-slate-600 hover:text-slate-900';
+      });
+
+      btnTable.addEventListener('click', function () {
+        viewTable.classList.remove('hidden');
+        viewGrid.classList.add('hidden');
+        btnTable.className = 'px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-white text-purple-700 shadow-2xs';
+        btnGrid.className = 'px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-all text-slate-600 hover:text-slate-900';
+      });
+    }
+
+    // Modal Handlers
+    const openModalButtons = document.querySelectorAll('.open-modal');
+    const closeModalButtons = document.querySelectorAll('.close-modal');
+
+    openModalButtons.forEach(button => {
+      button.addEventListener('click', function (event) {
+        event.preventDefault();
+        const targetModalId = this.dataset.target;
+        const targetModal = document.querySelector(targetModalId);
+        if (targetModal) {
+          targetModal.classList.remove('hidden');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+    });
+
+    closeModalButtons.forEach(button => {
+      button.addEventListener('click', function (event) {
+        event.preventDefault();
+        const targetModalId = this.dataset.target;
+        const targetModal = document.querySelector(targetModalId);
+        if (targetModal) {
+          targetModal.classList.add('hidden');
+          document.body.style.overflow = '';
+        }
+      });
+    });
+
+    document.addEventListener('click', function (event) {
+      document.querySelectorAll('.fixed.inset-0.z-50:not(.hidden)').forEach(modal => {
+        if (event.target === modal) {
+          modal.classList.add('hidden');
+          document.body.style.overflow = '';
+        }
+      });
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') {
+        document.querySelectorAll('.fixed.inset-0.z-50:not(.hidden)').forEach(modal => {
+          modal.classList.add('hidden');
+          document.body.style.overflow = '';
+        });
+      }
+    });
+  });
+</script>
+
+
+        </main>
+        
+
+
+        <footer class="relative bg-purple-950 text-white overflow-hidden">
+          <!-- Üst dalga şekli -->
+          <div class="absolute top-0 left-0 w-full overflow-hidden pointer-events-none">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="w-full h-12 sm:h-16 -mt-1 text-gray-50 fill-current" preserveAspectRatio="none">
+              <path d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,224C1248,203,1344,181,1392,170.7L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+            </svg>
+          </div>
+
+          <!-- Ana footer içeriği -->
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8 relative z-10">
+            <!-- Üst bölüm: Bülten ve istatistikler -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10 mb-12">
+              <!-- Bülten aboneliği -->
+              <div class="lg:col-span-1 bg-white/10 backdrop-blur-sm rounded-2xl p-4 sm:p-6 transition-all duration-300">
+                <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-4 text-white">Yeniliklerden Haberdar Olun</h3>
+                <p class="text-xs sm:text-sm text-gray-200 mb-4">Yeni kampanyalar ve fırsatlar hakkında bilgi almak için bültenimize abone olun.</p>
+                <form id="footerNewsletterForm" class="flex flex-col sm:flex-row gap-2">
+                  <input type="hidden" name="csrfmiddlewaretoken" value="SzNcLIKsAESO5l6m7QrdTDU0QHvJX1WniANLBhu4YuosmCb1tYUOJIumGt68BASq">
+                  <input type="hidden" name="subscription_type" value="news">
+                  <input type="email" name="email" id="footer_newsletter_email" placeholder="E-posta adresiniz" class="w-full sm:flex-1 min-w-0 px-3 sm:px-4 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400 bg-white/20 placeholder-gray-300 text-white text-sm" required>
+                  <button type="submit" class="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 rounded-xl font-semibold transition-all duration-300 text-white text-sm shrink-0">Abone Ol</button>
+                </form>
+                <div class="flex items-center mt-3 mb-2">
+                    <input type="checkbox" id="footer_newsletter_kvkk" class="h-5 w-5 text-amber-500 focus:ring-amber-400 border-gray-300 rounded mr-2" required>
+                    <label for="footer_newsletter_kvkk" class="text-white text-xs select-none">Kişisel Verilerin Korunması Kanunu uyarınca hazırlanan <a href="https://kfs.trinkfon.com/media/agreements/templates/TrinkFon_Ayd%C4%B1nlatma_Metni.pdf/" target="_blank" class="underline hover:text-amber-400">Aydınlatma Metni</a>'ni okuduysanız lütfen soldaki kutucuğu işaretleyiniz.*</label>
+                </div>
+                <div id="footer_newsletter_kvkk_error" class="hidden text-red-300 text-xs mb-2">Lütfen KVKK onay kutusunu işaretleyiniz.</div>
+                            <div class="flex items-center mt-2 mb-2">
+                <input type="checkbox" id="footer_newsletter_commercial" class="h-5 w-5 text-amber-500 focus:ring-amber-400 border-gray-300 rounded mr-2">
+                <label for="footer_newsletter_commercial" class="text-white text-xs select-none">Bülten üyeliği kapsamında e-posta şeklinde elektronik ticari elektronik iletilere tarafıma gönderilmesine onay veriyorum.</label>
+            </div>
+                <div id="footer_newsletter_commercial_error" class="hidden text-red-300 text-xs mb-2">Lütfen ticari iletişim onay kutusunu işaretleyiniz.</div>
+                <div id="footer_newsletter_message" class="mt-4 text-white text-sm"></div>
+              </div>
+
+              <!-- Platform istatistikleri -->
+              <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6">
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 sm:p-6 text-center transition-all duration-300">
+                  <div class="text-amber-400 text-2xl sm:text-3xl font-bold mb-1 sm:mb-2">1</div>
+                  <div class="text-xs sm:text-sm text-gray-200">Başarılı Kampanya</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 sm:p-6 text-center transition-all duration-300">
+                  <div class="text-amber-400 text-xl sm:text-2xl font-bold mb-1 sm:mb-2 tracking-tight">₺3.914.313</div>
+                  <div class="text-xs sm:text-sm text-gray-200">Toplanan Fon</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 sm:p-6 text-center transition-all duration-300">
+                  <div class="text-amber-400 text-2xl sm:text-3xl font-bold mb-1 sm:mb-2">128</div>
+                  <div class="text-xs sm:text-sm text-gray-200">Yatırımcı</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Ana linkler bölümü -->
+            <div class="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:grid-cols-5 mb-12">
+              <!-- Kurumsal -->
+              <div>
+                <h2 class="mb-6 text-lg font-bold text-amber-400 uppercase">Kurumsal</h2>
+                <ul class="space-y-3">
+                  <li>
+                    <a href="/" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">Anasayfa</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/hakkimizda/" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">Hakkımızda</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/yatirim-komitesi/" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">Yatırım Komitesi</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/yonetim-kurulu/" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">Yönetim Kurulu</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/duyurular/" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">Duyurular</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/iletisim/" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">İletişim</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Trinkfon -->
+              <div>
+                <h2 class="mb-6 text-lg font-bold text-amber-400 uppercase">Trinkfon</h2>
+                <ul class="space-y-3">
+                  <li>
+                    <a href="/projeler/yeni-proje-ekle/" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">Kampanyanı Gönder</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.trinkfon.com/yasal-metinler/%C3%BCyelik-ve-platform-kullanim-s%C3%B6zle%C5%9Fmesi/" target="_blank" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">Üyelik Sözleşmesi</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/forum" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">Forum</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/projeler/hedefine-ulasamayanlar/" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">Hedefine Ulaşamayanlar</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/projeler/hedefine-ulasamayanlar/#iptal-edilen-kampanyalar" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">İptal Edilen Kampanyalar</span>
+                    </a>
+                  </li>
+                  <li>
+                    <button onclick="window.reopenCookieSettings()" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group text-left">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">Çerez Ayarları</span>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Politikalar -->
+              <div>
+                <h2 class="mb-6 text-lg font-bold text-amber-400 uppercase">Politikalar</h2>
+                <ul class="space-y-3">
+                  <li>
+                    <a href="https://trinkfon.com/politikalar/kalite-politikas%C4%B1/" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">Kalite Politikası</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://trinkfon.com/politikalar/de%C4%9Ferlendirme-politikas%C4%B1/" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">Değerlendirme Politikası</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://trinkfon.com/politikalar/%C3%A7%C4%B1kar-%C3%A7at%C4%B1%C5%9Fmas%C4%B1-politikas%C4%B1/" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">Çıkar Çatışması Politikası</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://trinkfon.com/politikalar/karapara-aklaman%C4%B1n-ve-ter%C3%B6rizmin-finansman%C4%B1n%C4%B1n-%C3%B6nlenmesi-politikas%C4%B1/" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">Karapara Aklamanın ve Terörizmin Finansmanının Önlenmesi Politikası</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://trinkfon.com/politikalar/r%C3%BC%C5%9Fvet-ve-yolsuzlukla-m%C3%BCcadele-politikas%C4%B1/" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">Rüşvet ve Yolsuzlukla Mücadele Politikası</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://trinkfon.com/politikalar/insan-kaynaklar%C4%B1-politikas%C4%B1/" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">İnsan Kaynakları Politikası</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://trinkfon.com/politikalar/kamuyu-ayd%C4%B1nlatma-ve-%C5%9Feffafl%C4%B1k-politikas%C4%B1/" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">Kamuyu Aydınlatma ve Şeffaflık Politikası</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Yasal Metinler -->
+              <div>
+                <h2 class="mb-6 text-lg font-bold text-amber-400 uppercase">Yasal Metinler</h2>
+                <ul class="space-y-3">
+                  <li>
+                    <a href="https://trinkfon.com/yasal-metinler/trinkfon-kitle-fonlama-platformu-a%C5%9F-paya-dayali-kitle-fonlamasi-faaliyetleri-genel-risk-bildirimi/" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">Genel Risk Bildirimi</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://trinkfon.com/yasal-metinler/%C3%BCyelik-ve-platform-kullanim-s%C3%B6zle%C5%9Fmesi/" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">Üyelik ve Platform Kullanım Sözleşmesi</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://trinkfon.com/yasal-metinler/kitle-fonlama-kampanyasi-s%C3%B6zle%C5%9Fmesi/" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">Kampanya Sözleşmesi</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://trinkfon.com/yasal-metinler/trinkfon-kitle-fonlama-platformu-a%C5%9F-%C3%BCcret-ve-kesintiler-h%C3%BCk%C3%BCmleri/" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">Ücret Kesintiler</span>
+                    </a>
+                  </li>
+                  <!-- <li>
+                    <a href="https://trinkfon.com/yasal-metinler/istatistik/" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">İstatistik</span>
+                    </a>
+                  </li> -->
+                  <li>
+                    <a href="https://trinkfon.com/yasal-metinler/finansal-tablo/" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">Finansal Tablo</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://trinkfon.com/yasal-metinler/ikincil-alim-satim/" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">İkincil Alım Satım</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Kişisel Verilerin Korunması -->
+              <div>
+                <h2 class="mb-6 text-lg font-bold text-amber-400 uppercase">Kişisel Verilerin Korunması</h2>
+                <ul class="space-y-3">
+                  <li>
+                    <a href="/media/agreements/templates/docx/07_TRİNKFON_Kişisel_Verilerin_Korunması_Politikası_12_08_2024_.docx" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">Kişisel Verilerin Korunması Politikası</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://trinkfon.com/kvkk/bilgi-g%C3%BCvenli%C4%9Fi-politikas%C4%B1/" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">Bilgi Güvenliği Politikası</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://kfs.trinkfon.com/media/agreements/templates/TrinkFon_Ayd%C4%B1nlatma_Metni.pdf/" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">Aydınlatma Metni</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.trinkfon.com/politikalar/%C3%A7erez-ayd%C4%B1nlatma-metni/" class="text-gray-200 hover:text-white transition-all duration-300 flex items-center group">
+                      <span class="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+                      <span class="border-b border-transparent group-hover:border-amber-400">Çerez Aydınlatma Metni</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="mb-12">
+              <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-4">
+                <a href="https://spk.gov.tr/" target="_blank" rel="noopener noreferrer" aria-label="SPK" class="group flex h-14 sm:h-[4.7rem] md:h-[5.35rem] w-28 sm:w-40 md:w-48 items-center justify-center rounded-xl sm:rounded-2xl border border-white/15 bg-white/95 px-2.5 sm:px-4 py-2 shadow-md transition-all duration-300 hover:-translate-y-1">
+                  <img src="/static/partners/spk.562ac1c78f11.png" alt="SPK" class="h-8 sm:h-[4.05rem] md:h-[4.35rem] w-auto max-w-[90px] sm:max-w-[112px] object-contain" loading="lazy">
+                </a>
+                <a href="https://www.mkk.com.tr/" target="_blank" rel="noopener noreferrer" aria-label="MKK" class="group flex h-14 sm:h-[4.7rem] md:h-[5.35rem] w-28 sm:w-40 md:w-48 items-center justify-center rounded-xl sm:rounded-2xl border border-white/15 bg-white/95 px-2.5 sm:px-4 py-2 shadow-md transition-all duration-300 hover:-translate-y-1">
+                  <img src="/static/partners/mkk.66eb2468cc4d.png" alt="MKK" class="h-7 sm:h-[3.8rem] md:h-[4.15rem] w-auto max-w-[100px] sm:max-w-[220px] scale-[1.1] sm:scale-[1.24] object-contain" loading="lazy">
+                </a>
+                <a href="https://www.takasbank.com.tr/" target="_blank" rel="noopener noreferrer" aria-label="Takasbank" class="group flex h-14 sm:h-[4.7rem] md:h-[5.35rem] w-28 sm:w-40 md:w-48 items-center justify-center rounded-xl sm:rounded-2xl border border-white/15 bg-white/95 px-2.5 sm:px-4 py-2 shadow-md transition-all duration-300 hover:-translate-y-1">
+                  <img src="/static/partners/takasbank.9dc147960599.png" alt="Takasbank" class="h-6 sm:h-9 md:h-10 w-auto max-w-[100px] sm:max-w-[152px] object-contain" loading="lazy">
+                </a>
+                <a href="https://www.turkiye.gov.tr/" target="_blank" rel="noopener noreferrer" aria-label="e-Devlet" class="group flex h-14 sm:h-[4.7rem] md:h-[5.35rem] w-28 sm:w-40 md:w-48 items-center justify-center rounded-xl sm:rounded-2xl border border-white/15 bg-white/95 px-2.5 sm:px-4 py-2 shadow-md transition-all duration-300 hover:-translate-y-1">
+                  <img src="/static/partners/e-devlet.6882358c60fc.png" alt="e-Devlet" class="h-6 sm:h-9 md:h-10 w-auto max-w-[100px] sm:max-w-[166px] object-contain" loading="lazy">
+                </a>
+                <a href="https://eyatirimci.mkk.com.tr/" target="_blank" rel="noopener noreferrer" aria-label="e-Yatirimci" class="group flex h-14 sm:h-[4.7rem] md:h-[5.35rem] w-28 sm:w-40 md:w-48 items-center justify-center rounded-xl sm:rounded-2xl border border-white/15 bg-white/95 px-2.5 sm:px-4 py-2 shadow-md transition-all duration-300 hover:-translate-y-1">
+                  <img src="/static/partners/e-yatirimci.1031ece6eac6.png" alt="e-Yatirimci" class="h-6 sm:h-9 md:h-10 w-auto max-w-[100px] sm:max-w-[156px] object-contain" loading="lazy">
+                </a>
+              </div>
+            </div>
+
+            <!-- Logo ile ayırıcı -->
+            <div class="flex items-center justify-center mb-8">
+              <div class="h-px bg-purple-500/20 w-full"></div>
+              <div class="px-4">
+                <a href="/" class="flex items-center justify-center">
+                  <img src="/static/brand/logo.5d775c410d4e.webp" class="w-32 h-32 object-contain" alt="Trinkfon Logo" width="128" height="128" loading="lazy" decoding="async">
+                </a>
+              </div>
+              <div class="h-px bg-purple-500/20 w-full"></div>
+            </div>
+
+            <!-- Alt bölüm: telif hakkı ve sosyal medya -->
+            <div class="flex flex-col md:flex-row justify-between items-center">
+              <div class="text-center md:text-left mb-6 md:mb-0">
+                <p class="text-gray-300 text-sm">© 2026 <span class="font-semibold text-white">Trinkfon™</span>. Tüm hakları saklıdır.</p>
+                <p class="text-gray-400 text-xs mt-1">Trinkfon, SPK tarafından yetkilendirilmiş bir kitle fonlama platformudur.</p>
+              </div>
+
+              <!-- Sosyal medya ikonları -->
+              <div class="flex justify-center space-x-4">
+                <a href="https://www.linkedin.com/company/trinkfon/" class="group" title="LinkedIn">
+                  <div class="bg-white/10 hover:bg-[#0077B5] p-3 rounded-full transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
+                    <svg class="w-5 h-5 text-gray-300 group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                      <path fill-rule="evenodd" d="M12.51 8.796v1.697a3.738 3.738 0 0 1 3.288-1.684c3.455 0 4.202 2.16 4.202 4.97V19.5h-3.2v-5.072c0-1.21-.244-2.766-2.128-2.766-1.827 0-2.139 1.317-2.139 2.676V19.5h-3.19V8.796h3.168ZM7.2 6.106a1.61 1.61 0 0 1-.988 1.483 1.595 1.595 0 0 1-1.743-.348A1.607 1.607 0 0 1 5.6 4.5a1.601 1.601 0 0 1 1.6 1.606Z" clip-rule="evenodd"></path>
+                      <path d="M7.2 8.809H4V19.5h3.2V8.809Z"></path>
+                    </svg>
+                  </div>
+                </a>
+                <a href="https://www.facebook.com/TrinkFon" class="group" title="Facebook">
+                  <div class="bg-white/10 hover:bg-[#1877F2] p-3 rounded-full transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
+                    <svg class="w-5 h-5 text-gray-300 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2.00195 12.002C2.00312 16.9214 5.58036 21.1101 10.439 21.881V14.892H7.90195V12.002H10.442V9.80204C10.3284 8.75958 10.6845 7.72064 11.4136 6.96698C12.1427 6.21332 13.1693 5.82306 14.215 5.90204C14.9655 5.91417 15.7141 5.98101 16.455 6.10205V8.56104H15.191C14.7558 8.50405 14.3183 8.64777 14.0017 8.95171C13.6851 9.25566 13.5237 9.68693 13.563 10.124V12.002H16.334L15.891 14.893H13.563V21.881C18.8174 21.0506 22.502 16.2518 21.9475 10.9611C21.3929 5.67041 16.7932 1.73997 11.4808 2.01722C6.16831 2.29447 2.0028 6.68235 2.00195 12.002Z"></path>
+                    </svg>
+                  </div>
+                </a>
+                <a href="https://x.com/trinkfon" class="group" title="X (Twitter)">
+                  <div class="bg-white/10 hover:bg-black p-3 rounded-full transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
+                    <svg class="w-5 h-5 text-gray-300 group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M13.795 10.533 20.68 2h-3.073l-5.255 6.517L7.69 2H1l7.806 10.91L1.47 22h3.074l5.705-7.07L15.31 22H22l-8.205-11.467Zm-2.38 2.95L9.97 11.464 4.36 3.627h2.31l4.528 6.317 1.443 2.02 6.018 8.409h-2.31l-4.934-6.89Z"></path>
+                    </svg>
+                  </div>
+                </a>
+                <a href="https://www.youtube.com/@trinkfon" class="group" title="YouTube">
+                  <div class="bg-white/10 hover:bg-[#FF0000] p-3 rounded-full transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
+                    <svg class="w-5 h-5 text-gray-300 group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                      <path fill-rule="evenodd" d="M21.7 8.037a4.26 4.26 0 0 0-.789-1.964 2.84 2.84 0 0 0-1.984-.839c-2.767-.2-6.926-.2-6.926-.2s-4.157 0-6.928.2a2.836 2.836 0 0 0-1.983.839 4.225 4.225 0 0 0-.79 1.965 30.146 30.146 0 0 0-.2 3.206v1.5a30.12 30.12 0 0 0 .2 3.206c.094.712.364 1.39.784 1.972.604.536 1.38.837 2.187.848 1.583.151 6.731.2 6.731.2s4.161 0 6.928-.2a2.844 2.844 0 0 0 1.985-.84 4.27 4.27 0 0 0 .787-1.965 30.12 30.12 0 0 0 .2-3.206v-1.516a30.672 30.672 0 0 0-.202-3.206Zm-11.692 6.554v-5.62l5.4 2.819-5.4 2.801Z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                </a>
+                <a href="https://www.instagram.com/trinkfon/" class="group" title="Instagram">
+                  <div class="bg-white/10 hover:bg-[#E1306C] p-3 rounded-full transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
+                    <svg class="w-5 h-5 text-gray-300 group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                  </div>
+                </a>
+                <a href="https://www.tiktok.com/@trinkfon" class="group" title="TikTok">
+                  <div class="bg-white/10 hover:bg-black p-3 rounded-full transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
+                    <svg class="w-5 h-5 text-gray-300 group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 448 512">
+                      <path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a72.27,72.27,0,1,0,72.15,72.27V0H387.36A122.83,122.83,0,0,0,448,76.91Z"></path>
+                    </svg>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </footer>
+        
+      
+      <style>
+        .popup-message {
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          padding: 15px;
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          z-index: 1000;
+          display: none;
+        }
+        .error {
+          background-color: #b30808;
+          color: #fff;
+        }
+        .success {
+          background-color: #12ae39;
+          color: #fff;
+        }
+      </style>
+
+      </div>
+    <script src="/static/vendor/flowbite-1.8.1.min.86941942a8e0.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          // Mesaj gösterme
+          // Only show the shared toast for messages stored in the hidden
+          // message queue. Page-specific alert boxes remain in their layout.
+          var messages = document.querySelector('.page-alerts')
+              ? []
+              : document.querySelectorAll('.messages .alert');
+          messages.forEach(function(message) {
+            var popup = document.createElement('div');
+            popup.className = 'popup-message ' + message['classList']['1'];
+            popup.innerText = message.innerText;
+            document.body.appendChild(popup);
+            popup.style.display = 'block';
+            setTimeout(function() {
+              popup.style.display = 'none';
+            }, 5000);
+          });
+
+          // Footer newsletter subscription form
+          const footerNewsletterForm = document.getElementById('footerNewsletterForm');
+          const footerNewsletterKvkk = document.getElementById('footer_newsletter_kvkk');
+          const footerNewsletterKvkkError = document.getElementById('footer_newsletter_kvkk_error');
+          const footerNewsletterCommercial = document.getElementById('footer_newsletter_commercial');
+          const footerNewsletterCommercialError = document.getElementById('footer_newsletter_commercial_error');
+          if (footerNewsletterForm) {
+              footerNewsletterForm.addEventListener('submit', function(e) {
+                  e.preventDefault(); // Her durumda klasik submiti engelle
+                  if (!footerNewsletterKvkk.checked) {
+                      footerNewsletterKvkkError.classList.remove('hidden');
+                      footerNewsletterKvkk.focus();
+                      return;
+                  } else {
+                      footerNewsletterKvkkError.classList.add('hidden');
+                  }
+                  if (!footerNewsletterCommercial.checked) {
+                      footerNewsletterCommercialError.classList.remove('hidden');
+                      footerNewsletterCommercial.focus();
+                      return;
+                  } else {
+                      footerNewsletterCommercialError.classList.add('hidden');
+                  }
+                  const formData = new FormData(this);
+                  formData.append('commercial_consent', footerNewsletterCommercial.checked);
+                  const messageDiv = document.getElementById('footer_newsletter_message');
+                  // Clear previous messages
+                  messageDiv.innerHTML = '';
+                  messageDiv.classList.remove('text-green-300', 'text-red-300');
+                  // Show loading message
+                  messageDiv.innerHTML = 'Gönderiliyor...';
+                  fetch('/hesaplar/subscribe-newsletter/', {
+                      method: 'POST',
+                      body: formData,
+                      headers: {
+                          'X-Requested-With': 'XMLHttpRequest'
+                      }
+                  })
+                  .then(response => response.json())
+                  .then(data => {
+                      if (data.status === 'success') {
+                          messageDiv.classList.add('text-green-300');
+                          messageDiv.innerHTML = data.message;
+                          footerNewsletterForm.reset();
+                          footerNewsletterKvkk.checked = false;
+                          footerNewsletterCommercial.checked = false;
+                      } else {
+                          messageDiv.classList.add('text-red-300');
+                          if (data.errors && data.errors.email) {
+                              messageDiv.innerHTML = data.errors.email[0];
+                          } else {
+                              messageDiv.innerHTML = data.message || 'Bir hata oluştu. Lütfen tekrar deneyin.';
+                          }
+                      }
+                  })
+                  .catch(error => {
+                      messageDiv.classList.add('text-red-300');
+                      messageDiv.innerHTML = 'Bir hata oluştu. Lütfen tekrar deneyin.';
+                      console.error('Error:', error);
+                  });
+              });
+          }
+      });
+    </script>
+    
+
+    <!-- KVKK Uyumlu Modern Çerez Banner -->
+    <div id="cookieBanner" class="fixed bottom-3 left-3 right-3 sm:left-auto sm:right-6 sm:bottom-6 sm:max-w-md bg-white/95 backdrop-blur-md border border-purple-200/80 rounded-2xl shadow-2xl z-50 p-4 sm:p-5 transform translate-y-full transition-transform duration-500 ease-in-out" style="display: none;">
+        <div class="flex items-start gap-3">
+            <div class="w-9 h-9 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
+                <i class="fas fa-cookie-bite text-base"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+                <h4 class="text-sm font-bold text-gray-900">Çerez Tercihleri</h4>
+                <p class="text-xs text-gray-600 mt-1 leading-relaxed">
+                    Sitemizde deneyiminizi geliştirmek ve istatistiksel analizler için çerezler kullanıyoruz.
+                    <a href="https://www.trinkfon.com/politikalar/%C3%A7erez-ayd%C4%B1nlatma-metni/" target="_blank" class="text-purple-600 underline font-medium hover:text-purple-800">Çerez Politikası</a>
+                </p>
+                <div class="mt-3 flex flex-wrap gap-2">
+                    <button id="cookieAccept" class="px-3.5 py-1.5 text-xs font-semibold text-white bg-purple-600 hover:bg-purple-700 rounded-lg shadow-xs transition-colors">Tümünü Kabul Et</button>
+                    <button id="cookieReject" class="px-3 py-1.5 text-xs font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors">Sadece Gerekli</button>
+                    <button id="cookieSettings" class="px-3 py-1.5 text-xs font-medium text-purple-600 hover:bg-purple-50 rounded-lg transition-colors">Ayarlar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Çerez Ayarları Modal -->
+    <div id="cookieModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4" style="display: none;">
+        <div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between p-6 border-b border-gray-200">
+                <h2 class="text-xl font-bold text-gray-900">Çerez Tercihleri</h2>
+                <button id="closeModal" type="button" aria-label="Çerez ayarlarını kapat" class="text-gray-400 hover:text-gray-600 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 space-y-6">
+                <p class="text-sm text-gray-600">
+                    Aşağıdaki çerez kategorilerini inceleyerek tercihlerinizi belirleyebilirsiniz. Bazı çerezler web sitesinin düzgün çalışması için zorunludur.
+                </p>
+
+                <!-- Zorunlu Çerezler -->
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="font-semibold text-gray-900">Zorunlu Çerezler</h3>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="essential" checked disabled class="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500">
+                            <label for="essential" class="ml-2 text-sm text-gray-500">Her zaman aktif</label>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600">
+                        Bu çerezler web sitesinin temel işlevlerini yerine getirmek için gereklidir. Güvenlik, oturum yönetimi ve temel site işlevselliği için kullanılır.
+                    </p>
+                </div>
+
+                <!-- Performans Çerezleri -->
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="font-semibold text-gray-900">Performans ve Analitik Çerezleri</h3>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="analytics" class="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500">
+                            <label for="analytics" class="ml-2 text-sm text-gray-900">Kabul et</label>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600">
+                        Bu çerezler web sitesinin performansını ölçmek ve iyileştirmek için kullanılır. Ziyaretçi sayısı, sayfa görüntülemeleri ve trafik kaynakları hakkında anonim bilgi toplar.
+                    </p>
+                </div>
+
+                <!-- İşlevsellik Çerezleri -->
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="font-semibold text-gray-900">İşlevsellik Çerezleri</h3>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="functional" class="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500">
+                            <label for="functional" class="ml-2 text-sm text-gray-900">Kabul et</label>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600">
+                        Bu çerezler gelişmiş işlevsellik ve kişiselleştirme sağlar. Dil tercihleri, bölge ayarları ve kullanıcı deneyimini iyileştiren özellikler için kullanılır.
+                    </p>
+                </div>
+
+                <!-- Pazarlama Çerezleri -->
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="font-semibold text-gray-900">Pazarlama ve Reklam Çerezleri</h3>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="marketing" class="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500">
+                            <label for="marketing" class="ml-2 text-sm text-gray-900">Kabul et</label>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600">
+                        Bu çerezler size daha alakalı reklamlar göstermek için kullanılır. Çevrimiçi davranışınızı takip eder ve ilgi alanlarınıza göre özelleştirilmiş içerik sunar.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="flex flex-col sm:flex-row gap-3 p-6 border-t border-gray-200">
+                <button id="savePreferences" class="flex-1 px-4 py-2 text-sm font-medium text-white bg-purple-600 rounded-lg hover:bg-purple-700 transition-colors duration-200">
+                    Tercihleri Kaydet
+                </button>
+                <button id="acceptAll" class="flex-1 px-4 py-2 text-sm font-medium text-purple-600 bg-purple-50 border border-purple-600 rounded-lg hover:bg-purple-100 transition-colors duration-200">
+                    Tümünü Kabul Et
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Çerez Banner JavaScript -->
+    <script>
+        // Çerez yönetimi
+        class CookieManager {
+            constructor() {
+                this.cookieConsent = this.getCookieConsent();
+                this.init();
+            }
+
+            init() {
+                // Eğer daha önce tercih yapılmamışsa banner'ı göster
+                if (!this.cookieConsent.hasConsent) {
+                    this.showBanner();
+                } else {
+                    // Mevcut tercihlere göre çerezleri yükle
+                    this.loadCookies();
+                }
+
+                this.bindEvents();
+            }
+
+            bindEvents() {
+                // Banner butonları
+                document.getElementById('cookieAccept')?.addEventListener('click', () => this.acceptAll());
+                document.getElementById('cookieReject')?.addEventListener('click', () => this.rejectAll());
+                document.getElementById('cookieSettings')?.addEventListener('click', () => this.showModal());
+
+                // Modal butonları
+                document.getElementById('closeModal')?.addEventListener('click', () => this.hideModal());
+                document.getElementById('savePreferences')?.addEventListener('click', () => this.savePreferences());
+                document.getElementById('acceptAll')?.addEventListener('click', () => this.acceptAll());
+
+                // Modal dışına tıklama
+                document.getElementById('cookieModal')?.addEventListener('click', (e) => {
+                    if (e.target.id === 'cookieModal') {
+                        this.hideModal();
+                    }
+                });
+            }
+
+            showBanner() {
+                const banner = document.getElementById('cookieBanner');
+                if (banner) {
+                    banner.style.display = 'block';
+                    setTimeout(() => {
+                        banner.classList.remove('translate-y-full');
+                    }, 100);
+                }
+            }
+
+            hideBanner() {
+                const banner = document.getElementById('cookieBanner');
+                if (banner) {
+                    banner.classList.add('translate-y-full');
+                    setTimeout(() => {
+                        banner.style.display = 'none';
+                    }, 500);
+                }
+            }
+
+            showModal() {
+                const modal = document.getElementById('cookieModal');
+                if (modal) {
+                    // Mevcut tercihleri modal'a yansıt
+                    document.getElementById('analytics').checked = this.cookieConsent.analytics;
+                    document.getElementById('functional').checked = this.cookieConsent.functional;
+                    document.getElementById('marketing').checked = this.cookieConsent.marketing;
+                    
+                    modal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+
+            hideModal() {
+                const modal = document.getElementById('cookieModal');
+                if (modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = '';
+                }
+            }
+
+            acceptAll() {
+                this.cookieConsent = {
+                    hasConsent: true,
+                    essential: true,
+                    analytics: true,
+                    functional: true,
+                    marketing: true,
+                    timestamp: new Date().toISOString()
+                };
+                this.saveCookieConsent();
+                this.loadCookies();
+                this.hideBanner();
+                this.hideModal();
+            }
+
+            rejectAll() {
+                const analyticsWasLoaded = !!document.getElementById('google-analytics-script');
+                this.cookieConsent = {
+                    hasConsent: true,
+                    essential: true,
+                    analytics: false,
+                    functional: false,
+                    marketing: false,
+                    timestamp: new Date().toISOString()
+                };
+                this.saveCookieConsent();
+                this.loadCookies();
+                this.hideBanner();
+                if (analyticsWasLoaded) location.reload();
+            }
+
+            savePreferences() {
+                const analyticsWasLoaded = !!document.getElementById('google-analytics-script');
+                this.cookieConsent = {
+                    hasConsent: true,
+                    essential: true,
+                    analytics: document.getElementById('analytics').checked,
+                    functional: document.getElementById('functional').checked,
+                    marketing: document.getElementById('marketing').checked,
+                    timestamp: new Date().toISOString()
+                };
+                this.saveCookieConsent();
+                this.loadCookies();
+                this.hideBanner();
+                this.hideModal();
+                if (analyticsWasLoaded && !this.cookieConsent.analytics) location.reload();
+            }
+
+            loadCookies() {
+                // Google Analytics
+                if (this.cookieConsent.analytics) {
+                    this.loadGoogleAnalytics();
+                }
+
+                // Diğer pazarlama çerezleri
+                if (this.cookieConsent.marketing) {
+                    this.loadMarketingCookies();
+                }
+
+                // İşlevsellik çerezleri
+                if (this.cookieConsent.functional) {
+                    this.loadFunctionalCookies();
+                }
+            }
+
+            loadGoogleAnalytics() {
+                if (document.getElementById('google-analytics-script')) return;
+                window.dataLayer = window.dataLayer || [];
+                window.gtag = function() { window.dataLayer.push(arguments); };
+                window.gtag('js', new Date());
+                window.gtag('config', 'G-VFHBDGZ0T5');
+                const script = document.createElement('script');
+                script.id = 'google-analytics-script';
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=G-VFHBDGZ0T5';
+                document.head.appendChild(script);
+            }
+
+            loadMarketingCookies() {
+                // Pazarlama çerezleri yükleme kodu buraya eklenebilir
+                console.log('Pazarlama çerezleri yüklendi');
+            }
+
+            loadFunctionalCookies() {
+                // İşlevsellik çerezleri yükleme kodu buraya eklenebilir
+                console.log('İşlevsellik çerezleri yüklendi');
+            }
+
+            getCookieConsent() {
+                const consent = localStorage.getItem('trinkfon_cookie_consent');
+                if (consent) {
+                    try {
+                        return JSON.parse(consent);
+                    } catch (e) {
+                        return { hasConsent: false };
+                    }
+                }
+                return { hasConsent: false };
+            }
+
+            saveCookieConsent() {
+                localStorage.setItem('trinkfon_cookie_consent', JSON.stringify(this.cookieConsent));
+                
+                // Zorunlu çerez olarak da kaydet (1 yıl)
+                const expiryDate = new Date();
+                expiryDate.setFullYear(expiryDate.getFullYear() + 1);
+                document.cookie = `trinkfon_cookie_consent=${JSON.stringify(this.cookieConsent)}; expires=${expiryDate.toUTCString()}; path=/; SameSite=Lax`;
+            }
+        }
+
+        // Sayfa yüklendiğinde çerez yöneticisini başlat
+        let cookieManager;
+        document.addEventListener('DOMContentLoaded', function() {
+            cookieManager = new CookieManager();
+        });
+
+        // Çerez tercihlerini yeniden açma fonksiyonu (footer'dan çağrılabilir)
+        window.reopenCookieSettings = function() {
+            cookieManager?.showModal();
+        };
+
+    </script>
+</body>
+</html>
