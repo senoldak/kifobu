@@ -49,6 +49,13 @@ export const AKTIF_KAMPANYALAR: KampanyaKaynagi[] = [
     degerleme: 50_000_000,
   },
   {
+    ad: 'VISITEXTRA',
+    platform: 'fonangels',
+    url: 'https://fonangels.com/kampanyalar/projehakkinda/visitextra?pid=1803',
+    hedefFon: 5_000_000,
+    degerleme: 50_000_000,
+  },
+  {
     ad: 'PUPAQ',
     platform: 'trinkfon',
     url: 'https://kfs.trinkfon.com/projeler/pupaq/kampanya/',
