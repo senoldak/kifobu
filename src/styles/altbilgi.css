@@ -1,0 +1,399 @@
+/* Altbilgi ve dar ekran menüsü (17.11.2026). Mürekkep zemin, altta Besler'in Hortus Eystettensis ayçiçeği
+   (1613, kamu malı) yükselen güneş gibi, iki renkli gravür maskesi olarak; renk CSS'ten gelir. Eski .site-alt kuralları global.css'te. */
+
+.kf-fot {
+  --fot-bg: #141a17;
+  --fot-yazi: #f7f5ef;
+  --fot-soluk: rgb(247 245 239 / 0.72);
+  --fot-cizgi: rgb(247 245 239 / 0.22);
+  --fot-kara: #f7f5ef;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--fot-bg);
+  color: var(--fot-soluk);
+  border-top: 10px solid var(--marka-sari);
+  padding: 80px 0 0;
+  font-family: var(--yazi);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.kf-fot .fot-korn {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  opacity: 0.08;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.kf-fot a {
+  color: var(--fot-yazi);
+}
+
+.kf-fot a:hover {
+  color: var(--marka-sari);
+}
+
+.kf-fot .fot-bas {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: end;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--fot-cizgi);
+}
+
+.kf-fot .fot-logo .marka {
+  gap: 0.22em;
+  font-size: clamp(3rem, 7vw, 5.75rem);
+  color: var(--fot-yazi);
+}
+
+.kf-fot .fot-bas .fot-logo .marka .marka-isim {
+  font-size: 1em;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.kf-fot .fot-bas .fot-logo .marka .marka-isaret {
+  width: 0.95em;
+  height: 0.95em;
+}
+
+.kf-fot .fot-slogan {
+  margin: 18px 0 0;
+  font-size: clamp(1.4rem, 2.4vw, 2.1rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--fot-yazi);
+}
+
+.kf-fot .fot-kunye {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+}
+
+.kf-fot .fot-kunye dt {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fot-soluk);
+}
+
+.kf-fot .fot-kunye dd {
+  margin: 6px 0 0;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--fot-yazi);
+}
+
+.kf-fot .fot-sosyal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.kf-fot .fot-sosyal a {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--fot-cizgi);
+  border-radius: 50%;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.kf-fot .fot-sosyal a:hover {
+  background: var(--marka-sari);
+  border-color: var(--marka-sari);
+  color: var(--murekkep);
+}
+
+.kf-fot .fot-lenkler {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 40px;
+  padding: 48px 0;
+}
+
+.kf-fot .fot-lenkler h2 {
+  position: relative;
+  margin: 0 0 20px;
+  padding-bottom: 14px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--fot-yazi);
+}
+
+.kf-fot .fot-lenkler h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 32px;
+  height: 2px;
+  background: var(--marka-sari);
+}
+
+.kf-fot .fot-lenkler ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.kf-fot .fot-lenkler li a {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.kf-fot .fot-notlar {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 48px;
+  padding: 24px 0;
+  border-top: 1px solid var(--fot-cizgi);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.kf-fot .fot-notlar p {
+  margin: 0;
+  max-width: 64ch;
+}
+
+.kf-fot .fot-notlar a {
+  text-decoration: underline;
+  text-decoration-color: var(--fot-cizgi);
+  text-underline-offset: 0.2em;
+}
+
+.kf-fot .fot-alt {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 24px;
+  padding: 16px 0;
+  border-top: 1px solid var(--fot-cizgi);
+  font-size: 0.8125rem;
+}
+
+.kf-fot .fot-alt nav {
+  display: flex;
+}
+
+.kf-fot .fot-alt nav a + a::before {
+  content: '|';
+  margin: 0 0.9em;
+  color: var(--fot-cizgi);
+}
+
+.kf-fot .fot-landskap {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1200px);
+  margin: 24px auto 0;
+  aspect-ratio: 2400 / 1322;
+  background: var(--fot-kara);
+  -webkit-mask: url('/gravur/aycicegi-v1.png') center bottom / 100% 100% no-repeat;
+  mask: url('/gravur/aycicegi-v1.png') center bottom / 100% 100% no-repeat;
+}
+
+.kf-fot .fot-kaynak {
+  margin: 0 auto;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  font-size: 0.75rem;
+  text-align: right;
+  color: var(--fot-soluk);
+}
+
+/* ——— Menü: masaüstünde tek satır; tablet ve telefonda (≤ 1080 px) hamburger ——— */
+.nav-meny {
+  display: none;
+  margin-left: auto;
+}
+
+.nav-meny summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0 7px;
+  font-family: var(--yazi-baslik);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--murekkep);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.nav-meny summary::-webkit-details-marker {
+  display: none;
+}
+
+.nav-meny .ikon-kapat,
+.nav-meny[open] .ikon-ac {
+  display: none;
+}
+
+.nav-meny[open] .ikon-kapat {
+  display: block;
+}
+
+.nav-meny-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: 30;
+  max-height: calc(100dvh - 120px);
+  overflow-y: auto;
+  background: var(--kagit);
+  border-top: 1px solid var(--cizgi);
+  border-bottom: 3px solid var(--marka-sari);
+  box-shadow: 0 16px 28px rgb(0 0 0 / 0.1);
+}
+
+.site-bas .nav-meny-sutunlar {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  padding-top: 32px;
+  padding-bottom: 40px;
+}
+
+.nav-meny-sutunlar h2 {
+  position: relative;
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  font-family: var(--yazi-baslik);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gri);
+}
+
+.nav-meny-sutunlar h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 32px;
+  height: 2px;
+  background: var(--marka-sari);
+}
+
+.nav-meny-sutunlar ul {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu .nav-meny-sutunlar a {
+  display: block;
+  padding: 6px 0;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--murekkep);
+}
+
+.menu .nav-meny-sutunlar a::after {
+  display: none;
+}
+
+@media (max-width: 1080px) {
+  /* Panel menü satırının hemen altında açılır (başlığın içindeki bülten tablosunun altında değil). */
+  .menu {
+    position: relative;
+    flex-wrap: nowrap;
+  }
+
+  .menu .menu-genis {
+    display: none;
+  }
+
+  .nav-meny {
+    display: block;
+  }
+
+  .kf-fot .fot-lenkler {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .kf-fot {
+    padding-top: 56px;
+  }
+
+  .kf-fot .fot-bas {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+    padding-bottom: 32px;
+  }
+
+  .kf-fot .fot-lenkler {
+    gap: 32px 24px;
+    padding: 32px 0;
+  }
+
+  .kf-fot .fot-notlar {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .kf-fot .fot-alt {
+    flex-direction: column;
+  }
+
+  .kf-fot .fot-landskap {
+    -webkit-mask-image: url('/gravur/aycicegi-v1-1200.png');
+    mask-image: url('/gravur/aycicegi-v1-1200.png');
+  }
+
+  .kf-fot .fot-kaynak {
+    text-align: left;
+  }
+
+  .fot-kaynak-uzun {
+    display: none;
+  }
+
+  .site-bas .nav-meny-sutunlar {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    padding-top: 24px;
+  }
+
+  .nav-meny-metin {
+    display: none;
+  }
+}
+
+@media print {
+  .kf-fot {
+    display: none !important;
+  }
+}

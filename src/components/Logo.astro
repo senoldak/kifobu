@@ -8,12 +8,13 @@ interface Props {
   boyut?: 30 | 44 | 64;
   dikey?: boolean;
   slogan?: boolean;
+  zemin?: 'acik' | 'koyu';
 }
-const { boyut = 44, dikey = false, slogan = false } = Astro.props;
-const isaret = tohumIsaretiSvg({ boyut, kucuk: boyut < 64 });
+const { boyut = 44, dikey = false, slogan = false, zemin = 'acik' } = Astro.props;
+const isaret = tohumIsaretiSvg({ boyut, zemin, kucuk: boyut < 64 });
 ---
 
-<span class:list={['marka', `marka--${boyut}`, { 'marka--dikey': dikey }]}>
+<span class:list={['marka', `marka--${boyut}`, { 'marka--dikey': dikey, 'marka--koyu': zemin === 'koyu' }]}>
   <span class="marka-isaret" set:html={isaret} />
   <span class="marka-isim">{SITE.name}</span>
   {slogan && <span class="marka-slogan">{SITE.tagline}</span>}

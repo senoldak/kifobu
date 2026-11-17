@@ -22,5 +22,9 @@
 /kapak/*
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
+# Altbilgi gravürü (maske); içerik değişince dosya adındaki -vN artırılır.
+/gravur/*
+  Cache-Control: public, max-age=604800
+
 /site.webmanifest
   Content-Type: application/manifest+json
