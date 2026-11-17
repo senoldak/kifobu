@@ -33,3 +33,7 @@ test('tarih: iki biçimi ISO tarihe çevirir', () => {
 test('metne: script/style siler, etiketleri boşluğa çevirir, varlıkları çözer', () => {
   assert.equal(metne('<p>A&amp;B</p><script>x</script>  <b>C</b>'), 'A&B C');
 });
+
+test('metne: adlı Türkçe harf varlıkları çözülür (ü, Ü, ö, Ö, ç, Ç)', () => {
+  assert.equal(metne('<b>Y&uuml;zey &Uuml; &ouml;&Ouml; &ccedil;&Ccedil;</b>'), 'Yüzey Ü öÖ çÇ');
+});

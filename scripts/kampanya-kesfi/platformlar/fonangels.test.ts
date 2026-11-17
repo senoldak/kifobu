@@ -51,7 +51,7 @@ test('detay: etiket silinince null döner, 0 değil', () => {
   assert.equal(d.yatirimci, null);
 });
 
-test('liste: yalnız aktif kartlar, biten kartlar atlanır', () => {
+test('liste: aktif kartlar ve bağlantısız yakında kartı gelir, biten kartlar atlanır', () => {
   const kayitlar = fonangels.liste(liste, 'https://fonangels.com/kampanyalar');
   const v = kayitlar.find((k) => k.url.includes('pid=1803'));
   assert.ok(v, 'VisitExtra listede olmalı');
@@ -59,7 +59,26 @@ test('liste: yalnız aktif kartlar, biten kartlar atlanır', () => {
   assert.equal(v.ad, 'visitextra'); // geçici: URL sluğu
   assert.equal(v.url, 'https://fonangels.com/kampanyalar/projehakkinda/visitextra?pid=1803');
   assert.ok(!kayitlar.some((k) => k.url.includes('pid=1689')), 'biten Athletic Labs alınmaz');
-  assert.equal(kayitlar.length, 1);
+  assert.equal(kayitlar.length, 2); // VisitExtra + bağlantısız yakında kartı (Neurox)
+});
+
+test('liste: bağlantısız yakında kartı ad açıklamanın ilk öbeğinden, detaysiz olarak döner', () => {
+  const kayitlar = fonangels.liste(liste, 'https://fonangels.com/kampanyalar');
+  const n = kayitlar.find((k) => k.bolum === 'yakinda');
+  assert.deepEqual(n, { ad: 'Neurox', url: 'https://fonangels.com/kampanyalar#yakinda-neurox', bolum: 'yakinda', detaysiz: true });
+});
+
+const bagsizKart = (baslik: string, aciklama: string) =>
+  `<div class="invest-box yakinda"><div class="fw-bold">&#x200B;${baslik}</div>` +
+  `<div class="genislige-x-satir x-5">&#x200B;${aciklama}</div><a class="btn btn-yakinda"><span>YAKINDA</span></a></div>`;
+
+test('liste: açıklamanın ilk öbeği 1-3 sözcük değilse başlığa düşülür; ikisi de yoksa kart atlanır', () => {
+  const l = (h: string) => fonangels.liste(h, 'https://fonangels.com/kampanyalar');
+  assert.equal(l(bagsizKart('Dijital Dönüşüm', 'Bu çok uzun bir ilk öbek olarak yazılmış açıklama, devamı var'))[0].ad, 'Dijital Dönüşüm');
+  assert.equal(l(bagsizKart('Slogan', 'Ali Veli Can Deniz; dört sözcüklü'))[0].ad, 'Slogan');
+  assert.equal(l(bagsizKart('Slogan', 'Mavi Kuş, uçan bir girişim'))[0].ad, 'Mavi Kuş');
+  assert.equal(l(bagsizKart('Slogan', 'Açıklama noktalama içermiyor'))[0].ad, 'Slogan');
+  assert.equal(l('<div class="invest-box yakinda"><a class="btn btn-yakinda"></a></div>').length, 0);
 });
 
 test('detay: girişim adı h1den, yoksa titledan, ikisi de yoksa null', () => {

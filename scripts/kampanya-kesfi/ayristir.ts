@@ -8,6 +8,13 @@ const VARLIKLAR: Record<string, string> = {
   quot: '"',
   apos: "'",
   nbsp: ' ',
+  // Türkçe harflerin adlı varlıkları (örn. fonbulucu "Y&uuml;zeyler"); büyük/küçük harf ayrımı gerekir.
+  uuml: 'ü',
+  Uuml: 'Ü',
+  ouml: 'ö',
+  Ouml: 'Ö',
+  ccedil: 'ç',
+  Ccedil: 'Ç',
 };
 
 function varligiCoz(s: string): string {
@@ -16,7 +23,7 @@ function varligiCoz(s: string): string {
       const kod = ad[1].toLowerCase() === 'x' ? parseInt(ad.slice(2), 16) : parseInt(ad.slice(1), 10);
       return Number.isFinite(kod) && kod > 0 && kod <= 0x10ffff ? String.fromCodePoint(kod) : tam;
     }
-    return VARLIKLAR[ad.toLowerCase()] ?? tam;
+    return VARLIKLAR[ad] ?? VARLIKLAR[ad.toLowerCase()] ?? tam;
   });
 }
 

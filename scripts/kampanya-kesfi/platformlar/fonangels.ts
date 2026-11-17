@@ -1,4 +1,5 @@
 import type { KampanyaDetay, ListeKaydi, Okuyucu } from '../../../src/lib/kampanya-takip.ts';
+import { slugTr } from '../../../src/lib/konular.ts';
 import { metne, oran, para, tamSayi, tarih } from '../ayristir.ts';
 
 const BITTI_DURUMLARI = ['hedefine ulaştı', 'tamamlandı', 'sona erdi', 'iptal'];
@@ -62,6 +63,21 @@ function girisimAdi(html: string): string | null {
   return parcalar.length > 1 && parcalar[0].trim() ? parcalar[0].trim() : null;
 }
 
+const SIFIR_GENISLIK = /[\u200B-\u200D\uFEFF]/g;
+const kartMetni = (html: string | undefined): string => (html ? metne(html).replace(SIFIR_GENISLIK, '').trim() : '');
+
+/**
+ * Bağlantısız "yakında" kartının adı, kartın kendi yazısından: açıklama paragrafının ";" ya da ","
+ * öncesindeki ilk öbeği 1-3 sözcükse o ("Neurox; yapay zeka ..."); değilse kartın başlık/slogan metni. Uydurma yok.
+ */
+function yakindaKartAdi(parca: string): string | null {
+  const aciklama = kartMetni(parca.match(/<div class="genislige-x-satir[^"]*"[^>]*>([\s\S]*?)<\/div>/i)?.[1]);
+  const ilk = aciklama.split(/[;,]/)[0]?.trim() ?? '';
+  const sozcuk = ilk.split(/\s+/).filter(Boolean).length;
+  if (aciklama.search(/[;,]/) > 0 && sozcuk >= 1 && sozcuk <= 3) return ilk;
+  return kartMetni(parca.match(/<div class="[^"]*fw-bold[^"]*"[^>]*>([\s\S]*?)<\/div>/i)?.[1]) || null;
+}
+
 /** Liste kartları `invest-box <durum>` sınıfıyla ayrılır: acik, yakinda, basarili, basarisiz, iptal. */
 function liste(html: string, listeUrl: string): ListeKaydi[] {
   const sonuc: ListeKaydi[] = [];
@@ -71,15 +87,23 @@ function liste(html: string, listeUrl: string): ListeKaydi[] {
     const bolum = sinif === 'acik' ? 'aktif' : sinif === 'yakinda' ? 'yakinda' : null;
     if (!bolum) continue;
     const href = parca.match(/href="(\/[^"]*projehakkinda\/[^"]*\?pid=\d+)"/i)?.[1];
-    if (!href) continue; // bağlantısız (örn. "YAKINDA") kart izlenemez
+    if (!href) {
+      // Bağlantısız "YAKINDA" kartının kendi sayfası yok: liste adresi + ad parçasıyla detaysiz kayıt olarak döner.
+      const ad = bolum === 'yakinda' ? yakindaKartAdi(parca) : null;
+      const slug = ad ? slugTr(ad) : '';
+      if (ad && slug) sonuc.push({ ad, url: `${listeUrl}#yakinda-${slug}`, bolum, detaysiz: true });
+      continue;
+    }
     sonuc.push({ ad: kartAdi(href), url: new URL(href.replace(/&amp;/g, '&'), listeUrl).href, bolum });
   }
   return sonuc;
 }
 
+const LISTE_URL = 'https://fonangels.com/kampanyalar';
+
 export const fonangels: Okuyucu = {
   platform: 'fonangels',
-  listeUrller: ['https://fonangels.com/kampanyalar'],
+  listeUrller: [LISTE_URL],
   liste,
   detay,
 };

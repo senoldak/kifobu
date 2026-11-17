@@ -7,7 +7,7 @@ import type { ElListesi } from '../lib/kampanya-takip.ts';
 
 export interface KampanyaKaynagi {
   ad: string;
-  /** Platform anahtarı (PLATFORM_AYARLARI): fonangels, trinkfon, ecofolio, fonventure, startupburada, birikimfon, fongogo, ardventure ... */
+  /** Platform anahtarı (PLATFORM_AYARLARI): fonangels, trinkfon, ecofolio, fonventure, startupburada, birikimfon, fongogo, fonbulucu, ardventure ... */
   platform: string;
   url: string;
   /** Kampanya hedeflenen fon tutarı (TL) */
@@ -39,6 +39,8 @@ export const PLATFORM_AYARLARI: Record<string, PlatformAyar> = {
   startupburada: { ad: 'startupburada', renk: '#2f41d1', url: 'https://www.startupburada.com' },
   birikimfon: { ad: 'birikimfon', renk: '#499bd4', url: 'https://birikimfon.com' },
   fongogo: { ad: 'fongogo', renk: '#052d43', url: 'https://yatirim.fongogo.com' },
+  // fonbulucu rengi: sitenin home_v2.css dosyasındaki --hv2-primary (rgb(229, 36, 62)); pay platformudur, borç platformu ayrı adrestedir.
+  fonbulucu: { ad: 'fonbulucu', renk: '#e5243e', url: 'https://invest.fonbulucu.com' },
 };
 
 /** Otomatik keşfe elle müdahale: ekle (listede görünmeyenler), çıkar (URL), düzelt (URL -> alan değişiklikleri). */
@@ -46,8 +48,6 @@ export const EL_LISTESI: ElListesi = {
   ekle: [
     { ad: 'NARPOS', platform: 'ardventure', url: 'https://ardventure.com', bolum: 'yakinda' },
     { ad: 'NEURATURK', platform: 'ardventure', url: 'https://ardventure.com', bolum: 'yakinda' },
-    // fonangels "Yakında" kartı bağlantısız; ad kart açıklamasından (18 Kasım). Açılınca okuyucu asıl sayfasıyla bulur, bu satır silinir.
-    { ad: 'NEUROX', platform: 'fonangels', url: 'https://fonangels.com/Kampanyalar', bolum: 'yakinda' },
   ],
   // Platformda yıllar önce kalmış ön talep kartları: bültene alınmaz.
   cikar: [

@@ -11,6 +11,11 @@ export interface ListeKaydi {
   ad: string;
   url: string;
   bolum: Bolum;
+  /**
+   * Kartın kendi sayfası/bağlantısı yok (platformda bağlantısız "yakında" kartı). Okuyucu adresi
+   * `${listeUrl}#yakinda-${slugTr(ad)}` biçiminde verir; keşif bu kayıt için detay sayfası getirmez.
+   */
+  detaysiz?: true;
 }
 
 /** Kampanya sayfasından okunan sayılar. Okunamayan alan null olur, asla 0 olmaz. */
@@ -48,12 +53,14 @@ export interface Okuyucu {
 export function urlAnahtari(url: string): string {
   const u = new URL(url);
   const yol = u.pathname.toLowerCase().replace(/\/+$/, '');
+  // Bağlantısız "yakında" kartlarının adresi liste sayfasıdır; kartları `#yakinda-<slug>` parçası ayırır.
+  const kart = /^#yakinda-/i.test(u.hash) ? u.hash.toLowerCase() : '';
   const kalan = [...u.searchParams.entries()]
     .map(([ad, deger]) => [ad.toLowerCase(), deger.toLowerCase()] as const)
     .filter(([ad]) => ad === 'pid' || ad === 'urlkey')
     .sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0));
   const sorgu = kalan.map(([ad, deger]) => `${ad}=${deger}`).join('&');
-  return `${u.hostname.toLowerCase()}${yol}${sorgu ? `?${sorgu}` : ''}`;
+  return `${u.hostname.toLowerCase()}${yol}${sorgu ? `?${sorgu}` : ''}${kart}`;
 }
 
 // ---- Keşfin takip dosyasına uygulanması (saf mantık, G/Ç yok) ----
@@ -79,6 +86,8 @@ export interface TakipKaydi {
   bittiGorulme: string | null;
   eksik: string[];
   kayipTur: number;
+  /** Bağlantısız "yakında" kartı: tutar/tarih yok, detay sayfası yok; arşive hiç girmez. */
+  detaysiz?: true;
 }
 
 export interface TakipDosyasi {
@@ -202,8 +211,8 @@ export function kesfiUygula(a: {
     return m;
   };
 
-  const yeniAd = (liste: ListeKaydi, d: KampanyaDetay): string => {
-    const adi = buyukHarf((d.ad ?? liste.ad).trim());
+  const yeniAd = (liste: ListeKaydi, d: KampanyaDetay | null): string => {
+    const adi = buyukHarf((d?.ad ?? liste.ad).trim());
     const eslesen = arsiv.find((x) => x.slug === slugTr(adi));
     return eslesen ? eslesen.ad : adi;
   };
@@ -274,15 +283,55 @@ export function kesfiUygula(a: {
       gorulen.add(an);
       ogeler.push({ liste: l, an });
     }
-    const takipteAcik = kampanyalar.some((k) => k.platform === s.platform && k.durum !== 'bitti');
+    const takipteAcik = kampanyalar.some((k) => k.platform === s.platform && k.durum !== 'bitti' && !k.detaysiz);
+    // Detaysız kartlar liste turu başarılı olduysa listeyle birebir eşitlenir: görünmeyen sessizce düşer (kayboldu/olay yok).
+    // Gerçek kayıtlar varken liste boş gelmişse okuyucu bozuk olabilir; o durumda hiçbir şeye dokunulmaz.
+    const detaysizDus = () => {
+      const kalanlar = new Set(ogeler.filter((o) => o.liste.detaysiz).map((o) => o.an));
+      for (let i = kampanyalar.length - 1; i >= 0; i--) {
+        const k = kampanyalar[i];
+        if (k.platform !== s.platform || !k.detaysiz) continue;
+        const an = guvenliAnahtar(k.url);
+        if (an === null || !kalanlar.has(an)) kampanyalar.splice(i, 1);
+      }
+    };
     if (ogeler.length === 0) {
       if (takipteAcik) bozuk(s.platform, 'liste boş geldi');
+      else detaysizDus();
       continue;
     }
     const buTurEklenen = new Set<TakipKaydi>();
 
     for (const { liste, an } of ogeler) {
       if (cikar.has(an)) continue;
+
+      if (liste.detaysiz) {
+        const onceki = dizin.get(an);
+        if (onceki) {
+          onceki.sonGorulme = gun;
+          onceki.kayipTur = 0;
+          continue;
+        }
+        const k: TakipKaydi = {
+          ad: yeniAd(liste, null), platform: s.platform, url: liste.url, durum: 'yakinda',
+          hedef: null, arzOrani: null, degerleme: null, baslangic: null, bitis: null,
+          toplanan: null, yatirimci: null, nitelikli: null, fonlandi: null,
+          ilkGorulme: gun, sonGorulme: gun, bittiGorulme: null, eksik: [], kayipTur: 0, detaysiz: true,
+        };
+        kampanyalar.push(k);
+        dizin.set(an, k);
+        buTurEklenen.add(k);
+        olayEkle({
+          tur: 'yeni',
+          anahtar: `${s.platform}:yeni:${an}`,
+          metin: `Yeni "yakında" kartı bulundu.
+${k.ad} (${s.platform})
+Platformun liste sayfasında bağlantısız bir "yakında" kartı görüldü.
+${liste.url.split('#')[0]}`,
+        });
+        continue;
+      }
+
       const d = s.detaylar[an] ?? null;
       const mevcut = dizin.get(an);
 
@@ -344,9 +393,11 @@ ${liste.url}`,
       olasiCift(k, an);
     }
 
+    detaysizDus();
+
     // Listede görünmeyen açık kayıtlar
     for (const k of kampanyalar) {
-      if (k.platform !== s.platform || k.durum === 'bitti' || buTurEklenen.has(k)) continue;
+      if (k.platform !== s.platform || k.durum === 'bitti' || k.detaysiz || buTurEklenen.has(k)) continue;
       const an = guvenliAnahtar(k.url);
       if (an !== null && gorulen.has(an)) continue;
       if (an !== null && s.detaylar[an] === null) bozuk(s.platform, 'kampanya sayfası açılamadı');

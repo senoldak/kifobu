@@ -90,11 +90,14 @@ async function main() {
     const takipli = takip.kampanyalar.filter((k) => k.platform === okuyucu.platform);
     const takipliAnahtarlar = new Set(takipli.map((k) => guvenliAnahtar(k.url)).filter((x): x is string => x !== null));
     const hedefler = new Map<string, string>();
+    // Detaysız (bağlantısız "yakında") kartların kendi sayfası yoktur; adresleri liste sayfası + parçadır, asla getirilmez.
     for (const l of liste) {
+      if (l.detaysiz) continue;
       const an = guvenliAnahtar(l.url);
       if (an !== null && !takipliAnahtarlar.has(an)) hedefler.set(an, l.url);
     }
     for (const k of takipli) {
+      if (k.detaysiz) continue;
       const an = guvenliAnahtar(k.url);
       if (an !== null && k.durum !== 'bitti') hedefler.set(an, k.url);
     }

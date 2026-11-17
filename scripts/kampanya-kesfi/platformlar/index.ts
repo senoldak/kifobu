@@ -2,6 +2,7 @@ import type { Okuyucu } from '../../../src/lib/kampanya-takip.ts';
 import { birikimfon } from './birikimfon.ts';
 import { ecofolio } from './ecofolio.ts';
 import { fonangels } from './fonangels.ts';
+import { fonbulucu } from './fonbulucu.ts';
 import { fongogo } from './fongogo.ts';
 import { fonventure } from './fonventure.ts';
 import { startupburada } from './startupburada.ts';
@@ -16,4 +17,5 @@ export const OKUYUCULAR: Record<string, Okuyucu> = {
   startupburada,
   birikimfon,
   fongogo,
+  fonbulucu,
 };

@@ -14,6 +14,7 @@ import {
   type TakipKaydi,
   type ElListesi,
 } from './kampanya-takip.ts';
+import { slugTr } from './konular.ts';
 import { gecmisGirisimler, type GecmisKampanya } from './kampanya-gecmis.ts';
 
 test('urlAnahtari: büyük/küçük harf ve pid dışındaki parametreler anahtarı değiştirmez', () => {
@@ -673,4 +674,92 @@ test('kesfiUygula M2: hedefi okunamayan aktif kayıt olay metninde belirtilir', 
   assert.match(r2.olaylar.find((x) => x.tur === 'aktife-gecti')!.metin, / Hedef okunamadığı için bültene alınmadı\.$/);
   const r3 = uygula(takip(), [tekListe('alfa', U1, 'aktif', detay())]);
   assert.doesNotMatch(r3.olaylar[0].metin, /Hedef okunamadığı/);
+});
+
+// ---- detaysiz "yakında" kartları (bağlantısız kartlar, kendi sayfası yok) ----
+const LU = 'https://fonx.example.com/kampanyalar';
+const dKart = (ad: string): { ad: string; url: string; bolum: 'yakinda'; detaysiz: true } =>
+  ({ ad, url: `${LU}#yakinda-${slugTr(ad)}`, bolum: 'yakinda', detaysiz: true });
+const dKayit = (ad: string, o: Partial<TakipKaydi> = {}) =>
+  kayit({ ad: ad.toUpperCase(), url: dKart(ad).url, durum: 'yakinda', hedef: null, arzOrani: null, degerleme: null, baslangic: null, bitis: null, toplanan: null, yatirimci: null, detaysiz: true, ...o });
+
+test('urlAnahtari: #yakinda- parçası kimliğe girer, başka parça girmez', () => {
+  assert.notEqual(urlAnahtari(`${LU}#yakinda-alfa`), urlAnahtari(`${LU}#yakinda-beta`));
+  assert.equal(urlAnahtari(`${LU}#Yakinda-Alfa`), urlAnahtari(`${LU}#yakinda-alfa`));
+  assert.equal(urlAnahtari(`${LU}#bolum`), urlAnahtari(LU));
+});
+
+test('kesfiUygula D1: yeni detaysiz kart doğrudan listeden yakında kayıt olur, eksik boş, yeni olayı', () => {
+  const r = uygula(takip(), [sonuc({ liste: [dKart('Neurox')] })]);
+  assert.equal(r.takip.kampanyalar.length, 1);
+  const k = r.takip.kampanyalar[0];
+  assert.equal(k.ad, 'NEUROX');
+  assert.equal(k.durum, 'yakinda');
+  assert.equal(k.detaysiz, true);
+  for (const alan of ['hedef', 'arzOrani', 'degerleme', 'baslangic', 'bitis', 'toplanan', 'yatirimci', 'nitelikli', 'fonlandi'] as const) assert.equal(k[alan], null, alan);
+  assert.deepEqual(k.eksik, []);
+  assert.equal(k.ilkGorulme, GUN);
+  const yeni = r.olaylar.filter((o) => o.tur === 'yeni');
+  assert.equal(yeni.length, 1);
+  for (const parca of ['yakında', 'NEUROX', P, LU]) assert.ok(yeni[0].metin.includes(parca), parca);
+  assert.ok(!yeni[0].metin.includes('okunamadı'));
+  assert.ok(!r.olaylar.some((o) => o.tur === 'okuyucu-bozuk'));
+});
+
+test('kesfiUygula D2: aynı platformda birden çok detaysiz kart ayrı kayıt olur', () => {
+  const r = uygula(takip(), [sonuc({ liste: [dKart('Akıllı Yüzeyler'), dKart('Giyilebilir Sağlık')] })]);
+  assert.deepEqual(r.takip.kampanyalar.map((k) => k.ad), ['AKILLI YÜZEYLER', 'GİYİLEBİLİR SAĞLIK']);
+  assert.equal(r.olaylar.filter((o) => o.tur === 'yeni').length, 2);
+});
+
+test('kesfiUygula D3: detaysiz kayıt tekrar görülünce sonGorulme güncellenir, kayipTur sıfırlanır, olay yok', () => {
+  const t = takip([dKayit('Neurox', { sonGorulme: '2026-11-16', kayipTur: 1 })]);
+  const r = uygula(t, [sonuc({ liste: [dKart('Neurox')] })]);
+  assert.equal(r.takip.kampanyalar.length, 1);
+  assert.equal(r.takip.kampanyalar[0].sonGorulme, GUN);
+  assert.equal(r.takip.kampanyalar[0].kayipTur, 0);
+  assert.equal(r.olaylar.length, 0);
+});
+
+test('kesfiUygula D4: listede artık olmayan detaysiz kayıt sessizce silinir (kayboldu ve olay yok)', () => {
+  const t = takip([dKayit('Neurox'), dKayit('Kalan')]);
+  const r = uygula(t, [sonuc({ liste: [dKart('Kalan')] })]);
+  assert.deepEqual(r.takip.kampanyalar.map((k) => k.ad), ['KALAN']);
+  assert.equal(r.olaylar.length, 0);
+});
+
+test('kesfiUygula D5: detaysiz kayıt başka platformun hatalı turunda ya da kendi platformu hatalıyken silinmez', () => {
+  const t = takip([dKayit('Neurox')]);
+  const hatali = uygula(t, [sonuc({ hata: 'ağ' })]);
+  assert.equal(hatali.takip.kampanyalar.length, 1);
+  const baska = uygula(t, [sonuc({ platform: 'baska', liste: [] })]);
+  assert.equal(baska.takip.kampanyalar.length, 1);
+});
+
+test('kesfiUygula D6: detaysiz kayıt için eksik detay okuyucu-bozuk üretmez; liste boşsa silinir ve bozuk uyarısı verilmez', () => {
+  const t = takip([dKayit('Neurox')]);
+  const r = uygula(t, [sonuc({ liste: [dKart('Neurox')], detaylar: {} })]);
+  assert.ok(!r.olaylar.some((o) => o.tur === 'okuyucu-bozuk'));
+  const bos = uygula(t, [sonuc({ liste: [] })]);
+  assert.ok(!bos.olaylar.some((o) => o.tur === 'okuyucu-bozuk'));
+  assert.equal(bos.takip.kampanyalar.length, 0);
+});
+
+test('kesfiUygula D7: detaysiz kart ile gerçek kampanyalar bir arada çalışır, gerçek kayıt kayboldu sayacına girer', () => {
+  const t = takip([dKayit('Neurox'), kayit()]);
+  const r = uygula(t, [sonuc({ liste: [dKart('Neurox')] })]);
+  const alfa = r.takip.kampanyalar.find((k) => k.url === U1)!;
+  assert.equal(alfa.kayipTur, 1);
+  assert.equal(r.takip.kampanyalar.find((k) => k.detaysiz)!.kayipTur, 0);
+});
+
+test('kesfiUygula D8: el.cikar detaysiz kartı da engeller', () => {
+  const r = uygula(takip(), [sonuc({ liste: [dKart('Neurox')] })], { el: { ekle: [], cikar: [dKart('Neurox').url], duzelt: {} } });
+  assert.equal(r.takip.kampanyalar.length, 0);
+});
+
+test('bultenListesi: detaysiz yakında kayıt yakinda listesine girer (adres: liste adresi + parça)', () => {
+  const r = bultenListesi(takip([dKayit('Neurox')]), bosEl);
+  assert.deepEqual(r.yakinda, [{ ad: 'NEUROX', platform: P, url: `${LU}#yakinda-neurox` }]);
+  assert.equal(r.aktif.length, 0);
 });
