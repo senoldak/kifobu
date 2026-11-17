@@ -1,0 +1,2765 @@
+<!DOCTYPE html>
+<html lang="tr">
+   
+   <head>
+      
+
+
+      
+            <title>fonVenture - Türkiye'nin Kitlesel Fonlama Platformu</title>
+            <meta name="description" content="fonVenture ile girişimlere yatırım yapın, projenizi fonlayın. Türkiye'nin lider kitlesel fonlama platformunda yenilikçi girişimleri keşfedin.">
+            
+            <link rel="canonical" href="https://fonventure.com/">
+            
+            
+                  <meta property="og:title" content="fonVenture - Türkiye&#x27;nin Kitlesel Fonlama Platformu">
+                  <meta property="og:description" content="fonVenture, deneyimi ve uzmanlığıyla girişimciler ve yatırımcıları bir araya getiren bir iş birliği platformudur.">
+                  <meta property="og:url" content="https://fonventure.com/">
+                  <meta property="og:type" content="website">
+                  <meta property="og:site_name" content="fonVenture">
+                  <meta property="og:locale" content="tr_TR">
+                  
+            
+            
+                  <meta name="twitter:card" content="summary_large_image">
+                  <meta name="twitter:title" content="fonVenture - Türkiye&#x27;nin Kitlesel Fonlama Platformu">
+                  <meta name="twitter:description" content="fonVenture, deneyimi ve uzmanlığıyla girişimciler ve yatırımcıları bir araya getiren bir iş birliği platformudur.">
+                  
+            
+      
+
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="referrer" content="strict-origin-when-cross-origin">
+      <link rel="icon" href="/static/img/favicon.ico">
+      
+      <link rel="stylesheet" href="/static/vite_dir/assets/static/css/app-TPWxm9gQ.css">
+      <link  rel="stylesheet" href="/static/vite_dir/assets/swal-theme-B4IrQ778.css" />
+<link  rel="stylesheet" href="/static/vite_dir/assets/frontend-C5riYL76.css" />
+<script type="module" crossorigin="" src="/static/vite_dir/assets/static/js/frontend.js-CLyYC6Wn.js"></script>
+<link href="/static/vite_dir/assets/swal-theme-B8OjIMix.js" type="text/javascript" crossorigin="anonymous" rel="modulepreload" as="script" />
+
+      
+      <script type="application/ld+json">
+         {
+         "@context": "https://schema.org",
+         "@type": "WebSite",
+         "name": "fonVenture",
+         "url": "https://www.fonventure.com/",
+         "potentialAction": {
+               "@type": "SearchAction",
+               "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://www.fonventure.com/project_list/?q={search_term_string}"
+               },
+               "query-input": "required name=search_term_string"
+         }
+         }
+      </script>
+      <script type="application/ld+json">
+         {
+         "@context": "https://schema.org",
+         "@type": "Organization",
+         "name": "fonVenture",
+         "url": "https://www.fonventure.com/",
+         "logo": "/static/img/favicon.ico",
+         "description": "fonVenture, deneyimi ve uzmanlığıyla girişimciler ve yatırımcıları bir araya getiren bir iş birliği platformudur.",
+         "foundingDate": "2020",
+         "address": {
+               "@type": "PostalAddress",
+               "addressCountry": "TR"
+         },
+         "email": "info@fonventure.com",
+         "telephone": "0216 606 66 52",
+         "sameAs": [
+               "https://www.instagram.com/fonventure/",
+               
+               "https://www.facebook.com/fonVenture",
+               "https://www.linkedin.com/company/fonventure/",
+               "https://www.youtube.com/@fonventurecom"
+         ]
+         }
+      </script>
+      
+   </head>
+   
+   <!-- navbar goes here -->
+   <style media="screen">
+   #mobile-menu summary::-webkit-details-marker {
+   display: none;
+   }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+<nav x-data="{ mobileOpen: false }"
+     @keydown.escape.window="mobileOpen = false"
+     aria-label="Ana menü"
+     class="sticky top-0 z-50 w-full border-b border-slate-200/80 bg-white/95 backdrop-blur-md supports-[backdrop-filter]:bg-white/85">
+   <div class="mx-auto flex h-[72px] max-w-8xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+      <div class="flex min-w-0 items-center gap-6 xl:gap-10">
+         <!-- logo -->
+         <a href="/" aria-label="fonVenture ana sayfa" class="shrink-0 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fv-lightBlue/50 focus-visible:ring-offset-4">
+            <svg class="h-5 w-auto sm:h-6" width="186" height="24" viewBox="0 0 186 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+               <path d="M9.69331 12.792L13.1467 23.8938H4.08789V14.8932C4.08789 12.5195 5.12712 11.3188 7.26537 11.3188C7.26997 11.3188 9.03114 11.2219 9.69331 12.792Z" fill="url(#paint0_linear_475_16899)"/>
+               <path d="M26.5418 2.33206V21.6678C26.5418 22.8962 25.5531 23.8937 24.3254 23.8937H17.7451L13.8181 11.2772C13.7997 11.1987 13.7767 11.1248 13.7491 11.0555C13.7491 11.0463 13.7445 11.0371 13.7399 11.0371C13.2709 9.60547 12.2685 8.64031 10.9441 8.17389C10.3233 7.95684 9.64278 7.84601 8.91164 7.84601C6.42392 7.84601 4.85128 8.79732 3.90402 10.5337V8.25701H0V2.33667C0 1.10827 0.98865 0.110779 2.21641 0.110779H22.0538L17.4002 14.1312L19.3453 20.384L26.1785 1.12674C26.4084 1.47309 26.5418 1.87949 26.5418 2.33206Z" fill="url(#paint1_linear_475_16899)"/>
+               <path d="M40.5119 5.74485V2.43833C36.1066 2.43833 33.9362 4.32712 33.9362 8.10468H31.6416V11.0002H33.9362V23.589H37.9644V11.0002H40.6084V8.10468H37.9644C37.9644 6.31288 38.4334 5.74485 40.5119 5.74485Z" fill="#1B3E72"/>
+               <path d="M50.5775 7.6983C45.671 7.6983 42.6177 10.9402 42.6177 15.8491C42.6177 20.6658 45.5744 24 50.5775 24C55.3919 24 58.4407 20.7581 58.4407 15.8491C58.4407 10.9078 55.4195 7.6983 50.5775 7.6983ZM50.5775 20.5688C48.0943 20.5688 46.8344 18.994 46.8344 15.8491C46.8344 12.7043 48.0943 11.1618 50.5775 11.1618C53.0606 11.1618 54.3205 12.7043 54.3205 15.8491C54.3205 18.994 53.0606 20.5688 50.5775 20.5688Z" fill="#1B3E72"/>
+               <path d="M76.0207 10.894C76.0207 10.8847 76.0161 10.8755 76.0115 10.8755C75.5425 9.45316 74.54 8.4926 73.2157 8.02617C72.5995 7.80912 71.9144 7.6983 71.1832 7.6983C68.7001 7.6983 67.1229 8.64499 66.1802 10.3768V8.10929H62.2808V23.6721H66.3687V14.7177C66.3687 12.3579 67.4079 11.1618 69.5462 11.1618C69.5462 11.1618 71.3028 11.0649 71.9649 12.6211L75.4183 23.6721H80.0121L76.0897 11.1156C76.0667 11.0371 76.0437 10.9679 76.0207 10.894Z" fill="#1B3E72"/>
+               <path d="M88.7948 0H84.3113L79.667 13.9511L81.6075 20.1716L88.758 0.110843L88.7948 0Z" fill="#2C9B93"/>
+               <path d="M95.407 7.6983C90.6569 7.6983 87.9209 10.7832 87.9209 15.5675C87.9209 21.1691 90.5006 24 95.66 24C98.9616 24 101.509 22.2082 102.456 19.0264H98.2396C97.9545 20.0978 96.7911 20.7581 95.4714 20.7581C93.4573 20.7581 92.1376 19.248 92.0134 16.9205H102.677C102.672 10.7832 100.153 7.6983 95.407 7.6983ZM92.133 14.3391C92.2894 12.2009 93.6413 10.9402 95.2783 10.9402C96.8831 10.9402 98.3914 12.0439 98.4558 14.3391H92.133Z" fill="#2C9B93"/>
+               <path d="M128.658 3.92073H124.63V17.7656C124.63 21.0999 126.423 23.9954 130.953 23.9954C135.326 23.9954 137.211 21.0675 137.211 17.7933V13.3877H133.404V17.4147C133.404 19.3358 132.649 20.4349 131.012 20.4349C129.343 20.4349 128.653 19.3034 128.653 17.35V10.991H137.211V8.09544H128.658V3.92073Z" fill="#2C9B93"/>
+               <path d="M151.117 17.0452C151.117 19.091 150.018 20.5688 147.939 20.5688C146.21 20.5688 145.327 19.6267 145.327 17.6733V8.10468H141.239V18.3013C141.239 21.7002 143.41 23.9954 146.491 23.9954C148.629 23.9954 150.234 23.178 151.305 21.4139V23.5844H155.172V8.10006H151.117V17.0452Z" fill="#2C9B93"/>
+               <path d="M163.164 9.96576V8.10929H159.325V23.5936H163.413V15.5351C163.413 13.0506 164.64 11.7899 167.156 11.7899C167.533 11.7899 167.91 11.8222 168.287 11.8822V7.6983H167.754C166.089 7.6983 164.516 7.88764 163.164 9.96576Z" fill="#2C9B93"/>
+               <path d="M177.98 7.6983C173.23 7.6983 170.494 10.7832 170.494 15.5675C170.494 21.1691 173.074 24 178.233 24C181.535 24 184.082 22.2082 185.03 19.0264H180.813C180.532 20.0978 179.364 20.7581 178.045 20.7581C176.031 20.7581 174.711 19.248 174.587 16.9205H185.25C185.246 10.7832 182.73 7.6983 177.98 7.6983ZM174.711 14.3391C174.867 12.2009 176.219 10.9402 177.856 10.9402C179.461 10.9402 180.969 12.0439 181.034 14.3391H174.711Z" fill="#2C9B93"/>
+               <path d="M115.35 7.6983C112.867 7.6983 111.294 8.64038 110.347 10.3721V8.10469H106.448V23.589H110.536V14.7131C110.536 12.3533 111.575 11.1572 113.713 11.1572C115.663 11.1572 116.357 11.8176 116.357 14.2097V23.589H120.477V12.8566C120.477 9.49009 118.307 7.6983 115.35 7.6983Z" fill="#2C9B93"/>
+               <defs>
+                  <linearGradient id="paint0_linear_475_16899" x1="35.5034" y1="-9.83026" x2="-2.43309" y2="29.7606" gradientUnits="userSpaceOnUse">
+                     <stop offset="0.2464" stop-color="#2C9B93"/>
+                     <stop offset="0.3826" stop-color="#238D90"/>
+                     <stop offset="0.6709" stop-color="#186985"/>
+                     <stop offset="1" stop-color="#1B3E72"/>
+                  </linearGradient>
+                  <linearGradient id="paint1_linear_475_16899" x1="34.722" y1="-10.5791" x2="-3.21442" y2="29.0118" gradientUnits="userSpaceOnUse">
+                     <stop offset="0.2464" stop-color="#2C9B93"/>
+                     <stop offset="0.3826" stop-color="#238D90"/>
+                     <stop offset="0.6709" stop-color="#186985"/>
+                     <stop offset="1" stop-color="#1B3E72"/>
+                  </linearGradient>
+               </defs>
+            </svg>
+         </a>
+         <!-- primary nav -->
+         
+         <ul class="hidden items-center gap-0.5 lg:flex">
+            <li class="relative" data-te-dropdown-ref>
+               <button type="button" id="hdr-investor" class="group inline-flex items-center gap-1 whitespace-nowrap rounded-lg px-3 py-2 text-[15px] font-medium text-slate-600 transition-colors duration-200 hover:bg-fv-primaryColor2 hover:text-fv-primaryColor1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fv-lightBlue/50 aria-expanded:bg-fv-primaryColor2 aria-expanded:text-fv-primaryColor1" data-te-dropdown-toggle-ref data-te-offset="0,10" aria-expanded="false">
+                  Yatırımcı
+                  <svg class="h-4 w-4 text-current opacity-60 transition-transform duration-200 group-aria-expanded:rotate-180 motion-reduce:transition-none scale-75" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+               </button>
+               <ul class="absolute z-[1000] m-0 hidden min-w-[18rem] list-none rounded-xl border border-slate-200/80 bg-white p-2 text-left shadow-xl shadow-slate-900/10 [&[data-te-dropdown-show]]:block" aria-labelledby="hdr-investor" data-te-dropdown-menu-ref>
+                  
+<li>
+   <a href="/nasil-yatirimci-olur"
+      
+      class="group/item flex items-start gap-3 rounded-lg px-3 py-2.5 transition-colors duration-150 hover:bg-fv-primaryColor2 focus-visible:bg-fv-primaryColor2 focus-visible:outline-none"
+      data-te-dropdown-item-ref>
+      <span class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-fv-primaryColor2 text-fv-lightBlue ring-1 ring-inset ring-fv-lightBlue/15 transition-colors duration-150 group-hover/item:bg-white">
+         <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
+         </svg>
+      </span>
+      <span class="min-w-0">
+         <span class="block whitespace-nowrap text-sm font-semibold text-slate-900">Nasıl Yatırımcı Olunur?</span>
+         <span class="mt-0.5 block whitespace-nowrap text-[13px] leading-5 text-slate-500">Üyelik ve yatırım adımları</span>
+      </span>
+   </a>
+</li>
+
+                  
+<li>
+   <a href="/accounts/signup/"
+      
+      class="group/item flex items-start gap-3 rounded-lg px-3 py-2.5 transition-colors duration-150 hover:bg-fv-primaryColor2 focus-visible:bg-fv-primaryColor2 focus-visible:outline-none"
+      data-te-dropdown-item-ref>
+      <span class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-fv-primaryColor2 text-fv-lightBlue ring-1 ring-inset ring-fv-lightBlue/15 transition-colors duration-150 group-hover/item:bg-white">
+         <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
+         </svg>
+      </span>
+      <span class="min-w-0">
+         <span class="block whitespace-nowrap text-sm font-semibold text-slate-900">Yatırım Yap</span>
+         <span class="mt-0.5 block whitespace-nowrap text-[13px] leading-5 text-slate-500">Yayındaki kampanyaları inceleyin</span>
+      </span>
+   </a>
+</li>
+
+               </ul>
+            </li>
+            <li class="relative" data-te-dropdown-ref>
+               <button type="button" id="hdr-entrepreneur" class="group inline-flex items-center gap-1 whitespace-nowrap rounded-lg px-3 py-2 text-[15px] font-medium text-slate-600 transition-colors duration-200 hover:bg-fv-primaryColor2 hover:text-fv-primaryColor1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fv-lightBlue/50 aria-expanded:bg-fv-primaryColor2 aria-expanded:text-fv-primaryColor1" data-te-dropdown-toggle-ref data-te-offset="0,10" aria-expanded="false">
+                  Girişimci
+                  <svg class="h-4 w-4 text-current opacity-60 transition-transform duration-200 group-aria-expanded:rotate-180 motion-reduce:transition-none scale-75" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+               </button>
+               <ul class="absolute z-[1000] m-0 hidden min-w-[18rem] list-none rounded-xl border border-slate-200/80 bg-white p-2 text-left shadow-xl shadow-slate-900/10 [&[data-te-dropdown-show]]:block" aria-labelledby="hdr-entrepreneur" data-te-dropdown-menu-ref>
+                  
+<li>
+   <a href="/nasil-girisimci-olur"
+      
+      class="group/item flex items-start gap-3 rounded-lg px-3 py-2.5 transition-colors duration-150 hover:bg-fv-primaryColor2 focus-visible:bg-fv-primaryColor2 focus-visible:outline-none"
+      data-te-dropdown-item-ref>
+      <span class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-fv-primaryColor2 text-fv-lightBlue ring-1 ring-inset ring-fv-lightBlue/15 transition-colors duration-150 group-hover/item:bg-white">
+         <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
+         </svg>
+      </span>
+      <span class="min-w-0">
+         <span class="block whitespace-nowrap text-sm font-semibold text-slate-900">Nasıl Girişimci Olunur?</span>
+         <span class="mt-0.5 block whitespace-nowrap text-[13px] leading-5 text-slate-500">Kampanya başvuru süreci</span>
+      </span>
+   </a>
+</li>
+
+                  
+                  
+<li>
+   <a href="/accounts/signup/"
+      
+      class="group/item flex items-start gap-3 rounded-lg px-3 py-2.5 transition-colors duration-150 hover:bg-fv-primaryColor2 focus-visible:bg-fv-primaryColor2 focus-visible:outline-none"
+      data-te-dropdown-item-ref>
+      <span class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-fv-primaryColor2 text-fv-lightBlue ring-1 ring-inset ring-fv-lightBlue/15 transition-colors duration-150 group-hover/item:bg-white">
+         <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+         </svg>
+      </span>
+      <span class="min-w-0">
+         <span class="block whitespace-nowrap text-sm font-semibold text-slate-900">Projeni Gönder</span>
+         <span class="mt-0.5 block whitespace-nowrap text-[13px] leading-5 text-slate-500">Girişiminiz için başvurun</span>
+      </span>
+   </a>
+</li>
+
+                  
+               </ul>
+            </li>
+            <li class="relative" data-te-dropdown-ref>
+               <button type="button" id="hdr-corporate" class="group inline-flex items-center gap-1 whitespace-nowrap rounded-lg px-3 py-2 text-[15px] font-medium text-slate-600 transition-colors duration-200 hover:bg-fv-primaryColor2 hover:text-fv-primaryColor1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fv-lightBlue/50 aria-expanded:bg-fv-primaryColor2 aria-expanded:text-fv-primaryColor1" data-te-dropdown-toggle-ref data-te-offset="0,10" aria-expanded="false">
+                  Kurumsal
+                  <svg class="h-4 w-4 text-current opacity-60 transition-transform duration-200 group-aria-expanded:rotate-180 motion-reduce:transition-none scale-75" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+               </button>
+               <ul class="absolute z-[1000] m-0 hidden min-w-[18rem] list-none rounded-xl border border-slate-200/80 bg-white p-2 text-left shadow-xl shadow-slate-900/10 [&[data-te-dropdown-show]]:block" aria-labelledby="hdr-corporate" data-te-dropdown-menu-ref>
+                  
+<li>
+   <a href="/hakkimizda"
+      
+      class="group/item flex items-start gap-3 rounded-lg px-3 py-2.5 transition-colors duration-150 hover:bg-fv-primaryColor2 focus-visible:bg-fv-primaryColor2 focus-visible:outline-none"
+      data-te-dropdown-item-ref>
+      <span class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-fv-primaryColor2 text-fv-lightBlue ring-1 ring-inset ring-fv-lightBlue/15 transition-colors duration-150 group-hover/item:bg-white">
+         <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z" />
+         </svg>
+      </span>
+      <span class="min-w-0">
+         <span class="block whitespace-nowrap text-sm font-semibold text-slate-900">Hakkımızda</span>
+         <span class="mt-0.5 block whitespace-nowrap text-[13px] leading-5 text-slate-500">fonVenture'u tanıyın</span>
+      </span>
+   </a>
+</li>
+
+                  
+<li>
+   <a href="/hakkimizda/yonetim-kurulu"
+      
+      class="group/item flex items-start gap-3 rounded-lg px-3 py-2.5 transition-colors duration-150 hover:bg-fv-primaryColor2 focus-visible:bg-fv-primaryColor2 focus-visible:outline-none"
+      data-te-dropdown-item-ref>
+      <span class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-fv-primaryColor2 text-fv-lightBlue ring-1 ring-inset ring-fv-lightBlue/15 transition-colors duration-150 group-hover/item:bg-white">
+         <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+         </svg>
+      </span>
+      <span class="min-w-0">
+         <span class="block whitespace-nowrap text-sm font-semibold text-slate-900">Yönetim Kurulu</span>
+         <span class="mt-0.5 block whitespace-nowrap text-[13px] leading-5 text-slate-500">Yönetim ekibimiz</span>
+      </span>
+   </a>
+</li>
+
+                  
+<li>
+   <a href="/hakkimizda/yatirim-komitesi"
+      
+      class="group/item flex items-start gap-3 rounded-lg px-3 py-2.5 transition-colors duration-150 hover:bg-fv-primaryColor2 focus-visible:bg-fv-primaryColor2 focus-visible:outline-none"
+      data-te-dropdown-item-ref>
+      <span class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-fv-primaryColor2 text-fv-lightBlue ring-1 ring-inset ring-fv-lightBlue/15 transition-colors duration-150 group-hover/item:bg-white">
+         <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0 0 12 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52 2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 0 1-2.031.352 5.988 5.988 0 0 1-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971Zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0 2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 0 1-2.031.352 5.989 5.989 0 0 1-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971Z" />
+         </svg>
+      </span>
+      <span class="min-w-0">
+         <span class="block whitespace-nowrap text-sm font-semibold text-slate-900">Yatırım Komitesi</span>
+         <span class="mt-0.5 block whitespace-nowrap text-[13px] leading-5 text-slate-500">Proje değerlendirme komitesi</span>
+      </span>
+   </a>
+</li>
+
+                  
+<li>
+   <a href="/hakkimizda/ortaklik-yapisi"
+      
+      class="group/item flex items-start gap-3 rounded-lg px-3 py-2.5 transition-colors duration-150 hover:bg-fv-primaryColor2 focus-visible:bg-fv-primaryColor2 focus-visible:outline-none"
+      data-te-dropdown-item-ref>
+      <span class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-fv-primaryColor2 text-fv-lightBlue ring-1 ring-inset ring-fv-lightBlue/15 transition-colors duration-150 group-hover/item:bg-white">
+         <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />
+         </svg>
+      </span>
+      <span class="min-w-0">
+         <span class="block whitespace-nowrap text-sm font-semibold text-slate-900">Ortaklık Yapısı</span>
+         <span class="mt-0.5 block whitespace-nowrap text-[13px] leading-5 text-slate-500">Hissedar dağılımı</span>
+      </span>
+   </a>
+</li>
+
+               </ul>
+            </li>
+            <li>
+               <a href="/sss"  class="inline-flex items-center gap-1 whitespace-nowrap rounded-lg px-3 py-2 text-[15px] font-medium transition-colors duration-200 hover:bg-fv-primaryColor2 hover:text-fv-primaryColor1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fv-lightBlue/50 text-slate-600">S.S.S.</a>
+            </li>
+            <li>
+               <a href="/blog-list/"  class="inline-flex items-center gap-1 whitespace-nowrap rounded-lg px-3 py-2 text-[15px] font-medium transition-colors duration-200 hover:bg-fv-primaryColor2 hover:text-fv-primaryColor1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fv-lightBlue/50 text-slate-600">Blog</a>
+            </li>
+            
+         </ul>
+         
+      </div>
+      <!-- secondary nav -->
+      <div class="flex shrink-0 items-center gap-1.5 sm:gap-2">
+         
+         <a href="/accounts/login/" class="inline-flex items-center justify-center whitespace-nowrap rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 transition-colors duration-200 hover:bg-slate-100 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fv-lightBlue/50 hidden sm:inline-flex">Giriş Yap</a>
+         <a href="/accounts/signup/" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-fv-lightBlue/40 bg-white px-4 py-2.5 text-sm font-semibold text-fv-primaryColor1 transition-colors duration-200 hover:border-fv-lightBlue hover:bg-fv-primaryColor2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fv-lightBlue focus-visible:ring-offset-2 hidden xl:inline-flex">Ön Başvuru Yap</a>
+         <a href="/accounts/signup/" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-fv-lightBlue px-4 py-2.5 text-sm font-semibold text-white shadow-sm shadow-fv-lightBlue/30 transition-colors duration-200 hover:bg-[#258780] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fv-lightBlue focus-visible:ring-offset-2 hidden sm:inline-flex">Hesap Oluştur</a>
+         
+         
+         <!-- mobile menu button -->
+         <button type="button"
+                 class="relative flex h-10 w-10 items-center justify-center rounded-full text-slate-600 transition-colors duration-200 hover:bg-slate-100 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fv-lightBlue/50 aria-expanded:bg-slate-100 aria-expanded:text-slate-900 lg:hidden"
+                 @click="mobileOpen = !mobileOpen"
+                 :aria-expanded="mobileOpen.toString()"
+                 :aria-label="mobileOpen ? 'Menüyü kapat' : 'Menüyü aç'"
+                 aria-controls="mobile-menu"
+                 aria-expanded="false"
+                 aria-label="Menüyü aç">
+            <svg x-show="!mobileOpen" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
+            <svg x-show="mobileOpen" x-cloak class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+         </button>
+         
+      </div>
+   </div>
+   
+   <!-- mobile menu -->
+   <div id="mobile-menu"
+        x-show="mobileOpen"
+        x-cloak
+        x-transition:enter="transition ease-out duration-200 motion-reduce:transition-none"
+        x-transition:enter-start="opacity-0 -translate-y-2"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-150 motion-reduce:transition-none"
+        x-transition:leave-start="opacity-100 translate-y-0"
+        x-transition:leave-end="opacity-0 -translate-y-2"
+        class="absolute inset-x-0 top-full max-h-[calc(100dvh-72px)] overflow-y-auto border-b border-slate-200 bg-white shadow-lg shadow-slate-900/5 lg:hidden">
+      <div class="space-y-0.5 px-4 py-3">
+         <details class="group">
+            <summary class="flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-3 text-base font-medium text-slate-800 transition-colors duration-150 hover:bg-slate-50">
+               Yatırımcı
+               <svg class="h-5 w-5 text-slate-400 transition-transform duration-200 group-open:rotate-180 motion-reduce:transition-none" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+            </summary>
+            <div class="mb-2 ml-3 space-y-0.5 border-l border-slate-200 pl-3">
+               <a href="/nasil-yatirimci-olur" class="block rounded-lg px-3 py-2 text-[15px] text-slate-600 transition-colors duration-150 hover:bg-fv-primaryColor2 hover:text-fv-primaryColor1">Nasıl Yatırımcı Olunur?</a>
+               <a href="/accounts/signup/" class="block rounded-lg px-3 py-2 text-[15px] text-slate-600 transition-colors duration-150 hover:bg-fv-primaryColor2 hover:text-fv-primaryColor1">Yatırım Yap</a>
+            </div>
+         </details>
+         <details class="group">
+            <summary class="flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-3 text-base font-medium text-slate-800 transition-colors duration-150 hover:bg-slate-50">
+               Girişimci
+               <svg class="h-5 w-5 text-slate-400 transition-transform duration-200 group-open:rotate-180 motion-reduce:transition-none" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+            </summary>
+            <div class="mb-2 ml-3 space-y-0.5 border-l border-slate-200 pl-3">
+               <a href="/nasil-girisimci-olur" class="block rounded-lg px-3 py-2 text-[15px] text-slate-600 transition-colors duration-150 hover:bg-fv-primaryColor2 hover:text-fv-primaryColor1">Nasıl Girişimci Olunur?</a>
+               
+               <a href="/accounts/signup/" class="block rounded-lg px-3 py-2 text-[15px] text-slate-600 transition-colors duration-150 hover:bg-fv-primaryColor2 hover:text-fv-primaryColor1">Projeni Gönder</a>
+               <a href="/accounts/signup/" class="block rounded-lg px-3 py-2 text-[15px] text-slate-600 transition-colors duration-150 hover:bg-fv-primaryColor2 hover:text-fv-primaryColor1">Ön Başvuru Yap</a>
+               
+            </div>
+         </details>
+         <details class="group">
+            <summary class="flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-3 text-base font-medium text-slate-800 transition-colors duration-150 hover:bg-slate-50">
+               Kurumsal
+               <svg class="h-5 w-5 text-slate-400 transition-transform duration-200 group-open:rotate-180 motion-reduce:transition-none" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+            </summary>
+            <div class="mb-2 ml-3 space-y-0.5 border-l border-slate-200 pl-3">
+               <a href="/hakkimizda" class="block rounded-lg px-3 py-2 text-[15px] text-slate-600 transition-colors duration-150 hover:bg-fv-primaryColor2 hover:text-fv-primaryColor1">Hakkımızda</a>
+               <a href="/hakkimizda/yonetim-kurulu" class="block rounded-lg px-3 py-2 text-[15px] text-slate-600 transition-colors duration-150 hover:bg-fv-primaryColor2 hover:text-fv-primaryColor1">Yönetim Kurulu</a>
+               <a href="/hakkimizda/yatirim-komitesi" class="block rounded-lg px-3 py-2 text-[15px] text-slate-600 transition-colors duration-150 hover:bg-fv-primaryColor2 hover:text-fv-primaryColor1">Yatırım Komitesi</a>
+               <a href="/hakkimizda/ortaklik-yapisi" class="block rounded-lg px-3 py-2 text-[15px] text-slate-600 transition-colors duration-150 hover:bg-fv-primaryColor2 hover:text-fv-primaryColor1">Ortaklık Yapısı</a>
+            </div>
+         </details>
+         <a href="/sss" class="block rounded-lg px-3 py-3 text-base font-medium transition-colors duration-150 hover:bg-slate-50 text-slate-800">S.S.S.</a>
+         <a href="/blog-list/" class="block rounded-lg px-3 py-3 text-base font-medium transition-colors duration-150 hover:bg-slate-50 text-slate-800">Blog</a>
+         
+      </div>
+      <div class="grid gap-2 border-t border-slate-100 px-4 py-4 sm:grid-cols-2">
+         
+         <a href="/accounts/login/" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-fv-lightBlue/40 bg-white px-4 py-2.5 text-sm font-semibold text-fv-primaryColor1 transition-colors duration-200 hover:border-fv-lightBlue hover:bg-fv-primaryColor2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fv-lightBlue focus-visible:ring-offset-2 w-full">Giriş Yap</a>
+         <a href="/accounts/signup/" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-fv-lightBlue px-4 py-2.5 text-sm font-semibold text-white shadow-sm shadow-fv-lightBlue/30 transition-colors duration-200 hover:bg-[#258780] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fv-lightBlue focus-visible:ring-offset-2 w-full">Hesap Oluştur</a>
+         
+      </div>
+   </div>
+   
+</nav>
+
+
+    <body class="antialiased">
+       <!-- Page-load preloader: thin animated bar at top, fades out when page finishes loading -->
+<div id="preloader" style="position: fixed; top: 0; left: 0; right: 0; z-index: 99999; display: block; pointer-events: none;">
+    <div style="height: 4px; width: 100%; background: linear-gradient(90deg, #2C9B93, #1DD1A1, #2C9B93); background-size: 200% 100%; animation: preloader-shimmer 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;"></div>
+</div>
+
+<style>
+    @keyframes preloader-shimmer {
+        0%   { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+    }
+</style>
+
+<script>
+(function() {
+    var el = document.getElementById("preloader");
+    if (!el) return;
+    if (document.readyState === "complete") {
+        el.remove();
+        return;
+    }
+    window.addEventListener("load", function() {
+        el.style.transition = "opacity 0.4s ease";
+        el.style.opacity = "0";
+        setTimeout(function() { el.remove(); }, 500);
+    });
+})();
+</script>
+
+       
+
+      
+<style>
+   /* Hero carousel (slaytlar: _hero_slide.html, stiller: app.css) */
+   .hero-carousel { position: relative; }
+   /* Slaytlar en uzun slayt kadar uzar; kısa slaytın altında boş şerit kalmaz. */
+   .hero-carousel .owl-stage { display: flex; }
+   .hero-carousel .owl-item { display: flex; }
+   .hero-carousel .owl-item > .hero-slide { display: flex; align-items: center; width: 100%; }
+   .hero-carousel .owl-item .hero-slide__inner { width: 100%; }
+   .hero-carousel .owl-item .hero-slide--banner { background: #EEF6F4; }
+   .hero-carousel .owl-item .hero-slide--banner > a { display: block; width: 100%; height: 100%; }
+   /* Kontroller: alt ortada "‹ noktalar ›" */
+   .hero-controls {
+      position: absolute; bottom: 16px; left: 50%; z-index: 5; transform: translateX(-50%);
+      display: flex; align-items: center; gap: 10px; padding: 4px;
+      border-radius: 9999px; background: rgba(255, 255, 255, .9); box-shadow: 0 2px 10px rgba(13, 31, 45, .12);
+   }
+   .hero-controls .owl-nav { display: contents; }
+   .hero-controls .owl-prev { order: 1; }
+   .hero-controls .owl-dots { order: 2; display: flex; gap: 6px; }
+   .hero-controls .owl-next { order: 3; }
+   .hero-carousel .owl-dot span {
+      display: block; width: 10px; height: 10px; margin: 0 !important;
+      border-radius: 9999px; background: rgba(28, 69, 68, .25) !important; transition: width .2s ease;
+   }
+   .hero-carousel .owl-dot.active span { width: 22px; background: #2C9B93 !important; }
+   .hero-controls .owl-nav button {
+      display: flex !important; align-items: center; justify-content: center; width: 32px; height: 32px;
+      margin: 0 !important; border-radius: 9999px !important; background: transparent !important;
+      color: #1C4544 !important; transition: background .2s ease;
+   }
+   .hero-controls .owl-nav button:hover { background: rgba(28, 69, 68, .1) !important; }
+   .hero-controls .owl-nav button:focus-visible,
+   .hero-controls .owl-dot:focus-visible { outline: 3px solid rgba(44, 155, 147, .6); outline-offset: 2px; }
+   @media (prefers-reduced-motion: reduce) { .hero-carousel .owl-dot span { transition: none; } }
+
+   /* Her slider’a özel sol-alt içerik */
+   .slide-caption {
+      position: absolute;
+      bottom: 4%;
+      left: 3%;
+      color: #fff;
+      z-index: 10;
+      background: linear-gradient(135deg, #0ba6a6 0%, #1e5f73 100%);
+      padding: 11px 15px;
+      border-radius: 10px;
+      max-width: 480px;
+   }
+
+   .slide-caption h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+      margin-bottom: 0.5rem;
+   }
+
+
+
+   .slide-caption button {
+      color: white;
+      font-weight: 600;
+      border: 1px solid #fff;
+      padding: 0.6rem 1.4rem;
+      border-radius: 11px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+   }
+
+   .slide-caption button:hover {
+      background-color: #16a34a;
+   }
+
+   .sector-marquee {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      display: flex;
+      justify-content: center;
+   }
+
+   .sector-marquee-track {
+      display: inline-flex;
+      align-items: center;
+      min-width: 0;
+      transform: translateX(0);
+   }
+
+   .sector-marquee-item {
+      display: inline-block;
+      text-align: center;
+   }
+
+   .sector-marquee.is-overflowing {
+      justify-content: flex-start;
+   }
+
+   .sector-marquee.is-overflowing .sector-marquee-track {
+      width: max-content;
+      animation: sectorMarquee var(--marquee-duration, 12s) linear infinite;
+      will-change: transform;
+   }
+
+   .sector-marquee.is-overflowing .sector-marquee-item {
+      padding-right: 2rem;
+      text-align: left;
+   }
+
+   @keyframes sectorMarquee {
+      0% {
+         transform: translate3d(0, 0, 0);
+      }
+
+      100% {
+         transform: translate3d(calc(-1 * var(--marquee-shift, 0px)), 0, 0);
+      }
+   }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+
+
+
+
+<style>
+   /* ===== Anasayfa tasarım sistemi (hp-*) ===== */
+   .hp {
+      --hp-ink: #0D1F2D;
+      --hp-text: #475569;
+      --hp-muted: #64748B;
+      --hp-line: #E5E9E8;
+      --hp-tint: #F5F8F7;
+      --hp-brand: #2C9B93;
+      --hp-brand-strong: #237F79;
+      --hp-brand-dark: #1C4544;
+      --hp-brand-soft: #E8F4F3;
+      --hp-radius: 16px;
+      color: var(--hp-ink);
+   }
+
+   .hp-section { padding: 80px 0; }
+   .hp-section--dark { background: var(--hp-brand-dark); color: #ffffff; }
+
+   .hp-container {
+      max-width: 90rem;
+      margin: 0 auto;
+      padding: 0 16px;
+   }
+   @media (min-width: 640px) { .hp-container { padding: 0 24px; } }
+   @media (min-width: 1024px) { .hp-container { padding: 0 32px; } }
+
+   .hp-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--hp-brand-strong);
+      margin-bottom: 8px;
+   }
+   .hp-eyebrow::before {
+      content: '';
+      width: 20px;
+      height: 2px;
+      border-radius: 2px;
+      background: currentColor;
+   }
+   .hp-title {
+      font-size: clamp(26px, 3vw, 36px);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: var(--hp-ink);
+      margin: 0;
+   }
+   .hp-sub {
+      margin: 8px 0 0;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--hp-text);
+      max-width: 560px;
+   }
+   .hp-section--dark .hp-eyebrow { color: #79C4BD; }
+   .hp-section--dark .hp-title { color: #ffffff; }
+   .hp-section--dark .hp-sub { color: rgba(255, 255, 255, 0.78); }
+
+   .hp-btn {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 16px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+   }
+   .hp-btn--light { background: #ffffff; color: var(--hp-brand-dark); flex: 0 0 auto; padding: 0 22px; }
+   .hp-btn--light:hover { background: var(--hp-brand-soft); }
+   .hp-btn--ghost { border: 1px solid rgba(255, 255, 255, 0.4); color: #ffffff; flex: 0 0 auto; padding: 0 22px; }
+   .hp-btn--ghost:hover { background: rgba(255, 255, 255, 0.1); border-color: #ffffff; }
+
+   /* Tanıtım bandı */
+   .hp-intro {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 56px;
+      align-items: center;
+   }
+   .hp-intro video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--hp-radius);
+      background: #000000;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.25);
+   }
+   .hp-intro__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+
+   @media (max-width: 1200px) {
+      .hp-intro { gap: 40px; }
+   }
+
+   @media (max-width: 900px) {
+      .hp-intro { grid-template-columns: 1fr; gap: 40px; }
+   }
+
+   /* Tanıtım video slider'ı (hv-*) */
+   /* UA [hidden] loses to .hp-btn / .hp-eyebrow display; empty fields must stay hidden */
+   .hv [hidden] { display: none; }
+   .hv-slider { position: relative; }
+   .hv-slide { display: none; }
+   .hv-slide.is-active { display: contents; }
+   .hv-controls { grid-column: 1 / -1; display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 24px; }
+   .hv-arrow { width: 40px; height: 40px; border-radius: 9999px; border: 1px solid rgba(255,255,255,.4); background: transparent; color: #fff; cursor: pointer; }
+   .hv-arrow:hover { background: rgba(255,255,255,.1); }
+   .hv-dots { display: flex; gap: 8px; }
+   .hv-dot { width: 8px; height: 8px; border-radius: 9999px; border: 0; padding: 0; background: rgba(255,255,255,.4); cursor: pointer; }
+   .hv-dot.is-active { background: #fff; }
+</style>
+
+<style>
+   /* ===== Anasayfa tasarım sistemi (hp-*) — ortak kurallar _home_video_styles.html'de ===== */
+   .hp-section--tint { background: var(--hp-tint); }
+   .hp-section--white { background: #ffffff; }
+   .hp-section--white + .hp-section--white { border-top: 1px solid var(--hp-line); }
+
+   /* Bölüm başlığı — tüm bölümlerde aynı */
+   .hp-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 32px;
+   }
+   .hp-head--center {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+   }
+
+   .hp-head-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+   }
+   .hp-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--hp-brand-strong);
+      border-radius: 6px;
+      transition: color 0.2s;
+   }
+   .hp-link:hover { color: var(--hp-brand-dark); }
+   .hp-link svg { transition: transform 0.2s; }
+   .hp-link:hover svg { transform: translateX(3px); }
+
+   .hp-arrows { display: flex; gap: 8px; }
+   .hp-arrow {
+      width: 44px;
+      height: 44px;
+      border-radius: 9999px;
+      border: 1px solid var(--hp-line);
+      background: #ffffff;
+      color: var(--hp-ink);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+   }
+   .hp-arrow:hover {
+      border-color: var(--hp-brand);
+      color: var(--hp-brand-strong);
+      background: var(--hp-brand-soft);
+   }
+   .hp-arrow:disabled { opacity: 0.4; pointer-events: none; }
+
+   .hp a:focus-visible,
+   .hp button:focus-visible {
+      outline: 2px solid var(--hp-brand);
+      outline-offset: 2px;
+   }
+
+   /* Kart slider'ı (blog) */
+   .cards-viewport {
+      overflow: hidden;
+      margin: 0 -10px;
+      padding: 4px 0 12px;
+   }
+   .cards-list {
+      --cards-per-view: 1;
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      will-change: transform;
+   }
+   .card-slide {
+      display: flex;
+      min-width: calc(100% / var(--cards-per-view));
+      padding: 0 10px;
+      box-sizing: border-box;
+   }
+
+   /* Proje kartı — tüm proje bölümlerinde aynı */
+   .hp-card {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      background: #ffffff;
+      border: 1px solid var(--hp-line);
+      border-radius: var(--hp-radius);
+      overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
+   }
+   .hp-card:hover {
+      border-color: var(--hp-brand);
+      box-shadow: 0 12px 32px rgba(28, 69, 68, 0.10);
+   }
+   .hp-card__top {
+      display: flex;
+      gap: 16px;
+      padding: 20px 20px 0;
+   }
+   .hp-card__thumb-link { flex-shrink: 0; }
+   .hp-card__thumb {
+      width: 96px;
+      height: 96px;
+      border-radius: 12px;
+      object-fit: contain;
+      padding: 6px;
+      background: var(--hp-tint);
+      border: 1px solid var(--hp-line);
+   }
+   .hp-card__body { flex: 1; min-width: 0; }
+   .hp-tag {
+      display: inline-block;
+      max-width: 100%;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: var(--hp-brand-soft);
+      color: var(--hp-brand-dark);
+      margin-bottom: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      vertical-align: top;
+   }
+   .hp-card__name {
+      display: block;
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--hp-ink);
+      margin: 0 0 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: color 0.2s;
+   }
+   .hp-card__name:hover { color: var(--hp-brand-strong); }
+   .hp-card__desc {
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--hp-text);
+      margin: 0;
+      min-height: calc(14px * 1.55 * 2);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+   }
+
+   /* Kartın orta bandı: proje → ilerleme, ön talep → durum (aynı yükseklik) */
+   .hp-card__meta {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 72px;
+      padding: 16px 20px 0;
+   }
+   .hp-progress__head,
+   .hp-progress__foot {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 13px;
+   }
+   .hp-progress__head { margin-bottom: 8px; color: var(--hp-text); }
+   .hp-progress__pct { font-weight: 700; color: var(--hp-brand-strong); }
+   .hp-progress__track {
+      height: 6px;
+      border-radius: 99px;
+      background: #E8ECEB;
+      overflow: hidden;
+   }
+   .hp-progress__fill {
+      height: 100%;
+      max-width: 100%;
+      border-radius: 99px;
+      background: var(--hp-brand);
+   }
+   .hp-progress__foot { margin-top: 8px; }
+   .hp-progress__funded { font-weight: 600; color: var(--hp-ink); }
+   .hp-progress__goal { color: var(--hp-muted); }
+
+   /* Hedefine ulaşan projeler — başarı teması (zümrüt) */
+   .hp-section--success {
+      --hp-ok: #059669;
+      --hp-ok-strong: #047857;
+      --hp-ok-dark: #064E3B;
+      --hp-ok-soft: #ECFDF5;
+      --hp-ok-line: #A7F3D0;
+      background: linear-gradient(180deg, #F3FBF7 0%, #ffffff 100%);
+   }
+   .hp-card--success {
+      position: relative;
+      border-color: var(--hp-ok-line);
+      box-shadow: 0 1px 2px rgba(6, 78, 59, 0.04);
+   }
+   .hp-card--success::before {
+      content: '';
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 4px;
+      background: linear-gradient(90deg, #10B981, #34D399);
+   }
+   .hp-card--success:hover {
+      border-color: var(--hp-ok);
+      box-shadow: 0 12px 32px rgba(5, 150, 105, 0.14);
+   }
+   .hp-card--success .hp-card__top { padding: 32px 28px 0; gap: 20px; }
+   .hp-card--success .hp-card__thumb { width: 128px; height: 128px; padding: 10px; }
+   .hp-card--success .hp-card__desc { -webkit-line-clamp: 3; min-height: calc(14px * 1.55 * 3); }
+   .hp-card--success .hp-card__meta { min-height: 96px; padding: 24px 28px 0; }
+   .hp-card--success .hp-progress__track { height: 8px; }
+   .hp-card--success .hp-card__actions { padding: 28px; }
+   .hp-card--success .hp-card__thumb { background: var(--hp-ok-soft); border-color: var(--hp-ok-line); }
+   .hp-card--success .hp-tag { background: var(--hp-ok-soft); color: var(--hp-ok-dark); }
+   .hp-card--success .hp-card__name:hover { color: var(--hp-ok-strong); }
+   .hp-card--success .hp-progress__pct { color: var(--hp-ok-strong); }
+   .hp-card--success .hp-progress__track { background: #D1FAE5; }
+   .hp-card--success .hp-progress__fill { background: linear-gradient(90deg, #059669, #34D399); }
+   .hp-card--success .hp-btn--outline { border-color: var(--hp-ok-line); color: var(--hp-ok-dark); }
+   .hp-card--success .hp-btn--outline:hover { background: var(--hp-ok); border-color: var(--hp-ok); color: #ffffff; }
+   .hp-badge-success {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+      margin-left: 6px;
+      padding: 3px 10px 3px 6px;
+      border-radius: 99px;
+      background: var(--hp-ok-strong);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.4;
+      vertical-align: top;
+      white-space: nowrap;
+   }
+   .hp-badge-success svg { width: 14px; height: 14px; flex-shrink: 0; }
+   .hp-card--muted .hp-progress__pct { color: var(--hp-muted); }
+   .hp-card--muted .hp-progress__fill { background: #94A3B8; }
+
+   .hp-card__actions {
+      display: flex;
+      gap: 10px;
+      margin-top: auto;
+      padding: 20px;
+   }
+   .hp-btn--outline { border: 1px solid #CBD5D3; color: var(--hp-ink); background: #ffffff; }
+   .hp-btn--outline:hover { border-color: var(--hp-brand); color: var(--hp-brand-strong); }
+
+   .hp-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+   }
+
+   /* Blog */
+   .hp-blog {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      background: #ffffff;
+      border: 1px solid var(--hp-line);
+      border-radius: var(--hp-radius);
+      overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
+   }
+   .hp-blog:hover {
+      border-color: var(--hp-brand);
+      box-shadow: 0 12px 32px rgba(28, 69, 68, 0.10);
+   }
+   .hp-blog__media { aspect-ratio: 16 / 9; background: var(--hp-tint); overflow: hidden; }
+   .hp-blog__media img { width: 100%; height: 100%; object-fit: cover; }
+   .hp-blog__body { display: flex; flex-direction: column; flex: 1; padding: 20px; }
+   .hp-blog__meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--hp-muted);
+      margin-bottom: 12px;
+   }
+   .hp-blog__date { display: inline-flex; align-items: center; gap: 6px; }
+   .hp-blog__author {
+      max-width: 50%;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      background: var(--hp-brand-soft);
+      color: var(--hp-brand-dark);
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+   }
+   .hp-blog__title {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.4;
+      margin: 0 0 8px;
+      min-height: calc(18px * 1.4 * 2);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      transition: color 0.2s;
+   }
+   .hp-blog:hover .hp-blog__title { color: var(--hp-brand-strong); }
+   .hp-blog__title a::after { content: ''; position: absolute; inset: 0; }
+   .hp-blog__text {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--hp-text);
+      margin: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+   }
+   .hp-blog__more {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: auto;
+      padding-top: 16px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--hp-brand-strong);
+   }
+   .hp-blog__more svg { transition: transform 0.2s; }
+   .hp-blog:hover .hp-blog__more svg { transform: translateX(3px); }
+   #blogSlider .blog-slide { min-width: 33.3333%; }
+
+   /* S.S.S. */
+   .hp-faq { display: grid; grid-template-columns: 4fr 8fr; gap: 56px; align-items: start; }
+   .hp-faq .hp-head { flex-direction: column; align-items: flex-start; margin-bottom: 0; }
+   .hp-tabs {
+      display: inline-flex;
+      padding: 4px;
+      border-radius: 9999px;
+      background: var(--hp-tint);
+      border: 1px solid var(--hp-line);
+      margin-top: 24px;
+   }
+   .hp-tab {
+      min-height: 40px;
+      padding: 0 18px;
+      border-radius: 9999px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--hp-text);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+   }
+   .hp-tab.is-active { background: var(--hp-brand-strong); color: #ffffff; }
+   .hp-faq__item {
+      border: 1px solid var(--hp-line);
+      border-radius: 12px;
+      background: #ffffff;
+      margin-bottom: 12px;
+      transition: border-color 0.2s;
+   }
+   .hp-faq__item.is-open { border-color: var(--hp-brand); }
+   .hp-faq__q {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 20px;
+      text-align: left;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--hp-ink);
+      cursor: pointer;
+   }
+   .hp-faq__icon {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 9999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--hp-brand-soft);
+      color: var(--hp-brand-strong);
+      transition: transform 0.2s;
+   }
+   .hp-faq__item.is-open .hp-faq__icon { transform: rotate(180deg); }
+   .hp-faq__a { padding: 0 20px 20px; font-size: 15px; line-height: 1.65; color: var(--hp-text); }
+   .hp-faq__empty { color: var(--hp-muted); }
+
+
+   @media (max-width: 1200px) {
+      .hp-faq { gap: 40px; }
+   }
+
+   @media (max-width: 900px) {
+      .hp-faq { grid-template-columns: 1fr; gap: 40px; }
+   }
+
+   @media (max-width: 768px) {
+      .hp-section { padding: 56px 0; }
+      .hp-head { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
+      .hp-head--center { align-items: center; }
+      .hp-head-actions { width: 100%; justify-content: space-between; }
+      .hp-grid-2 { grid-template-columns: 1fr; }
+      .hp-card__top { flex-direction: column; }
+      .hp-card__thumb-link { display: block; }
+      .hp-card__thumb { width: 100%; height: 160px; }
+      .hp-card--success .hp-card__thumb { width: 100%; height: 160px; }
+      .hp-card--success .hp-card__top { padding: 28px 20px 0; }
+      .hp-card--success .hp-card__meta { padding: 20px 20px 0; }
+      .hp-card--success .hp-card__actions { padding: 20px; }
+      #blogSlider .blog-slide { min-width: 100%; }
+   }
+
+   @media (prefers-reduced-motion: reduce) {
+      .cards-list, #blogSlider { transition: none; }
+   }
+</style>
+
+<div class="hp">
+   <!-- HERO -->
+   <div class="hidden md:block">
+      
+      <div class="hero-carousel" role="region" aria-roledescription="carousel" aria-label="Öne çıkanlar">
+         <div class="owl-carousel owl-theme js-hero-carousel">
+            
+
+
+<div class="hero-slide hero-slide--image hero-slide--overlay">
+   
+   <img class="hero-slide__bg" data-fallback="none" src="https://media.fonventure.com/media/person/slider_1_2719f101.webp" alt="Quad Robotics" style="object-position: right">
+   
+   <div class="hero-slide__inner">
+      <div class="hero-slide__copy">
+         
+         <h2 class="hero-slide__title">Quad Robotics Ön Talebe Açıldı!</h2>
+         
+         <p class="hero-slide__body">Proje, farklı robot türlerinin çevrelerini algılamasını, verilen görevleri planlamasını ve güvenli biçimde uygulamasını sağlayacak ortak bir yapay zekâ altyapısı geliştirmeyi amaçlamaktadır.</p>
+         
+      </div>
+      
+      <div class="hero-slide__card">
+         
+
+<article class="pl-card" data-status="pre_demand">
+   <div class="pl-media">
+      <img data-fallback="wide" src="https://media.fonventure.com/media/person/project_9eade97b-9d7a-4962-bf2a-c49f9a312ee5_cd9e7f15.webp" alt="Quad Robotics" loading="lazy">
+      <span class="pl-badge">Ön Talepte</span>
+   </div>
+
+   <div class="flex flex-col flex-1 p-5">
+      <div class="pl-sector">Robotik, Yapay Zeka, Yazılım</div>
+      <h3 class="pl-title">Quad Robotics</h3>
+      <p class="pl-desc">Proje, farklı robot türlerinin çevrelerini algılamasını, verilen görevleri planlamasını ve güvenli biçimde uygulamasını sağlayacak ortak bi…</p>
+
+      <div class="mt-auto pt-5">
+         
+         <p class="flex items-center text-sm text-gray-600 mb-5">
+            <span class="inline-flex items-center justify-center w-5 h-5 mr-2 rounded-full bg-fv-lightBlue text-white text-xs" aria-hidden="true">✓</span>
+            Ön talep topluyor
+         </p>
+         
+
+         <div class="flex gap-3">
+            
+            
+            <a href="/kampanya/on-yatirim-yap/9eade97b-9d7a-4962-bf2a-c49f9a312ee5" class="pl-btn pl-btn-primary">Ön Talep Yap</a>
+            
+            
+            <a href="/kampanya/9eade97b-9d7a-4962-bf2a-c49f9a312ee5" class="pl-btn pl-btn-outline">İncele</a>
+         </div>
+      </div>
+   </div>
+</article>
+
+      </div>
+      
+   </div>
+</div>
+
+
+
+         </div>
+      </div>
+      
+   </div>
+   <div class="md:hidden">
+      
+      <div class="hero-carousel" role="region" aria-roledescription="carousel" aria-label="Öne çıkanlar">
+         <div class="owl-carousel owl-theme js-hero-carousel">
+            
+
+
+<div class="hero-slide">
+   
+   <div class="hero-slide__inner">
+      <div class="hero-slide__copy">
+         
+         <h2 class="hero-slide__title">Quad Robotics Ön Talebe Açıldı!</h2>
+         
+         
+         
+      </div>
+      
+      <div class="hero-slide__card">
+         
+
+<article class="pl-card" data-status="pre_demand">
+   <div class="pl-media">
+      <img data-fallback="wide" src="https://media.fonventure.com/media/person/project_9eade97b-9d7a-4962-bf2a-c49f9a312ee5_cd9e7f15.webp" alt="Quad Robotics" loading="lazy">
+      <span class="pl-badge">Ön Talepte</span>
+   </div>
+
+   <div class="flex flex-col flex-1 p-5">
+      <div class="pl-sector">Robotik, Yapay Zeka, Yazılım</div>
+      <h3 class="pl-title">Quad Robotics</h3>
+      <p class="pl-desc">Proje, farklı robot türlerinin çevrelerini algılamasını, verilen görevleri planlamasını ve güvenli biçimde uygulamasını sağlayacak ortak bi…</p>
+
+      <div class="mt-auto pt-5">
+         
+         <p class="flex items-center text-sm text-gray-600 mb-5">
+            <span class="inline-flex items-center justify-center w-5 h-5 mr-2 rounded-full bg-fv-lightBlue text-white text-xs" aria-hidden="true">✓</span>
+            Ön talep topluyor
+         </p>
+         
+
+         <div class="flex gap-3">
+            
+            
+            <a href="/kampanya/on-yatirim-yap/9eade97b-9d7a-4962-bf2a-c49f9a312ee5" class="pl-btn pl-btn-primary">Ön Talep Yap</a>
+            
+            
+            <a href="/kampanya/9eade97b-9d7a-4962-bf2a-c49f9a312ee5" class="pl-btn pl-btn-outline">İncele</a>
+         </div>
+      </div>
+   </div>
+</article>
+
+      </div>
+      
+   </div>
+</div>
+
+
+
+         </div>
+      </div>
+      
+   </div>
+
+   <!-- PAYDAŞLAR (kompakt; tam bant footer'da) -->
+   <section class="ft-partners ft-partners--compact" aria-label="Paydaşlarımız">
+      <div class="ft-container">
+         <ul class="ft-partners__list">
+            
+         <li class="ft-partners__item"><img src="/static/img/marka1.png" alt="türkiye.gov.tr" loading="lazy" data-fallback="none"></li>
+         <li class="ft-partners__item"><img src="/static/img/marka2.png" alt="Sermaye Piyasası Kurulu" loading="lazy" data-fallback="none"></li>
+         <li class="ft-partners__item"><img src="/static/img/marka3.png" alt="Takasbank" loading="lazy" data-fallback="none"></li>
+         <li class="ft-partners__item"><img src="/static/img/marka4.png" alt="e-Yatırımcı" loading="lazy" data-fallback="none"></li>
+         <li class="ft-partners__item"><img src="/static/img/marka5.png" alt="T.C. Hazine ve Maliye Bakanlığı" loading="lazy" data-fallback="none"></li>
+         <li class="ft-partners__item"><img src="/static/img/marka6.png" alt="Merkezi Kayıt İstanbul" loading="lazy" data-fallback="none"></li>
+
+         </ul>
+      </div>
+   </section>
+
+   
+   <!-- HEDEFİNE ULAŞAN PROJELER -->
+   <section class="hp-section hp-section--success">
+      <div class="hp-container">
+         <div class="hp-head">
+            <div>
+               <h2 class="hp-title">Hedefine Ulaşan Projeler</h2>
+               <p class="hp-sub">Başarıya ulaşan projeleri incele, güncel fırsatları kaçırma!</p>
+            </div>
+         </div>
+
+         <div class="hp-grid-2">
+            
+            <article class="hp-card hp-card--success">
+               <div class="hp-card__top">
+                  <a class="hp-card__thumb-link" href="/kampanya/a5a5e508-1b39-469b-94dd-94fa4585b907" tabindex="-1">
+                     <img data-fallback="square" class="hp-card__thumb" src="https://media.fonventure.com/media/person/project_a5a5e508-1b39-469b-94dd-94fa4585b907_c23f45e2.webp" alt="Off Grid Yüzer Desalinizasyon Teknolojileri" style="background-color: #f5f8f7; border-color: #d1d5db;">
+                  </a>
+                  <div class="hp-card__body">
+                     <span class="hp-tag">Enerji</span>
+                     <span class="hp-badge-success"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="rgba(255,255,255,.25)"/><path d="M5.5 10.5l3 3 6-6.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Hedefe ulaşıldı</span>
+                     <h3><a class="hp-card__name" href="/kampanya/a5a5e508-1b39-469b-94dd-94fa4585b907">Off Grid Yüzer Desalinizasyon Teknolojileri</a></h3>
+                     <p class="hp-card__desc">Blue Hybrid Solutions, yenilenebilir enerji ile çalışan enerji bağımsız yüzer deniz suyu arıtma platformları geliştiren bir iklim teknolojisi girişimidir. Deniz üzerinde kurulabilen bu sistemler, kara altyapısına ve şebeke elektriğine ihti…</p>
+                  </div>
+               </div>
+               <div class="hp-card__meta">
+                  <div class="hp-progress__head">
+                     <span><span class="hp-progress__pct">%101,04</span> fonlandı</span>
+                  </div>
+                  <div class="hp-progress__track">
+                     <div class="hp-progress__fill" style="width: 101.04%;"></div>
+                  </div>
+                  <div class="hp-progress__foot">
+                     <span class="hp-progress__funded">7.577.854 ₺ Fonlanan</span>
+                     <span class="hp-progress__goal">Hedef: 7.500.000 ₺</span>
+                  </div>
+               </div>
+               <div class="hp-card__actions">
+                  <a href="/kampanya/a5a5e508-1b39-469b-94dd-94fa4585b907" class="hp-btn hp-btn--outline">İncele</a>
+               </div>
+            </article>
+            
+            <article class="hp-card hp-card--success">
+               <div class="hp-card__top">
+                  <a class="hp-card__thumb-link" href="/kampanya/4c66a7ae-5c44-4562-b8c8-dd2380c370c2" tabindex="-1">
+                     <img data-fallback="square" class="hp-card__thumb" src="https://media.fonventure.com/media/person/project_4c66a7ae-5c44-4562-b8c8-dd2380c370c2_5cd5b71d.webp" alt="Ortak Rota" style="background-color: #f5f8f7; border-color: #d1d5db;">
+                  </a>
+                  <div class="hp-card__body">
+                     <span class="hp-tag">Lojistik Teknolojileri</span>
+                     <span class="hp-badge-success"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="rgba(255,255,255,.25)"/><path d="M5.5 10.5l3 3 6-6.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Hedefe ulaşıldı</span>
+                     <h3><a class="hp-card__name" href="/kampanya/4c66a7ae-5c44-4562-b8c8-dd2380c370c2">Ortak Rota</a></h3>
+                     <p class="hp-card__desc">Türkiye’de yük taşımacılığının yaklaşık %90’ı karayolu ile gerçekleştirilmektedir. Sektörde manuel planlama süreçleri, mükerrer araç dolaşımı, düşük kapasite kullanım oranları ve yüksek yakıt maliyetleri yaygın olarak görülmekte olup, bu d…</p>
+                  </div>
+               </div>
+               <div class="hp-card__meta">
+                  <div class="hp-progress__head">
+                     <span><span class="hp-progress__pct">%100,00</span> fonlandı</span>
+                  </div>
+                  <div class="hp-progress__track">
+                     <div class="hp-progress__fill" style="width: 100.00%;"></div>
+                  </div>
+                  <div class="hp-progress__foot">
+                     <span class="hp-progress__funded">5.250.000 ₺ Fonlanan</span>
+                     <span class="hp-progress__goal">Hedef: 5.250.000 ₺</span>
+                  </div>
+               </div>
+               <div class="hp-card__actions">
+                  <a href="/kampanya/4c66a7ae-5c44-4562-b8c8-dd2380c370c2" class="hp-btn hp-btn--outline">İncele</a>
+               </div>
+            </article>
+            
+         </div>
+      </div>
+   </section>
+   
+
+
+   <!-- TANITIM -->
+   
+<section class="hp-section hp-section--dark hv" data-hv-root>
+   <div class="hp-container hp-intro hv-slider" data-hv-slider role="region" aria-roledescription="carousel" aria-label="Tanıtım videoları">
+   
+      
+      <video controls playsinline preload="none"
+         poster="/static/video/ortak-akil-ile-guclu-gelecek-poster.webp" width="1920" height="1080"
+         controlslist="nodownload" aria-label="Tanıtım Videosu">
+         <source src="/static/video/ortak-akil-ile-guclu-gelecek.mp4" type="video/mp4">
+         Tarayıcınız video oynatmayı desteklemiyor.
+      </video>
+      <div>
+         <span class="hp-eyebrow">Ortak akıl ile güçlü gelecek</span>
+         <h2 class="hp-title">fonVenture ile yatırım dünyasını keşfedin</h2>
+         <p class="hp-sub">Yenilikçi girişimlere ortak olun ya da projenizi topluluğun gücüyle fonlayın.</p>
+         <div class="hp-intro__actions">
+            <a href="/nasil-yatirimci-olur" class="hp-btn hp-btn--light">Nasıl Yatırımcı Olunur?</a>
+            <a href="/nasil-girisimci-olur" class="hp-btn hp-btn--ghost">Nasıl Girişimci Olunur?</a>
+         </div>
+      </div>
+   
+   </div>
+</section>
+
+
+
+   
+
+<style>
+   [x-cloak] { display: none !important; }
+   .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+   .custom-scrollbar::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
+</style>
+<div
+   x-data="Home('bded2148-6b7f-44c3-a43d-41dce5adf7a8', false)"
+   x-show="open"
+   x-cloak
+   @keydown.escape.window="close()"
+   class="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6"
+   role="dialog"
+   aria-modal="true"
+   aria-labelledby="pop-up-title"
+>
+   <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" @click="close()"></div>
+
+   <div class="relative bg-white w-full max-w-lg rounded-2xl shadow-2xl flex flex-col overflow-hidden">
+      <button
+         type="button"
+         @click="close()"
+         class="absolute top-3 right-3 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/60 text-white text-lg leading-none transition-all"
+         aria-label="Kapat"
+      >&#10005;</button>
+
+      
+
+      <div class="p-6 overflow-y-auto max-h-[50vh] custom-scrollbar">
+         <h3 id="pop-up-title" class="text-xl text-gray-900 leading-tight text-center mb-4">Quad Robotics Ön Talepte</h3>
+         <div class="text-gray-600 leading-relaxed space-y-4 text-sm sm:text-base">
+            <div class="fv-richtext"><p>Kampanya İçin 29 Ekim 2026 tarihinde ön talep toplanmaya başlanmıştır.</p><p>Ön talep başvurusunda bulunan ve bu yatırımlarını kampanya başlangıcından itibaren ilk on iki(12) gün içinde gerçekleştiren yatırımcılara %20 bedelsiz pay verilecektir. Örneğin 10.000 TL ön talepte bulunan bir yatırımcı ilgili tarih içerisinde 10.000 TL yatırdığında 2.000 TL'lik payı bedelsiz olarak alacaktır.</p><p>Linke tıklayarak ön talebinizi oluşturabilirsiniz: <a href="https://fonventure.com/quad/">fonventure.com/quad/</a></p><p>İlginiz için teşekkür ederiz</p></div>
+         </div>
+      </div>
+
+      
+   </div>
+</div>
+
+
+
+   <!-- BLOG -->
+   <section class="hp-section hp-section--tint">
+      <div class="hp-container">
+         <div class="hp-head">
+            <div>
+               <h2 class="hp-title">Bloglarımız</h2>
+               <p class="hp-sub">Girişimcilik, yatırım ve kitle fonlaması üzerine güncel yazılar.</p>
+            </div>
+            <div class="hp-head-actions">
+               <a href="/blog-list/" class="hp-link">
+                  Tümünü gör
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+               </a>
+               <div class="hp-arrows">
+                  <button type="button" id="blogPrev" class="hp-arrow" onclick="slideBlogs(-1)" aria-label="Önceki yazılar">
+                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+                  </button>
+                  <button type="button" id="blogNext" class="hp-arrow" onclick="slideBlogs(1)" aria-label="Sonraki yazılar">
+                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+                  </button>
+               </div>
+            </div>
+         </div>
+
+         <div class="cards-viewport">
+            <div id="blogSlider" class="cards-list">
+               
+               <div class="card-slide blog-slide">
+                  <article class="hp-blog">
+                     <div class="hp-blog__media">
+                        <img data-fallback="wide" src="https://media.fonventure.com/media/blog/blog_32_b90d802c.webp" alt="Kitle Fonlamasına Çıkmadan Önce: Fikir ya Sunum?" loading="lazy">
+                     </div>
+                     <div class="hp-blog__body">
+                        <div class="hp-blog__meta">
+                           <span class="hp-blog__date">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                              28 Eyl 2026
+                           </span>
+                           <span class="hp-blog__author">Hüseyin Atılkan</span>
+                        </div>
+                        <h3 class="hp-blog__title">
+                           <a href="/blog-detail/kitle-fonlamasna-ckmadan-once-fikir-ya-sunum-huseyin-atlkan/">Kitle Fonlamasına Çıkmadan Önce: Fikir ya Sunum?</a>
+                        </h3>
+                        <p class="hp-blog__text">Bir fikriniz var.Heyecanlısınız.Hatta belki yakın çevrenizden “Bu fikir tutar.” cümlesini de duydunuz.Peki bu fikir kitle fonlamasına çıkmaya gerçekten hazır mı?&nbsp;Hazırladığınız Sunum Yatırım Komitesinin sorularına tatmin edici cevaplar verecek mi?&nbsp;Çünkü iyi …</p>
+                        <span class="hp-blog__more">
+                           Devamını oku
+                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </span>
+                     </div>
+                  </article>
+               </div>
+               
+               <div class="card-slide blog-slide">
+                  <article class="hp-blog">
+                     <div class="hp-blog__media">
+                        <img data-fallback="wide" src="https://media.fonventure.com/media/blog/blog_31_59a6cf5a.webp" alt="Kitle Fonlamada Yatırımcı Değil, İşin Ortağı Olmak;  Geleceğe Ortak Olmak" loading="lazy">
+                     </div>
+                     <div class="hp-blog__body">
+                        <div class="hp-blog__meta">
+                           <span class="hp-blog__date">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                              19 Ağu 2026
+                           </span>
+                           <span class="hp-blog__author">Hüseyin Atılkan</span>
+                        </div>
+                        <h3 class="hp-blog__title">
+                           <a href="/blog-detail/kitle-fonlamada-yatrmc-degil-isin-ortag-olmak-gelecege-ortak-olmak-huseyin-atlkan/">Kitle Fonlamada Yatırımcı Değil, İşin Ortağı Olmak;  Geleceğe Ortak Olmak</a>
+                        </h3>
+                        <p class="hp-blog__text">Bir girişimin ilk aşamasında milyonlarca liralık yatırım kadar önemli olan başka bir şey vardır: İnanıldığını görmek. İnanılan fikre ortak olmak.Bir girişimci, henüz şirketinin değeri oluşmamışken, ürününü milyonlarca kişiye ulaştırmamışken ve …</p>
+                        <span class="hp-blog__more">
+                           Devamını oku
+                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </span>
+                     </div>
+                  </article>
+               </div>
+               
+               <div class="card-slide blog-slide">
+                  <article class="hp-blog">
+                     <div class="hp-blog__media">
+                        <img data-fallback="wide" src="https://media.fonventure.com/media/blog/blog_30_f6e7b70a.webp" alt="Bir Fikrin Değeri Nedir? " loading="lazy">
+                     </div>
+                     <div class="hp-blog__body">
+                        <div class="hp-blog__meta">
+                           <span class="hp-blog__date">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                              23 Tem 2026
+                           </span>
+                           <span class="hp-blog__author">Hüseyin ATILKAN</span>
+                        </div>
+                        <h3 class="hp-blog__title">
+                           <a href="/blog-detail/bir-fikrin-degeri-nedir-huseyin-atilkan/">Bir Fikrin Değeri Nedir? </a>
+                        </h3>
+                        <p class="hp-blog__text">Kitle fonlama denildiğinde akla ilk gelen soru çoğu zaman şudur:“Bu girişim ne kadar kazandıracak?”Oysa asıl sormamız gereken ikinci bir soru daha var:“Bu girişim topluma ne kazandıracak?”Her başarılı şirket, bir zamanlar …</p>
+                        <span class="hp-blog__more">
+                           Devamını oku
+                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </span>
+                     </div>
+                  </article>
+               </div>
+               
+               <div class="card-slide blog-slide">
+                  <article class="hp-blog">
+                     <div class="hp-blog__media">
+                        <img data-fallback="wide" src="https://media.fonventure.com/media/blog/blog_29_934252f2.webp" alt="Kitle Fonlamada Platform Seçimi" loading="lazy">
+                     </div>
+                     <div class="hp-blog__body">
+                        <div class="hp-blog__meta">
+                           <span class="hp-blog__date">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                              23 Haz 2026
+                           </span>
+                           <span class="hp-blog__author">fonVenture</span>
+                        </div>
+                        <h3 class="hp-blog__title">
+                           <a href="/blog-detail/kitle-fonlamada-platform-secimi/">Kitle Fonlamada Platform Seçimi</a>
+                        </h3>
+                        <p class="hp-blog__text">Kitle Fonlamada en önemli konulardan bir tanesi de doğru platform seçimidir. Çünkü Platform, projenin güvenilirliği, erişimi, finansal yönetimi ve görünürlüğü açısından kritik rol oynar.&nbsp;Yanlış platform seçimi, yeterli destekçi bulamamak veya …</p>
+                        <span class="hp-blog__more">
+                           Devamını oku
+                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </span>
+                     </div>
+                  </article>
+               </div>
+               
+               <div class="card-slide blog-slide">
+                  <article class="hp-blog">
+                     <div class="hp-blog__media">
+                        <img data-fallback="wide" src="https://media.fonventure.com/media/blog/blog_27.webp" alt="Kitle Fonlamada Yatırım Komitesi" loading="lazy">
+                     </div>
+                     <div class="hp-blog__body">
+                        <div class="hp-blog__meta">
+                           <span class="hp-blog__date">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                              13 May 2026
+                           </span>
+                           <span class="hp-blog__author">fonVenture</span>
+                        </div>
+                        <h3 class="hp-blog__title">
+                           <a href="/blog-detail/kitle-fonlamada-yatirim-komitesi/">Kitle Fonlamada Yatırım Komitesi</a>
+                        </h3>
+                        <p class="hp-blog__text">Kitle fonlamada yatırım komitesi, platform üzerinden yatırım yapılacak projeleri ve girişimleri profesyonel bir bakış açısıyla değerlendirir.&nbsp;Temel olarak görevleri şunlardır:Projelerin Uygunluğunu İncelemek: Girişimlerin iş modeli, finansal durumu, büyüme potansiyeli ve risklerini …</p>
+                        <span class="hp-blog__more">
+                           Devamını oku
+                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </span>
+                     </div>
+                  </article>
+               </div>
+               
+               <div class="card-slide blog-slide">
+                  <article class="hp-blog">
+                     <div class="hp-blog__media">
+                        <img data-fallback="wide" src="https://media.fonventure.com/media/blog/blog_26.webp" alt="Yapay Zeka Çağında Yatırım Fonlarının Geleceği" loading="lazy">
+                     </div>
+                     <div class="hp-blog__body">
+                        <div class="hp-blog__meta">
+                           <span class="hp-blog__date">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                              07 May 2026
+                           </span>
+                           <span class="hp-blog__author">fonVenture</span>
+                        </div>
+                        <h3 class="hp-blog__title">
+                           <a href="/blog-detail/yapay-zeka-cagnda-yatrm-fonlarnn-gelecegi/">Yapay Zeka Çağında Yatırım Fonlarının Geleceği</a>
+                        </h3>
+                        <p class="hp-blog__text">Yapay zekâ (YZ), finans dünyasını yalnızca dönüştürmekle kalmıyor; yatırım fonlarının çalışma mantığını da yeniden şekillendiriyor. Geleneksel olarak analistlerin karar verdiği portföy yönetimi, artık büyük veri analizi, makine öğrenmesi ve algoritmik …</p>
+                        <span class="hp-blog__more">
+                           Devamını oku
+                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </span>
+                     </div>
+                  </article>
+               </div>
+               
+               <div class="card-slide blog-slide">
+                  <article class="hp-blog">
+                     <div class="hp-blog__media">
+                        <img data-fallback="wide" src="https://media.fonventure.com/media/blog/blog_25_754f0f10.webp" alt="Girişimlerin Değerlemesi; Riskler ve Çözümler " loading="lazy">
+                     </div>
+                     <div class="hp-blog__body">
+                        <div class="hp-blog__meta">
+                           <span class="hp-blog__date">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                              17 Nis 2026
+                           </span>
+                           <span class="hp-blog__author">fonVenture</span>
+                        </div>
+                        <h3 class="hp-blog__title">
+                           <a href="/blog-detail/girisimlerin-degerlemesi-riskler-ve-cozumler/">Girişimlerin Değerlemesi; Riskler ve Çözümler </a>
+                        </h3>
+                        <p class="hp-blog__text">Yeni bir girişimin değerlemesi, geçmiş veriden ziyade gelecek potansiyeline ve belirsizliğe odaklandığı için hem yatırımcı hem de girişimci için ciddi riskler barındırır. Yeni bir girişime gerçek potansiyelinin üzerinde bir değerle …</p>
+                        <span class="hp-blog__more">
+                           Devamını oku
+                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </span>
+                     </div>
+                  </article>
+               </div>
+               
+               <div class="card-slide blog-slide">
+                  <article class="hp-blog">
+                     <div class="hp-blog__media">
+                        <img data-fallback="wide" src="https://media.fonventure.com/media/blog/blog_24.webp" alt="Yağmur Yükünüz var mı? Meyveye Durmuş Fidan Gözlüyor musunuz?" loading="lazy">
+                     </div>
+                     <div class="hp-blog__body">
+                        <div class="hp-blog__meta">
+                           <span class="hp-blog__date">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                              08 Nis 2026
+                           </span>
+                           <span class="hp-blog__author">fonVenture</span>
+                        </div>
+                        <h3 class="hp-blog__title">
+                           <a href="/blog-detail/yagmur-yukunuz-var-m-meyveye-durmus-fidan-gozluyor-musunuz/">Yağmur Yükünüz var mı? Meyveye Durmuş Fidan Gözlüyor musunuz?</a>
+                        </h3>
+                        <p class="hp-blog__text">Gelişme evresindeki fidana nasıl özenle bakılır, budanır, sulanır ve korunursa; girişimlerin de gelişme evresi bahçıvanı olan girişimcinin bakımı, budaması, sulaması ve gübrelemesi ile şekillenir. Doğru zamanda doğru yerde toprağa dikilen …</p>
+                        <span class="hp-blog__more">
+                           Devamını oku
+                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </span>
+                     </div>
+                  </article>
+               </div>
+               
+               <div class="card-slide blog-slide">
+                  <article class="hp-blog">
+                     <div class="hp-blog__media">
+                        <img data-fallback="wide" src="https://media.fonventure.com/media/blog/blog_695e6a63-03c8-4d63-98e0-c5fc43e757a6.webp" alt="Kitle Fonlama Platformları ve Sermayenin Geçişkenliği" loading="lazy">
+                     </div>
+                     <div class="hp-blog__body">
+                        <div class="hp-blog__meta">
+                           <span class="hp-blog__date">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                              30 Mar 2026
+                           </span>
+                           <span class="hp-blog__author">fonVenture</span>
+                        </div>
+                        <h3 class="hp-blog__title">
+                           <a href="/blog-detail/kitle-fonlama-platformlar-ve-sermayenin-geciskenligi/">Kitle Fonlama Platformları ve Sermayenin Geçişkenliği</a>
+                        </h3>
+                        <p class="hp-blog__text">Eskiden bilginin tekelleştiği yerde sermayede tekelleşmeye başlardı. Örneğin bilginin tekelleştiği yerde Google, Facebook benzeri girişimler kurulmakta ve sonrasında sermayeyi de kendisine çekebilmektelerdi. Ve bu girişimler zamanla yeni dünya düzenine kapı …</p>
+                        <span class="hp-blog__more">
+                           Devamını oku
+                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </span>
+                     </div>
+                  </article>
+               </div>
+               
+               <div class="card-slide blog-slide">
+                  <article class="hp-blog">
+                     <div class="hp-blog__media">
+                        <img data-fallback="wide" src="https://media.fonventure.com/media/blog/blog_22.webp" alt="Kitle Fonlamada Sık Yapılan 7 Hata ve Nasıl Önlenir?" loading="lazy">
+                     </div>
+                     <div class="hp-blog__body">
+                        <div class="hp-blog__meta">
+                           <span class="hp-blog__date">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                              19 Oca 2026
+                           </span>
+                           <span class="hp-blog__author">fonVenture</span>
+                        </div>
+                        <h3 class="hp-blog__title">
+                           <a href="/blog-detail/kitle-fonlamada-sk-yaplan-7-hata-ve-nasl-onlenir/">Kitle Fonlamada Sık Yapılan 7 Hata ve Nasıl Önlenir?</a>
+                        </h3>
+                        <p class="hp-blog__text">Kitle fonlamada başarıyı engelleyen hatalar genellikle “iyi fikir” eksikliğinden değil, süreç yönetimindeki eksiklerden kaynaklanır. İşte en sık yapılan 7 hata ve pratik çözümleri:Belirsiz hedef: Fon hedefi ve kullanım planı net …</p>
+                        <span class="hp-blog__more">
+                           Devamını oku
+                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </span>
+                     </div>
+                  </article>
+               </div>
+               
+               <div class="card-slide blog-slide">
+                  <article class="hp-blog">
+                     <div class="hp-blog__media">
+                        <img data-fallback="wide" src="https://media.fonventure.com/media/blog/blog_21.webp" alt="Kampanya Öncesi Checklist: Girişimciler İçin 30 Günlük Hazırlık Planı" loading="lazy">
+                     </div>
+                     <div class="hp-blog__body">
+                        <div class="hp-blog__meta">
+                           <span class="hp-blog__date">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                              19 Oca 2026
+                           </span>
+                           <span class="hp-blog__author">fonVenture</span>
+                        </div>
+                        <h3 class="hp-blog__title">
+                           <a href="/blog-detail/kampanya-oncesi-checklist-girisimciler-icin-30-gunluk-hazrlk-plan/">Kampanya Öncesi Checklist: Girişimciler İçin 30 Günlük Hazırlık Planı</a>
+                        </h3>
+                        <p class="hp-blog__text">Kitle fonlama kampanyalarının çoğu, kampanya başladığında değil; başlamadan önce kazanılır. Çünkü yatırımcıların güvenini sağlayan şey, girişimin hazırlık seviyesidir. Bu yüzden kampanya öncesi 30 günlük plan, başarı ihtimalini ciddi şekilde artırır.İlk …</p>
+                        <span class="hp-blog__more">
+                           Devamını oku
+                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </span>
+                     </div>
+                  </article>
+               </div>
+               
+               <div class="card-slide blog-slide">
+                  <article class="hp-blog">
+                     <div class="hp-blog__media">
+                        <img data-fallback="wide" src="https://media.fonventure.com/media/blog/blog_20.webp" alt="Kitle Fonlamada Topluluk Oluşturma: Yatırımcıyı Marka Elçisine Dönüştürmek" loading="lazy">
+                     </div>
+                     <div class="hp-blog__body">
+                        <div class="hp-blog__meta">
+                           <span class="hp-blog__date">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                              19 Oca 2026
+                           </span>
+                           <span class="hp-blog__author">fonVenture</span>
+                        </div>
+                        <h3 class="hp-blog__title">
+                           <a href="/blog-detail/kitle-fonlamada-topluluk-olusturma-yatrmcy-marka-elcisine-donusturmek/">Kitle Fonlamada Topluluk Oluşturma: Yatırımcıyı Marka Elçisine Dönüştürmek</a>
+                        </h3>
+                        <p class="hp-blog__text">Kitle fonlamanın en güçlü yönlerinden biri yatırımcıların yalnızca sermaye sağlayan kişiler olmaması; aynı zamanda markanın ilk savunucularına dönüşebilmesidir. Bu dönüşüm, doğru topluluk stratejisiyle mümkündür.Topluluk oluşturmanın ilk adımı, kampanyayı “sadece yatırım” …</p>
+                        <span class="hp-blog__more">
+                           Devamını oku
+                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </span>
+                     </div>
+                  </article>
+               </div>
+               
+               <div class="card-slide blog-slide">
+                  <article class="hp-blog">
+                     <div class="hp-blog__media">
+                        <img data-fallback="wide" src="https://media.fonventure.com/media/blog/blog_19.webp" alt="Kampanya Bilgi Formu Nasıl Güçlendirilir?" loading="lazy">
+                     </div>
+                     <div class="hp-blog__body">
+                        <div class="hp-blog__meta">
+                           <span class="hp-blog__date">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                              19 Oca 2026
+                           </span>
+                           <span class="hp-blog__author">fonVenture</span>
+                        </div>
+                        <h3 class="hp-blog__title">
+                           <a href="/blog-detail/kampanya-bilgi-formu-nasl-guclendirilir/">Kampanya Bilgi Formu Nasıl Güçlendirilir?</a>
+                        </h3>
+                        <p class="hp-blog__text">Kitle fonlamada yatırımcıların karar verme sürecinde en çok dayandığı kaynak kampanya bilgi formudur. Çünkü yatırımcılar, projenin anlatımından çok; iş modeline, finansal planlara ve risklere bakarak karar verir. Bu nedenle bilgi …</p>
+                        <span class="hp-blog__more">
+                           Devamını oku
+                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </span>
+                     </div>
+                  </article>
+               </div>
+               
+               <div class="card-slide blog-slide">
+                  <article class="hp-blog">
+                     <div class="hp-blog__media">
+                        <img data-fallback="wide" src="https://media.fonventure.com/media/blog/blog_18.webp" alt="Kitle Fonlamada Değerleme Nasıl Belirlenir? Girişimciler İçin Pratik Yaklaşım" loading="lazy">
+                     </div>
+                     <div class="hp-blog__body">
+                        <div class="hp-blog__meta">
+                           <span class="hp-blog__date">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                              19 Oca 2026
+                           </span>
+                           <span class="hp-blog__author">fonVenture</span>
+                        </div>
+                        <h3 class="hp-blog__title">
+                           <a href="/blog-detail/kitle-fonlamada-degerleme-nasl-belirlenir-girisimciler-icin-pratik-yaklasm/">Kitle Fonlamada Değerleme Nasıl Belirlenir? Girişimciler İçin Pratik Yaklaşım</a>
+                        </h3>
+                        <p class="hp-blog__text">Paya dayalı kitle fonlamasında girişimcilerin en kritik kararlarından biri değerlemedir. Değerleme, yatırımcıya hangi oranda ortaklık vereceğinizi belirler. Çok yüksek değerleme yatırımcıyı uzaklaştırabilir; çok düşük değerleme ise girişimin gelecekteki yatırım turlarında …</p>
+                        <span class="hp-blog__more">
+                           Devamını oku
+                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </span>
+                     </div>
+                  </article>
+               </div>
+               
+               <div class="card-slide blog-slide">
+                  <article class="hp-blog">
+                     <div class="hp-blog__media">
+                        <img data-fallback="wide" src="https://media.fonventure.com/media/blog/blog_17.webp" alt="Kitle Fonlamada Yatırımcı İlişkileri: Kampanya Öncesi, Sırası ve Sonrası" loading="lazy">
+                     </div>
+                     <div class="hp-blog__body">
+                        <div class="hp-blog__meta">
+                           <span class="hp-blog__date">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                              19 Oca 2026
+                           </span>
+                           <span class="hp-blog__author">fonVenture</span>
+                        </div>
+                        <h3 class="hp-blog__title">
+                           <a href="/blog-detail/kitle-fonlamada-yatrmc-iliskileri-kampanya-oncesi-sras-ve-sonras/">Kitle Fonlamada Yatırımcı İlişkileri: Kampanya Öncesi, Sırası ve Sonrası</a>
+                        </h3>
+                        <p class="hp-blog__text">Kitle fonlama kampanyası başlatmak, yalnızca fon toplamak değil; aynı zamanda yatırımcılarla uzun vadeli bir ilişki kurmak anlamına gelir. Özellikle paya dayalı kitle fonlamada yatırımcılar, projenizin bir parçası hâline gelir. Bu …</p>
+                        <span class="hp-blog__more">
+                           Devamını oku
+                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </span>
+                     </div>
+                  </article>
+               </div>
+               
+               <div class="card-slide blog-slide">
+                  <article class="hp-blog">
+                     <div class="hp-blog__media">
+                        <img data-fallback="wide" src="https://media.fonventure.com/media/blog/blog_16.webp" alt="Sürdürülebilir Kalkınma İçin Katılımcı Kurumsal Yapılar ve Finansman Modelleri" loading="lazy">
+                     </div>
+                     <div class="hp-blog__body">
+                        <div class="hp-blog__meta">
+                           <span class="hp-blog__date">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                              09 Oca 2026
+                           </span>
+                           <span class="hp-blog__author">fonVenture</span>
+                        </div>
+                        <h3 class="hp-blog__title">
+                           <a href="/blog-detail/surdurulebilir-kalknma-icin-katlmc-kurumsal-yaplar-ve-finansman-modelleri/">Sürdürülebilir Kalkınma İçin Katılımcı Kurumsal Yapılar ve Finansman Modelleri</a>
+                        </h3>
+                        <p class="hp-blog__text">Katılımcı Kurumsal Yapılar ve Girişimcilik Ekosisteminin GeleceğiSürdürülebilir ekonomik kalkınmanın sağlanması ve sosyal çöküntünün önlenmesinde en etkili araçlardan biri, katılımcı ve yardımlaşmacı kurumsal yapıların inşa edilmesidir. Bu yapılar yalnızca ekonomik değer …</p>
+                        <span class="hp-blog__more">
+                           Devamını oku
+                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </span>
+                     </div>
+                  </article>
+               </div>
+               
+               <div class="card-slide blog-slide">
+                  <article class="hp-blog">
+                     <div class="hp-blog__media">
+                        <img data-fallback="wide" src="https://media.fonventure.com/media/blog/blog_15_eecfceff.webp" alt="Kitle Fonlamada Güven ve Şeffaflık: Yatırım Kararlarını Belirleyen Asıl Güç ve Davranışsal Dinamikler" loading="lazy">
+                     </div>
+                     <div class="hp-blog__body">
+                        <div class="hp-blog__meta">
+                           <span class="hp-blog__date">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                              30 Ara 2025
+                           </span>
+                           <span class="hp-blog__author">fonVenture</span>
+                        </div>
+                        <h3 class="hp-blog__title">
+                           <a href="/blog-detail/kitle-fonlamada-guven-ve-seffaflk-yatrm-kararlarn-belirleyen-asl-guc-ve-davranssal-dinamikler/">Kitle Fonlamada Güven ve Şeffaflık: Yatırım Kararlarını Belirleyen Asıl Güç ve Davranışsal Dinamikler</a>
+                        </h3>
+                        <p class="hp-blog__text">Son yıllarda kitle fonlama sistemleri, finansal demokrasinin en somut örneklerinden biri olarak girişimcilik ekosisteminin en önemli yapı taşlarından biri haline geldi. Geleneksel yatırım modellerinin aksine, kitle fonlama; büyük sermaye sahipleri …</p>
+                        <span class="hp-blog__more">
+                           Devamını oku
+                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </span>
+                     </div>
+                  </article>
+               </div>
+               
+               <div class="card-slide blog-slide">
+                  <article class="hp-blog">
+                     <div class="hp-blog__media">
+                        <img data-fallback="wide" src="https://media.fonventure.com/media/blog/blog_gorsel.webp" alt="Kitle Fonlamanın Girişimcilik Ekosistemindeki Gerçek Yeri: Destek, Süreç ve Beklentiler" loading="lazy">
+                     </div>
+                     <div class="hp-blog__body">
+                        <div class="hp-blog__meta">
+                           <span class="hp-blog__date">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                              29 Ara 2025
+                           </span>
+                           <span class="hp-blog__author">fonVenture</span>
+                        </div>
+                        <h3 class="hp-blog__title">
+                           <a href="/blog-detail/kitle-fonlaman%C4%B1n-girisimcilik/">Kitle Fonlamanın Girişimcilik Ekosistemindeki Gerçek Yeri: Destek, Süreç ve Beklentiler</a>
+                        </h3>
+                        <p class="hp-blog__text">Girişimcilik ekosistemi, birçok farklı aktörün bir arada çalıştığı, maddi destekten mentörlüğe kadar geniş bir yelpazede hizmet sunan çok katmanlı bir yapıdır. Yakın çevreden başlayan destek süreci; melek yatırım ağları, VC …</p>
+                        <span class="hp-blog__more">
+                           Devamını oku
+                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </span>
+                     </div>
+                  </article>
+               </div>
+               
+               <div class="card-slide blog-slide">
+                  <article class="hp-blog">
+                     <div class="hp-blog__media">
+                        <img data-fallback="wide" src="https://media.fonventure.com/media/blog/blog_13_4773dd94.webp" alt="Girişimciler Kitle Fonlamayı Neden Tercih Etmeli?" loading="lazy">
+                     </div>
+                     <div class="hp-blog__body">
+                        <div class="hp-blog__meta">
+                           <span class="hp-blog__date">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                              26 Ara 2025
+                           </span>
+                           <span class="hp-blog__author">fonVenture</span>
+                        </div>
+                        <h3 class="hp-blog__title">
+                           <a href="/blog-detail/girisimciler-kitle-fonlamay-neden-tercih-etmeli/">Girişimciler Kitle Fonlamayı Neden Tercih Etmeli?</a>
+                        </h3>
+                        <p class="hp-blog__text">Kitle fonlaması, son yıllarda Türkiye’de girişim finansmanının en hızlı büyüyen modeli haline geldi. Geleneksel fon bulma yöntemlerine göre çok daha erişilebilir, şeffaf ve topluluk odaklı bir yapıya sahip olan bu …</p>
+                        <span class="hp-blog__more">
+                           Devamını oku
+                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </span>
+                     </div>
+                  </article>
+               </div>
+               
+               <div class="card-slide blog-slide">
+                  <article class="hp-blog">
+                     <div class="hp-blog__media">
+                        <img data-fallback="wide" src="https://media.fonventure.com/media/blog/blog_14_6a6685eb.webp" alt="Kitle Fonlaması Başarı Hikâyelerinin Arkasındaki Stratejiler?" loading="lazy">
+                     </div>
+                     <div class="hp-blog__body">
+                        <div class="hp-blog__meta">
+                           <span class="hp-blog__date">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                              25 Ara 2025
+                           </span>
+                           <span class="hp-blog__author">fonVenture</span>
+                        </div>
+                        <h3 class="hp-blog__title">
+                           <a href="/blog-detail/kitle-fonlamas-basar-hikayelerinin-arkasndaki-stratejiler/">Kitle Fonlaması Başarı Hikâyelerinin Arkasındaki Stratejiler?</a>
+                        </h3>
+                        <p class="hp-blog__text">Kitle fonlaması, girişimlerin yalnızca finansman bulmasına değil, aynı zamanda marka farkındalığı yaratmasına, topluluk oluşturmasına ve ürünlerini pazarda doğrulamasına imkân tanıyan güçlü bir yöntemdir. Girişimcilerin bu modeli tercih etmesinin en önemli …</p>
+                        <span class="hp-blog__more">
+                           Devamını oku
+                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </span>
+                     </div>
+                  </article>
+               </div>
+               
+               <div class="card-slide blog-slide">
+                  <article class="hp-blog">
+                     <div class="hp-blog__media">
+                        <img data-fallback="wide" src="https://media.fonventure.com/media/blog/blog_45f68625-8d81-43a5-9345-de2b1cfc0b02.webp" alt="Mikro Yatırımların Gücü: Küçük Katkılar, Büyük Etkiler" loading="lazy">
+                     </div>
+                     <div class="hp-blog__body">
+                        <div class="hp-blog__meta">
+                           <span class="hp-blog__date">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                              24 Ara 2025
+                           </span>
+                           <span class="hp-blog__author">fonVenture</span>
+                        </div>
+                        <h3 class="hp-blog__title">
+                           <a href="/blog-detail/mikro-yatirimlarin-gucu/">Mikro Yatırımların Gücü: Küçük Katkılar, Büyük Etkiler</a>
+                        </h3>
+                        <p class="hp-blog__text">Mikro yatırımlar, girişimcilik ekosisteminde giderek önem kazanan bir finansman modelidir. Küçük tutarlı katkılar, girişimciler için gerekli finansal desteği sağlarken, yatırımcılar için de düşük riskle portföylerini çeşitlendirme fırsatı sunar.&nbsp;fonVenture ile mikro …</p>
+                        <span class="hp-blog__more">
+                           Devamını oku
+                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </span>
+                     </div>
+                  </article>
+               </div>
+               
+               <div class="card-slide blog-slide">
+                  <article class="hp-blog">
+                     <div class="hp-blog__media">
+                        <img data-fallback="wide" src="https://media.fonventure.com/media/blog/blog_90c000ab-3efb-435f-a531-c5b40336fb28.webp" alt="Yatırımcı ve Girişimci Arasında Güvenin Önemi" loading="lazy">
+                     </div>
+                     <div class="hp-blog__body">
+                        <div class="hp-blog__meta">
+                           <span class="hp-blog__date">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                              23 Ara 2025
+                           </span>
+                           <span class="hp-blog__author">fonVenture</span>
+                        </div>
+                        <h3 class="hp-blog__title">
+                           <a href="/blog-detail/yatirimci-ve-girisimci/">Yatırımcı ve Girişimci Arasında Güvenin Önemi</a>
+                        </h3>
+                        <p class="hp-blog__text">Başarılı bir fonlama sürecinin temelinde güven yatar. Yatırımcı ve girişimci arasındaki güven, sadece finansal işlemleri değil, uzun vadeli iş birliğini de etkiler.&nbsp;fonVenture kampanyalarında güven; şeffaf iletişim, düzenli güncellemeler ve proje …</p>
+                        <span class="hp-blog__more">
+                           Devamını oku
+                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </span>
+                     </div>
+                  </article>
+               </div>
+               
+               <div class="card-slide blog-slide">
+                  <article class="hp-blog">
+                     <div class="hp-blog__media">
+                        <img data-fallback="wide" src="https://media.fonventure.com/media/blog/blog_2827839d-fb13-4606-a333-64ec29854f43.webp" alt="Kitle Fonlama Nedir?" loading="lazy">
+                     </div>
+                     <div class="hp-blog__body">
+                        <div class="hp-blog__meta">
+                           <span class="hp-blog__date">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                              22 Ara 2025
+                           </span>
+                           <span class="hp-blog__author">fonVenture</span>
+                        </div>
+                        <h3 class="hp-blog__title">
+                           <a href="/blog-detail/kitle-fonlama-nedir/">Kitle Fonlama Nedir?</a>
+                        </h3>
+                        <p class="hp-blog__text">fonVenture, deneyimi ve uzmanlığıyla girişimciler ile yatırımcıları bir araya getiren güven temelli bir iş birliği platformudur.&nbsp;Kitle fonlama, girişimcilerin projelerini geniş bir yatırımcı topluluğuyla buluşturduğu, sermayeye erişimi daha adil ve kapsayıcı …</p>
+                        <span class="hp-blog__more">
+                           Devamını oku
+                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </span>
+                     </div>
+                  </article>
+               </div>
+               
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- S.S.S. -->
+   <section class="hp-section hp-section--white">
+      <div class="hp-container hp-faq" x-data="{ activeTab: 'yatirimci' }">
+         <div>
+            <div class="hp-head">
+               <div>
+                  <h2 class="hp-title">Sıkça Sorulan Sorular</h2>
+                  <p class="hp-sub">Yatırım ve kampanya süreçleriyle ilgili merak edilenler.</p>
+               </div>
+               <a href="/sss" class="hp-link">
+                  Tümünü gör
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+               </a>
+            </div>
+            <div class="hp-tabs" role="tablist">
+               <button type="button" role="tab" class="hp-tab" :class="{ 'is-active': activeTab === 'yatirimci' }" :aria-selected="activeTab === 'yatirimci'" @click="activeTab = 'yatirimci'">Yatırımcılar İçin</button>
+               <button type="button" role="tab" class="hp-tab" :class="{ 'is-active': activeTab === 'girisimci' }" :aria-selected="activeTab === 'girisimci'" @click="activeTab = 'girisimci'">Girişimciler İçin</button>
+            </div>
+         </div>
+
+         <div>
+            <div x-show="activeTab === 'yatirimci'" x-transition.opacity>
+               
+               <div class="hp-faq__item" x-data="{ open: false }" :class="{ 'is-open': open }">
+                  <button type="button" class="hp-faq__q" @click="open = !open" :aria-expanded="open">
+                     <span>fonVenture nedir?</span>
+                     <span class="hp-faq__icon" aria-hidden="true">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                     </span>
+                  </button>
+                  <div x-show="open" x-cloak class="hp-faq__a"><ul><li>fonVenture, girişimciler ile yatırımcıları bir araya getiren, yenilikçi projelerin topluluk desteğiyle fonlanmasını sağlayan bir kitle fonlama platformudur.</li><li>Platform, girişimlere ve yatırımcılara ortak akıl odağında yaklaşan, şeffaf ve uzun soluklu bir yapı kurmayı hedefler.</li></ul></div>
+               </div>
+               
+               <div class="hp-faq__item" x-data="{ open: false }" :class="{ 'is-open': open }">
+                  <button type="button" class="hp-faq__q" @click="open = !open" :aria-expanded="open">
+                     <span>Yatırım yapmak için ne yapmalıyım?</span>
+                     <span class="hp-faq__icon" aria-hidden="true">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                     </span>
+                  </button>
+                  <div x-show="open" x-cloak class="hp-faq__a"><ul><li>Platforma üye olarak kişisel hesabınızı oluşturmanız ve doğrulamaları yapmanız yeterlidir.</li><li>Üyelik sonrası aktif kampanyaları inceleyebilir, ilgilendiğiniz projeleri değerlendirebilir ve online olarak banka transferi veya kredi kartı ile yatırım yapabilirsiniz.</li><li>Tüm süreç dijital ortamda, platformun teknolojik altyapısı üzerinden yürütülür.</li></ul></div>
+               </div>
+               
+               <div class="hp-faq__item" x-data="{ open: false }" :class="{ 'is-open': open }">
+                  <button type="button" class="hp-faq__q" @click="open = !open" :aria-expanded="open">
+                     <span>Yatırımlarım güvence altında mı?</span>
+                     <span class="hp-faq__icon" aria-hidden="true">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                     </span>
+                  </button>
+                  <div x-show="open" x-cloak class="hp-faq__a"><ul><li>Evet. Tüm fonlama süreçleri&nbsp;<strong>Sermaye Piyasası Kurulu (SPK)</strong>&nbsp;mevzuatına uygun şekilde yürütülür.</li><li>Yatırımlar&nbsp;<strong>Takasbank güvencesi</strong>&nbsp;altında korunur.</li><li>fonVenture, yatırımcı haklarının korunmasını ve şeffaf finansal akışı öncelik olarak benimser.</li></ul></div>
+               </div>
+               
+               <div class="hp-faq__item" x-data="{ open: false }" :class="{ 'is-open': open }">
+                  <button type="button" class="hp-faq__q" @click="open = !open" :aria-expanded="open">
+                     <span>Minimum ve maksimum yatırım tutarı nedir?</span>
+                     <span class="hp-faq__icon" aria-hidden="true">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                     </span>
+                  </button>
+                  <div x-show="open" x-cloak class="hp-faq__a"><ul><li>Her kampanyanın kendine özel minimum ve maksimum yatırım tutarı bulunur.</li><li>Bu bilgiler, ilgili kampanya sayfalarında açık ve anlaşılır biçimde belirtilir.</li><li>Yatırımcılar, belirlenen tutar aralığında diledikleri miktarda yatırım yapabilir.</li><li>Nitelikli olmayan yatırımcıların yıllık yatırım limiti bulunmakta olup, bu limit her yıl SPK tarafınca belirlenmektedir.</li></ul></div>
+               </div>
+               
+               <div class="hp-faq__item" x-data="{ open: false }" :class="{ 'is-open': open }">
+                  <button type="button" class="hp-faq__q" @click="open = !open" :aria-expanded="open">
+                     <span>Yatırım yaptıktan sonra girişimle nasıl iletişim kurarım?</span>
+                     <span class="hp-faq__icon" aria-hidden="true">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                     </span>
+                  </button>
+                  <div x-show="open" x-cloak class="hp-faq__a"><ul><li>Kampanya süreci devam ederken platform üzerinden girişimlere doğrudan soru iletebilirsiniz.</li><li>Fonlama tamamlandıktan sonra girişimler, yatırımcılarını düzenli olarak raporlar ve güncellemeler yoluyla bilgilendirir.</li><li>Ayrıca dönemsel paydaş toplantılarıyla sürdürülebilir iletişim ortamı sağlanır.</li></ul></div>
+               </div>
+               
+            </div>
+
+            <div x-show="activeTab === 'girisimci'" x-cloak x-transition.opacity>
+               
+               <div class="hp-faq__item" x-data="{ open: false }" :class="{ 'is-open': open }">
+                  <button type="button" class="hp-faq__q" @click="open = !open" :aria-expanded="open">
+                     <span>fonVenture’a kimler başvurabilir?</span>
+                     <span class="hp-faq__icon" aria-hidden="true">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                     </span>
+                  </button>
+                  <div x-show="open" x-cloak class="hp-faq__a"><ul><li>Ticarileşmeye uygun yenilikçi bir projesi, geliştirilmiş bir ürünü veya ölçeklenebilir bir iş modeli olan tüm girişimciler başvuru yapabilir.</li><li>Başvurular, bağımsız kriterler çerçevesinde ve objektif değerlendirme esaslarına göre incelenir.</li></ul></div>
+               </div>
+               
+               <div class="hp-faq__item" x-data="{ open: false }" :class="{ 'is-open': open }">
+                  <button type="button" class="hp-faq__q" @click="open = !open" :aria-expanded="open">
+                     <span>Başvuru süreci nasıl ilerliyor?</span>
+                     <span class="hp-faq__icon" aria-hidden="true">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                     </span>
+                  </button>
+                  <div x-show="open" x-cloak class="hp-faq__a"><ul><li>Girişimci, platform üzerinden “Girişimci Kayıt Formu” ve “Proje Ön Başvuru Formu” bilgilerini doldurarak başvuruda bulunur.</li><li>fonVenture ekibi, başvurunun uygunluğunu ve niteliğini değerlendirir.</li><li>Onaylanan projeler, yatırımcıların erişimine açılarak fonlama süreci başlatılır.</li></ul></div>
+               </div>
+               
+               <div class="hp-faq__item" x-data="{ open: false }" :class="{ 'is-open': open }">
+                  <button type="button" class="hp-faq__q" @click="open = !open" :aria-expanded="open">
+                     <span>Projemin fonlanması için hangi şartlar aranıyor?</span>
+                     <span class="hp-faq__icon" aria-hidden="true">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                     </span>
+                  </button>
+                  <div x-show="open" x-cloak class="hp-faq__a"><ul><li>Projenin ölçeklenebilir ve ticarileşmeye uygun bir yapıya sahip olması gerekir.</li><li>Sürdürülebilir ve uygulanabilir bir iş planı bulunmalıdır.</li><li>Mevzuata uygunluk şarttır.</li><li>Değerlendirme ekibimiz her projeyi titizlikle değerlendirir ve topluluk için gerçek değer ortaya koyma potansiyelini göz önünde bulundurur.</li></ul></div>
+               </div>
+               
+               <div class="hp-faq__item" x-data="{ open: false }" :class="{ 'is-open': open }">
+                  <button type="button" class="hp-faq__q" @click="open = !open" :aria-expanded="open">
+                     <span>Fonlama süreci nasıl işliyor?</span>
+                     <span class="hp-faq__icon" aria-hidden="true">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                     </span>
+                  </button>
+                  <div x-show="open" x-cloak class="hp-faq__a"><ul><li>Kampanya süresi boyunca yatırımcılar, girişimlere yatırım yapabilir.</li><li>Hedeflenen fonlama tutarına ulaşıldığında, Takasbank bünyesinde toplanan yatırımlar güvenli bir şekilde girişime aktarılır.</li><li>Süreç boyunca tüm işlemler fonVenture’un şeffaflık ve ortak akıl ilkeleri doğrultusunda yürütülür.</li></ul></div>
+               </div>
+               
+               <div class="hp-faq__item" x-data="{ open: false }" :class="{ 'is-open': open }">
+                  <button type="button" class="hp-faq__q" @click="open = !open" :aria-expanded="open">
+                     <span>Fonlama hedefi tutmazsa ne olur?</span>
+                     <span class="hp-faq__icon" aria-hidden="true">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                     </span>
+                  </button>
+                  <div x-show="open" x-cloak class="hp-faq__a"><ul><li>Kampanya süresi sonunda belirlenen hedefe ulaşılamazsa, toplanan tutarlar herhangi bir kesinti olmadan eksiksiz bir şekilde yatırımcılara iade edilir.</li><li>İade süreci otomatik olarak, platform altyapımız üzerinden gerçekleştirilir.</li></ul></div>
+               </div>
+               
+            </div>
+         </div>
+      </div>
+   </section>
+
+</div>
+
+<div id="videoModal" class="fixed inset-0 z-[9999] hidden items-center justify-center bg-black/70 p-4">
+   <div class="relative w-full max-w-6xl">
+      <button type="button" class="absolute -top-10 right-0 text-white text-3xl" onclick="closeVideoModal()">
+         ✕
+      </button>
+
+      <div class="w-full aspect-video bg-black rounded-xl overflow-hidden">
+         <iframe id="youtubeIframe" class="w-full h-full" src="" title="YouTube video" frameborder="0"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+      </div>
+   </div>
+</div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+<script>
+   const YT_ID = "gZBDw8MQ6FM";
+
+   function openVideoModal() {
+      const modal = document.getElementById("videoModal");
+      const iframe = document.getElementById("youtubeIframe");
+
+      // modal göster
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+
+      iframe.src = `https://www.youtube.com/embed/${YT_ID}?autoplay=1`;
+   }
+
+   function closeVideoModal() {
+      const modal = document.getElementById("videoModal");
+      const iframe = document.getElementById("youtubeIframe");
+
+      iframe.src = ""; // video stop
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+   }
+
+   // ESC ile kapat
+   document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeVideoModal();
+   });
+
+   // backdrop tıklayınca kapat
+   document.getElementById("videoModal").addEventListener("click", (e) => {
+      if (e.target.id === "videoModal") closeVideoModal();
+   });
+</script>
+
+
+<script>
+   let currentIndex = 0;
+
+   function slideBlogs(direction) {
+      const slider = document.getElementById("blogSlider");
+      const totalItems = slider.children.length;
+      const itemsPerView = window.innerWidth < 768 ? 1 : 3;
+      const maxIndex = Math.ceil(totalItems / itemsPerView) - 1;
+
+      currentIndex += direction;
+
+      if (currentIndex < 0) currentIndex = 0;
+      if (currentIndex > maxIndex) currentIndex = maxIndex;
+
+      slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+      document.getElementById("blogPrev").disabled = currentIndex === 0;
+      document.getElementById("blogNext").disabled = currentIndex === maxIndex;
+   }
+
+   document.addEventListener("DOMContentLoaded", () => slideBlogs(0));
+
+   $(document).ready(function () {
+      const toggleSectorMarquee = () => {
+         $('.sector-marquee').each(function () {
+            const container = this;
+            let track = container.querySelector('.sector-marquee-track');
+            if (!track) {
+               const initialText = container.querySelector('span');
+               if (!initialText) return;
+
+               const value = initialText.textContent.trim();
+               container.innerHTML = '';
+               track = document.createElement('div');
+               track.className = 'sector-marquee-track';
+
+               const item = document.createElement('span');
+               item.className = 'sector-marquee-item';
+               item.textContent = value;
+
+               track.appendChild(item);
+               container.appendChild(track);
+            }
+
+            const firstItem = track.querySelector('.sector-marquee-item');
+            if (!firstItem) return;
+
+            while (track.children.length > 1) {
+               track.removeChild(track.lastElementChild);
+            }
+
+            this.classList.remove('is-overflowing');
+            this.style.removeProperty('--marquee-duration');
+            this.style.removeProperty('--marquee-shift');
+
+            const containerWidth = container.getBoundingClientRect().width;
+            const textWidth = firstItem.scrollWidth;
+            if (containerWidth > 0 && textWidth > containerWidth + 1) {
+               const clone = firstItem.cloneNode(true);
+               clone.setAttribute('aria-hidden', 'true');
+               track.appendChild(clone);
+
+               this.classList.add('is-overflowing');
+               const shift = firstItem.getBoundingClientRect().width;
+               const duration = Math.max(8, shift / 40);
+               this.style.setProperty('--marquee-shift', `${shift}px`);
+               this.style.setProperty('--marquee-duration', `${duration}s`);
+            }
+         });
+      };
+
+      // HOME HERO (desktop + mobile slider setleri)
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      $('.js-hero-carousel').each(function () {
+         const $carousel = $(this);
+         const multiple = $carousel.children().length > 1;
+         const $controls = multiple
+            ? $('<div class="hero-controls"><div class="owl-nav"></div><div class="owl-dots"></div></div>').insertAfter($carousel)
+            : $();
+         $carousel.owlCarousel({
+            items: 1,
+            loop: false,
+            rewind: true,
+            dots: multiple,
+            nav: multiple,
+            navContainer: $controls.find('.owl-nav'),
+            dotsContainer: $controls.find('.owl-dots'),
+            navText: [
+               '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg><span class="sr-only">Önceki</span>',
+               '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg><span class="sr-only">Sonraki</span>'
+            ],
+            autoplay: multiple && !reduceMotion,
+            autoplayTimeout: 6000,
+            autoplayHoverPause: true,
+            smartSpeed: reduceMotion ? 0 : 600,
+            animateOut: reduceMotion ? false : 'fadeOut'
+         });
+         if (multiple && !reduceMotion) {
+            $carousel.on('focusin', () => $carousel.trigger('stop.owl.autoplay'));
+            $carousel.on('focusout', () => $carousel.trigger('play.owl.autoplay', [6000]));
+         }
+      });
+
+      // INVEST SLIDERS
+      $('.image-invest-slider-on-basvuru, .image-target-slider-main').owlCarousel({
+         items: 1,
+         loop: true,
+         dots: true,
+         nav: false,
+         autoplay: true,
+         autoplayTimeout: 5000,
+         autoplayHoverPause: true,
+         smartSpeed: 700,
+         animateOut: 'fadeOut',
+         autoplaySpeed: 700
+      });
+
+      toggleSectorMarquee();
+      $(window).on('load', toggleSectorMarquee);
+      $(window).on('resize', toggleSectorMarquee);
+      $(window).on('orientationchange', toggleSectorMarquee);
+      setTimeout(toggleSectorMarquee, 300);
+
+   });
+</script>
+
+      <!-- Start of SUPSIS Embed Code -->
+      <script>window.supsis=window.supsis||function(){(supsis.q=supsis.q||[]).push(arguments)};supsis.l=+new Date;</script>
+      <script src="https://fonventure.visitor.supsis.live/static/js/loader.js" type="text/javascript" async defer></script>
+      <!-- End of SUPSIS Embed Code -->
+   </body>
+   
+<style media="screen">
+   .ft {
+      --ft-ink: #0D1F2D;
+      --ft-text: #475569;
+      --ft-line: #E5E9E8;
+      --ft-tint: #F5F8F7;
+      --ft-brand: #2C9B93;
+      --ft-brand-strong: #237F79;
+      --ft-brand-dark: #1C4544;
+      --ft-brand-soft: #E8F4F3;
+      background: var(--ft-tint);
+      border-top: 1px solid var(--ft-line);
+      color: var(--ft-text);
+      padding: 56px 0 0;
+   }
+   .ft-container { max-width: 90rem; margin: 0 auto; padding: 0 16px; }
+   @media (min-width: 640px) { .ft-container { padding: 0 24px; } }
+   @media (min-width: 1024px) { .ft-container { padding: 0 32px; } }
+
+   .ft a:focus-visible,
+   .ft button:focus-visible,
+   .ft input:focus-visible,
+   .ft summary:focus-visible { outline: 2px solid var(--ft-brand); outline-offset: 2px; }
+   .ft-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+   /* Bülten kartı */
+   .ft-news {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      align-items: center;
+      padding: 24px;
+      background: var(--ft-brand-dark);
+      border-radius: 20px;
+      color: #ffffff;
+   }
+   .ft-news__title { font-size: 20px; font-weight: 700; line-height: 1.3; margin: 0; }
+   .ft-news__text { margin: 4px 0 0; font-size: 15px; line-height: 1.5; color: rgba(255, 255, 255, 0.78); }
+   .ft-news__row { display: flex; flex-direction: column; gap: 10px; }
+   .ft-news__input {
+      width: 100%;
+      min-height: 48px;
+      padding: 0 16px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      background: #ffffff;
+      color: var(--ft-ink);
+      font-size: 16px;
+   }
+   .ft-news__input.input-error { border-color: #F87171; }
+   .ft-news__btn {
+      min-height: 48px;
+      padding: 0 24px;
+      border-radius: 12px;
+      border: 1px solid var(--ft-brand);
+      background: var(--ft-brand);
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+   }
+   .ft-news__btn:hover { background: var(--ft-brand-strong); border-color: var(--ft-brand-strong); }
+   .ft-news__error { display: block; min-height: 18px; margin-top: 6px; font-size: 13px; color: #FCA5A5; }
+   @media (min-width: 640px) { .ft-news__row { flex-direction: row; } .ft-news__btn { flex-shrink: 0; } }
+   @media (min-width: 900px) { .ft-news { grid-template-columns: 1fr 1fr; gap: 48px; padding: 32px 40px; } }
+
+   /* Paydaşlar: anasayfadaki eski bandın aynısı, footer'ın hemen üstünde */
+   .ft-partners { padding: 40px 0; background: #1C4544; color: #fff; }
+   .ft-partners__list { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 20px; margin: 0; padding: 0; list-style: none; }
+   .ft-partners__item {
+      display: flex; align-items: center; justify-content: center; height: 112px; padding: 16px 20px;
+      border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.12); background: rgba(255, 255, 255, 0.04);
+      transition: background 0.2s, border-color 0.2s;
+   }
+   .ft-partners__item:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.24); }
+   .ft-partners__item img { max-width: 100%; max-height: 64px; object-fit: contain; }
+   @media (max-width: 900px) { .ft-partners__list { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+   @media (max-width: 768px) {
+      .ft-partners { padding: 32px 0; }
+      .ft-partners__list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+      .ft-partners__item { height: 88px; }
+      .ft-partners__item img { max-height: 52px; }
+   }
+
+   /* Paydaşlar kompakt: anasayfada slider'ın hemen altında tek satır (yüksekliği app.css --hero-h hesabında: 96px / mobil 68px) */
+   .ft-partners--compact { padding: 10px 0; }
+   .ft-partners--compact .ft-container { display: flex; align-items: center; gap: 32px; }
+   .ft-partners--compact .ft-partners__list { flex: 1; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; }
+   .ft-partners--compact .ft-partners__item { height: 76px; padding: 6px 8px; border: 0; background: none; }
+   .ft-partners--compact .ft-partners__item img { max-height: 52px; }
+   @media (max-width: 767px) {
+      .ft-partners--compact { padding: 12px 0; }
+      .ft-partners--compact .ft-partners__list { width: 100%; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2px; }
+      .ft-partners--compact .ft-partners__item { height: 44px; padding: 0 2px; }
+      .ft-partners--compact .ft-partners__item img { max-height: 40px; }
+   }
+
+   /* Ana ızgara */
+   .ft-main { display: grid; grid-template-columns: 1fr; gap: 0; padding: 48px 0 40px; }
+   .ft-brand { padding-bottom: 32px; }
+   .ft-brand svg.ft-logo { display: block; max-width: 100%; height: auto; }
+   .ft-address { margin: 16px 0 0; max-width: 320px; font-size: 14px; line-height: 1.6; color: var(--ft-text); font-style: normal; }
+   .ft-contact { display: flex; flex-direction: column; gap: 2px; margin-top: 12px; }
+   .ft-contact a { font-size: 14px; color: var(--ft-ink); font-weight: 500; padding: 4px 0; transition: color 0.2s; }
+   .ft-contact a:hover { color: var(--ft-brand-strong); }
+   .ft-social { display: flex; gap: 8px; margin-top: 16px; }
+   .ft-social a {
+      width: 40px;
+      height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+      border: 1px solid var(--ft-line);
+      background: #ffffff;
+      color: var(--ft-brand-strong);
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+   }
+   .ft-social a:hover { background: var(--ft-brand-strong); border-color: var(--ft-brand-strong); color: #ffffff; }
+
+   /* Link sütunları: mobilde akordiyon, masaüstünde düz liste */
+   .ft-acc { border-top: 1px solid var(--ft-line); }
+   .ft-acc > summary {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 52px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ft-ink);
+      cursor: pointer;
+   }
+   .ft-acc > summary::-webkit-details-marker { display: none; }
+   .ft-acc__chev { transition: transform 0.2s; color: var(--ft-text); }
+   .ft-acc[open] .ft-acc__chev { transform: rotate(180deg); }
+   .ft-links { display: flex; flex-direction: column; padding-bottom: 12px; }
+   .ft-links a { padding: 8px 0; font-size: 14px; line-height: 1.4; color: var(--ft-text); transition: color 0.2s; }
+   .ft-links a:hover { color: var(--ft-brand-strong); }
+
+   @media (min-width: 768px) {
+      .ft-main { grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 32px; row-gap: 40px; }
+      .ft-brand { grid-column: 1 / -1; padding-bottom: 0; }
+      .ft-acc { border-top: 0; }
+      .ft-acc > summary { min-height: 0; margin-bottom: 12px; cursor: default; pointer-events: none; }
+      .ft-acc__chev { display: none; }
+   }
+   @media (min-width: 1024px) {
+      .ft-main { grid-template-columns: 1.5fr repeat(4, minmax(0, 1fr)); }
+      .ft-brand { grid-column: auto; }
+   }
+
+   /* Alt şerit */
+   .ft-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 24px 0 32px;
+      border-top: 1px solid var(--ft-line);
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ft-text);
+   }
+   @media (min-width: 900px) { .ft-bottom { flex-direction: row; align-items: center; justify-content: space-between; gap: 32px; } }
+   .ft-bottom p { margin: 0; }
+</style>
+
+<!-- Paydaşlar -->
+<section class="ft-partners" aria-label="Paydaşlarımız">
+   <div class="ft-container">
+      <ul class="ft-partners__list">
+         
+         <li class="ft-partners__item"><img src="/static/img/marka1.png" alt="türkiye.gov.tr" loading="lazy" data-fallback="none"></li>
+         <li class="ft-partners__item"><img src="/static/img/marka2.png" alt="Sermaye Piyasası Kurulu" loading="lazy" data-fallback="none"></li>
+         <li class="ft-partners__item"><img src="/static/img/marka3.png" alt="Takasbank" loading="lazy" data-fallback="none"></li>
+         <li class="ft-partners__item"><img src="/static/img/marka4.png" alt="e-Yatırımcı" loading="lazy" data-fallback="none"></li>
+         <li class="ft-partners__item"><img src="/static/img/marka5.png" alt="T.C. Hazine ve Maliye Bakanlığı" loading="lazy" data-fallback="none"></li>
+         <li class="ft-partners__item"><img src="/static/img/marka6.png" alt="Merkezi Kayıt İstanbul" loading="lazy" data-fallback="none"></li>
+
+      </ul>
+   </div>
+</section>
+<footer class="ft">
+   <div class="ft-container">
+      <!-- Bülten -->
+      <div class="ft-news">
+         <div>
+            <h2 class="ft-news__title">Bültenimize abone ol</h2>
+            <p class="ft-news__text">En yeni gelişmelerden ilk sen haberdar ol.</p>
+         </div>
+         <form id="contactForm" class="form-group" novalidate>
+            <input type="hidden" name="csrfmiddlewaretoken" value="KvO88R4OThiknUtIqhK28mFGgDqHTUTdJbVvqrZSzos7YR93jbD21yyajKP5D5I4">
+            <div class="ft-news__row">
+               <div style="flex: 1; min-width: 0;">
+                  <label for="email" class="ft-sr">E-posta adresi</label>
+                  <input class="ft-news__input" id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="E-mail adresiniz">
+               </div>
+               <button id="submitBtn" type="submit" class="ft-news__btn">Abone Ol</button>
+            </div>
+            <small class="ft-news__error" id="email_error" role="alert"></small>
+         </form>
+      </div>
+
+      <!-- Marka + bağlantılar -->
+      <div class="ft-main">
+         <div class="ft-brand">
+            <a href="/" aria-label="fonVenture ana sayfa">
+                 <svg class="ft-logo" width="186" height="24" viewBox="0 0 186 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M9.69331 12.792L13.1467 23.8938H4.08789V14.8932C4.08789 12.5195 5.12712 11.3188 7.26537 11.3188C7.26997 11.3188 9.03114 11.2219 9.69331 12.792Z" fill="url(#paint0_linear_475_16899)"/>
+                     <path d="M26.5418 2.33206V21.6678C26.5418 22.8962 25.5531 23.8937 24.3254 23.8937H17.7451L13.8181 11.2772C13.7997 11.1987 13.7767 11.1248 13.7491 11.0555C13.7491 11.0463 13.7445 11.0371 13.7399 11.0371C13.2709 9.60547 12.2685 8.64031 10.9441 8.17389C10.3233 7.95684 9.64278 7.84601 8.91164 7.84601C6.42392 7.84601 4.85128 8.79732 3.90402 10.5337V8.25701H0V2.33667C0 1.10827 0.98865 0.110779 2.21641 0.110779H22.0538L17.4002 14.1312L19.3453 20.384L26.1785 1.12674C26.4084 1.47309 26.5418 1.87949 26.5418 2.33206Z" fill="url(#paint1_linear_475_16899)"/>
+                     <path d="M40.5119 5.74485V2.43833C36.1066 2.43833 33.9362 4.32712 33.9362 8.10468H31.6416V11.0002H33.9362V23.589H37.9644V11.0002H40.6084V8.10468H37.9644C37.9644 6.31288 38.4334 5.74485 40.5119 5.74485Z" fill="#1B3E72"/>
+                     <path d="M50.5775 7.6983C45.671 7.6983 42.6177 10.9402 42.6177 15.8491C42.6177 20.6658 45.5744 24 50.5775 24C55.3919 24 58.4407 20.7581 58.4407 15.8491C58.4407 10.9078 55.4195 7.6983 50.5775 7.6983ZM50.5775 20.5688C48.0943 20.5688 46.8344 18.994 46.8344 15.8491C46.8344 12.7043 48.0943 11.1618 50.5775 11.1618C53.0606 11.1618 54.3205 12.7043 54.3205 15.8491C54.3205 18.994 53.0606 20.5688 50.5775 20.5688Z" fill="#1B3E72"/>
+                     <path d="M76.0207 10.894C76.0207 10.8847 76.0161 10.8755 76.0115 10.8755C75.5425 9.45316 74.54 8.4926 73.2157 8.02617C72.5995 7.80912 71.9144 7.6983 71.1832 7.6983C68.7001 7.6983 67.1229 8.64499 66.1802 10.3768V8.10929H62.2808V23.6721H66.3687V14.7177C66.3687 12.3579 67.4079 11.1618 69.5462 11.1618C69.5462 11.1618 71.3028 11.0649 71.9649 12.6211L75.4183 23.6721H80.0121L76.0897 11.1156C76.0667 11.0371 76.0437 10.9679 76.0207 10.894Z" fill="#1B3E72"/>
+                     <path d="M88.7948 0H84.3113L79.667 13.9511L81.6075 20.1716L88.758 0.110843L88.7948 0Z" fill="#2C9B93"/>
+                     <path d="M95.407 7.6983C90.6569 7.6983 87.9209 10.7832 87.9209 15.5675C87.9209 21.1691 90.5006 24 95.66 24C98.9616 24 101.509 22.2082 102.456 19.0264H98.2396C97.9545 20.0978 96.7911 20.7581 95.4714 20.7581C93.4573 20.7581 92.1376 19.248 92.0134 16.9205H102.677C102.672 10.7832 100.153 7.6983 95.407 7.6983ZM92.133 14.3391C92.2894 12.2009 93.6413 10.9402 95.2783 10.9402C96.8831 10.9402 98.3914 12.0439 98.4558 14.3391H92.133Z" fill="#2C9B93"/>
+                     <path d="M128.658 3.92073H124.63V17.7656C124.63 21.0999 126.423 23.9954 130.953 23.9954C135.326 23.9954 137.211 21.0675 137.211 17.7933V13.3877H133.404V17.4147C133.404 19.3358 132.649 20.4349 131.012 20.4349C129.343 20.4349 128.653 19.3034 128.653 17.35V10.991H137.211V8.09544H128.658V3.92073Z" fill="#2C9B93"/>
+                     <path d="M151.117 17.0452C151.117 19.091 150.018 20.5688 147.939 20.5688C146.21 20.5688 145.327 19.6267 145.327 17.6733V8.10468H141.239V18.3013C141.239 21.7002 143.41 23.9954 146.491 23.9954C148.629 23.9954 150.234 23.178 151.305 21.4139V23.5844H155.172V8.10006H151.117V17.0452Z" fill="#2C9B93"/>
+                     <path d="M163.164 9.96576V8.10929H159.325V23.5936H163.413V15.5351C163.413 13.0506 164.64 11.7899 167.156 11.7899C167.533 11.7899 167.91 11.8222 168.287 11.8822V7.6983H167.754C166.089 7.6983 164.516 7.88764 163.164 9.96576Z" fill="#2C9B93"/>
+                     <path d="M177.98 7.6983C173.23 7.6983 170.494 10.7832 170.494 15.5675C170.494 21.1691 173.074 24 178.233 24C181.535 24 184.082 22.2082 185.03 19.0264H180.813C180.532 20.0978 179.364 20.7581 178.045 20.7581C176.031 20.7581 174.711 19.248 174.587 16.9205H185.25C185.246 10.7832 182.73 7.6983 177.98 7.6983ZM174.711 14.3391C174.867 12.2009 176.219 10.9402 177.856 10.9402C179.461 10.9402 180.969 12.0439 181.034 14.3391H174.711Z" fill="#2C9B93"/>
+                     <path d="M115.35 7.6983C112.867 7.6983 111.294 8.64038 110.347 10.3721V8.10469H106.448V23.589H110.536V14.7131C110.536 12.3533 111.575 11.1572 113.713 11.1572C115.663 11.1572 116.357 11.8176 116.357 14.2097V23.589H120.477V12.8566C120.477 9.49009 118.307 7.6983 115.35 7.6983Z" fill="#2C9B93"/>
+                     <defs>
+                        <linearGradient id="paint0_linear_475_16899" x1="35.5034" y1="-9.83026" x2="-2.43309" y2="29.7606" gradientUnits="userSpaceOnUse">
+                           <stop offset="0.2464" stop-color="#2C9B93"/>
+                           <stop offset="0.3826" stop-color="#238D90"/>
+                           <stop offset="0.6709" stop-color="#186985"/>
+                           <stop offset="1" stop-color="#1B3E72"/>
+                        </linearGradient>
+                        <linearGradient id="paint1_linear_475_16899" x1="34.722" y1="-10.5791" x2="-3.21442" y2="29.0118" gradientUnits="userSpaceOnUse">
+                           <stop offset="0.2464" stop-color="#2C9B93"/>
+                           <stop offset="0.3826" stop-color="#238D90"/>
+                           <stop offset="0.6709" stop-color="#186985"/>
+                           <stop offset="1" stop-color="#1B3E72"/>
+                        </linearGradient>
+                     </defs>
+                  </svg>
+            </a>
+            <address class="ft-address">Fatih Sultan Mehmet Mah. Şiir Sk. Relux Plaza No:10 K:14 34771 Ümraniye / İstanbul</address>
+            <div class="ft-contact">
+               <a href="/cdn-cgi/l/email-protection#355c5b535a75535a5b43505b414047501b565a58"><span class="__cf_email__" data-cfemail="83eaede5ecc3e5ecedf5e6edf7f6f1e6ade0ecee">[email&#160;protected]</span></a>
+               <a href="tel:0216 606 66 52">0216 606 66 52</a>
+            </div>
+            <div class="ft-social">
+               <a href="https://www.instagram.com/fonventure/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="20" height="20" viewBox="10 10 26 26" fill="none" aria-hidden="true" focusable="false"><path d="M23.0005 14.6666C20.7373 14.6666 20.4533 14.6765 19.5644 14.717C18.6773 14.7576 18.0717 14.898 17.5419 15.1041C16.9938 15.317 16.5288 15.6017 16.0656 16.0651C15.6021 16.5283 15.3174 16.9932 15.1038 17.5411C14.8972 18.0711 14.7566 18.6769 14.7167 19.5637C14.6769 20.4526 14.6665 20.7368 14.6665 23C14.6665 25.2632 14.6766 25.5463 14.7169 26.4352C14.7576 27.3224 14.8981 27.9279 15.104 28.4578C15.317 29.0059 15.6017 29.4708 16.0651 29.934C16.5281 30.3975 16.9931 30.6829 17.5408 30.8958C18.071 31.1019 18.6767 31.2423 19.5637 31.2829C20.4526 31.3234 20.7365 31.3333 22.9995 31.3333C25.2629 31.3333 25.546 31.3234 26.4349 31.2829C27.3221 31.2423 27.9283 31.1019 28.4585 30.8958C29.0064 30.6829 29.4707 30.3975 29.9337 29.934C30.3972 29.4708 30.682 29.0059 30.8955 28.4579C31.1004 27.9279 31.241 27.3222 31.2826 26.4354C31.3226 25.5465 31.333 25.2632 31.333 23C31.333 20.7368 31.3226 20.4527 31.2826 19.5638C31.241 18.6767 31.1004 18.0711 30.8955 17.5413C30.682 16.9932 30.3972 16.5283 29.9337 16.0651C29.4702 15.6015 29.0066 15.3168 28.458 15.1041C27.9267 14.898 27.3208 14.7576 26.4337 14.717C25.5448 14.6765 25.2618 14.6666 22.9979 14.6666H23.0005ZM22.253 16.1684C22.4748 16.168 22.7224 16.1684 23.0005 16.1684C25.2255 16.1684 25.4892 16.1763 26.3679 16.2163C27.1804 16.2534 27.6214 16.3892 27.9151 16.5033C28.304 16.6543 28.5813 16.8349 28.8728 17.1265C29.1644 17.4182 29.345 17.696 29.4964 18.0849C29.6104 18.3783 29.7464 18.8192 29.7833 19.6317C29.8233 20.5102 29.832 20.7741 29.832 22.998C29.832 25.222 29.8233 25.4859 29.7833 26.3644C29.7462 27.1769 29.6104 27.6178 29.4964 27.9112C29.3453 28.3001 29.1644 28.577 28.8728 28.8685C28.5811 29.1602 28.3042 29.3408 27.9151 29.4918C27.6217 29.6064 27.1804 29.7418 26.3679 29.779C25.4894 29.8189 25.2255 29.8276 23.0005 29.8276C20.7754 29.8276 20.5116 29.8189 19.6332 29.779C18.8207 29.7415 18.3797 29.6057 18.0858 29.4916C17.6969 29.3406 17.4191 29.16 17.1274 28.8684C16.8358 28.5767 16.6552 28.2996 16.5038 27.9106C16.3898 27.6171 16.2538 27.1762 16.2169 26.3637C16.1769 25.4852 16.1689 25.2213 16.1689 22.996C16.1689 20.7706 16.1769 20.5081 16.2169 19.6296C16.254 18.8171 16.3898 18.3762 16.5038 18.0824C16.6549 17.6935 16.8358 17.4158 17.1274 17.1241C17.4191 16.8324 17.6969 16.6519 18.0858 16.5005C18.3795 16.3859 18.8207 16.2505 19.6332 16.2132C20.4019 16.1784 20.6998 16.168 22.253 16.1663V16.1684ZM27.4488 17.552C26.8967 17.552 26.4488 17.9994 26.4488 18.5517C26.4488 19.1038 26.8967 19.5517 27.4488 19.5517C28.0009 19.5517 28.4488 19.1038 28.4488 18.5517C28.4488 17.9996 28.0009 17.5517 27.4488 17.5517V17.552ZM23.0005 18.7204C20.6372 18.7204 18.721 20.6366 18.721 23C18.721 25.3633 20.6372 27.2786 23.0005 27.2786C25.3639 27.2786 27.2794 25.3633 27.2794 23C27.2794 20.6366 25.3637 18.7204 23.0004 18.7204H23.0005ZM23.0005 20.2222C24.5346 20.2222 25.7783 21.4658 25.7783 23C25.7783 24.534 24.5346 25.7777 23.0005 25.7777C21.4663 25.7777 20.2228 24.534 20.2228 23C20.2228 21.4658 21.4663 20.2222 23.0005 20.2222Z" fill="currentColor"/></svg></a>
+               <a href="https://www.facebook.com/fonVenture" target="_blank" rel="noopener" aria-label="Facebook"><svg width="20" height="20" viewBox="10 10 26 26" fill="none" aria-hidden="true" focusable="false"><path d="M31.3332 23.0506C31.3332 18.4199 27.602 14.666 22.9993 14.666C18.3967 14.666 14.6655 18.4199 14.6655 23.0506C14.6655 27.2356 17.7131 30.7043 21.6972 31.3333V25.4743H19.5812V23.0506H21.6972V21.2034C21.6972 19.102 22.9414 17.9412 24.845 17.9412C25.7568 17.9412 26.7105 18.105 26.7105 18.105V20.1684H25.6596C24.6244 20.1684 24.3015 20.8147 24.3015 21.4778V23.0506H26.6128L26.2434 25.4743H24.3015V31.3333C28.2856 30.7043 31.3332 27.2356 31.3332 23.0506Z" fill="currentColor"/></svg></a>
+               <a href="https://www.linkedin.com/company/fonventure/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="20" height="20" viewBox="10 10 26 26" fill="none" aria-hidden="true" focusable="false"><path d="M16.9583 18.4167H13.4583V32.5834H16.9583V18.4167ZM15.2083 16.5417C16.4166 16.5417 17.3958 15.5625 17.3958 14.3542C17.3958 13.1458 16.4166 12.1667 15.2083 12.1667C14 12.1667 13.0208 13.1458 13.0208 14.3542C13.0208 15.5625 14 16.5417 15.2083 16.5417ZM25.9583 18.2084C23.6041 18.2084 22.2708 19.7084 21.7708 20.7292H21.7291V18.4167H18.2291V32.5834H21.7291V24.9375C21.7291 23.2084 22.0625 21.5417 24.0833 21.5417C26.0625 21.5417 26.0833 23.3959 26.0833 25.0417V32.5834H29.5833V24.1459C29.5833 20.4167 28.3333 18.2084 25.9583 18.2084Z" fill="currentColor"/></svg></a>
+               <a href="https://www.youtube.com/@fonventurecom" target="_blank" rel="noopener" aria-label="YouTube"><svg width="20" height="20" viewBox="10 10 26 26" fill="none" aria-hidden="true" focusable="false"><path d="M23 13C15.8203 13 13 15.8203 13 23C13 30.1797 15.8203 33 23 33C30.1797 33 33 30.1797 33 23C33 15.8203 30.1797 13 23 13ZM27.8031 23.002L20.8906 26.8334V19.1709L27.8031 23.002Z" fill="currentColor"/></svg></a>
+            </div>
+         </div>
+
+            <details class="ft-acc">
+               <summary>Kurumsal<svg class="ft-acc__chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+               <div class="ft-links">
+                  <a href="/hakkimizda">Hakkımızda</a>
+                  <a href="/hakkimizda/yatirim-komitesi">Yatırım Komitesi</a>
+                  <a href="/hakkimizda/yonetim-kurulu">Yönetim Kurulu</a>
+                  <a href="/hakkimizda/ortaklik-yapisi">Ortaklık Yapısı</a>
+                  <a href="/nasil-yatirimci-olur">Nasıl Yatırımcı Olunur?</a>
+                  <a href="/nasil-girisimci-olur">Nasıl Girişimci Olunur?</a>
+                  <a href="/blog-list/">Blog</a>
+                  <a href="/iletisim">İletişim</a>
+                  <a href="/sss">S.S.S.</a>
+               </div>
+            </details>
+            <details class="ft-acc">
+               <summary>Politikalar<svg class="ft-acc__chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+               <div class="ft-links">
+                  <a href="/belge/degerlendirme/" target="_blank" rel="noopener">Değerlendirme</a>
+                  <a href="/belge/cikar-catismasi/" target="_blank" rel="noopener">Çıkar Çatışması</a>
+                  <a href="/belge/bilgi-guvenligi/" target="_blank" rel="noopener">Bilgi Güvenliği</a>
+                  <a href="/belge/kara-para/" target="_blank" rel="noopener">Kara Para ile Mücadele</a>
+                  <a href="/belge/kalite/" target="_blank" rel="noopener">Kalite Politikası</a>
+                  <a href="/belge/rusvet/" target="_blank" rel="noopener">Rüşvet ve Yolsuzlukla Mücadele</a>
+               </div>
+            </details>
+            <details class="ft-acc">
+               <summary>Bildirimler<svg class="ft-acc__chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+               <div class="ft-links">
+                  <a href="/kamuyu-aydinlatma">Kamuyu Aydınlatma</a>
+                  <a href="/belge/kvkk/" target="_blank" rel="noopener">KVKK Bildirimi</a>
+                  <a href="/belge/genel-risk/" target="_blank" rel="noopener">Genel Risk Bildirimi</a>
+                  <a href="/belge/mevzuat/" target="_blank" rel="noopener">Kitle Fonlama Platformu Mevzuatı</a>
+                  <a href="/belge/uyelik-sozlesmesi/" target="_blank" rel="noopener">Üyelik Sözleşmesi</a>
+                  <a href="/faaliyet-raporlari">Faaliyet Raporlarımız</a>
+               </div>
+            </details>
+            <details class="ft-acc">
+               <summary>Üyelikler<svg class="ft-acc__chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+               <div class="ft-links">
+                  <a href="https://www.mkk.com.tr/" target="_blank" rel="noopener">Merkezi Kayıt Kuruluşu</a>
+                  <a href="https://www.takasbank.com.tr/tr" target="_blank" rel="noopener">Takasbank</a>
+                  <a href="https://spk.gov.tr/" target="_blank" rel="noopener">Sermaye Piyasası Kurulu</a>
+               </div>
+            </details>
+      </div>
+
+      <div class="ft-bottom">
+         <p>Platformumuz paya dayalı kitle fonlama faaliyeti yapmak üzere Sermaye Piyasası Kurulu (SPK) tarafından yetkilendirilmiştir.</p>
+         <p>© 2026 fonVenture. Tüm hakları saklıdır.</p>
+      </div>
+   </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+   // Masaüstünde link grupları hep açık, mobilde akordiyon
+   (function () {
+      const mq = window.matchMedia('(min-width: 768px)');
+      const groups = document.querySelectorAll('.ft-acc');
+      const sync = () => groups.forEach((d) => { d.open = mq.matches; });
+      groups.forEach((d) => d.querySelector('summary').addEventListener('click', (e) => {
+         if (mq.matches) e.preventDefault();
+      }));
+      sync();
+      mq.addEventListener('change', sync);
+   })();
+</script>
+
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<script>
+   document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("contactForm");
+
+      form.addEventListener("submit", async function (e) {
+         e.preventDefault();
+
+         // Hataları sıfırlama
+         resetErrors();
+
+         const formData = new FormData(form);
+         const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+         const email = formData.get('email');
+         
+         if (!validateEmail(email)) {
+            updateUI({ok: false, msg: 'Lütfen geçerli bir email adresi girin.'}, document.getElementById('email'), document.getElementById('email_error'));
+            return;
+         }
+         
+         try {
+            const response = await fetch("/", {
+            method: "POST",
+            headers: {
+               "X-CSRFToken": csrfToken,
+               "X-Requested-With": "XMLHttpRequest",
+            },
+            body: formData,
+            });
+
+            const data = await response.json();
+
+            if (data.status === "success") {
+            Swal.fire({
+               icon: "success",
+               title: data.message,
+               timer: 2500,
+               showConfirmButton: false,
+               toast: true,
+               position: "top",
+            });
+            form.reset();
+            } else {
+            Swal.fire({
+               icon: "error",
+               title: data.message || "Bir hata oluştu!",
+               timer: 2500,
+               showConfirmButton: false,
+               toast: true,
+               position: "top",
+            });
+            }
+         } catch (error) {
+            console.error("Request error:", error);
+            Swal.fire({
+            icon: "error",
+            title: "Bir hata oluştu. Lütfen tekrar deneyin.",
+            timer: 2500,
+            showConfirmButton: false,
+            toast: true,
+            position: "top",
+            });
+         }
+   });
+
+   function updateUI(v, input, errorBox) {
+      console.log(v);
+         if (!v.ok) {
+         errorBox.textContent = v.msg;
+         input.classList.add("input-error");
+         } else {
+         errorBox.textContent = "";
+         input.classList.remove("input-error");
+         }
+      }
+
+   // Email validasyonu
+   function validateEmail(email) {
+      const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+      return emailPattern.test(email);
+   }
+
+   // Zorunlu alan kontrolü
+   function validateRequired(value) {
+      return value.trim() !== '';
+   }
+
+   // Hata mesajlarını göstermek
+   function displayError(fieldId, message) {
+      const errorElement = document.getElementById(fieldId);
+      if (errorElement) {
+         errorElement.textContent = message;
+      }
+   }
+
+   // Hata mesajlarını sıfırlama
+   function resetErrors() {
+      document.getElementById("email_error").textContent = '';
+      
+   }
+   });
+</script>
+
+</html>
