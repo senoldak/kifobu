@@ -222,6 +222,35 @@ export function kesfiUygula(a: {
     }
   };
 
+  /** Takipteki kayda okunan detayı işler: boş olmayan alanlar yazılır, sonra bitiş kuralları. */
+  const detayiIsle = (k: TakipKaydi, d: KampanyaDetay, bolum: Bolum | null, platform: string, an: string) => {
+    k.hedef = d.hedef ?? k.hedef;
+    k.arzOrani = d.arzOrani ?? k.arzOrani;
+    k.degerleme = degerlemeHesapla(d) ?? k.degerleme;
+    k.baslangic = d.baslangic ?? k.baslangic;
+    k.bitis = d.bitis ?? k.bitis;
+    k.toplanan = d.toplanan ?? k.toplanan;
+    k.yatirimci = d.yatirimci ?? k.yatirimci;
+    k.nitelikli = d.nitelikli ?? k.nitelikli;
+    k.fonlandi = d.fonlandi ?? k.fonlandi;
+    k.eksik = eksikler(k);
+    if (k.durum === 'yakinda' && bolum === 'aktif') {
+      k.durum = 'aktif';
+      olayEkle({ tur: 'aktife-gecti', anahtar: `${platform}:aktife-gecti:${an}`, metin: olayMetni('Kampanya aktife geçti.', k) });
+    }
+    // Tarih kuralı yalnız aktif kayda uygulanır: yakında kayıtta eski tarihli ön talep özeti görülebilir.
+    const tarihGecti = k.durum === 'aktif' && k.bitis !== null && k.bitis < gun;
+    if (d.bitti || tarihGecti) {
+      k.durum = 'bitti';
+      k.bittiGorulme = gun;
+      olayEkle({
+        tur: 'bitti',
+        anahtar: `${platform}:bitti:${an}`,
+        metin: olayMetni(d.bitti ? 'Kampanya bitti.' : 'Kampanya bitti (bitiş tarihi geçti).', k),
+      });
+    }
+  };
+
   for (const s of a.sonuclar) {
     if (s.hata) {
       bozuk(s.platform, s.hata);
@@ -260,31 +289,7 @@ export function kesfiUygula(a: {
           continue;
         }
         if (mevcut.durum === 'bitti') continue;
-        mevcut.hedef = d.hedef ?? mevcut.hedef;
-        mevcut.arzOrani = d.arzOrani ?? mevcut.arzOrani;
-        mevcut.degerleme = degerlemeHesapla(d) ?? mevcut.degerleme;
-        mevcut.baslangic = d.baslangic ?? mevcut.baslangic;
-        mevcut.bitis = d.bitis ?? mevcut.bitis;
-        mevcut.toplanan = d.toplanan ?? mevcut.toplanan;
-        mevcut.yatirimci = d.yatirimci ?? mevcut.yatirimci;
-        mevcut.nitelikli = d.nitelikli ?? mevcut.nitelikli;
-        mevcut.fonlandi = d.fonlandi ?? mevcut.fonlandi;
-        mevcut.eksik = eksikler(mevcut);
-        if (mevcut.durum === 'yakinda' && liste.bolum === 'aktif') {
-          mevcut.durum = 'aktif';
-          olayEkle({ tur: 'aktife-gecti', anahtar: `${s.platform}:aktife-gecti:${an}`, metin: olayMetni('Kampanya aktife geçti.', mevcut) });
-        }
-        // Tarih kuralı yalnız aktif kayda uygulanır: yakında kayıtta eski tarihli ön talep özeti görülebilir.
-        const tarihGecti = mevcut.durum === 'aktif' && mevcut.bitis !== null && mevcut.bitis < gun;
-        if (d.bitti || tarihGecti) {
-          mevcut.durum = 'bitti';
-          mevcut.bittiGorulme = gun;
-          olayEkle({
-            tur: 'bitti',
-            anahtar: `${s.platform}:bitti:${an}`,
-            metin: olayMetni(d.bitti ? 'Kampanya bitti.' : 'Kampanya bitti (bitiş tarihi geçti).', mevcut),
-          });
-        }
+        detayiIsle(mevcut, d, liste.bolum, s.platform, an);
         continue;
       }
 
@@ -328,6 +333,12 @@ export function kesfiUygula(a: {
       if (k.platform !== s.platform || k.durum === 'bitti' || buTurEklenen.has(k)) continue;
       const an = guvenliAnahtar(k.url);
       if (an !== null && gorulen.has(an)) continue;
+      if (an !== null && s.detaylar[an] === null) bozuk(s.platform, 'kampanya sayfası açılamadı');
+      const d = an !== null ? s.detaylar[an] : undefined;
+      if (d) {
+        detayiIsle(k, d, null, s.platform, an!);
+        if (k.durum === 'bitti') continue;
+      }
       k.kayipTur += 1;
       if (k.kayipTur === 2) {
         olayEkle({ tur: 'kayboldu', anahtar: `${s.platform}:kayboldu:${an ?? k.url}`, metin: olayMetni('Kampanya iki turdur listede görünmüyor.', k) });
@@ -438,17 +449,17 @@ export function bultenListesi(
   }
 
   // Takip kayıtları ve el.ekle girdileri tek biçimde birleştirilir; el girdisi ilkGorulme'de sona düşer.
-  interface Aday { ad: string; platform: string; url: string; durum: TakipDurumu; hedef: number | null; degerleme: number | null; ilk: string; }
+  interface Aday { ad: string; platform: string; url: string; durum: TakipDurumu; hedef: number | null; degerleme: number | null; toplanan: number | null; fonlandi: boolean | null; ilk: string; }
   const adaylar = new Map<string, Aday>();
   for (const k of takip.kampanyalar) {
     const an = guvenliAnahtar(k.url);
     if (an === null || cikar.has(an) || adaylar.has(an)) continue;
-    adaylar.set(an, { ad: k.ad, platform: k.platform, url: k.url, durum: k.durum, hedef: k.hedef, degerleme: k.degerleme, ilk: k.ilkGorulme });
+    adaylar.set(an, { ad: k.ad, platform: k.platform, url: k.url, durum: k.durum, hedef: k.hedef, degerleme: k.degerleme, toplanan: k.toplanan, fonlandi: k.fonlandi, ilk: k.ilkGorulme });
   }
   for (const e of el.ekle) {
     const an = guvenliAnahtar(e.url);
     if (an === null || cikar.has(an) || adaylar.has(an)) continue;
-    adaylar.set(an, { ad: e.ad, platform: e.platform, url: e.url, durum: e.bolum, hedef: e.hedef ?? null, degerleme: e.degerleme ?? null, ilk: '￿' });
+    adaylar.set(an, { ad: e.ad, platform: e.platform, url: e.url, durum: e.bolum, hedef: e.hedef ?? null, degerleme: e.degerleme ?? null, toplanan: null, fonlandi: null, ilk: '￿' });
   }
 
   const aktif: (KampanyaKaynagi & { ilk: string })[] = [];
@@ -469,7 +480,8 @@ export function bultenListesi(
     const kayit: KampanyaKaynagi & { ilk: string } = { ad, platform, url, hedefFon: hedef, degerleme: degerleme ?? 0, ilk: a.ilk };
     if (durum === 'bitti') {
       kayit.sabitDurum = 'SONA ERDİ';
-      kayit.tamamlandi = true;
+      // Yalnız gerçekten fonlanan kampanya "FONLANDI" sayılır; sona erip hedefe varmayan sayılmaz.
+      kayit.tamamlandi = a.fonlandi === true || (a.fonlandi === null && a.toplanan !== null && hedef !== null && a.toplanan >= hedef);
     }
     aktif.push(kayit);
   }

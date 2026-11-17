@@ -381,7 +381,7 @@ const EL_U = 'https://fonx.example.com/kampanya/el-girisim';
 const bul = (k: TakipKaydi[], el: ElListesi = bosEl) => bultenListesi(takip(k), el);
 
 test('bultenListesi: aktif ve bitti kayıtlar girer, bitti olanda SONA ERDİ ve tamamlandi true', () => {
-  const r = bul([kayit(), kayit({ ad: 'BETA', url: U2, durum: 'bitti', bittiGorulme: GUN })]);
+  const r = bul([kayit(), kayit({ ad: 'BETA', url: U2, durum: 'bitti', bittiGorulme: GUN, fonlandi: true })]);
   assert.equal(r.aktif.length, 2);
   assert.deepEqual(r.aktif[0], { ad: 'ALFA', platform: P, url: U1, hedefFon: 5000000, degerleme: 50000000 });
   assert.equal(r.aktif[1].sabitDurum, 'SONA ERDİ');
@@ -516,3 +516,42 @@ test('alarmSuz: aynı çağrıda tekrarlanan gürültülü anahtar bir kez geçe
   assert.equal(r.gonderilecek.length, 1);
   assert.deepEqual(g, { a: '2026-11-01' });
 });
+
+test('bultenListesi: bitti kayıtta tamamlandi yalnız gerçekten fonlanmışsa true', () => {
+  const b = (o: Partial<TakipKaydi>) => bul([kayit({ durum: 'bitti', ...o })]).aktif[0];
+  assert.equal(b({ fonlandi: false, toplanan: 9000000 }).tamamlandi, false);
+  assert.equal(b({ fonlandi: null, toplanan: 100000 }).tamamlandi, false);
+  assert.equal(b({ fonlandi: null, toplanan: 5000000 }).tamamlandi, true);
+  assert.equal(b({ fonlandi: true, toplanan: 1 }).tamamlandi, true);
+  assert.equal(b({ fonlandi: false }).sabitDurum, 'SONA ERDİ');
+});
+
+test('kesfiUygula (karar 14): listede olmayan ama detayı okunan kayıt işlenir ve biter', () => {
+  const d = detay({ bitti: true, fonlandi: true, toplanan: 5135900, hedef: 5000000, bitis: '2026-11-05' });
+  const diger = tekListe('beta', U2, 'aktif', detay());
+  const sn = (): PlatformTurSonucu[] => [{ ...diger, detaylar: { ...diger.detaylar, [urlAnahtari(U1)]: d } }];
+  const r1 = uygula(takip([kayit({ hedef: null, toplanan: null, fonlandi: null, bitis: null })]), sn());
+  const k = r1.takip.kampanyalar.find((x) => x.url === U1)!;
+  assert.equal(k.durum, 'bitti');
+  assert.equal(k.bittiGorulme, GUN);
+  assert.equal(k.fonlandi, true);
+  assert.equal(k.toplanan, 5135900);
+  assert.equal(k.hedef, 5000000);
+  assert.equal(k.kayipTur, 0);
+  assert.equal(r1.olaylar.filter((x) => x.tur === 'bitti').length, 1);
+  const r2 = uygula(r1.takip, sn(), { gun: '2026-11-18' });
+  assert.equal(r2.olaylar.filter((x) => x.tur === 'bitti').length, 0);
+  assert.equal(r2.takip.kampanyalar.find((x) => x.url === U1)!.bittiGorulme, GUN);
+});
+
+test('kesfiUygula (karar 14): listede olmayan, detayı bitmemiş kayıt birleşir ve kayipTur artar', () => {
+  const diger = tekListe('beta', U2, 'aktif', detay());
+  const s: PlatformTurSonucu[] = [{ ...diger, detaylar: { ...diger.detaylar, [urlAnahtari(U1)]: detay({ toplanan: 777000, hedef: null }) } }];
+  const r = uygula(takip([kayit()]), s);
+  const k = r.takip.kampanyalar.find((x) => x.url === U1)!;
+  assert.equal(k.durum, 'aktif');
+  assert.equal(k.toplanan, 777000);
+  assert.equal(k.hedef, 5000000);
+  assert.equal(k.kayipTur, 1);
+});
+
