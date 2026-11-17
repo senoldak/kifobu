@@ -204,11 +204,16 @@ async function scrapeFonangels(url: string, pid?: string) {
 /** Trinkfon kampanya verisi */
 async function scrapeTrinkfon(url: string) {
   const html = await fetchHtml(url);
-  // Alınan: 24.282 ₺
-  const alinanMatch = html.match(/Alınan:[\s\S]*?([0-9.,]+)\s*₺/i);
+  // "Toplanan: 121.782 ₺" (eski sayfalarda "Alınan:")
+  const alinanMatch = html.match(/(?:Toplanan|Alınan):\s*<\/span>\s*<span[^>]*>\s*([0-9.,]+)\s*₺/i)
+    ?? html.match(/(?:Toplanan|Alınan):\s*([0-9.,]+)\s*₺/i);
+  // Etiket bulunamazsa 0 yazmak yerine hata ver: bot dünkü değeri korur.
+  if (!alinanMatch) throw new Error('trinkfon: toplanan tutar sayfada bulunamadı');
   // Kalan gün veya SON GÜN
   let durum = 'Aktif';
-  if (html.includes('SON GÜN') || html.includes('Son Gün')) {
+  if (/Fonlama sona erdi|Kampanya Sona Erdi/i.test(html)) {
+    durum = 'SONA ERDİ';
+  } else if (html.includes('SON GÜN') || html.includes('Son Gün')) {
     durum = 'SON GÜN';
   } else {
     const gunMatch = html.match(/(\d+)\s*g[uü]n\s*kald/i);
