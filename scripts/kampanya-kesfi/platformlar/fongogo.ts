@@ -1,5 +1,5 @@
 import type { KampanyaDetay, ListeKaydi, Okuyucu } from '../../../src/lib/kampanya-takip.ts';
-import { metne } from '../ayristir.ts';
+import { metne, oran, tarih } from '../ayristir.ts';
 
 // fongogo'nun paya dayalı sitesi yatirim.fongogo.com'dur. fongogo.com ve www.fongogo.com ÖDÜL sitesine (odul.fongogo.com)
 // yönlenir; o site kapsam dışıdır ve hiçbir yerde kullanılmaz.
@@ -101,14 +101,24 @@ function detay(html: string): KampanyaDetay {
     else fonlandi = hedef !== null && toplanan !== null ? toplanan >= hedef : null;
   }
 
+  // Tarih, pay oranı ve değerleme ayrı "Yatırımcı Özeti" parçasındadır (ekSayfalar ile gelir, ana HTML'e eklenir).
+  // Yalnız FONLAMA penceresi okunur; pay oranı ek fon HARİÇ ilk yüzdedir ("%7,75 (Ek Fon İle %9,16)").
+  const ozet = metne(html);
+  const gunler = ozet.match(/Başlangıç - Bitiş Tarihleri\s*(\d{1,2}\.\d{1,2}\.\d{4})\s*-\s*(\d{1,2}\.\d{1,2}\.\d{4})/);
+  const oncesi = tutar(ozet.match(/Yatırım Öncesi Değerleme\s*₺\s*([\d.,]+)/)?.[1]);
+  // Fonlama sonrası değer = öncesi + hedef (ek fon hariç).
+  const degerleme = oncesi !== null && hedef !== null ? oncesi + hedef : null;
+
+  // Yatırımcı sayısı: durum kartındaki "N yatırımcı yatırım yaptı." (<h4>; mobil kartla ve arşivle uyumlu). Sayfa altındaki
+  // "Yatırımcı Sayısı" etiketi farklı bir sayı verebildiğinden (101 / 105) kullanılmaz.
   const yatirimci = tutar(html.match(/>\s*(\d[\d.]*)\s*yatırımcı yatırım yaptı/i)?.[1]);
   return {
     ad: girisimAdi(html),
     hedef,
-    arzOrani: null, // bu sayfada yok: ayrı "Yatırımcı Özeti" bölümünde
-    degerleme: null, // aynı bölümde; bu sayfada yok
-    baslangic: null, // fonlama tarihleri de o bölümde
-    bitis: null,
+    arzOrani: oran(ozet.match(/Arz Edilen Pay Oranı\s*(%\s?[\d.,]+)/)?.[1] ?? null),
+    degerleme,
+    baslangic: gunler ? tarih(gunler[1]) : null,
+    bitis: gunler ? tarih(gunler[2]) : null,
     toplanan,
     yatirimci,
     nitelikli: null,
@@ -119,9 +129,20 @@ function detay(html: string): KampanyaDetay {
   };
 }
 
+/** Detay adresinden (`...PreliminaryInformation?URLKey=<slug>`) "Yatırımcı Özeti" parçasının adresini üretir; adres bozuksa []. */
+function ekSayfalar(url: string): string[] {
+  try {
+    const slug = new URL(url).searchParams.get('URLKey');
+    return slug ? [`${SITE}/ProjectDetail/InvestorSummary?URLKey=${encodeURIComponent(slug)}`] : [];
+  } catch {
+    return [];
+  }
+}
+
 export const fongogo: Okuyucu = {
   platform: 'fongogo',
   listeUrller: [`${SITE}/`],
   liste,
   detay,
+  ekSayfalar,
 };

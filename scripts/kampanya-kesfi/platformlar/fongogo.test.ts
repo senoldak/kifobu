@@ -6,6 +6,9 @@ import { fongogo } from './fongogo.ts';
 const oku = (ad: string) => readFileSync(new URL(`./__ornekler__/${ad}`, import.meta.url), 'utf8');
 const liste = oku('fongogo-liste.html');
 const peticim = oku('fongogo-peticim.html');
+const ozet = oku('fongogo-peticim-ozet.html');
+const tam = `${peticim}
+${ozet}`;
 const LISTE_URL = 'https://yatirim.fongogo.com/';
 const detayUrl = (slug: string) => `https://yatirim.fongogo.com/ProjectDetail/PreliminaryInformation?URLKey=${slug}`;
 
@@ -59,7 +62,7 @@ test('detay: biten, hedefine ulaşan kampanya (Petiçim)', () => {
   assert.equal(d.yatirimci, 101);
   assert.equal(d.bitti, true);
   assert.equal(d.fonlandi, true);
-  // Bu sayfada yok (ayrı "Yatırımcı Özeti" bölümünde): okunamayan null, 0 değil.
+  // Tarih/oran/değerleme ayrı "Yatırımcı Özeti" parçasında: tek başına okunamayan null, 0 değil.
   assert.equal(d.arzOrani, null);
   assert.equal(d.degerleme, null);
   assert.equal(d.baslangic, null);
@@ -105,4 +108,30 @@ test('detay: rozet yoksa ilerleme kutusundaki "Tamamlandı" yeter; başarısız/
     assert.equal(d.fonlandi, false, s);
   }
   assert.equal(fongogo.detay(rozetsiz.replace('₺ 2.268.134', '₺ 100.000')).fonlandi, false);
+});
+
+test('detay: ana sayfa + Yatırımcı Özeti birleşince tarih, pay oranı (ek fon hariç) ve değerleme okunur', () => {
+  const d = fongogo.detay(tam);
+  assert.equal(d.baslangic, '2025-03-13');
+  assert.equal(d.bitis, '2025-05-12');
+  assert.equal(d.arzOrani, 0.0775); // "%7,75 (Ek Fon İle %9,16)": ek fonlu oran alınmaz
+  assert.equal(d.degerleme, 27100000); // öncesi 25.000.000 + hedef 2.100.000; ek fonlu hedef (2.520.000) kullanılmaz
+  assert.equal(d.hedef, 2100000);
+  assert.equal(d.toplanan, 2268134);
+  assert.equal(d.yatirimci, 101);
+  assert.equal(d.ad, 'Petiçim Buğday Çimi Suyu');
+});
+
+test('detay: özet etiketleri silinince ilgili alan null olur', () => {
+  assert.equal(fongogo.detay(tam.replace('Başlangıç - Bitiş Tarihleri', 'X')).baslangic, null);
+  assert.equal(fongogo.detay(tam.replace('Başlangıç - Bitiş Tarihleri', 'X')).bitis, null);
+  assert.equal(fongogo.detay(tam.replace('Arz Edilen Pay Oranı', 'X')).arzOrani, null);
+  const d = fongogo.detay(tam.replace('Yatırım Öncesi Değerleme', 'X'));
+  assert.equal(d.degerleme, null);
+});
+
+test('ekSayfalar: detay adresinden Yatırımcı Özeti adresi; bozuk adres istisna atmaz', () => {
+  assert.deepEqual(fongogo.ekSayfalar!(detayUrl('peticim')), ['https://yatirim.fongogo.com/ProjectDetail/InvestorSummary?URLKey=peticim']);
+  assert.deepEqual(fongogo.ekSayfalar!('bozuk adres'), []);
+  assert.deepEqual(fongogo.ekSayfalar!('https://yatirim.fongogo.com/'), []);
 });

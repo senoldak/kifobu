@@ -33,4 +33,7 @@ export interface Okuyucu {
   listeUrller: string[];
   liste(html: string, listeUrl: string): ListeKaydi[];
   detay(html: string): KampanyaDetay;
+  /** Detay için ek sayfalar: çağıran ana adresi ve bunları getirir, hepsini "
+" ile birleştirip detay()'a verir. */
+  ekSayfalar?(url: string): string[];
 }
