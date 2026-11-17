@@ -2,6 +2,26 @@
  "aciklama": "Kapanmış paya dayalı kitle fonlama kampanyaları (2021–2026). Rakamlar kampanya sayfalarından, platformların kampanya raporlarından ve kifobu kayıtlarından.",
  "kampanyalar": [
   {
+   "anahtar": "ATHLETICLABS",
+   "ad": "ATHLETICLABS",
+   "tur": null,
+   "platform": "fonangels",
+   "durum": "fonlandi",
+   "baslangic": "2026-07-29",
+   "bitis": "2026-09-26",
+   "hedef": 7500000,
+   "alinan": 7602500,
+   "payArz": 0.1,
+   "yatirimci": 244,
+   "nitelikli": 74,
+   "sermaye": null,
+   "payFiyati": null,
+   "payGrubu": null,
+   "fonAktarim": null,
+   "sirket": null,
+   "url": "https://fonangels.com/kampanyalar/projehakkinda/athleticlabs?pid=1689"
+  },
+  {
    "anahtar": "CORBIQ",
    "ad": "CORBIQ",
    "tur": null,

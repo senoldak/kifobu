@@ -33,15 +33,6 @@ export const PLATFORM_AYARLARI: Record<string, PlatformAyar> = {
 
 export const AKTIF_KAMPANYALAR: KampanyaKaynagi[] = [
   {
-    ad: 'ATHLETICLABS',
-    platform: 'fonangels',
-    url: 'https://fonangels.com/kampanyalar/projehakkinda/athleticlabs?pid=1689',
-    hedefFon: 7_500_000,
-    degerleme: 75_000_000,
-    sabitDurum: 'SONA ERDİ',
-    tamamlandi: true,
-  },
-  {
     ad: 'OYLİO',
     platform: 'fonangels',
     url: 'https://fonangels.com/kampanyalar/projehakkinda/oylio?pid=1778',
