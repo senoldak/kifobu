@@ -4,6 +4,9 @@ import {
   urlAnahtari,
   kesfiUygula,
   arsiveTasi,
+  bultenListesi,
+  alarmSuz,
+  type Olay,
   type KampanyaDetay,
   type PlatformTurSonucu,
   type TakipDosyasi,
@@ -370,4 +373,146 @@ test('arsiveTasi: bitiş başlangıçtan önceyse arsivlenemedi', () => {
   assert.equal(r.takip.kampanyalar.length, 1);
   assert.equal(r.olaylar[0].tur, 'arsivlenemedi');
   assert.match(r.olaylar[0].metin, /bitiş başlangıçtan önce/);
+});
+
+// ---- bultenListesi ----
+
+const EL_U = 'https://fonx.example.com/kampanya/el-girisim';
+const bul = (k: TakipKaydi[], el: ElListesi = bosEl) => bultenListesi(takip(k), el);
+
+test('bultenListesi: aktif ve bitti kayıtlar girer, bitti olanda SONA ERDİ ve tamamlandi true', () => {
+  const r = bul([kayit(), kayit({ ad: 'BETA', url: U2, durum: 'bitti', bittiGorulme: GUN })]);
+  assert.equal(r.aktif.length, 2);
+  assert.deepEqual(r.aktif[0], { ad: 'ALFA', platform: P, url: U1, hedefFon: 5000000, degerleme: 50000000 });
+  assert.equal(r.aktif[1].sabitDurum, 'SONA ERDİ');
+  assert.equal(r.aktif[1].tamamlandi, true);
+});
+
+test('bultenListesi: hedefi null olan kayıt girmez, degerleme null 0 olur', () => {
+  const r = bul([kayit({ hedef: null }), kayit({ ad: 'BETA', url: U2, degerleme: null })]);
+  assert.deepEqual(r.aktif.map((x) => x.ad), ['BETA']);
+  assert.equal(r.aktif[0].degerleme, 0);
+});
+
+test('bultenListesi: yakinda kayıt yakinda listesine gider, tutar gerekmez', () => {
+  const r = bul([kayit({ durum: 'yakinda', hedef: null, degerleme: null })]);
+  assert.equal(r.aktif.length, 0);
+  assert.deepEqual(r.yakinda, [{ ad: 'ALFA', platform: P, url: U1 }]);
+});
+
+test('bultenListesi: aktifte aynı adı taşıyan yakinda kaydı çıkarılır', () => {
+  const r = bul([kayit(), kayit({ url: U2, durum: 'yakinda' })]);
+  assert.equal(r.yakinda.length, 0);
+});
+
+test('bultenListesi: sıra platform sonra ilkGorulme', () => {
+  const r = bul([
+    kayit({ ad: 'C', url: 'https://b.example.com/c', platform: 'b', ilkGorulme: '2026-11-01' }),
+    kayit({ ad: 'B', url: U2, ilkGorulme: '2026-11-12' }),
+    kayit({ ad: 'A', url: U1, ilkGorulme: '2026-11-05' }),
+  ]);
+  assert.deepEqual(r.aktif.map((x) => x.ad), ['C', 'A', 'B']);
+});
+
+test('bultenListesi: el.ekle aktif eklenir; takipte aynı anahtar varsa takipteki kalır', () => {
+  const el: ElListesi = {
+    ekle: [
+      { ad: 'EL', platform: P, url: EL_U, bolum: 'aktif', hedef: 1000, degerleme: 9000 },
+      { ad: 'SAHTE', platform: P, url: U1 + '?utm=x', bolum: 'aktif', hedef: 1, degerleme: 1 },
+    ],
+    cikar: [], duzelt: {},
+  };
+  const r = bul([kayit()], el);
+  assert.deepEqual(r.aktif.map((x) => x.ad).sort(), ['ALFA', 'EL']);
+  assert.equal(r.aktif.find((x) => x.ad === 'ALFA')?.hedefFon, 5000000);
+  assert.equal(r.aktif.find((x) => x.ad === 'EL')?.hedefFon, 1000);
+});
+
+test('bultenListesi: el.ekle hedefsiz aktif atlanır, yakinda girer', () => {
+  const el: ElListesi = {
+    ekle: [
+      { ad: 'HEDEFSIZ', platform: P, url: EL_U, bolum: 'aktif' },
+      { ad: 'YAKIN', platform: P, url: 'https://fonx.example.com/kampanya/yakin', bolum: 'yakinda' },
+    ],
+    cikar: [], duzelt: {},
+  };
+  const r = bul([], el);
+  assert.equal(r.aktif.length, 0);
+  assert.deepEqual(r.yakinda.map((x) => x.ad), ['YAKIN']);
+});
+
+test('bultenListesi: el.cikar takip ve el kayıtlarını kaldırır', () => {
+  const el: ElListesi = {
+    ekle: [{ ad: 'EL', platform: P, url: EL_U, bolum: 'aktif', hedef: 1, degerleme: 1 }],
+    cikar: [U1 + '/', EL_U], duzelt: {},
+  };
+  const r = bul([kayit(), kayit({ ad: 'BETA', url: U2 })], el);
+  assert.deepEqual(r.aktif.map((x) => x.ad), ['BETA']);
+});
+
+test('bultenListesi: el.duzelt hedef, degerleme ve ad değiştirir; takip girdisine yazılmaz', () => {
+  const k = kayit();
+  const t = takip([k]);
+  const r = bultenListesi(t, { ekle: [], cikar: [], duzelt: { [U1]: { hedef: 7, degerleme: 70, ad: 'YENİ' } } });
+  assert.equal(r.aktif[0].hedefFon, 7);
+  assert.equal(r.aktif[0].degerleme, 70);
+  assert.equal(r.aktif[0].ad, 'YENİ');
+  assert.equal(t.kampanyalar[0].hedef, 5000000);
+  assert.equal(t.kampanyalar[0].ad, 'ALFA');
+});
+
+test('bultenListesi: el.duzelt el.ekle ile gelen ve takipteki kazanan kayda da uygulanır', () => {
+  const el: ElListesi = {
+    ekle: [{ ad: 'EL', platform: P, url: EL_U, bolum: 'aktif', hedef: 1, degerleme: 1 }],
+    cikar: [], duzelt: { [EL_U]: { hedef: 99 } },
+  };
+  assert.equal(bul([], el).aktif[0].hedefFon, 99);
+});
+
+test('bultenListesi: el.duzelt durum bitti SONA ERDİ yapar; hedefsiz kaydı hedefle kurtarır', () => {
+  const r = bul([kayit({ hedef: null })], { ekle: [], cikar: [], duzelt: { [U1]: { hedef: 5, durum: 'bitti' } } });
+  assert.equal(r.aktif[0].sabitDurum, 'SONA ERDİ');
+  assert.equal(r.aktif[0].tamamlandi, true);
+});
+
+test('bultenListesi: bozuk adresli el girdileri atlanır, fırlatmaz', () => {
+  const el: ElListesi = {
+    ekle: [{ ad: 'BOZUK', platform: P, url: 'bozuk adres', bolum: 'aktif', hedef: 1, degerleme: 1 }],
+    cikar: ['bozuk'], duzelt: { 'bozuk': { hedef: 1 } },
+  };
+  assert.equal(bul([kayit()], el).aktif.length, 1);
+});
+
+// ---- alarmSuz ----
+
+const olay = (tur: Olay['tur'], anahtar = 'fonx:x'): Olay => ({ tur, anahtar, metin: 'm' });
+
+test('alarmSuz: gürültülü türler aynı anahtar için aynı gün bir kez geçer', () => {
+  for (const tur of ['okuyucu-bozuk', 'kayboldu', 'arsivlenemedi', 'olasi-cift'] as const) {
+    const ilk = alarmSuz([olay(tur)], {}, GUN);
+    assert.equal(ilk.gonderilecek.length, 1, tur);
+    assert.equal(ilk.alarmlar['fonx:x'], GUN);
+    assert.equal(alarmSuz([olay(tur)], ilk.alarmlar, GUN).gonderilecek.length, 0, tur);
+  }
+});
+
+test('alarmSuz: aynı anahtar ertesi gün yine geçer, eski kayıtlar silinmez', () => {
+  const r = alarmSuz([olay('kayboldu')], { 'fonx:x': '2026-11-16', diger: '2026-11-10' }, GUN);
+  assert.equal(r.gonderilecek.length, 1);
+  assert.equal(r.alarmlar['fonx:x'], GUN);
+  assert.equal(r.alarmlar.diger, '2026-11-10');
+});
+
+test('alarmSuz: bilgi türleri her zaman geçer ve alarmlara yazılmaz', () => {
+  const o = (['yeni', 'aktife-gecti', 'bitti', 'arsive-tasindi'] as const).map((t) => olay(t));
+  const r = alarmSuz(o, { 'fonx:x': GUN }, GUN);
+  assert.equal(r.gonderilecek.length, 4);
+  assert.deepEqual(r.alarmlar, { 'fonx:x': GUN });
+});
+
+test('alarmSuz: aynı çağrıda tekrarlanan gürültülü anahtar bir kez geçer; girdi değişmez', () => {
+  const g = { a: '2026-11-01' };
+  const r = alarmSuz([olay('kayboldu', 'k'), olay('kayboldu', 'k')], g, GUN);
+  assert.equal(r.gonderilecek.length, 1);
+  assert.deepEqual(g, { a: '2026-11-01' });
 });

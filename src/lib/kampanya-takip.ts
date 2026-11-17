@@ -2,6 +2,7 @@
 
 import { slugTr } from './konular.ts';
 import type { GecmisKampanya } from './kampanya-gecmis.ts';
+import type { KampanyaKaynagi } from '../data/bulten-kaynaklari.ts';
 
 export type Bolum = 'aktif' | 'yakinda';
 
@@ -422,4 +423,85 @@ ${k.url}`,
   // Eşit başlangıçta yeni kayıt eskilerden önce kalır (unshift) ve sıralama kararlıdır.
   const yeniArsiv = arsiv.sort((x, y) => (x.baslangic < y.baslangic ? 1 : x.baslangic > y.baslangic ? -1 : 0));
   return { takip: { ...a.takip, kampanyalar: kalan, alarmlar: { ...a.takip.alarmlar } }, yeniArsiv, olaylar };
+}
+
+/** Bültene girecek kampanyalar. el.ekle ve el.duzelt yalnız burada, okuma anında uygulanır; takip dosyasına yazılmaz. */
+export function bultenListesi(
+  takip: TakipDosyasi,
+  el: ElListesi,
+): { aktif: KampanyaKaynagi[]; yakinda: { ad: string; platform: string; url: string }[] } {
+  const cikar = new Set(el.cikar.map(guvenliAnahtar).filter((x): x is string => x !== null));
+  const duzelt = new Map<string, Partial<TakipKaydi>>();
+  for (const [url, d] of Object.entries(el.duzelt)) {
+    const an = guvenliAnahtar(url);
+    if (an !== null) duzelt.set(an, d);
+  }
+
+  // Takip kayıtları ve el.ekle girdileri tek biçimde birleştirilir; el girdisi ilkGorulme'de sona düşer.
+  interface Aday { ad: string; platform: string; url: string; durum: TakipDurumu; hedef: number | null; degerleme: number | null; ilk: string; }
+  const adaylar = new Map<string, Aday>();
+  for (const k of takip.kampanyalar) {
+    const an = guvenliAnahtar(k.url);
+    if (an === null || cikar.has(an) || adaylar.has(an)) continue;
+    adaylar.set(an, { ad: k.ad, platform: k.platform, url: k.url, durum: k.durum, hedef: k.hedef, degerleme: k.degerleme, ilk: k.ilkGorulme });
+  }
+  for (const e of el.ekle) {
+    const an = guvenliAnahtar(e.url);
+    if (an === null || cikar.has(an) || adaylar.has(an)) continue;
+    adaylar.set(an, { ad: e.ad, platform: e.platform, url: e.url, durum: e.bolum, hedef: e.hedef ?? null, degerleme: e.degerleme ?? null, ilk: '￿' });
+  }
+
+  const aktif: (KampanyaKaynagi & { ilk: string })[] = [];
+  const yakinda: { ad: string; platform: string; url: string; ilk: string }[] = [];
+  for (const [an, a] of adaylar) {
+    const d = duzelt.get(an) ?? {};
+    const ad = d.ad ?? a.ad;
+    const platform = d.platform ?? a.platform;
+    const url = d.url ?? a.url;
+    const durum = d.durum ?? a.durum;
+    const hedef = d.hedef !== undefined ? d.hedef : a.hedef;
+    const degerleme = d.degerleme !== undefined ? d.degerleme : a.degerleme;
+    if (durum === 'yakinda') {
+      yakinda.push({ ad, platform, url, ilk: a.ilk });
+      continue;
+    }
+    if (hedef === null) continue;
+    const kayit: KampanyaKaynagi & { ilk: string } = { ad, platform, url, hedefFon: hedef, degerleme: degerleme ?? 0, ilk: a.ilk };
+    if (durum === 'bitti') {
+      kayit.sabitDurum = 'SONA ERDİ';
+      kayit.tamamlandi = true;
+    }
+    aktif.push(kayit);
+  }
+
+  const sirala = (x: { platform: string; ilk: string }, y: { platform: string; ilk: string }) =>
+    x.platform < y.platform ? -1 : x.platform > y.platform ? 1 : x.ilk < y.ilk ? -1 : x.ilk > y.ilk ? 1 : 0;
+  aktif.sort(sirala);
+  yakinda.sort(sirala);
+
+  const aktifAdlari = new Set(aktif.map((x) => slugTr(x.ad)));
+  return {
+    aktif: aktif.map(({ ilk: _ilk, ...x }) => x),
+    yakinda: yakinda.filter((x) => !aktifAdlari.has(slugTr(x.ad))).map(({ ilk: _ilk, ...x }) => x),
+  };
+}
+
+const GURULTULU_TURLER: ReadonlySet<OlayTuru> = new Set<OlayTuru>(['okuyucu-bozuk', 'kayboldu', 'arsivlenemedi', 'olasi-cift']);
+
+/** Gürültülü alarm türleri aynı anahtar için günde bir kez geçer; bilgi türleri hep geçer. Girdiyi değiştirmez. */
+export function alarmSuz(
+  olaylar: Olay[],
+  alarmlar: Record<string, string>,
+  gun: string,
+): { gonderilecek: Olay[]; alarmlar: Record<string, string> } {
+  const yeni = { ...alarmlar };
+  const gonderilecek: Olay[] = [];
+  for (const o of olaylar) {
+    if (GURULTULU_TURLER.has(o.tur)) {
+      if (yeni[o.anahtar] === gun) continue;
+      yeni[o.anahtar] = gun;
+    }
+    gonderilecek.push(o);
+  }
+  return { gonderilecek, alarmlar: yeni };
 }
