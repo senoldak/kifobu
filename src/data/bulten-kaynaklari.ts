@@ -47,6 +47,10 @@ export const EL_LISTESI: ElListesi = {
     { ad: 'NARPOS', platform: 'ardventure', url: 'https://ardventure.com', bolum: 'yakinda' },
     { ad: 'NEURATURK', platform: 'ardventure', url: 'https://ardventure.com', bolum: 'yakinda' },
   ],
-  cikar: [],
+  // Platformda yıllar önce kalmış ön talep kartları: bültene alınmaz.
+  cikar: [
+    'https://yatirim.fongogo.com/ProjectDetail/PreliminaryInformation?URLKey=esebze-2',
+    'https://yatirim.fongogo.com/ProjectDetail/PreliminaryInformation?URLKey=BioCoderTeknoloji',
+  ],
   duzelt: {},
 };

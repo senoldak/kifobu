@@ -118,7 +118,7 @@ async function main() {
   for (const g of son?.girisimler ?? []) {
     if (typeof g.alinan === 'number') gunlukSonAlinan[g.ad] = g.alinan;
   }
-  const arsiv = arsiveTasi({ takip: kesif.takip, arsiv: gecmisDosyasi.kampanyalar, gun, gunlukSonAlinan });
+  const arsiv = arsiveTasi({ takip: kesif.takip, arsiv: gecmisDosyasi.kampanyalar, gun, gunlukSonAlinan, el: EL_LISTESI });
   const suzulen = alarmSuz([...kesif.olaylar, ...arsiv.olaylar], arsiv.takip.alarmlar, gun);
   const yeniTakip: TakipDosyasi = { ...arsiv.takip, alarmlar: suzulen.alarmlar };
   const arsivDegisti = JSON.stringify(arsiv.yeniArsiv) !== JSON.stringify(gecmisDosyasi.kampanyalar);

@@ -573,3 +573,104 @@ test('yedekToplanan: referans önce, sonra son görülen, ikisi de yoksa null (0
   assert.equal(yedekToplanan(undefined, 200), 200);
   assert.equal(yedekToplanan(undefined, undefined), null);
 });
+
+// ---- Son inceleme düzeltmeleri ----
+
+test('kesfiUygula I1b: eski tarihli yeni yakinda kartı eklenmez, eski-kart olayı üretilir', () => {
+  const r = uygula(takip(), [tekListe('alfa', U1, 'yakinda', detay({ bitis: '2025-04-04' }))]);
+  assert.equal(r.takip.kampanyalar.length, 0);
+  const o = r.olaylar.filter((x) => x.tur === 'eski-kart');
+  assert.equal(o.length, 1);
+  assert.equal(o[0].anahtar, `${P}:eski-kart:${urlAnahtari(U1)}`);
+  assert.match(o[0].metin, /eski bir ön talep kartı görüldü, bültene alınmadı/);
+  assert.equal(r.olaylar.some((x) => x.tur === 'yeni'), false);
+});
+
+test('kesfiUygula I1b: bitişi null ya da gelecekte olan yakinda kartı eklenir', () => {
+  for (const bitis of [null, '2026-12-01']) {
+    const r = uygula(takip(), [tekListe('alfa', U1, 'yakinda', detay({ bitis }))]);
+    assert.equal(r.takip.kampanyalar.length, 1);
+  }
+});
+
+test('alarmSuz I1b: eski-kart gürültülü sayılır, günde bir kez geçer', () => {
+  const ilk = alarmSuz([olay('eski-kart')], {}, GUN);
+  assert.equal(ilk.gonderilecek.length, 1);
+  assert.equal(alarmSuz([olay('eski-kart')], ilk.alarmlar, GUN).gonderilecek.length, 0);
+});
+
+test('kesfiUygula I1c: yakinda kayıt aktife geçerken tarihler yalnız taze detaydan gelir', () => {
+  const t = takip([kayit({ durum: 'yakinda', bitis: '2024-08-31', baslangic: '2024-08-01' })]);
+  const r = uygula(t, [tekListe('alfa', U1, 'aktif', detay({ bitis: null, baslangic: null }))]);
+  const k = r.takip.kampanyalar[0];
+  assert.equal(k.durum, 'aktif');
+  assert.equal(k.bitis, null);
+  assert.equal(k.baslangic, null);
+  assert.equal(r.olaylar.some((x) => x.tur === 'bitti'), false);
+  assert.ok(r.olaylar.some((x) => x.tur === 'aktife-gecti'));
+});
+
+test('kesfiUygula I1c: aktife geçişte taze bitiş geçmişteyse aynı turda biter', () => {
+  const r = uygula(takip([kayit({ durum: 'yakinda' })]), [tekListe('alfa', U1, 'aktif', detay({ bitis: '2026-11-01' }))]);
+  assert.equal(r.takip.kampanyalar[0].durum, 'bitti');
+});
+
+test('bultenListesi I2: aynı adresli iki el.ekle girdisi adları farklıysa ikisi de gelir', () => {
+  const U = 'https://ard.example.com';
+  const el: ElListesi = {
+    ekle: [
+      { ad: 'NARPOS', platform: P, url: U, bolum: 'yakinda' },
+      { ad: 'NEURATURK', platform: P, url: U, bolum: 'yakinda' },
+      { ad: 'Narpos', platform: P, url: U, bolum: 'yakinda' },
+    ],
+    cikar: [], duzelt: {},
+  };
+  assert.deepEqual(bul([], el).yakinda.map((x) => x.ad), ['NARPOS', 'NEURATURK']);
+  // Takip kaydı aynı adresteyse el girdileri yine elenir.
+  assert.equal(bul([kayit({ url: U, ad: 'BAŞKA', durum: 'yakinda' })], el).yakinda.length, 1);
+});
+
+test('kesfiUygula I3: listede görünen bitti kayıt detaysız olsa da değişmez, olay yok', () => {
+  const k = kayit({ durum: 'bitti', bittiGorulme: '2026-11-10' });
+  const r = uygula(takip([k]), [tekListe('alfa', U1, 'aktif', null)]);
+  assert.deepEqual(r.takip.kampanyalar, [k]);
+  assert.deepEqual(r.olaylar, []);
+});
+
+test('kesfiUygula I3: listede olmayan bitti kayıt değişmez, olay yok', () => {
+  const k = kayit({ durum: 'bitti', bittiGorulme: '2026-11-10', url: U2 });
+  const r = uygula(takip([k]), [tekListe('alfa', U1, 'aktif', detay())]);
+  assert.deepEqual(r.takip.kampanyalar.find((x) => x.url === U2), k);
+  assert.equal(r.olaylar.some((x) => x.tur === 'okuyucu-bozuk' || x.tur === 'kayboldu'), false);
+});
+
+test('arsiveTasi I4: el.duzelt adı arşivdeki girişimin turuna bağlar, takip kaydı değişmez', () => {
+  const k = bitmis({ ad: 'ESEBZE ÖN', toplanan: 1000000, hedef: 1000000 });
+  const el: ElListesi = { ekle: [], cikar: [], duzelt: { [U1]: { ad: 'ESEBZE' } } };
+  const r = arsiveTasi({ takip: takip([k]), arsiv: [arsivK({ anahtar: 'ESEBZE', ad: 'ESEBZE', tur: null, url: 'https://x.example.com/e' })], gun: GUN, gunlukSonAlinan: {}, el });
+  assert.equal(r.yeniArsiv.length, 2);
+  const y = r.yeniArsiv.find((x) => x.url === U1)!;
+  assert.equal(y.ad, 'ESEBZE');
+  assert.equal(y.anahtar, 'ESEBZE');
+  assert.equal(y.tur, 2);
+  assert.equal(k.ad, 'ESEBZE ÖN');
+});
+
+test('arsiveTasi I4: el.duzelt başlangıç eksik kaydı arşivlenebilir yapar', () => {
+  const k = bitmis({ baslangic: null });
+  assert.equal(tasi([k]).yeniArsiv.length, 0);
+  const el: ElListesi = { ekle: [], cikar: [], duzelt: { [U1]: { baslangic: '2026-01-01' } } };
+  const r = arsiveTasi({ takip: takip([k]), arsiv: [], gun: GUN, gunlukSonAlinan: {}, el });
+  assert.equal(r.yeniArsiv.length, 1);
+  assert.equal(r.yeniArsiv[0].baslangic, '2026-01-01');
+  assert.equal(r.takip.kampanyalar.length, 0);
+});
+
+test('kesfiUygula M2: hedefi okunamayan aktif kayıt olay metninde belirtilir', () => {
+  const r = uygula(takip(), [tekListe('alfa', U1, 'aktif', detay({ hedef: null, arzOrani: null }))]);
+  assert.match(r.olaylar.find((x) => x.tur === 'yeni')!.metin, / Hedef okunamadığı için bültene alınmadı\.$/);
+  const r2 = uygula(takip([kayit({ durum: 'yakinda', hedef: null })]), [tekListe('alfa', U1, 'aktif', detay({ hedef: null }))]);
+  assert.match(r2.olaylar.find((x) => x.tur === 'aktife-gecti')!.metin, / Hedef okunamadığı için bültene alınmadı\.$/);
+  const r3 = uygula(takip(), [tekListe('alfa', U1, 'aktif', detay())]);
+  assert.doesNotMatch(r3.olaylar[0].metin, /Hedef okunamadığı/);
+});

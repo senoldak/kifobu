@@ -95,7 +95,8 @@ export type OlayTuru =
   | 'kayboldu'
   | 'okuyucu-bozuk'
   | 'olasi-cift'
-  | 'arsivlenemedi';
+  | 'arsivlenemedi'
+  | 'eski-kart';
 
 export interface Olay {
   tur: OlayTuru;
@@ -150,6 +151,8 @@ function tl(n: number | null): string {
 function sade(s: string): string {
   return slugTr(s).replace(/-/g, '');
 }
+
+const HEDEFSIZ_NOT = ' Hedef okunamadığı için bültene alınmadı.';
 
 function olayMetni(baslik: string, k: TakipKaydi): string {
   return `${baslik}\n${k.ad} (${k.platform})\nHedef: ${tl(k.hedef)}\nDeğerleme: ${tl(k.degerleme)}\n${k.url}`;
@@ -224,19 +227,21 @@ export function kesfiUygula(a: {
 
   /** Takipteki kayda okunan detayı işler: boş olmayan alanlar yazılır, sonra bitiş kuralları. */
   const detayiIsle = (k: TakipKaydi, d: KampanyaDetay, bolum: Bolum | null, platform: string, an: string) => {
+    const gecis = k.durum === 'yakinda' && bolum === 'aktif';
     k.hedef = d.hedef ?? k.hedef;
     k.arzOrani = d.arzOrani ?? k.arzOrani;
     k.degerleme = degerlemeHesapla(d) ?? k.degerleme;
-    k.baslangic = d.baslangic ?? k.baslangic;
-    k.bitis = d.bitis ?? k.bitis;
+    // Yakından aktife geçişte tarihler yalnız taze detaydan gelir: eski ön talep özetinin tarihi taşınmaz.
+    k.baslangic = gecis ? d.baslangic : (d.baslangic ?? k.baslangic);
+    k.bitis = gecis ? d.bitis : (d.bitis ?? k.bitis);
     k.toplanan = d.toplanan ?? k.toplanan;
     k.yatirimci = d.yatirimci ?? k.yatirimci;
     k.nitelikli = d.nitelikli ?? k.nitelikli;
     k.fonlandi = d.fonlandi ?? k.fonlandi;
     k.eksik = eksikler(k);
-    if (k.durum === 'yakinda' && bolum === 'aktif') {
+    if (gecis) {
       k.durum = 'aktif';
-      olayEkle({ tur: 'aktife-gecti', anahtar: `${platform}:aktife-gecti:${an}`, metin: olayMetni('Kampanya aktife geçti.', k) });
+      olayEkle({ tur: 'aktife-gecti', anahtar: `${platform}:aktife-gecti:${an}`, metin: olayMetni('Kampanya aktife geçti.', k) + (k.hedef === null ? HEDEFSIZ_NOT : '') });
     }
     // Tarih kuralı yalnız aktif kayda uygulanır: yakında kayıtta eski tarihli ön talep özeti görülebilir.
     const tarihGecti = k.durum === 'aktif' && k.bitis !== null && k.bitis < gun;
@@ -282,13 +287,14 @@ export function kesfiUygula(a: {
       const mevcut = dizin.get(an);
 
       if (mevcut) {
+        // Biten kaydın sayfası getirilmez; ne birleştirme ne alarm ne de sayaç değişir.
+        if (mevcut.durum === 'bitti') continue;
         mevcut.sonGorulme = gun;
         mevcut.kayipTur = 0;
         if (!d) {
           bozuk(s.platform, 'kampanya sayfası açılamadı');
           continue;
         }
-        if (mevcut.durum === 'bitti') continue;
         detayiIsle(mevcut, d, liste.bolum, s.platform, an);
         continue;
       }
@@ -299,6 +305,16 @@ export function kesfiUygula(a: {
         continue;
       }
       if (d.bitti) continue;
+      if (liste.bolum === 'yakinda' && d.bitis !== null && d.bitis < gun) {
+        olayEkle({
+          tur: 'eski-kart',
+          anahtar: `${s.platform}:eski-kart:${an}`,
+          metin: `Platformda eski bir ön talep kartı görüldü, bültene alınmadı.
+${yeniAd(liste, d)} (${s.platform})
+${liste.url}`,
+        });
+        continue;
+      }
       if (liste.bolum === 'aktif' && d.bitis !== null && d.bitis < gun) continue;
       const k: TakipKaydi = {
         ad: yeniAd(liste, d),
@@ -324,7 +340,7 @@ export function kesfiUygula(a: {
       kampanyalar.push(k);
       dizin.set(an, k);
       buTurEklenen.add(k);
-      olayEkle({ tur: 'yeni', anahtar: `${s.platform}:yeni:${an}`, metin: olayMetni('Yeni kampanya bulundu.', k) });
+      olayEkle({ tur: 'yeni', anahtar: `${s.platform}:yeni:${an}`, metin: olayMetni('Yeni kampanya bulundu.', k) + (k.durum === 'aktif' && k.hedef === null ? HEDEFSIZ_NOT : '') });
       olasiCift(k, an);
     }
 
@@ -357,15 +373,27 @@ export function arsiveTasi(a: {
   arsiv: GecmisKampanya[];
   gun: string;
   gunlukSonAlinan: Record<string, number>;
+  /** El listesi: duzelt alanları kayda kopya üzerinden bindirilir; takip dosyasına yazılmaz. */
+  el?: ElListesi;
 }): { takip: TakipDosyasi; yeniArsiv: GecmisKampanya[]; olaylar: Olay[] } {
   const arsiv: GecmisKampanya[] = a.arsiv.map((k) => ({ ...k }));
   const kalan: TakipKaydi[] = [];
   const olaylar: Olay[] = [];
 
-  for (const k of a.takip.kampanyalar) {
+  const duzelt = new Map<string, Partial<TakipKaydi>>();
+  for (const [url, d] of Object.entries(a.el?.duzelt ?? {})) {
+    const an = guvenliAnahtar(url);
+    if (an !== null) duzelt.set(an, d);
+  }
+  const BINDIRILEN = ['ad', 'hedef', 'baslangic', 'bitis', 'toplanan', 'arzOrani', 'degerleme', 'fonlandi'] as const;
+
+  for (const orij of a.takip.kampanyalar) {
+    const k: TakipKaydi = { ...orij, eksik: [...orij.eksik] };
+    const dz = duzelt.get(guvenliAnahtar(orij.url) ?? '');
+    if (dz) for (const alan of BINDIRILEN) if (dz[alan] !== undefined) (k as unknown as Record<string, unknown>)[alan] = dz[alan];
     // Bugün biten kayıt, o günün bülteninde "SONA ERDİ" olarak kalsın diye yarına bırakılır.
     if (k.bittiGorulme === null || k.bittiGorulme >= a.gun) {
-      kalan.push(k);
+      kalan.push(orij);
       continue;
     }
     const an = guvenliAnahtar(k.url);
@@ -390,7 +418,7 @@ export function arsiveTasi(a: {
         anahtar: `${k.platform}:arsivlenemedi:${olayAnahtari}`,
         metin: olayMetni(`Arşive taşınamadı, ${neden}.`, k),
       });
-      kalan.push(k);
+      kalan.push(orij);
       continue;
     }
 
@@ -457,23 +485,28 @@ export function bultenListesi(
   }
 
   // Takip kayıtları ve el.ekle girdileri tek biçimde birleştirilir; el girdisi ilkGorulme'de sona düşer.
-  interface Aday { ad: string; platform: string; url: string; durum: TakipDurumu; hedef: number | null; degerleme: number | null; toplanan: number | null; fonlandi: boolean | null; ilk: string; }
+  interface Aday { ad: string; platform: string; url: string; durum: TakipDurumu; hedef: number | null; degerleme: number | null; toplanan: number | null; fonlandi: boolean | null; ilk: string; an: string; }
   const adaylar = new Map<string, Aday>();
+  const takipAnahtarlari = new Set<string>();
   for (const k of takip.kampanyalar) {
     const an = guvenliAnahtar(k.url);
     if (an === null || cikar.has(an) || adaylar.has(an)) continue;
-    adaylar.set(an, { ad: k.ad, platform: k.platform, url: k.url, durum: k.durum, hedef: k.hedef, degerleme: k.degerleme, toplanan: k.toplanan, fonlandi: k.fonlandi, ilk: k.ilkGorulme });
+    adaylar.set(an, { ad: k.ad, platform: k.platform, url: k.url, durum: k.durum, hedef: k.hedef, degerleme: k.degerleme, toplanan: k.toplanan, fonlandi: k.fonlandi, ilk: k.ilkGorulme, an });
+    takipAnahtarlari.add(an);
   }
   for (const e of el.ekle) {
     const an = guvenliAnahtar(e.url);
-    if (an === null || cikar.has(an) || adaylar.has(an)) continue;
-    adaylar.set(an, { ad: e.ad, platform: e.platform, url: e.url, durum: e.bolum, hedef: e.hedef ?? null, degerleme: e.degerleme ?? null, toplanan: null, fonlandi: null, ilk: '￿' });
+    // Takip kaydıyla yalnız adres, el girdileri kendi arasında adres ve adla ayrışır (aynı sayfada birden çok girişim olabilir).
+    if (an === null || cikar.has(an) || takipAnahtarlari.has(an)) continue;
+    const elAnahtari = `${an}|${slugTr(e.ad)}`;
+    if (adaylar.has(elAnahtari)) continue;
+    adaylar.set(elAnahtari, { ad: e.ad, platform: e.platform, url: e.url, durum: e.bolum, hedef: e.hedef ?? null, degerleme: e.degerleme ?? null, toplanan: null, fonlandi: null, ilk: '￿', an });
   }
 
   const aktif: (KampanyaKaynagi & { ilk: string })[] = [];
   const yakinda: { ad: string; platform: string; url: string; ilk: string }[] = [];
-  for (const [an, a] of adaylar) {
-    const d = duzelt.get(an) ?? {};
+  for (const a of adaylar.values()) {
+    const d = duzelt.get(a.an) ?? {};
     const ad = d.ad ?? a.ad;
     const platform = d.platform ?? a.platform;
     const url = d.url ?? a.url;
@@ -507,7 +540,7 @@ export function bultenListesi(
   };
 }
 
-const GURULTULU_TURLER: ReadonlySet<OlayTuru> = new Set<OlayTuru>(['okuyucu-bozuk', 'kayboldu', 'arsivlenemedi', 'olasi-cift']);
+const GURULTULU_TURLER: ReadonlySet<OlayTuru> = new Set<OlayTuru>(['okuyucu-bozuk', 'kayboldu', 'arsivlenemedi', 'olasi-cift', 'eski-kart']);
 
 /** Gürültülü alarm türleri aynı anahtar için günde bir kez geçer; bilgi türleri hep geçer. Girdiyi değiştirmez. */
 export function alarmSuz(
