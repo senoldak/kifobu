@@ -204,6 +204,7 @@ export function kesfiUygula(a: {
   };
 
   const olasiCift = (k: TakipKaydi, anahtar: string) => {
+    if (arsiv.some((x) => x.slug === slugTr(k.ad))) return;
     const s = sade(k.ad);
     for (const x of arsiv) {
       if (x.slug === slugTr(k.ad)) continue;
@@ -252,7 +253,11 @@ export function kesfiUygula(a: {
       if (mevcut) {
         mevcut.sonGorulme = gun;
         mevcut.kayipTur = 0;
-        if (!d || mevcut.durum === 'bitti') continue;
+        if (!d) {
+          bozuk(s.platform, 'kampanya sayfası açılamadı');
+          continue;
+        }
+        if (mevcut.durum === 'bitti') continue;
         mevcut.hedef = d.hedef ?? mevcut.hedef;
         mevcut.arzOrani = d.arzOrani ?? mevcut.arzOrani;
         mevcut.degerleme = degerlemeHesapla(d) ?? mevcut.degerleme;
@@ -328,41 +333,7 @@ export function kesfiUygula(a: {
     }
   }
 
-  // El listesi: elle eklenenler ve düzeltmeler
-  const dizin = anahtarDizini();
-  for (const e of a.el.ekle) {
-    const an = guvenliAnahtar(e.url);
-    if (an === null || dizin.has(an) || cikar.has(an)) continue;
-    const k: TakipKaydi = {
-      ad: buyukHarf(e.ad.trim()),
-      platform: e.platform,
-      url: e.url,
-      durum: e.bolum,
-      hedef: e.hedef ?? null,
-      arzOrani: null,
-      degerleme: e.degerleme ?? null,
-      baslangic: null,
-      bitis: null,
-      toplanan: null,
-      yatirimci: null,
-      nitelikli: null,
-      fonlandi: null,
-      ilkGorulme: gun,
-      sonGorulme: gun,
-      bittiGorulme: null,
-      eksik: [],
-      kayipTur: 0,
-    };
-    k.eksik = eksikler(k);
-    kampanyalar.push(k);
-    dizin.set(an, k);
-    olayEkle({ tur: 'yeni', anahtar: `${e.platform}:yeni:${an}`, metin: olayMetni('Elle eklenen kampanya.', k) });
-  }
-  for (const [url, duzeltme] of Object.entries(a.el.duzelt)) {
-    const an = guvenliAnahtar(url);
-    const k = an ? dizin.get(an) : undefined;
-    if (k) Object.assign(k, duzeltme);
-  }
+  // Not: el.ekle ve el.duzelt burada uygulanmaz; okuma anında (bultenListesi) bindirilir. Yalnız el.cikar etkilidir.
 
   return { takip: { sonKesif: gun, kampanyalar, alarmlar: { ...a.takip.alarmlar } }, olaylar };
 }

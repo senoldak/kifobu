@@ -202,3 +202,34 @@ test('kesfiUygula: ASCII marka adı düz büyük harfe çevrilir, Türkçe ad İ
   const b = uygula(takip(), [tekListe('Işık Tekstil', U2, 'aktif', detay({ ad: 'Çiçek İnşaat' }))]);
   assert.equal(b.takip.kampanyalar[0].ad, 'ÇİÇEK İNŞAAT');
 });
+
+test('kesfiUygula: el.ekle ve el.duzelt takip çıktısını değiştirmez, yalnız cikar etkilidir', () => {
+  const t = () => takip([kayit()]);
+  const s = () => [tekListe('alfa', U1, 'aktif', detay({ toplanan: 300000 })), tekListe('beta', U2, 'aktif', detay())];
+  const doluEl: ElListesi = {
+    ekle: [{ ad: 'Elle', platform: P, url: 'https://fonx.example.com/kampanya/elle', bolum: 'aktif', hedef: 1 }],
+    cikar: [],
+    duzelt: { [U1]: { durum: 'bitti', hedef: 7 } },
+  };
+  assert.deepEqual(uygula(t(), s(), { el: doluEl }), uygula(t(), s()));
+});
+
+test('kesfiUygula: hatalı/boş platform sonucunda dolu el ile de kayıtlar aynı kalır', () => {
+  const doluEl: ElListesi = { ekle: [{ ad: 'E', platform: P, url: U2, bolum: 'aktif' }], cikar: [], duzelt: { [U1]: { hedef: 9 } } };
+  for (const s of [sonuc({ hata: 'x' }), sonuc()]) {
+    const r = uygula(takip([kayit()]), [s], { el: doluEl });
+    assert.deepEqual(r.takip.kampanyalar, [kayit()]);
+  }
+});
+
+test('kesfiUygula: birebir arşiv eşleşmesi varken başka arşiv adına olasi-cift üretilmez', () => {
+  const r = uygula(takip(), [tekListe('Karma Türkiye', U1, 'aktif', detay())], { arsivAdlari: ['KARMA', 'KARMA TÜRKİYE'] });
+  assert.equal(r.takip.kampanyalar[0].ad, 'KARMA TÜRKİYE');
+  assert.equal(r.olaylar.some((x) => x.tur === 'olasi-cift'), false);
+});
+
+test('kesfiUygula: mevcut kaydın detayı açılamazsa okuyucu-bozuk, kayıt değişmez', () => {
+  const r = uygula(takip([kayit()]), [tekListe('alfa', U1, 'aktif', null)]);
+  assert.ok(r.olaylar.some((x) => x.tur === 'okuyucu-bozuk' && x.anahtar === `${P}:okuyucu-bozuk`));
+  assert.deepEqual(r.takip.kampanyalar, [kayit({ sonGorulme: GUN })]);
+});
