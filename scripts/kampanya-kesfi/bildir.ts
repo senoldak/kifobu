@@ -13,6 +13,7 @@ export async function bildir(
       method: 'POST',
       headers: { Authorization: `Bearer ${ortam.MOTOR_ANAHTARI}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({ metin: metin.slice(0, 3500) }),
+      signal: AbortSignal.timeout(10_000),
     });
     if (!yanit.ok) {
       console.log(`  ! Bildirim gönderilemedi: HTTP ${yanit.status}`);

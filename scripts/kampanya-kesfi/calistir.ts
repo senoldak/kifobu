@@ -132,12 +132,15 @@ async function main() {
     return;
   }
 
-  yaz(TAKIP_YOLU, yeniTakip);
+  // Önce arşiv, sonra takip: arşiv yazımı düşerse kampanya takipte kalır, iki yerden birden kaybolmaz.
   if (arsivDegisti) yaz(GECMIS_YOLU, { ...gecmisDosyasi, kampanyalar: arsiv.yeniArsiv });
+  yaz(TAKIP_YOLU, yeniTakip);
 
   let gonderilen = 0;
   for (const o of olaylar) {
     if (await bildir(o.metin, { MOTOR_URL: process.env.MOTOR_URL, MOTOR_ANAHTARI: process.env.MOTOR_ANAHTARI })) gonderilen++;
+    else console.log(`GÖNDERİLEMEDİ: [${o.tur}] ${o.metin.replace(/
+/g, ' | ')}`);
   }
   console.log(`Bitti: ${gonderilen}/${olaylar.length} bildirim gönderildi.`);
 }

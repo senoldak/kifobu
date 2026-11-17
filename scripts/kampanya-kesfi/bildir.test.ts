@@ -60,3 +60,13 @@ test('bildir: fetch fırlatırsa false döner ve anahtarı yazdırmaz', async ()
   }
   assert.ok(!satirlar.join('\n').includes('gizli-anahtar'));
 });
+
+test('bildir: zaman aşımı sinyali verir ve zaman aşımında false döner', async () => {
+  let sinyal: AbortSignal | undefined;
+  const sahte = (async (_u: string, init: RequestInit) => {
+    sinyal = init.signal as AbortSignal;
+    throw new DOMException('The operation was aborted due to timeout', 'TimeoutError');
+  }) as unknown as typeof fetch;
+  assert.equal(await bildir('x', ORTAM, sahte), false);
+  assert.ok(sinyal instanceof AbortSignal);
+});
