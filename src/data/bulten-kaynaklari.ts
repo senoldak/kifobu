@@ -47,13 +47,6 @@ export const AKTIF_KAMPANYALAR: KampanyaKaynagi[] = [
     degerleme: 50_000_000,
   },
   {
-    ad: 'PUPAQ',
-    platform: 'trinkfon',
-    url: 'https://kfs.trinkfon.com/projeler/pupaq/kampanya/',
-    hedefFon: 1_000_032,
-    degerleme: 25_000_800,
-  },
-  {
     ad: 'LOOPYON',
     platform: 'ecofolio',
     url: 'https://ecofolio.com.tr/kampanyalar/loopyon',

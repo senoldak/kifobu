@@ -2,6 +2,26 @@
  "aciklama": "Kapanmış paya dayalı kitle fonlama kampanyaları (2021–2026). Rakamlar kampanya sayfalarından, platformların kampanya raporlarından ve kifobu kayıtlarından.",
  "kampanyalar": [
   {
+   "anahtar": "PUPAQ",
+   "ad": "PUPAQ",
+   "tur": null,
+   "platform": "trinkfon",
+   "durum": "fonlanamadi",
+   "baslangic": "2026-08-19",
+   "bitis": "2026-10-16",
+   "hedef": 1000032,
+   "alinan": 121782,
+   "payArz": 0.04,
+   "yatirimci": 23,
+   "nitelikli": 0,
+   "sermaye": null,
+   "payFiyati": null,
+   "payGrubu": null,
+   "fonAktarim": null,
+   "sirket": null,
+   "url": "https://kfs.trinkfon.com/projeler/pupaq/kampanya/"
+  },
+  {
    "anahtar": "ATHLETICLABS",
    "ad": "ATHLETICLABS",
    "tur": null,
