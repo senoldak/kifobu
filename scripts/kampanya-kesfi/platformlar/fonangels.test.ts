@@ -56,8 +56,31 @@ test('liste: yalnız aktif kartlar, biten kartlar atlanır', () => {
   const v = kayitlar.find((k) => k.url.includes('pid=1803'));
   assert.ok(v, 'VisitExtra listede olmalı');
   assert.equal(v.bolum, 'aktif');
-  assert.equal(v.ad, 'VisitExtra');
+  assert.equal(v.ad, 'visitextra'); // geçici: URL sluğu
   assert.equal(v.url, 'https://fonangels.com/kampanyalar/projehakkinda/visitextra?pid=1803');
   assert.ok(!kayitlar.some((k) => k.url.includes('pid=1689')), 'biten Athletic Labs alınmaz');
   assert.equal(kayitlar.length, 1);
+});
+
+test('detay: girişim adı h1den, yoksa titledan, ikisi de yoksa null', () => {
+  assert.equal(fonangels.detay(visitextra).ad, 'VisitExtra');
+  assert.equal(fonangels.detay(athletic).ad, 'Athletic Labs');
+  const h1siz = athletic.replace(/<h1[\s\S]*?<\/h1>/gi, '');
+  assert.equal(fonangels.detay(h1siz).ad, 'Athletic Labs');
+  const ikisiz = h1siz.replace(/<title[\s\S]*?<\/title>/gi, '');
+  assert.equal(fonangels.detay(ikisiz).ad, null);
+});
+
+test('liste: bozuk yüzde kodlu slug liste()yi düşürmez', () => {
+  const html = '<div class="invest-box acik"><a href="/kampanyalar/projehakkinda/bozuk%E0%A4%A?pid=7">İncele</a></div>';
+  const k = fonangels.liste(html, 'https://fonangels.com/kampanyalar');
+  assert.equal(k.length, 1);
+  assert.equal(k[0].ad, 'bozuk%E0%A4%A');
+});
+
+test('liste: açıklamasında "Tamamlandı" geçen açık kart atlanmaz', () => {
+  const html = '<div class="invest-box acik"><div class="genislige-x-satir">Proje Tamamlandı, Hedefine Ulaştı</div><a href="/kampanyalar/projehakkinda/x?pid=9">İncele</a></div>';
+  const k = fonangels.liste(html, 'https://fonangels.com/kampanyalar');
+  assert.equal(k.length, 1);
+  assert.equal(k[0].bolum, 'aktif');
 });

@@ -11,6 +11,8 @@ export interface ListeKaydi {
 
 /** Kampanya sayfasından okunan sayılar. Okunamayan alan null olur, asla 0 olmaz. */
 export interface KampanyaDetay {
+  /** Girişim adı (detay sayfasından); okunamazsa null. */
+  ad: string | null;
   hedef: number | null;
   arzOrani: number | null;
   degerleme: number | null;
