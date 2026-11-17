@@ -33,7 +33,21 @@ export interface Okuyucu {
   listeUrller: string[];
   liste(html: string, listeUrl: string): ListeKaydi[];
   detay(html: string): KampanyaDetay;
-  /** Detay için ek sayfalar: çağıran ana adresi ve bunları getirir, hepsini "
-" ile birleştirip detay()'a verir. */
+  /** Detay için ek sayfalar: çağıran ana sayfayı ve bunları getirir, tüm HTML'i "\n" ile birleştirip detay()'a verir. */
   ekSayfalar?(url: string): string[];
+}
+
+/**
+ * Bir kampanya adresinin kararlı kimliği: küçük harfli host ve yol, sondaki "/" atılmış;
+ * sorgudan yalnız kimlik taşıyan `pid` ve `urlkey` kalır (ad ve değer küçük harf), gerisi (utm vb.) düşer.
+ */
+export function urlAnahtari(url: string): string {
+  const u = new URL(url);
+  const yol = u.pathname.toLowerCase().replace(/\/+$/, '');
+  const kalan = [...u.searchParams.entries()]
+    .map(([ad, deger]) => [ad.toLowerCase(), deger.toLowerCase()] as const)
+    .filter(([ad]) => ad === 'pid' || ad === 'urlkey')
+    .sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0));
+  const sorgu = kalan.map(([ad, deger]) => `${ad}=${deger}`).join('&');
+  return `${u.hostname.toLowerCase()}${yol}${sorgu ? `?${sorgu}` : ''}`;
 }
