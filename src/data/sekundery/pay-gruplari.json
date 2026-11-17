@@ -46,7 +46,10 @@
    "isin": "TRETREX00015"
   },
   "TCHNO-B": {
-   "isin": "TRETMMT00025"
+   "isin": "TRETMMT00025",
+   "sahip": {
+    "2026-11-17": 0
+   }
   },
   "SCOLI-D": {
    "isin": "TRESCTL00020"
@@ -199,7 +202,10 @@
    "isin": "TRESHFT00039"
   },
   "TETOG-B": {
-   "isin": "TRETTGM00027"
+   "isin": "TRETTGM00027",
+   "sahip": {
+    "2026-11-17": 0
+   }
   },
   "LIMBX-A": {
    "isin": "TRELMBK00016",
@@ -286,6 +292,16 @@
   "SERAC-B": {
    "sahip": {
     "2026-11-16": 0
+   }
+  },
+  "STETO-B": {
+   "sahip": {
+    "2026-11-17": 0
+   }
+  },
+  "TETOG-A": {
+   "sahip": {
+    "2026-11-17": 0
    }
   }
  },
@@ -505,6 +521,30 @@
   },
   "SHPVR": {
    "soruldu": "2026-11-16"
+  },
+  "SIZEM": {
+   "soruldu": "2026-11-17"
+  },
+  "SPECH": {
+   "soruldu": "2026-11-17"
+  },
+  "SPRG1": {
+   "soruldu": "2026-11-17"
+  },
+  "SPRG2": {
+   "soruldu": "2026-11-17"
+  },
+  "STETO": {
+   "soruldu": "2026-11-17"
+  },
+  "SUITE": {
+   "soruldu": "2026-11-17"
+  },
+  "TCHNO": {
+   "soruldu": "2026-11-17"
+  },
+  "TETOG": {
+   "soruldu": "2026-11-17"
   }
  }
 }
