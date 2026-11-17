@@ -1,0 +1,264 @@
+/* Başlık (18.11.2026): altbilginin dili. Büyük tohum işareti + kifobu, altında slogan; sağda bülten etiketi, sarı kısa
+   çizgi ve tarih, yuvarlak arama; arkada banner'daki gibi sağdan taşan soluk tohum işareti; altta tek satır menü.
+   Tablet ve telefonda (≤ 1080 px) menü hamburgerde. */
+
+.kfb {
+  position: relative;
+}
+
+.kfb-zemin {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.kfb-tohum {
+  position: absolute;
+  top: -70px;
+  right: -60px;
+  width: clamp(220px, 24vw, 360px);
+  aspect-ratio: 1;
+  opacity: 0.09;
+  filter: grayscale(1);
+}
+
+.kfb-tohum svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.kfb-bas {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 28px;
+  padding-bottom: 22px;
+}
+
+.kfb-logo {
+  display: inline-block;
+  font-size: clamp(2.3rem, 4.4vw, 3.6rem);
+  line-height: 1;
+}
+
+.kfb .kfb-logo .marka {
+  gap: 0.22em;
+}
+
+.kfb .kfb-logo .marka .marka-isim {
+  font-size: 1em;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.kfb .kfb-logo .marka .marka-isaret {
+  width: 0.95em;
+  height: 0.95em;
+}
+
+.kfb-slogan {
+  margin: 10px 0 0;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--gri);
+}
+
+.kfb-sag {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.kfb-tarih {
+  margin: 0;
+  text-align: right;
+}
+
+.kfb-bulten {
+  position: relative;
+  display: block;
+  margin-bottom: 9px;
+  padding-bottom: 9px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--murekkep);
+  font-variant-numeric: tabular-nums;
+}
+
+.kfb-bulten::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 32px;
+  height: 3px;
+  background: var(--marka-sari);
+}
+
+.kfb-tarih b {
+  display: block;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.15;
+  white-space: nowrap;
+  color: var(--murekkep-2);
+}
+
+.kfb-ara {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--cizgi);
+  border-radius: 50%;
+  background: var(--beyaz);
+  color: var(--murekkep);
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.kfb-ara:hover,
+.kfb-ara[aria-current='page'] {
+  background: var(--marka-sari);
+  border-color: var(--marka-sari);
+}
+
+/* Menü satırı: düz zemin, kenardan kenara ince üst çizgi */
+.kfb-menu {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  background: var(--kagit);
+  box-shadow: 0 0 0 100vmax var(--kagit), 0 -1px 0 100vmax var(--cizgi);
+  clip-path: inset(-1px -100vmax 0 -100vmax);
+}
+
+.kfb-menu-sol,
+.kfb-menu-sag {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 1.8vw, 28px);
+}
+
+.kfb-menu a {
+  padding: 13px 0 12px;
+  font-size: clamp(0.92rem, 1.05vw, 1rem);
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--murekkep-2);
+  text-decoration: none;
+  box-shadow: inset 0 -3px 0 transparent;
+  transition: color 0.15s, box-shadow 0.15s;
+}
+
+.kfb-menu a:hover {
+  color: var(--murekkep);
+  box-shadow: inset 0 -3px 0 var(--cizgi);
+}
+
+.kfb-menu a[aria-current='page'] {
+  color: var(--murekkep);
+  box-shadow: inset 0 -3px 0 var(--marka-sari);
+}
+
+.kfb-menu-sag {
+  padding-left: 24px;
+  border-left: 1px solid var(--cizgi);
+}
+
+/* Hamburger paneli (≤ 1080 px): ilk satırın hemen altında */
+.kfb .nav-meny {
+  margin-left: 0;
+}
+
+.kfb .nav-meny summary {
+  min-height: 42px;
+  padding: 0;
+}
+
+.kfb .nav-meny-sutunlar a {
+  display: block;
+  padding: 6px 0;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: var(--murekkep);
+  text-decoration: none;
+}
+
+.kfb .nav-meny-sutunlar a:hover {
+  color: var(--murekkep-2);
+  text-decoration: underline;
+  text-decoration-color: var(--marka-sari);
+}
+
+@media (max-width: 1080px) {
+  .kfb-menu {
+    display: none;
+  }
+
+  .kfb-bas {
+    align-items: center;
+  }
+
+  .kfb-sag {
+    align-items: center;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .kfb-tohum {
+    display: none;
+  }
+
+  .kfb-bas {
+    padding-top: 18px;
+    padding-bottom: 16px;
+  }
+
+  .kfb-logo {
+    font-size: 2rem;
+  }
+
+  .kfb-slogan {
+    margin-top: 6px;
+    font-size: 0.875rem;
+  }
+
+  .kfb-tarih b {
+    display: none;
+  }
+
+  .kfb-bulten {
+    margin: 0;
+    padding: 0;
+    font-size: 0.6875rem;
+  }
+
+  .kfb-bulten::after {
+    display: none;
+  }
+
+  .kfb-sag {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .kfb-tarih {
+    display: none;
+  }
+
+  .kfb-bas {
+    gap: 12px;
+  }
+}
