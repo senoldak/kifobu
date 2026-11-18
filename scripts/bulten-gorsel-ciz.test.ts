@@ -124,8 +124,8 @@ test('bugünkü düzen: dört kart + bir şerit + altı kutu sığar, kartlar s�
 // ---- Sabit aralık düzeni (ritim) ----
 const bloklariOku = (svg: string) =>
   (svg.match(/data-bloklar="([^"]*)"/)?.[1] ?? '').split('|').map((s) => {
-    const [ad, y, h] = s.split(';');
-    return { ad, y: Number(y), h: Number(h) };
+    const [ad, x, y, w, h] = s.split(';');
+    return { ad, x: Number(x), y: Number(y), w: Number(w), h: Number(h) };
   }).sort((a, b) => a.y - b.y);
 const ozellik = (svg: string, ad: string) => Number(svg.match(new RegExp(`data-${ad}="([^"]*)"`))?.[1]);
 
@@ -153,20 +153,21 @@ for (const mod of ['post', 'story'] as const) {
         const ara = bloklar[i].y - (bloklar[i - 1].y + bloklar[i - 1].h);
         assert.ok(ara >= 8 - 0.05, `${durum}: ${bloklar[i - 1].ad} → ${bloklar[i].ad} arası ${ara}`);
       }
+      // tam genişlik: içerik hiçbir zaman daraltılmaz
+      for (const b of bloklar.filter((b) => b.ad !== 'alt-bant')) assert.ok(b.x === 56 && b.w === 968, `${durum}: ${b.ad} ${b.x}/${b.w}`);
       // (b) bölüm boşluğu görselin her bölümünde aynı
-      const icerikOlcek = ozellik(s, 'icerik-olcek');
-      const beklenenBolum = ozellik(s, 'bolum-aralik') * icerikOlcek;
+      const beklenenBolum = ozellik(s, 'bolum-aralik');
       const basliklar = bloklar.map((b, i) => [b, i] as const).filter(([b]) => b.ad.startsWith('baslik:'));
       assert.equal(basliklar.length, k ? 4 : 3, durum);
       for (const [b, i] of basliklar.slice(1)) {
         const onceki = bloklar[i - 1];
         assert.ok(Math.abs(b.y - (onceki.y + onceki.h) - beklenenBolum) < 0.2, `${durum}: ${b.ad} üstü ${b.y - (onceki.y + onceki.h)} ≠ ${beklenenBolum}`);
       }
-      if (ozellik(s, 'aralik-olcek') === 1 && icerikOlcek === 1) sikistirmasizBolum.add(ozellik(s, 'bolum-aralik'));
+      if (ozellik(s, 'aralik-olcek') === 1) sikistirmasizBolum.add(ozellik(s, 'bolum-aralik'));
       // (c) kart yüksekliği [min, max]
       const kartH = ozellik(s, 'kart-h');
       assert.ok(kartH >= OLCU[mod].kartMin && kartH <= OLCU[mod].kartMax, `${durum}: kart ${kartH}`);
-      for (const b of bloklar.filter((b) => b.ad.startsWith('kart:'))) assert.ok(Math.abs(b.h - kartH * icerikOlcek) < 0.2, durum);
+      for (const b of bloklar.filter((b) => b.ad.startsWith('kart:'))) assert.equal(b.h, kartH, durum);
       // (d) MKK kutusu alt banttan en az 24 px yukarıda
       assert.ok(ozellik(s, 'mkk-alt') + 24 <= ozellik(s, 'alt-ust'), `${durum}: ${ozellik(s, 'mkk-alt')}`);
       // boşluklar en çok 0,75'e kadar kısılır
@@ -181,10 +182,14 @@ for (const mod of ['post', 'story'] as const) {
     assert.equal(ozellik(s, 'sikistirma'), 0);
     assert.equal(ozellik(s, 'kart-h'), OLCU[mod].kartMax);
     const bloklar = bloklariOku(s);
+    // Üst bilgi + içerik tek blok: artan yer üst bilginin üstüne ve MKK'nın altına eşit; aradaki boşluklar ölçekteki değerde.
+    const ustBilgi = bloklar.find((b) => b.ad === 'ust-bilgi')!;
     const ilk = bloklar.find((b) => b.ad === 'baslik:GİRİŞİMLER')!;
-    const ust = ilk.y - OLCU[mod].basAlt - ARALIK[mod].ust;
+    const ust = ustBilgi.y + 2 - (mod === 'story' ? 190 : 54);
     const alt = ozellik(s, 'alt-ust') - ARALIK[mod].alt - ozellik(s, 'mkk-alt');
     assert.ok(ust > 0 && Math.abs(ust - alt) <= 1, `${ust} / ${alt}`);
+    assert.ok(Math.abs(ilk.y - (ustBilgi.y + ustBilgi.h) - ARALIK[mod].ust) < 0.2, 'üst bilgi ile ilk bölüm arası sabit');
+    assert.equal(ozellik(s, 'gizlenen'), 0);
     assert.equal(ozellik(s, 'kart-aralik'), ARALIK[mod].kart);
     assert.equal(ozellik(s, 'baslik-alti'), ARALIK[mod].baslikAlti);
   });
@@ -216,10 +221,44 @@ test('ritim: bugünkü düzen (VISITEXTRA açık + üç biten, bir şerit, altı
   for (const mod of ['post', 'story'] as const) {
     const s = bultenSvgCiz(mod, veri);
     assert.equal(ozellik(s, 'aralik-olcek'), 1, mod);
-    assert.equal(ozellik(s, 'icerik-olcek'), 1, mod);
+    assert.equal(ozellik(s, 'gizlenen'), 0, mod);
     assert.equal(ozellik(s, 'bolum-aralik'), ARALIK[mod].bolum, mod);
     assert.ok(ozellik(s, 'kart-h') >= OLCU[mod].kartMin, `${mod} kart ${ozellik(s, 'kart-h')}`);
   }
   // Post'ta altı kutu tek satıra sığar.
   assert.equal(ozellik(bultenSvgCiz('post', veri), 'kutu-sutun'), 6);
+});
+
+for (const mod of ['post', 'story'] as const) {
+  test(`taşma ${mod}: 6 açık + 3 şerit + 12 kutu — açıklar kalır, kutular "+N" ile özetlenir, genişlik tam`, () => {
+    const acik = Array.from({ length: 6 }, (_, i) => ({ ...uc, ad: `ACIK ${i + 1}`, durum: `son ${i + 5} gün`, kalan: 1_000_000, yuzde: 20 }));
+    const biten = { ...uc, ad: 'BITEN', durum: 'SONA ERDİ', kalan: null, yuzde: 101 };
+    const s = bultenSvgCiz(mod, {
+      ...BULTEN,
+      girisimler: [biten, ...acik],
+      yakinda: [...Array.from({ length: 3 }, (_, i) => ornekSerit(i)), ...Array.from({ length: 12 }, (_, i) => ornekKutu(i))],
+    });
+    const bloklar = bloklariOku(s);
+    for (const a of acik) assert.ok(bloklar.some((b) => b.ad === `kart:${a.ad}`), `${a.ad} çizilmeli`);
+    assert.ok(!bloklar.some((b) => b.ad === 'kart:BITEN'), 'biten kampanya açıklardan önce düşer');
+    assert.ok(ozellik(s, 'gizlenen') > 0);
+    const arti = Number(s.match(/data-yakinda-arti="(\d+)"/)?.[1]);
+    assert.ok(arti > 0, '"+N kampanya" kutusu');
+    assert.equal(bloklar.filter((b) => b.ad.startsWith('kutu-satiri:')).length, 1, 'en az bir kutu satırı kalır');
+    for (const b of bloklar.filter((b) => b.ad !== 'alt-bant')) assert.ok(b.x === 56 && b.w === 968, b.ad);
+    for (let i = 1; i < bloklar.length; i++) assert.ok(bloklar[i].y - (bloklar[i - 1].y + bloklar[i - 1].h) >= 8 - 0.05, bloklar[i].ad);
+    assert.ok(ozellik(s, 'aralik-olcek') >= ARALIK_EN_AZ_OLCEK);
+    assert.ok(ozellik(s, 'mkk-alt') + 24 <= ozellik(s, 'alt-ust'));
+    assert.doesNotMatch(s, /<g transform=/, 'içerik bloğu ölçeklenmez');
+  });
+}
+
+test('taşma: ikiden fazla şerit sığmazsa kalanlar "+N ön talep daha" satırında sayılır', () => {
+  // Kutu yok: şeritler kutuya katılamaz, satır açılır.
+  const acik = Array.from({ length: 5 }, (_, i) => ({ ...uc, ad: `ACIK ${i + 1}`, durum: `son ${i + 5} gün`, kalan: 1_000_000, yuzde: 20 }));
+  const s = bultenSvgCiz('post', { ...BULTEN, girisimler: acik, yakinda: Array.from({ length: 3 }, (_, i) => ornekSerit(i)) });
+  const tasma = Number(s.match(/data-serit-tasma="(\d+)"/)?.[1]);
+  const serit = [...s.matchAll(/data-on-talep=/g)].length;
+  assert.ok(tasma > 0 && serit + tasma === 3, `${serit} şerit + ${tasma}`);
+  assert.equal(ozellik(s, 'gizlenen'), tasma);
 });

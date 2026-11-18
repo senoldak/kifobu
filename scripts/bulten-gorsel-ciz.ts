@@ -97,7 +97,7 @@ export const ARALIK_EN_AZ_OLCEK = 0.75;
 // Kutu yükseklikleri ve sabit ölçüler (px). Kampanya kartı yalnız [kartMin, kartMax] arasında esner.
 export const OLCU = {
   post: {
-    basAlt: 146, altBantH: 52, kartMin: 88, kartMax: 118, seritH: 76, kutuH: 70, platKartH: 88,
+    basAlt: 146, altBantH: 52, kartMin: 86, kartMax: 118, seritH: 76, kutuH: 70, platKartH: 88,
     cubukH: 18, ilerlemeH: 7, mkkH: 64, kuralAlti: 10, kutuSutunEnCok: 6, yatayAralik: 12, kutuIcPay: 10,
   },
   story: {
@@ -155,8 +155,9 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
   // rakamsızlar "ön talep & yakında" kutularında kalır. Aynı kampanya hem şerit hem kutu olmaz.
   const seritler = b.yakinda.filter((y) => y.onTalep || y.hedef);
   const kutular = b.yakinda.filter((y) => !(y.onTalep || y.hedef));
-  const nGirisim = b.girisimler.length;
-  const nSerit = seritler.length;
+  // Kartlar önce açık kampanyalar, sonra bitenler (her grup kendi sırasıyla).
+  const aciklar = b.girisimler.filter((g) => !kapandiMi(g.durum));
+  const bitenler = b.girisimler.filter((g) => kapandiMi(g.durum));
   const nKutu = kutular.length;
 
   // ── KUTU IZGARASI: en az satır, satırlara eşit dağılım ─────────────────
@@ -168,65 +169,103 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
   const kutuW = (sutun: number) => (icGenislik - (sutun - 1) * O.yatayAralik) / sutun;
   let kutuSutun = Math.max(1, Math.min(nKutu, O.kutuSutunEnCok));
   while (kutuSutun > 1 && kutuW(kutuSutun) < kutuGerekenW) kutuSutun--;
-  const kutuSatir = nKutu ? Math.ceil(nKutu / kutuSutun) : 0;
-  if (kutuSatir) kutuSutun = Math.ceil(nKutu / kutuSatir); // 7 kutu → 4 + 3, 5 + 2 değil
+  const kutuSatirTam = nKutu ? Math.ceil(nKutu / kutuSutun) : 0;
+  if (kutuSatirTam) kutuSutun = Math.ceil(nKutu / kutuSatirTam); // 7 kutu → 4 + 3, 5 + 2 değil
 
   // ── SABİT YÜKSEKLİKLER ─────────────────────────────────────────────────
+  const paddingTop = mod === 'story' ? 190 : 54; // üst bilginin en az üst payı (story: Instagram üst katmanı)
+  const ustBilgiH = O.basAlt - paddingTop; // başlık, tarih ve logo
   const baslikTaban = Math.round(T.baslik * NOKTA_TEPE); // başlık bloğunun tepesi (İ noktası) → taban çizgisi
   const baslikH = baslikTaban + O.kuralAlti + 2; // sarı çizginin alt kenarına kadar
   const sayacH = Math.round(buyuk(T.etiket) + T.sayacSatir + inis(T.ad));
-  const bolumler = ['GİRİŞİMLER', 'PLATFORMLAR', ...(nKutu ? ['ÖN TALEP & YAKINDA'] : []), 'MKK VERİLERİ'];
+  const tasmaSatirH = Math.round(buyuk(T.etiket) + inis(T.etiket)); // "+N ön talep daha" satırı
+  const butce = footerY - paddingTop - ustBilgiH;
 
-  // Kart yüksekliğine bağlı olmayan kutuların toplamı ve ölçeklenebilir boşlukların toplamı.
-  const sabitH =
-    bolumler.length * baslikH + nSerit * O.seritH + sayacH + O.cubukH + O.platKartH + kutuSatir * O.kutuH + O.mkkH;
-  const boslukH =
-    A.ust + A.alt + (bolumler.length - 1) * A.bolum + bolumler.length * A.baslikAlti +
-    Math.max(0, nGirisim - 1) * A.kart + (nGirisim ? nSerit : Math.max(0, nSerit - 1)) * A.serit +
-    2 * A.ic + Math.max(0, kutuSatir - 1) * A.kutu;
-  const butce = footerY - O.basAlt;
-  const toplam = (kartH: number, olcek: number) => sabitH + nGirisim * kartH + boslukH * olcek;
+  // ── SIĞDIRMA ADAYLARI (öncelik sırası) ─────────────────────────────────
+  // Yer yetmezse en düşük öncelikten başlayarak eksiltilir: önce yakında kutuları (en az bir satır kalır,
+  // sığmayanların yerine "+N kampanya" kutusu), sonra biten kampanyalar (sondan), sonra ikiden fazla şerit,
+  // en son kalan şeritler ("+N ön talep daha" satırı). Açık kampanyalar hiçbir zaman düşmez.
+  interface Aday { biten: number; serit: number; kutuSatir: number }
+  const adaylar: Aday[] = [];
+  const aday: Aday = { biten: bitenler.length, serit: seritler.length, kutuSatir: kutuSatirTam };
+  adaylar.push({ ...aday });
+  while (aday.kutuSatir > 1) { aday.kutuSatir--; adaylar.push({ ...aday }); }
+  while (aday.biten > 0) { aday.biten--; adaylar.push({ ...aday }); }
+  if (aday.serit > 2) { aday.serit = 2; adaylar.push({ ...aday }); }
+  while (aday.serit > 0) { aday.serit--; adaylar.push({ ...aday }); }
+
+  const olc = (a: Aday) => {
+    const nGirisim = aciklar.length + a.biten;
+    // Hiç şerit kalmazsa ve "+N" kutusu zaten varsa, gizlenen şeritler o kutuda sayılır (ayrı satır açılmaz).
+    const tasma = a.serit < seritler.length && !(a.serit === 0 && a.kutuSatir < kutuSatirTam);
+    const bolumSayisi = a.kutuSatir ? 4 : 3;
+    const sabitH =
+      bolumSayisi * baslikH + a.serit * O.seritH + (tasma ? tasmaSatirH : 0) + sayacH + O.cubukH + O.platKartH +
+      a.kutuSatir * O.kutuH + O.mkkH;
+    // Kartlardan sonraki şerit ve taşma satırı, kart aralığıyla ayrılır.
+    const seritOgesi = a.serit + (tasma ? 1 : 0);
+    const boslukH =
+      A.ust + A.alt + (bolumSayisi - 1) * A.bolum + bolumSayisi * A.baslikAlti +
+      Math.max(0, nGirisim - 1) * A.kart + (nGirisim ? seritOgesi : Math.max(0, seritOgesi - 1)) * A.serit +
+      2 * A.ic + Math.max(0, a.kutuSatir - 1) * A.kutu;
+    return { nGirisim, sabitH, boslukH, toplam: (kartH: number, olcek: number) => sabitH + nGirisim * kartH + boslukH * olcek };
+  };
+
+  // İlk sığan aday seçilir (kart en kısa, boşluk 0,75 iken). Hiçbiri sığmazsa son aday (yalnız açık kampanyalar
+  // + bir kutu satırı) ve gerekirse 0,75'in altına inen boşluk ölçeği: bu, gündelik düzende beklenmeyen bir uç durumdur.
+  let secilen = adaylar[adaylar.length - 1];
+  for (const a of adaylar) {
+    if (olc(a).toplam(O.kartMin, ARALIK_EN_AZ_OLCEK) <= butce) { secilen = a; break; }
+  }
+  const { nGirisim, sabitH, boslukH, toplam } = olc(secilen);
+  const girisimler = [...aciklar, ...bitenler.slice(0, secilen.biten)];
+  const gosterilenSerit = seritler.slice(0, secilen.serit);
+  const gizliSerit = seritler.length - secilen.serit;
+  const kutuSatir = secilen.kutuSatir;
+  const kutuKirpik = kutuSatir < kutuSatirTam;
+  const gosterilenKutu = kutuKirpik ? kutular.slice(0, kutuSatir * kutuSutun - 1) : kutular;
+  const gizliKutu = nKutu - gosterilenKutu.length;
+  const seritKutuda = gizliSerit > 0 && secilen.serit === 0 && kutuKirpik; // şerit sayısı "+N" kutusuna katılır
+  const artiSayisi = gizliKutu + (seritKutuda ? gizliSerit : 0);
+  const gizlenen = gizliKutu + (bitenler.length - secilen.biten) + gizliSerit;
 
   // ── YERLEŞTİRME (belirlenimci) ──────────────────────────────────────────
-  // 0) kart en yüksekte (kartMax) sığıyorsa artan yer üst bilgi ile ilk bölüm arasına ve alt banda yarı yarıya;
+  // 0) kart en yüksekte (kartMax) sığıyorsa artan yer, üst bilgi + içerik tek blok sayılarak
+  //    blokun üstüne ve altına eşit dağılır (bölümlerin arasına hiç girmez);
   // 1) sığmıyorsa kart yüksekliği kartMin'e doğru iner;
   // 2) yine sığmıyorsa bütün boşluklar ortak katsayıyla kısılır (en az 0,75);
-  // 3) son çare: içerik bütünüyle (yazı, kutu, boşluk) aynı oranda küçülür, ritim aynen kalır.
+  // 3) yine sığmıyorsa yukarıdaki öncelik sırasıyla öğe eksiltilir (genişlik ve ritim aynen kalır).
   // Kutu ızgarası zaten en geniş sığan sütunla kurulur; ayrı bir "sütun artır" adımına gerek kalmaz.
   let kartH: number = O.kartMax;
   let olcek = 1;
-  let icerikOlcek = 1;
-  let sikistirma = 0;
+  let sikistirma = gizlenen ? 3 : 0;
   if (toplam(kartH, 1) > butce) {
-    sikistirma = 1;
+    sikistirma = Math.max(sikistirma, 1);
     kartH = nGirisim ? Math.floor(O.kartMax - (toplam(O.kartMax, 1) - butce) / nGirisim) : O.kartMax;
     if (kartH < O.kartMin) {
       kartH = O.kartMin;
-      sikistirma = 2;
+      sikistirma = Math.max(sikistirma, 2);
       olcek = Math.floor(((butce - sabitH - nGirisim * kartH) / boslukH) * 1000) / 1000;
-      if (olcek < ARALIK_EN_AZ_OLCEK) {
-        sikistirma = 3;
-        olcek = 1;
-        // Üst ve alt boşluk tam kalır; aradaki içerik küçülür.
-        icerikOlcek = Math.floor(((butce - A.ust - A.alt) / (toplam(kartH, 1) - A.ust - A.alt)) * 1000) / 1000;
-      }
     }
   }
-  const bos = sikistirma === 3 ? 0 : Math.max(0, butce - toplam(kartH, olcek));
+  const bos = Math.max(0, butce - toplam(kartH, olcek));
   const bosUst = Math.floor(bos / 2);
   const ara = (deger: number) => deger * olcek; // ölçeklenmiş boşluk
 
-  // Blok kaydı (test ve denetim için): her üst düzey kutunun yeri ve yüksekliği.
-  const bloklar: { ad: string; y: number; h: number }[] = [];
-  const blok = (ad: string, y: number, yukseklik: number) => bloklar.push({ ad, y, h: yukseklik });
+  // Blok kaydı (test ve denetim için): her üst düzey kutunun yeri, genişliği ve yüksekliği.
+  const bloklar: { ad: string; x: number; y: number; w: number; h: number }[] = [];
+  const blok = (ad: string, y: number, yukseklik: number, x = paddingX, gen = icGenislik) =>
+    bloklar.push({ ad, x, y, w: gen, h: yukseklik });
 
   let body = '';
   let ic = '';
 
   // ── 1. ÜST BAŞLIK, TARİH VE LOGO ─────────────────────────────────────────
-  const paddingTop = mod === 'story' ? 190 : 54;
+  // Üst bilgi içerikle tek blok: artan yerin yarısı üst bilginin üstüne gelir.
+  const ustY = paddingTop + bosUst;
+  const basAlt = ustY + ustBilgiH;
   const logoBoyut = mod === 'story' ? 92 : 80;
-  const logoY = paddingTop + (mod === 'story' ? 4 : 5);
+  const logoY = ustY + (mod === 'story' ? 4 : 5);
   const logoX = w - paddingX - logoBoyut;
 
   // Sağ üst: tohum işareti ve altında "kifobu" (Kimlik v2).
@@ -237,7 +276,7 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
 
   // Ana Başlık: Post: 40px, Story: 42px
   const baslikBoyut = mod === 'story' ? 42 : 40;
-  const baslikY = paddingTop + 44;
+  const baslikY = ustY + 44;
   let baslikCurX = paddingX;
 
   body += metin('GÜNLÜK ', baslikCurX, baslikY, { agirlik: 'normal', boyut: baslikBoyut, renk: '#09090b' });
@@ -251,12 +290,12 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
   // Tarih / Bülten No: Post: 25px, Story: 27px
   const tarihBoyut = mod === 'story' ? 27 : 25;
   const tarihMetni = `${b.tarih} / ${b.sayi}`;
-  body += metin(tarihMetni, paddingX, paddingTop + 84, { agirlik: 'orta', boyut: tarihBoyut, renk: '#64748b' });
-  blok('ust-bilgi', 0, O.basAlt);
+  body += metin(tarihMetni, paddingX, ustY + 84, { agirlik: 'orta', boyut: tarihBoyut, renk: '#64748b' });
+  // Logonun tepesi ustY − 2'ye kadar çıkar.
+  blok('ust-bilgi', ustY - 2, ustBilgiH + 2, paddingX, icGenislik);
 
-  // İçeriğin başladığı yer: üst bilgi + üst boşluk (+ artan yerin yarısı).
-  const icerikBasY = O.basAlt + ara(A.ust);
-  let currentY = icerikBasY + bosUst;
+  // İçeriğin başladığı yer: üst bilgi + üst boşluk.
+  let currentY = basAlt + ara(A.ust);
 
   // Bölüm başlığı: metin + sarı çizgi + sabit başlık altı boşluğu. Her bölümde aynı.
   const bolumBasligi = (ad: string, ilk = false) => {
@@ -307,7 +346,7 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
   const kartPay = kartBos * 0.3;
   const cubukPay = kartBos * 0.2;
 
-  b.girisimler.forEach((g, idx) => {
+  girisimler.forEach((g, idx) => {
     if (idx > 0) currentY += ara(A.kart);
     blok(`kart:${g.ad}`, currentY, kartH);
     const yuzdeOran = Math.min(Math.max(g.yuzde, 0), 100);
@@ -357,7 +396,7 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
   // ── 2b. ÖN TALEP ŞERİDİ ────────────────────────────────────────────────
   // Kampanya kartının ızgarası (aynı sütunlar); çubuk ve yüzde yok, kesik amber kenar = henüz yatırıma açılmadı.
   const seritPay = (O.seritH - (satirUst + T.seritSatir + satirAlt)) / 2;
-  seritler.forEach((y, idx) => {
+  gosterilenSerit.forEach((y, idx) => {
     if (idx > 0 || nGirisim > 0) currentY += ara(A.serit);
     blok(`serit:${y.ad}`, currentY, O.seritH);
     const renk = y.renk || '#94a3b8';
@@ -376,6 +415,13 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
     // Sağ sütun bilerek boş: tutarın yanındaki "ön talep" etiketi yeterli; yüzde/durum yok.
     currentY += O.seritH;
   });
+  // Sığmayan şeritler tek satırda sayılır (kart ızgarasının ilk sütunu hizasında).
+  if (gizliSerit && !seritKutuda) {
+    if (nGirisim > 0 || gosterilenSerit.length) currentY += ara(A.serit);
+    blok('serit-tasma', currentY, tasmaSatirH);
+    ic += `<g data-serit-tasma="${gizliSerit}">${metin(`+${gizliSerit} ön talep daha`, c1X, currentY + buyuk(T.etiket), { agirlik: 'orta', boyut: T.etiket, renk: '#b45309' })}</g>`;
+    currentY += tasmaSatirH;
+  }
 
   // ── 3. PLATFORMLAR BÖLÜMÜ ──────────────────────────────────────────────
   bolumBasligi('PLATFORMLAR');
@@ -428,7 +474,7 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
   currentY += O.platKartH;
 
   // ── 4. ÖN TALEP & YAKINDA (yalnız rakamsız kutular; kutu yoksa bölüm hiç çizilmez) ──────
-  if (nKutu) {
+  if (kutuSatir) {
     bolumBasligi('ÖN TALEP & YAKINDA');
     const yakindaW = kutuW(kutuSutun);
     // Tek sütunda bile sığmayan ad küçültülür (kesilmez), en az T.enAzAd boyutuna kadar.
@@ -438,14 +484,19 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
       return gen > sinir ? Math.max(T.enAzAd, Math.floor(boyut * (sinir / gen) * 10) / 10) : boyut;
     };
     const kutuPay = (O.kutuH - (buyuk(T.ad) + T.kutuSatir + inis(T.etiket))) / 2;
+    // Sığmayan kutuların yerine son kutu: "+N kampanya / yakında".
+    const kutuListesi: { ad: string; platform: string; arti?: number }[] = artiSayisi
+      ? [...gosterilenKutu, { ad: `+${artiSayisi} kampanya`, platform: 'yakında', arti: artiSayisi }]
+      : gosterilenKutu;
     for (let satir = 0; satir < kutuSatir; satir++) {
       if (satir > 0) currentY += ara(A.kutu);
       blok(`kutu-satiri:${satir}`, currentY, O.kutuH);
       const adY = currentY + kutuPay + buyuk(T.ad);
-      kutular.slice(satir * kutuSutun, (satir + 1) * kutuSutun).forEach((y, sira) => {
+      kutuListesi.slice(satir * kutuSutun, (satir + 1) * kutuSutun).forEach((y, sira) => {
         const yx = paddingX + sira * (yakindaW + O.yatayAralik);
         const centerX = yx + yakindaW / 2;
-        ic += `<rect data-yakinda="${y.ad.replace(/[&"<>]/g, '')}" x="${yaz(yx)}" y="${yaz(currentY)}" width="${yaz(yakindaW)}" height="${O.kutuH}" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1" />`;
+        const kanca = y.arti ? `data-yakinda-arti="${y.arti}"` : `data-yakinda="${y.ad.replace(/[&"<>]/g, '')}"`;
+        ic += `<rect ${kanca} x="${yaz(yx)}" y="${yaz(currentY)}" width="${yaz(yakindaW)}" height="${O.kutuH}" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1" />`;
         ic += metin(y.ad, centerX, adY, { agirlik: 'kalin', boyut: sigdir(y.ad, 'kalin', T.ad), renk: '#09090b', hiza: 'center' });
         ic += metin(y.platform, centerX, adY + T.kutuSatir, { agirlik: 'orta', boyut: sigdir(y.platform, 'orta', T.etiket), renk: '#64748b', hiza: 'center' });
       });
@@ -482,19 +533,8 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
   });
   currentY += O.mkkH;
 
-  // Son çare küçültmede içerik, ilk başlığın tepesi yerinde kalacak biçimde yatayda ortalı küçülür.
-  const donustur = (y: number) => icerikBasY + (y - icerikBasY) * icerikOlcek;
-  if (icerikOlcek < 1) {
-    const cx = w / 2;
-    ic = `<g transform="translate(${cx} ${yaz(icerikBasY)}) scale(${icerikOlcek}) translate(${-cx} ${-icerikBasY})">${ic}</g>`;
-    for (const k of bloklar) {
-      if (k.ad === 'ust-bilgi') continue;
-      k.y = donustur(k.y);
-      k.h *= icerikOlcek;
-    }
-  }
-  const mkkAlt = donustur(currentY);
-  blok('alt-bant', footerY, footerH);
+  const mkkAlt = currentY;
+  blok('alt-bant', footerY, footerH, 0, w);
   body += ic;
 
   // ── 6. EN ALT İMZA ŞERİDİ ─────────────────────────────────────────────
@@ -504,8 +544,10 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
   const imzaX = (w - imzaGen) / 2;
   body += metin(imzaMetni, imzaX, footerY + (mod === 'story' ? 56 : 33), { agirlik: 'kalin', boyut: T.baslik, renk: '#854d0e' });
 
-  // Testlerin okuduğu kancalar. data-bloklar = "ad;y;yükseklik|…" (tuval koordinatı, yukarıdan aşağı).
-  const bloklarAttr = bloklar.map((k) => `${k.ad.replace(/[&"<>|;]/g, '')};${yaz(k.y)};${yaz(k.h)}`).join('|');
+  // Testlerin okuduğu kancalar. data-bloklar = "ad;x;y;genişlik;yükseklik|…" (tuval koordinatı, yukarıdan aşağı).
+  const bloklarAttr = bloklar
+    .map((k) => `${k.ad.replace(/[&"<>|;]/g, '')};${yaz(k.x)};${yaz(k.y)};${yaz(k.w)};${yaz(k.h)}`)
+    .join('|');
   const ozellikler = [
     `data-tarih="${tarihMetni}"`,
     `data-mkk-alt="${yaz(mkkAlt)}"`,
@@ -515,7 +557,7 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
     `data-kart-aralik="${yaz(ara(A.kart))}"`,
     `data-baslik-alti="${yaz(ara(A.baslikAlti))}"`,
     `data-aralik-olcek="${olcek}"`,
-    `data-icerik-olcek="${icerikOlcek}"`,
+    `data-gizlenen="${gizlenen}"`,
     `data-sikistirma="${sikistirma}"`,
     `data-kutu-sutun="${nKutu ? kutuSutun : 0}"`,
     `data-bloklar="${bloklarAttr}"`,
