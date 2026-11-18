@@ -1,7 +1,7 @@
 /**
  * Günlük kitle fonlama bülteni verisi ("Bugün" tablosu).
  * Otomatik Bot tarafından oluşturulmuştur.
- * Son güncelleme: 2026-11-17T07:01:13.027Z
+ * Son güncelleme: 2026-11-18T00:45:45.733Z
  */
 export interface Girisim {
   ad: string;
@@ -39,9 +39,42 @@ export interface Yakinda {
 }
 
 export const BULTEN = {
-  tarih: '17 Kasım 2026',
-  sayi: 1561,
+  tarih: '18 Kasım 2026',
+  sayi: 1562,
   girisimler: [
+    {
+        "ad": "LOOPYON",
+        "platform": "ecofolio",
+        "bugun": 0,
+        "alinan": 1279600,
+        "kalan": 33720400,
+        "degerleme": 385000000,
+        "yuzde": 3.65,
+        "durum": "SONA ERDİ",
+        "url": "https://ecofolio.com.tr/kampanyalar/loopyon"
+    },
+    {
+        "ad": "OYLİO",
+        "platform": "fonangels",
+        "bugun": 0,
+        "alinan": 5135900,
+        "kalan": null,
+        "degerleme": 50000000,
+        "yuzde": 102.71,
+        "durum": "SONA ERDİ",
+        "url": "https://fonangels.com/kampanyalar/projehakkinda/oylio?pid=1778"
+    },
+    {
+        "ad": "VISITEXTRA",
+        "platform": "fonangels",
+        "bugun": 0,
+        "alinan": 195600,
+        "kalan": 4804400,
+        "degerleme": 50000000,
+        "yuzde": 3.91,
+        "durum": "son 57 gün",
+        "url": "https://fonangels.com/kampanyalar/projehakkinda/visitextra?pid=1803"
+    },
     {
         "ad": "ATHLETICLABS",
         "platform": "fonangels",
@@ -52,49 +85,16 @@ export const BULTEN = {
         "yuzde": 101.36,
         "durum": "SONA ERDİ",
         "url": "https://fonangels.com/kampanyalar/projehakkinda/athleticlabs?pid=1689"
-    },
-    {
-        "ad": "OYLİO",
-        "platform": "fonangels",
-        "bugun": 0,
-        "alinan": 5135900,
-        "kalan": null,
-        "degerleme": 50000000,
-        "yuzde": 102.71,
-        "durum": "Aktif",
-        "url": "https://fonangels.com/kampanyalar/projehakkinda/oylio?pid=1778"
-    },
-    {
-        "ad": "PUPAQ",
-        "platform": "trinkfon",
-        "bugun": 0,
-        "alinan": 0,
-        "kalan": 1000032,
-        "degerleme": 25000800,
-        "yuzde": 0,
-        "durum": "Aktif",
-        "url": "https://kfs.trinkfon.com/projeler/pupaq/kampanya/"
-    },
-    {
-        "ad": "LOOPYON",
-        "platform": "ecofolio",
-        "bugun": 0,
-        "alinan": 1279600,
-        "kalan": 33720400,
-        "degerleme": 385038504,
-        "yuzde": 3.65,
-        "durum": "Aktif",
-        "url": "https://ecofolio.com.tr/kampanyalar/loopyon"
     }
 ] as Girisim[],
   platformlar: {
     bugun: 0,
-    toplam: 14018000,
+    toplam: 14213600,
     liste: [
     {
         "ad": "fonangels",
-        "toplam": 12738400,
-        "girisim": 2,
+        "toplam": 12934000,
+        "girisim": 3,
         "renk": "#f47b3d",
         "url": "https://fonangels.com"
     },
@@ -104,13 +104,6 @@ export const BULTEN = {
         "girisim": 1,
         "renk": "#009bae",
         "url": "https://ecofolio.com.tr"
-    },
-    {
-        "ad": "trinkfon",
-        "toplam": 0,
-        "girisim": 1,
-        "renk": "#7c3aed",
-        "url": "https://kfs.trinkfon.com"
     }
 ] as Platform[],
   },
@@ -118,12 +111,48 @@ export const BULTEN = {
     {
         "ad": "NARPOS",
         "platform": "ardventure",
-        "url": "https://ardventure.com"
+        "url": "https://ardventure.com",
+        "renk": "#e07a5f"
     },
     {
         "ad": "NEURATURK",
         "platform": "ardventure",
-        "url": "https://ardventure.com"
+        "url": "https://ardventure.com",
+        "renk": "#e07a5f"
+    },
+    {
+        "ad": "NEUROX",
+        "platform": "fonangels",
+        "url": "https://fonangels.com/kampanyalar#yakinda-neurox",
+        "renk": "#f47b3d"
+    },
+    {
+        "ad": "TWINUP",
+        "platform": "fonbulucu",
+        "url": "https://invest.fonbulucu.com/#yakinda-dijital-ikiz-platformu",
+        "renk": "#e5243e"
+    },
+    {
+        "ad": "DEXCOOK",
+        "platform": "fonbulucu",
+        "url": "https://invest.fonbulucu.com/#yakinda-akilli-yuzeyler",
+        "renk": "#e5243e"
+    },
+    {
+        "ad": "MEDICALTEX",
+        "platform": "fonbulucu",
+        "url": "https://invest.fonbulucu.com/#yakinda-giyilebilir-saglik",
+        "renk": "#e5243e"
+    },
+    {
+        "ad": "QUAD ROBOTICS",
+        "platform": "fonventure",
+        "url": "https://fonventure.com/kampanya/9eade97b-9d7a-4962-bf2a-c49f9a312ee5",
+        "hedef": 25000000,
+        "degerleme": 192307692,
+        "onTalep": 3466500,
+        "onTalepKisi": 112,
+        "renk": "#4f46e5"
     }
 ] as Yakinda[],
   mkk: {
