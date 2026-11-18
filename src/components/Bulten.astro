@@ -52,6 +52,11 @@ const cubukSinifi = (y: number) => {
 
 const slug = (str: string) =>
   str.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+// Ön talep şeridi (görseldeki gibi): rakamı olan ön talepler kartların altında, kalanlar yakında kutularında.
+const seritler = b.yakinda.filter((y) => y.onTalep || y.hedef);
+const kutular = b.yakinda.filter((y) => !(y.onTalep || y.hedef));
+const tlYa = (n?: number) => (n ? tl(n) : '—');
 ---
 
 <section class="bulten-alani" aria-label="Günlük Kitle Fonlama Bülteni">
@@ -129,6 +134,36 @@ const slug = (str: string) =>
           </article>
         ))
       }
+      {
+        seritler.map((y) => (
+          <article class="on-talep-serit" data-on-talep={y.ad}>
+            <svg class="gk-kenar ots-kenar" viewBox="0 0 6 10" preserveAspectRatio="none" aria-hidden="true"><rect width="6" height="10" fill={y.renk ?? KIMLIK.gri} /></svg>
+            <div class="gk-ad ots-ad">{y.url ? <a href={y.url}>{y.ad}</a> : <span>{y.ad}</span>}</div>
+            <div class="gk-metrik ots-hedef">
+              <span class="gk-etiket">hedef</span>
+              <span class="ayrac">|</span>
+              <span class="deger">{tlYa(y.hedef)}</span>
+            </div>
+            <div class="gk-metrik gk-metrik-sag ots-tutar">
+              <span class="deger ots-vurgu">{tlYa(y.onTalep)}</span>
+              <span class="ayrac">|</span>
+              <span class="gk-etiket"><span class="ots-uzun">talep tutarı</span><span class="ots-kisa">tutar</span></span>
+            </div>
+            <div class="ots-durum">ön talep</div>
+            <div class="gk-platform ots-platform"><PlatformAdi ad={y.platform} renk={y.renk} /></div>
+            <div class="gk-metrik ots-degerleme">
+              <span class="gk-etiket">değerleme</span>
+              <span class="ayrac">|</span>
+              <span class="deger">{tlYa(y.degerleme)}</span>
+            </div>
+            <div class="gk-metrik gk-metrik-sag ots-sayi">
+              <span class="deger">{y.onTalepKisi ? formatNumber(y.onTalepKisi) : '—'}</span>
+              <span class="ayrac">|</span>
+              <span class="gk-etiket">talep sayısı</span>
+            </div>
+          </article>
+        ))
+      }
     </div>
   </section>
 
@@ -187,7 +222,7 @@ const slug = (str: string) =>
   </section>
 
   <!-- ÖN TALEP & YAKINDA -->
-  <section class="bulten-bolum">
+  {kutular.length > 0 && <section class="bulten-bolum">
     <div class="bolum-baslik">
       <h3>ÖN TALEP &amp; YAKINDA</h3>
       <span class="bolum-cizgi"></span>
@@ -195,7 +230,7 @@ const slug = (str: string) =>
 
     <div class="yakinda-izgara">
       {
-        b.yakinda.map((y) => (
+        kutular.map((y) => (
           <div class="yakinda-oge">
             <span class="yo-ad">
               {y.url ? <a href={y.url}>{y.ad}</a> : y.ad}
@@ -205,7 +240,7 @@ const slug = (str: string) =>
         ))
       }
     </div>
-  </section>
+  </section>}
 
   <!-- MKK VERİLERİ -->
   <section class="bulten-bolum">
@@ -370,26 +405,74 @@ const slug = (str: string) =>
     letter-spacing: 0.04em;
   }
 
+  /* Yüzde zeminsiz (görselle aynı, sahibinin isteği). */
   .gk-yuzde {
     justify-self: end;
-    font-weight: 600;
-    padding: 2px 8px;
-    border-radius: 5px;
+    font-weight: 700;
   }
 
   .gk-yuzde.renk-yesil {
     color: var(--yesil);
-    background: #e3f6ee;
   }
 
   .gk-yuzde.renk-mavi {
     color: #0284c7;
-    background: #e4f0fa;
   }
 
   .gk-yuzde.renk-indigo {
     color: #6366f1;
-    background: #ecebfd;
+  }
+
+  /* Ön talep şeridi: kart ızgarasının aynısı, çubuksuz; kesik amber kenar = henüz yatırıma açılmadı. */
+  .on-talep-serit {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(150px, 1.4fr) 1fr 1.1fr minmax(96px, 0.7fr);
+    grid-template-rows: auto auto;
+    align-items: center;
+    gap: 6px 8px;
+    font-size: 1rem;
+    background: #fffdf7;
+    border: 1.5px dashed #f2c94c;
+    border-radius: 8px;
+    padding: 12px 20px 12px 26px;
+    overflow: hidden;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ots-kenar {
+    opacity: 0.55;
+  }
+
+  .on-talep-serit .gk-metrik {
+    white-space: nowrap;
+  }
+
+  .ots-kisa {
+    display: none;
+  }
+
+  /* Orta genişlikte üçüncü sütun daralır: etiket kısalır, sütunlar kartlarla hizalı kalır. */
+  @media (max-width: 1000px) {
+    .ots-uzun {
+      display: none;
+    }
+
+    .ots-kisa {
+      display: inline;
+    }
+  }
+
+  .ots-vurgu {
+    color: #b45309;
+  }
+
+  .ots-durum {
+    grid-column: 4;
+    grid-row: 1 / span 2;
+    justify-self: end;
+    color: #b45309;
+    font-weight: 700;
   }
 
   .gk-cubuk-alani {
@@ -598,5 +681,28 @@ const slug = (str: string) =>
     .girisim-karti {
       padding-inline: 18px 12px;
     }
+
+    .on-talep-serit {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-rows: none;
+      row-gap: 4px;
+      font-size: 0.9rem;
+      padding-inline: 18px 12px;
+    }
+
+    .on-talep-serit .gk-metrik {
+      justify-content: flex-start;
+      flex-wrap: nowrap;
+      column-gap: 6px;
+    }
+
+    /* Telefonda kartlardaki gibi iki sütun: ad | durum, platform | hedef, tutar | talep sayısı, değerleme. */
+    .ots-ad { grid-column: 1; grid-row: 1; }
+    .ots-durum { grid-column: 2; grid-row: 1; }
+    .ots-platform { grid-column: 1; grid-row: 2; }
+    .ots-hedef { grid-column: 2; grid-row: 2; justify-content: flex-end; }
+    .ots-tutar { grid-column: 1; grid-row: 3; }
+    .ots-sayi { grid-column: 2; grid-row: 3; justify-content: flex-end; }
+    .ots-degerleme { grid-column: 1 / -1; grid-row: 4; }
   }
 </style>

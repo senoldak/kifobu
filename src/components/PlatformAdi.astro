@@ -6,9 +6,11 @@ import { platformRengi } from '../lib/kimlik';
 interface Props {
   ad: string;
   href?: string;
+  /** Platform bültenin kampanya listesinde yoksa (ör. yalnız ön talebi olan) rengi dışarıdan verilir. */
+  renk?: string;
 }
 const { ad, href } = Astro.props;
-const renk = platformRengi(ad, BULTEN.platformlar.liste);
+const renk = Astro.props.renk ?? platformRengi(ad, BULTEN.platformlar.liste);
 ---
 
 <span class="platform-adi">
