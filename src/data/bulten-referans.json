@@ -1,16 +1,16 @@
 {
-  "tarih": "17 Kasım 2026",
-  "sayi": 1561,
+  "tarih": "18 Kasım 2026",
+  "sayi": 1562,
   "girisimler": {
-    "ATHLETICLABS": 7602500,
+    "LOOPYON": 0,
     "OYLİO": 5135900,
-    "PUPAQ": 121782,
-    "LOOPYON": 1279600
+    "VISITEXTRA": 1040800,
+    "ATHLETICLABS": 7602500
   },
   "mkk": {
     "platform": 18,
-    "sirket": 179,
-    "yatirimci": 47163,
+    "sirket": 180,
+    "yatirimci": 47235,
     "fon": "₺1,61 Milyar"
   }
 }

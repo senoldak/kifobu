@@ -1,7 +1,7 @@
 /**
  * Günlük kitle fonlama bülteni verisi ("Bugün" tablosu).
  * Otomatik Bot tarafından oluşturulmuştur.
- * Son güncelleme: 2026-11-18T11:01:11.708Z
+ * Son güncelleme: 2026-11-18T15:01:59.315Z
  */
 export interface Girisim {
   ad: string;
@@ -46,10 +46,10 @@ export const BULTEN = {
         "ad": "LOOPYON",
         "platform": "ecofolio",
         "bugun": 0,
-        "alinan": 1279600,
-        "kalan": 33720400,
+        "alinan": 0,
+        "kalan": 35000000,
         "degerleme": 385000000,
-        "yuzde": 3.65,
+        "yuzde": 0,
         "durum": "SONA ERDİ",
         "url": "https://ecofolio.com.tr/kampanyalar/loopyon"
     },
@@ -68,10 +68,10 @@ export const BULTEN = {
         "ad": "VISITEXTRA",
         "platform": "fonangels",
         "bugun": 0,
-        "alinan": 1026450,
-        "kalan": 3973550,
+        "alinan": 1040800,
+        "kalan": 3959200,
         "degerleme": 50000000,
-        "yuzde": 20.52,
+        "yuzde": 20.81,
         "durum": "son 57 gün",
         "url": "https://fonangels.com/kampanyalar/projehakkinda/visitextra?pid=1803"
     },
@@ -89,18 +89,18 @@ export const BULTEN = {
 ] as Girisim[],
   platformlar: {
     bugun: 0,
-    toplam: 15044450,
+    toplam: 13779200,
     liste: [
     {
         "ad": "fonangels",
-        "toplam": 13764850,
+        "toplam": 13779200,
         "girisim": 3,
         "renk": "#f47b3d",
         "url": "https://fonangels.com"
     },
     {
         "ad": "ecofolio",
-        "toplam": 1279600,
+        "toplam": 0,
         "girisim": 1,
         "renk": "#009bae",
         "url": "https://ecofolio.com.tr"
