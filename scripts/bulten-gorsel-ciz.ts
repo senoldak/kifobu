@@ -126,14 +126,15 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
   // rakamsızlar "ön talep & yakında" kutularında kalır. Aynı kampanya hem şerit hem kutu olmaz.
   const seritler = b.yakinda.filter((y) => y.onTalep || y.hedef);
   const kutular = b.yakinda.filter((y) => !(y.onTalep || y.hedef));
-  const seritH = mod === 'story' ? 104 : 84;
+  const seritH = mod === 'story' ? 96 : 74;
   const seritAralik = 10;
   // Şeritlerin kendi yüksekliği ve aralarındaki boşluk; şerit yoksa 0. Son kart ile ilk şerit arası boşluk kart boşluğuyla aynıdır (gapGirisim).
   const seritBlokH = seritler.length ? seritler.length * seritH + (seritler.length - 1) * seritAralik : 0;
 
   // Yakında kutuları: hepsi çizilir. Üç ve azı tek satır; fazlası satırlara bölünür (post 4, story 3 sütun), kutular kısalır.
   const yakindaSayi = kutular.length;
-  const yakindaSutun = yakindaSayi <= 3 ? Math.max(yakindaSayi, 1) : mod === 'story' ? 3 : 4;
+  // Kartlara yer kalsın diye kutular az satıra dizilir: post en çok 6, story en çok 4 sütun.
+  const yakindaSutun = Math.max(1, Math.min(yakindaSayi, mod === 'story' ? 4 : 6));
   const yakindaSatir = Math.max(1, Math.ceil(yakindaSayi / yakindaSutun));
   const yakindaKutuH = yakindaSatir === 1 ? yakindaH : mod === 'story' ? 76 : 58;
   const yakindaSatirAralik = 10;
@@ -149,12 +150,17 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
   const dagitilacakAlan = (hedefMkkAlt - startContentY) - sabitler;
 
   // Bölümler arası boşluk (Girişimler->Platformlar, Platformlar->ÖnTalep, ÖnTalep->MKK; kutu yoksa ilk ikisi)
-  const toplamSecGap = Math.round(dagitilacakAlan * 0.26);
-  const secGap = Math.round(toplamSecGap / bolumGapSayisi);
+  // Yer daraldığında (çok kart + şerit + kutu) bölüm ve kart boşlukları kısılır ki kartlar okunur kalsın.
+  const enAzKartH = mod === 'story' ? 110 : 88;
+  const bosOran = (girisimAlaniPayi: number) => Math.round((dagitilacakAlan - Math.round(Math.round(dagitilacakAlan * girisimAlaniPayi) / bolumGapSayisi) * bolumGapSayisi) * 0.82 / nGirisim);
+  const sikisik = bosOran(0.26) < enAzKartH;
+  const toplamSecGap = Math.round(dagitilacakAlan * (sikisik ? 0.12 : 0.26));
+  // Bölüm başlığı üstteki kutuya yapışmasın: en az bir satırlık boşluk.
+  const secGap = Math.max(Math.round(toplamSecGap / bolumGapSayisi), mod === 'story' ? 40 : 30);
 
   // Girişim kartları ve kart arası boşluklar (kalan alanın %100'ünü tam tüketir, fark 0 px)
   const girisimAlani = dagitilacakAlan - (secGap * bolumGapSayisi);
-  const cardH = Math.round((girisimAlani * 0.82) / nGirisim);
+  const cardH = Math.round((girisimAlani * (sikisik ? 0.9 : 0.82)) / nGirisim);
   // Şerit varsa son kartla ilk şerit arasındaki boşluk da aynı alandan paylaşılır.
   const kartBoslukSayisi = nGirisim - 1 + (seritler.length ? 1 : 0);
   const gapGirisim = kartBoslukSayisi > 0 ? Math.round((girisimAlani - (nGirisim * cardH)) / kartBoslukSayisi) : 0;
@@ -237,14 +243,9 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
     body += metin('|', pipe3X, r1Y, { agirlik: 'orta', boyut: 19, renk: '#cbd5e1', hiza: 'middle' });
     body += metin('alınan', pipe3X + 10, r1Y, { agirlik: 'orta', boyut: 19, renk: '#64748b' });
 
-    // Sütun 4: Yüzde Rozeti (Sağa dayalı)
+    // Sütun 4: Yüzde (sağa dayalı, zeminsiz)
     const yuzdeStr = yuzdeSonda(g.yuzde);
-    const yuzdeW = genislik(yuzdeStr, { agirlik: 'ekstra', boyut: fSize });
-    const rozetH = mod === 'story' ? 32 : 26;
-    const rozetY = currentY + (mod === 'story' ? 14 : 12);
-    const rozetX = c4RightX - yuzdeW - 14;
-    body += `<rect x="${rozetX}" y="${rozetY}" width="${yuzdeW + 14}" height="${rozetH}" rx="6" fill="${cRengi}18" />`;
-    body += metin(yuzdeStr, rozetX + 7, r1Y + (mod === 'story' ? 0 : 1), { agirlik: 'ekstra', boyut: fSize, renk: cRengi });
+    body += metin(yuzdeStr, c4RightX, r1Y, { agirlik: 'ekstra', boyut: fSize, renk: cRengi, hiza: 'end' });
 
     // İlerleme Barı (Yuvarlak Hatlı)
     body += `<rect x="${paddingX + 22}" y="${barY}" width="${icGenislik - 44}" height="7" rx="3.5" fill="#f1f5f9" />`;
@@ -312,8 +313,8 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
     body += etiketli(tlMetni(y.onTalep), 'ön talep', pipe3X, s1, '#b45309', true);
     body += metin(y.platform, c1X, s2, { agirlik: 'kalin', boyut: fSize, renk });
     body += etiketli(tlMetni(y.degerleme), 'değerleme', pipe2X, s2);
-    body += etiketli(y.onTalepKisi ? String(y.onTalepKisi) : null, 'kişi', pipe3X, s2, '#09090b', true);
-    body += metin('ÖN TALEPTE', c4RightX, s2, { agirlik: 'ekstra', boyut: fSize, renk: '#b45309', hiza: 'end' });
+    body += etiketli(y.onTalepKisi ? y.onTalepKisi.toLocaleString('tr-TR') : null, 'talep sayısı', pipe3X, s2, '#09090b', true);
+    // Sağ sütun bilerek boş: tutarın yanındaki "ön talep" etiketi yeterli; yüzde/durum yok.
     currentY += seritH;
   });
 
@@ -465,7 +466,7 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
   body += metin(imzaMetni, imzaX, footerY + (mod === 'story' ? 56 : 33), { agirlik: 'kalin', boyut: fSize, renk: '#854d0e' });
 
   return `
-    <svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" data-tarih="${tarihMetni}" data-mkk-alt="${mkkAlt}" data-alt-ust="${footerY}">
+    <svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" data-tarih="${tarihMetni}" data-mkk-alt="${mkkAlt}" data-alt-ust="${footerY}" data-kart-h="${cardH}">
       <!-- Temiz Minimal Zemin -->
       <rect width="${w}" height="${h}" fill="#f8fafc" />
 

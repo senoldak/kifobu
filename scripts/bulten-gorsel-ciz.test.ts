@@ -111,3 +111,12 @@ test('ön talep şeridi: kutu kalmayınca "ÖN TALEP & YAKINDA" ızgarası çizi
     assert.ok(oznitelik(s, 'mkk-alt') + 24 <= oznitelik(s, 'alt-ust'));
   }
 });
+
+test('bugünkü düzen: dört kart + bir şerit + altı kutu sığar, kartlar sıkışmaz', () => {
+  const dort = [...ucGirisim, { ...uc, ad: 'LOOPYON', durum: 'SONA ERDİ', kalan: 33720400, yuzde: 3.65 }];
+  for (const [mod, enAz] of [['post', 88], ['story', 110]] as const) {
+    const s = bultenSvgCiz(mod, { ...BULTEN, girisimler: dort, yakinda: [quadSerit, ...kutular] });
+    assert.ok(oznitelik(s, 'kart-h') >= enAz, `${mod} kart yüksekliği ${oznitelik(s, 'kart-h')}`);
+    assert.ok(oznitelik(s, 'mkk-alt') + 24 <= oznitelik(s, 'alt-ust'));
+  }
+});
