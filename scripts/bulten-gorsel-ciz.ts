@@ -80,6 +80,44 @@ function paraMetin(tutar: number, x: number, y: number, ayar: MetinAyar = {}) {
 
 export type GorselModu = 'post' | 'story';
 
+// ── DİKEY ARALIK ÖLÇEĞİ ─────────────────────────────────────────────────────
+// Görseldeki bütün dikey boşluklar bu tablodan gelir; çizim kodunda boşluk sayısı yazılmaz.
+// Taban birim post 8, story 10 px; iki biçimde de katsayılar aynıdır:
+// üst 3, başlık altı 2, bölüm 4, kart/şerit/kutu/iç 1,5, alt 4 birim.
+// ust: üst bilgi → ilk bölüm başlığı; baslikAlti: sarı çizgi → bölüm içeriği; bolum: bölüm sonu → sonraki başlık;
+// kart: kampanya kartları arası; serit: kart/şerit → şerit; kutu: kutu satırları arası;
+// ic: platform bölümünde sayaç → dağılım çubuğu → platform kartları; alt: MKK kutusu → alt bant.
+export const ARALIK = {
+  post: { birim: 8, ust: 24, baslikAlti: 16, bolum: 32, kart: 12, serit: 12, kutu: 12, ic: 12, alt: 32 },
+  story: { birim: 10, ust: 30, baslikAlti: 20, bolum: 40, kart: 15, serit: 15, kutu: 15, ic: 15, alt: 40 },
+} as const;
+// Gün çok doluysa boşluklar ortak bir katsayıyla en çok bu orana kadar kısılır (ritim korunur).
+export const ARALIK_EN_AZ_OLCEK = 0.75;
+
+// Kutu yükseklikleri ve sabit ölçüler (px). Kampanya kartı yalnız [kartMin, kartMax] arasında esner.
+export const OLCU = {
+  post: {
+    basAlt: 146, altBantH: 52, kartMin: 88, kartMax: 118, seritH: 76, kutuH: 70, platKartH: 88,
+    cubukH: 18, ilerlemeH: 7, mkkH: 64, kuralAlti: 10, kutuSutunEnCok: 6, yatayAralik: 12, kutuIcPay: 10,
+  },
+  story: {
+    basAlt: 284, altBantH: 96, kartMin: 120, kartMax: 160, seritH: 96, kutuH: 80, platKartH: 116,
+    cubukH: 22, ilerlemeH: 8, mkkH: 76, kuralAlti: 12, kutuSutunEnCok: 4, yatayAralik: 14, kutuIcPay: 14,
+  },
+} as const;
+
+// Yazı boyutları: her biçimde ad (girişim/platform adı, yüzde, öne çıkan tutar), etiket ve değer için tek boyut.
+// *Satir = iki/üç satırlı kutularda taban çizgileri arası mesafe.
+const TIPO = {
+  post: { baslik: 19, ad: 19, etiket: 19, deger: 19, kutuSatir: 26, seritSatir: 30, platSatir: 26, sayacSatir: 30, enAzAd: 15 },
+  story: { baslik: 24, ad: 24, etiket: 19, deger: 19, kutuSatir: 30, seritSatir: 38, platSatir: 32, sayacSatir: 36, enAzAd: 19 },
+} as const;
+
+// Schibsted Grotesk ölçüleri (em oranı): büyük harf yüksekliği, alt uzantı (g, p, ş), İ noktasının tepesi.
+const BUYUK_HARF = 0.703;
+const ALT_UZANTI = 0.21;
+const NOKTA_TEPE = 0.96;
+
 // İlerleme çubuğu renkleri
 const cubukRengi = (y: number) => {
   if (y >= 100) return '#10b981'; // Canlı Zümrüt Yeşili
@@ -87,11 +125,19 @@ const cubukRengi = (y: number) => {
   return '#6366f1';               // İndigo
 };
 
+// SVG'ye yazılan konumlar: bir ondalık.
+const yaz = (v: number) => String(Math.round(v * 10) / 10);
+
 export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BULTEN): string {
   const w = 1080;
   const h = mod === 'story' ? 1920 : 1350;
   const paddingX = 56;
   const icGenislik = w - paddingX * 2; // 968 px
+  const A = ARALIK[mod];
+  const O = OLCU[mod];
+  const T = TIPO[mod];
+  const buyuk = (boyut: number) => boyut * BUYUK_HARF;
+  const inis = (boyut: number) => boyut * ALT_UZANTI;
 
   const b = {
     ...veri,
@@ -102,75 +148,85 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
   };
   const platformToplami = b.platformlar.liste.reduce((s, p) => s + p.toplam, 0) || 1;
 
-  // ── DİNAMİK DİKEY DAĞILIM VE BOŞLUKSUZ YAYILIM KURALI ───────────────────
-  const footerH = mod === 'story' ? 96 : 52;
+  const footerH = O.altBantH;
   const footerY = h - footerH;
-  // MKK kutusu ile alt bant arasında en az bir satır boşluk (sahibin isteği).
-  const hedefAltBosluk = mod === 'story' ? 56 : 40;
-  const hedefMkkAlt = footerY - hedefAltBosluk;
-
-  // Başlıklar ve sabit yükseklikler
-  const fSize = mod === 'story' ? 24 : 19;
-  const paddingTop = mod === 'story' ? 190 : 54;
-  const baslikBloguH = mod === 'story' ? 195 : 155;
-  const startContentY = paddingTop + baslikBloguH;
-
-  const titleGap = 32;
-  const sayacH = mod === 'story' ? 68 : 58;
-  const platBarH = mod === 'story' ? 22 : 18;
-  const platKartH = mod === 'story' ? 104 : 90;
-  const yakindaH = mod === 'story' ? 82 : 68;
-  const mkkKartH = mod === 'story' ? 76 : 64;
 
   // Ön talebi rakamlı olanlar (hedef ve/veya ön talep tutarı) kampanya kartlarının altında tam genişlik şerit olarak çizilir;
   // rakamsızlar "ön talep & yakında" kutularında kalır. Aynı kampanya hem şerit hem kutu olmaz.
   const seritler = b.yakinda.filter((y) => y.onTalep || y.hedef);
   const kutular = b.yakinda.filter((y) => !(y.onTalep || y.hedef));
-  const seritH = mod === 'story' ? 96 : 74;
-  const seritAralik = 10;
-  // Şeritlerin kendi yüksekliği ve aralarındaki boşluk; şerit yoksa 0. Son kart ile ilk şerit arası boşluk kart boşluğuyla aynıdır (gapGirisim).
-  const seritBlokH = seritler.length ? seritler.length * seritH + (seritler.length - 1) * seritAralik : 0;
-
-  // Yakında kutuları: hepsi çizilir. Üç ve azı tek satır; fazlası satırlara bölünür (post 4, story 3 sütun), kutular kısalır.
-  const yakindaSayi = kutular.length;
-  // Kartlara yer kalsın diye kutular az satıra dizilir: post en çok 6, story en çok 4 sütun.
-  const yakindaSutun = Math.max(1, Math.min(yakindaSayi, mod === 'story' ? 4 : 6));
-  const yakindaSatir = Math.max(1, Math.ceil(yakindaSayi / yakindaSutun));
-  const yakindaKutuH = yakindaSatir === 1 ? yakindaH : mod === 'story' ? 76 : 58;
-  const yakindaSatirAralik = 10;
-  const yakindaToplamH = yakindaSayi ? yakindaSatir * yakindaKutuH + (yakindaSatir - 1) * yakindaSatirAralik : 0;
-  // Kutu yoksa "ÖN TALEP & YAKINDA" başlığı da çizilmez: bir başlık ve bir bölüm boşluğu eksilir.
-  const baslikSayisi = yakindaSayi ? 4 : 3;
-  const bolumGapSayisi = baslikSayisi - 1;
-
   const nGirisim = b.girisimler.length;
-  // Kesin Sabitler Toplamı: 4 bölüm başlığı (4 * titleGap), sayaçlar, platform barı, platform kartları, yakında kartları ve MKK kartı
-  const sabitler = (baslikSayisi * titleGap) + sayacH + (platBarH + 22) + platKartH + yakindaToplamH + mkkKartH + seritBlokH;
-  // Dikeyde tam hedefMkkAlt noktasına kadar doldurulacak toplam serbest alan
-  const dagitilacakAlan = (hedefMkkAlt - startContentY) - sabitler;
+  const nSerit = seritler.length;
+  const nKutu = kutular.length;
 
-  // Bölümler arası boşluk (Girişimler->Platformlar, Platformlar->ÖnTalep, ÖnTalep->MKK; kutu yoksa ilk ikisi)
-  // Yer daraldığında (çok kart + şerit + kutu) bölüm ve kart boşlukları kısılır ki kartlar okunur kalsın.
-  const enAzKartH = mod === 'story' ? 110 : 88;
-  const bosOran = (girisimAlaniPayi: number) => Math.round((dagitilacakAlan - Math.round(Math.round(dagitilacakAlan * girisimAlaniPayi) / bolumGapSayisi) * bolumGapSayisi) * 0.82 / nGirisim);
-  const sikisik = bosOran(0.26) < enAzKartH;
-  const toplamSecGap = Math.round(dagitilacakAlan * (sikisik ? 0.12 : 0.26));
-  // Bölüm başlığı üstteki kutuya yapışmasın: en az bir satırlık boşluk.
-  const secGap = Math.max(Math.round(toplamSecGap / bolumGapSayisi), mod === 'story' ? 40 : 30);
+  // ── KUTU IZGARASI: en az satır, satırlara eşit dağılım ─────────────────
+  // Sütun sayısı (post en çok 6, story 4), en uzun ad ve platform tam boyutta sığacak kadar olur; sığmazsa satır eklenir.
+  const kutuGerekenW = kutular.reduce(
+    (m, y) => Math.max(m, genislik(y.ad, { agirlik: 'kalin', boyut: T.ad }), genislik(y.platform, { agirlik: 'orta', boyut: T.etiket })),
+    0,
+  ) + O.kutuIcPay * 2;
+  const kutuW = (sutun: number) => (icGenislik - (sutun - 1) * O.yatayAralik) / sutun;
+  let kutuSutun = Math.max(1, Math.min(nKutu, O.kutuSutunEnCok));
+  while (kutuSutun > 1 && kutuW(kutuSutun) < kutuGerekenW) kutuSutun--;
+  const kutuSatir = nKutu ? Math.ceil(nKutu / kutuSutun) : 0;
+  if (kutuSatir) kutuSutun = Math.ceil(nKutu / kutuSatir); // 7 kutu → 4 + 3, 5 + 2 değil
 
-  // Girişim kartları ve kart arası boşluklar (kalan alanın %100'ünü tam tüketir, fark 0 px)
-  const girisimAlani = dagitilacakAlan - (secGap * bolumGapSayisi);
-  const cardH = Math.round((girisimAlani * (sikisik ? 0.9 : 0.82)) / nGirisim);
-  // Şerit varsa son kartla ilk şerit arasındaki boşluk da aynı alandan paylaşılır.
-  const kartBoslukSayisi = nGirisim - 1 + (seritler.length ? 1 : 0);
-  const gapGirisim = kartBoslukSayisi > 0 ? Math.round((girisimAlani - (nGirisim * cardH)) / kartBoslukSayisi) : 0;
+  // ── SABİT YÜKSEKLİKLER ─────────────────────────────────────────────────
+  const baslikTaban = Math.round(T.baslik * NOKTA_TEPE); // başlık bloğunun tepesi (İ noktası) → taban çizgisi
+  const baslikH = baslikTaban + O.kuralAlti + 2; // sarı çizginin alt kenarına kadar
+  const sayacH = Math.round(buyuk(T.etiket) + T.sayacSatir + inis(T.ad));
+  const bolumler = ['GİRİŞİMLER', 'PLATFORMLAR', ...(nKutu ? ['ÖN TALEP & YAKINDA'] : []), 'MKK VERİLERİ'];
 
-  let currentY = paddingTop;
+  // Kart yüksekliğine bağlı olmayan kutuların toplamı ve ölçeklenebilir boşlukların toplamı.
+  const sabitH =
+    bolumler.length * baslikH + nSerit * O.seritH + sayacH + O.cubukH + O.platKartH + kutuSatir * O.kutuH + O.mkkH;
+  const boslukH =
+    A.ust + A.alt + (bolumler.length - 1) * A.bolum + bolumler.length * A.baslikAlti +
+    Math.max(0, nGirisim - 1) * A.kart + (nGirisim ? nSerit : Math.max(0, nSerit - 1)) * A.serit +
+    2 * A.ic + Math.max(0, kutuSatir - 1) * A.kutu;
+  const butce = footerY - O.basAlt;
+  const toplam = (kartH: number, olcek: number) => sabitH + nGirisim * kartH + boslukH * olcek;
+
+  // ── YERLEŞTİRME (belirlenimci) ──────────────────────────────────────────
+  // 0) kart en yüksekte (kartMax) sığıyorsa artan yer üst bilgi ile ilk bölüm arasına ve alt banda yarı yarıya;
+  // 1) sığmıyorsa kart yüksekliği kartMin'e doğru iner;
+  // 2) yine sığmıyorsa bütün boşluklar ortak katsayıyla kısılır (en az 0,75);
+  // 3) son çare: içerik bütünüyle (yazı, kutu, boşluk) aynı oranda küçülür, ritim aynen kalır.
+  // Kutu ızgarası zaten en geniş sığan sütunla kurulur; ayrı bir "sütun artır" adımına gerek kalmaz.
+  let kartH: number = O.kartMax;
+  let olcek = 1;
+  let icerikOlcek = 1;
+  let sikistirma = 0;
+  if (toplam(kartH, 1) > butce) {
+    sikistirma = 1;
+    kartH = nGirisim ? Math.floor(O.kartMax - (toplam(O.kartMax, 1) - butce) / nGirisim) : O.kartMax;
+    if (kartH < O.kartMin) {
+      kartH = O.kartMin;
+      sikistirma = 2;
+      olcek = Math.floor(((butce - sabitH - nGirisim * kartH) / boslukH) * 1000) / 1000;
+      if (olcek < ARALIK_EN_AZ_OLCEK) {
+        sikistirma = 3;
+        olcek = 1;
+        // Üst ve alt boşluk tam kalır; aradaki içerik küçülür.
+        icerikOlcek = Math.floor(((butce - A.ust - A.alt) / (toplam(kartH, 1) - A.ust - A.alt)) * 1000) / 1000;
+      }
+    }
+  }
+  const bos = sikistirma === 3 ? 0 : Math.max(0, butce - toplam(kartH, olcek));
+  const bosUst = Math.floor(bos / 2);
+  const ara = (deger: number) => deger * olcek; // ölçeklenmiş boşluk
+
+  // Blok kaydı (test ve denetim için): her üst düzey kutunun yeri ve yüksekliği.
+  const bloklar: { ad: string; y: number; h: number }[] = [];
+  const blok = (ad: string, y: number, yukseklik: number) => bloklar.push({ ad, y, h: yukseklik });
+
   let body = '';
+  let ic = '';
 
   // ── 1. ÜST BAŞLIK, TARİH VE LOGO ─────────────────────────────────────────
+  const paddingTop = mod === 'story' ? 190 : 54;
   const logoBoyut = mod === 'story' ? 92 : 80;
-  const logoY = currentY + (mod === 'story' ? 4 : 5);
+  const logoY = paddingTop + (mod === 'story' ? 4 : 5);
   const logoX = w - paddingX - logoBoyut;
 
   // Sağ üst: tohum işareti ve altında "kifobu" (Kimlik v2).
@@ -181,7 +237,7 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
 
   // Ana Başlık: Post: 40px, Story: 42px
   const baslikBoyut = mod === 'story' ? 42 : 40;
-  const baslikY = currentY + 44;
+  const baslikY = paddingTop + 44;
   let baslikCurX = paddingX;
 
   body += metin('GÜNLÜK ', baslikCurX, baslikY, { agirlik: 'normal', boyut: baslikBoyut, renk: '#09090b' });
@@ -195,278 +251,278 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
   // Tarih / Bülten No: Post: 25px, Story: 27px
   const tarihBoyut = mod === 'story' ? 27 : 25;
   const tarihMetni = `${b.tarih} / ${b.sayi}`;
-  body += metin(tarihMetni, paddingX, currentY + 84, { agirlik: 'orta', boyut: tarihBoyut, renk: '#64748b' });
+  body += metin(tarihMetni, paddingX, paddingTop + 84, { agirlik: 'orta', boyut: tarihBoyut, renk: '#64748b' });
+  blok('ust-bilgi', 0, O.basAlt);
 
-  currentY += baslikBloguH;
+  // İçeriğin başladığı yer: üst bilgi + üst boşluk (+ artan yerin yarısı).
+  const icerikBasY = O.basAlt + ara(A.ust);
+  let currentY = icerikBasY + bosUst;
+
+  // Bölüm başlığı: metin + sarı çizgi + sabit başlık altı boşluğu. Her bölümde aynı.
+  const bolumBasligi = (ad: string, ilk = false) => {
+    if (!ilk) currentY += ara(A.bolum);
+    blok(`baslik:${ad}`, currentY, baslikH);
+    const taban = currentY + baslikTaban;
+    const cizgiY = yaz(taban + O.kuralAlti);
+    ic += metin(ad, paddingX, taban, { agirlik: 'ekstra', boyut: T.baslik, renk: '#334155', aralik: 0.5 });
+    ic += `<line x1="${paddingX}" y1="${cizgiY}" x2="${w - paddingX}" y2="${cizgiY}" stroke="#fde047" stroke-width="2.5" stroke-linecap="round" />`;
+    currentY += baslikH + ara(A.baslikAlti);
+  };
+
+  // Etiket | değer çifti; ayraç tam eksende, iki yanda eşit pay.
+  const ayracPay = 10;
+  const ayrac = (x: number, y: number) => metin('|', x, y, { agirlik: 'orta', boyut: T.etiket, renk: '#cbd5e1', hiza: 'center' });
+  const etiketli = (deger: string | null, etiket: string, x: number, y: number, degerRenk = '#09090b', degerSolda = false) => {
+    let s = '';
+    const d = deger ?? '—'; // okunamayan değer uydurulmaz
+    if (degerSolda) {
+      s += metin(d, x - ayracPay, y, { agirlik: 'kalin', boyut: T.deger, renk: degerRenk, hiza: 'end' });
+      s += ayrac(x, y);
+      s += metin(etiket, x + ayracPay, y, { agirlik: 'orta', boyut: T.etiket, renk: '#64748b' });
+    } else {
+      s += metin(etiket, x - ayracPay, y, { agirlik: 'orta', boyut: T.etiket, renk: '#64748b', hiza: 'end' });
+      s += ayrac(x, y);
+      s += metin(d, x + ayracPay, y, { agirlik: 'kalin', boyut: T.deger, renk: degerRenk });
+    }
+    return s;
+  };
+  const tlMetni = (n?: number | null) => (n ? '₺' + n.toLocaleString('tr-TR') : null);
 
   // ── 2. GİRİŞİMLER BÖLÜMÜ ───────────────────────────────────────────────
-  body += metin('GİRİŞİMLER', paddingX, currentY, { agirlik: 'ekstra', boyut: fSize, renk: '#334155', aralik: 0.5 });
-  body += `<line x1="${paddingX}" y1="${currentY + 12}" x2="${w - paddingX}" y2="${currentY + 12}" stroke="#fde047" stroke-width="2.5" stroke-linecap="round" />`;
-
-  currentY += titleGap;
+  bolumBasligi('GİRİŞİMLER', true);
 
   const c1X = paddingX + 22;
   const pipe2X = paddingX + Math.round(icGenislik * (mod === 'story' ? 0.39 : 0.38));
   const pipe3X = paddingX + Math.round(icGenislik * (mod === 'story' ? 0.70 : 0.69));
   const c4RightX = paddingX + icGenislik - 20;
+  const cubukX = paddingX + 22;
+  const cubukW = icGenislik - 44;
+
+  // Kart içi: iki satır ve aradaki ilerleme çubuğu dikeyde ortalanır; artan yerin %30'u üst ve alt paya,
+  // %20'şer çubuğun iki yanına gider. kartMin'de bile satırlar çubuğa 8 px'ten, kenara 13 px'ten yakın olmaz.
+  const satirUst = buyuk(T.ad);
+  const satirAlt = Math.max(inis(T.ad), inis(T.etiket));
+  const kartSabit = satirUst + satirAlt + O.ilerlemeH + satirUst + satirAlt;
+  const kartBos = kartH - kartSabit;
+  const kartPay = kartBos * 0.3;
+  const cubukPay = kartBos * 0.2;
 
   b.girisimler.forEach((g, idx) => {
+    if (idx > 0) currentY += ara(A.kart);
+    blok(`kart:${g.ad}`, currentY, kartH);
     const yuzdeOran = Math.min(Math.max(g.yuzde, 0), 100);
     const cRengi = cubukRengi(g.yuzde);
-    const dolguW = (icGenislik * yuzdeOran) / 100;
-
-    // Premium Kart Arka Planı + İnce Kenar Çizgisi
-    body += `<rect x="${paddingX}" y="${currentY}" width="${icGenislik}" height="${cardH}" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.2" />`;
-    
-    // Sol platform renk şeridi
     const platRenk = b.platformlar.liste.find(p => p.ad.toLowerCase() === g.platform.toLowerCase())?.renk || '#cbd5e1';
-    body += `<rect x="${paddingX}" y="${currentY}" width="5" height="${cardH}" rx="2.5" fill="${platRenk}" />`;
 
-    const r1Y = currentY + Math.round(cardH * 0.31);
-    const barY = currentY + Math.round(cardH * 0.46);
-    const r2Y = currentY + Math.round(cardH * 0.80);
+    // Kart zemini; soldaki platform şeridi kartın yuvarlak köşesine kırpılır.
+    const kirpId = `kart${mod}${idx}`;
+    ic += `<clipPath id="${kirpId}"><rect x="${paddingX}" y="${yaz(currentY)}" width="${icGenislik}" height="${kartH}" rx="10" /></clipPath>`;
+    ic += `<rect x="${paddingX}" y="${yaz(currentY)}" width="${icGenislik}" height="${kartH}" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.2" />`;
+    ic += `<rect x="${paddingX}" y="${yaz(currentY)}" width="5" height="${kartH}" fill="${platRenk}" clip-path="url(#${kirpId})" />`;
 
-    // ── SATIR 1 ──────────────────────────────────────────────────────────
-    // Sütun 1: Girişim Adı (Story: fSize)
-    body += metin(g.ad, c1X, r1Y, { agirlik: 'ekstra', boyut: fSize, renk: '#09090b' });
+    const r1Y = currentY + kartPay + satirUst;
+    const barY = r1Y + satirAlt + cubukPay;
+    const r2Y = barY + O.ilerlemeH + cubukPay + satirUst;
 
-    // Sütun 2: [bugün] | [₺...]  (19px - Tam | eksenine göre hizalı)
-    body += metin('bugün', pipe2X - 10, r1Y, { agirlik: 'orta', boyut: 19, renk: '#64748b', hiza: 'end' });
-    body += metin('|', pipe2X, r1Y, { agirlik: 'orta', boyut: 19, renk: '#cbd5e1', hiza: 'middle' });
-    const bugunRenk = g.bugun > 0 ? '#10b981' : '#09090b';
-    body += paraMetin(g.bugun, pipe2X + 10, r1Y, { agirlik: 'kalin', boyut: 19, renk: bugunRenk });
+    // ── SATIR 1: ad · bugün | ₺ · ₺ | alınan · yüzde
+    ic += metin(g.ad, c1X, r1Y, { agirlik: 'ekstra', boyut: T.ad, renk: '#09090b' });
+    ic += etiketli('₺' + g.bugun.toLocaleString('tr-TR'), 'bugün', pipe2X, r1Y, g.bugun > 0 ? '#10b981' : '#09090b');
+    ic += etiketli('₺' + g.alinan.toLocaleString('tr-TR'), 'alınan', pipe3X, r1Y, '#09090b', true);
+    ic += metin(yuzdeSonda(g.yuzde), c4RightX, r1Y, { agirlik: 'ekstra', boyut: T.ad, renk: cRengi, hiza: 'end' });
 
-    // Sütun 3: [₺...] | [alınan]  (19px - Tam | eksenine göre hizalı)
-    const alinanStr = '₺' + g.alinan.toLocaleString('tr-TR');
-    const alinanGen = genislik(alinanStr, { agirlik: 'kalin', boyut: 19 });
-    body += paraMetin(g.alinan, pipe3X - 10 - alinanGen, r1Y, { agirlik: 'kalin', boyut: 19, renk: '#09090b' });
-    body += metin('|', pipe3X, r1Y, { agirlik: 'orta', boyut: 19, renk: '#cbd5e1', hiza: 'middle' });
-    body += metin('alınan', pipe3X + 10, r1Y, { agirlik: 'orta', boyut: 19, renk: '#64748b' });
-
-    // Sütun 4: Yüzde (sağa dayalı, zeminsiz)
-    const yuzdeStr = yuzdeSonda(g.yuzde);
-    body += metin(yuzdeStr, c4RightX, r1Y, { agirlik: 'ekstra', boyut: fSize, renk: cRengi, hiza: 'end' });
-
-    // İlerleme Barı (Yuvarlak Hatlı)
-    body += `<rect x="${paddingX + 22}" y="${barY}" width="${icGenislik - 44}" height="7" rx="3.5" fill="#f1f5f9" />`;
-    if (dolguW > 0) {
-      body += `<rect x="${paddingX + 22}" y="${barY}" width="${Math.max(dolguW - 44, 7)}" height="7" rx="3.5" fill="${cRengi}" />`;
+    // İlerleme çubuğu: dolgu, zeminin genişliğiyle orantılı.
+    const ilerlemeR = O.ilerlemeH / 2;
+    ic += `<rect x="${cubukX}" y="${yaz(barY)}" width="${cubukW}" height="${O.ilerlemeH}" rx="${ilerlemeR}" fill="#f1f5f9" />`;
+    if (yuzdeOran > 0) {
+      ic += `<rect x="${cubukX}" y="${yaz(barY)}" width="${yaz(Math.max((cubukW * yuzdeOran) / 100, O.ilerlemeH))}" height="${O.ilerlemeH}" rx="${ilerlemeR}" fill="${cRengi}" />`;
     }
 
-    // ── SATIR 2 ──────────────────────────────────────────────────────────
-    // Sütun 1: Platform Adı (Story: fSize)
-    body += metin(g.platform, c1X, r2Y, { agirlik: 'kalin', boyut: fSize, renk: platRenk });
-
-    // Sütun 2: [değerleme] | [₺...]  (19px - Tam | eksenine göre hizalı)
-    body += metin('değerleme', pipe2X - 10, r2Y, { agirlik: 'orta', boyut: 19, renk: '#64748b', hiza: 'end' });
-    body += metin('|', pipe2X, r2Y, { agirlik: 'orta', boyut: 19, renk: '#cbd5e1', hiza: 'middle' });
-    // Değerleme okunamadıysa 0 yazılır (uydurma sıfır tutar yerine "—").
-    const degerlemeAyar = { agirlik: 'kalin', boyut: 19, renk: '#09090b' } as const;
-    body += `<g data-degerleme="${g.degerleme > 0 ? g.degerleme : '—'}">`;
-    body += g.degerleme > 0 ? paraMetin(g.degerleme, pipe2X + 10, r2Y, degerlemeAyar) : metin('—', pipe2X + 10, r2Y, degerlemeAyar);
-    body += '</g>';
-
-    // Sütun 3: [₺... / FONLANDI] | [kalan]  (19px - Tam | eksenine göre hizalı)
+    // ── SATIR 2: platform · değerleme | ₺ · ₺/FONLANDI | kalan · durum
+    ic += metin(g.platform, c1X, r2Y, { agirlik: 'kalin', boyut: T.ad, renk: platRenk });
+    // Değerleme okunamadıysa 0 yazılmaz, "—" çizilir.
+    ic += `<g data-degerleme="${g.degerleme > 0 ? g.degerleme : '—'}">`;
+    ic += etiketli(g.degerleme > 0 ? tlMetni(g.degerleme) : '—', 'değerleme', pipe2X, r2Y);
+    ic += '</g>';
     if (g.kalan === null) {
-      body += metin('FONLANDI', pipe3X - 10, r2Y, { agirlik: 'ekstra', boyut: 19, renk: '#10b981', hiza: 'end' });
+      ic += etiketli('FONLANDI', 'kalan', pipe3X, r2Y, '#10b981', true);
     } else {
-      const kalStr = '₺' + g.kalan.toLocaleString('tr-TR');
-      const kalGen = genislik(kalStr, { agirlik: 'kalin', boyut: 19 });
-      body += paraMetin(g.kalan, pipe3X - 10 - kalGen, r2Y, { agirlik: 'kalin', boyut: 19, renk: '#09090b' });
+      ic += etiketli('₺' + g.kalan.toLocaleString('tr-TR'), 'kalan', pipe3X, r2Y, '#09090b', true);
     }
-    body += metin('|', pipe3X, r2Y, { agirlik: 'orta', boyut: 19, renk: '#cbd5e1', hiza: 'middle' });
-    body += metin('kalan', pipe3X + 10, r2Y, { agirlik: 'orta', boyut: 19, renk: '#64748b' });
-
-    // Sütun 4: Durum (Sağa dayalı)
     const durumRenk = kapandiMi(g.durum) ? '#64748b' : (g.durum.includes('GÜN') ? '#e11d48' : '#09090b');
-    body += metin(g.durum, c4RightX, r2Y, { agirlik: 'kalin', boyut: fSize, renk: durumRenk, hiza: 'end' });
+    ic += metin(g.durum, c4RightX, r2Y, { agirlik: 'kalin', boyut: T.ad, renk: durumRenk, hiza: 'end' });
 
-    currentY += cardH + (idx < nGirisim - 1 ? gapGirisim : 0);
+    currentY += kartH;
   });
 
   // ── 2b. ÖN TALEP ŞERİDİ ────────────────────────────────────────────────
   // Kampanya kartının ızgarası (aynı sütunlar); çubuk ve yüzde yok, kesik amber kenar = henüz yatırıma açılmadı.
-  const etiketli = (deger: string | null, etiket: string, x: number, y: number, degerRenk = '#09090b', degerSolda = false) => {
-    let s = '';
-    const d = deger ?? '—'; // okunamayan değer uydurulmaz
-    if (degerSolda) {
-      s += metin(d, x - 10, y, { agirlik: 'kalin', boyut: 19, renk: degerRenk, hiza: 'end' });
-      s += metin('|', x, y, { agirlik: 'orta', boyut: 19, renk: '#cbd5e1', hiza: 'middle' });
-      s += metin(etiket, x + 10, y, { agirlik: 'orta', boyut: 19, renk: '#64748b' });
-    } else {
-      s += metin(etiket, x - 10, y, { agirlik: 'orta', boyut: 19, renk: '#64748b', hiza: 'end' });
-      s += metin('|', x, y, { agirlik: 'orta', boyut: 19, renk: '#cbd5e1', hiza: 'middle' });
-      s += metin(d, x + 10, y, { agirlik: 'kalin', boyut: 19, renk: degerRenk });
-    }
-    return s;
-  };
-  const tlMetni = (n?: number) => (n ? '₺' + n.toLocaleString('tr-TR') : null);
+  const seritPay = (O.seritH - (satirUst + T.seritSatir + satirAlt)) / 2;
   seritler.forEach((y, idx) => {
-    currentY += idx === 0 ? gapGirisim : seritAralik;
+    if (idx > 0 || nGirisim > 0) currentY += ara(A.serit);
+    blok(`serit:${y.ad}`, currentY, O.seritH);
     const renk = y.renk || '#94a3b8';
-    body += `<rect data-on-talep="${y.ad.replace(/[&"<>]/g, '')}" x="${paddingX}" y="${currentY}" width="${icGenislik}" height="${seritH}" rx="10" fill="#fffdf7" stroke="#f2c94c" stroke-width="1.4" stroke-dasharray="7 5" />`;
-    body += `<rect x="${paddingX}" y="${currentY}" width="5" height="${seritH}" rx="2.5" fill="${renk}" opacity="0.55" />`;
-    const s1 = currentY + Math.round(seritH * 0.40);
-    const s2 = currentY + Math.round(seritH * 0.78);
-    body += metin(y.ad, c1X, s1, { agirlik: 'ekstra', boyut: fSize, renk: '#09090b' });
-    body += etiketli(tlMetni(y.hedef), 'hedef', pipe2X, s1);
-    body += etiketli(tlMetni(y.onTalep), 'ön talep', pipe3X, s1, '#b45309', true);
-    body += metin(y.platform, c1X, s2, { agirlik: 'kalin', boyut: fSize, renk });
-    body += etiketli(tlMetni(y.degerleme), 'değerleme', pipe2X, s2);
-    body += etiketli(y.onTalepKisi ? y.onTalepKisi.toLocaleString('tr-TR') : null, 'talep sayısı', pipe3X, s2, '#09090b', true);
+    const kirpId = `serit${mod}${idx}`;
+    ic += `<clipPath id="${kirpId}"><rect x="${paddingX}" y="${yaz(currentY)}" width="${icGenislik}" height="${O.seritH}" rx="10" /></clipPath>`;
+    ic += `<rect data-on-talep="${y.ad.replace(/[&"<>]/g, '')}" x="${paddingX}" y="${yaz(currentY)}" width="${icGenislik}" height="${O.seritH}" rx="10" fill="#fffdf7" stroke="#f2c94c" stroke-width="1.4" stroke-dasharray="7 5" />`;
+    ic += `<rect x="${paddingX}" y="${yaz(currentY)}" width="5" height="${O.seritH}" fill="${renk}" opacity="0.55" clip-path="url(#${kirpId})" />`;
+    const s1 = currentY + seritPay + satirUst;
+    const s2 = s1 + T.seritSatir;
+    ic += metin(y.ad, c1X, s1, { agirlik: 'ekstra', boyut: T.ad, renk: '#09090b' });
+    ic += etiketli(tlMetni(y.hedef), 'hedef', pipe2X, s1);
+    ic += etiketli(tlMetni(y.onTalep), 'ön talep', pipe3X, s1, '#b45309', true);
+    ic += metin(y.platform, c1X, s2, { agirlik: 'kalin', boyut: T.ad, renk });
+    ic += etiketli(tlMetni(y.degerleme), 'değerleme', pipe2X, s2);
+    ic += etiketli(y.onTalepKisi ? y.onTalepKisi.toLocaleString('tr-TR') : null, 'talep sayısı', pipe3X, s2, '#09090b', true);
     // Sağ sütun bilerek boş: tutarın yanındaki "ön talep" etiketi yeterli; yüzde/durum yok.
-    currentY += seritH;
+    currentY += O.seritH;
   });
 
-  // Bölüm Geçişi: Girişimler -> Platformlar (Dinamik secGap)
-  currentY += secGap;
-
   // ── 3. PLATFORMLAR BÖLÜMÜ ──────────────────────────────────────────────
-  body += metin('PLATFORMLAR', paddingX, currentY, { agirlik: 'ekstra', boyut: fSize, renk: '#334155', aralik: 0.5 });
-  body += `<line x1="${paddingX}" y1="${currentY + 12}" x2="${w - paddingX}" y2="${currentY + 12}" stroke="#fde047" stroke-width="2.5" stroke-linecap="round" />`;
+  bolumBasligi('PLATFORMLAR');
 
-  currentY += titleGap;
+  // Sayaçlar: üstte etiket, altta tutar (sol bugün, sağ toplam).
+  blok('sayac', currentY, sayacH);
+  const sayacEtiketY = currentY + buyuk(T.etiket);
+  const sayacDegerY = sayacEtiketY + T.sayacSatir;
+  ic += metin('bugün', paddingX, sayacEtiketY, { agirlik: 'orta', boyut: T.etiket, renk: '#64748b' });
+  ic += paraMetin(b.platformlar.bugun, paddingX, sayacDegerY, { agirlik: 'ekstra', boyut: T.ad, renk: '#10b981' });
+  ic += metin('toplam', w - paddingX, sayacEtiketY, { agirlik: 'orta', boyut: T.etiket, renk: '#64748b', hiza: 'end' });
+  ic += paraMetin(b.platformlar.toplam, w - paddingX, sayacDegerY, { agirlik: 'ekstra', boyut: T.ad, renk: '#09090b', hiza: 'end' });
+  currentY += sayacH + ara(A.ic);
 
-  // Sayaç Metinleri (Çerçevesiz, minimalist, dağılım çubuğuna yakın)
-  // Sol: bugün
-  body += metin('bugün', paddingX, currentY + (mod === 'story' ? 24 : 20), { agirlik: 'orta', boyut: fSize, renk: '#64748b' });
-  body += paraMetin(b.platformlar.bugun, paddingX, currentY + (mod === 'story' ? 56 : 48), { agirlik: 'ekstra', boyut: fSize, renk: '#10b981' });
-
-  // Sağ: toplam
-  body += metin('toplam', w - paddingX, currentY + (mod === 'story' ? 24 : 20), { agirlik: 'orta', boyut: fSize, renk: '#64748b', hiza: 'end' });
-  body += paraMetin(b.platformlar.toplam, w - paddingX, currentY + (mod === 'story' ? 56 : 48), { agirlik: 'ekstra', boyut: fSize, renk: '#09090b', hiza: 'end' });
-
-  currentY += sayacH;
-
-  // Segmentli Dağılım Çubuğu
+  // Segmentli dağılım çubuğu
+  blok('dagilim', currentY, O.cubukH);
   let segX = paddingX;
   let barSegments = '';
   b.platformlar.liste.forEach((p) => {
     const segW = (icGenislik * p.toplam) / platformToplami;
-    barSegments += `<rect x="${segX}" y="${currentY}" width="${segW}" height="${platBarH}" fill="${p.renk}" />`;
+    barSegments += `<rect x="${yaz(segX)}" y="${yaz(currentY)}" width="${yaz(segW)}" height="${O.cubukH}" fill="${p.renk}" />`;
     segX += segW;
   });
+  ic += `<g><clipPath id="barClip${mod}"><rect x="${paddingX}" y="${yaz(currentY)}" width="${icGenislik}" height="${O.cubukH}" rx="5" /></clipPath><g clip-path="url(#barClip${mod})">${barSegments}</g></g>`;
+  currentY += O.cubukH + ara(A.ic);
 
-  body += `
-    <g>
-      <clipPath id="barClip${mod}">
-        <rect x="${paddingX}" y="${currentY}" width="${icGenislik}" height="${platBarH}" rx="5" />
-      </clipPath>
-      <g clip-path="url(#barClip${mod})">
-        ${barSegments}
-      </g>
-    </g>
-  `;
-
-  currentY += platBarH + 22;
-
-  // Platform Kartları (Ayrı Modern Kartlar - 3 Satır: Ad, Toplam Yatırım, Girişim Sayısı)
-  const platSayi = b.platformlar.liste.length;
-  const platSutunW = (icGenislik - (platSayi - 1) * 14) / platSayi;
-
+  // Platform kartları: ad, toplam yatırım, girişim sayısı (üç satır, dikeyde ortalı).
+  blok('platformlar', currentY, O.platKartH);
+  const platSayi = Math.max(1, b.platformlar.liste.length);
+  const platSutunW = (icGenislik - (platSayi - 1) * O.yatayAralik) / platSayi;
+  const platPay = (O.platKartH - (buyuk(T.ad) + 2 * T.platSatir + inis(T.etiket))) / 2;
   b.platformlar.liste.forEach((p, idx) => {
-    const px = paddingX + idx * (platSutunW + 14);
+    const px = paddingX + idx * (platSutunW + O.yatayAralik);
     const centerX = px + platSutunW / 2;
-    body += `<rect x="${px}" y="${currentY}" width="${platSutunW}" height="${platKartH}" rx="8" fill="${p.renk}18" stroke="${p.renk}40" stroke-width="1.2" />`;
-    
-    // 1. Satır: Platform adı (Ortalanmış, renkli nokta ile birlikte)
-    const adGen = genislik(p.ad, { agirlik: 'kalin', boyut: fSize });
+    ic += `<rect x="${yaz(px)}" y="${yaz(currentY)}" width="${yaz(platSutunW)}" height="${O.platKartH}" rx="8" fill="${p.renk}18" stroke="${p.renk}40" stroke-width="1.2" />`;
+    const adY = currentY + platPay + buyuk(T.ad);
+
+    // 1. satır: renkli nokta + ad, birlikte ortalı
+    const adGen = genislik(p.ad, { agirlik: 'kalin', boyut: T.ad });
     const noktaR = 4.5;
     const baslikBlokW = noktaR * 2 + 8 + adGen;
     const noktaX = centerX - baslikBlokW / 2 + noktaR;
-    const adX = noktaX + noktaR + 8;
-    body += `<circle cx="${noktaX}" cy="${currentY + (mod === 'story' ? 24 : 21)}" r="${noktaR}" fill="${p.renk}" />`;
-    body += metin(p.ad, adX, currentY + (mod === 'story' ? 30 : 27), { agirlik: 'kalin', boyut: fSize, renk: '#09090b' });
-
-    // 2. Satır: Toplam yatırım (Ortalanmış)
-    const tutarStr = '₺' + p.toplam.toLocaleString('tr-TR');
-    const tutarGen = genislik(tutarStr, { agirlik: 'ekstra', boyut: fSize });
-    body += paraMetin(p.toplam, centerX - tutarGen / 2, currentY + (mod === 'story' ? 61 : 53), { agirlik: 'ekstra', boyut: fSize, renk: '#09090b' });
-
-    // 3. Satır: Girişim sayısı (Ortalanmış)
-    body += metin(`${p.girisim} girişim`, centerX, currentY + (mod === 'story' ? 90 : 78), { agirlik: 'orta', boyut: fSize, renk: '#64748b', hiza: 'center' });
+    ic += `<circle cx="${yaz(noktaX)}" cy="${yaz(adY - buyuk(T.ad) / 2)}" r="${noktaR}" fill="${p.renk}" />`;
+    ic += metin(p.ad, noktaX + noktaR + 8, adY, { agirlik: 'kalin', boyut: T.ad, renk: '#09090b' });
+    // 2. satır: toplam yatırım
+    ic += metin('₺' + p.toplam.toLocaleString('tr-TR'), centerX, adY + T.platSatir, { agirlik: 'ekstra', boyut: T.ad, renk: '#09090b', hiza: 'center' });
+    // 3. satır: girişim sayısı
+    ic += metin(`${p.girisim} girişim`, centerX, adY + 2 * T.platSatir, { agirlik: 'orta', boyut: T.etiket, renk: '#64748b', hiza: 'center' });
   });
-
-  currentY += platKartH;
-
-  // Bölüm Geçişi: Platformlar -> Ön Talep & Yakında (Dinamik secGap)
-  currentY += secGap;
+  currentY += O.platKartH;
 
   // ── 4. ÖN TALEP & YAKINDA (yalnız rakamsız kutular; kutu yoksa bölüm hiç çizilmez) ──────
-  if (yakindaSayi) {
-  body += metin('ÖN TALEP & YAKINDA', paddingX, currentY, { agirlik: 'ekstra', boyut: fSize, renk: '#334155', aralik: 0.5 });
-  body += `<line x1="${paddingX}" y1="${currentY + 12}" x2="${w - paddingX}" y2="${currentY + 12}" stroke="#fde047" stroke-width="2.5" stroke-linecap="round" />`;
-
-  currentY += titleGap;
-
-  const yakindaW = (icGenislik - (yakindaSutun - 1) * 14) / yakindaSutun;
-  // Kutuya sığmayan ad küçültülerek sığdırılır (kesilmez).
-  const sigdir = (s: string, agirlik: Agirlik) => {
-    const sinir = yakindaW - 16;
-    const gen = genislik(s, { agirlik, boyut: fSize });
-    return gen > sinir ? Math.floor(fSize * (sinir / gen) * 10) / 10 : fSize;
-  };
-
-  kutular.forEach((y, idx) => {
-    const yx = paddingX + (idx % yakindaSutun) * (yakindaW + 14);
-    const yy = currentY + Math.floor(idx / yakindaSutun) * (yakindaKutuH + yakindaSatirAralik);
-    const centerX = yx + yakindaW / 2;
-    body += `<rect data-yakinda="${y.ad.replace(/[&"<>]/g, '')}" x="${yx}" y="${yy}" width="${yakindaW}" height="${yakindaKutuH}" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1" />`;
-    body += metin(y.ad, centerX, yy + Math.round(yakindaKutuH * 0.44), { agirlik: 'kalin', boyut: sigdir(y.ad, 'kalin'), renk: '#09090b', hiza: 'center' });
-    body += metin(y.platform, centerX, yy + Math.round(yakindaKutuH * 0.81), { agirlik: 'orta', boyut: sigdir(y.platform, 'orta'), renk: '#64748b', hiza: 'center' });
-  });
-
-  currentY += yakindaToplamH;
-
-  // Bölüm Geçişi: Ön Talep & Yakında -> MKK Verileri (Dinamik secGap)
-  currentY += secGap;
+  if (nKutu) {
+    bolumBasligi('ÖN TALEP & YAKINDA');
+    const yakindaW = kutuW(kutuSutun);
+    // Tek sütunda bile sığmayan ad küçültülür (kesilmez), en az T.enAzAd boyutuna kadar.
+    const sigdir = (s: string, agirlik: Agirlik, boyut: number) => {
+      const sinir = yakindaW - O.kutuIcPay * 2;
+      const gen = genislik(s, { agirlik, boyut });
+      return gen > sinir ? Math.max(T.enAzAd, Math.floor(boyut * (sinir / gen) * 10) / 10) : boyut;
+    };
+    const kutuPay = (O.kutuH - (buyuk(T.ad) + T.kutuSatir + inis(T.etiket))) / 2;
+    for (let satir = 0; satir < kutuSatir; satir++) {
+      if (satir > 0) currentY += ara(A.kutu);
+      blok(`kutu-satiri:${satir}`, currentY, O.kutuH);
+      const adY = currentY + kutuPay + buyuk(T.ad);
+      kutular.slice(satir * kutuSutun, (satir + 1) * kutuSutun).forEach((y, sira) => {
+        const yx = paddingX + sira * (yakindaW + O.yatayAralik);
+        const centerX = yx + yakindaW / 2;
+        ic += `<rect data-yakinda="${y.ad.replace(/[&"<>]/g, '')}" x="${yaz(yx)}" y="${yaz(currentY)}" width="${yaz(yakindaW)}" height="${O.kutuH}" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1" />`;
+        ic += metin(y.ad, centerX, adY, { agirlik: 'kalin', boyut: sigdir(y.ad, 'kalin', T.ad), renk: '#09090b', hiza: 'center' });
+        ic += metin(y.platform, centerX, adY + T.kutuSatir, { agirlik: 'orta', boyut: sigdir(y.platform, 'orta', T.etiket), renk: '#64748b', hiza: 'center' });
+      });
+      currentY += O.kutuH;
+    }
   }
 
   // ── 5. MKK VERİLERİ ───────────────────────────────────────────────────
-  body += metin('MKK VERİLERİ', paddingX, currentY, { agirlik: 'ekstra', boyut: fSize, renk: '#334155', aralik: 0.5 });
-  body += `<line x1="${paddingX}" y1="${currentY + 12}" x2="${w - paddingX}" y2="${currentY + 12}" stroke="#fde047" stroke-width="2.5" stroke-linecap="round" />`;
+  bolumBasligi('MKK VERİLERİ');
+  blok('mkk', currentY, O.mkkH);
+  ic += `<rect x="${paddingX}" y="${yaz(currentY)}" width="${icGenislik}" height="${O.mkkH}" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.2" />`;
+  const mkkY = currentY + (O.mkkH - buyuk(T.deger) - inis(T.deger)) / 2 + buyuk(T.deger);
 
-  currentY += titleGap;
-
-  // Açık Renk Kart Tasarımı (Ön Talep gibi f8fafc zeminli ve modern)
-  body += `<rect x="${paddingX}" y="${currentY}" width="${icGenislik}" height="${mkkKartH}" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.2" />`;
-  const mkkAlt = currentY + mkkKartH;
-  const mkkY = currentY + (mod === 'story' ? 46 : 41);
-
-  // 4 Öğeli Dengeli Eşit Boşluklu Dağılım (Çizgisiz, ferah ve tam dengeli)
+  // Dört öğe, aralarında ve kenarlarda eşit boşluk.
   const mkkOgeler = [
     { label: 'platform: ', val: String(b.mkk.platform), agirlik: 'kalin' as const },
     { label: 'yatırımcı sayısı: ', val: b.mkk.yatirimci.toLocaleString('tr-TR'), agirlik: 'kalin' as const },
     { label: 'kaydileşen şirket: ', val: String(b.mkk.sirket), agirlik: 'kalin' as const },
-    { label: 'toplanan fon: ', val: b.mkk.fon, agirlik: 'ekstra' as const }
+    { label: 'toplanan fon: ', val: b.mkk.fon, agirlik: 'ekstra' as const },
   ];
-
-  const mkkGenislikler = mkkOgeler.map(it => {
-    const lG = genislik(it.label, { agirlik: 'orta', boyut: 19 });
-    const vG = genislik(it.val, { agirlik: it.agirlik, boyut: 19 });
-    return { lG, vG, total: lG + vG };
+  const mkkGenislikler = mkkOgeler.map((it) => {
+    const lG = genislik(it.label, { agirlik: 'orta', boyut: T.etiket });
+    const vG = genislik(it.val, { agirlik: it.agirlik, boyut: T.deger });
+    return { lG, total: lG + vG };
   });
-
   const toplamMetinGenisligi = mkkGenislikler.reduce((s, g) => s + g.total, 0);
   const esitBosluk = (icGenislik - toplamMetinGenisligi) / 5;
-
   let mkkCurX = paddingX + esitBosluk;
   mkkOgeler.forEach((item, idx) => {
     const { lG, total } = mkkGenislikler[idx];
-    body += metin(item.label, mkkCurX, mkkY, { agirlik: 'orta', boyut: 19, renk: '#64748b' });
-    body += metin(item.val, mkkCurX + lG, mkkY, { agirlik: item.agirlik, boyut: 19, renk: '#09090b' });
+    ic += metin(item.label, mkkCurX, mkkY, { agirlik: 'orta', boyut: T.etiket, renk: '#64748b' });
+    ic += metin(item.val, mkkCurX + lG, mkkY, { agirlik: item.agirlik, boyut: T.deger, renk: '#09090b' });
     mkkCurX += total + esitBosluk;
   });
+  currentY += O.mkkH;
+
+  // Son çare küçültmede içerik, ilk başlığın tepesi yerinde kalacak biçimde yatayda ortalı küçülür.
+  const donustur = (y: number) => icerikBasY + (y - icerikBasY) * icerikOlcek;
+  if (icerikOlcek < 1) {
+    const cx = w / 2;
+    ic = `<g transform="translate(${cx} ${yaz(icerikBasY)}) scale(${icerikOlcek}) translate(${-cx} ${-icerikBasY})">${ic}</g>`;
+    for (const k of bloklar) {
+      if (k.ad === 'ust-bilgi') continue;
+      k.y = donustur(k.y);
+      k.h *= icerikOlcek;
+    }
+  }
+  const mkkAlt = donustur(currentY);
+  blok('alt-bant', footerY, footerH);
+  body += ic;
 
   // ── 6. EN ALT İMZA ŞERİDİ ─────────────────────────────────────────────
   body += `<rect x="0" y="${footerY}" width="${w}" height="${footerH}" fill="#fef3c7" />`;
   const imzaMetni = 'kifobu.com   |   x.com/kifobu   |   instagram.com/kifobu   |   linkedin.com/in/kifobu';
-  const imzaGen = genislik(imzaMetni, { agirlik: 'kalin', boyut: fSize });
+  const imzaGen = genislik(imzaMetni, { agirlik: 'kalin', boyut: T.baslik });
   const imzaX = (w - imzaGen) / 2;
-  body += metin(imzaMetni, imzaX, footerY + (mod === 'story' ? 56 : 33), { agirlik: 'kalin', boyut: fSize, renk: '#854d0e' });
+  body += metin(imzaMetni, imzaX, footerY + (mod === 'story' ? 56 : 33), { agirlik: 'kalin', boyut: T.baslik, renk: '#854d0e' });
+
+  // Testlerin okuduğu kancalar. data-bloklar = "ad;y;yükseklik|…" (tuval koordinatı, yukarıdan aşağı).
+  const bloklarAttr = bloklar.map((k) => `${k.ad.replace(/[&"<>|;]/g, '')};${yaz(k.y)};${yaz(k.h)}`).join('|');
+  const ozellikler = [
+    `data-tarih="${tarihMetni}"`,
+    `data-mkk-alt="${yaz(mkkAlt)}"`,
+    `data-alt-ust="${footerY}"`,
+    `data-kart-h="${kartH}"`,
+    `data-bolum-aralik="${yaz(ara(A.bolum))}"`,
+    `data-kart-aralik="${yaz(ara(A.kart))}"`,
+    `data-baslik-alti="${yaz(ara(A.baslikAlti))}"`,
+    `data-aralik-olcek="${olcek}"`,
+    `data-icerik-olcek="${icerikOlcek}"`,
+    `data-sikistirma="${sikistirma}"`,
+    `data-kutu-sutun="${nKutu ? kutuSutun : 0}"`,
+    `data-bloklar="${bloklarAttr}"`,
+  ].join(' ');
 
   return `
-    <svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" data-tarih="${tarihMetni}" data-mkk-alt="${mkkAlt}" data-alt-ust="${footerY}" data-kart-h="${cardH}">
+    <svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" ${ozellikler}>
       <!-- Temiz Minimal Zemin -->
       <rect width="${w}" height="${h}" fill="#f8fafc" />
 

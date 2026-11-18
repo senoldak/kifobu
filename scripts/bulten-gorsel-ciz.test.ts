@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { BULTEN } from '../src/data/bulten.ts';
-import { bultenSvgCiz } from './bulten-gorsel-ciz.ts';
+import { ARALIK, ARALIK_EN_AZ_OLCEK, OLCU, bultenSvgCiz } from './bulten-gorsel-ciz.ts';
 
 const oznitelik = (svg: string, ad: string) => Number(svg.match(new RegExp(`data-${ad}="([0-9.]+)"`))?.[1]);
 
@@ -119,4 +119,107 @@ test('bugünkü düzen: dört kart + bir şerit + altı kutu sığar, kartlar s�
     assert.ok(oznitelik(s, 'kart-h') >= enAz, `${mod} kart yüksekliği ${oznitelik(s, 'kart-h')}`);
     assert.ok(oznitelik(s, 'mkk-alt') + 24 <= oznitelik(s, 'alt-ust'));
   }
+});
+
+// ---- Sabit aralık düzeni (ritim) ----
+const bloklariOku = (svg: string) =>
+  (svg.match(/data-bloklar="([^"]*)"/)?.[1] ?? '').split('|').map((s) => {
+    const [ad, y, h] = s.split(';');
+    return { ad, y: Number(y), h: Number(h) };
+  }).sort((a, b) => a.y - b.y);
+const ozellik = (svg: string, ad: string) => Number(svg.match(new RegExp(`data-${ad}="([^"]*)"`))?.[1]);
+
+const ornekGirisim = (i: number) => ({ ...uc, ad: `GIRISIM ${i + 1}`, alinan: 1_000_000 * (i + 1), kalan: i % 2 ? null : 2_500_000, yuzde: i % 2 ? 100.5 : 12.4, durum: i % 2 ? 'SONA ERDİ' : `son ${i + 3} gün` });
+const ornekSerit = (i: number) => ({ ...quadSerit, ad: `SERIT ${i + 1}` });
+const ornekKutu = (i: number) => ({ ad: ['NARPOS', 'NEURATURK', 'NEUROX', 'TWINUP', 'DEXCOOK', 'MEDICALTEX'][i % 6] + (i >= 6 ? ` ${i}` : ''), platform: i % 2 ? 'ardventure' : 'fonbulucu' });
+
+for (const mod of ['post', 'story'] as const) {
+  test(`ritim ${mod}: 1–6 kampanya × 0–3 şerit × 0/3/7/12 kutu — çakışma yok, bölüm boşluğu sabit, kart aralıkta`, () => {
+    const h = mod === 'story' ? 1920 : 1350;
+    const sikistirmasizBolum = new Set<number>();
+    for (let n = 1; n <= 6; n++) for (let m = 0; m <= 3; m++) for (const k of [0, 3, 7, 12]) {
+      const veri = {
+        ...BULTEN,
+        girisimler: Array.from({ length: n }, (_, i) => ornekGirisim(i)),
+        yakinda: [...Array.from({ length: m }, (_, i) => ornekSerit(i)), ...Array.from({ length: k }, (_, i) => ornekKutu(i))],
+      };
+      const s = bultenSvgCiz(mod, veri);
+      const durum = `${mod} n=${n} m=${m} k=${k}`;
+      const bloklar = bloklariOku(s);
+      // (e) her şey tuvalin içinde
+      for (const b of bloklar) assert.ok(b.y >= 0 && b.y + b.h <= h + 0.05, `${durum}: ${b.ad} tuval dışında`);
+      // (a) hiçbir kutu üst üste binmez, aralarında en az 8 px
+      for (let i = 1; i < bloklar.length; i++) {
+        const ara = bloklar[i].y - (bloklar[i - 1].y + bloklar[i - 1].h);
+        assert.ok(ara >= 8 - 0.05, `${durum}: ${bloklar[i - 1].ad} → ${bloklar[i].ad} arası ${ara}`);
+      }
+      // (b) bölüm boşluğu görselin her bölümünde aynı
+      const icerikOlcek = ozellik(s, 'icerik-olcek');
+      const beklenenBolum = ozellik(s, 'bolum-aralik') * icerikOlcek;
+      const basliklar = bloklar.map((b, i) => [b, i] as const).filter(([b]) => b.ad.startsWith('baslik:'));
+      assert.equal(basliklar.length, k ? 4 : 3, durum);
+      for (const [b, i] of basliklar.slice(1)) {
+        const onceki = bloklar[i - 1];
+        assert.ok(Math.abs(b.y - (onceki.y + onceki.h) - beklenenBolum) < 0.2, `${durum}: ${b.ad} üstü ${b.y - (onceki.y + onceki.h)} ≠ ${beklenenBolum}`);
+      }
+      if (ozellik(s, 'aralik-olcek') === 1 && icerikOlcek === 1) sikistirmasizBolum.add(ozellik(s, 'bolum-aralik'));
+      // (c) kart yüksekliği [min, max]
+      const kartH = ozellik(s, 'kart-h');
+      assert.ok(kartH >= OLCU[mod].kartMin && kartH <= OLCU[mod].kartMax, `${durum}: kart ${kartH}`);
+      for (const b of bloklar.filter((b) => b.ad.startsWith('kart:'))) assert.ok(Math.abs(b.h - kartH * icerikOlcek) < 0.2, durum);
+      // (d) MKK kutusu alt banttan en az 24 px yukarıda
+      assert.ok(ozellik(s, 'mkk-alt') + 24 <= ozellik(s, 'alt-ust'), `${durum}: ${ozellik(s, 'mkk-alt')}`);
+      // boşluklar en çok 0,75'e kadar kısılır
+      assert.ok(ozellik(s, 'aralik-olcek') >= ARALIK_EN_AZ_OLCEK, durum);
+    }
+    // sıkıştırma gerekmeyen bütün görsellerde bölüm boşluğu aynı ve ölçekteki değer
+    assert.deepEqual([...sikistirmasizBolum], [ARALIK[mod].bolum]);
+  });
+
+  test(`ritim ${mod}: yer artınca kartlar uzar, artan yer üst ve alta eşit dağılır`, () => {
+    const s = bultenSvgCiz(mod, { ...BULTEN, girisimler: [ornekGirisim(0)], yakinda: kutular.slice(0, 2) });
+    assert.equal(ozellik(s, 'sikistirma'), 0);
+    assert.equal(ozellik(s, 'kart-h'), OLCU[mod].kartMax);
+    const bloklar = bloklariOku(s);
+    const ilk = bloklar.find((b) => b.ad === 'baslik:GİRİŞİMLER')!;
+    const ust = ilk.y - OLCU[mod].basAlt - ARALIK[mod].ust;
+    const alt = ozellik(s, 'alt-ust') - ARALIK[mod].alt - ozellik(s, 'mkk-alt');
+    assert.ok(ust > 0 && Math.abs(ust - alt) <= 1, `${ust} / ${alt}`);
+    assert.equal(ozellik(s, 'kart-aralik'), ARALIK[mod].kart);
+    assert.equal(ozellik(s, 'baslik-alti'), ARALIK[mod].baslikAlti);
+  });
+}
+
+test('ritim: bugünkü düzen (VISITEXTRA açık + üç biten, bir şerit, altı kutu) sıkıştırmasız çizilir', () => {
+  const g = (ad: string, platform: string, alinan: number, kalan: number | null, degerleme: number, yuzde: number, durum: string) =>
+    ({ ad, platform, bugun: 0, alinan, kalan, degerleme, yuzde, durum });
+  const veri = {
+    ...BULTEN,
+    tarih: '18 Kasım 2026',
+    sayi: 1562,
+    girisimler: [
+      g('VISITEXTRA', 'fonangels', 195600, 4804400, 50000000, 3.91, 'son 57 gün'),
+      g('OYLİO', 'fonangels', 5135900, null, 50000000, 102.71, 'SONA ERDİ'),
+      g('ATHLETICLABS', 'fonangels', 7602500, null, 75000000, 101.36, 'SONA ERDİ'),
+      g('LOOPYON', 'ecofolio', 1279600, 33720400, 385000000, 3.65, 'SONA ERDİ'),
+    ],
+    yakinda: [
+      quadSerit,
+      { ad: 'NARPOS', platform: 'ardventure' }, { ad: 'NEURATURK', platform: 'ardventure' }, { ad: 'NEUROX', platform: 'fonangels' },
+      { ad: 'TWINUP', platform: 'fonbulucu' }, { ad: 'DEXCOOK', platform: 'fonbulucu' }, { ad: 'MEDICALTEX', platform: 'fonbulucu' },
+    ],
+    platformlar: { bugun: 0, toplam: 14213600, liste: [
+      { ad: 'fonangels', toplam: 12934000, girisim: 3, renk: '#f47b3d' },
+      { ad: 'ecofolio', toplam: 1279600, girisim: 1, renk: '#009bae' },
+    ] },
+  };
+  for (const mod of ['post', 'story'] as const) {
+    const s = bultenSvgCiz(mod, veri);
+    assert.equal(ozellik(s, 'aralik-olcek'), 1, mod);
+    assert.equal(ozellik(s, 'icerik-olcek'), 1, mod);
+    assert.equal(ozellik(s, 'bolum-aralik'), ARALIK[mod].bolum, mod);
+    assert.ok(ozellik(s, 'kart-h') >= OLCU[mod].kartMin, `${mod} kart ${ozellik(s, 'kart-h')}`);
+  }
+  // Post'ta altı kutu tek satıra sığar.
+  assert.equal(ozellik(bultenSvgCiz('post', veri), 'kutu-sutun'), 6);
 });
