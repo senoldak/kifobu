@@ -412,8 +412,9 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
     ic += metin(y.platform, c1X, s2, { agirlik: 'kalin', boyut: T.ad, renk });
     ic += etiketli(tlMetni(y.degerleme), 'değerleme', pipe2X, s2);
     ic += etiketli(y.onTalepKisi ? y.onTalepKisi.toLocaleString('tr-TR') : null, 'talep sayısı', pipe3X, s2, '#09090b', true);
-    // Sağ sütun: 1. satır boş (şeritte yüzde yok); 2. satırda kampanya kartının durum yazısı gibi "ön talep".
-    ic += `<g data-serit-durum="ön talep">${metin('ön talep', c4RightX, s2, { agirlik: 'kalin', boyut: T.ad, renk: '#b45309', hiza: 'end' })}</g>`;
+    // Sağ sütun: kampanya kartının durum yazısı gibi "ön talep", şeridin dikey ortasında (büyük harf yüksekliğinin ortası).
+    const durumY = currentY + O.seritH / 2 + buyuk(T.ad) / 2;
+    ic += `<g data-serit-durum="ön talep">${metin('ön talep', c4RightX, durumY, { agirlik: 'kalin', boyut: T.ad, renk: '#b45309', hiza: 'end' })}</g>`;
     currentY += O.seritH;
   });
   // Sığmayan şeritler tek satırda sayılır (kart ızgarasının ilk sütunu hizasında).
