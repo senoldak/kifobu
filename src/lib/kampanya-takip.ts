@@ -48,7 +48,15 @@ export interface Okuyucu {
   detay(html: string): KampanyaDetay;
   /** Detay için ek sayfalar: çağıran ana sayfayı ve bunları getirir, tüm HTML'i "\n" ile birleştirip detay()'a verir. */
   ekSayfalar?(url: string): string[];
+  /**
+   * Zincirleme detay: çağıran her getirdiği sayfanın HTML'ini ve adresini verir, okuyucu sıradakinin adresini döner
+   * (yoksa null). Adres ".pdf" ile bitiyorsa çağıran PDF'i metne çevirip başına PDF_AYRACI koyarak ekler. En çok 3 adım.
+   */
+  sonrakiSayfa?(html: string, url: string): string | null;
 }
+
+/** detay()'a giden birleşik metinde PDF'ten çevrilmiş parçanın başına konan ayraç. */
+export const PDF_AYRACI = '<!-- pdf-metni -->\n';
 
 /**
  * Bir kampanya adresinin kararlı kimliği: küçük harfli host ve yol, sondaki "/" atılmış;

@@ -7,7 +7,7 @@ import type { ElListesi } from '../lib/kampanya-takip.ts';
 
 export interface KampanyaKaynagi {
   ad: string;
-  /** Platform anahtarı (PLATFORM_AYARLARI): fonangels, trinkfon, ecofolio, fonventure, startupburada, birikimfon, fongogo, fonbulucu, ardventure ... */
+  /** Platform anahtarı (PLATFORM_AYARLARI): fonangels, trinkfon, ecofolio, fonventure, startupburada, birikimfon, fongogo, fonbulucu, startupfon, ardventure ... */
   platform: string;
   url: string;
   /** Kampanya hedeflenen fon tutarı (TL) */
@@ -41,6 +41,8 @@ export const PLATFORM_AYARLARI: Record<string, PlatformAyar> = {
   fongogo: { ad: 'fongogo', renk: '#052d43', url: 'https://yatirim.fongogo.com' },
   // fonbulucu rengi: sitenin home_v2.css dosyasındaki --hv2-primary (rgb(229, 36, 62)); pay platformudur, borç platformu ayrı adrestedir.
   fonbulucu: { ad: 'fonbulucu', renk: '#e5243e', url: 'https://invest.fonbulucu.com' },
+  // startupfon rengi: sitenin liste kartlarındaki "İncele" düğmesinin zemini (--token-f4a2a0cf…, #6936f5).
+  startupfon: { ad: 'startupfon', renk: '#6936f5', url: 'https://www.startupfon.com' },
 };
 
 /** Otomatik keşfe elle müdahale: ekle (listede görünmeyenler), çıkar (URL), düzelt (URL -> alan değişiklikleri). */

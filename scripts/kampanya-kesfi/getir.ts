@@ -1,6 +1,10 @@
 import https from 'node:https';
 import { execFile } from 'node:child_process';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 import { promisify } from 'node:util';
+import { PDF_AYRACI } from '../../src/lib/kampanya-takip.ts';
 
 const execFileAsync = promisify(execFile);
 
@@ -124,15 +128,95 @@ export async function fetchHtml(url: string, retrySayisi = 2): Promise<string> {
   throw new Error(`Sayfa çekilemedi (${url})`);
 }
 
+const PDF_AZAMI_BAYT = 20 * 1024 * 1024;
+
+/** PDF'i ikili olarak indirir (yönlendirmeleri güvenli adreslerle izler, en çok 20 MB). */
+function pdfIndir(url: string, kalanYonlendirme = 3): Promise<Buffer> {
+  if (!isSafeUrl(url)) return Promise.reject(new Error(`Güvensiz veya geçersiz URL: ${url}`));
+  return new Promise((resolve, reject) => {
+    const req = https.get(url, { headers: { ...DEFAULT_HEADERS, Accept: 'application/pdf,*/*;q=0.8' } }, (res) => {
+      const kod = res.statusCode ?? 0;
+      if (kod >= 300 && kod < 400 && res.headers.location) {
+        res.resume();
+        if (kalanYonlendirme <= 0) return reject(new Error(`Çok fazla yönlendirme (${url})`));
+        pdfIndir(new URL(res.headers.location, url).toString(), kalanYonlendirme - 1).then(resolve, reject);
+        return;
+      }
+      if (kod < 200 || kod >= 400) {
+        res.resume();
+        return reject(new Error(`HTTP ${kod} (${url})`));
+      }
+      const parcalar: Buffer[] = [];
+      let boy = 0;
+      res.on('data', (p: Buffer) => {
+        boy += p.length;
+        if (boy > PDF_AZAMI_BAYT) {
+          req.destroy();
+          reject(new Error(`PDF çok büyük (${url})`));
+          return;
+        }
+        parcalar.push(p);
+      });
+      res.on('end', () => resolve(Buffer.concat(parcalar)));
+    });
+    req.on('error', reject);
+    req.setTimeout(30000, () => {
+      req.destroy();
+      reject(new Error(`Zaman aşımı (${url})`));
+    });
+  });
+}
+
+/**
+ * PDF içeriğini `pdftotext` aracıyla UTF-8 metne çevirir (yeni npm bağımlılığı yok; araç sistemde olmalı).
+ * PDF geçici bir dosyaya yazılır: poppler stdin okur ama xpdf sürümü okumaz, dosya ikisinde de çalışır.
+ */
+export async function pdfMetneCevir(pdf: Buffer, komut = 'pdftotext'): Promise<string> {
+  const dizin = await fs.promises.mkdtemp(path.join(os.tmpdir(), 'kesif-pdf-'));
+  const dosya = path.join(dizin, 'form.pdf');
+  try {
+    await fs.promises.writeFile(dosya, pdf);
+    const { stdout } = await execFileAsync(komut, ['-enc', 'UTF-8', dosya, '-'], {
+      maxBuffer: 20 * 1024 * 1024,
+      timeout: 30000,
+      encoding: 'utf8',
+    });
+    return stdout;
+  } catch (e: any) {
+    throw new Error(`PDF metne çevrilemedi (${komut}): ${String(e?.message ?? e).slice(0, 200)}`);
+  } finally {
+    await fs.promises.rm(dizin, { recursive: true, force: true });
+  }
+}
+
+/** PDF adresini indirip metne çevirir. */
+export async function pdfMetni(url: string): Promise<string> {
+  return pdfMetneCevir(await pdfIndir(url));
+}
+
+const PDF_MI = (url: string) => {
+  try {
+    return /\.pdf$/i.test(new URL(url).pathname);
+  } catch {
+    return false;
+  }
+};
+
+/** Zincirde en çok kaç sayfa daha izlenir (sonsuz döngüye karşı). */
+const ZINCIR_ADIM = 3;
+
 /**
  * Bir kampanyanın ana sayfasını ve okuyucunun istediği ek sayfaları sırayla (aralarında rastgele bekleyerek)
  * getirir; HTML'leri "\n" ile birleştirir. Ek sayfa açılmazsa yalnız ana sayfa döner; ana sayfa açılmazsa fırlatır.
+ * Okuyucunun sonrakiSayfa'sı varsa ardından zinciri izler: her adımda son getirilen sayfadan sıradaki adresi ister.
+ * PDF adresleri metne çevrilip başına PDF_AYRACI konur. Zincir bir adımda koparsa o ana kadar getirilenler döner.
  */
 export async function detayGetir(
-  okuyucu: { ekSayfalar?(url: string): string[] },
+  okuyucu: { ekSayfalar?(url: string): string[]; sonrakiSayfa?(html: string, url: string): string | null },
   url: string,
   getirFn: (url: string) => Promise<string> = fetchHtml,
   bekleFn: () => Promise<void> = rastgeleBekle,
+  pdfFn: (url: string) => Promise<string> = pdfMetni,
 ): Promise<string> {
   const ana = await getirFn(url);
   const ekler = okuyucu.ekSayfalar?.(url) ?? [];
@@ -145,6 +229,26 @@ export async function detayGetir(
   } catch (e: any) {
     console.log(`  ! Ek sayfa getirilemedi (${url}): ${e?.message ?? e}; yalnız ana sayfa kullanılacak.`);
     return ana;
+  }
+
+  if (okuyucu.sonrakiSayfa) {
+    let sonHtml = ana;
+    let sonUrl = url;
+    for (let adim = 0; adim < ZINCIR_ADIM; adim++) {
+      const sonraki = okuyucu.sonrakiSayfa(sonHtml, sonUrl);
+      if (!sonraki) break;
+      try {
+        await bekleFn();
+        const pdf = PDF_MI(sonraki);
+        const icerik = pdf ? await pdfFn(sonraki) : await getirFn(sonraki);
+        parcalar.push(pdf ? PDF_AYRACI + icerik : icerik);
+        sonHtml = icerik;
+        sonUrl = sonraki;
+      } catch (e: any) {
+        console.log(`  ! Zincirdeki sayfa getirilemedi (${sonraki}): ${e?.message ?? e}; o ana kadar getirilenler kullanılacak.`);
+        break;
+      }
+    }
   }
   return parcalar.join('\n');
 }

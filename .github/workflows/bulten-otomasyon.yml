@@ -67,6 +67,8 @@ jobs:
           MOTOR_URL: ${{ vars.MOTOR_URL }}
           MOTOR_ANAHTARI: ${{ secrets.MOTOR_ANAHTARI }}
         run: |
+          # Startupfon bilgi formu (PDF) pdftotext ile okunur; kurulamazsa keşif sürer, yalnız form alanları null kalır.
+          command -v pdftotext >/dev/null || (sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends poppler-utils) || echo "pdftotext kurulamadı"
           if [ "$MOD" = "kapanis" ]; then npm run kesif -- --mod kapanis; else npm run kesif -- --mod canli; fi
 
       - name: Bülten Botunu Çalıştır

@@ -8,8 +8,8 @@ test('OKUYUCULAR: her anahtar okuyucunun platform adına eşit', () => {
   }
 });
 
-test('OKUYUCULAR: tam sekiz onaylı platform var', () => {
+test('OKUYUCULAR: tam dokuz onaylı platform var', () => {
   assert.deepEqual(Object.keys(OKUYUCULAR).sort(), [
-    'birikimfon', 'ecofolio', 'fonangels', 'fonbulucu', 'fongogo', 'fonventure', 'startupburada', 'trinkfon',
+    'birikimfon', 'ecofolio', 'fonangels', 'fonbulucu', 'fongogo', 'fonventure', 'startupburada', 'startupfon', 'trinkfon',
   ]);
 });
