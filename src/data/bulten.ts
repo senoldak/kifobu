@@ -29,6 +29,13 @@ export interface Yakinda {
   ad: string;
   platform: string;
   url?: string;
+  /** Ön talepte rakamı bilinen kampanyalar için (görselde şerit olarak çizilir). */
+  hedef?: number;
+  degerleme?: number;
+  onTalep?: number;
+  onTalepKisi?: number;
+  /** Platform rengi. */
+  renk?: string;
 }
 
 export const BULTEN = {

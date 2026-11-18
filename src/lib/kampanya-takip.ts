@@ -34,6 +34,10 @@ export interface KampanyaDetay {
   sonGun: boolean;
   bitti: boolean;
   fonlandi: boolean | null;
+  /** Toplam ön talep tutarı (platform göstermiyorsa null). */
+  onTalep: number | null;
+  /** Ön talepte bulunan kişi sayısı (platform göstermiyorsa null). */
+  onTalepKisi: number | null;
 }
 
 /** Saf okuyucu: HTML metni alır, kayıt döndürür; ağ erişimi başka yerde yapılır. */
@@ -81,6 +85,10 @@ export interface TakipKaydi {
   yatirimci: number | null;
   nitelikli: number | null;
   fonlandi: boolean | null;
+  /** Toplam ön talep tutarı; platform göstermiyorsa null (eski kayıtlarda alan hiç olmayabilir). */
+  onTalep: number | null;
+  /** Ön talepte bulunan kişi sayısı; platform göstermiyorsa null. */
+  onTalepKisi: number | null;
   ilkGorulme: string;
   sonGorulme: string;
   bittiGorulme: string | null;
@@ -247,6 +255,9 @@ export function kesfiUygula(a: {
     k.yatirimci = d.yatirimci ?? k.yatirimci;
     k.nitelikli = d.nitelikli ?? k.nitelikli;
     k.fonlandi = d.fonlandi ?? k.fonlandi;
+    // Okunamayan (null) ön talep eski değerin üzerine yazılmaz.
+    k.onTalep = d.onTalep ?? k.onTalep ?? null;
+    k.onTalepKisi = d.onTalepKisi ?? k.onTalepKisi ?? null;
     k.eksik = eksikler(k);
     if (gecis) {
       k.durum = 'aktif';
@@ -315,7 +326,7 @@ export function kesfiUygula(a: {
         const k: TakipKaydi = {
           ad: yeniAd(liste, null), platform: s.platform, url: liste.url, durum: 'yakinda',
           hedef: null, arzOrani: null, degerleme: null, baslangic: null, bitis: null,
-          toplanan: null, yatirimci: null, nitelikli: null, fonlandi: null,
+          toplanan: null, yatirimci: null, nitelikli: null, fonlandi: null, onTalep: null, onTalepKisi: null,
           ilkGorulme: gun, sonGorulme: gun, bittiGorulme: null, eksik: [], kayipTur: 0, detaysiz: true,
         };
         kampanyalar.push(k);
@@ -379,6 +390,8 @@ ${liste.url}`,
         yatirimci: d.yatirimci,
         nitelikli: d.nitelikli,
         fonlandi: d.fonlandi,
+        onTalep: d.onTalep ?? null,
+        onTalepKisi: d.onTalepKisi ?? null,
         ilkGorulme: gun,
         sonGorulme: gun,
         bittiGorulme: null,
@@ -523,11 +536,22 @@ export function yedekToplanan(referansDegeri: number | undefined, sonToplanan: n
   return referansDegeri ?? sonToplanan ?? null;
 }
 
+/** Bültenin "yakında" satırı; ön talep rakamları yalnız bilinenler için bulunur (null/0 yazılmaz). */
+export interface YakindaKaynagi {
+  ad: string;
+  platform: string;
+  url: string;
+  hedef?: number;
+  degerleme?: number;
+  onTalep?: number;
+  onTalepKisi?: number;
+}
+
 /** Bültene girecek kampanyalar. el.ekle ve el.duzelt yalnız burada, okuma anında uygulanır; takip dosyasına yazılmaz. */
 export function bultenListesi(
   takip: TakipDosyasi,
   el: ElListesi,
-): { aktif: KampanyaKaynagi[]; yakinda: { ad: string; platform: string; url: string }[] } {
+): { aktif: KampanyaKaynagi[]; yakinda: YakindaKaynagi[] } {
   const cikar = new Set(el.cikar.map(guvenliAnahtar).filter((x): x is string => x !== null));
   const duzelt = new Map<string, Partial<TakipKaydi>>();
   for (const [url, d] of Object.entries(el.duzelt)) {
@@ -536,13 +560,13 @@ export function bultenListesi(
   }
 
   // Takip kayıtları ve el.ekle girdileri tek biçimde birleştirilir; el girdisi ilkGorulme'de sona düşer.
-  interface Aday { ad: string; platform: string; url: string; durum: TakipDurumu; hedef: number | null; degerleme: number | null; toplanan: number | null; fonlandi: boolean | null; ilk: string; an: string; }
+  interface Aday { ad: string; platform: string; url: string; durum: TakipDurumu; hedef: number | null; degerleme: number | null; toplanan: number | null; fonlandi: boolean | null; onTalep: number | null; onTalepKisi: number | null; ilk: string; an: string; }
   const adaylar = new Map<string, Aday>();
   const takipAnahtarlari = new Set<string>();
   for (const k of takip.kampanyalar) {
     const an = guvenliAnahtar(k.url);
     if (an === null || cikar.has(an) || adaylar.has(an)) continue;
-    adaylar.set(an, { ad: k.ad, platform: k.platform, url: k.url, durum: k.durum, hedef: k.hedef, degerleme: k.degerleme, toplanan: k.toplanan, fonlandi: k.fonlandi, ilk: k.ilkGorulme, an });
+    adaylar.set(an, { ad: k.ad, platform: k.platform, url: k.url, durum: k.durum, hedef: k.hedef, degerleme: k.degerleme, toplanan: k.toplanan, fonlandi: k.fonlandi, onTalep: k.onTalep ?? null, onTalepKisi: k.onTalepKisi ?? null, ilk: k.ilkGorulme, an });
     takipAnahtarlari.add(an);
   }
   for (const e of el.ekle) {
@@ -551,11 +575,11 @@ export function bultenListesi(
     if (an === null || cikar.has(an) || takipAnahtarlari.has(an)) continue;
     const elAnahtari = `${an}|${slugTr(e.ad)}`;
     if (adaylar.has(elAnahtari)) continue;
-    adaylar.set(elAnahtari, { ad: e.ad, platform: e.platform, url: e.url, durum: e.bolum, hedef: e.hedef ?? null, degerleme: e.degerleme ?? null, toplanan: null, fonlandi: null, ilk: '￿', an });
+    adaylar.set(elAnahtari, { ad: e.ad, platform: e.platform, url: e.url, durum: e.bolum, hedef: e.hedef ?? null, degerleme: e.degerleme ?? null, toplanan: null, fonlandi: null, onTalep: null, onTalepKisi: null, ilk: '￿', an });
   }
 
   const aktif: (KampanyaKaynagi & { ilk: string })[] = [];
-  const yakinda: { ad: string; platform: string; url: string; ilk: string }[] = [];
+  const yakinda: (YakindaKaynagi & { ilk: string })[] = [];
   for (const a of adaylar.values()) {
     const d = duzelt.get(a.an) ?? {};
     const ad = d.ad ?? a.ad;
@@ -565,7 +589,12 @@ export function bultenListesi(
     const hedef = d.hedef !== undefined ? d.hedef : a.hedef;
     const degerleme = d.degerleme !== undefined ? d.degerleme : a.degerleme;
     if (durum === 'yakinda') {
-      yakinda.push({ ad, platform, url, ilk: a.ilk });
+      const y: YakindaKaynagi & { ilk: string } = { ad, platform, url, ilk: a.ilk };
+      if (hedef) y.hedef = hedef;
+      if (degerleme) y.degerleme = degerleme;
+      if (a.onTalep) y.onTalep = a.onTalep;
+      if (a.onTalepKisi) y.onTalepKisi = a.onTalepKisi;
+      yakinda.push(y);
       continue;
     }
     if (hedef === null) continue;

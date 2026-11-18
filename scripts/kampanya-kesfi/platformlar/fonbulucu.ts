@@ -67,6 +67,8 @@ function detay(html: string): KampanyaDetay {
 
   return {
     ad: girisimAdi(html),
+    onTalep: null,
+    onTalepKisi: null,
     hedef,
     arzOrani: oran(alan(t, /Pay Arz Oranı\s*(%\s*[\d.,]+)/)),
     // Sayfa fonlama sonrası değeri yazmıyor; keşif arzOrani varsa hedef ÷ arz hesaplar.

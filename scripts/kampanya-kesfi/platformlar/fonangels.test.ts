@@ -103,3 +103,12 @@ test('liste: açıklamasında "Tamamlandı" geçen açık kart atlanmaz', () => 
   assert.equal(k.length, 1);
   assert.equal(k[0].bolum, 'aktif');
 });
+
+test('detay: ön talep tutarı ve kişi sayısı (VisitExtra); etiket silinince null', () => {
+  const d = fonangels.detay(visitextra);
+  assert.equal(d.onTalep, 4087000);
+  assert.equal(d.onTalepKisi, 255);
+  const e = fonangels.detay(visitextra.replace(/Toplam (?:Ö|&#xD6;)n Talep/g, 'X').replace(/(?:Ö|&#xD6;)n Talep Say(?:ı|&#x131;)s(?:ı|&#x131;)/g, 'Y'));
+  assert.equal(e.onTalep, null);
+  assert.equal(e.onTalepKisi, null);
+});

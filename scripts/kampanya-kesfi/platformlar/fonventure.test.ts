@@ -107,3 +107,13 @@ test('detay: Ön Talep Başlangıcı/Bitişi tarihleri baslangic ve bitis olarak
   assert.equal(d.baslangic, null);
   assert.equal(d.bitis, null);
 });
+
+test('detay: ön talep tutarı ve kişi sayısı (Quad Robotics); etiket silinince null', () => {
+  const d = fonventure.detay(quad);
+  assert.equal(d.onTalep, 3466500);
+  assert.equal(d.onTalepKisi, 112);
+  const e = fonventure.detay(quad.replace(/Toplam Ön Talep/g, 'X').replace(/Ön Talep Sayısı/g, 'Y'));
+  assert.equal(e.onTalep, null);
+  assert.equal(e.onTalepKisi, null);
+  assert.equal(fonventure.detay(offgrid).onTalep, null);
+});

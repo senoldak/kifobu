@@ -73,6 +73,8 @@ function detay(html: string): KampanyaDetay {
   const [baslangic, bitis] = tarihler(kutu);
   return {
     ad: girisimAdi(html),
+    onTalep: null,
+    onTalepKisi: null,
     hedef,
     arzOrani: oran(metne(html.match(/id="payarz"[^>]*>([\s\S]*?)<\/p>/i)?.[1] ?? '').match(/%\s?[\d.,]+/)?.[0] ?? null),
     degerleme: null, // sayfa değerleme yazmıyor

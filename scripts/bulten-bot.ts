@@ -245,7 +245,11 @@ async function main() {
   // KURAL: Eğer bir girişim aktif girişimler satırına taşındıysa ön talep/yakında listesinden otomatik çıkarılır
   const filtrelenmisYakinda = YAKINDA_LISTESI.filter(
     (y) => !girisimlerSonuc.some((g) => g.ad.trim().toLowerCase() === y.ad.trim().toLowerCase())
-  );
+  ).map((y) => {
+    // Rakamlar (hedef, değerleme, ön talep) bultenListesi'nden gelir; görsel şerit için platform rengi eklenir.
+    const renk = PLATFORM_AYARLARI[y.platform]?.renk;
+    return renk ? { ...y, renk } : y;
+  });
 
   // TypeScript dosyası çıktısı oluştur
   const bultenTsIcerik = `/**
@@ -279,6 +283,13 @@ export interface Yakinda {
   ad: string;
   platform: string;
   url?: string;
+  /** Ön talepte rakamı bilinen kampanyalar için (görselde şerit olarak çizilir). */
+  hedef?: number;
+  degerleme?: number;
+  onTalep?: number;
+  onTalepKisi?: number;
+  /** Platform rengi. */
+  renk?: string;
 }
 
 export const BULTEN = {

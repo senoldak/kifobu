@@ -28,6 +28,8 @@ function detay(html: string): KampanyaDetay {
 
   return {
     ad: girisimAdi(html),
+    onTalep: tutar(alan(t, /Toplam Ön Talep:?\s*(₺?\s?[\d.,]+)/)),
+    onTalepKisi: tamSayi(alan(t, /Ön Talep Sayısı:?\s*([\d.]+)/)),
     hedef: tutar(alan(t, /Hedeflenen Fonlama:\s*(₺?\s?[\d.,]+)/)),
     arzOrani: oran(alan(t, /Arz Oranı:\s*(%?\s?[\d.,]+)/)),
     degerleme: null,

@@ -69,6 +69,8 @@ function detay(html: string): KampanyaDetay {
 
   return {
     ad: girisimAdi(html),
+    onTalep: null,
+    onTalepKisi: null,
     hedef,
     arzOrani: oran(alan(veri, /"supply_rate":(\d+(?:\.\d+)?)/)),
     degerleme,

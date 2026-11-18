@@ -57,13 +57,13 @@ const bosEl: ElListesi = { ekle: [], cikar: [], duzelt: {} };
 function detay(o: Partial<KampanyaDetay> = {}): KampanyaDetay {
   return {
     ad: null, hedef: 5000000, arzOrani: 0.1, degerleme: null, baslangic: '2026-11-01', bitis: '2026-12-01',
-    toplanan: 100000, yatirimci: 10, nitelikli: null, kalanGun: 14, sonGun: false, bitti: false, fonlandi: null, ...o,
+    toplanan: 100000, yatirimci: 10, nitelikli: null, kalanGun: 14, sonGun: false, bitti: false, fonlandi: null, onTalep: null, onTalepKisi: null, ...o,
   };
 }
 function kayit(o: Partial<TakipKaydi> = {}): TakipKaydi {
   return {
     ad: 'ALFA', platform: P, url: U1, durum: 'aktif', hedef: 5000000, arzOrani: 0.1, degerleme: 50000000,
-    baslangic: '2026-11-01', bitis: '2026-12-01', toplanan: 100000, yatirimci: 10, nitelikli: null, fonlandi: null,
+    baslangic: '2026-11-01', bitis: '2026-12-01', toplanan: 100000, yatirimci: 10, nitelikli: null, fonlandi: null, onTalep: null, onTalepKisi: null,
     ilkGorulme: '2026-11-10', sonGorulme: '2026-11-16', bittiGorulme: null, eksik: [], kayipTur: 0, ...o,
   };
 }
@@ -762,4 +762,39 @@ test('bultenListesi: detaysiz yakında kayıt yakinda listesine girer (adres: li
   const r = bultenListesi(takip([dKayit('Neurox')]), bosEl);
   assert.deepEqual(r.yakinda, [{ ad: 'NEUROX', platform: P, url: `${LU}#yakinda-neurox` }]);
   assert.equal(r.aktif.length, 0);
+});
+
+test('kesfiUygula: ön talep alanları yeni kayda yazılır, sonraki turda null üzerine yazmaz, dolu olan günceller', () => {
+  const r1 = uygula(takip(), [tekListe('alfa', U1, 'yakinda', detay({ onTalep: 3466500, onTalepKisi: 112 }))]);
+  assert.equal(r1.takip.kampanyalar[0].onTalep, 3466500);
+  assert.equal(r1.takip.kampanyalar[0].onTalepKisi, 112);
+  const r2 = uygula(r1.takip, [tekListe('alfa', U1, 'yakinda', detay({ onTalep: null, onTalepKisi: null }))]);
+  assert.equal(r2.takip.kampanyalar[0].onTalep, 3466500);
+  assert.equal(r2.takip.kampanyalar[0].onTalepKisi, 112);
+  const r3 = uygula(r2.takip, [tekListe('alfa', U1, 'yakinda', detay({ onTalep: 4000000, onTalepKisi: 130 }))]);
+  assert.equal(r3.takip.kampanyalar[0].onTalep, 4000000);
+  assert.equal(r3.takip.kampanyalar[0].onTalepKisi, 130);
+});
+
+test('kesfiUygula: alanları olmayan eski kayıt ön talep okunamayınca null olur, undefined kalmaz', () => {
+  const eski = kayit({ durum: 'yakinda' });
+  delete (eski as Partial<TakipKaydi>).onTalep;
+  delete (eski as Partial<TakipKaydi>).onTalepKisi;
+  const r = uygula(takip([eski]), [tekListe('alfa', U1, 'yakinda', detay())]);
+  assert.equal(r.takip.kampanyalar[0].onTalep, null);
+  assert.equal(r.takip.kampanyalar[0].onTalepKisi, null);
+});
+
+test('bultenListesi: yakinda kaydı hedef, değerleme ve ön talep rakamlarını taşır; null olanlar yazılmaz', () => {
+  const r = bul([
+    kayit({ durum: 'yakinda', hedef: 25000000, degerleme: 192307692, onTalep: 3466500, onTalepKisi: 112 }),
+    kayit({ ad: 'BETA', url: U2, durum: 'yakinda', hedef: null, degerleme: null }),
+  ]);
+  assert.deepEqual(r.yakinda[0], { ad: 'ALFA', platform: P, url: U1, hedef: 25000000, degerleme: 192307692, onTalep: 3466500, onTalepKisi: 112 });
+  assert.deepEqual(r.yakinda[1], { ad: 'BETA', platform: P, url: U2 });
+});
+
+test('bultenListesi: el.ekle yakinda girdisinin hedef ve değerlemesi yakinda satırına geçer', () => {
+  const el: ElListesi = { ekle: [{ ad: 'YAKIN', platform: P, url: EL_U, bolum: 'yakinda', hedef: 1000, degerleme: 9000 }], cikar: [], duzelt: {} };
+  assert.deepEqual(bul([], el).yakinda, [{ ad: 'YAKIN', platform: P, url: EL_U, hedef: 1000, degerleme: 9000 }]);
 });

@@ -53,6 +53,8 @@ function detay(html: string): KampanyaDetay {
     baslangic: tarih(alan(t, /Fonlama Başlangıcı\s*(\d{1,2}\.\d{1,2}\.\d{4})/)),
     bitis: tarih(alan(t, /Fonlama Bitişi\s*(\d{1,2}\.\d{1,2}\.\d{4})/)),
     toplanan, // ön talepte yalnız "Toplam Ön Talep" yazar; etiket eşleşmez, null kalır
+    onTalep: tutar(alan(t, /Toplam Ön Talep:?\s*₺?\s*([\d.,]+)/)),
+    onTalepKisi: tamSayi(alan(t, /Ön Talep Sayısı:?\s*([\d.]+)/)),
     yatirimci: tamSayi(alan(t, /Yatırımcı Sayısı:?\s*([\d.]+)/)),
     nitelikli: tamSayi(alan(t, /Nitelikli Yatırımcı:?\s*([\d.]+)/)),
     kalanGun: null, // sayfada kalan gün alanı görülmedi

@@ -114,6 +114,8 @@ function detay(html: string): KampanyaDetay {
   const yatirimci = tutar(html.match(/>\s*(\d[\d.]*)\s*yatırımcı yatırım yaptı/i)?.[1]);
   return {
     ad: girisimAdi(html),
+    onTalep: null,
+    onTalepKisi: null,
     hedef,
     arzOrani: oran(ozet.match(/Arz Edilen Pay Oranı\s*(%\s?[\d.,]+)/)?.[1] ?? null),
     degerleme,

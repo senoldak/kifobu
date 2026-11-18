@@ -122,28 +122,42 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
   const yakindaH = mod === 'story' ? 82 : 68;
   const mkkKartH = mod === 'story' ? 76 : 64;
 
-  // Yakında: hepsi çizilir. Üç ve azı tek satır; fazlası satırlara bölünür (post 4, story 3 sütun), kutular kısalır.
-  const yakindaSayi = b.yakinda.length;
+  // Ön talebi rakamlı olanlar (hedef ve/veya ön talep tutarı) kampanya kartlarının altında tam genişlik şerit olarak çizilir;
+  // rakamsızlar "ön talep & yakında" kutularında kalır. Aynı kampanya hem şerit hem kutu olmaz.
+  const seritler = b.yakinda.filter((y) => y.onTalep || y.hedef);
+  const kutular = b.yakinda.filter((y) => !(y.onTalep || y.hedef));
+  const seritH = mod === 'story' ? 104 : 84;
+  const seritAralik = 10;
+  // Şeritlerin kendi yüksekliği ve aralarındaki boşluk; şerit yoksa 0. Son kart ile ilk şerit arası boşluk kart boşluğuyla aynıdır (gapGirisim).
+  const seritBlokH = seritler.length ? seritler.length * seritH + (seritler.length - 1) * seritAralik : 0;
+
+  // Yakında kutuları: hepsi çizilir. Üç ve azı tek satır; fazlası satırlara bölünür (post 4, story 3 sütun), kutular kısalır.
+  const yakindaSayi = kutular.length;
   const yakindaSutun = yakindaSayi <= 3 ? Math.max(yakindaSayi, 1) : mod === 'story' ? 3 : 4;
   const yakindaSatir = Math.max(1, Math.ceil(yakindaSayi / yakindaSutun));
   const yakindaKutuH = yakindaSatir === 1 ? yakindaH : mod === 'story' ? 76 : 58;
   const yakindaSatirAralik = 10;
-  const yakindaToplamH = yakindaSatir * yakindaKutuH + (yakindaSatir - 1) * yakindaSatirAralik;
+  const yakindaToplamH = yakindaSayi ? yakindaSatir * yakindaKutuH + (yakindaSatir - 1) * yakindaSatirAralik : 0;
+  // Kutu yoksa "ÖN TALEP & YAKINDA" başlığı da çizilmez: bir başlık ve bir bölüm boşluğu eksilir.
+  const baslikSayisi = yakindaSayi ? 4 : 3;
+  const bolumGapSayisi = baslikSayisi - 1;
 
   const nGirisim = b.girisimler.length;
   // Kesin Sabitler Toplamı: 4 bölüm başlığı (4 * titleGap), sayaçlar, platform barı, platform kartları, yakında kartları ve MKK kartı
-  const sabitler = (4 * titleGap) + sayacH + (platBarH + 22) + platKartH + yakindaToplamH + mkkKartH;
+  const sabitler = (baslikSayisi * titleGap) + sayacH + (platBarH + 22) + platKartH + yakindaToplamH + mkkKartH + seritBlokH;
   // Dikeyde tam hedefMkkAlt noktasına kadar doldurulacak toplam serbest alan
   const dagitilacakAlan = (hedefMkkAlt - startContentY) - sabitler;
 
-  // 3 bölüm arası boşluk (Girişimler->Platformlar, Platformlar->ÖnTalep, ÖnTalep->MKK)
+  // Bölümler arası boşluk (Girişimler->Platformlar, Platformlar->ÖnTalep, ÖnTalep->MKK; kutu yoksa ilk ikisi)
   const toplamSecGap = Math.round(dagitilacakAlan * 0.26);
-  const secGap = Math.round(toplamSecGap / 3);
+  const secGap = Math.round(toplamSecGap / bolumGapSayisi);
 
   // Girişim kartları ve kart arası boşluklar (kalan alanın %100'ünü tam tüketir, fark 0 px)
-  const girisimAlani = dagitilacakAlan - (secGap * 3);
+  const girisimAlani = dagitilacakAlan - (secGap * bolumGapSayisi);
   const cardH = Math.round((girisimAlani * 0.82) / nGirisim);
-  const gapGirisim = nGirisim > 1 ? Math.round((girisimAlani - (nGirisim * cardH)) / (nGirisim - 1)) : 0;
+  // Şerit varsa son kartla ilk şerit arasındaki boşluk da aynı alandan paylaşılır.
+  const kartBoslukSayisi = nGirisim - 1 + (seritler.length ? 1 : 0);
+  const gapGirisim = kartBoslukSayisi > 0 ? Math.round((girisimAlani - (nGirisim * cardH)) / kartBoslukSayisi) : 0;
 
   let currentY = paddingTop;
   let body = '';
@@ -269,6 +283,40 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
     currentY += cardH + (idx < nGirisim - 1 ? gapGirisim : 0);
   });
 
+  // ── 2b. ÖN TALEP ŞERİDİ ────────────────────────────────────────────────
+  // Kampanya kartının ızgarası (aynı sütunlar); çubuk ve yüzde yok, kesik amber kenar = henüz yatırıma açılmadı.
+  const etiketli = (deger: string | null, etiket: string, x: number, y: number, degerRenk = '#09090b', degerSolda = false) => {
+    let s = '';
+    const d = deger ?? '—'; // okunamayan değer uydurulmaz
+    if (degerSolda) {
+      s += metin(d, x - 10, y, { agirlik: 'kalin', boyut: 19, renk: degerRenk, hiza: 'end' });
+      s += metin('|', x, y, { agirlik: 'orta', boyut: 19, renk: '#cbd5e1', hiza: 'middle' });
+      s += metin(etiket, x + 10, y, { agirlik: 'orta', boyut: 19, renk: '#64748b' });
+    } else {
+      s += metin(etiket, x - 10, y, { agirlik: 'orta', boyut: 19, renk: '#64748b', hiza: 'end' });
+      s += metin('|', x, y, { agirlik: 'orta', boyut: 19, renk: '#cbd5e1', hiza: 'middle' });
+      s += metin(d, x + 10, y, { agirlik: 'kalin', boyut: 19, renk: degerRenk });
+    }
+    return s;
+  };
+  const tlMetni = (n?: number) => (n ? '₺' + n.toLocaleString('tr-TR') : null);
+  seritler.forEach((y, idx) => {
+    currentY += idx === 0 ? gapGirisim : seritAralik;
+    const renk = y.renk || '#94a3b8';
+    body += `<rect data-on-talep="${y.ad.replace(/[&"<>]/g, '')}" x="${paddingX}" y="${currentY}" width="${icGenislik}" height="${seritH}" rx="10" fill="#fffdf7" stroke="#f2c94c" stroke-width="1.4" stroke-dasharray="7 5" />`;
+    body += `<rect x="${paddingX}" y="${currentY}" width="5" height="${seritH}" rx="2.5" fill="${renk}" opacity="0.55" />`;
+    const s1 = currentY + Math.round(seritH * 0.40);
+    const s2 = currentY + Math.round(seritH * 0.78);
+    body += metin(y.ad, c1X, s1, { agirlik: 'ekstra', boyut: fSize, renk: '#09090b' });
+    body += etiketli(tlMetni(y.hedef), 'hedef', pipe2X, s1);
+    body += etiketli(tlMetni(y.onTalep), 'ön talep', pipe3X, s1, '#b45309', true);
+    body += metin(y.platform, c1X, s2, { agirlik: 'kalin', boyut: fSize, renk });
+    body += etiketli(tlMetni(y.degerleme), 'değerleme', pipe2X, s2);
+    body += etiketli(y.onTalepKisi ? String(y.onTalepKisi) : null, 'kişi', pipe3X, s2, '#09090b', true);
+    body += metin('ÖN TALEPTE', c4RightX, s2, { agirlik: 'ekstra', boyut: fSize, renk: '#b45309', hiza: 'end' });
+    currentY += seritH;
+  });
+
   // Bölüm Geçişi: Girişimler -> Platformlar (Dinamik secGap)
   currentY += secGap;
 
@@ -343,7 +391,8 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
   // Bölüm Geçişi: Platformlar -> Ön Talep & Yakında (Dinamik secGap)
   currentY += secGap;
 
-  // ── 4. ÖN TALEP & YAKINDA ──────────────────────────────────────────────
+  // ── 4. ÖN TALEP & YAKINDA (yalnız rakamsız kutular; kutu yoksa bölüm hiç çizilmez) ──────
+  if (yakindaSayi) {
   body += metin('ÖN TALEP & YAKINDA', paddingX, currentY, { agirlik: 'ekstra', boyut: fSize, renk: '#334155', aralik: 0.5 });
   body += `<line x1="${paddingX}" y1="${currentY + 12}" x2="${w - paddingX}" y2="${currentY + 12}" stroke="#fde047" stroke-width="2.5" stroke-linecap="round" />`;
 
@@ -357,7 +406,7 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
     return gen > sinir ? Math.floor(fSize * (sinir / gen) * 10) / 10 : fSize;
   };
 
-  b.yakinda.forEach((y, idx) => {
+  kutular.forEach((y, idx) => {
     const yx = paddingX + (idx % yakindaSutun) * (yakindaW + 14);
     const yy = currentY + Math.floor(idx / yakindaSutun) * (yakindaKutuH + yakindaSatirAralik);
     const centerX = yx + yakindaW / 2;
@@ -370,6 +419,7 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
 
   // Bölüm Geçişi: Ön Talep & Yakında -> MKK Verileri (Dinamik secGap)
   currentY += secGap;
+  }
 
   // ── 5. MKK VERİLERİ ───────────────────────────────────────────────────
   body += metin('MKK VERİLERİ', paddingX, currentY, { agirlik: 'ekstra', boyut: fSize, renk: '#334155', aralik: 0.5 });
