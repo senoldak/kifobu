@@ -98,7 +98,7 @@ for (const mod of ['post', 'story'] as const) {
     assert.ok(seritY[0][0] > Number(kartlar[2][1]));
     assert.ok(seritY[0][0] >= sonKartAlt, 'şerit karta binmez');
     assert.ok(seritY[1][0] >= seritY[0][0] + seritY[0][1], 'şeritler üst üste binmez');
-    const platformY = Number(s.match(/<rect x="56" y="([0-9.]+)" width="[0-9.]+" height="[0-9.]+" rx="8" fill="#[0-9a-f]{6}18"/i)?.[1]);
+    const platformY = Number(s.match(/<rect data-platform="[^"]+" x="56" y="([0-9.]+)" width="[0-9.]+" height="[0-9.]+" rx="8" fill="#[0-9a-f]{6}18"/i)?.[1]);
     assert.ok(seritY[1][0] + seritY[1][1] <= platformY, 'şeritler platform kartlarından önce biter');
   });
 }
@@ -261,4 +261,74 @@ test('taşma: ikiden fazla şerit sığmazsa kalanlar "+N ön talep daha" satır
   const serit = [...s.matchAll(/data-on-talep=/g)].length;
   assert.ok(tasma > 0 && serit + tasma === 3, `${serit} şerit + ${tasma}`);
   assert.equal(ozellik(s, 'gizlenen'), tasma);
+});
+
+// ---- Platform kartları: ön talep ve yakında platformları da görünür ----
+const bugunPlatformVeri = {
+  ...BULTEN,
+  girisimler: [
+    { ...uc, ad: 'VISITEXTRA', platform: 'fonangels', alinan: 195600, kalan: 4804400, degerleme: 50000000, yuzde: 3.91, durum: 'son 57 gün' },
+    { ...uc, ad: 'LOOPYON', platform: 'ecofolio', alinan: 1279600, kalan: 33720400, degerleme: 385000000, yuzde: 3.65, durum: 'SONA ERDİ' },
+    { ...uc, ad: 'OYLİO', platform: 'fonangels', alinan: 5135900, kalan: null, degerleme: 50000000, yuzde: 102.71, durum: 'SONA ERDİ' },
+    { ...uc, ad: 'ATHLETICLABS', platform: 'fonangels', alinan: 7602500, kalan: null, degerleme: 75000000, yuzde: 101.36, durum: 'SONA ERDİ' },
+  ],
+  platformlar: { bugun: 0, toplam: 14213600, liste: [
+    { ad: 'fonangels', toplam: 12934000, girisim: 3, renk: '#f47b3d' },
+    { ad: 'ecofolio', toplam: 1279600, girisim: 1, renk: '#009bae' },
+  ] },
+  yakinda: [
+    quadSerit,
+    { ad: 'NARPOS', platform: 'ardventure', renk: '#e07a5f' },
+    { ad: 'NEURATURK', platform: 'ardventure', renk: '#e07a5f' },
+    { ad: 'NEUROX', platform: 'fonangels', renk: '#f47b3d' },
+    { ad: 'TWINUP', platform: 'fonbulucu', renk: '#e5243e' },
+    { ad: 'DEXCOOK', platform: 'fonbulucu', renk: '#e5243e' },
+    { ad: 'MEDICALTEX', platform: 'fonbulucu', renk: '#e5243e' },
+  ],
+};
+
+for (const mod of ['post', 'story'] as const) {
+  test(`platform kartları ${mod}: kampanyası olmayan ön talep ve yakında platformları da tek satırda çizilir`, () => {
+    const s = bultenSvgCiz(mod, bugunPlatformVeri);
+    const adlar = [...s.matchAll(/data-platform="([^"]+)"/g)].map((m) => m[1]);
+    assert.deepEqual(adlar, ['fonangels', 'ecofolio', 'fonbulucu', 'ardventure', 'fonventure']);
+    const sayilar = [...s.matchAll(/data-platform-sayi="([^"]*)"/g)].map((m) => m[1]);
+    assert.deepEqual(sayilar, ['3 girişim · 1 yakında', '1 girişim', '3 yakında', '2 yakında', '1 ön talep']);
+    const bloklar = bloklariOku(s);
+    assert.equal(bloklar.filter((b) => b.ad.startsWith('platformlar:')).length, 1, 'beş platform tek satır');
+    // Platform kartlarının hepsi aynı satırda (aynı y).
+    assert.equal(new Set([...s.matchAll(/data-platform="[^"]+" x="[^"]+" y="([0-9.]+)"/g)].map((m) => m[1])).size, 1);
+    assert.equal(ozellik(s, 'gizlenen'), 0);
+    assert.equal(ozellik(s, 'aralik-olcek'), 1);
+    assert.ok(ozellik(s, 'mkk-alt') + 24 <= ozellik(s, 'alt-ust'));
+  });
+}
+
+test('platform kartları: altı platform iki dengeli satır (3 + 3), boşluk düzeni korunur', () => {
+  const veri = {
+    ...bugunPlatformVeri,
+    girisimler: bugunPlatformVeri.girisimler.slice(0, 2),
+    yakinda: [...bugunPlatformVeri.yakinda, { ad: 'YENI', platform: 'fonbulucu2', renk: '#123456' }],
+  };
+  const s = bultenSvgCiz('post', veri);
+  const ys = [...s.matchAll(/data-platform="[^"]+" x="[^"]+" y="([0-9.]+)"/g)].map((m) => m[1]);
+  assert.equal(ys.length, 6);
+  assert.deepEqual([...new Set(ys)].map((y) => ys.filter((v) => v === y).length), [3, 3]);
+  const satirlar = bloklariOku(s).filter((b) => b.ad.startsWith('platformlar:'));
+  assert.equal(satirlar.length, 2);
+  assert.ok(Math.abs(satirlar[1].y - (satirlar[0].y + satirlar[0].h) - ozellik(s, 'kart-aralik')) < 0.2, 'satır arası kart aralığı');
+});
+
+test('platform kartları: tutarı yoksa ön talep toplamı amber, o da yoksa "—"', () => {
+  const s = bultenSvgCiz('post', bugunPlatformVeri);
+  const kart = (ad: string) => s.split(`data-platform="${ad}"`)[1].split('data-platform=')[0];
+  assert.match(kart('fonventure'), /fill="#b45309"/);
+  assert.match(kart('fonbulucu'), /fill="#94a3b8"/);
+});
+
+test('ön talep şeridi: sağda "ön talep" durumu, tutar etiketi "talep tutarı"', () => {
+  for (const mod of ['post', 'story'] as const) {
+    const s = bultenSvgCiz(mod, bugunPlatformVeri);
+    assert.equal([...s.matchAll(/data-serit-durum="ön talep"/g)].length, 1, mod);
+  }
 });
