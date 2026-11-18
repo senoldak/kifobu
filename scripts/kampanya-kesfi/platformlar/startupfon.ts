@@ -9,6 +9,15 @@ import { metne, para, tarih } from '../ayristir.ts';
  * Kampanya sayfası /girisimler/<ad> yalnız ad ve durum verir. Sayılar zincirle gelir (sonrakiSayfa): tanıtım sayfası
  * -> girişsiz platform sayfası /startups/<id> (hedef, durum) -> SPK bilgi formu PDF'i (fonlama tarihleri, değerleme).
  * Toplanan tutar ve yatırımcı sayısı hiçbir yerde yayımlanmıyor; null kalır.
+ *
+ * ŞİMDİLİK KAPALI (sahibinin kararı, 18 Kasım): okuyucu hazır ama OKUYUCULAR'da değil. Açmak için:
+ *  1. platformlar/index.ts OKUYUCULAR'a `startupfon` ekle, index.test.ts listesini güncelle;
+ *  2. src/data/bulten-kaynaklari.ts PLATFORM_AYARLARI'na
+ *     `startupfon: { ad: 'startupfon', renk: '#6936f5', url: 'https://www.startupfon.com' }` ekle
+ *     (renk: liste kartlarındaki "İncele" düğmesinin zemini);
+ *  3. .github/workflows/bulten-otomasyon.yml "Kampanya keşfi" adımında npm'den önce pdftotext kur:
+ *     `command -v pdftotext >/dev/null || (sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends poppler-utils)`.
+ *  Bkz. kommitler c63754a, 90fe187.
  */
 const LISTE_URL = 'https://www.startupfon.com/yatirim';
 
