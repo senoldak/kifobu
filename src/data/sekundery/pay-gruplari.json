@@ -40,7 +40,10 @@
    "isin": "TREDVRY00011"
   },
   "TUNGA-A": {
-   "isin": "TRETUNG00015"
+   "isin": "TRETUNG00015",
+   "sahip": {
+    "2026-11-18": 0
+   }
   },
   "TREXO-B": {
    "isin": "TRETREX00015"
@@ -160,7 +163,10 @@
    "isin": "TREPRTN00012"
   },
   "TUNGA-B": {
-   "isin": "TRETUNG00023"
+   "isin": "TRETUNG00023",
+   "sahip": {
+    "2026-11-18": 0
+   }
   },
   "BSCHL-B": {
    "isin": "TREBLSS00024"
@@ -302,6 +308,11 @@
   "TETOG-A": {
    "sahip": {
     "2026-11-17": 0
+   }
+  },
+  "TRIBR-C": {
+   "sahip": {
+    "2026-11-18": 0
    }
   }
  },
@@ -545,6 +556,30 @@
   },
   "TETOG": {
    "soruldu": "2026-11-17"
+  },
+  "THBIO": {
+   "soruldu": "2026-11-18"
+  },
+  "TMZYL": {
+   "soruldu": "2026-11-18"
+  },
+  "TREXO": {
+   "soruldu": "2026-11-18"
+  },
+  "TRIBR": {
+   "soruldu": "2026-11-18"
+  },
+  "TRIST": {
+   "soruldu": "2026-11-18"
+  },
+  "TRIWI": {
+   "soruldu": "2026-11-18"
+  },
+  "TUNGA": {
+   "soruldu": "2026-11-18"
+  },
+  "TYORE": {
+   "soruldu": "2026-11-18"
   }
  }
 }
