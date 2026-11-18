@@ -1,6 +1,7 @@
 ---
 import Logo from '../components/Logo.astro';
 import { tohumIsaretiSvg } from '../lib/kimlik';
+import { BULTEN } from '../data/bulten';
 import { jsonLdMetni } from '../lib/json-ld.mjs';
 import { SITE, RISK_NOTU, ACIK_KATEGORILER, menuAdresi, dayNumber, formatNumber } from '../lib/site';
 import { ICERIK_LISANSI } from '../lib/icerik-lisansi';
@@ -86,7 +87,8 @@ const today = new Date().toLocaleDateString(SITE.locale, {
   year: 'numeric',
   timeZone: 'Europe/Istanbul',
 });
-const gun = dayNumber();
+// Başlıktaki sayı, ana sayfa tahtasıyla aynı: son yayımlanan bülten (gün sayacı bülten 18:00'de çıkana dek bir ileri gidiyordu).
+const gun = BULTEN.sayi || dayNumber();
 const social = [
   { name: 'X', href: SITE.social.x },
   { name: 'Instagram', href: SITE.social.instagram },

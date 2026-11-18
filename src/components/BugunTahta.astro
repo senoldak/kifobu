@@ -8,6 +8,7 @@
 import { BULTEN } from '../data/bulten';
 import { newsUrl, type Haber } from '../lib/news';
 import { kapandiMi, yuzdeKesik } from '../lib/kimlik';
+import { formatNumber } from '../lib/site';
 import HedefCubugu from './HedefCubugu.astro';
 import PlatformAdi from './PlatformAdi.astro';
 
@@ -31,7 +32,7 @@ const slug = (str: string) =>
   <div class="bt-baslik-satiri">
     <div class="bt-baslik-sol">
       <span class="bt-tarih">{b.tarih}</span>
-      <span class="bt-sayac">Bülten {b.sayi}</span>
+      <span class="bt-sayac">Bülten {formatNumber(b.sayi)}</span>
     </div>
     <div class="bt-baslik-sag">
       <a href="/gunluk-bulten/" class="bt-link-bulten">
