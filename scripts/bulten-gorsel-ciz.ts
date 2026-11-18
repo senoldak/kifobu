@@ -109,8 +109,8 @@ export const OLCU = {
 // Yazı boyutları: her biçimde ad (girişim/platform adı, yüzde, öne çıkan tutar), etiket ve değer için tek boyut.
 // *Satir = iki/üç satırlı kutularda taban çizgileri arası mesafe.
 const TIPO = {
-  post: { baslik: 19, ad: 19, etiket: 19, deger: 19, kutuSatir: 26, seritSatir: 30, platSatir: 26, sayacSatir: 30, enAzAd: 15, enAzEtiket: 14 },
-  story: { baslik: 24, ad: 24, etiket: 19, deger: 19, kutuSatir: 30, seritSatir: 38, platSatir: 32, sayacSatir: 36, enAzAd: 19, enAzEtiket: 15 },
+  post: { baslik: 19, ad: 19, etiket: 19, deger: 19, kutuSatir: 26, seritSatir: 30, platSatir: 26, sayacSatir: 30, enAzAd: 15 },
+  story: { baslik: 24, ad: 24, etiket: 19, deger: 19, kutuSatir: 30, seritSatir: 38, platSatir: 32, sayacSatir: 36, enAzAd: 19 },
 } as const;
 
 // Schibsted Grotesk ölçüleri (em oranı): büyük harf yüksekliği, alt uzantı (g, p, ş), İ noktasının tepesi.
@@ -160,33 +160,6 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
   const bitenler = b.girisimler.filter((g) => kapandiMi(g.durum));
   const nKutu = kutular.length;
 
-  // ── PLATFORM KARTLARI: kampanyası olan + yalnız ön talep/yakında ile görünen platformlar ──
-  // Sayılar taşma eksiltmesinden önceki bütün kayıtlardan gelir. Taşma günlerinde yalnız gizlenen kayıtlarla gelen
-  // platform kartı da gizlenir (o kayıtlar "+N" içinde sayılır); listedeki platformlar hep görünür.
-  interface PlatKart { ad: string; renk: string; listede: boolean; toplam: number; girisim: number; onTalep: number; onTalepSayi: number; yakinda: number }
-  const platAnahtar = (ad: string) => ad.trim().toLocaleLowerCase('tr-TR');
-  const platHarita = new Map<string, PlatKart>();
-  const platAl = (ad: string, renk?: string) => {
-    let p = platHarita.get(platAnahtar(ad));
-    if (!p) {
-      p = { ad: ad.trim(), renk: renk || '#94a3b8', listede: false, toplam: 0, girisim: 0, onTalep: 0, onTalepSayi: 0, yakinda: 0 };
-      platHarita.set(platAnahtar(ad), p);
-    }
-    return p;
-  };
-  for (const p of b.platformlar.liste) Object.assign(platAl(p.ad, p.renk), { listede: true, toplam: p.toplam, girisim: p.girisim });
-  for (const y of seritler) {
-    const p = platAl(y.platform, y.renk);
-    p.onTalepSayi++;
-    p.onTalep += y.onTalep ?? 0;
-  }
-  for (const y of kutular) platAl(y.platform, y.renk).yakinda++;
-  // Önce parası olanlar (toplam azalan), sonra kayıt sayısı azalan, sonra ad.
-  const platTum = [...platHarita.values()].sort((x, y) =>
-    (y.toplam > 0 ? 1 : 0) - (x.toplam > 0 ? 1 : 0) || y.toplam - x.toplam ||
-    (y.girisim + y.onTalepSayi + y.yakinda) - (x.girisim + x.onTalepSayi + x.yakinda) || x.ad.localeCompare(y.ad, 'tr'));
-  const platSatirSayisi = (n: number) => (n > 5 ? 2 : 1); // 5'e kadar tek satır
-
   // ── KUTU IZGARASI: en az satır, satırlara eşit dağılım ─────────────────
   // Sütun sayısı (post en çok 6, story 4), en uzun ad ve platform tam boyutta sığacak kadar olur; sığmazsa satır eklenir.
   const kutuGerekenW = kutular.reduce(
@@ -221,27 +194,20 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
   if (aday.serit > 2) { aday.serit = 2; adaylar.push({ ...aday }); }
   while (aday.serit > 0) { aday.serit--; adaylar.push({ ...aday }); }
 
-  const kutuGosterilen = (a: Aday) => (a.kutuSatir < kutuSatirTam ? kutular.slice(0, a.kutuSatir * kutuSutun - 1) : kutular);
-  const platGorunen = (a: Aday) => {
-    const gorunen = new Set([...seritler.slice(0, a.serit), ...kutuGosterilen(a)].map((y) => platAnahtar(y.platform)));
-    return platTum.filter((p) => p.listede || gorunen.has(platAnahtar(p.ad)));
-  };
-
   const olc = (a: Aday) => {
     const nGirisim = aciklar.length + a.biten;
-    const platSatir = platSatirSayisi(platGorunen(a).length);
     // Hiç şerit kalmazsa ve "+N" kutusu zaten varsa, gizlenen şeritler o kutuda sayılır (ayrı satır açılmaz).
     const tasma = a.serit < seritler.length && !(a.serit === 0 && a.kutuSatir < kutuSatirTam);
     const bolumSayisi = a.kutuSatir ? 4 : 3;
     const sabitH =
-      bolumSayisi * baslikH + a.serit * O.seritH + (tasma ? tasmaSatirH : 0) + sayacH + O.cubukH + platSatir * O.platKartH +
+      bolumSayisi * baslikH + a.serit * O.seritH + (tasma ? tasmaSatirH : 0) + sayacH + O.cubukH + O.platKartH +
       a.kutuSatir * O.kutuH + O.mkkH;
     // Kartlardan sonraki şerit ve taşma satırı, kart aralığıyla ayrılır.
     const seritOgesi = a.serit + (tasma ? 1 : 0);
     const boslukH =
       A.ust + A.alt + (bolumSayisi - 1) * A.bolum + bolumSayisi * A.baslikAlti +
       Math.max(0, nGirisim - 1) * A.kart + (nGirisim ? seritOgesi : Math.max(0, seritOgesi - 1)) * A.serit +
-      2 * A.ic + Math.max(0, a.kutuSatir - 1) * A.kutu + (platSatir - 1) * A.kutu;
+      2 * A.ic + Math.max(0, a.kutuSatir - 1) * A.kutu;
     return { nGirisim, sabitH, boslukH, toplam: (kartH: number, olcek: number) => sabitH + nGirisim * kartH + boslukH * olcek };
   };
 
@@ -252,9 +218,6 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
     if (olc(a).toplam(O.kartMin, ARALIK_EN_AZ_OLCEK) <= butce) { secilen = a; break; }
   }
   const { nGirisim, sabitH, boslukH, toplam } = olc(secilen);
-  const platKartlari = platGorunen(secilen);
-  const platSatir = platSatirSayisi(platKartlari.length);
-  const platSutun = Math.max(1, Math.ceil(platKartlari.length / platSatir)); // 6 → 3+3, 7 → 4+3
   const girisimler = [...aciklar, ...bitenler.slice(0, secilen.biten)];
   const gosterilenSerit = seritler.slice(0, secilen.serit);
   const gizliSerit = seritler.length - secilen.serit;
@@ -486,48 +449,30 @@ export function bultenSvgCiz(mod: GorselModu = 'post', veri: typeof BULTEN = BUL
   ic += `<g><clipPath id="barClip${mod}"><rect x="${paddingX}" y="${yaz(currentY)}" width="${icGenislik}" height="${O.cubukH}" rx="5" /></clipPath><g clip-path="url(#barClip${mod})">${barSegments}</g></g>`;
   currentY += O.cubukH + ara(A.ic);
 
-  // Platform kartları: ad, tutar, sayılar (üç satır, dikeyde ortalı). 5'e kadar tek satır, fazlası iki dengeli satır.
+  // Platform kartları: ad, toplam yatırım, girişim sayısı (üç satır, dikeyde ortalı).
+  blok('platformlar', currentY, O.platKartH);
+  const platSayi = Math.max(1, b.platformlar.liste.length);
+  const platSutunW = (icGenislik - (platSayi - 1) * O.yatayAralik) / platSayi;
   const platPay = (O.platKartH - (buyuk(T.ad) + 2 * T.platSatir + inis(T.etiket))) / 2;
-  const noktaR = 4.5;
-  const noktaBosluk = 8;
-  for (let satir = 0; satir < platSatir; satir++) {
-    if (satir > 0) currentY += ara(A.kutu);
-    blok(`platformlar:${satir}`, currentY, O.platKartH);
-    const sira = platKartlari.slice(satir * platSutun, (satir + 1) * platSutun);
-    const platSutunW = (icGenislik - (platSutun - 1) * O.yatayAralik) / platSutun;
-    const sinir = platSutunW - O.kutuIcPay * 2;
-    const sigdir = (s: string, agirlik: Agirlik, boyut: number, ek = 0, enAz: number = T.enAzAd) => {
-      const gen = genislik(s, { agirlik, boyut }) + ek;
-      return gen > sinir ? Math.max(enAz, Math.floor(boyut * ((sinir - ek) / (gen - ek)) * 10) / 10) : boyut;
-    };
+  b.platformlar.liste.forEach((p, idx) => {
+    const px = paddingX + idx * (platSutunW + O.yatayAralik);
+    const centerX = px + platSutunW / 2;
+    ic += `<rect x="${yaz(px)}" y="${yaz(currentY)}" width="${yaz(platSutunW)}" height="${O.platKartH}" rx="8" fill="${p.renk}18" stroke="${p.renk}40" stroke-width="1.2" />`;
     const adY = currentY + platPay + buyuk(T.ad);
-    sira.forEach((p, idx) => {
-      const px = paddingX + idx * (platSutunW + O.yatayAralik);
-      const centerX = px + platSutunW / 2;
-      ic += `<rect data-platform="${p.ad.replace(/[&"<>]/g, '')}" x="${yaz(px)}" y="${yaz(currentY)}" width="${yaz(platSutunW)}" height="${O.platKartH}" rx="8" fill="${p.renk}18" stroke="${p.renk}40" stroke-width="1.2" />`;
 
-      // 1. satır: renkli nokta + ad, birlikte ortalı
-      const adBoyut = sigdir(p.ad, 'kalin', T.ad, noktaR * 2 + noktaBosluk);
-      const adGen = genislik(p.ad, { agirlik: 'kalin', boyut: adBoyut });
-      const noktaX = centerX - (noktaR * 2 + noktaBosluk + adGen) / 2 + noktaR;
-      ic += `<circle cx="${yaz(noktaX)}" cy="${yaz(adY - buyuk(adBoyut) / 2)}" r="${noktaR}" fill="${p.renk}" />`;
-      ic += metin(p.ad, noktaX + noktaR + noktaBosluk, adY, { agirlik: 'kalin', boyut: adBoyut, renk: '#09090b' });
-      // 2. satır: yatırım; yoksa ön talep toplamı (amber); o da yoksa "—"
-      const [deger, degerRenk] =
-        p.toplam > 0 ? ['₺' + p.toplam.toLocaleString('tr-TR'), '#09090b']
-        : p.onTalep > 0 ? ['₺' + p.onTalep.toLocaleString('tr-TR'), '#b45309']
-        : ['—', '#94a3b8'];
-      ic += metin(deger, centerX, adY + T.platSatir, { agirlik: 'ekstra', boyut: sigdir(deger, 'ekstra', T.ad), renk: degerRenk, hiza: 'center' });
-      // 3. satır: sıfır olmayan sayılar
-      const sayilar = [
-        p.girisim ? `${p.girisim} girişim` : '',
-        p.onTalepSayi ? `${p.onTalepSayi} ön talep` : '',
-        p.yakinda ? `${p.yakinda} yakında` : '',
-      ].filter(Boolean).join(' · ');
-      ic += `<g data-platform-sayi="${sayilar}">${metin(sayilar, centerX, adY + 2 * T.platSatir, { agirlik: 'orta', boyut: sigdir(sayilar, 'orta', T.etiket, 0, T.enAzEtiket), renk: '#64748b', hiza: 'center' })}</g>`;
-    });
-    currentY += O.platKartH;
-  }
+    // 1. satır: renkli nokta + ad, birlikte ortalı
+    const adGen = genislik(p.ad, { agirlik: 'kalin', boyut: T.ad });
+    const noktaR = 4.5;
+    const baslikBlokW = noktaR * 2 + 8 + adGen;
+    const noktaX = centerX - baslikBlokW / 2 + noktaR;
+    ic += `<circle cx="${yaz(noktaX)}" cy="${yaz(adY - buyuk(T.ad) / 2)}" r="${noktaR}" fill="${p.renk}" />`;
+    ic += metin(p.ad, noktaX + noktaR + 8, adY, { agirlik: 'kalin', boyut: T.ad, renk: '#09090b' });
+    // 2. satır: toplam yatırım
+    ic += metin('₺' + p.toplam.toLocaleString('tr-TR'), centerX, adY + T.platSatir, { agirlik: 'ekstra', boyut: T.ad, renk: '#09090b', hiza: 'center' });
+    // 3. satır: girişim sayısı
+    ic += metin(`${p.girisim} girişim`, centerX, adY + 2 * T.platSatir, { agirlik: 'orta', boyut: T.etiket, renk: '#64748b', hiza: 'center' });
+  });
+  currentY += O.platKartH;
 
   // ── 4. ÖN TALEP & YAKINDA (yalnız rakamsız kutular; kutu yoksa bölüm hiç çizilmez) ──────
   if (kutuSatir) {
