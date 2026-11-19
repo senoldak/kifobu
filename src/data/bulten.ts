@@ -1,7 +1,7 @@
 /**
  * Günlük kitle fonlama bülteni verisi ("Bugün" tablosu).
  * Otomatik Bot tarafından oluşturulmuştur.
- * Son güncelleme: 2026-11-18T15:01:59.315Z
+ * Son güncelleme: 2026-11-19T07:01:49.525Z
  */
 export interface Girisim {
   ad: string;
@@ -39,8 +39,8 @@ export interface Yakinda {
 }
 
 export const BULTEN = {
-  tarih: '18 Kasım 2026',
-  sayi: 1562,
+  tarih: '19 Kasım 2026',
+  sayi: 1563,
   girisimler: [
     {
         "ad": "LOOPYON",
@@ -54,25 +54,14 @@ export const BULTEN = {
         "url": "https://ecofolio.com.tr/kampanyalar/loopyon"
     },
     {
-        "ad": "OYLİO",
-        "platform": "fonangels",
-        "bugun": 0,
-        "alinan": 5135900,
-        "kalan": null,
-        "degerleme": 50000000,
-        "yuzde": 102.71,
-        "durum": "SONA ERDİ",
-        "url": "https://fonangels.com/kampanyalar/projehakkinda/oylio?pid=1778"
-    },
-    {
         "ad": "VISITEXTRA",
         "platform": "fonangels",
-        "bugun": 0,
-        "alinan": 1040800,
-        "kalan": 3959200,
+        "bugun": 24000,
+        "alinan": 1064800,
+        "kalan": 3935200,
         "degerleme": 50000000,
-        "yuzde": 20.81,
-        "durum": "son 57 gün",
+        "yuzde": 21.29,
+        "durum": "son 56 gün",
         "url": "https://fonangels.com/kampanyalar/projehakkinda/visitextra?pid=1803"
     },
     {
@@ -85,15 +74,26 @@ export const BULTEN = {
         "yuzde": 101.36,
         "durum": "SONA ERDİ",
         "url": "https://fonangels.com/kampanyalar/projehakkinda/athleticlabs?pid=1689"
+    },
+    {
+        "ad": "OYLİO",
+        "platform": "fonangels",
+        "bugun": 0,
+        "alinan": 5135900,
+        "kalan": null,
+        "degerleme": 50000000,
+        "yuzde": 102.71,
+        "durum": "SONA ERDİ",
+        "url": "https://fonangels.com/kampanyalar/projehakkinda/oylio?pid=1778"
     }
 ] as Girisim[],
   platformlar: {
-    bugun: 0,
-    toplam: 13779200,
+    bugun: 24000,
+    toplam: 13803200,
     liste: [
     {
         "ad": "fonangels",
-        "toplam": 13779200,
+        "toplam": 13803200,
         "girisim": 3,
         "renk": "#f47b3d",
         "url": "https://fonangels.com"
@@ -150,8 +150,8 @@ export const BULTEN = {
         "url": "https://fonventure.com/kampanya/9eade97b-9d7a-4962-bf2a-c49f9a312ee5",
         "hedef": 25000000,
         "degerleme": 192307692,
-        "onTalep": 3466500,
-        "onTalepKisi": 112,
+        "onTalep": 3481500,
+        "onTalepKisi": 114,
         "renk": "#4f46e5"
     }
 ] as Yakinda[],
