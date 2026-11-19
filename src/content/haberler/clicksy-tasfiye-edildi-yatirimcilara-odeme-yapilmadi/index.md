@@ -1,37 +1,37 @@
 ---
 title: "Clicksy tasfiye edildi, kitle fonlaması yatırımcılarına ödeme yapılmadı"
-description: "2022'de kitle fonlamasıyla 675 yatırımcıdan 3,06 milyon TL toplayan Clicksy Yazılım'ın tasfiyesi tamamlandı, şirket ticaret sicilinden silindi. Pay sahiplerine dağıtılacak tasfiye bakiyesi kalmadı."
+description: "2022'de kitle fonlamasıyla 675 yatırımcıdan 3,06 milyon TL toplayan Clicksy Yazılım'ın tasfiyesi bitti, şirket ticaret sicilinden silindi. Pay sahiplerine dağıtılacak bir şey kalmadı."
 date: 2026-11-19T12:41:00+03:00
 category: girisimler
 girisim: "Clicksy"
 platform: "Fonbulucu"
-why_matters: "Şirket, kitle fonlamasıyla pay alan yatırımcılarına tasfiye sonunda sermaye iadesi ya da tasfiye payı ödenemediğini bildirdi. Kapanış bilançosunda özkaynaklar eksi 538 bin TL."
+why_matters: "Kitle fonlamasıyla pay alan yatırımcılar tasfiyeden sermaye iadesi ya da tasfiye payı alamadı. Kapanış bilançosunda şirketin borçları varlığını 538 bin TL aşıyordu."
 key_points:
-  - "Clicksy Yazılım'ın ticaret sicilinden terkini 5 Ekim 2026'da tescil edildi, ilan 6 Ekim tarihli Türkiye Ticaret Sicili Gazetesi'nde çıktı."
-  - "5 Ekim 2026 tarihli kapanış bilançosunda şirketin tek varlığı bankadaki 557,48 TL; özkaynaklar eksi 538.429,25 TL."
-  - "Şirket, pay sahiplerine dağıtılabilecek tasfiye bakiyesi oluşmadığını ve yatırımcılara ödeme yapılamadığını açıkladı."
+  - "Şirketin sicil kaydı 5 Ekim 2026'da silindi, ilan ertesi gün Türkiye Ticaret Sicili Gazetesi'nde çıktı."
+  - "Kapanış bilançosunda tek varlık bankadaki 557,48 TL; özkaynaklar eksi 538.429,25 TL."
+  - "Şirket, pay sahiplerine dağıtılacak tasfiye bakiyesi kalmadığını ve yatırımcılara ödeme yapamadığını açıkladı."
   - "Gelir İdaresi'nin 20 Ekim 2026 tarihli yazısına göre şirketin vadesi geçmiş borcu yok."
-  - "Clicksy, 2022'de Fonbulucu'da 2,9 milyon TL hedefle çıktığı kampanyada 675 yatırımcıdan 3,06 milyon TL toplamıştı."
+  - "Clicksy 2022'de Fonbulucu'da 2,9 milyon TL hedefle çıkmış, 675 yatırımcıdan 3,06 milyon TL toplamıştı."
 ---
 
-Kitle fonlamasıyla yatırım alan Clicksy Yazılım Sanayi ve Ticaret A.Ş.'nin tasfiyesi tamamlandı. Şirket, 22 Ekim 2026 tarihli yatırımcı bilgilendirme notunda tasfiye sonunda pay sahiplerine dağıtılabilecek bir bakiye kalmadığını, bu yüzden yatırımcılara sermaye iadesi ya da tasfiye payı olarak ödeme yapılamadığını açıkladı. Not, şirketin eski yönetim kurulu başkanının imzasını taşıyor.
+Kitle fonlamasıyla 2022'de 675 yatırımcıdan para toplayan Clicksy Yazılım Sanayi ve Ticaret A.Ş.'nin tasfiyesi bitti. Şirket, yatırımcılarına gönderdiği 22 Ekim 2026 tarihli notta tasfiyeden pay sahiplerine dağıtılacak bir şey kalmadığını yazdı. Yatırımcılar ne sermaye iadesi ne de tasfiye payı alabildi. Notu şirketin eski yönetim kurulu başkanı imzaladı.
 
-İstanbul Ticaret Sicili Müdürlüğü, şirketin sicil kaydının terkinini 5 Ekim 2026'da tescil etti. 6 Ekim tarihli Türkiye Ticaret Sicili Gazetesi'ndeki ilana göre terkin sebebi genel kurul kararı; dayanak, şirketin 30 Eylül 2026 tarihli genel kurul kararı.
+Şirketin sicil kaydı, 30 Eylül 2026'daki genel kurul kararıyla silindi. İstanbul Ticaret Sicili Müdürlüğü terkini 5 Ekim'de tescil etti, ilan ertesi gün Türkiye Ticaret Sicili Gazetesi'nde çıktı.
 
-## Kapanış bilançosu
+## Bankada 557 lira kaldı
 
-Yatırımcılarla paylaşılan 5 Ekim 2026 tarihli tasfiye sonu kapanış bilançosunda şirketin tek varlığı bankadaki 557,48 TL. Kısa vadeli yabancı kaynaklar 538.986,73 TL; bunun 445.986,73 TL'si ortaklara borç, 93.000 TL'si ödenecek vergi ve fonlar. Özkaynaklar eksi 538.429,25 TL.
+Mali müşavir onaylı 5 Ekim 2026 tarihli kapanış bilançosuna göre şirketin tek varlığı bankadaki 557,48 TL. Karşısında 538.986,73 TL kısa vadeli borç duruyor: 445.986,73 TL'si ortaklara, 93.000 TL'si vergi ve fonlara. Özkaynaklar eksi 538.429,25 TL'ye inmiş.
 
-Özkaynak kalemlerinde ödenmiş sermaye 3.111.347 TL, maddi duran varlık yeniden değerleme artışı 64.632,52 TL olarak görünüyor. Geçmiş yıllar zararı 3.061.147,11 TL, son dönemin net zararı 653.261,66 TL.
+Bilançoda ödenmiş sermaye 3.111.347 TL, maddi duran varlık yeniden değerleme artışı 64.632,52 TL. Önceki yıllardan devreden zarar 3.061.147,11 TL'yi buluyor, son dönemin zararı 653.261,66 TL.
 
-9 Nisan ile 5 Ekim 2026 arasını kapsayan gelir tablosunda satış geliri yok. Bu dönemde 506.209,76 TL faaliyet gideri yazıldı; bunun 502.074,32 TL'si genel yönetim, 4.135,44 TL'si pazarlama, satış ve dağıtım gideri. 147.051,90 TL'lik olağandışı gider ve zararla birlikte dönem net zararı 653.261,66 TL oldu.
+Son dönem 9 Nisan ile 5 Ekim 2026 arasını kapsıyor ve gelir tablosunda brüt satış kârı sıfır. Giderler 506.209,76 TL'yi buldu, bunun 502.074,32 TL'si genel yönetim gideriydi. Pazarlama, satış ve dağıtıma 4.135,44 TL gitti. 147.051,90 TL'lik olağandışı gider ve zarar da eklenince dönem 653.261,66 TL zararla kapandı.
 
-Şirket notunda, tasfiye sırasında alacaklılara yönelik bildirim ve ilanların yapıldığını, tespit edilen borçların karşılandığını belirtti. Gelir İdaresi Başkanlığı Dijital Vergi Dairesi'nin 20 Ekim 2026 tarihli yazısına göre şirketin o tarih itibarıyla vadesi geçmiş borcu bulunmuyor.
+Şirket, tasfiye sırasında alacaklılara bildirim ve ilanları yaptığını, bulduğu borçları ödediğini söylüyor. Gelir İdaresi Başkanlığı Dijital Vergi Dairesi de 20 Ekim 2026 tarihli yazısında şirketin vadesi geçmiş borcu olmadığını bildirdi.
 
 ## 2022'de 675 yatırımcı
 
-Clicksy kitle fonlamasına 2022'de "Clicksy Fotoğraflarına Hayat Ver!" adlı kampanyayla çıktı. Fonbulucu'da 29 Ağustos ile 28 Ekim 2022 arasında açık kalan kampanyada hedef 2,9 milyon TL'ydi; 675 yatırımcı 3.061.347 TL yatırdı, bunların 127'si nitelikli yatırımcıydı.
+Clicksy, "Clicksy Fotoğraflarına Hayat Ver!" adlı kampanyasıyla 29 Ağustos 2022'de Fonbulucu'da yatırımcı karşısına çıktı. 28 Ekim'e kadar açık kalan kampanya 2,9 milyon TL hedefliyordu. 675 yatırımcı 3.061.347 TL yatırdı, bunların 127'si nitelikli yatırımcıydı.
 
-Kampanyada sermayenin yüzde 7,5'i satışa sunuldu, hedef tutar şirkete yaklaşık 38,7 milyon TL değer biçiyordu. C grubu paylar 12,43 TL'den dağıtıldı, fonlar 2 Aralık 2022'de şirkete aktarıldı. Kampanyanın ardından şirketin sermayesi 3.111.347 TL'ye çıktı; kapanış bilançosundaki ödenmiş sermaye de bu tutar.
+Şirket kampanyada sermayesinin yüzde 7,5'ini satışa sundu; hedef tutara göre şirketin değeri yaklaşık 38,7 milyon TL'ydi. C grubu paylar 12,43 TL'den dağıtıldı, para 2 Aralık 2022'de şirketin hesabına geçti. Sermaye kampanyadan sonra 3.111.347 TL'ye çıktı. Kapanış bilançosundaki ödenmiş sermaye de aynı rakam.
 
-Kampanya bilgileri ve paylara ilişkin kayıtlar [Clicksy sayfasında](/girisim/clicksy/) yer alıyor.
+Kampanyanın ayrıntıları ve paylara ilişkin kayıtlar [Clicksy sayfasında](/girisim/clicksy/).
