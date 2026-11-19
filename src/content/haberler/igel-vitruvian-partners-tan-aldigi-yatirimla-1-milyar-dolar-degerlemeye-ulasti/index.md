@@ -1,0 +1,18 @@
+---
+title: "Igel, Vitruvian Partners'tan aldığı yatırımla 1 milyar dolar değerlemeye ulaştı"
+description: "Uç nokta güvenlik yazılımı şirketi IGEL, Vitruvian Partners'tan aldığı stratejik yatırımın ardından 1 milyar doların üzerinde bir değerlemeye ulaştı."
+date: 2026-11-19T22:20:51+03:00
+category: yatirimlar
+girisim: "IGEL"
+yatirimcilar: "Vitruvian Partners, TA Associates"
+why_matters: "Siber güvenlik sektöründe uç nokta güvenliği ve iş sürekliliği çözümlerine olan küresel talebin arttığını gösteren bu yatırım, IGEL'in unicorn statüsüne yükselmesini sağlayarak enterprise siber güvenlik pazarındaki konumunu güçlendiriyor."
+key_points:
+  - "IGEL, Vitruvian Partners yatırımı sonrası 1 milyar doların üzerinde değerlemeye ulaştı."
+  - "Şirket son bir yılda yıllık tekrarlanan gelirini (ARR) %40'tan fazla artırdı."
+  - "İşlemin resmi onayların ardından 2027'nin ilk çeyreğinde tamamlanması öngörülüyor."
+kaynakIzi: "v1.t1yHJo1yB1vghDWj.FtKLSlqcIeSg+fLCDUON3pkNkXE7gGelxVZKmvqHWTSmh1CrZGQJv6pXJs1Vnu+XnKCk4mZ85I2m1zqEw4EhPC00FcVKE4GY6v0LDne5RHRN2UgaUYE4W1WBgDTTE5J4ivij22k1aj/5BDdb6Xcj+3PahA5bWR8IGRWj"
+haberDegeri: 80
+uretim: yapay-zeka
+---
+
+Uç nokta güvenlik yazılımı sağlayıcısı IGEL, Vitruvian Partners tarafından yapılan stratejik yatırımın ardından 1 milyar doların üzerinde bir değerlemeye ulaştı. Anlaşma kapsamında Vitruvian Partners, şirketin 2021 yılından bu yana hissedarı olan mevcut yatırımcı TA Associates'ın yanında yer alacak. Taraflar arasındaki finansal koşullar açıklanmazken, yatırım sürecinin yasal onayların alınmasına bağlı olarak 2027 yılının ilk çeyreğinde tamamlanması bekleniyor. IGEL, önleyici güvenlik, iş sürekliliği, felaket kurtarma ve operasyonel teknolojileri içeren geniş kapsamlı bir uç nokta platformu sunuyor. Sistem, uç nokta saldırı alanını sınırlamak ve yerel veri maruziyetini azaltmak amacıyla tasarlanan değiştirilemez bir işletim sistemiyle başlangıç yapıyor. Merkezi yönetilebilirlik ve bağlamsal kontrol mekanizmaları bulut hizmetlerine, sanal masaüstlerine, kurumsal tarayıcılara, yazılım servis uygulamalarına ve uyumlu çalışan diğer sistemlere erişimi doğrudan destekliyor. Şirketin sunduğu iş sürekliliği ile felaket kurtarma teknolojisi, fidye yazılımlarından, sistem kesintilerinden ve farklı aksaklıklardan olumsuz etkilenen destekli Windows uç noktaları için bir kurtarma yolu oluşturuyor. Güvenlik ve merkezi yönetim modeli, kesintisiz çalışmanın kritik önem taşıdığı imalat alanları ile operasyonel teknoloji ortamlarına da uygulanıyor. Geçen yıl yıllık tekrarlanan gelirlerinde %40'ın üzerinde büyüme kaydeden IGEL, elde edilen yeni kaynağı ürün inovasyonunu güçlendirmek, iş ortaklığı ağını geliştirmek ve uluslararası pazarlardaki genişlemesini hızlandırmak için kullanmayı planlıyor. Şirket, büyük uluslararası kurumlar ile devlet organları tarafından benimsenme oranının artmasıyla birlikte küresel ölçekteki genişlemesini hızlandırmayı hedefliyor. Vitruvian Partners bünyesinden Jack Alcock, kurumların Zero Trust stratejilerinde değiştirilemez uç noktaları bir bileşen olarak gördüğünü ve şirketin mevcut ürün paketiyle benzersiz bir fırsata sahip olduğunu söyledi. Vitruvian Partners'tan Tassilo Arnhold da pazar liderlerini küresel ölçekte destekleme konusundaki deneyimlerini aktaracaklarını belirtti. TA Associates yöneticileri Stefan Dandl ve John Meeks ise 2021 yılından bu yana platformunu geliştiren IGEL'in küresel büyüme yolculuğuna Vitruvian ile birlikte destek sunmaktan memnuniyet duyduklarını ifade etti. IGEL, Vitruvian ve TA ile birlikte küresel genişlemesini hızlandırarak kendisini işletmeler ve ülkelerin güvenlik stratejileri için temel bir platform olarak konumlandırmayı amaçlıyor.
