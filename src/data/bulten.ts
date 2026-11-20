@@ -1,7 +1,7 @@
 /**
  * Günlük kitle fonlama bülteni verisi ("Bugün" tablosu).
  * Otomatik Bot tarafından oluşturulmuştur.
- * Son güncelleme: 2026-11-20T13:01:08.696Z
+ * Son güncelleme: 2026-11-20T15:01:52.185Z
  */
 export interface Girisim {
   ad: string;
@@ -56,11 +56,11 @@ export const BULTEN = {
     {
         "ad": "VISITEXTRA",
         "platform": "fonangels",
-        "bugun": 71250,
-        "alinan": 1140650,
-        "kalan": 3859350,
+        "bugun": 72350,
+        "alinan": 1141750,
+        "kalan": 3858250,
         "degerleme": 50000000,
-        "yuzde": 22.81,
+        "yuzde": 22.83,
         "durum": "son 55 gün",
         "url": "https://fonangels.com/kampanyalar/projehakkinda/visitextra?pid=1803"
     },
@@ -88,12 +88,12 @@ export const BULTEN = {
     }
 ] as Girisim[],
   platformlar: {
-    bugun: 71250,
-    toplam: 13879050,
+    bugun: 72350,
+    toplam: 13880150,
     liste: [
     {
         "ad": "fonangels",
-        "toplam": 13879050,
+        "toplam": 13880150,
         "girisim": 3,
         "renk": "#f47b3d",
         "url": "https://fonangels.com"
@@ -119,12 +119,6 @@ export const BULTEN = {
         "platform": "ardventure",
         "url": "https://ardventure.com",
         "renk": "#e07a5f"
-    },
-    {
-        "ad": "NEUROX",
-        "platform": "fonangels",
-        "url": "https://fonangels.com/kampanyalar#yakinda-neurox",
-        "renk": "#f47b3d"
     },
     {
         "ad": "TWINUP",
