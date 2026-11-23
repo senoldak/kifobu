@@ -1,7 +1,7 @@
 /**
  * Günlük kitle fonlama bülteni verisi ("Bugün" tablosu).
  * Otomatik Bot tarafından oluşturulmuştur.
- * Son güncelleme: 2026-11-22T11:01:07.448Z
+ * Son güncelleme: 2026-11-23T07:02:07.444Z
  */
 export interface Girisim {
   ad: string;
@@ -39,8 +39,8 @@ export interface Yakinda {
 }
 
 export const BULTEN = {
-  tarih: '22 Kasım 2026',
-  sayi: 1566,
+  tarih: '23 Kasım 2026',
+  sayi: 1567,
   girisimler: [
     {
         "ad": "LOOPYON",
@@ -56,12 +56,12 @@ export const BULTEN = {
     {
         "ad": "VISITEXTRA",
         "platform": "fonangels",
-        "bugun": 52000,
-        "alinan": 1214750,
-        "kalan": 3785250,
+        "bugun": 23850,
+        "alinan": 1238600,
+        "kalan": 3761400,
         "degerleme": 50000000,
-        "yuzde": 24.29,
-        "durum": "son 53 gün",
+        "yuzde": 24.77,
+        "durum": "son 52 gün",
         "url": "https://fonangels.com/kampanyalar/projehakkinda/visitextra?pid=1803"
     },
     {
@@ -88,12 +88,12 @@ export const BULTEN = {
     }
 ] as Girisim[],
   platformlar: {
-    bugun: 52000,
-    toplam: 13953150,
+    bugun: 23850,
+    toplam: 13977000,
     liste: [
     {
         "ad": "fonangels",
-        "toplam": 13953150,
+        "toplam": 13977000,
         "girisim": 3,
         "renk": "#f47b3d",
         "url": "https://fonangels.com"
@@ -144,8 +144,8 @@ export const BULTEN = {
         "url": "https://fonventure.com/kampanya/9eade97b-9d7a-4962-bf2a-c49f9a312ee5",
         "hedef": 25000000,
         "degerleme": 192307692,
-        "onTalep": 3821500,
-        "onTalepKisi": 119,
+        "onTalep": 4006500,
+        "onTalepKisi": 121,
         "renk": "#4f46e5"
     }
 ] as Yakinda[],
