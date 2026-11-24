@@ -1,7 +1,7 @@
 /**
  * Günlük kitle fonlama bülteni verisi ("Bugün" tablosu).
  * Otomatik Bot tarafından oluşturulmuştur.
- * Son güncelleme: 2026-11-23T15:02:00.973Z
+ * Son güncelleme: 2026-11-24T07:02:13.214Z
  */
 export interface Girisim {
   ad: string;
@@ -39,8 +39,8 @@ export interface Yakinda {
 }
 
 export const BULTEN = {
-  tarih: '23 Kasım 2026',
-  sayi: 1567,
+  tarih: '24 Kasım 2026',
+  sayi: 1568,
   girisimler: [
     {
         "ad": "LOOPYON",
@@ -56,12 +56,12 @@ export const BULTEN = {
     {
         "ad": "VISITEXTRA",
         "platform": "fonangels",
-        "bugun": 26650,
+        "bugun": 0,
         "alinan": 1241400,
         "kalan": 3758600,
         "degerleme": 50000000,
         "yuzde": 24.82,
-        "durum": "son 52 gün",
+        "durum": "son 51 gün",
         "url": "https://fonangels.com/kampanyalar/projehakkinda/visitextra?pid=1803"
     },
     {
@@ -99,7 +99,7 @@ export const BULTEN = {
     }
 ] as Girisim[],
   platformlar: {
-    bugun: 26650,
+    bugun: 0,
     toplam: 13979800,
     liste: [
     {
@@ -162,15 +162,15 @@ export const BULTEN = {
         "url": "https://fonventure.com/kampanya/9eade97b-9d7a-4962-bf2a-c49f9a312ee5",
         "hedef": 25000000,
         "degerleme": 192307692,
-        "onTalep": 4016500,
-        "onTalepKisi": 123,
+        "onTalep": 4036500,
+        "onTalepKisi": 124,
         "renk": "#4f46e5"
     }
 ] as Yakinda[],
   mkk: {
     "platform": 18,
     "sirket": 180,
-    "yatirimci": 47235,
+    "yatirimci": 47236,
     "fon": "₺1,61 Milyar"
 },
 };

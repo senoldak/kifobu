@@ -1,5 +1,5 @@
 {
- "sonKesif": "2026-11-23",
+ "sonKesif": "2026-11-24",
  "kampanyalar": [
   {
    "ad": "VISITEXTRA",
@@ -18,7 +18,7 @@
    "onTalep": 4087000,
    "onTalepKisi": 255,
    "ilkGorulme": "2026-11-17",
-   "sonGorulme": "2026-11-23",
+   "sonGorulme": "2026-11-24",
    "bittiGorulme": null,
    "eksik": [],
    "kayipTur": 0
@@ -37,10 +37,10 @@
    "yatirimci": null,
    "nitelikli": null,
    "fonlandi": null,
-   "onTalep": 4016500,
-   "onTalepKisi": 123,
+   "onTalep": 4036500,
+   "onTalepKisi": 124,
    "ilkGorulme": "2026-11-18",
-   "sonGorulme": "2026-11-23",
+   "sonGorulme": "2026-11-24",
    "bittiGorulme": null,
    "eksik": [],
    "kayipTur": 0
@@ -62,7 +62,7 @@
    "onTalep": null,
    "onTalepKisi": null,
    "ilkGorulme": "2026-11-18",
-   "sonGorulme": "2026-11-23",
+   "sonGorulme": "2026-11-24",
    "bittiGorulme": null,
    "eksik": [],
    "kayipTur": 0,
@@ -85,7 +85,7 @@
    "onTalep": null,
    "onTalepKisi": null,
    "ilkGorulme": "2026-11-18",
-   "sonGorulme": "2026-11-23",
+   "sonGorulme": "2026-11-24",
    "bittiGorulme": null,
    "eksik": [],
    "kayipTur": 0,
@@ -108,7 +108,7 @@
    "onTalep": null,
    "onTalepKisi": null,
    "ilkGorulme": "2026-11-18",
-   "sonGorulme": "2026-11-23",
+   "sonGorulme": "2026-11-24",
    "bittiGorulme": null,
    "eksik": [],
    "kayipTur": 0,
@@ -131,7 +131,7 @@
    "onTalep": null,
    "onTalepKisi": null,
    "ilkGorulme": "2026-11-23",
-   "sonGorulme": "2026-11-23",
+   "sonGorulme": "2026-11-24",
    "bittiGorulme": null,
    "eksik": [
     "degerleme"
