@@ -53,7 +53,7 @@ test('denetle: redaksiyon her haberde ayrı çağrılır; sistem istemi ortak ku
     const { istek, istem } = s.istemler[0];
     assert.match(istek.systemInstruction.parts[0].text, /kıdemli redaktörsün/);
     assert.match(istek.systemInstruction.parts[0].text, /%40/);
-    assert.equal(istek.generationConfig.temperature, 0.2);
+    assert.equal(istek.generationConfig.temperature, undefined); // sıcaklık gönderilmez (24 Kasım 2026)
     assert.equal(istek.generationConfig.thinkingConfig?.thinkingLevel, 'medium');
     assert.match(istem, /KAYNAKLAR/);
     assert.deepEqual(r.sorunlar, []);

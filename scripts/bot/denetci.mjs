@@ -383,7 +383,7 @@ async function redakteCagri(h, { derleme, kaynak, sorunlar, retNedenleri }) {
     sistem: `${REDAKSIYON_KURALLARI_TR}\n\n${KIFOBU_DIL_EKI}\n- Paragraf yapısı: ${yapi}.`,
     schema: METIN_SEMASI,
     dusunme: 'medium',
-    sicaklik: 0.2,
+    sicaklik: null, // Sıcaklık gönderilmez (null): Gemini 3'te düşük sıcaklık redaksiyonu kaçak yanıta sokuyordu (24 Kasım 2026).
     prompt: `Aşağıdaki haberin SADECE dilini düzelt. Olgu, rakam, ad, tarih ve alıntı içeriği kaynakla birebir uyumlu kalmalı; metin zaten doğruysa aynen geri ver.
 ${liste ? `\nKodun bulduğu dil sorunları (hepsini gider):\n${liste}\n` : ''}${retNedenleri.length ? `\nÖnceki redaksiyon reddedildi; bu sefer şunlara dikkat et:\n${retNedenleri.map((n) => `- ${n}`).join('\n')}\n` : ''}
 KAYNAKLAR (olguları doğrulamak için; metne ekleme yapma):
