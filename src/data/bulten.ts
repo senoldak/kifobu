@@ -1,7 +1,7 @@
 /**
  * Günlük kitle fonlama bülteni verisi ("Bugün" tablosu).
  * Otomatik Bot tarafından oluşturulmuştur.
- * Son güncelleme: 2026-11-24T11:01:11.074Z
+ * Son güncelleme: 2026-11-24T15:01:59.291Z
  */
 export interface Girisim {
   ad: string;
@@ -162,8 +162,8 @@ export const BULTEN = {
         "url": "https://fonventure.com/kampanya/9eade97b-9d7a-4962-bf2a-c49f9a312ee5",
         "hedef": 25000000,
         "degerleme": 192307692,
-        "onTalep": 4036500,
-        "onTalepKisi": 124,
+        "onTalep": 4041500,
+        "onTalepKisi": 125,
         "renk": "#4f46e5"
     }
 ] as Yakinda[],
