@@ -1,7 +1,7 @@
 /**
  * Günlük kitle fonlama bülteni verisi ("Bugün" tablosu).
  * Otomatik Bot tarafından oluşturulmuştur.
- * Son güncelleme: 2026-11-24T07:02:13.214Z
+ * Son güncelleme: 2026-11-24T11:01:11.074Z
  */
 export interface Girisim {
   ad: string;
@@ -56,11 +56,11 @@ export const BULTEN = {
     {
         "ad": "VISITEXTRA",
         "platform": "fonangels",
-        "bugun": 0,
-        "alinan": 1241400,
-        "kalan": 3758600,
+        "bugun": 750,
+        "alinan": 1242150,
+        "kalan": 3757850,
         "degerleme": 50000000,
-        "yuzde": 24.82,
+        "yuzde": 24.84,
         "durum": "son 51 gün",
         "url": "https://fonangels.com/kampanyalar/projehakkinda/visitextra?pid=1803"
     },
@@ -99,12 +99,12 @@ export const BULTEN = {
     }
 ] as Girisim[],
   platformlar: {
-    bugun: 0,
-    toplam: 13979800,
+    bugun: 750,
+    toplam: 13980550,
     liste: [
     {
         "ad": "fonangels",
-        "toplam": 13979800,
+        "toplam": 13980550,
         "girisim": 3,
         "renk": "#f47b3d",
         "url": "https://fonangels.com"
