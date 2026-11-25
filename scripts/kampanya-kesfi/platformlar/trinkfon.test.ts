@@ -124,7 +124,9 @@ test('liste: bağlantısız kart atlanır, bozuk yüzde kodlu slug düşürmez',
 test('detay: Fonlama sekmesinden değerleme ve arz oranı (GoVito)', () => {
   const ana = oku('trinkfon-govito.html');
   const d = trinkfon.detay(`${ana}\n${oku('trinkfon-govito-fonlama.html')}`);
+  assert.equal(d.ad, 'GoVito'); // Fonlama sekmesinin <h1>'i ("Fonlama") ad sayılmaz
   assert.equal(d.hedef, 2500000);
+  assert.equal(d.kalanGun, null); // "1 Gün Var / Yakında" başlangıca kalan gündür
   assert.equal(d.degerleme, 71389000); // yatırım sonrası değer
   assert.equal(d.arzOrani, 0.035);
   assert.equal(d.baslangic, '2026-11-26');
@@ -140,4 +142,9 @@ test('ekSayfalar: kampanya adresinden Fonlama sekmesi', () => {
     'https://kfs.trinkfon.com/projeler/govito-tek-tikla-guvenilir-vip-transfer/kampanya/fonlama/',
   ]);
   assert.deepEqual(trinkfon.ekSayfalar!('https://ornek.com/projeler/x/kampanya/'), []);
+});
+
+test('detay: açık kampanyada "N Gün Var" kalan gün sayılır', () => {
+  const ana = oku('trinkfon-govito.html').replace(/>\s*Yakında\s*</, '>Devam Ediyor<');
+  assert.equal(trinkfon.detay(ana).kalanGun, 1);
 });

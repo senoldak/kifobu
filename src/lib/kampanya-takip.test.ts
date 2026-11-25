@@ -131,6 +131,24 @@ test('kesfiUygula 7: yakında kayıt aktife geçer', () => {
   assert.ok(r.olaylar.some((x) => x.tur === 'aktife-gecti'));
 });
 
+test('kesfiUygula 7b: liste aktif dese de başlangıcı gelmemiş, para toplamamış kampanya yakında sayılır', () => {
+  const bekleyen = detay({ baslangic: '2026-11-20', bitis: '2027-01-20', toplanan: 0, kalanGun: null });
+  // Yeni kayıt
+  const yeni = uygula(takip(), [tekListe('alfa', U1, 'aktif', bekleyen)]);
+  assert.equal(yeni.takip.kampanyalar[0].durum, 'yakinda');
+  // Aktif sanılmış mevcut kayıt yakına döner, olay üretmez
+  const mevcut = uygula(takip([kayit({ toplanan: 0, baslangic: '2026-11-20' })]), [tekListe('alfa', U1, 'aktif', bekleyen)]);
+  assert.equal(mevcut.takip.kampanyalar[0].durum, 'yakinda');
+  assert.equal(mevcut.olaylar.length, 0);
+  // Başlangıç günü gelince aktife geçer
+  const basladi = uygula(mevcut.takip, [tekListe('alfa', U1, 'aktif', bekleyen)], { gun: '2026-11-20' });
+  assert.equal(basladi.takip.kampanyalar[0].durum, 'aktif');
+  assert.ok(basladi.olaylar.some((x) => x.tur === 'aktife-gecti'));
+  // Para toplamaya başlamışsa tarih ne derse desin aktiftir
+  const parali = uygula(takip(), [tekListe('alfa', U1, 'aktif', detay({ baslangic: '2026-11-20', toplanan: 5000 }))]);
+  assert.equal(parali.takip.kampanyalar[0].durum, 'aktif');
+});
+
 test('kesfiUygula 8: detay bitti derse durum bitti, olay yalnız ilk kez', () => {
   const s = () => [tekListe('alfa', U1, 'aktif', detay({ bitti: true }))];
   const r1 = uygula(takip([kayit()]), s());

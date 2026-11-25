@@ -267,6 +267,8 @@ export function kesfiUygula(a: {
     k.onTalep = d.onTalep ?? k.onTalep ?? null;
     k.onTalepKisi = d.onTalepKisi ?? k.onTalepKisi ?? null;
     k.eksik = eksikler(k);
+    // Platform listesi "aktif" dese de fonlaması başlamamış (başlangıcı gelecekte, toplanan yok) kayıt yakında sayılır.
+    if (k.durum === 'aktif' && bolum === 'yakinda' && !k.toplanan) k.durum = 'yakinda';
     if (gecis) {
       k.durum = 'aktif';
       olayEkle({ tur: 'aktife-gecti', anahtar: `${platform}:aktife-gecti:${an}`, metin: olayMetni('Kampanya aktife geçti.', k) + (k.hedef === null ? HEDEFSIZ_NOT : '') });
@@ -353,6 +355,9 @@ ${liste.url.split('#')[0]}`,
 
       const d = s.detaylar[an] ?? null;
       const mevcut = dizin.get(an);
+      // Liste "aktif" dese de başlangıç tarihi gelmemiş ve para toplamamış kampanya henüz yakındadır.
+      const bolum: Bolum =
+        liste.bolum === 'aktif' && d?.baslangic && d.baslangic > gun && !d.toplanan ? 'yakinda' : liste.bolum;
 
       if (mevcut) {
         // Biten kaydın sayfası getirilmez; ne birleştirme ne alarm ne de sayaç değişir.
@@ -363,7 +368,7 @@ ${liste.url.split('#')[0]}`,
           bozuk(s.platform, 'kampanya sayfası açılamadı');
           continue;
         }
-        detayiIsle(mevcut, d, liste.bolum, s.platform, an);
+        detayiIsle(mevcut, d, bolum, s.platform, an);
         continue;
       }
 
@@ -373,7 +378,7 @@ ${liste.url.split('#')[0]}`,
         continue;
       }
       if (d.bitti) continue;
-      if (liste.bolum === 'yakinda' && d.bitis !== null && d.bitis < gun) {
+      if (bolum === 'yakinda' && d.bitis !== null && d.bitis < gun) {
         olayEkle({
           tur: 'eski-kart',
           anahtar: `${s.platform}:eski-kart:${an}`,
@@ -383,12 +388,12 @@ ${liste.url}`,
         });
         continue;
       }
-      if (liste.bolum === 'aktif' && d.bitis !== null && d.bitis < gun) continue;
+      if (bolum === 'aktif' && d.bitis !== null && d.bitis < gun) continue;
       const k: TakipKaydi = {
         ad: yeniAd(liste, d),
         platform: s.platform,
         url: liste.url,
-        durum: liste.bolum,
+        durum: bolum,
         hedef: d.hedef,
         arzOrani: d.arzOrani,
         degerleme: degerlemeHesapla(d),

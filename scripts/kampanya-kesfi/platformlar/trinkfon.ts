@@ -45,6 +45,8 @@ function fonlama(t: string, hedef: number | null): { degerleme: number | null; a
 
 function detay(html: string): KampanyaDetay {
   const t = metne(html);
+  // Ek sayfa (Fonlama sekmesi) kendi <h1>'ini taşır; ad yalnız ana sayfadan okunur.
+  const ana = html.split(/(?=<!DOCTYPE)/i).find((p) => p.trim()) ?? html;
   // Bitiş yalnız platformun kendi durum öğelerinden okunur (düğme alanı ve durum başlığı), açıklama metninden değil.
   const bitti =
     />\s*Fonlama sona erdi\s*</i.test(html) || /<h4\b[^>]*>\s*Kampanya\s+Sona Erdi\s*<\/h4>/i.test(html);
@@ -55,11 +57,13 @@ function detay(html: string): KampanyaDetay {
   // Kalan gün / son gün de yalnız durum alanlarından okunur: yatırım düğmesi alanı ile "Kampanya Durumu" kartı.
   const durumMetni = durumAlanlari(html);
   const sonGun = !bitti && /SON GÜN|Son Gün/.test(durumMetni);
-  const gun = bitti ? null : durumMetni.match(/(\d+)\s*g[uü]n\s*kald/i);
+  // "Yakında" iken sayaç başlangıca kalan gündür, bitişe değil.
+  const yakinda = /Yakında/.test(durumMetni);
+  const gun = bitti || yakinda ? null : durumMetni.match(/(\d+)\s*g[uü]n\s*(?:kald|var)/iu);
   const kalanGun = bitti ? null : gun ? Number(gun[1]) : sonGun ? 0 : null;
 
   return {
-    ad: girisimAdi(html),
+    ad: girisimAdi(ana),
     onTalep: null,
     onTalepKisi: null,
     hedef,
