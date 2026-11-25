@@ -13,7 +13,7 @@ import { YAZIM_KURALLARI } from './yazar.mjs';
 import { ZAMAN, MEDYA, medyaGizle, yerelDuzelt, ilgiliKisim } from './yerel.mjs';
 import { olcekKontrol } from './olcek.mjs';
 import { dilDuzeltTr, dilSorunlariTr, kesinSorunlar, sorunListesi, REDAKSIYON_KURALLARI_TR } from './dil-tr.mjs';
-import { DUZELTME_SEMASI, duzeltmeBicimi, duzeltmeleriUygula } from './duzeltme.mjs';
+import { DUZELTME_SEMASI, duzeltmeBicimi, duzeltmeleriUygula, govdeSiniri } from './duzeltme.mjs';
 
 const SON_TUR = 3;
 const CALISMADI = 'Yazı işleri kontrolü çalıştırılamadı';
@@ -414,7 +414,7 @@ export async function redakteDene(h, kaynak, { derleme = false, uzunluk = {}, so
   let retNedenleri = [];
   for (let deneme = 1; deneme <= 2; deneme++) {
     const r = await redakteCagri(h, { derleme, kaynak, sorunlar, retNedenleri });
-    const u = r && Array.isArray(r.duzeltmeler) ? duzeltmeleriUygula({ title: h.title ?? '', description: h.description ?? '', body: h.body ?? '' }, r.duzeltmeler) : null;
+    const u = r && Array.isArray(r.duzeltmeler) ? duzeltmeleriUygula({ title: h.title ?? '', description: h.description ?? '', body: h.body ?? '' }, r.duzeltmeler, { sinirlar: { body: govdeSiniri(h.body, uzunluk.enAz ?? EN_AZ_KELIME) } }) : null;
     // Uygulanabilir düzeltme yoksa metin olduğu gibi kalır (düzeltilecek bir şey bulunmadı).
     if (u && !u.uygulanan) return { haber: h, kabul: true, nedenler: [] };
     const yeni = u ? dilDuzeltHaber({ ...h, ...u.alanlar }) : null;
