@@ -39,3 +39,10 @@ Yeni karar, GSYF istisnasını bu iki durumla sınırlı olarak geri getiriyor. 
 | Finansal varlıklar | 1 milyon TL | 10 milyon TL | 50 milyon TL |
 
 Tutarlar, III-39.1 sayılı Yatırım Kuruluşlarının Kuruluş ve Faaliyet Esasları Hakkında Tebliğ'in 31. maddesinin birinci fıkrasının (d) bendinde ve 32. maddesinin birinci fıkrasının (a) ve (b) bentlerinde yer alıyor. SPK bülteninde, değişikliklerin işlendiği Rehber'in güncel hâlinin Kurul'un internet sitesinde yayımlandığı belirtildi.
+
+## Kaynaklar
+
+- [SPK Bülteni 2026/85, 25 Kasım 2026 (i-SPK.37.11)](https://spk.gov.tr/data/6b074a0b8f95db1270c37ee7/2026-85.pdf)
+- [SPK Bülteni 2026/74, 26 Ekim 2026 (i-SPK.37.10)](https://spk.gov.tr/data/6adf00818f95db2330f22009/2026-74.pdf)
+- [SPK basın duyurusu, 26 Ekim 2026](https://spk.gov.tr/duyurular/basin-duyurulari/2026/basin-duyurusu_2)
+- [Yatırım Hizmet ve Faaliyetleri ile Yatırım Kuruluşlarına İlişkin Rehber (i-SPK.37.10 sürümü)](https://spk.gov.tr/data/6adefc6e8f95db2330f21ff8/9%20Yat%C4%B1r%C4%B1m%20Hizmetleri%20ve%20Kurulu%C5%9Flar%C4%B1%20Rehberi%20(i-SPK.37.10)%20v3.pdf)
