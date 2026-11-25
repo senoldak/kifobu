@@ -33,7 +33,7 @@ export const PLATFORM_AYARLARI: Record<string, PlatformAyar> = {
   trinkfon: { ad: 'trinkfon', renk: '#7c3aed', url: 'https://kfs.trinkfon.com' },
   ecofolio: { ad: 'ecofolio', renk: '#009bae', url: 'https://ecofolio.com.tr' },
   fonventure: { ad: 'fonventure', renk: '#4f46e5', url: 'https://fonventure.com' },
-  ardventure: { ad: 'ardventure', renk: '#e07a5f', url: 'https://ardventure.com' },
+  ardventure: { ad: 'ardventure', renk: '#e07a5f', url: 'https://kf.ardventure.com.tr' },
   // Renkler platformun kendi sitesinin stilinden: startupburada .btn-default.primary (--Blue), birikimfon başlık düğmesi
   // (.header-style-two .btn-style-two), fongogo --ocean değişkeni.
   startupburada: { ad: 'startupburada', renk: '#2f41d1', url: 'https://www.startupburada.com' },
@@ -46,8 +46,6 @@ export const PLATFORM_AYARLARI: Record<string, PlatformAyar> = {
 /** Otomatik keşfe elle müdahale: ekle (listede görünmeyenler), çıkar (URL), düzelt (URL -> alan değişiklikleri). */
 export const EL_LISTESI: ElListesi = {
   ekle: [
-    { ad: 'NARPOS', platform: 'ardventure', url: 'https://ardventure.com', bolum: 'yakinda' },
-    { ad: 'NEURATURK', platform: 'ardventure', url: 'https://ardventure.com', bolum: 'yakinda' },
     // Biten kampanyalar bültende "SONA ERDİ" olarak bir süre kalsın (sahibinin isteği, 18 Kasım). Arşiv kaydı ayrı, etkilenmez.
     { ad: 'ATHLETICLABS', platform: 'fonangels', url: 'https://fonangels.com/kampanyalar/projehakkinda/athleticlabs?pid=1689', bolum: 'aktif', hedef: 7_500_000, degerleme: 75_000_000 },
     { ad: 'OYLİO', platform: 'fonangels', url: 'https://fonangels.com/kampanyalar/projehakkinda/oylio?pid=1778', bolum: 'aktif', hedef: 5_000_000, degerleme: 50_000_000 },
