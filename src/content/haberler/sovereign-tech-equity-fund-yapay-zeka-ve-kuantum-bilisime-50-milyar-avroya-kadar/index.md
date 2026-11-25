@@ -1,0 +1,15 @@
+---
+title: "Sovereign Tech Equity Fund yapay zekâ ve kuantum bilişime 50 milyar avroya kadar finansman sağlayabilir"
+description: "Avrupa Komisyonu dokümanlarında ortaya çıkan Sovereign Tech Equity Fund, stratejik teknolojilere 50 milyar avroya kadar kamu desteği aktarmayı hedefliyor."
+date: 2026-11-25T14:21:01+03:00
+category: mevzuat
+why_matters: "Avrupa ekosistemindeki derin büyüme sermayesi açığını kapatmayı hedefleyen bu dev kamu fonu, Avrupalı derin teknoloji girişimlerinin ABD'li yatırımcılara bağımlı kalmadan ölçeklenmesine olanak tanıyabilir."
+key_points:
+  - "AB, yapay zekâ ve kuantum teknolojileri için 50 milyar avroluk Sovereign Tech Equity Fund'ı planlıyor."
+  - "Atomico verilerine göre ABD, yapay zekâya dokuz ayda Avrupa'nın 10 yılda yatırdığı sermayenin beş katını aktardı."
+kaynakIzi: "v1.Mib1ajZ83Uzft2vG.9FLOX9vjE0QUAilBkWaNC+imn9PRxFc4RewEofxR/x9nWaZCT9lK+tHZes6sqKKukTrfLEKMrELHyg7fBbuexr9QD9Csp9TCbMvDpagxqQ0AQOBfnWhigjjapGQGH8y+Gp2O4xlgteBa/Aaf6PR7KNE+ti1en0VP4/Y7kPYtf8A="
+haberDegeri: 90
+uretim: yapay-zeka
+---
+
+Sovereign Tech Equity Fund, yapay zekâ ve kuantum bilişim alanında faaliyet gösteren şirketlere 50 milyar avroya kadar finansman sağlayabilir. Avrupa Komisyonu belgesinde yer alan bu kamu aracı, kritik teknolojilerde dışa bağımlılığı azaltmayı hedefliyor. Finansal kaynağın net büyüklüğü resmi belgede açıklanmasa da görüşmelere katılan yetkililerin aktardığı bilgilere göre toplam tutarın 50 milyar avro seviyesine ulaşabileceği belirtiliyor. Yeni fon, araştırma ve özel merkezlerdeki mühendislik süreçlerinden sonraki pazara giriş aşamasını destekleyen son basamak olarak tanımlanıyor. Bütçenin üye devletlerden, topluluk kaynaklarından veya banka kanallarından sağlanabileceği ifade ediliyor. Mevcut destek programlarına kıyasla daha büyük ölçekli, yüksek riskli ve uzun vadeli hisse alımları yapması planlanan yapıya ilişkin ayrıntıların yılın ilk aylarında netleşmesi bekleniyor. Sermaye desteğinin arkasında ABD ile yaşanan derin kaynak farkı bulunuyor. Atomico raporuna göre ABD'de dokuz ayda yapay zekâ sektörüne aktarılan miktar, bölgede on yılda sağlanan toplam tutarın beş katına ulaştı. Büyük finansman turlarında şirketlerin okyanus ötesi kaynaklara yönelmesi, büyüme aşamasındaki girişimlerin merkezlerini yurt dışına taşımasıyla sonuçlanıyor. Mevcut mekanizmalardan ayrışan Sovereign Tech Equity Fund, doğrudan büyük paylar alabilen bir kamu aracı olarak tasarlanıyor. Örneğin Komisyonun 1 milyar avro katkı sunduğu 5 milyar avroluk Scaleup Europe Fund ile 80 milyar avroluk kaynak hareketliliği hedefleyen European Tech Champions Initiative 2, girişimlere dolaylı destek veriyor. Yeni yapı ise doğrudan yüksek tutarlı sermaye aktarımı yapabilecek. Jacques Delors Centre analizi, doğrudan kamu hisse alımlarının 30 milyon avro sınırına takıldığını ve yeni modelin bu boşluğu doldurabileceğini gösteriyor. Buna karşın uzmanlar, ticari kriterler yerine siyasi kararlarla hareket edilmesi halinde risk sermayesi piyasasının dengesizleşebileceğine dikkat çekiyor. Ayrıca yetenek eksikliği ve parçalı pazar yapısının sadece parasal kaynakla çözülemeyeceği de vurgulanıyor.
