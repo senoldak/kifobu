@@ -1,7 +1,7 @@
 /**
  * Günlük kitle fonlama bülteni verisi ("Bugün" tablosu).
  * Otomatik Bot tarafından oluşturulmuştur.
- * Son güncelleme: 2026-11-25T07:02:04.234Z
+ * Son güncelleme: 2026-11-25T11:01:15.568Z
  */
 export interface Girisim {
   ad: string;
@@ -126,18 +126,6 @@ export const BULTEN = {
 ] as Platform[],
   },
   yakinda: [
-    {
-        "ad": "NARPOS",
-        "platform": "ardventure",
-        "url": "https://ardventure.com",
-        "renk": "#e07a5f"
-    },
-    {
-        "ad": "NEURATURK",
-        "platform": "ardventure",
-        "url": "https://ardventure.com",
-        "renk": "#e07a5f"
-    },
     {
         "ad": "TWINUP",
         "platform": "fonbulucu",
