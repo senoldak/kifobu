@@ -26,7 +26,9 @@ const yediYakinda = ['NARPOS', 'NEURATURK', 'NEUROX', 'QUAD ROBOTICS', 'TWINUP',
 
 for (const mod of ['post', 'story'] as const) {
   test(`yakında bölümü ${mod}: üçten fazla kampanyanın hepsi çizilir, MKK boşluğu korunur`, () => {
-    const s = bultenSvgCiz(mod, { ...BULTEN, yakinda: yediYakinda });
+    // Günlük bülten verisine bağlı kalmasın: kart sayısı sabit (iki kampanya). Kart çoğalınca kutuların "+N" ile
+    // özetlenmesi tasarım gereğidir, onu "taşma" testleri sınar.
+    const s = bultenSvgCiz(mod, { ...BULTEN, girisimler: BULTEN.girisimler.slice(0, 2), yakinda: yediYakinda });
     for (const y of yediYakinda) assert.match(s, new RegExp(`data-yakinda="${y.ad}"`));
     assert.ok(oznitelik(s, 'mkk-alt') + 24 <= oznitelik(s, 'alt-ust'));
   });
