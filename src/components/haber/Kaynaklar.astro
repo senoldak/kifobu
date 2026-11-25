@@ -1,18 +1,27 @@
 ---
-// Haberin kaynakları: yalın atıf, yayının adı ve haberine bağlantı (rel="nofollow noopener"), yorum ya da övgü yok.
-// Liste src/lib/kaynaklar.mjs'ten; boşsa bölüm yok. Haber metninde yayın adı geçmez, yalnız burada ve başlık altında.
+// Haberin kaynakları. Resmî kaynaklar (frontmatter `kaynaklar`: kurum duyurusu, bülten, mevzuat) önce, nofollow'suz.
+// Medya kaynakları yalın atıf: yayının adı ve haberine bağlantı (rel="nofollow noopener"), yorum ya da övgü yok; liste
+// src/lib/kaynaklar.mjs'ten. İkisi de boşsa bölüm yok. Haber metninde yayın adı geçmez, yalnız burada ve başlık altında.
 interface Props {
   kaynaklar: { ad: string; url: string }[];
+  resmi?: { ad: string; url: string }[];
 }
-const { kaynaklar } = Astro.props;
+const { kaynaklar, resmi = [] } = Astro.props;
 const alan = (u: string) => new URL(u).hostname.replace(/^www\./, '');
+const toplam = kaynaklar.length + resmi.length;
 ---
 
 {
-  kaynaklar.length > 0 && (
+  toplam > 0 && (
     <section class="yh-kaynaklar" id="kaynaklar" aria-labelledby="kaynaklar-b">
-      <h2 class="yh-etiket" id="kaynaklar-b">{kaynaklar.length === 1 ? 'Kaynak' : 'Kaynaklar'}</h2>
+      <h2 class="yh-etiket" id="kaynaklar-b">{toplam === 1 ? 'Kaynak' : 'Kaynaklar'}</h2>
       <ol>
+        {resmi.map((k) => (
+          <li>
+            <a href={k.url} rel="noopener" target="_blank">{k.ad}</a>
+            <span>{alan(k.url)}</span>
+          </li>
+        ))}
         {kaynaklar.map((k) => (
           <li>
             <a href={k.url} rel="nofollow noopener" target="_blank">{k.ad}</a>
@@ -20,7 +29,9 @@ const alan = (u: string) => new URL(u).hostname.replace(/^www\./, '');
           </li>
         ))}
       </ol>
-      <p>Bu haberi {kaynaklar.length === 1 ? 'bu yayının haberinden' : 'bu yayınların haberlerinden'} yararlanarak kendi cümlelerimizle yazdık.</p>
+      {kaynaklar.length > 0 && (
+        <p>Bu haberi {kaynaklar.length === 1 ? 'bu yayının haberinden' : 'bu yayınların haberlerinden'} yararlanarak kendi cümlelerimizle yazdık.</p>
+      )}
     </section>
   )
 }

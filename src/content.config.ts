@@ -50,6 +50,9 @@ const haberler = defineCollection({
       key_points: z.array(z.string()).optional(),
       // Botun kullandığı kaynakların şifreli kaydı; sitede gösterilmez (bkz. scripts/bot/gizli.mjs).
       kaynakIzi: z.string().optional(),
+      // Resmî kaynaklar (kurum duyurusu, bülten, mevzuat): sayfanın sonundaki "Kaynaklar" bölümünde adıyla ve bağlantısıyla,
+      // nofollow'suz. Medya kaynakları burada değil, şifreli izden çözülür (src/lib/kaynaklar.mjs).
+      kaynaklar: z.array(z.object({ ad: z.string().min(1), url: z.string().url().startsWith('https://') })).default([]),
       // 'yazi-isleri': yazı işleri zincirinin yazısı (yerleştirme yazar); sayfa sonunda zincir notunu alır (src/lib/yapay-zeka-notu.ts).
       uretim: z.enum(['editor', 'yapay-zeka', 'yazi-isleri']).default('editor'),
       // Botun verdiği haber değeri (0–100, eşik 55); "Bu haber nasıl hazırlandı" kartında gösterilir. Eski haberlerde yok.
