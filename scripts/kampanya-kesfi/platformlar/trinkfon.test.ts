@@ -120,3 +120,24 @@ test('liste: bağlantısız kart atlanır, bozuk yüzde kodlu slug düşürmez',
   assert.equal(k.length, 1);
   assert.equal(k[0].ad, 'bozuk%E0%A4%A');
 });
+
+test('detay: Fonlama sekmesinden değerleme ve arz oranı (GoVito)', () => {
+  const ana = oku('trinkfon-govito.html');
+  const d = trinkfon.detay(`${ana}\n${oku('trinkfon-govito-fonlama.html')}`);
+  assert.equal(d.hedef, 2500000);
+  assert.equal(d.degerleme, 71389000); // yatırım sonrası değer
+  assert.equal(d.arzOrani, 0.035);
+  assert.equal(d.baslangic, '2026-11-26');
+  assert.equal(d.bitis, '2027-01-25');
+  // Fonlama sekmesi yoksa uydurulmaz
+  const yalniz = trinkfon.detay(ana);
+  assert.equal(yalniz.degerleme, null);
+  assert.equal(yalniz.arzOrani, null);
+});
+
+test('ekSayfalar: kampanya adresinden Fonlama sekmesi', () => {
+  assert.deepEqual(trinkfon.ekSayfalar!('https://kfs.trinkfon.com/projeler/govito-tek-tikla-guvenilir-vip-transfer/kampanya/'), [
+    'https://kfs.trinkfon.com/projeler/govito-tek-tikla-guvenilir-vip-transfer/kampanya/fonlama/',
+  ]);
+  assert.deepEqual(trinkfon.ekSayfalar!('https://ornek.com/projeler/x/kampanya/'), []);
+});

@@ -1,5 +1,5 @@
 import type { Bolum, KampanyaDetay, ListeKaydi, Okuyucu } from '../../../src/lib/kampanya-takip.ts';
-import { metne, para, tamSayi, tarih } from '../ayristir.ts';
+import { metne, oran, para, tamSayi, tarih } from '../ayristir.ts';
 
 /** Tutarı okur; ondalıklı ("1.234,56") ise para() yanlış sayı üreteceğinden null döner. */
 function tutar(s: string | null): number | null {
@@ -33,6 +33,16 @@ function durumAlanlari(html: string): string {
   return metne(`${dugme} ${kart}`);
 }
 
+/** "Fonlama" sekmesindeki değerleme tablosu (ekSayfalar ile gelir). Değerleme = yatırım sonrası değer; sayfa yalnız
+ *  öncesini yazıyorsa öncesi + hedef. Arz oranı, ortaklık tablosundaki kitle fonlaması yatırımcılarının payıdır. */
+function fonlama(t: string, hedef: number | null): { degerleme: number | null; arzOrani: number | null } {
+  const sonrasi = tutar(alan(t, /Yatırım sonrası \(post-money\) şirket değeri\s*(\d[\d.,]*)\s*(?:TL|₺)/i));
+  const oncesi = tutar(alan(t, /Yatırım öncesi \(pre-money\) şirket değeri\s*(\d[\d.,]*)\s*(?:TL|₺)/i));
+  const degerleme = sonrasi ?? (oncesi !== null && hedef !== null ? oncesi + hedef : null);
+  const arzOrani = oran(alan(t, /Kitle Fonlaması Yatırımcıları\s+[^%]{0,80}?(%\s?[\d.,]+)/));
+  return { degerleme, arzOrani };
+}
+
 function detay(html: string): KampanyaDetay {
   const t = metne(html);
   // Bitiş yalnız platformun kendi durum öğelerinden okunur (düğme alanı ve durum başlığı), açıklama metninden değil.
@@ -53,8 +63,7 @@ function detay(html: string): KampanyaDetay {
     onTalep: null,
     onTalepKisi: null,
     hedef,
-    arzOrani: null,
-    degerleme: null,
+    ...fonlama(t, hedef),
     baslangic: tarih(alan(t, new RegExp(`Kampanya Başlangıç\\s+${TARIH}`, 'u'))),
     bitis: tarih(alan(t, new RegExp(`Kampanya Bitiş\\s+${TARIH}`, 'u'))),
     toplanan,
@@ -106,9 +115,16 @@ function liste(html: string, listeUrl: string): ListeKaydi[] {
   return sonuc;
 }
 
+/** Kampanya adresinden (`.../projeler/<slug>/kampanya/`) "Fonlama" sekmesinin adresini üretir; adres uymazsa []. */
+function ekSayfalar(url: string): string[] {
+  const m = url.match(/^(https:\/\/kfs\.trinkfon\.com\/projeler\/[^/?#]+\/kampanya)\/?$/);
+  return m ? [`${m[1]}/fonlama/`] : [];
+}
+
 export const trinkfon: Okuyucu = {
   platform: 'trinkfon',
   listeUrller: ['https://kfs.trinkfon.com/projeler/'],
   liste,
   detay,
+  ekSayfalar,
 };
