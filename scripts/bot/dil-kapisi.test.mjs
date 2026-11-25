@@ -31,6 +31,9 @@ function sahte(redaksiyonlar) {
   return { istemler, geri: () => (globalThis.fetch = gercek) };
 }
 const yanit = (body, title = BASLIK) => ({ title, description: 'Turun özeti.', body });
+// Cümle düzeltmeli redaksiyon yanıtı (25 Kasım 2026): yalnız değişen parça döner.
+const yama = (...ciftler) => ({ duzeltmeler: ciftler.map(([eski, yeni, alan = 'body']) => ({ alan, eski, yeni })) });
+const ESKI = 'Eski cümle burada duruyor.';
 const sessiz = () => {
   const log = console.log;
   console.log = () => {};
@@ -45,7 +48,7 @@ test('dilDuzeltHaber: başlık, spot ve gövdede güvenli düzeltmeler (zekâ, 3
 });
 
 test('denetle: redaksiyon her haberde ayrı çağrılır; sistem istemi ortak kurallar, medium düşünme, 0.2 sıcaklık', async () => {
-  const s = sahte([yanit(govde(210, 'Ek cümle yok.'))]);
+  const s = sahte([yama()]);
   const geri = sessiz();
   try {
     const r = await denetle(haber(govde(210, 'Yapay zeka alanında yüzde 40 artış oldu.')), `${KAYNAK} 40`);
@@ -57,7 +60,8 @@ test('denetle: redaksiyon her haberde ayrı çağrılır; sistem istemi ortak ku
     assert.equal(istek.generationConfig.thinkingConfig?.thinkingLevel, 'medium');
     assert.match(istem, /KAYNAKLAR/);
     assert.deepEqual(r.sorunlar, []);
-    assert.match(r.haber.body, /Ek cümle yok/);
+    assert.match(r.haber.body, /Yapay zekâ alanında %40 artış/);
+    assert.ok(istek.generationConfig.responseSchema.properties.duzeltmeler, 'düzeltme şeması');
   } finally {
     geri();
     s.geri();
@@ -65,42 +69,54 @@ test('denetle: redaksiyon her haberde ayrı çağrılır; sistem istemi ortak ku
 });
 
 test('redakteDene: kabul edilen çıktı uygulanır', async () => {
-  const s = sahte([yanit(govde(210, 'düzeltildi.'))]);
+  const s = sahte([yama([ESKI, 'Eski cümle burada düzeldi.'])]);
   try {
-    const r = await redakteDene(haber(govde(210)), KAYNAK, {});
+    const r = await redakteDene(haber(govde(210, ESKI)), KAYNAK, {});
     assert.equal(r.kabul, true);
-    assert.match(r.haber.body, /düzeltildi/);
+    assert.match(r.haber.body, /düzeldi/);
     assert.equal(s.istemler.length, 1);
   } finally {
     s.geri();
   }
 });
 
-test('redakteDene: kısaltan çıktı reddedilir, ret nedenleriyle bir kez yeniden denenir, kabul edilir', async () => {
-  const s = sahte([yanit(govde(100)), yanit(govde(205))]);
+test('redakteDene: cümleyi kısaltan düzeltme uygulanmaz, metin aynen kalır; kural dışı düzeltme nedenle yeniden denenir', async () => {
+  const once = haber(govde(210, 'Eski cümle burada duruyor ve oldukça uzun bir cümle olarak kalıyor.'));
+  const s = sahte([yama(['Eski cümle burada duruyor ve oldukça uzun bir cümle olarak kalıyor.', 'Kısa.'])]);
   try {
-    const r = await redakteDene(haber(govde(210)), KAYNAK, {});
+    const r = await redakteDene(once, KAYNAK, {});
     assert.equal(r.kabul, true);
-    assert.equal(s.istemler.length, 2);
-    assert.match(s.istemler[1].istem, /Önceki redaksiyon reddedildi/);
-    assert.match(s.istemler[1].istem, /%90-115 dışında/);
+    assert.equal(r.haber, once);
+    assert.equal(s.istemler.length, 1);
   } finally {
     s.geri();
+  }
+  const t = sahte([yama([ESKI, 'Şirket 777 milyon dolar aldı.']), yama([ESKI, 'Eski cümle burada düzeldi.'])]);
+  const geri = sessiz();
+  try {
+    const r = await redakteDene(haber(govde(210, ESKI)), KAYNAK, {});
+    assert.equal(r.kabul, true);
+    assert.equal(t.istemler.length, 2);
+    assert.match(t.istemler[1].istem, /Önceki redaksiyon reddedildi/);
+    assert.match(r.haber.body, /düzeldi/);
+  } finally {
+    geri();
+    t.geri();
   }
 });
 
 test('redakteDene: iki deneme de reddedilirse önceki metin korunur ve günlüğe yazılır', async () => {
-  const s = sahte([yanit(govde(100))]);
+  const s = sahte([yama([ESKI, 'Şirket 777 milyon dolar aldı.'])]);
   const gunluk = [];
   const log = console.log;
   console.log = (...a) => gunluk.push(a.join(' '));
   try {
-    const once = haber(govde(210));
+    const once = haber(govde(210, ESKI));
     const r = await redakteDene(once, KAYNAK, {});
     assert.equal(r.kabul, false);
     assert.equal(r.haber, once);
     assert.equal(s.istemler.length, 2);
-    assert.ok(gunluk.some((g) => g.includes('dil redaksiyonu atıldı:') && g.includes('%90-115')));
+    assert.ok(gunluk.some((g) => g.includes('dil redaksiyonu atıldı:')));
   } finally {
     console.log = log;
     s.geri();
@@ -108,10 +124,10 @@ test('redakteDene: iki deneme de reddedilirse önceki metin korunur ve günlüğ
 });
 
 test('redakteDene: kaynakta olmayan rakam ekleyen çıktı reddedilir', async () => {
-  const s = sahte([yanit(govde(210, 'Şirket 777 milyon dolar aldı.'))]);
+  const s = sahte([yama([ESKI, 'Şirket 777 milyon dolar aldı.'])]);
   const geri = sessiz();
   try {
-    const r = await redakteDene(haber(govde(210)), KAYNAK, {});
+    const r = await redakteDene(haber(govde(210, ESKI)), KAYNAK, {});
     assert.equal(r.kabul, false);
     assert.ok(r.nedenler.length);
   } finally {
@@ -122,7 +138,7 @@ test('redakteDene: kaynakta olmayan rakam ekleyen çıktı reddedilir', async ()
 
 test('dil kapısı: yazıyla yazılmış sayı redaksiyonla da düzelmezse haber yayımlanmaz (dil: öneki)', async () => {
   const kotu = govde(210, 'Şirket otuz dört milyon dolar yatırım aldı.');
-  const s = sahte([yanit(kotu)]);
+  const s = sahte([yama()]); // redaksiyon düzeltmez
   const geri = sessiz();
   try {
     const r = await denetle(haber(kotu), KAYNAK);
@@ -136,7 +152,8 @@ test('dil kapısı: yazıyla yazılmış sayı redaksiyonla da düzelmezse haber
 test('dil kapısı: kapıdaki redaksiyon turu yazılı sayıyı düzeltirse haber geçer', async () => {
   const kotu = govde(210, 'Şirket otuz dört milyon dolar yatırım aldı.');
   const iyi = govde(210, 'Şirket 34 milyon dolar yatırım aldı.');
-  const s = sahte([yanit(kotu), yanit(iyi)]);
+  const s = sahte([yama(), yama(['otuz dört milyon dolar', '34 milyon dolar'])]);
+  void iyi;
   const geri = sessiz();
   try {
     const r = await denetle(haber(kotu), `${KAYNAK} 34 milyon dolar.`);
@@ -150,7 +167,7 @@ test('dil kapısı: kapıdaki redaksiyon turu yazılı sayıyı düzeltirse habe
 
 test('dil kapısı: çevrilmemiş İngilizce cümle yayını durdurur', async () => {
   const kotu = govde(210, 'The company said that it will raise more money in the next round.');
-  const s = sahte([yanit(kotu)]);
+  const s = sahte([yama()]);
   const geri = sessiz();
   try {
     const r = await denetle(haber(kotu), KAYNAK);
@@ -164,7 +181,7 @@ test('dil kapısı: çevrilmemiş İngilizce cümle yayını durdurur', async ()
 test('dil kapısı: başlıktaki yazılı sayı da engeller', async () => {
   const g = govde(210);
   const t = 'Örnek Girişim otuz dört milyon dolar aldı';
-  const s = sahte([yanit(g, t)]);
+  const s = sahte([yama()]);
   const geri = sessiz();
   try {
     const r = await denetle(haber(g, { title: t }), KAYNAK);
@@ -176,7 +193,7 @@ test('dil kapısı: başlıktaki yazılı sayı da engeller', async () => {
 });
 
 test('denetle: dilDuzeltTr çıktıya uygulanır (zekâ, %) redaksiyon atılsa bile', async () => {
-  const s = sahte([yanit(govde(50))]); // redaksiyon reddedilir
+  const s = sahte([yama(['metinde olmayan parça', 'başka parça burada'])]); // düzeltme uygulanmaz
   const geri = sessiz();
   try {
     const r = await denetle(haber(govde(210, 'Yapay zeka alanında yüzde 40 artış oldu.'), { title: 'Örnek Girişim yapay zeka turunu tamamladı' }), `${KAYNAK} 40`);

@@ -13,6 +13,7 @@ import { YAZIM_KURALLARI } from './yazar.mjs';
 import { ZAMAN, MEDYA, medyaGizle, yerelDuzelt, ilgiliKisim } from './yerel.mjs';
 import { olcekKontrol } from './olcek.mjs';
 import { dilDuzeltTr, dilSorunlariTr, kesinSorunlar, sorunListesi, REDAKSIYON_KURALLARI_TR } from './dil-tr.mjs';
+import { DUZELTME_SEMASI, duzeltmeBicimi, duzeltmeleriUygula } from './duzeltme.mjs';
 
 const SON_TUR = 3;
 const CALISMADI = 'Yazı işleri kontrolü çalıştırılamadı';
@@ -381,15 +382,19 @@ async function redakteCagri(h, { derleme, kaynak, sorunlar, retNedenleri }) {
   const yapi = derleme ? 'derlemedeki "## " ara başlıkları ve haber başına bir paragraf düzeni kalır' : 'ara başlık ekleme; paragrafları birleştirme, aralarında boş satır olur';
   return gemini({
     sistem: `${REDAKSIYON_KURALLARI_TR}\n\n${KIFOBU_DIL_EKI}\n- Paragraf yapısı: ${yapi}.`,
-    schema: METIN_SEMASI,
+    // Cümle düzeltmeli çıktı (25 Kasım 2026): model alanları baştan yazmaz, yalnız değişen cümleleri döndürür (duzeltme.mjs).
+    schema: DUZELTME_SEMASI,
     dusunme: 'medium',
     sicaklik: null, // Sıcaklık gönderilmez (null): Gemini 3'te düşük sıcaklık redaksiyonu kaçak yanıta sokuyordu (24 Kasım 2026).
-    prompt: `Aşağıdaki haberin SADECE dilini düzelt. Olgu, rakam, ad, tarih ve alıntı içeriği kaynakla birebir uyumlu kalmalı; metin zaten doğruysa aynen geri ver.
+    prompt: `Aşağıdaki haberin SADECE dilini düzelt. Olgu, rakam, ad, tarih ve alıntı içeriği kaynakla birebir uyumlu kalmalı; metni kısaltma.
 ${liste ? `\nKodun bulduğu dil sorunları (hepsini gider):\n${liste}\n` : ''}${retNedenleri.length ? `\nÖnceki redaksiyon reddedildi; bu sefer şunlara dikkat et:\n${retNedenleri.map((n) => `- ${n}`).join('\n')}\n` : ''}
 KAYNAKLAR (olguları doğrulamak için; metne ekleme yapma):
 ${ilgiliKisim(kaynak, tamMetin(h), 6000)}
 
-${tamMetinKisa(h)}`,
+HABER ALANLARI (JSON):
+${JSON.stringify({ title: h.title, description: h.description, body: h.body }, null, 2)}
+
+${duzeltmeBicimi('tr')}`,
   });
 }
 
@@ -409,7 +414,10 @@ export async function redakteDene(h, kaynak, { derleme = false, uzunluk = {}, so
   let retNedenleri = [];
   for (let deneme = 1; deneme <= 2; deneme++) {
     const r = await redakteCagri(h, { derleme, kaynak, sorunlar, retNedenleri });
-    const yeni = r ? dilDuzeltHaber({ ...h, ...r }) : null;
+    const u = r && Array.isArray(r.duzeltmeler) ? duzeltmeleriUygula({ title: h.title ?? '', description: h.description ?? '', body: h.body ?? '' }, r.duzeltmeler) : null;
+    // Uygulanabilir düzeltme yoksa metin olduğu gibi kalır (düzeltilecek bir şey bulunmadı).
+    if (u && !u.uygulanan) return { haber: h, kabul: true, nedenler: [] };
+    const yeni = u ? dilDuzeltHaber({ ...h, ...u.alanlar }) : null;
     retNedenleri = yeni ? redaksiyonRetNedenleri(h, yeni, kaynak, uzunluk) : ['Redaksiyon yanıtı alınamadı'];
     if (!retNedenleri.length) return { haber: yeni, kabul: true, nedenler: [] };
   }

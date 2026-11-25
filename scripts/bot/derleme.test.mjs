@@ -101,7 +101,7 @@ test('denetle: müdür onayı redaksiyon istemez; dil redaksiyonu her haberde ay
     istemler.push(istem);
     const cevap = istem.includes('yazı işleri müdürüsün')
       ? { onay: true, sorunlar: [], duzeltilmis: { title: BASLIK, description: 'Dilimin özeti.', body: 'müdürün redaksiyonu kullanılmaz' } }
-      : { title: BASLIK, description: 'Dilimin özeti.', body: govde(210) };
+      : { duzeltmeler: [] }; // cümle düzeltmeli redaksiyon (25 Kasım 2026): değişiklik yok
     return new Response(JSON.stringify({ candidates: [{ content: { parts: [{ text: JSON.stringify(cevap) }] } }], usageMetadata: {} }));
   };
   try {
