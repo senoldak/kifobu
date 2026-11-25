@@ -54,11 +54,26 @@ jobs:
             sekundery
           persist-credentials: false
 
+      # Oturum bildirimi yalnız düşüşün ilk turunda gitsin diye toplayıcıya önceki turun sonucu verilir.
+      - name: Önceki tur
+        id: onceki
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          s=$(gh run list -R "$GITHUB_REPOSITORY" -w sekundery.yml -s completed -L 5 --json databaseId,conclusion \
+            --jq "[.[] | select(.databaseId != $GITHUB_RUN_ID)][0].conclusion" || echo bilinmiyor)
+          echo "Önceki tur: $s"
+          echo "sonuc=$s" >> "$GITHUB_OUTPUT"
+
+      # Oturum düşerse toplayıcı sahibine Telegram bildirimi yollar (saat'in bildirim ucu); metin loga yazılmaz.
       - name: Veriyi topla
         id: tara
         env:
           ILAN_OTURUM: ${{ secrets.ILAN_OTURUM }}
           ILAN_CEREZ: ${{ secrets.ILAN_CEREZ }}
+          ONCEKI_TUR: ${{ steps.onceki.outputs.sonuc }}
+          MOTOR_URL: ${{ vars.MOTOR_URL }}
+          MOTOR_ANAHTARI: ${{ secrets.MOTOR_ANAHTARI }}
         run: node .mecmua/sekundery/topla.mjs
 
       # İTO aylık enflasyonu, kurlar ve altın (TCMB EVDS). Toplama başarısız olsa da çalışır; kendi hatası toplamayı bozmaz.
@@ -118,24 +133,8 @@ jobs:
         run: node scripts/sekundery/kart-gonder.mjs
 
       # İkinci kaynağın oturumu düştüyse iş en sonda kırmızı olur (GitHub sahibine bildirir); öteki adımlar etkilenmez.
-      # Sahibine Telegram (Redaksjon, saat'in bildirim ucu): yalnız çerezin düştüğü ilk turda; önceki tur da
-      # kırmızıysa (saat'in yeniden denemeleri, sonraki turlar) yeniden gönderilmez. Bildirim düşerse iş yine kırmızı biter.
       - name: İkinci oturum
         if: always() && steps.tara.outputs.ikinciHata == '1'
-        env:
-          GH_TOKEN: ${{ github.token }}
-          MOTOR_URL: ${{ vars.MOTOR_URL }}
-          MOTOR_ANAHTARI: ${{ secrets.MOTOR_ANAHTARI }}
         run: |
           echo "::error::İkinci kaynağın verisi alınamadı; ILAN_CEREZ yenilenmeli olabilir."
-          onceki=$(gh run list -R "$GITHUB_REPOSITORY" -w sekundery.yml -s completed -L 5 --json databaseId,conclusion \
-            --jq "[.[] | select(.databaseId != $GITHUB_RUN_ID)][0].conclusion" || echo bilinmiyor)
-          echo "Önceki tur: $onceki"
-          if [ "$onceki" != "failure" ] && [ -n "$MOTOR_URL" ] && [ -n "$MOTOR_ANAHTARI" ]; then
-            metin="Sekundery: ikinci ilan kaynağının oturum çerezi düştü, o kaynağın ilanları alınamıyor. Siteye girip İlanlar isteğinin Cookie değerini kopyala, sonra: gh secret set ILAN_CEREZ -R senoldak/kifobu"
-            jq -n --arg metin "$metin" '{metin: $metin}' \
-              | curl -sS -o /dev/null -w 'Bildirim: HTTP %{http_code}\n' --max-time 15 \
-                  -X POST "${MOTOR_URL%/}/motor/kifobu/bildirim" -H "Authorization: Bearer $MOTOR_ANAHTARI" \
-                  -H 'Content-Type: application/json' --data-binary @- || true
-          fi
           exit 1
