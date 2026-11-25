@@ -1,7 +1,7 @@
 /**
  * Günlük kitle fonlama bülteni verisi ("Bugün" tablosu).
  * Otomatik Bot tarafından oluşturulmuştur.
- * Son güncelleme: 2026-11-25T11:01:15.568Z
+ * Son güncelleme: 2026-11-25T15:01:58.911Z
  */
 export interface Girisim {
   ad: string;
@@ -85,17 +85,6 @@ export const BULTEN = {
         "yuzde": 102.71,
         "durum": "SONA ERDİ",
         "url": "https://fonangels.com/kampanyalar/projehakkinda/oylio?pid=1778"
-    },
-    {
-        "ad": "GOVITO",
-        "platform": "trinkfon",
-        "bugun": 0,
-        "alinan": 0,
-        "kalan": 2500000,
-        "degerleme": 0,
-        "yuzde": 0,
-        "durum": "Aktif",
-        "url": "https://kfs.trinkfon.com/projeler/govito-tek-tikla-guvenilir-vip-transfer/kampanya/"
     }
 ] as Girisim[],
   platformlar: {
@@ -115,13 +104,6 @@ export const BULTEN = {
         "girisim": 1,
         "renk": "#009bae",
         "url": "https://ecofolio.com.tr"
-    },
-    {
-        "ad": "trinkfon",
-        "toplam": 0,
-        "girisim": 1,
-        "renk": "#7c3aed",
-        "url": "https://kfs.trinkfon.com"
     }
 ] as Platform[],
   },
@@ -150,9 +132,17 @@ export const BULTEN = {
         "url": "https://fonventure.com/kampanya/9eade97b-9d7a-4962-bf2a-c49f9a312ee5",
         "hedef": 25000000,
         "degerleme": 192307692,
-        "onTalep": 4041500,
-        "onTalepKisi": 125,
+        "onTalep": 4061500,
+        "onTalepKisi": 127,
         "renk": "#4f46e5"
+    },
+    {
+        "ad": "GOVITO",
+        "platform": "trinkfon",
+        "url": "https://kfs.trinkfon.com/projeler/govito-tek-tikla-guvenilir-vip-transfer/kampanya/",
+        "hedef": 2500000,
+        "degerleme": 71389000,
+        "renk": "#7c3aed"
     }
 ] as Yakinda[],
   mkk: {

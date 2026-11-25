@@ -37,8 +37,8 @@
    "yatirimci": null,
    "nitelikli": null,
    "fonlandi": null,
-   "onTalep": 4041500,
-   "onTalepKisi": 125,
+   "onTalep": 4061500,
+   "onTalepKisi": 127,
    "ilkGorulme": "2026-11-18",
    "sonGorulme": "2026-11-25",
    "bittiGorulme": null,
@@ -118,10 +118,10 @@
    "ad": "GOVITO",
    "platform": "trinkfon",
    "url": "https://kfs.trinkfon.com/projeler/govito-tek-tikla-guvenilir-vip-transfer/kampanya/",
-   "durum": "aktif",
+   "durum": "yakinda",
    "hedef": 2500000,
-   "arzOrani": null,
-   "degerleme": null,
+   "arzOrani": 0.035,
+   "degerleme": 71389000,
    "baslangic": "2026-11-26",
    "bitis": "2027-01-25",
    "toplanan": 0,
@@ -133,9 +133,7 @@
    "ilkGorulme": "2026-11-23",
    "sonGorulme": "2026-11-25",
    "bittiGorulme": null,
-   "eksik": [
-    "degerleme"
-   ],
+   "eksik": [],
    "kayipTur": 0
   }
  ],
