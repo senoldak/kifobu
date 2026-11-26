@@ -24,9 +24,9 @@ export const REHBERLER = [
   },
   {
     slug: 'kitle-fonlamasi-vergi-istisnasi',
-    baslik: 'Kitle fonlaması ve BKY vergi indirimi hesaplayıcı',
-    aciklama: 'Paya dayalı kitle fonlaması ve BKY yatırımlarında Gelir Vergisi matrah indirimi (%75 - %100), net vergi tasarrufu ve 24 ay kuralı rehberi.',
+    baslik: 'Bireysel katılım yatırımcısı (BKY) vergi indirimi hesaplayıcı',
+    aciklama: "Lisanslı bireysel katılım yatırımcılarının girişim şirketi paylarında yararlanabildiği gelir vergisi indirimi: %75 ve %100 oranları, 2.500.000 TL yıllık sınır, iki yıl elde tutma şartı ve 2026 tarifesiyle hesaplama.",
     yayin: '2026-11-09',
-    gozdenGecirme: '2026-11-09',
+    gozdenGecirme: '2026-11-26',
   },
 ] as const;

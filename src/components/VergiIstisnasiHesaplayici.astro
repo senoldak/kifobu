@@ -1,185 +1,131 @@
 ---
-// Kitle Fonlaması & BKY Vergi İstisnası Hesaplayıcısı
-// GVK Geçici 82. madde ve ilgili mevzuat uyarınca etkileşimli hesaplama
-import { YILLIK_AZAMI_TAVAN } from '../lib/hesap/vergi-istisnasi.ts';
+// Bireysel katılım yatırımcısı (BKY) vergi indirimi hesaplayıcısı (GVK geçici 82; 2026 tarifesi).
+// Hesap src/lib/hesap/vergi-istisnasi.ts'te; kaynaklar orada ve rehber sayfasında.
+import { ASGARI_YATIRIM_2026, YILLIK_AZAMI_TAVAN } from '../lib/hesap/vergi-istisnasi.ts';
 
 interface Props {
   varsayilanYatirim?: number;
-  varsayilanGelir?: number;
+  varsayilanMatrah?: number;
 }
 
-const {
-  varsayilanYatirim = 100000,
-  varsayilanGelir = 1500000
-} = Astro.props;
+const { varsayilanYatirim = 500000, varsayilanMatrah = 3000000 } = Astro.props;
+const tl = (n: number) => `${n.toLocaleString('tr-TR')} TL`;
 ---
 
 <div class="vergi-hesaplayici" id="vergi-hesaplayici-koku">
   <div class="hesap-grid">
-    <!-- Girdiler -->
     <div class="girdi-paneli">
       <div class="alan-grubu">
         <label for="yatirim-girdi">
-          <strong>Yatırım Tutarı</strong>
-          <span class="etiket-aciklama">Kitle fonlaması veya BKY yatırımı (TL)</span>
+          <strong>Yatırım tutarı</strong>
+          <span class="etiket-aciklama">Girişim şirketinden alınan payların tutarı (TL)</span>
         </label>
         <div class="girdi-sarici">
-          <input
-            type="number"
-            id="yatirim-girdi"
-            min="1000"
-            max="10000000"
-            step="1000"
-            value={varsayilanYatirim}
-          />
+          <input type="number" id="yatirim-girdi" min="0" max="100000000" step="10000" value={varsayilanYatirim} />
           <span class="birim">TL</span>
         </div>
-        <div class="hizli-secenekler" role="group" aria-label="Hızlı Yatırım Seçenekleri">
-          <button type="button" class="hizli-btn" data-yatirim="25000">25 Bin</button>
-          <button type="button" class="hizli-btn" data-yatirim="50000">50 Bin</button>
-          <button type="button" class="hizli-btn secili" data-yatirim="100000">100 Bin</button>
-          <button type="button" class="hizli-btn" data-yatirim="250000">250 Bin</button>
-          <button type="button" class="hizli-btn" data-yatirim="500000">500 Bin</button>
+        <div class="hizli-secenekler" role="group" aria-label="Hızlı yatırım tutarları">
+          <button type="button" class="hizli-btn" data-yatirim="250980">250.980</button>
+          <button type="button" class="hizli-btn secili" data-yatirim="500000">500 bin</button>
+          <button type="button" class="hizli-btn" data-yatirim="1000000">1 milyon</button>
+          <button type="button" class="hizli-btn" data-yatirim="3000000">3 milyon</button>
         </div>
       </div>
 
       <div class="alan-grubu">
         <label for="gelir-girdi">
-          <strong>Yıllık Beyan Edilen Gelir</strong>
-          <span class="etiket-aciklama">Yıllık gelir vergisi beyannamesindeki toplam matrah (TL)</span>
+          <strong>Yıllık beyandaki gelir vergisi matrahı</strong>
+          <span class="etiket-aciklama">İndirimden önceki matrah (TL)</span>
         </label>
         <div class="girdi-sarici">
-          <input
-            type="number"
-            id="gelir-girdi"
-            min="50000"
-            max="50000000"
-            step="10000"
-            value={varsayilanGelir}
-          />
+          <input type="number" id="gelir-girdi" min="0" max="200000000" step="10000" value={varsayilanMatrah} />
           <span class="birim">TL</span>
         </div>
-        <div class="hizli-secenekler" role="group" aria-label="Hızlı Gelir Seçenekleri">
-          <button type="button" class="hizli-gelir-btn" data-gelir="750000">750 Bin</button>
-          <button type="button" class="hizli-gelir-btn secili" data-gelir="1500000">1.5 Milyon</button>
-          <button type="button" class="hizli-gelir-btn" data-gelir="3000000">3 Milyon</button>
-          <button type="button" class="hizli-gelir-btn" data-gelir="5000000">5 Milyon</button>
+        <div class="hizli-secenekler" role="group" aria-label="Hızlı matrah tutarları">
+          <button type="button" class="hizli-gelir-btn" data-gelir="1000000">1 milyon</button>
+          <button type="button" class="hizli-gelir-btn secili" data-gelir="3000000">3 milyon</button>
+          <button type="button" class="hizli-gelir-btn" data-gelir="6000000">6 milyon</button>
+          <button type="button" class="hizli-gelir-btn" data-gelir="12000000">12 milyon</button>
         </div>
       </div>
 
       <div class="alan-grubu">
-        <span class="grup-basligi">Proje Türü ve İndirim Oranı</span>
+        <span class="grup-basligi">İndirim oranı</span>
         <div class="secim-kutulari">
           <label class="secim-kart secili" id="kart-standart">
             <input type="radio" name="proje-turu" value="standart" checked />
             <div class="kart-icerik">
-              <span class="kart-baslik">Standart Kampanya</span>
-              <span class="kart-oran">%75 Matrah İndirimi</span>
-              <span class="kart-detay">Genel kitle fonlaması veya lisanslı BKY yatırımları</span>
+              <span class="kart-baslik">Genel oran</span>
+              <span class="kart-oran">%75</span>
+              <span class="kart-detay">Lisanslı BKY'nin tam mükellef anonim şirket payları</span>
             </div>
           </label>
-
           <label class="secim-kart" id="kart-arge">
             <input type="radio" name="proje-turu" value="arge" />
             <div class="kart-icerik">
-              <span class="kart-baslik">Ar-Ge / Teknoloji Onaylı</span>
-              <span class="kart-oran vurgu">%100 Matrah İndirimi</span>
-              <span class="kart-detay">Sanayi ve Teknoloji Bakanlığı onaylı girişimler</span>
+              <span class="kart-baslik">Destekli proje</span>
+              <span class="kart-oran vurgu">%100</span>
+              <span class="kart-detay">Projesi son beş yılda Sanayi ve Teknoloji Bakanlığı, TÜBİTAK ya da KOSGEB programında desteklenmiş şirket</span>
             </div>
           </label>
         </div>
       </div>
 
       <div class="alan-grubu">
-        <label for="dilim-secici">
-          <strong>Gelir Vergisi Dilimi</strong>
-          <span class="etiket-aciklama">Marjinal vergi oranı</span>
+        <label for="gelir-turu">
+          <strong>Gelir türü</strong>
+          <span class="etiket-aciklama">2026 tarifesinde ücret gelirinin %27 dilimi 1.500.000 TL'ye kadar uzanır</span>
         </label>
-        <select id="dilim-secici">
-          <option value="otomatik" selected>Otomatik (Beyana Göre Tahmin)</option>
-          <option value="0.15">%15 Vergi Dilimi</option>
-          <option value="0.20">%20 Vergi Dilimi</option>
-          <option value="0.27">%27 Vergi Dilimi</option>
-          <option value="0.35">%35 Vergi Dilimi</option>
-          <option value="0.40">%40 Vergi Dilimi (En Üst Dilim)</option>
+        <select id="gelir-turu">
+          <option value="ucretDisi" selected>Ücret dışı gelir (ticari, serbest meslek, kira vb.)</option>
+          <option value="ucret">Ücret geliri</option>
         </select>
       </div>
     </div>
 
-    <!-- Sonuçlar -->
     <div class="sonuc-paneli">
       <div class="sonuc-ozet-karti">
-        <span class="sonuc-etiket">Tahmini Net Vergi İadesi / Tasarrufu</span>
+        <span class="sonuc-etiket">Gelir vergisindeki tahmini azalma</span>
         <div class="sonuc-buyuk-rakam" id="sonuc-tasarruf">0 TL</div>
-        <p class="sonuc-aciklama" id="sonuc-aciklama-metni">
-          Yatırımınız sayesinde yıllık gelir vergisi matrahınızdan indirim elde edersiniz.
+        <p class="sonuc-aciklama">
+          Matrahtan düşülen tutar ve 2026 tarifesine göre hesaplanır. Bu bir iade değildir; beyannamede ödenecek vergi azalır.
         </p>
-
-        <div class="maliyet-kiyas">
-          <div class="kiyas-sutun">
-            <span class="kiyas-etiket">Yatırılan Tutar</span>
-            <span class="kiyas-deger" id="kiyas-yatirim">100.000 TL</span>
-          </div>
-          <div class="kiyas-ayrac">&minus;</div>
-          <div class="kiyas-sutun">
-            <span class="kiyas-etiket">Vergi Avantajı</span>
-            <span class="kiyas-deger arti" id="kiyas-vergi">26.250 TL</span>
-          </div>
-          <div class="kiyas-ayrac">=</div>
-          <div class="kiyas-sutun cepten">
-            <span class="kiyas-etiket">Net Cepten Çıkan</span>
-            <span class="kiyas-deger net" id="kiyas-net">73.750 TL</span>
-          </div>
-        </div>
-
-        <div class="efektif-oran-bandi" id="efektif-band">
-          <span class="efektif-etiket">Efektif Devlet Teşviki / İndirim Oranı:</span>
-          <strong class="efektif-deger" id="efektif-oran">%26.25</strong>
+        <div class="efektif-oran-bandi">
+          <span class="efektif-etiket">Vergideki azalmanın yatırıma oranı:</span>
+          <strong class="efektif-deger" id="efektif-oran">%0</strong>
         </div>
       </div>
 
-      <!-- Detay Tablosu -->
       <div class="detay-kutusu">
-        <h4>Mevzuat ve Matrah Dökümü</h4>
+        <h4>Hesap dökümü</h4>
         <div class="detay-satirlar">
-          <div class="detay-satir">
-            <span>Uygulanan İndirim Oranı</span>
-            <strong id="detay-oran">%75</strong>
-          </div>
-          <div class="detay-satir">
-            <span>Ham İndirim Tutarı</span>
-            <span id="detay-ham">75.000 TL</span>
-          </div>
-          <div class="detay-satir">
-            <span>Beyan Gelirinin %10 Tavanı</span>
-            <span id="detay-gelir-tavan">150.000 TL</span>
-          </div>
-          <div class="detay-satir">
-            <span>Yıllık Azami Mevzuat Sınırı</span>
-            <span>{YILLIK_AZAMI_TAVAN.toLocaleString('tr-TR')} TL</span>
-          </div>
-          <div class="detay-satir vurgulu">
-            <span>İndirilebilir Net Matrah</span>
-            <strong id="detay-matrah">75.000 TL</strong>
-          </div>
-          <div class="detay-satir">
-            <span>Uygulanan Marjinal Vergi Dilimi</span>
-            <strong id="detay-dilim">%35</strong>
-          </div>
+          <div class="detay-satir"><span>Uygulanan oran</span><strong id="detay-oran">%75</strong></div>
+          <div class="detay-satir"><span>Oranla bulunan tutar</span><span id="detay-ham">0 TL</span></div>
+          <div class="detay-satir"><span>Yıllık indirim sınırı</span><span>{tl(YILLIK_AZAMI_TAVAN)}</span></div>
+          <div class="detay-satir vurgulu"><span>Matrahtan düşülen</span><strong id="detay-matrah">0 TL</strong></div>
+          <div class="detay-satir"><span>Vergi (indirimden önce)</span><span id="detay-once">0 TL</span></div>
+          <div class="detay-satir"><span>Vergi (indirimden sonra)</span><span id="detay-sonra">0 TL</span></div>
         </div>
 
-        <div class="uyari-karti" id="tavan-uyari" style="display: none;">
-          <strong>Dikkat:</strong> Yatırım tutarınız yıllık beyan ettiğiniz gelirin %10 sınırını veya azami yasal tavanı aştığından, matrah indirimi kanuni üst sınırla kısıtlanmıştır.
+        <div class="uyari-karti" id="uyari-tavan" style="display: none;">
+          Oranla bulunan tutar yıllık {tl(YILLIK_AZAMI_TAVAN)} sınırını aşıyor; hesap bu sınırla yapıldı.
+        </div>
+        <div class="uyari-karti" id="uyari-matrah" style="display: none;">
+          İndirim beyandaki matrahtan fazla olamaz; hesap matrah kadar yapıldı.
+        </div>
+        <div class="uyari-karti" id="uyari-asgari" style="display: none;">
+          2026'da bir girişim şirketine yapılan yatırım en az {tl(ASGARI_YATIRIM_2026)} olmalı.
         </div>
 
         <div class="sart-hatirlatmasi">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <circle cx="12" cy="12" r="10"></circle>
             <line x1="12" y1="8" x2="12" y2="12"></line>
             <line x1="12" y1="16" x2="12.01" y2="16"></line>
           </svg>
           <p>
-            <strong>24 Ay Elde Tutma Kuralı:</strong> Vergi indiriminden yararlanabilmek için iktisap edilen payların en az iki tam yıl (24 ay) süreyle elde tutulması zorunludur. Erken satışta gecikme faiziyle geri alınır.
+            <strong>Şartlar:</strong> İndirim yalnız Hazine ve Maliye Bakanlığı'ndan lisans almış bireysel katılım
+            yatırımcısına tanınır. Paylar en az iki tam yıl elde tutulmalıdır.
           </p>
         </div>
       </div>
@@ -188,119 +134,74 @@ const {
 </div>
 
 <script>
-  import { vergiIstisnasiHesapla, vergiDilimiBul } from '../lib/hesap/vergi-istisnasi.ts';
+  import { bkyIndirimiHesapla } from '../lib/hesap/vergi-istisnasi.ts';
 
   function init() {
     const yatirimInput = document.getElementById('yatirim-girdi') as HTMLInputElement | null;
     const gelirInput = document.getElementById('gelir-girdi') as HTMLInputElement | null;
-    const dilimSelect = document.getElementById('dilim-secici') as HTMLSelectElement | null;
-    const radioStandart = document.querySelector('input[name="proje-turu"][value="standart"]') as HTMLInputElement | null;
+    const gelirTuru = document.getElementById('gelir-turu') as HTMLSelectElement | null;
     const radioArge = document.querySelector('input[name="proje-turu"][value="arge"]') as HTMLInputElement | null;
+    const radios = document.querySelectorAll('input[name="proje-turu"]');
     const kartStandart = document.getElementById('kart-standart');
     const kartArge = document.getElementById('kart-arge');
-
-    const sonucTasarruf = document.getElementById('sonuc-tasarruf');
-    const kiyasYatirim = document.getElementById('kiyas-yatirim');
-    const kiyasVergi = document.getElementById('kiyas-vergi');
-    const kiyasNet = document.getElementById('kiyas-net');
-    const efektifOran = document.getElementById('efektif-oran');
-
-    const detayOran = document.getElementById('detay-oran');
-    const detayHam = document.getElementById('detay-ham');
-    const detayGelirTavan = document.getElementById('detay-gelir-tavan');
-    const detayMatrah = document.getElementById('detay-matrah');
-    const detayDilim = document.getElementById('detay-dilim');
-    const tavanUyari = document.getElementById('tavan-uyari');
-
-    const hizliYatirimBtn = document.querySelectorAll('.hizli-btn');
-    const hizliGelirBtn = document.querySelectorAll('.hizli-gelir-btn');
-
-    if (!yatirimInput || !gelirInput || !dilimSelect) return;
-
+    const yaz = (id: string, metin: string) => {
+      const e = document.getElementById(id);
+      if (e) e.textContent = metin;
+    };
+    const goster = (id: string, acik: boolean) => {
+      const e = document.getElementById(id);
+      if (e) e.style.display = acik ? 'block' : 'none';
+    };
+    if (!yatirimInput || !gelirInput || !gelirTuru) return;
     const tlYaz = (n: number) => n.toLocaleString('tr-TR', { maximumFractionDigits: 0 }) + ' TL';
 
     function guncelle() {
-      const yatirim = Math.max(0, parseFloat(yatirimInput.value) || 0);
-      const gelir = Math.max(0, parseFloat(gelirInput.value) || 0);
-      const projeTuru = radioArge?.checked ? 'arge' : 'standart';
-
-      let vergiDilimi: number | undefined = undefined;
-      if (dilimSelect.value !== 'otomatik') {
-        vergiDilimi = parseFloat(dilimSelect.value);
-      }
-
-      if (kartStandart && kartArge) {
-        if (projeTuru === 'arge') {
-          kartArge.classList.add('secili');
-          kartStandart.classList.remove('secili');
-        } else {
-          kartStandart.classList.add('secili');
-          kartArge.classList.remove('secili');
-        }
-      }
-
-      const res = vergiIstisnasiHesapla({
-        yatirimTutari: yatirim,
-        yillikBeyanGeliri: gelir,
-        projeTuru,
-        vergiDilimi
+      const arge = Boolean(radioArge?.checked);
+      kartArge?.classList.toggle('secili', arge);
+      kartStandart?.classList.toggle('secili', !arge);
+      const r = bkyIndirimiHesapla({
+        yatirimTutari: parseFloat(yatirimInput!.value) || 0,
+        beyanMatrahi: parseFloat(gelirInput!.value) || 0,
+        oranTuru: arge ? 'arge' : 'standart',
+        gelirTuru: gelirTuru!.value === 'ucret' ? 'ucret' : 'ucretDisi',
       });
-
-      if (sonucTasarruf) sonucTasarruf.textContent = tlYaz(res.netVergiAvantaji);
-      if (kiyasYatirim) kiyasYatirim.textContent = tlYaz(res.yatirimTutari);
-      if (kiyasVergi) kiyasVergi.textContent = tlYaz(res.netVergiAvantaji);
-      if (kiyasNet) kiyasNet.textContent = tlYaz(res.netYatirimMaliyeti);
-      if (efektifOran) efektifOran.textContent = `%${res.efektifDestekOrani.toFixed(2)}`;
-
-      if (detayOran) detayOran.textContent = `%${(res.uygulananOran * 100).toFixed(0)}`;
-      if (detayHam) detayHam.textContent = tlYaz(res.hamIndirimTutari);
-      if (detayGelirTavan) detayGelirTavan.textContent = tlYaz(res.gelirTavanSiniri);
-      if (detayMatrah) detayMatrah.textContent = tlYaz(res.uygulanabilirMatrahIndirimi);
-      if (detayDilim) detayDilim.textContent = `%${(res.marjinalVergiOrani * 100).toFixed(0)}`;
-
-      if (tavanUyari) {
-        tavanUyari.style.display = res.tavanAsildiMi ? 'block' : 'none';
-      }
+      yaz('sonuc-tasarruf', tlYaz(r.vergiFarki));
+      yaz('efektif-oran', `%${r.efektifOran.toLocaleString('tr-TR')}`);
+      yaz('detay-oran', `%${Math.round(r.uygulananOran * 100)}`);
+      yaz('detay-ham', tlYaz(r.hamIndirim));
+      yaz('detay-matrah', tlYaz(r.indirim));
+      yaz('detay-once', tlYaz(r.vergiOnce));
+      yaz('detay-sonra', tlYaz(r.vergiSonra));
+      goster('uyari-tavan', r.tavanaTakildi);
+      goster('uyari-matrah', r.matrahaTakildi);
+      goster('uyari-asgari', r.asgariAltinda);
     }
 
     yatirimInput.addEventListener('input', guncelle);
     gelirInput.addEventListener('input', guncelle);
-    dilimSelect.addEventListener('change', guncelle);
-    radioStandart?.addEventListener('change', guncelle);
-    radioArge?.addEventListener('change', guncelle);
-
-    hizliYatirimBtn.forEach((b) => {
-      b.addEventListener('click', () => {
-        hizliYatirimBtn.forEach((x) => x.classList.remove('secili'));
-        b.classList.add('secili');
-        const v = b.getAttribute('data-yatirim');
-        if (v && yatirimInput) {
-          yatirimInput.value = v;
-          guncelle();
-        }
-      });
-    });
-
-    hizliGelirBtn.forEach((b) => {
-      b.addEventListener('click', () => {
-        hizliGelirBtn.forEach((x) => x.classList.remove('secili'));
-        b.classList.add('secili');
-        const v = b.getAttribute('data-gelir');
-        if (v && gelirInput) {
-          gelirInput.value = v;
-          guncelle();
-        }
-      });
-    });
-
+    gelirTuru.addEventListener('change', guncelle);
+    radios.forEach((r) => r.addEventListener('change', guncelle));
+    const hizli = (secici: string, alan: HTMLInputElement, veri: string) => {
+      const dugmeler = document.querySelectorAll(secici);
+      dugmeler.forEach((b) =>
+        b.addEventListener('click', () => {
+          dugmeler.forEach((x) => x.classList.remove('secili'));
+          b.classList.add('secili');
+          const v = b.getAttribute(veri);
+          if (v) {
+            alan.value = v;
+            guncelle();
+          }
+        }),
+      );
+    };
+    hizli('.hizli-btn', yatirimInput, 'data-yatirim');
+    hizli('.hizli-gelir-btn', gelirInput, 'data-gelir');
     guncelle();
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 </script>
 
 <style>
@@ -470,7 +371,7 @@ const {
     line-height: 1.3;
   }
 
-  #dilim-secici {
+  #gelir-turu {
     width: 100%;
     padding: 0.75rem 0.875rem;
     font-size: 0.9375rem;
