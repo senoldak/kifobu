@@ -5,6 +5,7 @@ import path from 'node:path';
 import { geminiCagir } from './istemci.mjs';
 import { hintBirimleriniCevir } from './hint-birimleri.mjs';
 import { ozetAlaniTemizle, paragraflaraBol } from './dil-tr.mjs';
+import { araBasliklariDuzenle } from './baslik-duzeni.mjs';
 
 export const USER_AGENT = 'kifobu-bot/1.0 (+https://kifobu.com; contact@kifobu.com)';
 
@@ -299,7 +300,9 @@ export async function haberYaz(rot, h) {
   ].filter(Boolean);
   await mkdir(path.join(base, slug), { recursive: true });
   // Model gövdeyi tek blok döndürdüyse cümle sınırlarından paragraflara bölünür (sözcüklere dokunulmaz).
-  await writeFile(path.join(base, slug, 'index.md'), `${fm.join('\n')}\n\n${paragraflaraBol(h.body.trim())}\n`, 'utf8');
+  // Ara başlıklar cümle düzenine iner ("## Her Kelimesi Büyük" → "## Her kelimesi büyük"; özel adlar gövdeden okunur).
+  const govde = araBasliklariDuzenle(paragraflaraBol(h.body.trim()), h.description ?? '');
+  await writeFile(path.join(base, slug, 'index.md'), `${fm.join('\n')}\n\n${govde}\n`, 'utf8');
   return slug;
 }
 
