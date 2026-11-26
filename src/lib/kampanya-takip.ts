@@ -121,7 +121,8 @@ export type OlayTuru =
   | 'okuyucu-bozuk'
   | 'olasi-cift'
   | 'arsivlenemedi'
-  | 'eski-kart';
+  | 'eski-kart'
+  | 'adres-degisti';
 
 export interface Olay {
   tur: OlayTuru;
@@ -375,6 +376,29 @@ ${liste.url.split('#')[0]}`,
       // Yeni kayıt
       if (!d) {
         bozuk(s.platform, 'kampanya sayfası açılamadı');
+        continue;
+      }
+      // Platform kampanyanın adresini değiştirdiyse (ör. yakından aktife geçerken) aynı adlı açık kayıt
+      // bu turda listede görünmüyorsa yeni kayıt açılmaz; eski kaydın adresi güncellenir.
+      const adSlug = slugTr(yeniAd(liste, d));
+      const tasinan = kampanyalar.find((k) => {
+        if (k.platform !== s.platform || k.durum === 'bitti' || k.detaysiz || buTurEklenen.has(k)) return false;
+        const eskiAn = guvenliAnahtar(k.url);
+        return eskiAn !== null && !gorulen.has(eskiAn) && slugTr(k.ad) === adSlug;
+      });
+      if (tasinan) {
+        const eskiUrl = tasinan.url;
+        dizin.delete(guvenliAnahtar(eskiUrl)!);
+        tasinan.url = liste.url;
+        dizin.set(an, tasinan);
+        tasinan.sonGorulme = gun;
+        tasinan.kayipTur = 0;
+        olayEkle({
+          tur: 'adres-degisti',
+          anahtar: `${s.platform}:adres-degisti:${an}`,
+          metin: `Kampanyanın adresi değişti, kayıt yeni adrese taşındı.\n${tasinan.ad} (${s.platform})\nEski: ${eskiUrl}\nYeni: ${liste.url}`,
+        });
+        detayiIsle(tasinan, d, bolum, s.platform, an);
         continue;
       }
       if (d.bitti) continue;

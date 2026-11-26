@@ -816,3 +816,29 @@ test('bultenListesi: el.ekle yakinda girdisinin hedef ve değerlemesi yakinda sa
   const el: ElListesi = { ekle: [{ ad: 'YAKIN', platform: P, url: EL_U, bolum: 'yakinda', hedef: 1000, degerleme: 9000 }], cikar: [], duzelt: {} };
   assert.deepEqual(bul([], el).yakinda, [{ ad: 'YAKIN', platform: P, url: EL_U, hedef: 1000, degerleme: 9000 }]);
 });
+
+test('kesfiUygula: adresi değişen kampanya yeni kayıt açmaz, eski kayıt taşınır', () => {
+  const eski = kayit({ ad: 'GOVITO', durum: 'yakinda', toplanan: 0, yatirimci: 0, kayipTur: 0 });
+  const r = uygula(takip([eski]), [tekListe('Govito', U2, 'aktif', detay({ toplanan: 3500, yatirimci: 2 }))]);
+  assert.equal(r.takip.kampanyalar.length, 1);
+  const k = r.takip.kampanyalar[0];
+  assert.equal(k.url, U2);
+  assert.equal(k.durum, 'aktif');
+  assert.equal(k.toplanan, 3500);
+  assert.equal(k.ilkGorulme, '2026-11-10');
+  assert.equal(k.kayipTur, 0);
+  assert.equal(r.olaylar.filter((x) => x.tur === 'yeni').length, 0);
+  const o = r.olaylar.find((x) => x.tur === 'adres-degisti')!;
+  assert.ok(o.metin.includes(U1) && o.metin.includes(U2));
+});
+
+test('kesfiUygula: eski adres de listede görünüyorsa aynı adlı ikinci kampanya ayrı eklenir', () => {
+  const r = uygula(takip([kayit({ ad: 'ALFA' })]), [
+    sonuc({
+      liste: [{ ad: 'alfa', url: U1, bolum: 'aktif' }, { ad: 'alfa', url: U2, bolum: 'aktif' }],
+      detaylar: { [urlAnahtari(U1)]: detay(), [urlAnahtari(U2)]: detay() },
+    }),
+  ]);
+  assert.equal(r.takip.kampanyalar.length, 2);
+  assert.equal(r.olaylar.some((x) => x.tur === 'adres-degisti'), false);
+});
