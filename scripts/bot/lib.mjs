@@ -4,7 +4,7 @@ import { mkdir, readFile, readdir, writeFile, access } from 'node:fs/promises';
 import path from 'node:path';
 import { geminiCagir } from './istemci.mjs';
 import { hintBirimleriniCevir } from './hint-birimleri.mjs';
-import { paragraflaraBol } from './dil-tr.mjs';
+import { ozetAlaniTemizle, paragraflaraBol } from './dil-tr.mjs';
 
 export const USER_AGENT = 'kifobu-bot/1.0 (+https://kifobu.com; contact@kifobu.com)';
 
@@ -268,6 +268,8 @@ export async function haberYaz(rot, h) {
   }
   const k = h.kunye ?? {};
   const sayi = (n) => (Number.isFinite(n) && n > 0 ? Math.round(n) : undefined);
+  const why = ozetAlaniTemizle(h.why_matters);
+  const maddeler = (Array.isArray(h.key_points) ? h.key_points : []).map((p) => ozetAlaniTemizle(p, { azami: 300, cumle: false })).filter(Boolean);
   const fm = [
     '---',
     `title: ${yamlStr(h.title)}`,
@@ -284,10 +286,9 @@ export async function haberYaz(rot, h) {
     k.yatirimcilar ? `yatirimcilar: ${yamlStr(k.yatirimcilar)}` : null,
     sayi(k.yatirimci) ? `yatirimci: ${sayi(k.yatirimci)}` : null,
     k.girisim && ['yeni', 'suruyor', 'basarili', 'basarisiz'].includes(k.durum) ? `durum: ${k.durum}` : null,
-    h.why_matters?.trim() ? `why_matters: ${yamlStr(h.why_matters.trim())}` : null,
-    Array.isArray(h.key_points) && h.key_points.filter(Boolean).length
-      ? `key_points:\n${h.key_points.filter(Boolean).map((p) => `  - ${yamlStr(p)}`).join('\n')}`
-      : null,
+    // Kısa okur alanları temizlenir; kurtarılamayan alan yazılmaz (ozetAlaniTemizle, 26 Kasım 2026).
+    why ? `why_matters: ${yamlStr(why)}` : null,
+    maddeler.length ? `key_points:\n${maddeler.map((p) => `  - ${yamlStr(p)}`).join('\n')}` : null,
     // Kaynakların şifreli kaydı (bkz. gizli.mjs); sitede gösterilmez.
     h.kaynakIzi ? `kaynakIzi: ${yamlStr(h.kaynakIzi)}` : null,
     // Ön elemenin haber değeri (0–100) ve derleme işareti: "Bu haber nasıl hazırlandı" kartı (src/lib/hazirlanis.mjs).

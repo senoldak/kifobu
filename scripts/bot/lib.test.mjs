@@ -73,3 +73,12 @@ test('haberYaz tek blok gövdeyi paragraflara böler, sözcüklere dokunmaz', as
   assert.ok(yazilan.split('\n\n').length >= 2);
   assert.equal(yazilan.replace(/\s+/g, ' '), body);
 });
+
+test('haberYaz bozuk why_matters alanını yazmaz', async () => {
+  const rot = await mkdtemp(path.join(os.tmpdir(), 'kifobu-'));
+  const slug = await haberYaz(rot, { title: 'Alan sınaması', description: 'Özet.', body: 'Gövde.', category: 'yatirimlar', date: '2026-11-26T10:00:00+03:00',
+    why_matters: 'Girişimin büyümesini hızlandırıyor.\\n\\nKey Points:\\n- kaçak' });
+  const md = await readFile(path.join(rot, 'src/content/haberler', slug, 'index.md'), 'utf8');
+  assert.doesNotMatch(md, /why_matters:/);
+  assert.doesNotMatch(md, /Key Points/);
+});
