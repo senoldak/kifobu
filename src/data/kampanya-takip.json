@@ -1,5 +1,5 @@
 {
- "sonKesif": "2026-11-25",
+ "sonKesif": "2026-11-26",
  "kampanyalar": [
   {
    "ad": "VISITEXTRA",
@@ -18,7 +18,7 @@
    "onTalep": 4087000,
    "onTalepKisi": 255,
    "ilkGorulme": "2026-11-17",
-   "sonGorulme": "2026-11-25",
+   "sonGorulme": "2026-11-26",
    "bittiGorulme": null,
    "eksik": [],
    "kayipTur": 0
@@ -40,7 +40,7 @@
    "onTalep": 4061500,
    "onTalepKisi": 127,
    "ilkGorulme": "2026-11-18",
-   "sonGorulme": "2026-11-25",
+   "sonGorulme": "2026-11-26",
    "bittiGorulme": null,
    "eksik": [],
    "kayipTur": 0
@@ -62,7 +62,7 @@
    "onTalep": null,
    "onTalepKisi": null,
    "ilkGorulme": "2026-11-18",
-   "sonGorulme": "2026-11-25",
+   "sonGorulme": "2026-11-26",
    "bittiGorulme": null,
    "eksik": [],
    "kayipTur": 0,
@@ -85,7 +85,7 @@
    "onTalep": null,
    "onTalepKisi": null,
    "ilkGorulme": "2026-11-18",
-   "sonGorulme": "2026-11-25",
+   "sonGorulme": "2026-11-26",
    "bittiGorulme": null,
    "eksik": [],
    "kayipTur": 0,
@@ -108,7 +108,7 @@
    "onTalep": null,
    "onTalepKisi": null,
    "ilkGorulme": "2026-11-18",
-   "sonGorulme": "2026-11-25",
+   "sonGorulme": "2026-11-26",
    "bittiGorulme": null,
    "eksik": [],
    "kayipTur": 0,
@@ -118,7 +118,7 @@
    "ad": "GOVITO",
    "platform": "trinkfon",
    "url": "https://kfs.trinkfon.com/projeler/govito-tek-tikla-guvenilir-vip-transfer/kampanya/",
-   "durum": "yakinda",
+   "durum": "aktif",
    "hedef": 2500000,
    "arzOrani": 0.035,
    "degerleme": 71389000,
@@ -131,7 +131,7 @@
    "onTalep": null,
    "onTalepKisi": null,
    "ilkGorulme": "2026-11-23",
-   "sonGorulme": "2026-11-25",
+   "sonGorulme": "2026-11-26",
    "bittiGorulme": null,
    "eksik": [],
    "kayipTur": 0

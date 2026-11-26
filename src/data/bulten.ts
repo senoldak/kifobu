@@ -1,7 +1,7 @@
 /**
  * Günlük kitle fonlama bülteni verisi ("Bugün" tablosu).
  * Otomatik Bot tarafından oluşturulmuştur.
- * Son güncelleme: 2026-11-25T15:01:58.911Z
+ * Son güncelleme: 2026-11-26T07:02:18.132Z
  */
 export interface Girisim {
   ad: string;
@@ -39,8 +39,8 @@ export interface Yakinda {
 }
 
 export const BULTEN = {
-  tarih: '25 Kasım 2026',
-  sayi: 1569,
+  tarih: '26 Kasım 2026',
+  sayi: 1570,
   girisimler: [
     {
         "ad": "LOOPYON",
@@ -61,7 +61,7 @@ export const BULTEN = {
         "kalan": 3757850,
         "degerleme": 50000000,
         "yuzde": 24.84,
-        "durum": "son 50 gün",
+        "durum": "son 49 gün",
         "url": "https://fonangels.com/kampanyalar/projehakkinda/visitextra?pid=1803"
     },
     {
@@ -85,6 +85,17 @@ export const BULTEN = {
         "yuzde": 102.71,
         "durum": "SONA ERDİ",
         "url": "https://fonangels.com/kampanyalar/projehakkinda/oylio?pid=1778"
+    },
+    {
+        "ad": "GOVITO",
+        "platform": "trinkfon",
+        "bugun": 0,
+        "alinan": 0,
+        "kalan": 2500000,
+        "degerleme": 71389000,
+        "yuzde": 0,
+        "durum": "son 60 gün",
+        "url": "https://kfs.trinkfon.com/projeler/govito-tek-tikla-guvenilir-vip-transfer/kampanya/"
     }
 ] as Girisim[],
   platformlar: {
@@ -104,6 +115,13 @@ export const BULTEN = {
         "girisim": 1,
         "renk": "#009bae",
         "url": "https://ecofolio.com.tr"
+    },
+    {
+        "ad": "trinkfon",
+        "toplam": 0,
+        "girisim": 1,
+        "renk": "#7c3aed",
+        "url": "https://kfs.trinkfon.com"
     }
 ] as Platform[],
   },
@@ -135,14 +153,6 @@ export const BULTEN = {
         "onTalep": 4061500,
         "onTalepKisi": 127,
         "renk": "#4f46e5"
-    },
-    {
-        "ad": "GOVITO",
-        "platform": "trinkfon",
-        "url": "https://kfs.trinkfon.com/projeler/govito-tek-tikla-guvenilir-vip-transfer/kampanya/",
-        "hedef": 2500000,
-        "degerleme": 71389000,
-        "renk": "#7c3aed"
     }
 ] as Yakinda[],
   mkk: {
