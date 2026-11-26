@@ -1,7 +1,7 @@
 /**
  * Günlük kitle fonlama bülteni verisi ("Bugün" tablosu).
  * Otomatik Bot tarafından oluşturulmuştur.
- * Son güncelleme: 2026-11-26T11:01:15.743Z
+ * Son güncelleme: 2026-11-26T13:01:24.757Z
  */
 export interface Girisim {
   ad: string;
@@ -94,7 +94,7 @@ export const BULTEN = {
         "kalan": 2500000,
         "degerleme": 71389000,
         "yuzde": 0,
-        "durum": "son 60 gün",
+        "durum": "Aktif",
         "url": "https://kfs.trinkfon.com/projeler/govito-tek-tikla-guvenilir-vip-transfer/kampanya/"
     }
 ] as Girisim[],
