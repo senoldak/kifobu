@@ -3,6 +3,7 @@
 import { mkdir, readFile, readdir, writeFile, access } from 'node:fs/promises';
 import path from 'node:path';
 import { geminiCagir } from './istemci.mjs';
+import { hintBirimleriniCevir } from './hint-birimleri.mjs';
 
 export const USER_AGENT = 'kifobu-bot/1.0 (+https://kifobu.com; contact@kifobu.com)';
 
@@ -244,11 +245,15 @@ export const adNorm = (s = '') =>
 // Haberi src/content/haberler/<slug>/index.md olarak yazar, slug'ı döner.
 export async function haberYaz(rot, h) {
   if (!KATEGORILER.includes(h.category)) h.category = 'girisimler';
+  // Hint sayı birimleri (crore, lakh) Türkçe büyüklüğe çevrilir (hint-birimleri.mjs; 26 Kasım 2026'da 9 haberde kalmıştı).
+  const hb = (v) => (typeof v === 'string' ? hintBirimleriniCevir(v).metin : v);
   h = {
     ...h,
-    title: tipografi(guvenli(h.title), { baslik: true }),
-    description: tipografi(guvenli(h.description)).replace(/\s+/g, ' '),
-    body: tipografi(guvenli(h.body)),
+    title: tipografi(guvenli(hb(h.title)), { baslik: true }),
+    description: tipografi(guvenli(hb(h.description))).replace(/\s+/g, ' '),
+    body: tipografi(guvenli(hb(h.body))),
+    ...(Array.isArray(h.key_points) ? { key_points: h.key_points.map(hb) } : {}),
+    ...(typeof h.why_matters === 'string' ? { why_matters: hb(h.why_matters) } : {}),
   };
   const base = path.join(rot, 'src/content/haberler');
   let slug = slugify(h.title) || 'haber';

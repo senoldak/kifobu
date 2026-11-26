@@ -26,7 +26,7 @@ Son bültenden bu yana kifobu'da yayımlanan haberler:
 - [Stuut, Seri B turunda 52,5 milyon dolar yatırım aldı](/haber/stuut-seri-b-turunda-52-5-milyon-dolar-yatirim-aldi/)
 - [Tonbo Imaging halka arzı ikinci günde yaklaşık sekiz kat talep gördü](/haber/tonbo-imaging-halka-arzi-ikinci-gunde-yaklasik-sekiz-kat-talep-gordu/)
 - [Bolt Graphics, yedi yüz milyon dolar değerlemeyle yüz milyon dolar yatırım arıyor](/haber/bolt-graphics-yedi-yuz-milyon-dolar-degerlemeyle-yuz-milyon-dolar-yatirim-ariyor/)
-- [Cult.fit, 950 crore rupi tutarında halka arz için onay aldı](/haber/cult-fit-950-crore-rupi-tutarinda-halka-arz-icin-onay-aldi/)
+- [Cult.fit, 9,5 milyar rupi tutarında halka arz için onay aldı](/haber/cult-fit-950-crore-rupi-tutarinda-halka-arz-icin-onay-aldi/)
 - [FinTech sektörü haftalık 2,8 milyar doları aşan yatırımlarla hareketlendi](/haber/fintech-sektoru-haftalik-2-8-milyar-dolari-asan-yatirimlarla-hareketlendi/)
 - [Maritime Launch Services, Toronto Stock Exchange listelenmesi için koşullu onay aldı](/haber/maritime-launch-services-toronto-stock-exchange-listelenmesi-icin-kosullu-onay/)
 - [OMass Therapeutics, Seri C turunda 275 milyon euro yatırım aldı](/haber/omass-therapeutics-seri-c-turunda-275-milyon-euro-yatirim-aldi/)

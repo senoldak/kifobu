@@ -17,7 +17,7 @@ kaynakIzi: "v1.U5nkFjpnoJZA+NX4.fFY2n1VXgLa6cW3D6nytcdh2pqgBdxwISylxUD/mYl/CcVrx
 uretim: yapay-zeka
 ---
 
-Practo kurucu ortağı Shashank ND tarafından bu yıl kurulan sağlık teknolojileri girişimi Cent, Blume Ventures ve South Park Commons öncülüğünde yapılan Seri A yatırım turunda 15 milyon dolar (yaklaşık 143 crore rupi) fon sağladı. Turda eski Vodafone CEO'su Arun Sarin ve eski OpenAI B2B CTO'su Srinivas Narayanan gibi bireysel yatırımcılar da yer aldı. Girişim, bu yılın başında OneFlow Holdings ve South Park Commons katılımıyla 5 milyon dolar tutarında tohum yatırım turu yapmıştı.
+Practo kurucu ortağı Shashank ND tarafından bu yıl kurulan sağlık teknolojileri girişimi Cent, Blume Ventures ve South Park Commons öncülüğünde yapılan Seri A yatırım turunda 15 milyon dolar (yaklaşık 1,43 milyar rupi) fon sağladı. Turda eski Vodafone CEO'su Arun Sarin ve eski OpenAI B2B CTO'su Srinivas Narayanan gibi bireysel yatırımcılar da yer aldı. Girişim, bu yılın başında OneFlow Holdings ve South Park Commons katılımıyla 5 milyon dolar tutarında tohum yatırım turu yapmıştı.
 
 Cent, yeni kaynağı araştırma geliştirme faaliyetlerini güçlendirmek, yapay zekâ, mühendislik ve klinik ekiplerini büyütmek için kullanacak. Yatırım turunun yanı sıra Cent, yapay zekâ destekli radyoloji raporlama iş akışı platformu Medsee'yi bünyesine kattığını duyurdu. Bu satın alma, artan tarama hacimleri karşısında daha hızlı ve tutarlı raporlama sunmayı hedefliyor.
 
@@ -25,4 +25,4 @@ Shashank ND'nin yanı sıra Anshul Khandelwal ve Arpit Garg tarafından kurulan 
 
 Tescilli protokolü, kanser, kardiyak, nörolojik ve metabolik sağlık risklerini değerlendirmek üzere tasarlandı. Yapay zekâ kullanımı, farklı tanı modalitelerinden elde edilen bulguları birleştirerek organ düzeyinde risk değerlendirmeleri üretilmesini sağlıyor ve belirtiler ortaya çıkmadan önce ciddi durumların tespit edilmesine yardımcı oluyor. Kapsamlı sağlık tarama paketi 27.500 rupi fiyatla sunuluyor ve kan testlerine dayanan geleneksel koruyucu sağlık kontrollerine alternatif oluşturuyor.
 
-Kuruluşundan bu yana Bengaluru, Mumbai ve Delhi NCR bölgelerinde 10.000 koruyucu tüm vücut taraması tamamladığını belirten girişim, bu sayıyı 2035 yılına kadar 1 crore seviyesine ulaştırmayı hedefliyor. Cent, taramalar yoluyla üretilen verileri sağlık temelleri oluşturmak, hastalık risklerini daha erken belirlemek üzere modeller eğitmek ve klinik araştırmaları desteklemek amacıyla kullanmayı planlıyor.
+Kuruluşundan bu yana Bengaluru, Mumbai ve Delhi NCR bölgelerinde 10.000 koruyucu tüm vücut taraması tamamladığını belirten girişim, bu sayıyı 2035 yılına kadar 10 milyon seviyesine ulaştırmayı hedefliyor. Cent, taramalar yoluyla üretilen verileri sağlık temelleri oluşturmak, hastalık risklerini daha erken belirlemek üzere modeller eğitmek ve klinik araştırmaları desteklemek amacıyla kullanmayı planlıyor.
