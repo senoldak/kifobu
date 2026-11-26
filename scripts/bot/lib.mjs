@@ -4,6 +4,7 @@ import { mkdir, readFile, readdir, writeFile, access } from 'node:fs/promises';
 import path from 'node:path';
 import { geminiCagir } from './istemci.mjs';
 import { hintBirimleriniCevir } from './hint-birimleri.mjs';
+import { paragraflaraBol } from './dil-tr.mjs';
 
 export const USER_AGENT = 'kifobu-bot/1.0 (+https://kifobu.com; contact@kifobu.com)';
 
@@ -296,7 +297,8 @@ export async function haberYaz(rot, h) {
     '---',
   ].filter(Boolean);
   await mkdir(path.join(base, slug), { recursive: true });
-  await writeFile(path.join(base, slug, 'index.md'), `${fm.join('\n')}\n\n${h.body.trim()}\n`, 'utf8');
+  // Model gövdeyi tek blok döndürdüyse cümle sınırlarından paragraflara bölünür (sözcüklere dokunulmaz).
+  await writeFile(path.join(base, slug, 'index.md'), `${fm.join('\n')}\n\n${paragraflaraBol(h.body.trim())}\n`, 'utf8');
   return slug;
 }
 

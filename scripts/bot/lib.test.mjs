@@ -63,3 +63,13 @@ test('guvenli: iç içe etiket ve başvuru bağlantıları ham HTML ya da https 
   assert.equal(guvenli('[a [b](javascript:x)](javascript:y)'), 'a b');
   assert.doesNotMatch(guvenli('[x][r]\n\n[r]: javascript:alert(1)'), /javascript/);
 });
+
+test('haberYaz tek blok gövdeyi paragraflara böler, sözcüklere dokunmaz', async () => {
+  const rot = await mkdtemp(path.join(os.tmpdir(), 'kifobu-'));
+  const body = Array.from({ length: 10 }, (_, i) => `Girişim ${i + 1}. turda yatırımcılarla anlaştığını ve ürününü yeni pazarlara taşıyacağını açıkladı.`).join(' ');
+  const slug = await haberYaz(rot, { title: 'Tek blok sınaması', description: 'Özet.', body, category: 'yatirimlar', date: '2026-11-26T10:00:00+03:00' });
+  const md = await readFile(path.join(rot, 'src/content/haberler', slug, 'index.md'), 'utf8');
+  const yazilan = md.split(/^---$/m)[2].trim();
+  assert.ok(yazilan.split('\n\n').length >= 2);
+  assert.equal(yazilan.replace(/\s+/g, ' '), body);
+});
