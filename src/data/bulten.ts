@@ -1,7 +1,7 @@
 /**
  * Günlük kitle fonlama bülteni verisi ("Bugün" tablosu).
  * Otomatik Bot tarafından oluşturulmuştur.
- * Son güncelleme: 2026-11-26T15:02:46.228Z
+ * Son güncelleme: 2026-11-27T07:02:16.859Z
  */
 export interface Girisim {
   ad: string;
@@ -39,8 +39,8 @@ export interface Yakinda {
 }
 
 export const BULTEN = {
-  tarih: '26 Kasım 2026',
-  sayi: 1570,
+  tarih: '27 Kasım 2026',
+  sayi: 1571,
   girisimler: [
     {
         "ad": "LOOPYON",
@@ -56,12 +56,12 @@ export const BULTEN = {
     {
         "ad": "VISITEXTRA",
         "platform": "fonangels",
-        "bugun": 1000,
-        "alinan": 1243150,
-        "kalan": 3756850,
+        "bugun": 500,
+        "alinan": 1243650,
+        "kalan": 3756350,
         "degerleme": 50000000,
-        "yuzde": 24.86,
-        "durum": "son 49 gün",
+        "yuzde": 24.87,
+        "durum": "son 48 gün",
         "url": "https://fonangels.com/kampanyalar/projehakkinda/visitextra?pid=1803"
     },
     {
@@ -89,41 +89,30 @@ export const BULTEN = {
     {
         "ad": "GOVITO",
         "platform": "trinkfon",
-        "bugun": 0,
-        "alinan": 0,
-        "kalan": 2500000,
+        "bugun": 1500,
+        "alinan": 5000,
+        "kalan": 2495000,
         "degerleme": 71389000,
-        "yuzde": 0,
-        "durum": "Aktif",
-        "url": "https://kfs.trinkfon.com/projeler/govito-tek-tikla-guvenilir-vip-transfer/kampanya/"
-    },
-    {
-        "ad": "GOVITO",
-        "platform": "trinkfon",
-        "bugun": 0,
-        "alinan": 3500,
-        "kalan": 2496500,
-        "degerleme": 71389000,
-        "yuzde": 0.14,
-        "durum": "son 60 gün",
+        "yuzde": 0.2,
+        "durum": "son 59 gün",
         "url": "https://kfs.trinkfon.com/projeler/govito-guvenilir-vip-transfer/kampanya/"
     }
 ] as Girisim[],
   platformlar: {
-    bugun: 1000,
-    toplam: 13985050,
+    bugun: 2000,
+    toplam: 13987050,
     liste: [
     {
         "ad": "fonangels",
-        "toplam": 13981550,
+        "toplam": 13982050,
         "girisim": 3,
         "renk": "#f47b3d",
         "url": "https://fonangels.com"
     },
     {
         "ad": "trinkfon",
-        "toplam": 3500,
-        "girisim": 2,
+        "toplam": 5000,
+        "girisim": 1,
         "renk": "#7c3aed",
         "url": "https://kfs.trinkfon.com"
     },
@@ -161,15 +150,15 @@ export const BULTEN = {
         "url": "https://fonventure.com/kampanya/9eade97b-9d7a-4962-bf2a-c49f9a312ee5",
         "hedef": 25000000,
         "degerleme": 192307692,
-        "onTalep": 4056500,
-        "onTalepKisi": 125,
+        "onTalep": 4071500,
+        "onTalepKisi": 127,
         "renk": "#4f46e5"
     }
 ] as Yakinda[],
   mkk: {
     "platform": 18,
     "sirket": 180,
-    "yatirimci": 47236,
+    "yatirimci": 47235,
     "fon": "₺1,61 Milyar"
 },
 };
