@@ -1,5 +1,5 @@
 {
- "guncelleme": "2026-11-21T08:32:48.119Z",
+ "guncelleme": "2026-11-28T08:33:02.052Z",
  "kaynak": "Merkezi Kayıt Kuruluşu (MKK), Kitle Fonlaması Sistemi istatistikleri",
  "notlar": [
   "Yatırımcı sayıları kayıtlı girişim şirketlerindeki yatırımcılardır.",
@@ -8,17 +8,17 @@
   "nitelik: kaynak 25 Eylül 2026 haftasından beri nitelikli yatırımcıyı ayırmıyor (nitelikli 0, hepsi diğer). Bu tarihten sonraki nitelik verisi kullanılmaz."
  ],
  "ulke_dagilimi": {
-  "TÜRKİYE": 46350,
-  "DİĞER": 815
+  "TÜRKİYE": 46415,
+  "DİĞER": 821
  },
  "il_dagilimi": {
   "ADANA": {
-   "yatirimci": 847,
+   "yatirimci": 848,
    "enlem": 37.186,
    "boylam": 35.519
   },
   "ADIYAMAN": {
-   "yatirimci": 131,
+   "yatirimci": 132,
    "enlem": 37.841,
    "boylam": 38.421
   },
@@ -43,12 +43,12 @@
    "boylam": 35.802
   },
   "ANKARA": {
-   "yatirimci": 5450,
+   "yatirimci": 5448,
    "enlem": 39.717,
    "boylam": 32.658
   },
   "ANTALYA": {
-   "yatirimci": 1352,
+   "yatirimci": 1353,
    "enlem": 36.76,
    "boylam": 30.126
   },
@@ -63,12 +63,12 @@
    "boylam": 41.864
   },
   "AYDIN": {
-   "yatirimci": 376,
+   "yatirimci": 375,
    "enlem": 37.742,
    "boylam": 28.178
   },
   "BALIKESİR": {
-   "yatirimci": 639,
+   "yatirimci": 642,
    "enlem": 39.597,
    "boylam": 28.083
   },
@@ -103,22 +103,22 @@
    "boylam": 42.356
   },
   "BOLU": {
-   "yatirimci": 142,
+   "yatirimci": 143,
    "enlem": 40.626,
    "boylam": 31.791
   },
   "BURDUR": {
-   "yatirimci": 154,
+   "yatirimci": 152,
    "enlem": 37.476,
    "boylam": 30.167
   },
   "BURSA": {
-   "yatirimci": 1778,
+   "yatirimci": 1820,
    "enlem": 40.065,
    "boylam": 28.91
   },
   "ÇANAKKALE": {
-   "yatirimci": 348,
+   "yatirimci": 349,
    "enlem": 40,
    "boylam": 26.791
   },
@@ -133,7 +133,7 @@
    "boylam": 34.686
   },
   "DENİZLİ": {
-   "yatirimci": 552,
+   "yatirimci": 554,
    "enlem": 37.625,
    "boylam": 29.185
   },
@@ -148,7 +148,7 @@
    "boylam": 31.243
   },
   "EDİRNE": {
-   "yatirimci": 192,
+   "yatirimci": 193,
    "enlem": 40.953,
    "boylam": 26.501
   },
@@ -168,7 +168,7 @@
    "boylam": 41.406
   },
   "ESKİŞEHİR": {
-   "yatirimci": 897,
+   "yatirimci": 896,
    "enlem": 39.575,
    "boylam": 31.069
   },
@@ -198,7 +198,7 @@
    "boylam": 36.25
   },
   "IĞDIR": {
-   "yatirimci": 38,
+   "yatirimci": 37,
    "enlem": 39.861,
    "boylam": 43.966
   },
@@ -208,7 +208,7 @@
    "boylam": 30.931
   },
   "İSTANBUL": {
-   "yatirimci": 15253,
+   "yatirimci": 15258,
    "enlem": 41.17,
    "boylam": 28.617
   },
@@ -233,17 +233,17 @@
    "boylam": 33.183
   },
   "KARS": {
-   "yatirimci": 49,
+   "yatirimci": 48,
    "enlem": 40.475,
    "boylam": 43.135
   },
   "KASTAMONU": {
-   "yatirimci": 129,
+   "yatirimci": 130,
    "enlem": 41.556,
    "boylam": 33.675
   },
   "KAYSERİ": {
-   "yatirimci": 677,
+   "yatirimci": 678,
    "enlem": 38.73,
    "boylam": 35.822
   },
@@ -268,12 +268,12 @@
    "boylam": 34.143
   },
   "KOCAELİ": {
-   "yatirimci": 1801,
+   "yatirimci": 1807,
    "enlem": 40.969,
    "boylam": 30.065
   },
   "KONYA": {
-   "yatirimci": 1292,
+   "yatirimci": 1293,
    "enlem": 38.151,
    "boylam": 32.404
   },
@@ -288,7 +288,7 @@
    "boylam": 37.961
   },
   "MANİSA": {
-   "yatirimci": 548,
+   "yatirimci": 549,
    "enlem": 38.724,
    "boylam": 28.225
   },
@@ -298,12 +298,12 @@
    "boylam": 40.89
   },
   "MERSİN": {
-   "yatirimci": 623,
+   "yatirimci": 622,
    "enlem": 36.663,
    "boylam": 33.745
   },
   "MUĞLA": {
-   "yatirimci": 567,
+   "yatirimci": 569,
    "enlem": 37.102,
    "boylam": 28.453
   },
@@ -333,22 +333,22 @@
    "boylam": 36.279
   },
   "RİZE": {
-   "yatirimci": 136,
+   "yatirimci": 135,
    "enlem": 40.903,
    "boylam": 40.781
   },
   "SAKARYA": {
-   "yatirimci": 499,
+   "yatirimci": 501,
    "enlem": 40.725,
    "boylam": 30.54
   },
   "SAMSUN": {
-   "yatirimci": 508,
+   "yatirimci": 510,
    "enlem": 41.224,
    "boylam": 35.885
   },
   "ŞANLIURFA": {
-   "yatirimci": 305,
+   "yatirimci": 306,
    "enlem": 37.184,
    "boylam": 39.209
   },
@@ -368,7 +368,7 @@
    "boylam": 42.765
   },
   "SİVAS": {
-   "yatirimci": 196,
+   "yatirimci": 195,
    "enlem": 39.679,
    "boylam": 37.543
   },
@@ -393,12 +393,12 @@
    "boylam": 39.399
   },
   "UŞAK": {
-   "yatirimci": 118,
+   "yatirimci": 119,
    "enlem": 38.512,
    "boylam": 29.299
   },
   "VAN": {
-   "yatirimci": 198,
+   "yatirimci": 199,
    "enlem": 38.497,
    "boylam": 43.589
   },
@@ -413,12 +413,12 @@
    "boylam": 35.258
   },
   "ZONGULDAK": {
-   "yatirimci": 200,
+   "yatirimci": 199,
    "enlem": 41.267,
    "boylam": 31.903
   }
  },
- "il_dagilimi_tarihi": "2026-11-20",
+ "il_dagilimi_tarihi": "2026-11-27",
  "kirilimlar": {
   "genel": {
    "kisilik": {
@@ -746,6 +746,13 @@
       "diger": 5
      },
      "2026-11-20": {
+      "fon": 30,
+      "gercek_kisi": 46803,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 396,
+      "diger": 5
+     },
+     "2026-11-27": {
       "fon": 30,
       "gercek_kisi": 46803,
       "yatirim_ortakligi": 2,
@@ -1281,6 +1288,10 @@
      "2026-11-20": {
       "diger": 47236,
       "nitelikli": 0
+     },
+     "2026-11-27": {
+      "diger": 47236,
+      "nitelikli": 0
      }
     },
     "aylik": {
@@ -1665,6 +1676,10 @@
       "yabanci": 212
      },
      "2026-11-20": {
+      "yerli": 47024,
+      "yabanci": 212
+     },
+     "2026-11-27": {
       "yerli": 47024,
       "yabanci": 212
      }
@@ -2281,6 +2296,15 @@
       "0-20": 97
      },
      "2026-11-20": {
+      "71+": 97,
+      "61-70": 902,
+      "51-60": 4483,
+      "41-50": 13962,
+      "31-40": 18584,
+      "21-30": 8675,
+      "0-20": 100
+     },
+     "2026-11-27": {
       "71+": 97,
       "61-70": 902,
       "51-60": 4483,
@@ -2914,6 +2938,10 @@
      "2026-11-20": {
       "kadin": 6099,
       "erkek": 40704
+     },
+     "2026-11-27": {
+      "kadin": 6099,
+      "erkek": 40704
      }
     },
     "aylik": {
@@ -3440,6 +3468,13 @@
      "2026-11-20": {
       "fon": 30,
       "gercek_kisi": 45985,
+      "yatirim_ortakligi": 2,
+      "tuzel_kisi": 394,
+      "diger": 4
+     },
+     "2026-11-27": {
+      "fon": 30,
+      "gercek_kisi": 45981,
       "yatirim_ortakligi": 2,
       "tuzel_kisi": 394,
       "diger": 4
@@ -3973,6 +4008,10 @@
      "2026-11-20": {
       "diger": 46415,
       "nitelikli": 0
+     },
+     "2026-11-27": {
+      "diger": 46411,
+      "nitelikli": 0
      }
     },
     "aylik": {
@@ -4358,6 +4397,10 @@
      },
      "2026-11-20": {
       "yerli": 46212,
+      "yabanci": 203
+     },
+     "2026-11-27": {
+      "yerli": 46208,
       "yabanci": 203
      }
     },
@@ -4979,6 +5022,15 @@
       "41-50": 13690,
       "31-40": 18232,
       "21-30": 8582,
+      "0-20": 100
+     },
+     "2026-11-27": {
+      "71+": 95,
+      "61-70": 893,
+      "51-60": 4393,
+      "41-50": 13688,
+      "31-40": 18231,
+      "21-30": 8581,
       "0-20": 100
      }
     },
@@ -5606,6 +5658,10 @@
      "2026-11-20": {
       "kadin": 5997,
       "erkek": 39988
+     },
+     "2026-11-27": {
+      "kadin": 5997,
+      "erkek": 39984
      }
     },
     "aylik": {
@@ -6039,6 +6095,11 @@
      },
      "2026-11-20": {
       "gercek_kisi": 818,
+      "tuzel_kisi": 2,
+      "diger": 1
+     },
+     "2026-11-27": {
+      "gercek_kisi": 822,
       "tuzel_kisi": 2,
       "diger": 1
      }
@@ -6475,6 +6536,10 @@
      "2026-11-20": {
       "diger": 821,
       "nitelikli": 0
+     },
+     "2026-11-27": {
+      "diger": 825,
+      "nitelikli": 0
      }
     },
     "aylik": {
@@ -6860,6 +6925,10 @@
      },
      "2026-11-20": {
       "yerli": 812,
+      "yabanci": 9
+     },
+     "2026-11-27": {
+      "yerli": 816,
       "yabanci": 9
      }
     },
@@ -7435,6 +7504,14 @@
       "41-50": 272,
       "31-40": 352,
       "21-30": 93
+     },
+     "2026-11-27": {
+      "71+": 2,
+      "61-70": 9,
+      "51-60": 90,
+      "41-50": 274,
+      "31-40": 353,
+      "21-30": 94
      }
     },
     "aylik": {
@@ -8061,6 +8138,10 @@
      "2026-11-20": {
       "kadin": 102,
       "erkek": 716
+     },
+     "2026-11-27": {
+      "kadin": 102,
+      "erkek": 720
      }
     },
     "aylik": {
