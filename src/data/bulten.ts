@@ -1,7 +1,7 @@
 /**
  * Günlük kitle fonlama bülteni verisi ("Bugün" tablosu).
  * Otomatik Bot tarafından oluşturulmuştur.
- * Son güncelleme: 2026-11-27T15:01:57.229Z
+ * Son güncelleme: 2026-11-28T07:01:57.216Z
  */
 export interface Girisim {
   ad: string;
@@ -39,13 +39,13 @@ export interface Yakinda {
 }
 
 export const BULTEN = {
-  tarih: '27 Kasım 2026',
-  sayi: 1571,
+  tarih: '28 Kasım 2026',
+  sayi: 1572,
   girisimler: [
     {
         "ad": "LOOPYON",
         "platform": "ecofolio",
-        "bugun": 1265600,
+        "bugun": 0,
         "alinan": 1265600,
         "kalan": 33734400,
         "degerleme": 385000000,
@@ -56,12 +56,12 @@ export const BULTEN = {
     {
         "ad": "VISITEXTRA",
         "platform": "fonangels",
-        "bugun": 6000,
-        "alinan": 1249150,
-        "kalan": 3750850,
+        "bugun": 11000,
+        "alinan": 1260150,
+        "kalan": 3739850,
         "degerleme": 50000000,
-        "yuzde": 24.98,
-        "durum": "son 48 gün",
+        "yuzde": 25.2,
+        "durum": "son 47 gün",
         "url": "https://fonangels.com/kampanyalar/projehakkinda/visitextra?pid=1803"
     },
     {
@@ -89,22 +89,22 @@ export const BULTEN = {
     {
         "ad": "GOVITO",
         "platform": "trinkfon",
-        "bugun": 1500,
+        "bugun": 0,
         "alinan": 5000,
         "kalan": 2495000,
         "degerleme": 71389000,
         "yuzde": 0.2,
-        "durum": "son 59 gün",
+        "durum": "son 58 gün",
         "url": "https://kfs.trinkfon.com/projeler/govito-guvenilir-vip-transfer/kampanya/"
     }
 ] as Girisim[],
   platformlar: {
-    bugun: 1273100,
-    toplam: 15258150,
+    bugun: 11000,
+    toplam: 15269150,
     liste: [
     {
         "ad": "fonangels",
-        "toplam": 13987550,
+        "toplam": 13998550,
         "girisim": 3,
         "renk": "#f47b3d",
         "url": "https://fonangels.com"
@@ -150,8 +150,8 @@ export const BULTEN = {
         "url": "https://fonventure.com/kampanya/9eade97b-9d7a-4962-bf2a-c49f9a312ee5",
         "hedef": 25000000,
         "degerleme": 192307692,
-        "onTalep": 4221500,
-        "onTalepKisi": 128,
+        "onTalep": 4271500,
+        "onTalepKisi": 129,
         "renk": "#4f46e5"
     }
 ] as Yakinda[],
