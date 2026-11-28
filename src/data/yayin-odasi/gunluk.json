@@ -1,5 +1,5 @@
 {
- "guncellendi": "2026-11-27T21:23:08.113Z",
+ "guncellendi": "2026-11-28T03:21:09.426Z",
  "gunler": {
   "2026-11-02": {
    "tur": 6,
@@ -405,13 +405,14 @@
    "bekleyen": 0
   },
   "2026-11-28": {
-   "tur": 1,
-   "bulunan": 215,
-   "degerlendirilen": 16,
+   "tur": 2,
+   "bulunan": 425,
+   "degerlendirilen": 20,
    "elenen": {
-    "kapsam-disi": 13,
+    "kapsam-disi": 16,
     "dusuk-haber-degeri": 2,
-    "denetim-durdu": 1
+    "denetim-durdu": 1,
+    "zaten-yazildi": 1
    },
    "yazilan": 0,
    "yayimlanan": 0,
